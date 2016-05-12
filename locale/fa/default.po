@@ -1,0 +1,1888 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: video\n"
+"POT-Creation-Date: 2016-04-25 12:35+0430\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/Api/Attribute.php:63
+msgid "Text"
+msgstr "متن"
+
+#: src/Api/Attribute.php:67
+msgid "Link"
+msgstr "لینک"
+
+#: src/Api/Attribute.php:71 src/Form/VideoUploadForm.php:48
+msgid "Video"
+msgstr "ویدیو"
+
+#: src/Api/Attribute.php:75
+msgid "Audio"
+msgstr "صدا"
+
+#: src/Api/Attribute.php:79
+msgid "File"
+msgstr "فایل"
+
+#: src/Api/Attribute.php:83
+msgid "Currency"
+msgstr "قیمت"
+
+#: src/Api/Attribute.php:87
+msgid "Date"
+msgstr "تاریخ"
+
+#: src/Api/Attribute.php:91
+msgid "Number"
+msgstr "تعداد"
+
+#: src/Api/Attribute.php:95
+msgid "Select"
+msgstr "انتخاب"
+
+#: src/Api/Attribute.php:99
+msgid "Checkbox"
+msgstr "چک باکس"
+
+#: src/Api/Attribute.php:254
+msgid "Hidden"
+msgstr "مخفی"
+
+#: src/Api/Breadcrumbs.php:50 src/Api/Breadcrumbs.php:56
+#: src/Api/Breadcrumbs.php:76 src/Controller/Front/CategoryController.php:83
+#: template/front/category-list.phtml:4 template/front/video-angular.phtml:134
+msgid "Category list"
+msgstr "فهرست شاخه ها"
+
+#: src/Api/Breadcrumbs.php:100 src/Api/Breadcrumbs.php:111
+#: template/front/tag-list.phtml:4
+msgid "Tag list"
+msgstr "فهرست برچسب ها"
+
+#: src/Api/Breadcrumbs.php:120 src/Controller/Admin/VideoController.php:219
+#: src/Controller/Front/SubmitController.php:146
+msgid "Upload new video"
+msgstr "بارگذاری ویدیو جدید"
+
+#: src/Api/Breadcrumbs.php:126 src/Controller/Front/SubmitController.php:291
+#: template/admin/video-index.phtml:85 template/admin/video-index.phtml:87
+#: template/admin/video-update.phtml:12 template/admin/video-view.phtml:5
+#: template/front/submit-finish.phtml:10 template/front/submit-update.phtml:10
+msgid "Edit basic information"
+msgstr "ویرایش اطلاعات پایه"
+
+#: src/Api/Breadcrumbs.php:132 src/Controller/Front/SubmitController.php:386
+#: template/admin/video-index.phtml:88 template/admin/video-index.phtml:90
+#: template/admin/video-update.phtml:13 template/admin/video-view.phtml:6
+#: template/front/submit-finish.phtml:11 template/front/submit-update.phtml:11
+msgid "Edit additional information"
+msgstr "ویرایش اطلاعات تکمیلی"
+
+#: src/Api/Breadcrumbs.php:138
+msgid "Watch video"
+msgstr "مشاهده ویدیو"
+
+#: src/Controller/Admin/AttributeController.php:54
+msgid "Attribute field type not set."
+msgstr "نوع فیلد خاصیت تنظیم نشده است"
+
+#: src/Controller/Admin/AttributeController.php:111
+msgid "Attribute field data saved successfully."
+msgstr "اطلاعات صفت جدید با موفقیت ذخیره شد"
+
+#: src/Controller/Admin/AttributeController.php:123
+#, php-format
+msgid "Add attribute - type : %s"
+msgstr "خاصیت جدید - نوع : %s"
+
+#: src/Controller/Admin/AttributeController.php:155
+msgid "Selected field delete"
+msgstr "فیلد انتخابی حذف شد"
+
+#: src/Controller/Admin/AttributeController.php:157
+msgid "Please select field"
+msgstr "لطفا یک فیل انتخاب نمایید"
+
+#: src/Controller/Admin/CategoryController.php:135
+#: src/Controller/Admin/VideoController.php:296
+#: src/Controller/Front/SubmitController.php:225
+msgid "Problem in upload image. please try again"
+msgstr "خطا در بارگذاری تصویر، دوباره تلاش کنید"
+
+#: src/Controller/Admin/CategoryController.php:184
+msgid "Category data saved successfully."
+msgstr "اطلاعات شاخه با موفقیت ذخیره شد"
+
+#: src/Controller/Admin/CategoryController.php:195
+msgid "Add a category"
+msgstr "شاخه جدید"
+
+#: src/Controller/Admin/CategoryController.php:220
+#: src/Controller/Admin/VideoController.php:525
+#, php-format
+msgid "Image of %s removed"
+msgstr "تصویر مربوطز به %s حذف شد"
+
+#: src/Controller/Admin/CategoryController.php:223
+#: src/Controller/Admin/VideoController.php:528
+msgid "Image not remove"
+msgstr "تصویر حذف نشد"
+
+#: src/Controller/Admin/CategoryController.php:227
+msgid "Please select category"
+msgstr "لطفا یک شاخه انتخاب کنید"
+
+#: src/Controller/Admin/PositionController.php:78
+msgid "Attribute position data saved successfully."
+msgstr "اطلاعات موقعیت خواص با موفقیت ذخیره شد"
+
+#: src/Controller/Admin/PositionController.php:90
+#: template/admin/position-index.phtml:4 template/admin/position-index.phtml:6
+msgid "Add position"
+msgstr "موقعیت جدید"
+
+#: src/Controller/Admin/ToolsController.php:31
+msgid "Rebuild thie module links on sitemap module tabels"
+msgstr "دوباره سازی لینک ای ماژول در جدول ماژول نقشه سایت"
+
+#: src/Controller/Admin/ToolsController.php:49
+msgid "Sitemap rebuild finished"
+msgstr "دوباره سازی نقشه سایت پایان یافت"
+
+#: src/Controller/Admin/ToolsController.php:54
+msgid "Rebuild sitemap links"
+msgstr "دوباره سازی لینک های نقشه سایت"
+
+#: src/Controller/Admin/VideoController.php:104
+msgid "View filtered videos"
+msgstr "نمایش ویدیو های فیلتر شده"
+
+#: src/Controller/Admin/VideoController.php:110
+msgid "Not valid"
+msgstr "صحیح نیست"
+
+#: src/Controller/Admin/VideoController.php:116
+msgid "Not set"
+msgstr "هنوز تنظیم نشده"
+
+#: src/Controller/Admin/VideoController.php:166
+#: src/Controller/Admin/VideoController.php:169
+#: src/Controller/Front/SubmitController.php:82
+#: src/Controller/Front/SubmitController.php:85
+msgid "Problem in upload video. please try again"
+msgstr "خطا در بارگذاری ویدیو، دوباره تلاش کنید"
+
+#: src/Controller/Admin/VideoController.php:254
+#: src/Controller/Admin/VideoController.php:380
+#: src/Controller/Admin/VideoController.php:454
+#: src/Controller/Admin/VideoController.php:496
+#: src/Controller/Admin/VideoController.php:532
+msgid "Please select video"
+msgstr "لطفا یک ویدیو انتخاب کنید"
+
+#: src/Controller/Admin/VideoController.php:342
+#: src/Controller/Admin/VideoController.php:388
+#: src/Controller/Admin/VideoController.php:419
+#: src/Controller/Front/SubmitController.php:272
+#: src/Controller/Front/SubmitController.php:339
+#: src/Controller/Front/SubmitController.php:370
+msgid "Video data saved successfully."
+msgstr "اطلاعات ویدیو با موفقیت ذخیره شد"
+
+#: src/Controller/Admin/VideoController.php:365
+#: src/Controller/Front/SubmitController.php:306
+msgid "Video information"
+msgstr "اطلاعات ویدیو"
+
+#: src/Controller/Admin/VideoController.php:439
+#: src/Controller/Front/SubmitController.php:401
+msgid "Video additional information"
+msgstr "اطلاعات تکمیلی ویدیو"
+
+#: src/Controller/Admin/VideoController.php:463
+#: template/admin/video-index.phtml:91 template/admin/video-index.phtml:93
+msgid "View video"
+msgstr "نمایش ویدیو"
+
+#: src/Controller/Admin/VideoController.php:483
+#, php-format
+msgid "%s set recommended successfully"
+msgstr "%s به عنوان پیشنهاد شده ذخیره شد"
+
+#: src/Controller/Admin/VideoController.php:490
+#, php-format
+msgid "Error in set recommended for %s video"
+msgstr "خطا در ثبت ویدیو %s به عنوان پیشنهاد شده"
+
+#: src/Controller/Feed/IndexController.php:25
+msgid "Video feed"
+msgstr "خوراک ویدیو"
+
+#: src/Controller/Feed/IndexController.php:26
+msgid "Recent videos and audios."
+msgstr "آخرین ویدیو ها و صدا ها"
+
+#: src/Controller/Feed/IndexController.php:36
+msgid "Click to see video"
+msgstr "برای مشاهده ویدیو کلیک کنید"
+
+#: src/Controller/Front/CategoryController.php:35
+#: src/Controller/Front/JsonController.php:85
+msgid "The category not found."
+msgstr "شاخه پیدا نشد"
+
+#: src/Controller/Front/ChannelController.php:38
+msgid "This channel not exist."
+msgstr "کانال موجود نیست"
+
+#: src/Controller/Front/ChannelController.php:55
+#, php-format
+msgid "All videos from %s channel"
+msgstr "همه ویدیو از کانال %s"
+
+#: src/Controller/Front/FavouriteController.php:29
+#: src/Controller/Front/JsonController.php:185
+msgid "Favourite module not installed."
+msgstr "ماژول فهرست علاقه مندی ها نصب نشده است"
+
+#: src/Controller/Front/FavouriteController.php:50
+msgid "All favourite videos by you"
+msgstr "تمام ویدیو های محبوب شما"
+
+#: src/Controller/Front/IndexController.php:47
+#: template/admin/video-index.phtml:49
+msgid "List of videos"
+msgstr "فهرست ویدیو ها"
+
+#: src/Controller/Front/JsonController.php:135
+#: src/Controller/Front/TagController.php:26
+msgid "Tag module not installed."
+msgstr "ماژول برچسب نصب نشده است"
+
+#: src/Controller/Front/JsonController.php:147
+#: src/Controller/Front/TagController.php:38
+msgid "The tag not set."
+msgstr "برچسب تنظیم نشده است"
+
+#: src/Controller/Front/JsonController.php:160
+msgid "The tag not found."
+msgstr "برچسب پیدا نشد"
+
+#: src/Controller/Front/JsonController.php:197
+msgid "Please login to see favourite list."
+msgstr "برای مشاهده فهرست علاقه مندی ها لطفا به سایت وارد شوید"
+
+#: src/Controller/Front/JsonController.php:268
+msgid "The keyword not found."
+msgstr "کلمه مورد نظر یافت نشد"
+
+#: src/Controller/Front/JsonController.php:281
+#, php-format
+msgid "Videos related to %s"
+msgstr "ویدیو های مرتبط با %s"
+
+#: src/Controller/Front/JsonController.php:300
+#, php-format
+msgid "Categories related to %s"
+msgstr "شاخه های مرتبط با %s"
+
+#: src/Controller/Front/SubmitController.php:132
+#: template/admin/video-upload.phtml:54 template/front/submit-index.phtml:59
+msgid "Upload video"
+msgstr "بارگذاری ویدیو"
+
+#: src/Controller/Front/SubmitController.php:173
+#: src/Controller/Front/SubmitController.php:188
+#: src/Controller/Front/SubmitController.php:325
+#: src/Controller/Front/SubmitController.php:330
+#: src/Controller/Front/SubmitController.php:420
+#: src/Controller/Front/SubmitController.php:424
+msgid "Please submit video"
+msgstr "لطفا یک ویدیو ارسال نمایید"
+
+#: src/Controller/Front/SubmitController.php:432
+#: template/admin/video-update.phtml:14 template/admin/video-upload.phtml:57
+#: template/admin/video-view.phtml:7 template/front/submit-finish.phtml:12
+#: template/front/submit-index.phtml:62 template/front/submit-update.phtml:12
+msgid "Watch submitted video"
+msgstr "مشاهده ویدیو بارگذاری شده"
+
+#: src/Controller/Front/TagController.php:53
+#, php-format
+msgid "All videos by %s tag"
+msgstr "همه ویدیو ها با برچسب %s"
+
+#: src/Controller/Front/TagController.php:95
+msgid "List of all used tags on video"
+msgstr "فهرست همه برچسب های استفاده شده برای ویدیو ها"
+
+#: src/Controller/Front/WatchController.php:33
+msgid "The video not found."
+msgstr "ویدیو پیدا نشد"
+
+#: src/Form/AdminSearchForm.php:40 src/Form/AttributeForm.php:49
+#: src/Form/CategoryForm.php:65 src/Form/PositionForm.php:47
+#: src/Form/VideoForm.php:90 template/admin/attribute-index.phtml:57
+#: template/admin/category-index.phtml:13
+#: template/admin/position-index.phtml:13 template/admin/video-index.phtml:52
+#: template/front/video-angular.phtml:92
+msgid "Title"
+msgstr "عنوان"
+
+#: src/Form/AdminSearchForm.php:53 src/Form/AttributeForm.php:186
+#: template/front/video-angular.phtml:88
+msgid "Search"
+msgstr "جستجو"
+
+#: src/Form/AttributeForm.php:61
+msgid "Name"
+msgstr "نام"
+
+#: src/Form/AttributeForm.php:65
+msgid "Set name for call anywhere, a-z 0-9 allowed"
+msgstr "تنظیم نام برای فراخوانی در تمام بخش‌ها، مقادیر مجاز a-z 0-9 می باشد."
+
+#: src/Form/AttributeForm.php:74 src/Form/VideoForm.php:148
+#: template/front/category.phtml:32
+msgid "Category"
+msgstr "شاخه"
+
+#: src/Form/AttributeForm.php:88 src/Form/CategoryForm.php:114
+#: src/Form/PositionForm.php:73 src/Form/VideoForm.php:64
+msgid "Status"
+msgstr "وضعیت"
+
+#: src/Form/AttributeForm.php:90
+msgid "Online"
+msgstr "آنلاین"
+
+#: src/Form/AttributeForm.php:91
+msgid "Offline"
+msgstr "آفلاین"
+
+#: src/Form/AttributeForm.php:103 template/admin/attribute-index.phtml:65
+msgid "Set"
+msgstr "محل نمایش"
+
+#: src/Form/AttributeForm.php:139
+msgid "General data"
+msgstr "اطلاعات عمومی"
+
+#: src/Form/AttributeForm.php:145
+msgid "Use `|` as delimiter to separate select box elements"
+msgstr "از `|` به عنوان جدا کننده برای تفکیک المان ها استفاده شود"
+
+#: src/Form/AttributeForm.php:152
+msgid "Default data"
+msgstr "اطلاعات پیش فرض"
+
+#: src/Form/AttributeForm.php:163
+msgid "Extra information"
+msgstr "اطلاعات اضافی"
+
+#: src/Form/AttributeForm.php:167
+msgid "Put URL for click by user"
+msgstr "درج ادرس برای کلیک توسط کاربر"
+
+#: src/Form/AttributeForm.php:174
+msgid "Icon"
+msgstr "آیکن"
+
+#: src/Form/AttributeForm.php:178
+msgid "Use fontawesome.io icons, and set icon name like fa-home"
+msgstr ""
+"از آیکن های fontawesome.io استفاده شود، و نام آیکن موارد شود ، مثل : fa-home"
+
+#: src/Form/AttributeForm.php:197 src/Form/CategoryForm.php:217
+#: src/Form/PositionForm.php:88 src/Form/SitemapForm.php:48
+#: src/Form/VideoAdditionalForm.php:98 src/Form/VideoForm.php:373
+msgid "Submit"
+msgstr "ارسال"
+
+#: src/Form/CategoryForm.php:53
+msgid "Parent Category"
+msgstr "شاخه والد"
+
+#: src/Form/CategoryForm.php:77 src/Form/VideoForm.php:103
+msgid "slug"
+msgstr "اسلاگ"
+
+#: src/Form/CategoryForm.php:89 src/Form/VideoForm.php:135
+msgid "Description"
+msgstr "توضیحات"
+
+#: src/Form/CategoryForm.php:101 template/admin/category-index.phtml:14
+msgid "Display order"
+msgstr "ترتیب نمایش"
+
+#: src/Form/CategoryForm.php:116 src/Form/PositionForm.php:75
+#: src/Form/VideoForm.php:66 template/admin/category-index.phtml:51
+#: template/admin/video-index.phtml:26 template/admin/video-index.phtml:28
+#: template/admin/video-index.phtml:109
+msgid "Published"
+msgstr "منتشر شده"
+
+#: src/Form/CategoryForm.php:117 src/Form/PositionForm.php:76
+#: src/Form/VideoForm.php:67 template/admin/category-index.phtml:52
+#: template/admin/video-index.phtml:29 template/admin/video-index.phtml:31
+#: template/admin/video-index.phtml:32 template/admin/video-index.phtml:110
+msgid "Pending review"
+msgstr "در انتظار تایید"
+
+#: src/Form/CategoryForm.php:118 src/Form/PositionForm.php:77
+#: src/Form/VideoForm.php:68 template/admin/category-index.phtml:53
+#: template/admin/video-index.phtml:34
+msgid "Draft"
+msgstr "پیش نویس"
+
+#: src/Form/CategoryForm.php:119 src/Form/PositionForm.php:78
+#: src/Form/VideoForm.php:69 template/admin/category-index.phtml:54
+#: template/admin/video-index.phtml:35 template/admin/video-index.phtml:37
+msgid "Private"
+msgstr "خصوصی"
+
+#: src/Form/CategoryForm.php:141 src/Form/VideoForm.php:187
+msgid "Remove image"
+msgstr "حذف تصویر"
+
+#: src/Form/CategoryForm.php:157 src/Form/VideoForm.php:204
+msgid "Image"
+msgstr "تصویر"
+
+#: src/Form/CategoryForm.php:170 src/Form/VideoForm.php:282
+msgid "SEO options"
+msgstr "گزینه های سئو"
+
+#: src/Form/CategoryForm.php:177 src/Form/VideoForm.php:289
+msgid "SEO Title"
+msgstr "عنوان سئو"
+
+#: src/Form/CategoryForm.php:183 src/Form/VideoForm.php:295
+msgid "Between 10 to 70 character"
+msgstr "بین ۱۰ تا ۷۰ کارکتر"
+
+#: src/Form/CategoryForm.php:190 src/Form/VideoForm.php:302
+msgid "SEO Keywords"
+msgstr "کلمات کلیدی سئو"
+
+#: src/Form/CategoryForm.php:196 src/Form/VideoForm.php:308
+msgid "Between 5 to 10 words"
+msgstr "بین ۵ تا ۱۰ کلمه"
+
+#: src/Form/CategoryForm.php:203 src/Form/VideoForm.php:315
+msgid "SEO Description"
+msgstr "توضیح سئو"
+
+#: src/Form/CategoryForm.php:209 src/Form/VideoForm.php:321
+msgid "Between 80 to 160 character"
+msgstr "بین ۸۰ تا ۱۶۰ کلمه"
+
+#: src/Form/Element/Category.php:68
+msgid "All Category"
+msgstr "همه شاخه ها"
+
+#: src/Form/PositionForm.php:60
+msgid "Order"
+msgstr "ترتیب نمایش"
+
+#: src/Form/PositionForm.php:79 src/Form/VideoForm.php:70
+#: template/admin/attribute-index.phtml:72
+msgid "Delete"
+msgstr "حذف"
+
+#: src/Form/SitemapForm.php:32
+msgid "Select for rebuild"
+msgstr "انتخاب برای دوباره سازی"
+
+#: src/Form/SitemapForm.php:34
+msgid "All of tables"
+msgstr "همه جدول ها"
+
+#: src/Form/SitemapForm.php:35
+msgid "Just video table"
+msgstr "فقط جدول ویدیو ها"
+
+#: src/Form/SitemapForm.php:36
+msgid "Just category table"
+msgstr "فقط جدول شاخه ها"
+
+#: src/Form/VideoForm.php:48
+msgid "General options"
+msgstr "گزینه های سراسری"
+
+#: src/Form/VideoForm.php:122
+msgid "Summary"
+msgstr "خلاصه"
+
+#: src/Form/VideoForm.php:128
+msgid "Keep summery short, 2 or 3 lines"
+msgstr "متن خلاصه کوتاه و نهایتا ۲ یا ۳ خط نگه دارید"
+
+#: src/Form/VideoForm.php:160
+msgid "Main category"
+msgstr "شاخه اصلی"
+
+#: src/Form/VideoForm.php:166
+msgid "Use for breadcrumbs ,mobile app and attribute"
+msgstr "برای استفاده در ناوبری ، نرم افزار موبایل و خواص محصول"
+
+#: src/Form/VideoForm.php:219
+msgid "Video file"
+msgstr "فایل ویدیو"
+
+#: src/Form/VideoForm.php:226 template/admin/attribute-index.phtml:61
+msgid "Type"
+msgstr "نوع"
+
+#: src/Form/VideoForm.php:237
+msgid "Extension"
+msgstr "پسوند"
+
+#: src/Form/VideoForm.php:248
+msgid "Size"
+msgstr "اندازه"
+
+#: src/Form/VideoForm.php:259
+msgid "Duration ( second )"
+msgstr "مدت زمان ( ثانیه )"
+
+#: src/Form/VideoForm.php:330
+msgid "Tags"
+msgstr "برچسب ها"
+
+#: src/Form/VideoForm.php:334
+msgid "Use `|` as delimiter to separate tag terms"
+msgstr "با استفاده از `|` کلمات را از هم جدا کنید"
+
+#: src/Form/VideoUploadForm.php:61
+msgid "Upload"
+msgstr "بارگذاری"
+
+#: template/admin/attribute-index.phtml:9
+msgid "Add attribute"
+msgstr "خاصیت جدید"
+
+#: template/admin/attribute-index.phtml:12
+#: template/admin/attribute-index.phtml:14
+msgid "Add text field"
+msgstr "فیلد متنی جدید"
+
+#: template/admin/attribute-index.phtml:15
+#: template/admin/attribute-index.phtml:17
+msgid "Add link field"
+msgstr "فیلد لینک جدید"
+
+#: template/admin/attribute-index.phtml:18
+#: template/admin/attribute-index.phtml:20
+msgid "Add video field"
+msgstr "فیلد ویدیو جدید"
+
+#: template/admin/attribute-index.phtml:21
+#: template/admin/attribute-index.phtml:23
+msgid "Add audio field"
+msgstr "یلد صدای جدید"
+
+#: template/admin/attribute-index.phtml:24
+#: template/admin/attribute-index.phtml:26
+msgid "Add file field"
+msgstr "فیلد فایل جدید"
+
+#: template/admin/attribute-index.phtml:27
+#: template/admin/attribute-index.phtml:29
+msgid "Add currency field"
+msgstr "فیلد قیمت جدید"
+
+#: template/admin/attribute-index.phtml:30
+#: template/admin/attribute-index.phtml:32
+msgid "Add date field"
+msgstr "فیلد تاریخ جدید"
+
+#: template/admin/attribute-index.phtml:33
+#: template/admin/attribute-index.phtml:35
+msgid "Add number field"
+msgstr "فیلد عددی جدید"
+
+#: template/admin/attribute-index.phtml:36
+#: template/admin/attribute-index.phtml:38
+msgid "Add select field"
+msgstr "باکس انتخاب جدید"
+
+#: template/admin/attribute-index.phtml:39
+#: template/admin/attribute-index.phtml:41
+msgid "Add checkbox field"
+msgstr "چک باکس جدید"
+
+#: template/admin/attribute-index.phtml:45
+msgid "List of attributes"
+msgstr "فهرست خواص"
+
+#: template/admin/attribute-index.phtml:69
+#: template/admin/category-index.phtml:42
+#: template/admin/category-index.phtml:44
+#: template/admin/position-index.phtml:30
+#: template/admin/position-index.phtml:32
+msgid "Edit"
+msgstr "ویرایش"
+
+#: template/admin/category-index.phtml:4 template/admin/category-index.phtml:6
+msgid "Add Category"
+msgstr "شاخه جدید"
+
+#: template/admin/category-index.phtml:9
+msgid "List of Categores"
+msgstr "فهرست شاخه ها"
+
+#: template/admin/category-index.phtml:12 template/admin/log-index.phtml:6
+#: template/admin/position-index.phtml:12
+msgid "ID"
+msgstr "شناسه"
+
+#: template/admin/category-index.phtml:15
+#: template/admin/position-index.phtml:14 template/admin/video-index.phtml:53
+msgid "Action"
+msgstr "عملکرد"
+
+#: template/admin/category-index.phtml:40
+#: template/admin/category-index.phtml:41 template/admin/video-index.phtml:20
+#: template/admin/video-index.phtml:97 template/admin/video-index.phtml:99
+msgid "View"
+msgstr "نمایش"
+
+#: template/admin/category-index.phtml:55 template/admin/video-index.phtml:38
+#: template/admin/video-index.phtml:40 template/admin/video-index.phtml:111
+msgid "Trash"
+msgstr "حذف شده"
+
+#: template/admin/category-update.phtml:16
+msgid "Remove image category in process"
+msgstr "حذف تصویر شاخه در حال انجام است"
+
+#: template/admin/json-index.phtml:3
+msgid "List of json output links"
+msgstr "فهرست لینک های خروجی جیسون"
+
+#: template/admin/log-index.phtml:3
+msgid "List of user logs"
+msgstr "فهرست گزارش فعالیت مدیران"
+
+#: template/admin/log-index.phtml:7
+msgid "User"
+msgstr "کاربر"
+
+#: template/admin/log-index.phtml:8
+msgid "Ip"
+msgstr "آی پی"
+
+#: template/admin/log-index.phtml:9
+msgid "Time"
+msgstr "زمان"
+
+#: template/admin/log-index.phtml:10
+msgid "Section"
+msgstr "بخش"
+
+#: template/admin/log-index.phtml:11
+msgid "Item"
+msgstr "آیتم"
+
+#: template/admin/log-index.phtml:12
+msgid "Operation"
+msgstr "عملکرد"
+
+#: template/admin/position-index.phtml:9
+msgid "List of positions"
+msgstr "فهرست موقعیت ها"
+
+#: template/admin/tools-index.phtml:4 template/admin/tools-index.phtml:6
+#: template/admin/tools-index.phtml:14 template/admin/tools-sitemap.phtml:4
+#: template/admin/tools-sitemap.phtml:6
+msgid "Sitemap"
+msgstr "نقشه سایت"
+
+#: template/admin/tools-index.phtml:10
+msgid "How this part work?"
+msgstr "این بخش چگونه کار می کند؟"
+
+#: template/admin/tools-index.phtml:12
+msgid ""
+"Tools system, help you to manage your module, Update database and remove "
+"unused information"
+msgstr ""
+"ابزار ها، به شما برای مدیریت ماژول کمک میکند، با به روز رسانی پایگاه داده ها "
+"و حذف اطلاعات قدیمی. در این مقطع ابزار های زیر در دسترس شما است"
+
+#: template/admin/tools-index.phtml:14
+msgid "Manage links on sitemap module"
+msgstr "مدیریت لینک ها در ماژول نقشه سایت"
+
+#: template/admin/video-index.phtml:14 template/admin/video-index.phtml:16
+msgid "Add video"
+msgstr "ویدیو جدید"
+
+#: template/admin/video-index.phtml:23 template/admin/video-index.phtml:25
+msgid "All videos"
+msgstr "همه ویدیو ها"
+
+#: template/admin/video-index.phtml:82
+msgid "Manage"
+msgstr "مدیریت"
+
+#: template/admin/video-index.phtml:117
+msgid "Recommended in process"
+msgstr "اضافه به عنوان منتخب در حال اجرا است"
+
+#: template/admin/video-update.phtml:23
+msgid "Remove image video in process"
+msgstr "حذف تصویر ویدیو در حال انجام است"
+
+#: template/admin/video-upload.phtml:44 template/front/submit-index.phtml:44
+msgid "Your selected file size is"
+msgstr "حجم فایل انتخاب شما"
+
+#: template/admin/video-upload.phtml:45 template/front/submit-index.phtml:45
+msgid "And file extension is"
+msgstr "و پسوند فایل انتخاب شما"
+
+#: template/admin/video-upload.phtml:46 template/front/submit-index.phtml:46
+#, php-format
+msgid "You attach to large file, allowed upload size is %s"
+msgstr ""
+"شما یک فایل حجیم بارگذاری کرده اید، بیشترین مقدار مجاز برای بارگذاری %s است."
+
+#: template/admin/video-upload.phtml:47 template/front/submit-index.phtml:47
+#, php-format
+msgid "You attach wrong file, allowed extensions is %s"
+msgstr ""
+"شما یک فایل با فرمت اشتباه انتخاب کرده اید، فرمت های مجاز برای بارگذاری %s "
+"است."
+
+#: template/admin/video-upload.phtml:55 template/front/submit-index.phtml:60
+msgid "Add basic information"
+msgstr "درج اطلاعات ویدیو"
+
+#: template/admin/video-upload.phtml:56 template/front/submit-index.phtml:61
+msgid "Add additional information"
+msgstr "درج اطلاعات تکمیلی ویدیو"
+
+#: template/admin/video-upload.phtml:64 template/front/submit-index.phtml:69
+#, php-format
+msgid ""
+"You just allow upload media with <strong>%s</strong> extensions, maximum "
+"upload size is <strong>%s</strong>"
+msgstr ""
+"شما مجاز به بارگذاری فایل های چند رسانه ای با پسوند های <strong>%s</strong> "
+"هستید، بیشترین حجم مجاز فایل برای بارگذاری <strong>%s</strong> است."
+
+#: template/admin/video-view.phtml:12
+msgid "This video not published on user side"
+msgstr "این ویدیو در سمت کاربر منتشر نشده است"
+
+#: template/front/attach.phtml:5
+msgid "Attached archives"
+msgstr "آرشیو های پیوست شده"
+
+#: template/front/attach.phtml:18
+msgid "Attached docs"
+msgstr "داکیومنت های پیوست شده"
+
+#: template/front/attach.phtml:31
+msgid "Attached pdfs"
+msgstr "پی دی اف های پیوست شده"
+
+#: template/front/attach.phtml:44
+msgid "Attached files"
+msgstr "فایل های پیوست شده"
+
+#: template/front/category-list.phtml:34
+msgid ""
+"No category has been made on this part yet. please check this page later"
+msgstr ""
+"هنوز هیچ شاخه ای برای این بخش ساخته نشده است. لطفا بعدا این صفحه را بررسی "
+"نمایید "
+
+#: template/front/submit-finish.phtml:19
+msgid "Congratulations"
+msgstr "تبریک می گوییم"
+
+#: template/front/submit-finish.phtml:20
+msgid ""
+"Your submit video save on our system successfully. this video not published "
+"on website yet and will publish after admin review. please wait to website "
+"admin and do not submit this file again"
+msgstr ""
+"ویدیو ارسالی شما با موفقیت در وب سایت ذخیره شد، این ویدیو هنوز در سمت کاربر "
+"نمایش داده نشده است و برای انتشار به بررسی و تایید مدیر سیستم نیاز دارد. "
+"لطفا تا زمان تایید این ویدیو توسط مدیر صبر نمایید. نیازی به ارسال مجدد این "
+"فایل نیست."
+
+#: template/front/submit-finish.phtml:29
+msgid "Finish"
+msgstr "پایان"
+
+#: template/front/tag-list.phtml:20
+msgid ""
+"No keyword has been used as tag on this part yet. please check this page "
+"later"
+msgstr ""
+"هنوز هیچ کلمه کلیدی برای این بخش ساخته نشده است. لطفا بعدا این صفحه را بررسی "
+"نمایید"
+
+#: template/front/tag.phtml:4
+msgid "Tag"
+msgstr "برچسب"
+
+#: template/front/video-angular.phtml:108
+msgid "All"
+msgstr "همه"
+
+#: template/front/video-angular.phtml:162
+msgid "Sort type"
+msgstr "مرتب سازی براساس"
+
+#: template/front/video-angular.phtml:163
+msgid "Sort time"
+msgstr "جدید‌ترین"
+
+#: template/front/video-angular.phtml:164
+msgid "Sort hits"
+msgstr "پربازدید‌‌ترین"
+
+#: template/front/video-angular.phtml:165
+msgid "Sort favourite"
+msgstr "محبوب‌ترین"
+
+#: template/front/video-angular.phtml:166
+msgid "Sort title"
+msgstr "عنوان"
+
+#: template/front/video-angular.phtml:167
+msgid "Sort default"
+msgstr "حالت پیش فرض"
+
+#: template/front/video-related.phtml:4
+msgid "Related videos"
+msgstr "ویدیو های مشابه"
+
+#: template/front/video-watch.phtml:98
+msgid "User channel"
+msgstr "کانال کاربر"
+
+#: template/front/video-watch.phtml:100
+#, php-format
+msgid "%s channel"
+msgstr "کانال %s"
+
+#~ msgid "Add category"
+#~ msgstr "شاخه جدید"
+
+#~ msgid "Select view mode"
+#~ msgstr "انتخاب حالت نمایش ویدیو"
+
+#~ msgid "All status"
+#~ msgstr "همه وضعیت ها"
+
+#~ msgid "Admin videos"
+#~ msgstr "ویدیو های مدیر"
+
+#~ msgid "User videos"
+#~ msgstr "ویدیو های کاربر"
+
+#~ msgid "List of Videos"
+#~ msgstr "فهرست ویدیو ها"
+
+#~ msgid "Submiter"
+#~ msgstr "ارسال کننده"
+
+#~ msgid "Channel"
+#~ msgstr "کانال"
+
+#~ msgid "No result"
+#~ msgstr "بدون نتیجه"
+
+#~ msgid "Loading the player..."
+#~ msgstr "در حال بارگذاری پلیر ..."
+
+#~ msgid ""
+#~ "Your submit video save on our system successfully. and publish after "
+#~ "admin review."
+#~ msgstr ""
+#~ "اطلاعات ویدیو ارسالی با موفقیت ذخیره شد. بعد از تایید مدیر در وب سایت "
+#~ "نمایش داده می شود."
+
+#~ msgid "Profile"
+#~ msgstr "پروفایل"
+
+#~ msgid "Feed"
+#~ msgstr "خوارک"
+
+#~ msgid "Gender"
+#~ msgstr "جنثیت"
+
+#~ msgid "Switch to own"
+#~ msgstr "نمایش شخصی"
+
+#~ msgid "Send message"
+#~ msgstr "ارسال پیام"
+
+#~ msgid "Duration"
+#~ msgstr "مدت زمان"
+
+#~ msgid "Invalid data, please check and re-submit."
+#~ msgstr "اطلاعات اشتباه، لطفا بررسی کنید و دوباره ارسال کنید"
+
+#~ msgid "Video file upload successfully. Please complete update"
+#~ msgstr "ویدیو شما با موفقیت بارگذاری شد. لطفا اطلاعات آن را تکمیل نمایید."
+
+#~ msgid "Information"
+#~ msgstr "اطلاعات"
+
+#~ msgid "Please select channel."
+#~ msgstr "لطفا یک کانال انتخاب کنید"
+
+#~ msgid "All videos from %s"
+#~ msgstr "همه ویدیو ها از %s"
+
+#~ msgid "List of all used tags"
+#~ msgstr "فهرست همه برچسب ها"
+
+#~ msgid "List of videos on %s"
+#~ msgstr "فهرست ویدیو ها در %s"
+
+#~ msgid "Video url"
+#~ msgstr "لینک ویدیو"
+
+#~ msgid "Video play system."
+#~ msgstr "سیستم نمایش ویدیو"
+
+#, fuzzy
+#~ msgid "Out of stock"
+#~ msgstr "فهرست موضوعات"
+
+#, fuzzy
+#~ msgid "The product not found."
+#~ msgstr "برچسب یافت نشد"
+
+#, fuzzy
+#~ msgid "Review data not saved."
+#~ msgstr "مطلب ذخیره نشد"
+
+#~ msgid "Home Page"
+#~ msgstr "صفحه اصلی"
+
+#~ msgid "All Topics"
+#~ msgstr "همه موضوع ها"
+
+#~ msgid "Story"
+#~ msgstr "مطلب"
+
+#~ msgid "Select story for add to Spotlight"
+#~ msgstr "انتخاب مطلب برای درج در اسپتلایت"
+
+#~ msgid "Show in"
+#~ msgstr "نمایش در"
+
+#~ msgid "Select Spotlight topic, Your Spotlight show in this topic/page"
+#~ msgstr ""
+#~ "انتخاب موضوع برای اسپات لایت، اسپات لایت شما در این موضوع نمایش داده می "
+#~ "شود."
+
+#~ msgid "Publish date"
+#~ msgstr "تاریخ انتشار"
+
+#~ msgid "Expire date"
+#~ msgstr "تاریخ ابطال"
+
+#~ msgid "All contacts Before"
+#~ msgstr "تمام مطالب قبل از"
+
+#~ msgid "Subtitle"
+#~ msgstr "عنوان دوم"
+
+#~ msgid "Topic"
+#~ msgstr "موضوع"
+
+#~ msgid "Short text"
+#~ msgstr "متن خلاصه"
+
+#~ msgid "Main text"
+#~ msgstr "متن اصلی"
+
+#~ msgid "Important"
+#~ msgstr "مهم"
+
+#~ msgid "Remove"
+#~ msgstr "حذف"
+
+#~ msgid "Gallery"
+#~ msgstr "گالری"
+
+#~ msgid "Media"
+#~ msgstr "مدیا"
+
+#~ msgid "Download"
+#~ msgstr "دانلود"
+
+#~ msgid "Extra fields"
+#~ msgstr "فیلد های اضافی"
+
+#~ msgid "Authors"
+#~ msgstr "پدیدآورنده ها"
+
+#~ msgid "Rebuild"
+#~ msgstr "دوباره سازی"
+
+#~ msgid "Start date"
+#~ msgstr "تاریخ شروع"
+
+#~ msgid "End date"
+#~ msgstr "تاریخ پایان"
+
+#~ msgid "Text : type text content"
+#~ msgstr "متن : نوشتن محتوای متنی"
+
+#~ msgid "Link : add url for click"
+#~ msgstr "لینک : اضافه کردن لینک برای کلیک"
+
+#~ msgid "Video : add flv or mp4 url for play on video player"
+#~ msgstr "ویدیو : درج لینک flv یا mp4 برای نمایش در پخش کننده ویدیو"
+
+#~ msgid "Audio : add mp3 url for play on audio player"
+#~ msgstr "صدا : درج لینک mp3 برای پخش در پخش کننده صوتی"
+
+#~ msgid "File : add file link for download"
+#~ msgstr "فایل : درج لینک فایل برای دانلود"
+
+#~ msgid "Currency : add view price for anything"
+#~ msgstr "قیمت : درج قیمت برای نمایش"
+
+#~ msgid "Date : add date for view"
+#~ msgstr "تاریخ : درج تاریخ برای نمایش"
+
+#~ msgid "Number : add number"
+#~ msgstr "عدد : درج عدد"
+
+#~ msgid "Select : add select box for choose"
+#~ msgstr "انتخاب : درج باکس انتخاب"
+
+#~ msgid "Value"
+#~ msgstr "مقدار"
+
+#~ msgid "Just story table"
+#~ msgstr "فقط جدول مطالب"
+
+#~ msgid "Just topic table"
+#~ msgstr "فقط جدول موضوعات"
+
+#~ msgid "Just author table"
+#~ msgstr "فقط جدول پدید آورندگان"
+
+#~ msgid "Parent Topic"
+#~ msgstr "موضوع والد"
+
+#~ msgid "Topic Style"
+#~ msgstr "سبک موضوع"
+
+#~ msgid "News"
+#~ msgstr "خبر"
+
+#~ msgid "List"
+#~ msgstr "فهرست"
+
+#~ msgid "Table"
+#~ msgstr "جدول"
+
+#~ msgid "Spotlight"
+#~ msgstr "اسپات لایت"
+
+#~ msgid "Extra options"
+#~ msgstr "گزینه های اضافی"
+
+#~ msgid "Extra Config Options Type"
+#~ msgstr "نوع تنظیمات اضافی"
+
+#~ msgid "Use topic options"
+#~ msgstr "استفاده از تنظیمات موضوع"
+
+#~ msgid "Use module options"
+#~ msgstr "استفاده از تنظیمات ماژول"
+
+#~ msgid ""
+#~ "Use topic option whit select topic options or set it to module to use "
+#~ "module option"
+#~ msgstr ""
+#~ "برای استفاده از تنظیمات اختصاصی موضوع گزینه ؛استفاده از تنظیمات موضوع؛ را "
+#~ "انتخاب کنید و یا با انتخاب گزینه ؛استفاده از تنظیمات ماژول؛ از تنظیمات "
+#~ "پیش فرض ماژول استفاده کنید."
+
+#~ msgid "Perpage"
+#~ msgstr "تعداد در صفحه"
+
+#~ msgid "Columns"
+#~ msgstr "ستون"
+
+#~ msgid "One column"
+#~ msgstr "یک ستون"
+
+#~ msgid "Two columns"
+#~ msgstr "دو ستون"
+
+#~ msgid "Three columns"
+#~ msgstr "سه ستون"
+
+#~ msgid "Four columns"
+#~ msgstr "چهار ستون"
+
+#~ msgid "Set as system page"
+#~ msgstr "تنظیم به عنوان یک صفحه سیستم"
+
+#~ msgid "Story order"
+#~ msgstr "مرتب سازی مطالب"
+
+#~ msgid "Publish time DESC"
+#~ msgstr "تاریخ انتشار - صعودی"
+
+#~ msgid "Publish time ASC"
+#~ msgstr "تاریخ انتشار - نزولی"
+
+#~ msgid "Random"
+#~ msgstr "تصادفی"
+
+#~ msgid "Story list order options"
+#~ msgstr "گزینه های تنظیم مرتب سازی ترتیب نمایش مطالب"
+
+#~ msgid "Show Topic"
+#~ msgstr "نمایش موضوع"
+
+#~ msgid "Show Topic Information"
+#~ msgstr "نمایش اطلاعات موضوع"
+
+#~ msgid "Show Date"
+#~ msgstr "نمایش تاریخ"
+
+#~ msgid "Show DPF"
+#~ msgstr "نمایش پی دی اف"
+
+#~ msgid "Show Print"
+#~ msgstr "نمایش چاپ"
+
+#~ msgid "Show Mail"
+#~ msgstr "نمایش ایمیل"
+
+#~ msgid "Show Hits"
+#~ msgstr "نمایش بازدید"
+
+#~ msgid "Show Tags"
+#~ msgstr "نمایش برچسب ها"
+
+#~ msgid "Show Subtopic stories on main topic"
+#~ msgstr "نمایش مطالب مربوط به موضع های زیر مجموعه در موضوع اصلی"
+
+#~ msgid "Show attached files to stories"
+#~ msgstr "نمایش فهرست فایل های پیوست شده در مطالب در توضیحات موضوع"
+
+#~ msgid "Confirm to remove all topic pages"
+#~ msgstr "تایید برای حذف تمام صفحات موضوعات"
+
+#~ msgid "Default"
+#~ msgstr "پیش فرض"
+
+#~ msgid "default"
+#~ msgstr "پیش-فرض"
+
+#~ msgid "This is a default topic for news module"
+#~ msgstr "موضوع پیش فرض برای ماژول"
+
+#~ msgid "default topic"
+#~ msgstr "موضوع پیش فرض"
+
+#~ msgid "default,topic"
+#~ msgstr "موضوع,پیش فرض"
+
+#~ msgid "Hello World"
+#~ msgstr "سلام جهان"
+
+#~ msgid "This is subtitle for this story"
+#~ msgstr "این یک زیر عنوان است برای این مطلب"
+
+#~ msgid "hello-world"
+#~ msgstr "سلام-جهان"
+
+#~ msgid ""
+#~ "This is a short text and you can edit this part easy. for read more infor "
+#~ "please click on title or more link"
+#~ msgstr ""
+#~ "این متن کوتاه مطلب شما است و شما می توانید به سادگی آن را ویرایش کنید. "
+#~ "برای مطالعه اطلاعات بیشتر برای روی عنوان یا دکمه ادامه کلیک کنید."
+
+#~ msgid ""
+#~ "This is more text. you can edit this part easy too and if you want you "
+#~ "can add new topics and new storys"
+#~ msgstr ""
+#~ "این متن ادامه مطلب است، شما این بخش را هم به سادگی میتوانید ویرایش کنید. "
+#~ "و اگر بخواهید میتوانید موضوعات و مطالب جدیدی را به سیستم اضافه کنید."
+
+#~ msgid "hello world"
+#~ msgstr "سلام جهان"
+
+#~ msgid "hello,world"
+#~ msgstr "سلام,جهان"
+
+#~ msgid "Default information added."
+#~ msgstr "اطلاعات پیش فرض اضافه شد"
+
+#~ msgid "View filtered stores"
+#~ msgstr "نمایش مطالب فیلتر شده"
+
+#~ msgid "Add Author"
+#~ msgstr "پدیدآورنده جدید"
+
+#~ msgid "Add Role"
+#~ msgstr "نقش جدید"
+
+#~ msgid "Please select author"
+#~ msgstr "لطفا یک پدیدآورنده انتخاب کنید"
+
+#~ msgid "You must select story"
+#~ msgstr "شما باید یک مطلب انتخاب کنید"
+
+#~ msgid "Your selected story not exist"
+#~ msgstr "مطلب انتخاب شده شما موجود نیست"
+
+#~ msgid "Attach files to %s"
+#~ msgstr "پیوست فایل به %s"
+
+#~ msgid "You must select file"
+#~ msgstr "شما باید یک فایل انتخاب کنید"
+
+#~ msgid "All changes in file saved successfully."
+#~ msgstr "تمام تغییرات در فایل انتخابی با موفقیت ذخیره شد"
+
+#~ msgid "Your attached file remove successfully"
+#~ msgstr "فایل پیوست شده شما با موفقیت حذف شد"
+
+#~ msgid ""
+#~ "You can rebuild all your added stores, after rebuild all your old data "
+#~ "update to new. And you must set start and end publish time."
+#~ msgstr ""
+#~ "شما می توانید همه مطالب درج شده را دوباره سازی کنید، بعد از دوباره سازی "
+#~ "همه اطلاعات قدیمی شما به روز می شود، و شما باید تاریخ شروع و آغاز مطالب "
+#~ "را برای دوباره سازی درج کنید"
+
+#~ msgid "Finish Rebuild slug, all story slug update"
+#~ msgstr "پایان دوباره سازی اسلاگ، همه اسلاگ مطالب به روز شد"
+
+#~ msgid "Finish Rebuild SEO title, all story SEO title update"
+#~ msgstr "پایان دوباره سازی عنوان سئو، همهعنوان های سئو به روز شد"
+
+#~ msgid "Finish Rebuild SEO keywords, all story SEO keywords update"
+#~ msgstr "پایان دوباره سازی کلمات کلیدی سئو، همه کلمات کلیدی سئو به روز شد"
+
+#~ msgid "Finish Rebuild SEO description, all story SEO description update"
+#~ msgstr "پایان دوباره سازی توضیحات سئو، همه توضیحات سئو به روز شد"
+
+#~ msgid "Rebuild stores"
+#~ msgstr "دوباره سازی مطالب"
+
+#~ msgid "You can prune all old stores, from selected topic."
+#~ msgstr "شما میتوانید مطالب قدیمی را از موضوع انتخابی حذف کنید"
+
+#~ msgid "<strong>%s</strong> old stores removed"
+#~ msgstr "<strong>%s</strong> مطلب قدیمی حذف شد"
+
+#~ msgid ""
+#~ "Error in pruned old stores. perhaps no stroy exist whit your select query"
+#~ msgstr ""
+#~ "خطا در پاکسازی مطالب قدیمی، احتمالا هیچ مطلبی در بازه زمانی انتخابی شما "
+#~ "موجود نیست"
+
+#~ msgid "Prune stores"
+#~ msgstr "پاکسازی مطالب"
+
+#~ msgid "<strong>%s</strong> old spotlights removed"
+#~ msgstr "<strong>%s</strong> اسپات لایت قدیمی حذف شد"
+
+#~ msgid "Error in remove old spotlights. perhaps no spotlights exist"
+#~ msgstr ""
+#~ "خطا در حذف اسپات لایت های قدیمی، احتمالا هیچ اسپات لایت قدیمی موجود نیست."
+
+#~ msgid "Prune spotlights"
+#~ msgstr "پاکسازی اسپات لایت"
+
+#~ msgid ""
+#~ "Remove all topic pages from system page table. and keep just module "
+#~ "default pages"
+#~ msgstr ""
+#~ "حذف تمام صفحات موضوع ها از جدول صفحات سیستم ، فقط صفحات پیشفرض ماژول حفظ "
+#~ "می شود"
+
+#~ msgid "All other pages removed"
+#~ msgstr "تمام صفحات اضافی حذف شد"
+
+#~ msgid "No pages were removed"
+#~ msgstr "هیچ صفحه ای حذف نشد"
+
+#~ msgid "Remove topic pages"
+#~ msgstr "حذف صفحات موضوع"
+
+#~ msgid "Extra field data saved successfully."
+#~ msgstr "اطلاعات فیلد اضافی با موفقیت ذخیره شد"
+
+#~ msgid "Extra field data not saved."
+#~ msgstr "اطلاعات فیلد اضافی ذخیره نشد"
+
+#~ msgid "Add Extra"
+#~ msgstr "فیلد جدید"
+
+#~ msgid "%s story accept successfully"
+#~ msgstr "مطلب %s با موفقیت تایید شد"
+
+#~ msgid "Error in accept %s story"
+#~ msgstr "خطا در تایید %s"
+
+#~ msgid "Download data saved successfully. Please attach your files"
+#~ msgstr ""
+#~ "اطلاعات دانلود با موفقیت ذخیره شد. لطفا فایل های خود را پیوست نمایید."
+
+#~ msgid "Gallery data saved successfully. Please attach your images"
+#~ msgstr "اطلاعات گالری با موفقیت ذخیره شد. لطفا تصاویر خود را پیوست نمایید."
+
+#~ msgid "Text data saved successfully."
+#~ msgstr "اطلاعات متنی با موفقیت ذخیره شد"
+
+#~ msgid ""
+#~ "Your story type is <strong>Download</strong> , first please completion "
+#~ "this form , after that if you see extra file fields, you can add your "
+#~ "file urls , and after click on submit button , you can upload your "
+#~ "download files on next page"
+#~ msgstr ""
+#~ "نوع مطلب شما <strong>دانلود</strong> است. ابتدا لطفا اطلاعات فرم زیر را "
+#~ "تکمیل نمایید ، سپس اگر فیلد اضافی فایل را مشاهدا می کنند و لینک مستقیم "
+#~ "فایل خود را در اختیار دارید ، میتوانید لینک فایل خود را در آن درج نمایید "
+#~ "تا در وب سایت نمایش داده شود ، و سپس بعد از کلیک بر روی دکمه ارسال ، در "
+#~ "صفحه بعد در صورت تمایل میتوانید فایل خود را بارگذاری کنید"
+
+#~ msgid ""
+#~ "Your story type is <strong>Media</strong> , first please completion this "
+#~ "form , after that if you see extra video or audio fields, you can add "
+#~ "your video or audio urls for play on website media player, and after "
+#~ "click on submit button , you can upload your media on next page"
+#~ msgstr ""
+#~ "نوع مطلب شما <strong>مدیا</strong> است. ابتدا لطفا اطلاعات فرم زیر را "
+#~ "تکمیل نمایید ، سپس اگر فیلد اضافی ویدیو یا صدا را مشاهدا می کنند و لینک "
+#~ "مستقیم ویدیو یا صدای خود را در اختیار دارید ، میتوانید لینک ویدیو یا صدای "
+#~ "خود را در آن درج نمایید تا در پلیر وب سایت نمایش داده شود ، و سپس بعد از "
+#~ "کلیک بر روی دکمه ارسال ، در صفحه بعد در صورت تمایل میتوانید ویدیو یا صدای "
+#~ "خود را بارگذاری کنید"
+
+#~ msgid ""
+#~ "Your story type is <strong>Gallery</strong> , first please completion "
+#~ "this form , after click on submit button , you can upload your images on "
+#~ "next page"
+#~ msgstr ""
+#~ "نوع مطلب شما <strong>گالری</strong> است. لطفا فرم زیر را تکمیل نمایید ، "
+#~ "پس از کلیک بر روی دکمه ارسال ، در صفحه بعدی متوانید تصاویر خود را پیوست "
+#~ "نمایید."
+
+#~ msgid ""
+#~ "Your story type is <strong>Text</strong> and you shuold add text "
+#~ "information on form fields"
+#~ msgstr ""
+#~ "نوع مطلب شما <strong>متن</strong> است. لطفا اطلاعات مورد نظر خود را در "
+#~ "فرم زیر درج نمایید"
+
+#~ msgid "This story deleted"
+#~ msgstr "مطلب انتخابی حذف شد"
+
+#~ msgid "Page : %s"
+#~ msgstr "صفحه : %s"
+
+#~ msgid "Topic data saved successfully."
+#~ msgstr "اطلاعات موضوع با موفقیت ذخیره شد"
+
+#~ msgid "Add a Topic"
+#~ msgstr "موضوع جدید"
+
+#~ msgid "Spotlight data saved successfully."
+#~ msgstr "اطلاعات اسپات لایت با موفقیت ذخیره شد"
+
+#~ msgid "Spotlight data not saved."
+#~ msgstr "اطلاعات اسپات لایت ذخیره نشد"
+
+#~ msgid "Add a Spotlight"
+#~ msgstr "اسپات لایت جدید"
+
+#~ msgid "Selected spotlight delete"
+#~ msgstr "اسپات لایت انتخابی حذف شد"
+
+#~ msgid "Please select spotlight"
+#~ msgstr "لطفا یک اسپات لایت انتخاب کنید"
+
+#~ msgid "The author not found."
+#~ msgstr "پدیدآورنده پیدا نشد"
+
+#~ msgid "List of all authors"
+#~ msgstr "فهرست همه پدیدآورنده ها"
+
+#~ msgid "Archive - %s - %s"
+#~ msgstr "آرشیو - %s - %s"
+
+#~ msgid "Archive of all stores in - %s - %s"
+#~ msgstr "آرشیو تمام مطالب در  - %s - %s"
+
+#~ msgid "Archive,stores,topic,%s,%s"
+#~ msgstr "آرشیو,مطالب,موضوعات,,%s,%s"
+
+#~ msgid ""
+#~ "List if all stroes in <strong>%s / %s </strong>, You can see all stores "
+#~ "in next or prev month and year"
+#~ msgstr ""
+#~ "فهرست تمام مطالب در <strong>%s / %s </strong>، شما می توانید تمام مطالب "
+#~ "مربوط به ماه و سال قبل و بعد را مشاهده کنید"
+
+#~ msgid "The Story not publish."
+#~ msgstr "این مطلب هنوز منتشر نشده است"
+
+#~ msgid "The media not set."
+#~ msgstr "مدیا تنظیم نشده است"
+
+#~ msgid "Go to topic list."
+#~ msgstr "به فهرست موضوعات منتقل می شوید"
+
+#~ msgid "Topic not active."
+#~ msgstr "موضوع غیر فعال است"
+
+#~ msgid "List of all topics"
+#~ msgstr "فهرست همه موضوعات"
+
+#~ msgid "List,topics"
+#~ msgstr "فهرست,موضوعات"
+
+#~ msgid "List of extra fields"
+#~ msgstr "پسوند های مجار برای فایل"
+
+#~ msgid "Role list"
+#~ msgstr "فهرست نقش ها"
+
+#~ msgid "By"
+#~ msgstr "به وسیله"
+
+#~ msgid "Update Time"
+#~ msgstr "زمان به روز رسانی"
+
+#~ msgid "Read"
+#~ msgstr "نمایش"
+
+#~ msgid "Comments"
+#~ msgstr "نظرات"
+
+#~ msgid "Topics"
+#~ msgstr "موضوع"
+
+#~ msgid "Back"
+#~ msgstr "بازگشت"
+
+#~ msgid "Attach"
+#~ msgstr "پیوست"
+
+#~ msgid "Remove image author in process"
+#~ msgstr "حذف تصویر پدیدآورنده در حال انجام است"
+
+#~ msgid "Prune"
+#~ msgstr "پاکسازی"
+
+#~ msgid "Page"
+#~ msgstr "صفحه"
+
+#~ msgid "PerView"
+#~ msgstr "پیش نمایش"
+
+#~ msgid "Id"
+#~ msgstr "شناسه"
+
+#~ msgid "Create"
+#~ msgstr "تاریخ ایجاد"
+
+#~ msgid "Hits"
+#~ msgstr "بازدید"
+
+#~ msgid "Close"
+#~ msgstr "بستن"
+
+#~ msgid "In process"
+#~ msgstr "در حال پردازش"
+
+#~ msgid "Add new story"
+#~ msgstr "مطلب جدید"
+
+#~ msgid "Add new text"
+#~ msgstr "متن جدید"
+
+#~ msgid "Add new gallery"
+#~ msgstr "گالری جدید"
+
+#~ msgid "Add new media"
+#~ msgstr "مدیا جدید"
+
+#~ msgid "Add new download"
+#~ msgstr "دانلود جدید"
+
+#~ msgid "Reject"
+#~ msgstr "رد کردن"
+
+#~ msgid "Accept"
+#~ msgstr "تایید"
+
+#~ msgid "Accept story in process"
+#~ msgstr "تایید مطلب در حال انجام است"
+
+#~ msgid "Remove image topic in process"
+#~ msgstr "حذف تصویر موضوع در حال انجام است"
+
+#~ msgid "List of attached files"
+#~ msgstr "فهرست فایل های پیوست شده"
+
+#~ msgid "Get"
+#~ msgstr "دریافت"
+
+#~ msgid "Edit from story"
+#~ msgstr "ویرایش از مطلب"
+
+#~ msgid "Error"
+#~ msgstr "خطا"
+
+#~ msgid "No file upload yet"
+#~ msgstr "هیچ فایلی هنوز بارگذاری نشده است"
+
+#~ msgid ""
+#~ "Tools system, help you to manage your module, Update database and remove "
+#~ "unused information. At this moment, we ready 4 tools for you : "
+#~ msgstr ""
+#~ "ابزار ها، به شما برای مدیریت ماژول کمک میکند، با به روز رسانی پایگاه داده "
+#~ "ها و حذف اطلاعات قدیمی. در این مقطع ابزار های زیر در دسترس شما است : "
+
+#~ msgid ""
+#~ "You can rebuild all your added stores, after rebuild all your old data "
+#~ "time_update to new. And you must set start and end time_publish time."
+#~ msgstr "شما می توانبد همه مطالب درج شده را دوباره سازی کنید"
+
+#~ msgid "You can remove old spotlights"
+#~ msgstr "شما میتوانید اپات لایت های قدیمی را حذف کنید"
+
+#~ msgid "Manage system page"
+#~ msgstr "مدیریت صفحات سیستم"
+
+#~ msgid "Add Spotlight"
+#~ msgstr "اسپات لایت جدید"
+
+#~ msgid "List of spotlights"
+#~ msgstr "فهرست اسپات لایت ها"
+
+#~ msgid "Veiw story"
+#~ msgstr "نمایش مطلب"
+
+#~ msgid "Add Topic"
+#~ msgstr "موضوع جدید"
+
+#~ msgid "List of topics"
+#~ msgstr "فهرست موضوعات"
+
+#~ msgid "Show type"
+#~ msgstr "سبک نمایش"
+
+#~ msgid "Json"
+#~ msgstr "جیسون"
+
+#~ msgid "List of roles"
+#~ msgstr "فهرست نقش ها"
+
+#~ msgid "Get it"
+#~ msgstr "دریافت"
+
+#~ msgid "File title"
+#~ msgstr "عنوان فایل"
+
+#~ msgid "Story title"
+#~ msgstr "عنوان مطلب"
+
+#~ msgid "Times"
+#~ msgstr "دفعه"
+
+#~ msgid "Download file"
+#~ msgstr "دریافت فایل"
+
+#~ msgid "Related storys"
+#~ msgstr "مطالب مشابه"
+
+#~ msgid "List of Topics"
+#~ msgstr "فهرست موضوعات"
+
+#~ msgid "Extra links"
+#~ msgstr "لینک های خارجی"
+
+#~ msgid "Rss Feed"
+#~ msgstr "خوراک"
+
+#~ msgid "List of all writers"
+#~ msgstr "فهرست همه نویسندگان"
+
+#~ msgid "Writer"
+#~ msgstr "نویسنده"
+
+#~ msgid "Count"
+#~ msgstr "تعداد"
+
+#~ msgid "Writer email"
+#~ msgstr "ایمیل نویسنده"
+
+#~ msgid "Story count"
+#~ msgstr "تعداد مطالب ارسالی"
+
+#~ msgid "List of Writers"
+#~ msgstr "فهرست نویسندگان"
+
+#~ msgid "Show writer"
+#~ msgstr "نمایش نویسنده"
+
+#~ msgid "Reset write info"
+#~ msgstr "بازسازی اطلاعات نویسندگان"
+
+#~ msgid "All information saved"
+#~ msgstr "همه اطلاعات ذخیره شد"
+
+#~ msgid "You can reset all write info"
+#~ msgstr "شما میتوانید تمام اطلاعات نویسندگان را به روز کنید"
+
+#~ msgid "This topic and all of stores deleted"
+#~ msgstr "این موضوع و همه مطالب وابسته به آن حذف شد"
+
+#~ msgid "Please select topic"
+#~ msgstr "لطفا یک موضوع انتخاب کنید"
+
+#~ msgid "Both of story and topic"
+#~ msgstr "هم موضوعات و هم مطالب"
+
+#~ msgid "No file attached"
+#~ msgstr "هیچ فایلی پیوست نشده"
+
+#~ msgid "Short"
+#~ msgstr "متن اولیه"
+
+#~ msgid "List,writers"
+#~ msgstr "فهرست,نویسندگان"
+
+#~ msgid "Attaced"
+#~ msgstr "پیوست"
+
+#~ msgid "Extra"
+#~ msgstr "فیلد اضافی"
+
+#~ msgid "Tools"
+#~ msgstr "ابزار"
+
+#~ msgid "Show date"
+#~ msgstr "نمایش تاریخ"
+
+#~ msgid "Show hits"
+#~ msgstr "نمایش بازدید"
+
+#~ msgid "Show Images"
+#~ msgstr "نمایش تصویر"
+
+#~ msgid "Show More link for each story"
+#~ msgstr "نمایش لینک ادامه برای هر مطلب"
+
+#~ msgid "Show More link to module page"
+#~ msgstr "نمایش لینک ادامه به ماژول"
+
+#~ msgid "Set More link to module page"
+#~ msgstr "درج لینک ادامه به ماژول"
+
+#~ msgid "Number of sub spotlight"
+#~ msgstr "تعداد زیر اسپات لایت ها"
+
+#~ msgid "Manage News and Blog"
+#~ msgstr "مدیریت اخبار و وبلاگ"
+
+#~ msgid "Admin"
+#~ msgstr "مدیریت"
+
+#~ msgid "Show"
+#~ msgstr "نمایش"
+
+#~ msgid "Social"
+#~ msgstr "شبکه های اجتماعی"
+
+#~ msgid "Vote"
+#~ msgstr "رای"
+
+#~ msgid "Favourite"
+#~ msgstr "مورد علاقه"
+
+#~ msgid "Texts"
+#~ msgstr "متن ها"
+
+#~ msgid "Advertisement"
+#~ msgstr "تبلیغ"
+
+#~ msgid "Show Pdf"
+#~ msgstr "نمایش پی دی اف"
+
+#~ msgid "Show extra information"
+#~ msgstr "نمایش اطلاعات فیلد های اضافی"
+
+#~ msgid "Show navigation"
+#~ msgstr "نمایش ناوبری"
+
+#~ msgid "Show spotlight"
+#~ msgstr "نمایش اسپات لایت"
+
+#~ msgid "Show related news"
+#~ msgstr "نمایش مطالب مشابه"
+
+#~ msgid "related number"
+#~ msgstr "تعداد مطالب مشابه"
+
+#~ msgid "Just show news from X days ago"
+#~ msgstr "فقط نمایش اخبار X روز پیش"
+
+#~ msgid "Set 0 for show all news, Or set day number for limit news in days"
+#~ msgstr ""
+#~ "تنظیم 0 برای نمایش همه اخبار یا تنظیم روز به صورت عدد برای محدود کردن "
+#~ "اخبار به این بازه زمانی"
+
+#~ msgid "Show feed icon"
+#~ msgstr "نمایش آیکن خوراک"
+
+#~ msgid "Feed number"
+#~ msgstr "تعداد مطالب در خوارک"
+
+#~ msgid "Image Size"
+#~ msgstr "حجم تصویر"
+
+#~ msgid "Image path"
+#~ msgstr "مسیر ذخیره تصویر"
+
+#~ msgid "Image Extension"
+#~ msgstr "پسوند های مجار برای تصویر"
+
+#~ msgid "Large Image height"
+#~ msgstr "ارتفاع تصویر بزرگ"
+
+#~ msgid "Large Image width"
+#~ msgstr "عرض تصویر بزرگ"
+
+#~ msgid "Medium Image height"
+#~ msgstr "ارتفاع تصویر متوسط"
+
+#~ msgid "Medium Image width"
+#~ msgstr "عرض تصویر متوسط"
+
+#~ msgid "Thumb Image height"
+#~ msgstr "ارتفاع تصویر بندانگشتی"
+
+#~ msgid "Thumb Image width"
+#~ msgstr "عرض تصویر بندانگشتی"
+
+#~ msgid "Use lightbox"
+#~ msgstr "استفاده از لایت باکس"
+
+#~ msgid "Add Watermark"
+#~ msgstr "اضافه کردن واترمارک به تصویر"
+
+#~ msgid "Watermark Image"
+#~ msgstr "تصویر واترمارک"
+
+#~ msgid "Watermark Positio"
+#~ msgstr "موقعیت واترمارک"
+
+#~ msgid "Top Left"
+#~ msgstr "بالا چپ"
+
+#~ msgid "Top Right"
+#~ msgstr "بالا راست"
+
+#~ msgid "Bottom Left"
+#~ msgstr "پایین چپ"
+
+#~ msgid "Bottom Right"
+#~ msgstr "پایین راست"
+
+#~ msgid "Show Google Plus"
+#~ msgstr "نمایش گوگل پلاس"
+
+#~ msgid "Show facebook"
+#~ msgstr "نمایش فیسبوک"
+
+#~ msgid "Show Twitter"
+#~ msgstr "نمایش تویتر"
+
+#~ msgid "Number of stories"
+#~ msgstr "تعداد مطالب"
+
+#~ msgid "Show Image for sub spotlights"
+#~ msgstr "نمایش تصویر برای زیر اسپات لایت ها"
+
+#~ msgid "Use vote system"
+#~ msgstr "استفاده از سیستم رای"
+
+#~ msgid "Use favourite system"
+#~ msgstr "استفاده از سیستم مورد علاقه"
+
+#~ msgid "Module main title"
+#~ msgstr "عنوان اصلی ماژول"
+
+#~ msgid "Title for main page and all non-title pages"
+#~ msgstr "عنوان برای صفحه اصلی و تمام صفحات بدون عنوان"
+
+#~ msgid "Module main description"
+#~ msgstr "توضیحات صفحه اصلی ماژول"
+
+#~ msgid "Module main keywords"
+#~ msgstr "کلمات کلیدی صفحه اصلی ماژول"
+
+#~ msgid "File Size"
+#~ msgstr "حجم فایل"
+
+#~ msgid "File path"
+#~ msgstr "مسیر ذخیره فایل"
+
+#~ msgid "Attached audio"
+#~ msgstr "صدا های پیوست شده"
+
+#~ msgid "Attached images"
+#~ msgstr "تصاویر پیوست شده"
+
+#~ msgid "Number of tags in tag controller"
+#~ msgstr "تعداد برچسب ها در کنترلر برچسب"
+
+#~ msgid "topic"
+#~ msgstr "موضوع"
+
+#, fuzzy
+#~ msgid "PreView"
+#~ msgstr "پیش نمایش"
+
+#, fuzzy
+#~ msgid "Publish"
+#~ msgstr "منتشر شده"
+
+#, fuzzy
+#~ msgid "Expire"
+#~ msgstr "تاریخ ابطال"
+
+#~ msgid "Actions"
+#~ msgstr "عملکرد"
+
+#~ msgid "More"
+#~ msgstr "ادامه"

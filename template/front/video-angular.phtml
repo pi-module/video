@@ -1,0 +1,198 @@
+<?php
+// Load angular custom js
+$script = <<<'EOT'
+var app = angular.module('video', ['angularUtils.directives.dirPagination']);
+var compareCount = 0;
+var compareList = [];
+app.controller('listdata',function($scope, $http){
+    $scope.videos = [];
+    $('.ajax-spinner').show();
+    $http.get("%s").success(function(response){
+        $scope.videos = response;
+        $('.ajax-spinner').hide();
+    });
+    $scope.sortKey = "%s";
+    $scope.reverse = true;
+    $scope.sort = function(keyname){
+        $scope.sortKey = keyname;
+        $scope.reverse = !$scope.reverse;
+    }
+});
+EOT;
+$script = sprintf(
+    $script,
+    $filterUrl,
+    'time_create'
+);
+
+$scriptMenu = <<<'EOT'
+$(function() {
+    var json = '%s';
+    $('#category-tree-view').treeview({
+        levels: 1,
+        data: json,
+        enableLinks: true,
+        expandIcon: 'fa fa-plus',
+		collapseIcon: 'fa fa-minus',
+		emptyIcon: 'fa',
+		checkedIcon: 'fa fa-check-square-o',
+		uncheckedIcon: 'fa fa-square-o',
+    });
+});
+EOT;
+$scriptMenu = sprintf(
+    $scriptMenu,
+    $categoriesJson
+);
+
+// Load header files
+$this->jQuery();
+$this->angular();
+$this->js(array(
+    $this->assetModule('js/dirPagination.js'),
+    $this->assetModule('js/bootstrap-treeview.min.js')
+));
+$this->css($this->assetModule('css/front.css'));
+$this->footScript()->appendScript($script);
+$this->footScript()->appendScript($scriptMenu);
+// Set box site
+switch ($config['view_column']) {
+    case 1:
+        $videoBoxSize = 'col-xs-12 col-sm-12 col-md-12';
+        break;
+
+    case 2:
+        $videoBoxSize = 'col-xs-12 col-sm-12 col-md-6';
+        break;
+
+    case 3:
+        $videoBoxSize = 'col-xs-12 col-sm-12 col-md-4';
+        break;
+
+    case 4:
+        $videoBoxSize = 'col-xs-12 col-sm-12 col-md-3';
+        break;
+
+    case 5:
+        $videoBoxSize = 'col-xs-12 col-sm-12 col-md-2';
+        break;
+}
+?>
+<div class="clearfix row">
+    <div class="ajax-spinner">
+        <img src="<?php echo $this->assetModule('image/spinner.gif'); ?>" class="ajax-spinner-loader"/>
+    </div>
+    <div class="col-sm-12 col-md-3">
+        <div class="video-search-form clearfix">
+            <div class="page-header">
+                <h4><?php _e('Search'); ?></h4>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label><?php _e('Title'); ?></label>
+                    <input type="text" ng-model="filterTitle" class="form-control">
+                </div>
+                <?php $filterNameArray = array(); ?>
+                <?php foreach ($filterList as $singleFilter) { ?>
+                    <?php if ($singleFilter['type'] == 'select') { ?>
+                        <?php
+                        $filterName = 'filter' . $singleFilter['name'];
+                        $filterNameArray[] = array(
+                            'fieldName' => $singleFilter['name'],
+                            'filterName' => $filterName
+                        );
+                        ?>
+                        <div class="form-group">
+                            <label><?php echo $singleFilter['title']; ?></label>
+                            <select ng-model="<?php echo $filterName; ?>" class="form-control">
+                                <option value=""><?php _e('All'); ?></option>
+                                <?php foreach ($singleFilter['value']['data'] as $valueData) { ?>
+                                    <?php if (!empty($valueData)) { ?>
+                                        <option ng-click="sort('<?php echo $valueData; ?>')"><?php echo $valueData; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    <?php } elseif ($singleFilter['type'] == 'text') { ?>
+                        <div class="form-group">
+                            <?php
+                            $filterName = 'filter' . $singleFilter['name'];
+                            $filterNameArray[] = array(
+                                'fieldName' => $singleFilter['name'],
+                                'filterName' => $filterName
+                            );
+                            ?>
+                            <label><?php echo $singleFilter['title']; ?></label>
+                            <input type="text" ng-model="<?php echo $filterName; ?>" class="form-control">
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+            </form>
+        </div>
+        <div class="clearfix category-list">
+            <div class="page-header">
+                <h4><?php _e('Category list'); ?></h4>
+            </div>
+            <div class="clearfix">
+                <div id="category-tree-view"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-9" ng-controller="listdata">
+        <?php include $this->template('front/user'); ?>
+        <?php include $this->template('front/category'); ?>
+        <div class="clearfix">
+            <div class="video-list clearfix">
+                <?php if (isset($videoTitleH1) && !empty($videoTitleH1)) { ?>
+                    <div class="page-header">
+                        <h1><?php echo $videoTitleH1; ?></h1>
+                    </div>
+                <?php } elseif (isset($videoTitleH2) && !empty($videoTitleH2)) { ?>
+                    <div class="page-header">
+                        <h2><?php echo $videoTitleH2; ?></h2>
+                    </div>
+                <?php } ?>
+                <?php if (!empty($config['text_description_index']) && isset($showIndexDesc) && $showIndexDesc == 1 && isset($page) && $page == 1) { ?>
+                    <div class="well videoIndexDescription">
+                        <?php echo $config['text_description_index']; ?>
+                    </div>
+                <?php } ?>
+                <div class="clearfix video-sort">
+                    <ul class="list-inline">
+                        <li><?php _e('Sort type'); ?> :</li>
+                        <li class="video-sort-type" ng-click="sort('time_create')"><?php _e('Sort time'); ?> <i class="fa sort-icon" ng-show="sortKey=='time_create'" ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i></li>
+                        <li class="video-sort-type" ng-click="sort('hits')"><?php _e('Sort hits'); ?> <i class="fa sort-icon" ng-show="sortKey=='hits'" ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i></li>
+                        <li class="video-sort-type" ng-click="sort('favourite')"><?php _e('Sort favourite'); ?> <i class="fa sort-icon" ng-show="sortKey=='favourite'" ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i></li>
+                        <li class="video-sort-type" ng-click="sort('title')"><?php _e('Sort title'); ?>  <i class="fa sort-icon" ng-show="sortKey=='title'" ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i></li>
+                        <li class="video-sort-type" ng-click="sortKey=''"><?php _e('Sort default'); ?></li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div dir-paginate="video in videos|orderBy:sortKey:reverse|filter: {<?php if (!empty($filterNameArray)) { ?><?php foreach ($filterNameArray as $filterNameSingle) { ?><?php echo $filterNameSingle['fieldName'] ?> : <?php echo $filterNameSingle['filterName'] ?>,<?php } ?><?php } ?> title : filterTitle, marketable : filterMarketable } |itemsPerPage:<?php echo $config['view_perpage']; ?>"
+                         class="<?php echo $videoBoxSize; ?> video-box h-video" itemscope itemtype="http://schema.org/VideoObject">
+                        <div class="thumbnail" ng-mouseover="hoverCompare = true" ng-mouseleave="hoverCompare = false">
+                            <a itemprop="url" class="u-photo" title="{{video.title}}" href="{{video.videoUrl}}">
+                                <img itemprop="image thumbnail" src="{{video.thumbUrl}}" alt="{{video.title}}"/>
+                            </a>
+                            <div class="caption">
+                                <h3 class="p-name" itemprop="name">
+                                    <a title="{{video.title}}" href="{{video.videoUrl}}">
+                                        {{video.title}}
+                                    </a>
+                                </h3>
+                                <meta itemprop="duration" content="T1M33S" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="paginator">
+                <dir-pagination-controls
+                    max-size="<?php echo $config['view_perpage']; ?>"
+                    direction-links="true"
+                    boundary-links="true">
+                </dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

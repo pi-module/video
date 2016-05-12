@@ -1,0 +1,21 @@
+.preview-img {
+    text-align: center;
+}
+
+.preview-img img {
+    max-height: 80px;
+    max-width: 80px;
+}
+
+#file-info {
+    padding-top: 50px;
+}
+
+.tree-item-header {
+    width: 100% !important;
+}
+
+/* video-progress-bar */
+.progress {
+    display: none;
+}

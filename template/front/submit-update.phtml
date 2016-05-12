@@ -1,0 +1,17 @@
+<?php $this->css($this->assetModule('css/front.css')); ?>
+<div class="clearfix">
+	<div class="col-md-3">
+		<?php $sideActive = 'video'; ?>
+		<?php include $this->templateModule('front/user-profile-sidebar.phtml', 'user'); ?>
+	</div>
+	<div class="col-md-9">
+		<div class="well well-sm">
+			<ul class="nav nav-pills nav-justified">
+				<li<?php if ($nav['page'] == 'update') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'update', 'id' => $video['id'])); ?>"><?php _e('Edit basic information'); ?></a></li>
+				<li<?php if ($nav['page'] == 'additional') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'additional', 'id' => $video['id'])); ?>"><?php _e('Edit additional information'); ?></a></li>
+				<li<?php if ($nav['page'] == 'finish') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'finish', 'id' => $video['id'])); ?>"><?php _e('Watch submitted video'); ?></a></li>
+			</ul>
+		</div>
+		<?php echo $this->form($form); ?>
+	</div>
+</div>

@@ -1,0 +1,117 @@
+/* image gallery */
+.video-image .video-image-attach {
+    margin-top: 10px;
+}
+
+/* homepage widget */
+.video-widget .video-widget-single {
+    margin-bottom: 5px;
+}
+
+/* video list */
+.page-header h1,
+.page-header h2,
+.page-header h3,
+.page-header h4 {
+    margin: 0;
+    padding: 5px 0;
+    font-size: 1.4em;
+}
+
+.video-list .video-box {
+    text-align: center;
+}
+
+.video-list .video-box .caption {
+    min-height: 60px;
+}
+
+.video-list .video-box:hover .caption {
+    transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    -moz-transition: background-color 0.3s;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.video-list .video-box h3 {
+    margin: 1px;
+    padding: 1px;
+    font-size: 1.1em;
+}
+
+/* video page */
+.video-page .video-title h1 {
+    font-size: 1.6em;
+}
+
+.video-page .video-title h2 {
+    font-size: 1.2em;
+    color: #9FA0A0;
+}
+
+.video-page .video-info-box,
+.video-page .video-player,
+.video-page .video-info-list {
+    padding: 5px 0;
+    margin: 5px 0;
+}
+
+.video-page .video-channel {
+    background-color: #f4f4f4;
+    padding: 4px 8px 4px 8px;
+    border-radius: 4px;
+}
+
+
+.video-page .video-info-list ul {
+    padding: 0;
+    margin: 0;
+}
+
+.video-page .socialSharing {
+    margin: 0;
+    padding: 0;
+}
+
+/* video-attribute */
+.video-attribute .video-attribute-head h2 {
+    font-size: 1.3em;
+}
+
+/* video-progress-bar */
+.progress {
+    display: none;
+}
+
+/* ajax loading spinner */
+.ajax-spinner {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1000;
+    background-color: #fff;
+    opacity: .8;
+}
+
+.ajax-spinner-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -32px; /* -1 * image width / 2 */
+    margin-top: -32px;  /* -1 * image height / 2 */
+    display: block;
+}
+
+/* Sort */
+.video-sort {
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    background: #ddd;
+}
+
+.video-sort-type {
+    cursor: pointer;
+}

@@ -1,0 +1,21 @@
+<?php $this->css($this->assetModule('css/admin.css')); ?>
+<div class="clearfix">
+    <div class="well well-sm">
+        <ul class="nav nav-pills nav-justified">
+            <li<?php if ($nav['page'] == 'update') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'update', 'id' => $video['id'])); ?>"><?php _e('Edit basic information'); ?></a></li>
+            <li<?php if ($nav['page'] == 'additional') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'additional', 'id' => $video['id'])); ?>"><?php _e('Edit additional information'); ?></a></li>
+            <li<?php if ($nav['page'] == 'view') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'view', 'id' => $video['id'])); ?>"><?php _e('Watch submitted video'); ?></a></li>
+        </ul>
+    </div>
+    <?php if ($video['status'] != 1) { ?>
+        <div class="alert alert-danger">
+            <?php _e('This video not published on user side'); ?>
+        </div>
+    <?php } ?>
+    <div class="page-header">
+        <h1><?php echo $this->escape($video['title']); ?></h1>
+    </div>
+    <div class="text-center video-player-box col-md-8 col-md-offset-2">
+        <?php echo $this->videojs($video['videoFileUrl'], $video['largeUrl']); ?>
+    </div>
+</div>

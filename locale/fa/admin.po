@@ -1,0 +1,776 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: video\n"
+"POT-Creation-Date: 2016-04-25 12:34+0430\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: config/block.php:17
+msgid "New video"
+msgstr "ویدیو جدید"
+
+#: config/block.php:18
+msgid "New video list"
+msgstr "فهرست ویدیو های جدید"
+
+#: config/block.php:23 config/block.php:86 config/navigation.php:29
+#: config/page.php:23 config/page.php:57 config/permission.php:22
+msgid "Category"
+msgstr "شاخه"
+
+#: config/block.php:30 config/block.php:93 config/block.php:156
+msgid "Number"
+msgstr "تعداد"
+
+#: config/block.php:37 config/block.php:100 config/block.php:163
+msgid "Video list type"
+msgstr "نوع فهرست ویدیو ها"
+
+#: config/block.php:43 config/block.php:106 config/block.php:169
+msgid "Horizontal"
+msgstr "افقی"
+
+#: config/block.php:44 config/block.php:107 config/block.php:170
+msgid "Vertical"
+msgstr "عمودی"
+
+#: config/block.php:45 config/block.php:108 config/block.php:171
+msgid "Multi size Box"
+msgstr "باکس با ابعاد متغیر"
+
+#: config/block.php:46 config/block.php:109 config/block.php:172
+msgid "List"
+msgstr "فهرست"
+
+#: config/block.php:47 config/block.php:110 config/block.php:173
+msgid "Slide"
+msgstr "اسلاید"
+
+#: config/block.php:48 config/block.php:111 config/block.php:174
+msgid "Slide by hover effect"
+msgstr "اسلاید با افکت هاور"
+
+#: config/block.php:56 config/block.php:119 config/block.php:182
+msgid "Use block effects"
+msgstr "استفاده از افکت های بلاک"
+
+#: config/block.php:57 config/block.php:120 config/block.php:183
+msgid "Use block effects or set custom effect on theme"
+msgstr "استفاده از افکت های جاوا اسکریپت و سی اس اس بلاک یا شخصی سازی آن در قالب"
+
+#: config/block.php:63 config/block.php:126 config/block.php:189
+msgid "Show More link to module page"
+msgstr "نمایش لینک ادامه به ماژول"
+
+#: config/block.php:70 config/block.php:133 config/block.php:196
+msgid "Set More link to module page"
+msgstr "درج لینک ادامه به ماژول"
+
+#: config/block.php:80
+msgid "Random video"
+msgstr "محصولات ویدیو های تصادفی"
+
+#: config/block.php:81
+msgid "Random video list"
+msgstr "فهرست ویدیو های تصادفی"
+
+#: config/block.php:143
+msgid "Tag video"
+msgstr "ویدیو ها بر اساس برچسب"
+
+#: config/block.php:144
+msgid "Videos from selected tag"
+msgstr "فهرست ویدیو ها بر اساس برچسب انتخابی"
+
+#: config/block.php:149
+msgid "Tag term"
+msgstr "واژه برچسب"
+
+#: config/comment.php:16
+msgid "Video comments"
+msgstr "نظرات ویدیو"
+
+#: config/config.php:17
+msgid "Admin"
+msgstr "بخش مدیر"
+
+#: config/config.php:21
+msgid "Json output"
+msgstr "خروجی حیسون"
+
+#: config/config.php:25
+msgid "View"
+msgstr "نمایش"
+
+#: config/config.php:29
+msgid "Player"
+msgstr "پلیر"
+
+#: config/config.php:33
+msgid "Media"
+msgstr "مدیا"
+
+#: config/config.php:37
+msgid "Image"
+msgstr "تصویر"
+
+#: config/config.php:41
+msgid "Social"
+msgstr "شبکه های اجتماعی"
+
+#: config/config.php:45
+msgid "Vote"
+msgstr "رای"
+
+#: config/config.php:49
+msgid "Favourite"
+msgstr "علاقه مندی"
+
+#: config/config.php:53
+msgid "Texts"
+msgstr "متن ها"
+
+#: config/config.php:61 config/config.php:95
+msgid "Perpage"
+msgstr "تعداد در هر صفحه"
+
+#: config/config.php:70
+msgid "Perpage on json output"
+msgstr "تعداد در صفحه در خروجی جیسون"
+
+#: config/config.php:78
+msgid "Check password for json output"
+msgstr "بررسی واژه رمز در خروجی جیسون"
+
+#: config/config.php:86
+msgid "Password for json output"
+msgstr "واژه رمز خروجی جیسون"
+
+#: config/config.php:87
+msgid "After use on mobile device , do not change it"
+msgstr "بعد از استفاده از این واژه رمز در نرم افزار موبایل ، آن را تغییر ندهید"
+
+#: config/config.php:102
+msgid "Columns"
+msgstr "ستون"
+
+#: config/config.php:108
+msgid "One columns"
+msgstr "یک ستون"
+
+#: config/config.php:109
+msgid "Two columns"
+msgstr "دو ستون"
+
+#: config/config.php:110
+msgid "Three columns"
+msgstr "سه ستون"
+
+#: config/config.php:111
+msgid "Four columns"
+msgstr "چهار ستون"
+
+#: config/config.php:112
+msgid "Six columns"
+msgstr "شش ستون"
+
+#: config/config.php:122
+msgid "Show breadcrumbs"
+msgstr "نمایش ناوبری"
+
+#: config/config.php:130
+msgid "Show Tags"
+msgstr "نمایش برچسب ها"
+
+#: config/config.php:138
+msgid "Show related video"
+msgstr "نمایش ویدیو مشابه"
+
+#: config/config.php:146
+msgid "Related video number"
+msgstr "تعداد ویدیو مشابه"
+
+#: config/config.php:155
+msgid "Video Size"
+msgstr "حجم فایل ویدیو"
+
+#: config/config.php:163
+msgid "Video Extension"
+msgstr "سوند های مجار برای فایل ویدیو"
+
+#: config/config.php:172
+msgid "Image Size"
+msgstr "حجم تصویر"
+
+#: config/config.php:180
+msgid "Image quality"
+msgstr "کیفیت تصویر"
+
+#: config/config.php:181
+msgid "Between 0 to 100 and support both of JPG and PNG, default is 75"
+msgstr "بین ۰ تا ۱۰۰ تنظیم شود و برای هر دو فرمت PNG و JPG ، مقدار پیش فرض ۷۵"
+
+#: config/config.php:188
+msgid "Image path"
+msgstr "مسیر ذخیره تصویر"
+
+#: config/config.php:196
+msgid "Image Extension"
+msgstr "پسوند های مجار برای تصویر"
+
+#: config/config.php:204
+msgid "Large Image height"
+msgstr "ارتفاع تصویر بزرگ"
+
+#: config/config.php:212
+msgid "Large Image width"
+msgstr "عرض تصویر بزرگ"
+
+#: config/config.php:220
+msgid "Medium Image height"
+msgstr "ارتفاع تصویر متوسط"
+
+#: config/config.php:228
+msgid "Medium Image width"
+msgstr "عرض تصویر متوسط"
+
+#: config/config.php:236
+msgid "Thumb Image height"
+msgstr "ارتفاع تصویر بندانگشتی"
+
+#: config/config.php:244
+msgid "Thumb Image width"
+msgstr "عرض تصویر بندانگشتی"
+
+#: config/config.php:252
+msgid "Use lightbox"
+msgstr "استفاده از لایت باکس"
+
+#: config/config.php:260
+msgid "Add Watermark"
+msgstr "اضافه کردن واترمارک به تصویر"
+
+#: config/config.php:268
+msgid "Watermark Image"
+msgstr "تصویر واترمارک"
+
+#: config/config.php:275
+msgid "Watermark Positio"
+msgstr "موقعیت واترمارک"
+
+#: config/config.php:281
+msgid "Top Left"
+msgstr "بالا چپ"
+
+#: config/config.php:282
+msgid "Top Right"
+msgstr "بالا راست"
+
+#: config/config.php:283
+msgid "Bottom Left"
+msgstr "پایین چپ"
+
+#: config/config.php:284
+msgid "Bottom Right"
+msgstr "پایین راست"
+
+#: config/config.php:294
+msgid "Social sharing items"
+msgstr "اشتراک گذاری در شبکه های اجتماعی"
+
+#: config/config.php:308
+msgid "Use vote system"
+msgstr "استفاده از سیستم رای"
+
+#: config/config.php:317
+msgid "Use favourite system"
+msgstr "استفاده از سیستم مورد علاقه"
+
+#: config/config.php:326
+msgid "Description for index page"
+msgstr "توضیحات برای صفحه اصلی"
+
+#: config/config.php:334
+msgid "Force replace space by comma(,)"
+msgstr "جایگزینی اسپیس با کاما"
+
+#: config/module.php:17 config/navigation.php:18 config/page.php:18
+#: config/permission.php:18
+msgid "Video"
+msgstr "ویدیو"
+
+#: config/module.php:18
+msgid "Video play system."
+msgstr "ابزار پخش ویدیو"
+
+#: config/navigation.php:40 config/page.php:28 config/permission.php:26
+msgid "Attribute"
+msgstr "خواص"
+
+#: config/navigation.php:51
+msgid "Attribute position"
+msgstr "موقعیت خواص"
+
+#: config/navigation.php:62 config/page.php:33 config/permission.php:30
+msgid "Logs"
+msgstr "گزارش ها"
+
+#: config/navigation.php:73 config/page.php:38 config/permission.php:34
+msgid "Tools"
+msgstr "ابزار ها"
+
+#: config/navigation.php:84 config/page.php:43 config/permission.php:38
+msgid "Json"
+msgstr "جیسون"
+
+#: config/navigation.php:97 config/page.php:63
+msgid "Category list"
+msgstr "فهرست شاخه ها"
+
+#: config/navigation.php:107 config/page.php:76
+msgid "Tag list"
+msgstr "فهرست برچسب ها"
+
+#: config/navigation.php:117
+msgid "Your channel"
+msgstr "کانال شما"
+
+#: config/navigation.php:127 config/page.php:95 config/permission.php:53
+msgid "Submit"
+msgstr "ارسال"
+
+#: config/page.php:51
+msgid "Index"
+msgstr "صفحه اصلی"
+
+#: config/page.php:70
+msgid "Tag"
+msgstr "برچسب"
+
+#: config/page.php:83
+msgid "Watch video"
+msgstr "نمایش ویدیو"
+
+#: config/page.php:89 config/permission.php:60
+msgid "Channel"
+msgstr "کانال"
+
+#: config/permission.php:45
+msgid "Global public resource"
+msgstr "دسترسی های عمومی"
+
+#~ msgid "Video player width"
+#~ msgstr "عرض پلیر ویدیو"
+
+#~ msgid "Video player height"
+#~ msgstr "ارتفاع پلیر ویدیو"
+
+#~ msgid "Audio player width"
+#~ msgstr "عرض پلیر صدا"
+
+#~ msgid "Audio player height"
+#~ msgstr "ارتفاع پلیر صدا"
+
+#~ msgid "Show Google Plus"
+#~ msgstr "نمایش گوگل پلاس"
+
+#~ msgid "Show facebook"
+#~ msgstr "نمایش فیسبوک"
+
+#~ msgid "Show Twitter"
+#~ msgstr "نمایش تویتر"
+
+#~ msgid "Module main title"
+#~ msgstr "عنوان اصلی ماژول"
+
+#~ msgid "Title for main page and all non-title pages"
+#~ msgstr "عنوان برای صفحه اصلی و تمام صفحات بدون عنوان"
+
+#~ msgid "Module main description"
+#~ msgstr "توضیحات اصلی ماژول"
+
+#~ msgid "Module main keywords"
+#~ msgstr "کلمات کلیدی اصلی ماژول"
+
+#~ msgid "Authors"
+#~ msgstr "پدیدآورنده ها"
+
+#~ msgid "Attach"
+#~ msgstr "پیوست"
+
+#~ msgid "Extra"
+#~ msgstr "فیلد اضافی"
+
+#~ msgid "Spotlight"
+#~ msgstr "اسپات لایت"
+
+#~ msgid "Story"
+#~ msgstr "مطلب"
+
+#~ msgid "Topic"
+#~ msgstr "موضوع"
+
+#~ msgid "Topic list"
+#~ msgstr "فهرست موضوع ها"
+
+#~ msgid "Author list"
+#~ msgstr "فهرست پدیدآورنده ها"
+
+#~ msgid "Archive"
+#~ msgstr "آرشیو"
+
+#~ msgid "Attaced"
+#~ msgstr "پیوست"
+
+#~ msgid "Index page"
+#~ msgstr "صفحه اصلی"
+
+#~ msgid "Item"
+#~ msgstr "مورد"
+
+#~ msgid "Shwo text"
+#~ msgstr "نمایش متن"
+
+#~ msgid "Show date"
+#~ msgstr "نمایش تاریخ"
+
+#~ msgid "Show hits"
+#~ msgstr "نمایش بازدید"
+
+#~ msgid "Show Images"
+#~ msgstr "نمایش تصاویر"
+
+#~ msgid "Show More link for each story"
+#~ msgstr "نمایش لینک ادامه برای هر مطلب"
+
+#~ msgid "Show authors"
+#~ msgstr "نمایش پدیدآورنده ها"
+
+#~ msgid "Story order"
+#~ msgstr "مرتب سازی مطالب"
+
+#~ msgid "Story list order options"
+#~ msgstr "گزینه های تنظیم مرتب سازی ترتیب نمایش مطالب"
+
+#~ msgid "Publish time DESC"
+#~ msgstr "تاریخ انتشار - صعودی"
+
+#~ msgid "Publish time ASC"
+#~ msgstr "تاریخ انتشار - نزولی"
+
+#~ msgid "Random"
+#~ msgstr "تصادفی"
+
+#~ msgid "list"
+#~ msgstr "فهرست"
+
+#~ msgid "Table"
+#~ msgstr "جدول"
+
+#~ msgid "Number of stroies for each topic"
+#~ msgstr "تعداد مطالب برای هر موضوع"
+
+#~ msgid "List of topic"
+#~ msgstr "فهرست موضوعات"
+
+#~ msgid "Topic order"
+#~ msgstr "مرتب سازی موضوعات"
+
+#~ msgid "Topic list order options"
+#~ msgstr "گزینه های تنظیم مرتب سازی ترتیب نمایش موضوعات"
+
+#~ msgid "Create DESC"
+#~ msgstr "تاریخ ایجاد صعودی"
+
+#~ msgid "Create ASC"
+#~ msgstr "تاریخ ایجاد نزولی"
+
+#~ msgid "Title DESC"
+#~ msgstr "عنوان صعودی"
+
+#~ msgid "Title ASC"
+#~ msgstr "عنوان نزولی"
+
+#~ msgid "Gallery"
+#~ msgstr "گالری"
+
+#~ msgid "Show gallery effect"
+#~ msgstr "نمایش افکت گالری"
+
+#~ msgid "Image width class"
+#~ msgstr "کلاس برای ابعدا تصویر"
+
+#~ msgid "Bootstrap 3 grid options like : col-xs-6 col-sm-6 col-md-3"
+#~ msgstr "بر اساس سیستم گرید بوت استرپ ۳ ، به طور مثال : col-xs-6 col-sm-6 col-md-3"
+
+#~ msgid "News"
+#~ msgstr "اخبار"
+
+#~ msgid "Manage News and Blog"
+#~ msgstr "مدیریت اخبار و بلاگ و مطالب"
+
+#~ msgid "Show"
+#~ msgstr "نمایش"
+
+#~ msgid "Feed"
+#~ msgstr "خوراک"
+
+#~ msgid "File"
+#~ msgstr "فایل"
+
+#~ msgid "Advertisement"
+#~ msgstr "تبلیغات"
+
+#~ msgid "Set topic as system page for support customise layout for blocks"
+#~ msgstr "قراردادن موضوعات به عنوان یک صفحه سیستم برای شخصی سازی تنظیم بلاک و ویجت"
+
+#~ msgid "Set story authors"
+#~ msgstr "تنظیم پدیدآورنده های مطلب"
+
+#~ msgid "Active json output"
+#~ msgstr "فعال کردن تولید خروجی جیسون"
+
+#~ msgid "Show Style"
+#~ msgstr "نسبک نمایش"
+
+#~ msgid "One column"
+#~ msgstr "یک ستون"
+
+#~ msgid "Show Subtopic stories on main topic"
+#~ msgstr "نمایش مطالب مربوط به موضع های زیر مجموعه در موضوع اصلی"
+
+#~ msgid "Show Topic"
+#~ msgstr "نمایش موضوع"
+
+#~ msgid "Show Topic Information"
+#~ msgstr "نمایش اطلاعات موضوع"
+
+#~ msgid "Show author"
+#~ msgstr "نمایش پدیدآورنده"
+
+#~ msgid "Show Date"
+#~ msgstr "نمایش تاریخ"
+
+#~ msgid "Show Pdf"
+#~ msgstr "نمایش پی دی اف"
+
+#~ msgid "Show Print"
+#~ msgstr "نمایش چاپ"
+
+#~ msgid "Show Mail"
+#~ msgstr "نمایش معرفی به دوستان"
+
+#~ msgid "Show Hits"
+#~ msgstr "نمایش بازدید"
+
+#~ msgid "Show attach files"
+#~ msgstr "نمایش فایل های پیوست شده"
+
+#~ msgid "Show extra information"
+#~ msgstr "نمایش فیلد های اضافی"
+
+#~ msgid "Show navigation"
+#~ msgstr "نمایش ناوبری"
+
+#~ msgid "Show spotlight"
+#~ msgstr "نمایش اسپات لایت"
+
+#~ msgid "Just show news from X days ago"
+#~ msgstr "فقط نمایش مطالب مربوط به X روز گذشته"
+
+#~ msgid "Set 0 for show all news, Or set day number for limit news in days"
+#~ msgstr "برای نمایش همه مطالب ۰ وارد کنید و یا محدوده روز های اخیر را مشخص کنید"
+
+#~ msgid "Show feed icon"
+#~ msgstr "نمایش آیکن خوراک"
+
+#~ msgid "Feed number"
+#~ msgstr "تعداد در صفحه خوراک"
+
+#~ msgid "Large Image height for topic"
+#~ msgstr "ارتفاع تصویر بزرگ برای موضوع"
+
+#~ msgid "Large Image width for topic"
+#~ msgstr "عرض تصویر بزرگ برای موضوع"
+
+#~ msgid "Medium Image height for topic"
+#~ msgstr "ارتفاع تصویر متوسط برای موضوع"
+
+#~ msgid "Medium Image width for topic"
+#~ msgstr "عرض تصویر متوسط برای موضوع"
+
+#~ msgid "Thumb Image height for topic"
+#~ msgstr "ارتفاع تصویر بندانگشتی برای موضوع"
+
+#~ msgid "Thumb Image width for topic"
+#~ msgstr "عرض تصویر بندانگشتی برای موضوع"
+
+#~ msgid "Large Image height for author"
+#~ msgstr "ارتفاع تصویر بزرگ برای پدیدآورنده"
+
+#~ msgid "Large Image width for author"
+#~ msgstr "عرض تصویر بزرگ برای پدیدآورنده"
+
+#~ msgid "Medium Image height for author"
+#~ msgstr "ارتفاع تصویر متوسط برای پدیدآورنده"
+
+#~ msgid "Medium Image width for author"
+#~ msgstr "عرض تصویر متوسط برای پدیدآورنده"
+
+#~ msgid "Thumb Image height for author"
+#~ msgstr "ارتفاع تصویر بندانگشتی برای پدیدآورنده"
+
+#~ msgid "Thumb Image width for author"
+#~ msgstr "عرض تصویر بندانگشتی برای پدیدآورنده"
+
+#~ msgid "Number of stories"
+#~ msgstr "تعداد مطالب"
+
+#~ msgid "Show Image for sub spotlights"
+#~ msgstr "نمایش تصویر برای زیر اسپات لایت ها"
+
+#~ msgid "Latest News from this website"
+#~ msgstr "آخرین مطالب این وب سایت"
+
+#~ msgid "news,topic,story,website"
+#~ msgstr "خبر,موضوع,مطلب,وب سایت"
+
+#~ msgid "File path"
+#~ msgstr "مسیر ذخیره فایل"
+
+#~ msgid "Latest"
+#~ msgstr "جدیدترین"
+
+#, fuzzy
+#~ msgid "Order"
+#~ msgstr "سفارش ها"
+
+#~ msgid "Writer"
+#~ msgstr "نویسنده"
+
+#~ msgid "Writer list"
+#~ msgstr "فهرست نویسنده ها"
+
+#~ msgid "Top writers"
+#~ msgstr "برترین نویسندگان"
+
+#~ msgid "Show writer"
+#~ msgstr "نمایش نویسنده"
+
+#~ msgid "Number of sub spotlight"
+#~ msgstr "تعداد زیر اسپات لایت ها"
+
+#~ msgid "Manage"
+#~ msgstr "مدیریت"
+
+#~ msgid "Location"
+#~ msgstr "مکان"
+
+#~ msgid "Service"
+#~ msgstr "خدمات"
+
+#~ msgid "Special"
+#~ msgstr "ویژه"
+
+#~ msgid "Review"
+#~ msgstr "بررسی"
+
+#~ msgid "Score"
+#~ msgstr "امتیاز دهی"
+
+#~ msgid "Package"
+#~ msgstr "بسته ها"
+
+#~ msgid "Search"
+#~ msgstr "جستجو"
+
+#~ msgid "New Items"
+#~ msgstr "موارد جدید"
+
+#~ msgid "Show just recommended"
+#~ msgstr "فقط نمایش موارد پیشنهاد شده"
+
+#~ msgid "Random Item list"
+#~ msgstr "فهرست موارد تصادفی"
+
+#~ msgid "Category show type"
+#~ msgstr "نوع نمایش شاخه بندی"
+
+#~ msgid "Simple list"
+#~ msgstr "فهرست ساده"
+
+#~ msgid "Advanced list"
+#~ msgstr "فهرست پیشرفته"
+
+#~ msgid "Item search form"
+#~ msgstr "فرم جستجو"
+
+#~ msgid "Guide"
+#~ msgstr "اصناف"
+
+#~ msgid "Introducing guides."
+#~ msgstr "مرجع معرفی اصناف"
+
+#~ msgid "Show incategory items"
+#~ msgstr "نمایش موارد مشابه در این شاخه"
+
+#~ msgid "Show user review"
+#~ msgstr "نمایش بررسی تخصصی کاربران"
+
+#~ msgid "Show submit review"
+#~ msgstr "نمایش دکمه ارسال بررسی"
+
+#~ msgid "Show search type"
+#~ msgstr "نمایش نوع جستجوی عنوان"
+
+#~ msgid "Show search category"
+#~ msgstr "نمایش شاخه در جستجو"
+
+#~ msgid "Module search page title"
+#~ msgstr "عنوان صفحه جستجو ماژول"
+
+#~ msgid "Module search page description"
+#~ msgstr "توضیحات صفحه جستجو ماژول"
+
+#~ msgid "Module search page keywords"
+#~ msgstr "کلمات کلیدی صفحه جستجو ماژول"
+
+#~ msgid "Level 1 name"
+#~ msgstr "نام برای طرح ۱"
+
+#~ msgid "Level 1"
+#~ msgstr "سطح ۱"
+
+#~ msgid "Level 2 name"
+#~ msgstr "نام برای طرح ۲"
+
+#~ msgid "Level 2"
+#~ msgstr "سطح ۲"
+
+#~ msgid "Level 3 name"
+#~ msgstr "نام برای طرح ۳"
+
+#~ msgid "Level 3"
+#~ msgstr "سطح ۳"
+
+#~ msgid "Level 4 name"
+#~ msgstr "نام برای طرح ۴"
+
+#~ msgid "Level 4"
+#~ msgstr "سطح ۴"
+
+#~ msgid "Level 5 name"
+#~ msgstr "نام برای طرح ۵"
+
+#~ msgid "Level 5"
+#~ msgstr "سطح ۵"
