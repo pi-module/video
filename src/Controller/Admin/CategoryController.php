@@ -178,6 +178,7 @@ class CategoryController extends ActionController
                 }
                 // Clear registry
                 Pi::registry('categoryList', 'video')->clear();
+                Pi::registry('categoryRoute', 'video')->clear();
                 // Add log
                 $operation = (empty($values['id'])) ? 'add' : 'edit';
                 Pi::api('log', 'video')->addLog('category', $row->id, $operation);
