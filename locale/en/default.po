@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-04-25 12:34+0430\n"
+"POT-Creation-Date: 2016-05-14 11:47+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -120,26 +120,26 @@ msgstr ""
 msgid "Problem in upload image. please try again"
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:184
+#: src/Controller/Admin/CategoryController.php:185
 msgid "Category data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:195
+#: src/Controller/Admin/CategoryController.php:196
 msgid "Add a category"
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:220
+#: src/Controller/Admin/CategoryController.php:221
 #: src/Controller/Admin/VideoController.php:525
 #, php-format
 msgid "Image of %s removed"
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:223
+#: src/Controller/Admin/CategoryController.php:224
 #: src/Controller/Admin/VideoController.php:528
 msgid "Image not remove"
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:227
+#: src/Controller/Admin/CategoryController.php:228
 msgid "Please select category"
 msgstr ""
 
@@ -341,7 +341,6 @@ msgid "Title"
 msgstr ""
 
 #: src/Form/AdminSearchForm.php:53 src/Form/AttributeForm.php:186
-#: template/front/video-angular.phtml:88
 msgid "Search"
 msgstr ""
 
@@ -824,6 +823,10 @@ msgstr ""
 
 #: template/front/tag.phtml:4
 msgid "Tag"
+msgstr ""
+
+#: template/front/video-angular.phtml:88
+msgid "Search on this group"
 msgstr ""
 
 #: template/front/video-angular.phtml:108

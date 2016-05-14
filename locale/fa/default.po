@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-04-25 12:35+0430\n"
+"POT-Creation-Date: 2016-05-14 11:48+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -120,26 +120,26 @@ msgstr "لطفا یک فیل انتخاب نمایید"
 msgid "Problem in upload image. please try again"
 msgstr "خطا در بارگذاری تصویر، دوباره تلاش کنید"
 
-#: src/Controller/Admin/CategoryController.php:184
+#: src/Controller/Admin/CategoryController.php:185
 msgid "Category data saved successfully."
 msgstr "اطلاعات شاخه با موفقیت ذخیره شد"
 
-#: src/Controller/Admin/CategoryController.php:195
+#: src/Controller/Admin/CategoryController.php:196
 msgid "Add a category"
 msgstr "شاخه جدید"
 
-#: src/Controller/Admin/CategoryController.php:220
+#: src/Controller/Admin/CategoryController.php:221
 #: src/Controller/Admin/VideoController.php:525
 #, php-format
 msgid "Image of %s removed"
 msgstr "تصویر مربوطز به %s حذف شد"
 
-#: src/Controller/Admin/CategoryController.php:223
+#: src/Controller/Admin/CategoryController.php:224
 #: src/Controller/Admin/VideoController.php:528
 msgid "Image not remove"
 msgstr "تصویر حذف نشد"
 
-#: src/Controller/Admin/CategoryController.php:227
+#: src/Controller/Admin/CategoryController.php:228
 msgid "Please select category"
 msgstr "لطفا یک شاخه انتخاب کنید"
 
@@ -341,7 +341,6 @@ msgid "Title"
 msgstr "عنوان"
 
 #: src/Form/AdminSearchForm.php:53 src/Form/AttributeForm.php:186
-#: template/front/video-angular.phtml:88
 msgid "Search"
 msgstr "جستجو"
 
@@ -841,6 +840,10 @@ msgstr ""
 #: template/front/tag.phtml:4
 msgid "Tag"
 msgstr "برچسب"
+
+#: template/front/video-angular.phtml:88
+msgid "Search on this group"
+msgstr "جستجو در این گروه"
 
 #: template/front/video-angular.phtml:108
 msgid "All"
