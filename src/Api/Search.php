@@ -28,26 +28,29 @@ class Search extends AbstractSearch
      */
     protected $searchIn = array(
         'title',
-        'description',
+        'text_summary',
+        'text_description',
     );
 
     /**
      * {@inheritDoc}
      */
     protected $meta = array(
-        'id'            => 'id',
-        'title'         => 'title',
-        'text_summary'  => 'content',
-        'time_create'   => 'time',
-        'uid'           => 'uid',
-        'slug'          => 'slug',
+        'id' => 'id',
+        'title' => 'title',
+        'text_summary' => 'content',
+        'time_create' => 'time',
+        'uid' => 'uid',
+        'slug' => 'slug',
+        'image' => 'image',
+        'path' => 'path',
     );
 
     /**
      * {@inheritDoc}
      */
     protected $condition = array(
-        'status'    => 1,
+        'status' => 1,
     );
 
     /**
@@ -56,9 +59,9 @@ class Search extends AbstractSearch
     protected function buildUrl(array $item)
     {
         $link = Pi::service('url')->assemble('video', array(
-            'module'        => $this->getModule(),
-            'controller'    => 'watch',
-            'slug'          => $item['slug'],
+            'module' => $this->getModule(),
+            'controller' => 'watch',
+            'slug' => $item['slug'],
         ));
 
         return $link;
@@ -72,12 +75,15 @@ class Search extends AbstractSearch
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
 
-        $image = Pi::url(
-            sprintf('upload/%s/thumb/%s/%s',
-                $config['image_path'],
-                $item['path'],
-                $item['image']
-            ));;
+        $image = '';
+        if (isset($item['image']) && !empty($item['image'])) {
+            $image = Pi::url(
+                sprintf('upload/%s/thumb/%s/%s',
+                    $config['image_path'],
+                    $item['path'],
+                    $item['image']
+                ));
+        }
 
         return $image;
     }
