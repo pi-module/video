@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-05-14 11:48+0430\n"
+"POT-Creation-Date: 2016-06-13 12:56+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -61,7 +61,7 @@ msgstr "مخفی"
 
 #: src/Api/Breadcrumbs.php:50 src/Api/Breadcrumbs.php:56
 #: src/Api/Breadcrumbs.php:76 src/Controller/Front/CategoryController.php:83
-#: template/front/category-list.phtml:4 template/front/video-angular.phtml:134
+#: template/front/category-list.phtml:4 template/front/video-angular.phtml:132
 msgid "Category list"
 msgstr "فهرست شاخه ها"
 
@@ -336,7 +336,7 @@ msgstr "ویدیو پیدا نشد"
 #: src/Form/VideoForm.php:90 template/admin/attribute-index.phtml:57
 #: template/admin/category-index.phtml:13
 #: template/admin/position-index.phtml:13 template/admin/video-index.phtml:52
-#: template/front/video-angular.phtml:92
+#: template/front/video-angular.phtml:90 template/front/video-angular.phtml:164
 msgid "Title"
 msgstr "عنوان"
 
@@ -683,7 +683,7 @@ msgstr "کاربر"
 msgid "Ip"
 msgstr "آی پی"
 
-#: template/admin/log-index.phtml:9
+#: template/admin/log-index.phtml:9 template/front/video-angular.phtml:161
 msgid "Time"
 msgstr "زمان"
 
@@ -841,37 +841,29 @@ msgstr ""
 msgid "Tag"
 msgstr "برچسب"
 
-#: template/front/video-angular.phtml:88
+#: template/front/video-angular.phtml:86
 msgid "Search on this group"
 msgstr "جستجو در این گروه"
 
-#: template/front/video-angular.phtml:108
+#: template/front/video-angular.phtml:106
 msgid "All"
 msgstr "همه"
 
-#: template/front/video-angular.phtml:162
-msgid "Sort type"
+#: template/front/video-angular.phtml:160
+msgid "Sort by"
 msgstr "مرتب سازی براساس"
 
-#: template/front/video-angular.phtml:163
-msgid "Sort time"
-msgstr "جدید‌ترین"
+#: template/front/video-angular.phtml:162
+msgid "Hits"
+msgstr "بازدید"
 
-#: template/front/video-angular.phtml:164
-msgid "Sort hits"
-msgstr "پربازدید‌‌ترین"
+#: template/front/video-angular.phtml:163
+msgid "Favourite"
+msgstr "مورد علاقه"
 
 #: template/front/video-angular.phtml:165
-msgid "Sort favourite"
-msgstr "محبوب‌ترین"
-
-#: template/front/video-angular.phtml:166
-msgid "Sort title"
-msgstr "عنوان"
-
-#: template/front/video-angular.phtml:167
-msgid "Sort default"
-msgstr "حالت پیش فرض"
+msgid "Default"
+msgstr "پیش فرض"
 
 #: template/front/video-related.phtml:4
 msgid "Related videos"
@@ -885,6 +877,24 @@ msgstr "کانال کاربر"
 #, php-format
 msgid "%s channel"
 msgstr "کانال %s"
+
+#~ msgid "Sort type"
+#~ msgstr "مرتب سازی براساس"
+
+#~ msgid "Sort time"
+#~ msgstr "جدید‌ترین"
+
+#~ msgid "Sort hits"
+#~ msgstr "پربازدید‌‌ترین"
+
+#~ msgid "Sort favourite"
+#~ msgstr "محبوب‌ترین"
+
+#~ msgid "Sort title"
+#~ msgstr "عنوان"
+
+#~ msgid "Sort default"
+#~ msgstr "حالت پیش فرض"
 
 #~ msgid "Add category"
 #~ msgstr "شاخه جدید"
@@ -1196,9 +1206,6 @@ msgstr "کانال %s"
 
 #~ msgid "Confirm to remove all topic pages"
 #~ msgstr "تایید برای حذف تمام صفحات موضوعات"
-
-#~ msgid "Default"
-#~ msgstr "پیش فرض"
 
 #~ msgid "default"
 #~ msgstr "پیش-فرض"
@@ -1516,9 +1523,6 @@ msgstr "کانال %s"
 #~ msgid "Create"
 #~ msgstr "تاریخ ایجاد"
 
-#~ msgid "Hits"
-#~ msgstr "بازدید"
-
 #~ msgid "Close"
 #~ msgstr "بستن"
 
@@ -1728,9 +1732,6 @@ msgstr "کانال %s"
 
 #~ msgid "Vote"
 #~ msgstr "رای"
-
-#~ msgid "Favourite"
-#~ msgstr "مورد علاقه"
 
 #~ msgid "Texts"
 #~ msgstr "متن ها"
