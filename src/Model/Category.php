@@ -36,6 +36,7 @@ class Category extends Model
         'time_update',
         'setting',
         'status',
-        'display_order'
+        'display_order',
+        'display_type'
     );
 }

@@ -38,24 +38,49 @@ class CategoryController extends IndexController
         }
         // category list
         $categoriesJson = Pi::api('category', 'video')->categoryListJson();
-        // Set filter url
-        $filterUrl = Pi::url($this->url('', array(
-            'controller' => 'json',
-            'action' => 'filterCategory',
-            'slug' => $category['slug']
-        )));
-        // Set filter list
-        $filterList = Pi::api('attribute', 'video')->filterList();
+        // Check display type
+        switch ($category['display_type']) {
+            case 'video':
+                // Set filter url
+                $filterUrl = Pi::url($this->url('', array(
+                    'controller' => 'json',
+                    'action' => 'filterCategory',
+                    'slug' => $category['slug']
+                )));
+                // Set filter list
+                $filterList = Pi::api('attribute', 'video')->filterList();
+                // Set view
+                $this->view()->assign('filterUrl', $filterUrl);
+                $this->view()->assign('filterList', $filterList);
+                // Set template
+                $template = 'video-angular';
+                break;
+
+            case 'subcategory':
+                // Get info
+                $list = array();
+                $where = array('status' => 1, 'parent' => $category['id']);
+                $order = array('display_order ASC', 'time_create DESC', 'title ASC');
+                $select = $this->getModel('category')->select()->where($where)->order($order);
+                $rowset = $this->getModel('category')->selectWith($select);
+                // Make list
+                foreach ($rowset as $row) {
+                    $list[$row->id] = Pi::api('category', 'video')->canonizeCategory($row);
+                }
+                // Set view
+                $this->view()->assign('list', $list);
+                // Set template
+                $template = 'category-single';
+                break;
+        }
         // Set view
         $this->view()->headTitle($category['seo_title']);
         $this->view()->headDescription($category['seo_description'], 'set');
         $this->view()->headKeywords($category['seo_keywords'], 'set');
-        $this->view()->setTemplate('video-angular');
+        $this->view()->setTemplate($template);
         $this->view()->assign('config', $config);
         $this->view()->assign('category', $category);
         $this->view()->assign('categoriesJson', $categoriesJson);
-        $this->view()->assign('filterUrl', $filterUrl);
-        $this->view()->assign('filterList', $filterList);
     }
 
     public function listAction()
