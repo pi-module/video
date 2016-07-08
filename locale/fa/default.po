@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-06-13 12:56+0430\n"
+"POT-Creation-Date: 2016-07-08 19:57+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -60,8 +60,8 @@ msgid "Hidden"
 msgstr "مخفی"
 
 #: src/Api/Breadcrumbs.php:50 src/Api/Breadcrumbs.php:56
-#: src/Api/Breadcrumbs.php:76 src/Controller/Front/CategoryController.php:83
-#: template/front/category-list.phtml:4 template/front/video-angular.phtml:132
+#: src/Api/Breadcrumbs.php:76 src/Controller/Front/CategoryController.php:108
+#: template/front/category-list.phtml:4 template/front/video-angular.phtml:136
 msgid "Category list"
 msgstr "فهرست شاخه ها"
 
@@ -260,7 +260,7 @@ msgstr "ماژول فهرست علاقه مندی ها نصب نشده است"
 msgid "All favourite videos by you"
 msgstr "تمام ویدیو های محبوب شما"
 
-#: src/Controller/Front/IndexController.php:47
+#: src/Controller/Front/IndexController.php:47 src/Form/CategoryForm.php:129
 #: template/admin/video-index.phtml:49
 msgid "List of videos"
 msgstr "فهرست ویدیو ها"
@@ -336,7 +336,7 @@ msgstr "ویدیو پیدا نشد"
 #: src/Form/VideoForm.php:90 template/admin/attribute-index.phtml:57
 #: template/admin/category-index.phtml:13
 #: template/admin/position-index.phtml:13 template/admin/video-index.phtml:52
-#: template/front/video-angular.phtml:90 template/front/video-angular.phtml:164
+#: template/front/video-angular.phtml:94 template/front/video-angular.phtml:166
 msgid "Title"
 msgstr "عنوان"
 
@@ -353,11 +353,11 @@ msgid "Set name for call anywhere, a-z 0-9 allowed"
 msgstr "تنظیم نام برای فراخوانی در تمام بخش‌ها، مقادیر مجاز a-z 0-9 می باشد."
 
 #: src/Form/AttributeForm.php:74 src/Form/VideoForm.php:148
-#: template/front/category.phtml:32
+#: template/front/category.phtml:48
 msgid "Category"
 msgstr "شاخه"
 
-#: src/Form/AttributeForm.php:88 src/Form/CategoryForm.php:114
+#: src/Form/AttributeForm.php:88 src/Form/CategoryForm.php:142
 #: src/Form/PositionForm.php:73 src/Form/VideoForm.php:64
 msgid "Status"
 msgstr "وضعیت"
@@ -403,7 +403,7 @@ msgid "Use fontawesome.io icons, and set icon name like fa-home"
 msgstr ""
 "از آیکن های fontawesome.io استفاده شود، و نام آیکن موارد شود ، مثل : fa-home"
 
-#: src/Form/AttributeForm.php:197 src/Form/CategoryForm.php:217
+#: src/Form/AttributeForm.php:197 src/Form/CategoryForm.php:245
 #: src/Form/PositionForm.php:88 src/Form/SitemapForm.php:48
 #: src/Form/VideoAdditionalForm.php:98 src/Form/VideoForm.php:373
 msgid "Submit"
@@ -417,73 +417,89 @@ msgstr "شاخه والد"
 msgid "slug"
 msgstr "اسلاگ"
 
-#: src/Form/CategoryForm.php:89 src/Form/VideoForm.php:135
+#: src/Form/CategoryForm.php:89 src/Form/VideoForm.php:122
+msgid "Summary"
+msgstr "خلاصه"
+
+#: src/Form/CategoryForm.php:95 src/Form/VideoForm.php:128
+msgid "Keep summery short, 2 or 3 lines"
+msgstr "متن خلاصه کوتاه و نهایتا ۲ یا ۳ خط نگه دارید"
+
+#: src/Form/CategoryForm.php:102 src/Form/VideoForm.php:135
 msgid "Description"
 msgstr "توضیحات"
 
-#: src/Form/CategoryForm.php:101 template/admin/category-index.phtml:14
+#: src/Form/CategoryForm.php:114 template/admin/category-index.phtml:14
 msgid "Display order"
 msgstr "ترتیب نمایش"
 
-#: src/Form/CategoryForm.php:116 src/Form/PositionForm.php:75
+#: src/Form/CategoryForm.php:127
+msgid "Display type"
+msgstr "نوع نمایش"
+
+#: src/Form/CategoryForm.php:130
+msgid "List of sub category"
+msgstr "فهرست زیر شاخه ها"
+
+#: src/Form/CategoryForm.php:144 src/Form/PositionForm.php:75
 #: src/Form/VideoForm.php:66 template/admin/category-index.phtml:51
 #: template/admin/video-index.phtml:26 template/admin/video-index.phtml:28
 #: template/admin/video-index.phtml:109
 msgid "Published"
 msgstr "منتشر شده"
 
-#: src/Form/CategoryForm.php:117 src/Form/PositionForm.php:76
+#: src/Form/CategoryForm.php:145 src/Form/PositionForm.php:76
 #: src/Form/VideoForm.php:67 template/admin/category-index.phtml:52
 #: template/admin/video-index.phtml:29 template/admin/video-index.phtml:31
 #: template/admin/video-index.phtml:32 template/admin/video-index.phtml:110
 msgid "Pending review"
 msgstr "در انتظار تایید"
 
-#: src/Form/CategoryForm.php:118 src/Form/PositionForm.php:77
+#: src/Form/CategoryForm.php:146 src/Form/PositionForm.php:77
 #: src/Form/VideoForm.php:68 template/admin/category-index.phtml:53
 #: template/admin/video-index.phtml:34
 msgid "Draft"
 msgstr "پیش نویس"
 
-#: src/Form/CategoryForm.php:119 src/Form/PositionForm.php:78
+#: src/Form/CategoryForm.php:147 src/Form/PositionForm.php:78
 #: src/Form/VideoForm.php:69 template/admin/category-index.phtml:54
 #: template/admin/video-index.phtml:35 template/admin/video-index.phtml:37
 msgid "Private"
 msgstr "خصوصی"
 
-#: src/Form/CategoryForm.php:141 src/Form/VideoForm.php:187
+#: src/Form/CategoryForm.php:169 src/Form/VideoForm.php:187
 msgid "Remove image"
 msgstr "حذف تصویر"
 
-#: src/Form/CategoryForm.php:157 src/Form/VideoForm.php:204
+#: src/Form/CategoryForm.php:185 src/Form/VideoForm.php:204
 msgid "Image"
 msgstr "تصویر"
 
-#: src/Form/CategoryForm.php:170 src/Form/VideoForm.php:282
+#: src/Form/CategoryForm.php:198 src/Form/VideoForm.php:282
 msgid "SEO options"
 msgstr "گزینه های سئو"
 
-#: src/Form/CategoryForm.php:177 src/Form/VideoForm.php:289
+#: src/Form/CategoryForm.php:205 src/Form/VideoForm.php:289
 msgid "SEO Title"
 msgstr "عنوان سئو"
 
-#: src/Form/CategoryForm.php:183 src/Form/VideoForm.php:295
+#: src/Form/CategoryForm.php:211 src/Form/VideoForm.php:295
 msgid "Between 10 to 70 character"
 msgstr "بین ۱۰ تا ۷۰ کارکتر"
 
-#: src/Form/CategoryForm.php:190 src/Form/VideoForm.php:302
+#: src/Form/CategoryForm.php:218 src/Form/VideoForm.php:302
 msgid "SEO Keywords"
 msgstr "کلمات کلیدی سئو"
 
-#: src/Form/CategoryForm.php:196 src/Form/VideoForm.php:308
+#: src/Form/CategoryForm.php:224 src/Form/VideoForm.php:308
 msgid "Between 5 to 10 words"
 msgstr "بین ۵ تا ۱۰ کلمه"
 
-#: src/Form/CategoryForm.php:203 src/Form/VideoForm.php:315
+#: src/Form/CategoryForm.php:231 src/Form/VideoForm.php:315
 msgid "SEO Description"
 msgstr "توضیح سئو"
 
-#: src/Form/CategoryForm.php:209 src/Form/VideoForm.php:321
+#: src/Form/CategoryForm.php:237 src/Form/VideoForm.php:321
 msgid "Between 80 to 160 character"
 msgstr "بین ۸۰ تا ۱۶۰ کلمه"
 
@@ -519,14 +535,6 @@ msgstr "فقط جدول شاخه ها"
 #: src/Form/VideoForm.php:48
 msgid "General options"
 msgstr "گزینه های سراسری"
-
-#: src/Form/VideoForm.php:122
-msgid "Summary"
-msgstr "خلاصه"
-
-#: src/Form/VideoForm.php:128
-msgid "Keep summery short, 2 or 3 lines"
-msgstr "متن خلاصه کوتاه و نهایتا ۲ یا ۳ خط نگه دارید"
 
 #: src/Form/VideoForm.php:160
 msgid "Main category"
@@ -683,7 +691,7 @@ msgstr "کاربر"
 msgid "Ip"
 msgstr "آی پی"
 
-#: template/admin/log-index.phtml:9 template/front/video-angular.phtml:161
+#: template/admin/log-index.phtml:9 template/front/video-angular.phtml:163
 msgid "Time"
 msgstr "زمان"
 
@@ -810,6 +818,10 @@ msgstr ""
 "هنوز هیچ شاخه ای برای این بخش ساخته نشده است. لطفا بعدا این صفحه را بررسی "
 "نمایید "
 
+#: template/front/category-single.phtml:45
+msgid "List of sub categories"
+msgstr "فهرست تمام زیر شاخه ها"
+
 #: template/front/submit-finish.phtml:19
 msgid "Congratulations"
 msgstr "تبریک می گوییم"
@@ -841,27 +853,27 @@ msgstr ""
 msgid "Tag"
 msgstr "برچسب"
 
-#: template/front/video-angular.phtml:86
+#: template/front/video-angular.phtml:90
 msgid "Search on this group"
 msgstr "جستجو در این گروه"
 
-#: template/front/video-angular.phtml:106
+#: template/front/video-angular.phtml:110
 msgid "All"
 msgstr "همه"
 
-#: template/front/video-angular.phtml:160
+#: template/front/video-angular.phtml:162
 msgid "Sort by"
 msgstr "مرتب سازی براساس"
 
-#: template/front/video-angular.phtml:162
+#: template/front/video-angular.phtml:164
 msgid "Hits"
 msgstr "بازدید"
 
-#: template/front/video-angular.phtml:163
+#: template/front/video-angular.phtml:165
 msgid "Favourite"
 msgstr "مورد علاقه"
 
-#: template/front/video-angular.phtml:165
+#: template/front/video-angular.phtml:167
 msgid "Default"
 msgstr "پیش فرض"
 
