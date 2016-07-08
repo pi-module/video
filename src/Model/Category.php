@@ -27,6 +27,7 @@ class Category extends Model
         'slug',
         'image',
         'path',
+        'text_summary',
         'text_description',
         'seo_title',
         'seo_keywords',

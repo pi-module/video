@@ -16,7 +16,7 @@ return array(
     'meta'         => array(
         'title'         => _a('Video'),
         'description'   => _a('Video play system.'),
-        'version'       => '0.4.1',
+        'version'       => '0.4.2',
         'license'       => 'New BSD',
         'logo'          => 'image/logo.png',
         'readme'        => 'docs/readme.txt',

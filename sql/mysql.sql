@@ -47,6 +47,7 @@ CREATE TABLE `{category}` (
   `parent`           INT(5) UNSIGNED     NOT NULL,
   `title`            VARCHAR(255)        NOT NULL DEFAULT '',
   `slug`             VARCHAR(255)        NOT NULL DEFAULT '',
+  `text_summary`     TEXT,
   `text_description` TEXT,
   `image`            VARCHAR(255)        NOT NULL DEFAULT '',
   `path`             VARCHAR(16)         NOT NULL DEFAULT '',
