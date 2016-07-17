@@ -1,0 +1,38 @@
+<?php if (isset($videoServiceList) && !empty($videoServiceList)) { ?>
+    <?php if (!isset($videoServiceCol) || empty($videoServiceCol)) {
+        $videoServiceCol = 'col-md-8 col-md-offset-2';
+    } ?>
+    <div class="clearfix row video-service-list">
+        <?php foreach ($videoServiceList as $videoService) { ?>
+            <div class="video-service <?php echo $videoServiceCol; ?>" itemscope itemtype="http://schema.org/VideoObject">
+                <meta itemprop="thumbnail" content="<?php echo $this->escape($videoService['largeUrl']); ?>" />
+                <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoService['time_publish'])); ?>" />
+                <meta itemprop="contentUrl" content="<?php echo $this->escape($videoService['videoFileUrl']); ?>" />
+                <div class="clearfix text-center video-player">
+                    <?php echo $this->videojs($videoService['videoFileUrl'], $videoService['largeUrl']); ?>
+                </div>
+                <div class="clearfix video-information">
+                    <ul class="text-muted list-inline small">
+                        <li>
+                            <i class="fa fa-file"></i>
+                            <a itemprop="name" title="<?php echo $this->escape($videoService['title']); ?>" href="<?php echo $this->escape($videoService['videoUrl']); ?>" target="_blank" rel="external">
+                                <?php echo $this->escape($videoService['title']); ?>
+                            </a>
+                        </li>
+                        <li><i class="fa fa-calendar"></i> <?php echo $this->escape($videoService['time_update_view']); ?></li>
+                        <li><i class="fa fa-eye"></i> <?php echo _number($this->escape($videoService['hits'])); ?></li>
+                        <li><i class="fa fa-clock-o"></i> <?php echo $this->escape($videoService['video_duration_view']); ?></li>
+                        <li><i class="fa fa-folder"></i></li>
+                        <?php foreach ($videoService['categories'] as $videoServiceCategory) { ?>
+                            <li class="p-category" itemprop="about">
+                                <a title="<?php echo $this->escape($videoServiceCategory['title']); ?>" href="<?php echo $this->escape($videoServiceCategory['url']); ?>" target="_blank" rel="external">
+                                    <?php echo $this->escape($videoServiceCategory['title']); ?>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+<?php } ?>

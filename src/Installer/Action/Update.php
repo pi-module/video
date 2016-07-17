@@ -73,6 +73,35 @@ class Update extends BasicUpdate
                 return false;
             }
         }
+
+        if (version_compare($moduleVersion, '0.4.4', '<')) {
+            // Add table : service
+            $sql = <<<'EOD'
+CREATE TABLE `{service}` (
+  `id`           INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `video`        INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `module_name`  VARCHAR(64)      NOT NULL DEFAULT '',
+  `module_table` VARCHAR(64)      NOT NULL DEFAULT '',
+  `module_item`  INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `video` (`video`),
+  KEY `select` (`module_name`, `module_table`, `module_item`)
+);
+EOD;
+            SqlSchema::setType($this->module);
+            $sqlHandler = new SqlSchema;
+            try {
+                $sqlHandler->queryContent($sql);
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'SQL schema query for author table failed: '
+                        . $exception->getMessage(),
+                ));
+
+                return false;
+            }
+        }
         
         return true;
     }

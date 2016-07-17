@@ -39,7 +39,7 @@ player
     <meta itemprop="thumbnail" content="<?php echo $this->escape($videoItem['largeUrl']); ?>" />
     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoItem['time_publish'])); ?>" />
     <meta itemprop="contentUrl" content="<?php echo $this->escape($videoItem['videoFileUrl']); ?>" />
-    <div class="clearfix">
+    <div class="clearfix video-information">
         <ul class="text-muted list-inline small">
             <li><i class="fa fa-calendar"></i> <?php echo $this->escape($videoItem['time_update_view']); ?></li>
             <li><i class="fa fa-eye"></i> <?php echo _number($this->escape($videoItem['hits'])); ?></li>

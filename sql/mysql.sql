@@ -160,3 +160,13 @@ CREATE TABLE `{log}` (
   KEY `time_create` (`time_create`)
 );
 
+CREATE TABLE `{service}` (
+  `id`           INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `video`        INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `module_name`  VARCHAR(64)      NOT NULL DEFAULT '',
+  `module_table` VARCHAR(64)      NOT NULL DEFAULT '',
+  `module_item`  INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `video` (`video`),
+  KEY `select` (`module_name`, `module_table`, `module_item`)
+);
