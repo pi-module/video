@@ -29,7 +29,6 @@ CREATE TABLE `{video}` (
   `video_file`       VARCHAR(64)             NOT NULL DEFAULT '',
   `video_path`       VARCHAR(64)             NOT NULL DEFAULT '',
   `video_url`        VARCHAR(64)             NOT NULL DEFAULT '',
-
   `video_size`       VARCHAR(16)             NOT NULL DEFAULT '',
   `video_duration`   VARCHAR(16)             NOT NULL DEFAULT '',
   `setting`          TEXT,
