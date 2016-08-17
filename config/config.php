@@ -22,12 +22,12 @@ return array(
             'name' => 'json'
         ),
         array(
-            'title' => _a('View'),
-            'name' => 'view'
+            'title' => _a('Broadcasting System'),
+            'name' => 'broadcast'
         ),
         array(
-            'title' => _a('Player'),
-            'name' => 'player'
+            'title' => _a('View'),
+            'name' => 'view'
         ),
         array(
             'title' => _a('Media'),
@@ -88,6 +88,39 @@ return array(
             'edit' => 'text',
             'filter' => 'string',
             'value' => md5(rand(1,99999)),
+        ),
+        // Broadcast
+        'broadcast_system' => array(
+            'title' => _a('Broadcasting System'),
+            'description' => '',
+            'edit' => array(
+                'type' => 'select',
+                'options' => array(
+                    'options' => array(
+                        'file' => _a('Broadcast from file'),
+                        'wowza' => _a('Wowza Streaming Engine'),
+                    ),
+                ),
+            ),
+            'filter' => 'text',
+            'value' => 'file',
+            'category' => 'broadcast',
+        ),
+        'broadcast_url' => array(
+            'category' => 'broadcast',
+            'title' => _a('Wowza url and application name'),
+            'description' => _a('Wowza server ip or url and port, without prefix ( http:// , rtmp:// , rtsp:// ), for example : 127.0.0.1:1935/vod'),
+            'edit' => 'text',
+            'filter' => 'string',
+            'value' => ''
+        ),
+        'broadcast_source' => array(
+            'category' => 'broadcast',
+            'title' => _a('Wowza source'),
+            'description' => _a('Name of media source, than create on wowza vod or media cache service, for example : mp4:http'),
+            'edit' => 'text',
+            'filter' => 'string',
+            'value' => ''
         ),
         // View
         'view_perpage' => array(

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-08-17 10:59+0430\n"
+"POT-Creation-Date: 2016-08-17 14:56+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -77,14 +77,14 @@ msgstr "بارگذاری ویدیو جدید"
 
 #: src/Api/Breadcrumbs.php:126 src/Controller/Front/SubmitController.php:291
 #: template/admin/video-index.phtml:85 template/admin/video-index.phtml:87
-#: template/admin/video-update.phtml:12 template/admin/video-view.phtml:5
+#: template/admin/video-update.phtml:12 template/admin/video-view.phtml:66
 #: template/front/submit-finish.phtml:10 template/front/submit-update.phtml:10
 msgid "Edit basic information"
 msgstr "ویرایش اطلاعات پایه"
 
 #: src/Api/Breadcrumbs.php:132 src/Controller/Front/SubmitController.php:386
 #: template/admin/video-index.phtml:88 template/admin/video-index.phtml:90
-#: template/admin/video-update.phtml:13 template/admin/video-view.phtml:6
+#: template/admin/video-update.phtml:13 template/admin/video-view.phtml:67
 #: template/front/submit-finish.phtml:11 template/front/submit-update.phtml:11
 msgid "Edit additional information"
 msgstr "ویرایش اطلاعات تکمیلی"
@@ -313,7 +313,7 @@ msgstr "لطفا یک ویدیو ارسال نمایید"
 
 #: src/Controller/Front/SubmitController.php:432
 #: template/admin/video-update.phtml:14 template/admin/video-upload.phtml:57
-#: template/admin/video-view.phtml:7 template/front/submit-finish.phtml:12
+#: template/admin/video-view.phtml:68 template/front/submit-finish.phtml:12
 #: template/front/submit-index.phtml:62 template/front/submit-update.phtml:12
 msgid "Watch submitted video"
 msgstr "مشاهده ویدیو بارگذاری شده"
@@ -791,7 +791,7 @@ msgstr ""
 "شما مجاز به بارگذاری فایل های چند رسانه ای با پسوند های <strong>%s</strong> "
 "هستید، بیشترین حجم مجاز فایل برای بارگذاری <strong>%s</strong> است."
 
-#: template/admin/video-view.phtml:12
+#: template/admin/video-view.phtml:73
 msgid "This video not published on user side"
 msgstr "این ویدیو در سمت کاربر منتشر نشده است"
 
@@ -881,11 +881,11 @@ msgstr "پیش فرض"
 msgid "Related videos"
 msgstr "ویدیو های مشابه"
 
-#: template/front/video-watch.phtml:98
+#: template/front/video-watch.phtml:190
 msgid "User channel"
 msgstr "کانال کاربر"
 
-#: template/front/video-watch.phtml:100
+#: template/front/video-watch.phtml:192
 #, php-format
 msgid "%s channel"
 msgstr "کانال %s"

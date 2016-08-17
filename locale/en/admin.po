@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-08-17 10:59+0430\n"
+"POT-Creation-Date: 2016-08-17 14:53+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -108,12 +108,12 @@ msgstr ""
 msgid "Json output"
 msgstr ""
 
-#: config/config.php:25
-msgid "View"
+#: config/config.php:25 config/config.php:94
+msgid "Broadcasting System"
 msgstr ""
 
 #: config/config.php:29
-msgid "Player"
+msgid "View"
 msgstr ""
 
 #: config/config.php:33
@@ -140,7 +140,7 @@ msgstr ""
 msgid "Texts"
 msgstr ""
 
-#: config/config.php:61 config/config.php:95
+#: config/config.php:61 config/config.php:128
 msgid "Perpage"
 msgstr ""
 
@@ -160,147 +160,175 @@ msgstr ""
 msgid "After use on mobile device , do not change it"
 msgstr ""
 
-#: config/config.php:102
-msgid "Columns"
+#: config/config.php:100
+msgid "Broadcast from file"
 msgstr ""
 
-#: config/config.php:108
-msgid "One columns"
-msgstr ""
-
-#: config/config.php:109
-msgid "Two columns"
-msgstr ""
-
-#: config/config.php:110
-msgid "Three columns"
+#: config/config.php:101
+msgid "Wowza Streaming Engine"
 msgstr ""
 
 #: config/config.php:111
-msgid "Four columns"
+msgid "Wowza url and application name"
 msgstr ""
 
 #: config/config.php:112
+msgid ""
+"Wowza server ip or url and port, without prefix ( http:// , rtmp:// , "
+"rtsp:// ), for example : 127.0.0.1:1935/vod"
+msgstr ""
+
+#: config/config.php:119
+msgid "Wowza source"
+msgstr ""
+
+#: config/config.php:120
+msgid ""
+"Name of media source, than create on wowza vod or media cache service, for "
+"example : mp4:http"
+msgstr ""
+
+#: config/config.php:135
+msgid "Columns"
+msgstr ""
+
+#: config/config.php:141
+msgid "One columns"
+msgstr ""
+
+#: config/config.php:142
+msgid "Two columns"
+msgstr ""
+
+#: config/config.php:143
+msgid "Three columns"
+msgstr ""
+
+#: config/config.php:144
+msgid "Four columns"
+msgstr ""
+
+#: config/config.php:145
 msgid "Six columns"
 msgstr ""
 
-#: config/config.php:122
+#: config/config.php:155
 msgid "Show breadcrumbs"
 msgstr ""
 
-#: config/config.php:130
+#: config/config.php:163
 msgid "Show Tags"
 msgstr ""
 
-#: config/config.php:138
+#: config/config.php:171
 msgid "Show related video"
 msgstr ""
 
-#: config/config.php:146
+#: config/config.php:179
 msgid "Related video number"
 msgstr ""
 
-#: config/config.php:155
+#: config/config.php:188
 msgid "Video Size"
 msgstr ""
 
-#: config/config.php:163
+#: config/config.php:196
 msgid "Video Extension"
 msgstr ""
 
-#: config/config.php:172
+#: config/config.php:205
 msgid "Image Size"
 msgstr ""
 
-#: config/config.php:180
+#: config/config.php:213
 msgid "Image quality"
 msgstr ""
 
-#: config/config.php:181
+#: config/config.php:214
 msgid "Between 0 to 100 and support both of JPG and PNG, default is 75"
 msgstr ""
 
-#: config/config.php:188
+#: config/config.php:221
 msgid "Image path"
 msgstr ""
 
-#: config/config.php:196
+#: config/config.php:229
 msgid "Image Extension"
 msgstr ""
 
-#: config/config.php:204
+#: config/config.php:237
 msgid "Large Image height"
 msgstr ""
 
-#: config/config.php:212
+#: config/config.php:245
 msgid "Large Image width"
 msgstr ""
 
-#: config/config.php:220
+#: config/config.php:253
 msgid "Medium Image height"
 msgstr ""
 
-#: config/config.php:228
+#: config/config.php:261
 msgid "Medium Image width"
 msgstr ""
 
-#: config/config.php:236
+#: config/config.php:269
 msgid "Thumb Image height"
 msgstr ""
 
-#: config/config.php:244
+#: config/config.php:277
 msgid "Thumb Image width"
 msgstr ""
 
-#: config/config.php:252
+#: config/config.php:285
 msgid "Use lightbox"
 msgstr ""
 
-#: config/config.php:260
+#: config/config.php:293
 msgid "Add Watermark"
 msgstr ""
 
-#: config/config.php:268
+#: config/config.php:301
 msgid "Watermark Image"
 msgstr ""
 
-#: config/config.php:275
+#: config/config.php:308
 msgid "Watermark Positio"
 msgstr ""
 
-#: config/config.php:281
+#: config/config.php:314
 msgid "Top Left"
 msgstr ""
 
-#: config/config.php:282
+#: config/config.php:315
 msgid "Top Right"
 msgstr ""
 
-#: config/config.php:283
+#: config/config.php:316
 msgid "Bottom Left"
 msgstr ""
 
-#: config/config.php:284
+#: config/config.php:317
 msgid "Bottom Right"
 msgstr ""
 
-#: config/config.php:294
+#: config/config.php:327
 msgid "Social sharing items"
 msgstr ""
 
-#: config/config.php:308
+#: config/config.php:341
 msgid "Use vote system"
 msgstr ""
 
-#: config/config.php:317
+#: config/config.php:350
 msgid "Use favourite system"
 msgstr ""
 
-#: config/config.php:326
+#: config/config.php:359
 msgid "Description for index page"
 msgstr ""
 
-#: config/config.php:334
+#: config/config.php:367
 msgid "Force replace space by comma(,)"
 msgstr ""
 
