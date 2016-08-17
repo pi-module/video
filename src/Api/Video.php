@@ -166,11 +166,6 @@ class Video extends AbstractApi
 
                 // http://74.84.137.41:1935/nasrtv/_definst_/mp4:http2/7.mp4/manifest.mpd
                 // http://74.84.137.41:1935/nasrtv/_definst_/mp4:http2/upload/video/file/2016/08/media-57b40cc11a116.mp4/manifest.mpd
-
-                // 74.84.137.41:1935
-                // nasrtv/_definst_/mp4:http2/
-                // osport.ir/ upload/video/file/2016/08/  media-57b40cc11a116.mp4
-
                 $video['mpegDashUrl'] = sprintf('http://%s/_definst_/%s/%s/%s/manifest.mpd',
                     $config['broadcast_url'],
                     $config['broadcast_source'],
