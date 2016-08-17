@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-07-08 19:57+0430\n"
+"POT-Creation-Date: 2016-08-17 10:59+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -353,7 +353,7 @@ msgid "Set name for call anywhere, a-z 0-9 allowed"
 msgstr "تنظیم نام برای فراخوانی در تمام بخش‌ها، مقادیر مجاز a-z 0-9 می باشد."
 
 #: src/Form/AttributeForm.php:74 src/Form/VideoForm.php:148
-#: template/front/category.phtml:48
+#: template/front/category.phtml:50
 msgid "Category"
 msgstr "شاخه"
 
