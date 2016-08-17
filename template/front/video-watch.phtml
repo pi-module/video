@@ -124,16 +124,20 @@ EOT;
                 <?php } elseif ($config['broadcast_system'] == 'wowza') { ?>
                     <div class="clearfix">
                         <?php $os = Pi::service('browser')->getPlatform(); ?>
-                        <?php if ($os == 'Android') { ?>
+                        <?php if (in_array($os, array('Android', 'WindowsPhone', 'BlackBerry'))) { ?>
                             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                 <div class="btn-group" role="group">
-                                    <a href="<?php echo $this->escape($videoItem['androidUrl']); ?>" class="btn btn-success btn-lg"><?php _e('Play'); ?></a>
+                                    <a href="<?php echo $this->escape($videoItem['androidUrl']); ?>" class="btn btn-success btn-lg">
+                                        <i class="fa fa-play" aria-hidden="true"></i> <?php _e('Play'); ?>
+                                    </a>
                                 </div>
                             </div>
-                        <?php } elseif ($os == 'Ios') { ?>
+                        <?php } elseif (in_array($os, array('Ios', 'iPhone', 'iPad'))) { ?>
                             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                 <div class="btn-group" role="group">
-                                    <a href="<?php echo $this->escape($videoItem['iosUrl']); ?>" class="btn btn-success btn-lg"><?php _e('Play'); ?></a>
+                                    <a href="<?php echo $this->escape($videoItem['iosUrl']); ?>" class="btn btn-success btn-lg">
+                                        <i class="fa fa-play" aria-hidden="true"></i> <?php _e('Play'); ?>
+                                    </a>
                                 </div>
                             </div>
                         <?php } else { ?>
