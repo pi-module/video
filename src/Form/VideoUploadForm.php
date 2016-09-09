@@ -20,14 +20,14 @@ class VideoUploadForm  extends BaseForm
 {
     public function __construct($name = null, $option = array())
     {
-        $this->side = isset($option['side']) ? $option['side'] : 'admin';
+        $this->option = $option;
         parent::__construct($name);
     }
 
     public function getInputFilter()
     {
         if (!$this->filter) {
-            $this->filter = new VideoUploadFilter;
+            $this->filter = new VideoUploadFilter($this->option);
         }
         return $this->filter;
     }

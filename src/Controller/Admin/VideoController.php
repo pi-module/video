@@ -24,6 +24,8 @@ use Module\Video\Form\VideoAdditionalForm;
 use Module\Video\Form\VideoAdditionalFilter;
 use Module\Video\Form\VideoUploadForm;
 use Module\Video\Form\VideoUploadFilter;
+use Module\Video\Form\VideoLinkForm;
+use Module\Video\Form\VideoLinkFilter;
 use Module\Video\Form\AdminSearchForm;
 use Module\Video\Form\AdminSearchFilter;
 use Zend\Json\Json;
@@ -45,23 +47,49 @@ class VideoController extends ActionController
         $offset = (int)($page - 1) * $this->config('admin_perpage');
         $order = array('time_create DESC', 'id DESC');
         $limit = intval($this->config('admin_perpage'));
-        $where = array();
         $video = array();
-        // Get
-        if (!empty($title)) {
-            $where['title LIKE ?'] = '%' . $title . '%';
+        // Set where
+        $whereLink = array();
+        if (!empty($status)) {
+            $whereLink['status'] = $status;
         }
-        // Get list of video
-        $select = $this->getModel('video')->select()->where($where)->order($order)->offset($offset)->limit($limit);
+        if (!empty($category)) {
+            $whereLink['category'] = $category;
+        }
+        $columnsLink = array('video' => new Expression('DISTINCT video'));
+        // Get info from link table
+        $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsLink)->order($order)->offset($offset)->limit($limit);
+        $rowset = $this->getModel('link')->selectWith($select)->toArray();
+        // Make list
+        foreach ($rowset as $id) {
+            $videoId[] = $id['video'];
+        }
+        // Set info
+        $whereVideo = array();
+        if (!empty($videoId)) {
+            $whereVideo['id'] = $videoId;
+        }
+        // Set title
+        if (!empty($title)) {
+            $whereVideo['title LIKE ?'] = '%' . $title . '%';
+        }
+        // Get list of product
+        $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
         $rowset = $this->getModel('video')->selectWith($select);
         // Make list
         foreach ($rowset as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
         // Set count
-        $columnsLink = array('count' => new Expression('count(*)'));
-        $select = $this->getModel('video')->select()->where($where)->columns($columnsLink);
-        $count = $this->getModel('video')->selectWith($select)->current()->count;
+        if (empty($title)) {
+            $columnsLink = array('count' => new Expression('count(DISTINCT `video`)'));
+            $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsLink);
+            $count = $this->getModel('link')->selectWith($select)->current()->count;
+        } else {
+            $columnsLink = array('count' => new Expression('count(*)'));
+            $select = $this->getModel('video')->select()->where($whereVideo)->columns($columnsLink);
+            $count = $this->getModel('video')->selectWith($select)->current()->count;
+        }
         // Set paginator
         $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($this->config('admin_perpage'));
@@ -81,6 +109,7 @@ class VideoController extends ActionController
         // Set form
         $values = array(
             'title' => $title,
+            'category' => $category,
         );
         $form = new AdminSearchForm('search');
         $form->setAttribute('action', $this->url('', array('action' => 'process')));
@@ -105,6 +134,7 @@ class VideoController extends ActionController
                 $url = array(
                     'action' => 'index',
                     'title' => $values['title'],
+                    'category' => $values['category'],
                 );
             } else {
                 $message = __('Not valid');
@@ -218,6 +248,90 @@ class VideoController extends ActionController
         $this->view()->assign('config', $config);
         $this->view()->assign('title', __('Upload new video'));
         $this->view()->assign('nav', $nav);
+    }
+
+    public function linkAction()
+    {
+        // check category
+        $categoryCount = Pi::api('category', 'video')->categoryCount();
+        if (!$categoryCount) {
+            return $this->redirect()->toRoute('', array(
+                'controller' => 'category',
+                'action' => 'update'
+            ));
+        }
+        // Get info from url
+        $id = $this->params('id');
+        $module = $this->params('module');
+        // Get config
+        $config = Pi::service('registry')->config->read($module);
+        if ($id) {
+            $video = $this->getModel('video')->find($id)->toArray();
+        }
+        // Set form
+        $form = new VideoLinkForm('video');
+        $form->setAttribute('enctype', 'multipart/form-data');
+        if ($this->request->isPost()) {
+            $data = $this->request->getPost();
+            $form->setInputFilter(new VideoLinkFilter);
+            $form->setData($data);
+            if ($form->isValid()) {
+                $values = $form->getData();
+                // Set time_create
+                if (empty($values['id'])) {
+                    $values['time_create'] = time();
+                }
+                // Set time_update
+                $values['time_update'] = time();
+                // Set uid
+                $values['uid'] = Pi::user()->getId();
+                // Set status
+                $values['status'] = 2;
+                // Set type
+                $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
+                switch ($extension) {
+                    case 'mp3':
+                        $values['video_type'] = 'audio';
+                        $values['video_extension'] = 'mp3';
+                        break;
+
+                    case 'mp4':
+                        $values['video_type'] = 'video';
+                        $values['video_extension'] = 'mp4';
+                        break;
+                }
+                // Save values
+                if ($values['id']) {
+                    $row = $this->getModel('video')->find($values['id']);
+                } else {
+                    $row = $this->getModel('video')->createRow();
+                }
+                $row->assign($values);
+                $row->save();
+                // Jump
+                $message = __('Video link add successfully. Please complete update');
+                $this->jump(array('action' => 'update', 'id' => $row->id), $message);
+            }
+        } else {
+            if (!$id) {
+                $video = array();
+                $slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
+                $filter = new Filter\Slug;
+                $video['slug'] = $filter($slug);
+            }
+            $form->setData($video);
+            // set nav
+            $nav = array(
+                'page' => 'link',
+            );
+        }
+        // Set view
+        $this->view()->setTemplate('video-link');
+        $this->view()->assign('form', $form);
+        $this->view()->assign('config', $config);
+        $this->view()->assign('title', __('Manage video link'));
+        $this->view()->assign('nav', $nav);
+        $this->view()->assign('video', $video);
     }
 
     public function updateAction()

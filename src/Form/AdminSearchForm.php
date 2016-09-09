@@ -42,8 +42,21 @@ class AdminSearchForm extends BaseForm
             'attributes' => array(
                 'type' => 'text',
                 'description' => '',
-                'required' => true,
+                'placeholder' => __('Title'),
             )
+        ));
+        // category
+        $this->add(array(
+            'name' => 'category',
+            'type' => 'Module\Video\Form\Element\Category',
+            'options' => array(
+                'label' => __('Category'),
+                //'category' => $this->category,
+            ),
+            'attributes' => array(
+                'size' => 1,
+                'multiple' => 0,
+            ),
         ));
         // Save
         $this->add(array(

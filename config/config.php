@@ -26,6 +26,10 @@ return array(
             'name' => 'broadcast'
         ),
         array(
+            'title' => _a('Manage link'),
+            'name' => 'link'
+        ),
+        array(
             'title' => _a('View'),
             'name' => 'view'
         ),
@@ -118,6 +122,23 @@ return array(
             'category' => 'broadcast',
             'title' => _a('Wowza source'),
             'description' => _a('Name of media source, than create on wowza vod or media cache service, for example : mp4:http'),
+            'edit' => 'text',
+            'filter' => 'string',
+            'value' => ''
+        ),
+        // Link
+        'link_url' => array(
+            'category' => 'link',
+            'title' => _a('Default video url'),
+            'description' => sprintf(_a('Full url by http:// or https:// without add / on end, for example : %s'), Pi::url()),
+            'edit' => 'text',
+            'filter' => 'string',
+            'value' => ''
+        ),
+        'link_path' => array(
+            'category' => 'link',
+            'title' => _a('Default video path'),
+            'description' => _a('Without add / on start and end, for example : upload/video/2016/09'),
             'edit' => 'text',
             'filter' => 'string',
             'value' => ''

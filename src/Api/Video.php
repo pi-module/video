@@ -126,6 +126,10 @@ class Video extends AbstractApi
         $categoryList = (empty($categoryList)) ? Pi::registry('categoryList', 'video')->read() : $categoryList;
         // boject to array
         $video = $video->toArray();
+        // Check title
+        if  (empty($video['title'])) {
+            $video['title'] = sprintf(__('Submitted video on %s'), _date($video['time_create']));
+        }
         // Make setting
         $video['setting'] = json::decode($video['setting'], true);;
         // Set text_summary

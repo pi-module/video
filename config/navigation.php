@@ -45,28 +45,28 @@ return array(
             'module' => 'video',
             'controller' => 'attribute',
             'action' => 'index',
-        ),
-
-        'position' => array(
-            'label' => _a('Attribute position'),
-            'permission' => array(
-                'resource' => 'position',
+            'pages' => array(
+                'attribute' => array(
+                    'label' => _a('Attribute'),
+                    'permission' => array(
+                        'resource' => 'attribute',
+                    ),
+                    'route' => 'admin',
+                    'module' => 'video',
+                    'controller' => 'attribute',
+                    'action' => 'index',
+                ),
+                'position' => array(
+                    'label' => _a('Attribute position'),
+                    'permission' => array(
+                        'resource' => 'position',
+                    ),
+                    'route' => 'admin',
+                    'module' => 'video',
+                    'controller' => 'position',
+                    'action' => 'index',
+                ),
             ),
-            'route' => 'admin',
-            'module' => 'video',
-            'controller' => 'position',
-            'action' => 'index',
-        ),
-
-        'log' => array(
-            'label' => _a('Logs'),
-            'permission' => array(
-                'resource' => 'log',
-            ),
-            'route' => 'admin',
-            'module' => 'video',
-            'controller' => 'log',
-            'action' => 'index',
         ),
 
         'tools' => array(
@@ -78,17 +78,51 @@ return array(
             'module' => 'video',
             'controller' => 'tools',
             'action' => 'index',
-        ),
+            'pages' => array(
+                'tools' => array(
+                    'label' => _a('Tools'),
+                    'permission' => array(
+                        'resource' => 'tools',
+                    ),
+                    'route' => 'admin',
+                    'module' => 'video',
+                    'controller' => 'tools',
+                    'action' => 'index',
+                ),
 
-        'json' => array(
-            'label' => _a('Json'),
-            'permission' => array(
-                'resource' => 'json',
+                'sitemap' => array(
+                    'label' => _a('Sitemap'),
+                    'permission' => array(
+                        'resource' => 'tools',
+                    ),
+                    'route' => 'admin',
+                    'module' => 'video',
+                    'controller' => 'tools',
+                    'action' => 'sitemap',
+                ),
+
+                'log' => array(
+                    'label' => _a('Logs'),
+                    'permission' => array(
+                        'resource' => 'log',
+                    ),
+                    'route' => 'admin',
+                    'module' => 'video',
+                    'controller' => 'log',
+                    'action' => 'index',
+                ),
+
+                'json' => array(
+                    'label' => _a('Json'),
+                    'permission' => array(
+                        'resource' => 'json',
+                    ),
+                    'route' => 'admin',
+                    'module' => 'video',
+                    'controller' => 'json',
+                    'action' => 'index',
+                ),
             ),
-            'route' => 'admin',
-            'module' => 'video',
-            'controller' => 'json',
-            'action' => 'index',
         ),
     ),
     // Front section
