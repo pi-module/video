@@ -167,11 +167,11 @@ msgstr "بعد از استفاده از این واژه رمز در نرم اف�
 
 #: config/config.php:104
 msgid "Broadcast from file"
-msgstr "منبع پخش از"
+msgstr "پخش ساده از روی فایل"
 
 #: config/config.php:105
 msgid "Wowza Streaming Engine"
-msgstr "Wowza Streaming Engine"
+msgstr "استریم با Wowza Streaming Engine"
 
 #: config/config.php:115
 msgid "Wowza url and application name"

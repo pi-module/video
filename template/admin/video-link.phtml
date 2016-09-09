@@ -6,11 +6,14 @@
                 <li<?php if ($nav['page'] == 'update') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'update', 'id' => $video['id'])); ?>"><?php _e('Edit basic information'); ?></a></li>
                 <li<?php if ($nav['page'] == 'additional') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'additional', 'id' => $video['id'])); ?>"><?php _e('Edit additional information'); ?></a></li>
                 <li<?php if ($nav['page'] == 'view') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'view', 'id' => $video['id'])); ?>"><?php _e('Watch submitted video'); ?></a></li>
+                <?php if ($video['status'] == 1) { ?>
+                    <li class="active pull-right"><a target="_blank" href="<?php echo $video['videoUrl']; ?>"><?php _e('View'); ?></a></li>
+                <?php } ?>
             <?php } else { ?>
                 <li class="active"><a href="<?php echo $this->url('', array('action' => 'link')); ?>"><?php _e('Manage video link'); ?></a></li>
-                <li><a href="#"><?php _e('Add basic information'); ?></a></li>
-                <li><a href="#"><?php _e('Add additional information'); ?></a></li>
-                <li><a href="#"><?php _e('Watch submitted video'); ?></a></li>
+                <li class="disabled"><a href="#"><?php _e('Add basic information'); ?></a></li>
+                <li class="disabled"><a href="#"><?php _e('Add additional information'); ?></a></li>
+                <li class="disabled"><a href="#"><?php _e('Watch submitted video'); ?></a></li>
             <?php } ?>
         </ul>
     </div>

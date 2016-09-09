@@ -38,6 +38,8 @@
   align-items: center;
 
   bottom: 5px;
+
+  direction: ltr !important;
 }
 
 #controls {
@@ -55,7 +57,7 @@
   justify-content: center;
   align-items: center;
 
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.3s;
 }
 

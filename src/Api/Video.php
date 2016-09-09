@@ -19,6 +19,7 @@ use Zend\Json\Json;
 
 /*
  * Pi::api('video', 'video')->getVideo($parameter, $type);
+ * Pi::api('video', 'video')->getVideoLight($parameter, $type = 'id');
  * Pi::api('video', 'video')->getListFromId($id);
  * Pi::api('video', 'video')->attributeCount($id);
  * Pi::api('video', 'video')->canonizeVideo($video);

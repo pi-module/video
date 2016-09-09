@@ -154,3 +154,10 @@
 .category-width-image {
     margin-bottom: 15px;
 }
+
+/* player */
+.video-player {}
+
+.video-player[poster] {
+
+}

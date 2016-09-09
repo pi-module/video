@@ -268,7 +268,7 @@ class VideoController extends ActionController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         if ($id) {
-            $video = $this->getModel('video')->find($id)->toArray();
+            $video = Pi::api('video', 'video')->getVideoLight($id);
         }
         // Set form
         $form = new VideoLinkForm('video');
@@ -363,10 +363,8 @@ class VideoController extends ActionController
         $option = array();
         // Find video
         if ($id) {
-            $video = $this->getModel('video')->find($id)->toArray();
-            $video['category'] = Json::decode($video['category']);
+            $video = Pi::api('video', 'video')->getVideoLight($id);
             if ($video['image']) {
-                $video['thumbUrl'] = sprintf('upload/video/image/thumb/%s/%s', $video['path'], $video['image']);
                 $option['thumbUrl'] = Pi::url($video['thumbUrl']);
                 $option['removeUrl'] = $this->url('', array('action' => 'remove', 'id' => $video['id']));
             }
@@ -500,7 +498,7 @@ class VideoController extends ActionController
         $config = Pi::service('registry')->config->read($module);
         // Find video
         if ($id) {
-            $video = $this->getModel('video')->find($id)->toArray();
+            $video = Pi::api('video', 'video')->getVideoLight($id);
         } else {
             $this->jump(array('action' => 'index'), __('Please select video'));
         }

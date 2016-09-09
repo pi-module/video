@@ -89,9 +89,7 @@ class VideoLinkForm  extends BaseForm
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => array(
-                'value' => __('Upload'),
-                'class' => 'btn btn-success videoUpload',
-                'onclick' => 'upload_image();',
+                'value' => __('Submit'),
             )
         ));
     }
