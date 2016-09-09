@@ -233,9 +233,11 @@ class VideoController extends ActionController
             }
         } else {
             $video = array();
+            // Set slug
             $slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
             $filter = new Filter\Slug;
             $video['slug'] = $filter($slug);
+            // Set form
             $form->setData($video);
             // set nav
             $nav = array(
@@ -315,9 +317,18 @@ class VideoController extends ActionController
         } else {
             if (!$id) {
                 $video = array();
+                // Set sluf
                 $slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
                 $filter = new Filter\Slug;
                 $video['slug'] = $filter($slug);
+                // Set
+                if (!empty($config['link_url'])) {
+                    $video['video_url'] = $config['link_url'];
+                }
+                // Set
+                if (!empty($config['link_path'])) {
+                    $video['video_path'] = $config['link_path'];
+                }
             }
             $form->setData($video);
             // set nav

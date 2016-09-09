@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-08-17 14:54+0430\n"
+"POT-Creation-Date: 2016-09-09 10:57+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
@@ -109,71 +109,75 @@ msgstr "بخش مدیر"
 msgid "Json output"
 msgstr "خروجی حیسون"
 
-#: config/config.php:25 config/config.php:94
+#: config/config.php:25 config/config.php:98
 msgid "Broadcasting System"
 msgstr "سیستم پخش ویدیو"
 
 #: config/config.php:29
+msgid "Manage link"
+msgstr "مدیریت لینک فایل ویدیو"
+
+#: config/config.php:33
 msgid "View"
 msgstr "نمایش"
 
-#: config/config.php:33
+#: config/config.php:37
 msgid "Media"
 msgstr "مدیا"
 
-#: config/config.php:37
+#: config/config.php:41
 msgid "Image"
 msgstr "تصویر"
 
-#: config/config.php:41
+#: config/config.php:45
 msgid "Social"
 msgstr "شبکه های اجتماعی"
 
-#: config/config.php:45
+#: config/config.php:49
 msgid "Vote"
 msgstr "رای"
 
-#: config/config.php:49
+#: config/config.php:53
 msgid "Favourite"
 msgstr "علاقه مندی"
 
-#: config/config.php:53
+#: config/config.php:57
 msgid "Texts"
 msgstr "متن ها"
 
-#: config/config.php:61 config/config.php:128
+#: config/config.php:65 config/config.php:149
 msgid "Perpage"
 msgstr "تعداد در هر صفحه"
 
-#: config/config.php:70
+#: config/config.php:74
 msgid "Perpage on json output"
 msgstr "تعداد در صفحه در خروجی جیسون"
 
-#: config/config.php:78
+#: config/config.php:82
 msgid "Check password for json output"
 msgstr "بررسی واژه رمز در خروجی جیسون"
 
-#: config/config.php:86
+#: config/config.php:90
 msgid "Password for json output"
 msgstr "واژه رمز خروجی جیسون"
 
-#: config/config.php:87
+#: config/config.php:91
 msgid "After use on mobile device , do not change it"
 msgstr "بعد از استفاده از این واژه رمز در نرم افزار موبایل ، آن را تغییر ندهید"
 
-#: config/config.php:100
+#: config/config.php:104
 msgid "Broadcast from file"
 msgstr "منبع پخش از"
 
-#: config/config.php:101
+#: config/config.php:105
 msgid "Wowza Streaming Engine"
 msgstr "Wowza Streaming Engine"
 
-#: config/config.php:111
+#: config/config.php:115
 msgid "Wowza url and application name"
 msgstr "آدرس و نام آپلیکشن در wowza"
 
-#: config/config.php:112
+#: config/config.php:116
 msgid ""
 "Wowza server ip or url and port, without prefix ( http:// , rtmp:// , "
 "rtsp:// ), for example : 127.0.0.1:1935/vod"
@@ -181,11 +185,11 @@ msgstr ""
 "آدرس آی پی یا یو آر ال سرور wowza به همراه پورت، بدون پیشوند (http:// , "
 "rtmp:// , rtsp://) ، به طور مثال 127.0.0.1:1935/vod"
 
-#: config/config.php:119
+#: config/config.php:123
 msgid "Wowza source"
 msgstr "منبع پخش wowza"
 
-#: config/config.php:120
+#: config/config.php:124
 msgid ""
 "Name of media source, than create on wowza vod or media cache service, for "
 "example : mp4:http"
@@ -193,147 +197,164 @@ msgstr ""
 "نام منبع پخش مدیا در wowza که در سامانه wowza به صورت vod ، media cache یا "
 "live ساخه می شود. به طور مثال : mp4:http"
 
-#: config/config.php:135
+#: config/config.php:132
+msgid "Default video url"
+msgstr "آدرس URL پیش فرض"
+
+#: config/config.php:133
+#, php-format
+msgid "Full url by http:// or https:// without add / on end, for example : %s"
+msgstr "آدرس کامل با http:// یا https:// بدون درج / در انتها، به طور مثال %s"
+
+#: config/config.php:140
+msgid "Default video path"
+msgstr "مسیر فایل پیش فرض"
+
+#: config/config.php:141
+msgid "Without add / on start and end, for example : upload/video/2016/09"
+msgstr "بدون درج / در ابتدا و انتهای مسیر ، به طور مثال : upload/video/2016/09"
+
+#: config/config.php:156
 msgid "Columns"
 msgstr "ستون"
 
-#: config/config.php:141
+#: config/config.php:162
 msgid "One columns"
 msgstr "یک ستون"
 
-#: config/config.php:142
+#: config/config.php:163
 msgid "Two columns"
 msgstr "دو ستون"
 
-#: config/config.php:143
+#: config/config.php:164
 msgid "Three columns"
 msgstr "سه ستون"
 
-#: config/config.php:144
+#: config/config.php:165
 msgid "Four columns"
 msgstr "چهار ستون"
 
-#: config/config.php:145
+#: config/config.php:166
 msgid "Six columns"
 msgstr "شش ستون"
 
-#: config/config.php:155
+#: config/config.php:176
 msgid "Show breadcrumbs"
 msgstr "نمایش ناوبری"
 
-#: config/config.php:163
+#: config/config.php:184
 msgid "Show Tags"
 msgstr "نمایش برچسب ها"
 
-#: config/config.php:171
+#: config/config.php:192
 msgid "Show related video"
 msgstr "نمایش ویدیو مشابه"
 
-#: config/config.php:179
+#: config/config.php:200
 msgid "Related video number"
 msgstr "تعداد ویدیو مشابه"
 
-#: config/config.php:188
+#: config/config.php:209
 msgid "Video Size"
 msgstr "حجم فایل ویدیو"
 
-#: config/config.php:196
+#: config/config.php:217
 msgid "Video Extension"
 msgstr "سوند های مجار برای فایل ویدیو"
 
-#: config/config.php:205
+#: config/config.php:226
 msgid "Image Size"
 msgstr "حجم تصویر"
 
-#: config/config.php:213
+#: config/config.php:234
 msgid "Image quality"
 msgstr "کیفیت تصویر"
 
-#: config/config.php:214
+#: config/config.php:235
 msgid "Between 0 to 100 and support both of JPG and PNG, default is 75"
 msgstr "بین ۰ تا ۱۰۰ تنظیم شود و برای هر دو فرمت PNG و JPG ، مقدار پیش فرض ۷۵"
 
-#: config/config.php:221
+#: config/config.php:242
 msgid "Image path"
 msgstr "مسیر ذخیره تصویر"
 
-#: config/config.php:229
+#: config/config.php:250
 msgid "Image Extension"
 msgstr "پسوند های مجار برای تصویر"
 
-#: config/config.php:237
+#: config/config.php:258
 msgid "Large Image height"
 msgstr "ارتفاع تصویر بزرگ"
 
-#: config/config.php:245
+#: config/config.php:266
 msgid "Large Image width"
 msgstr "عرض تصویر بزرگ"
 
-#: config/config.php:253
+#: config/config.php:274
 msgid "Medium Image height"
 msgstr "ارتفاع تصویر متوسط"
 
-#: config/config.php:261
+#: config/config.php:282
 msgid "Medium Image width"
 msgstr "عرض تصویر متوسط"
 
-#: config/config.php:269
+#: config/config.php:290
 msgid "Thumb Image height"
 msgstr "ارتفاع تصویر بندانگشتی"
 
-#: config/config.php:277
+#: config/config.php:298
 msgid "Thumb Image width"
 msgstr "عرض تصویر بندانگشتی"
 
-#: config/config.php:285
+#: config/config.php:306
 msgid "Use lightbox"
 msgstr "استفاده از لایت باکس"
 
-#: config/config.php:293
+#: config/config.php:314
 msgid "Add Watermark"
 msgstr "اضافه کردن واترمارک به تصویر"
 
-#: config/config.php:301
+#: config/config.php:322
 msgid "Watermark Image"
 msgstr "تصویر واترمارک"
 
-#: config/config.php:308
+#: config/config.php:329
 msgid "Watermark Positio"
 msgstr "موقعیت واترمارک"
 
-#: config/config.php:314
+#: config/config.php:335
 msgid "Top Left"
 msgstr "بالا چپ"
 
-#: config/config.php:315
+#: config/config.php:336
 msgid "Top Right"
 msgstr "بالا راست"
 
-#: config/config.php:316
+#: config/config.php:337
 msgid "Bottom Left"
 msgstr "پایین چپ"
 
-#: config/config.php:317
+#: config/config.php:338
 msgid "Bottom Right"
 msgstr "پایین راست"
 
-#: config/config.php:327
+#: config/config.php:348
 msgid "Social sharing items"
 msgstr "اشتراک گذاری در شبکه های اجتماعی"
 
-#: config/config.php:341
+#: config/config.php:362
 msgid "Use vote system"
 msgstr "استفاده از سیستم رای"
 
-#: config/config.php:350
+#: config/config.php:371
 msgid "Use favourite system"
 msgstr "استفاده از سیستم مورد علاقه"
 
-#: config/config.php:359
+#: config/config.php:380
 msgid "Description for index page"
 msgstr "توضیحات برای صفحه اصلی"
 
-#: config/config.php:367
+#: config/config.php:388
 msgid "Force replace space by comma(,)"
 msgstr "جایگزینی اسپیس با کاما"
 
@@ -346,39 +367,45 @@ msgstr "ویدیو"
 msgid "Video play system."
 msgstr "ابزار پخش ویدیو"
 
-#: config/navigation.php:40 config/page.php:28 config/permission.php:26
+#: config/navigation.php:40 config/navigation.php:50 config/page.php:28
+#: config/permission.php:26
 msgid "Attribute"
 msgstr "خواص"
 
-#: config/navigation.php:51
+#: config/navigation.php:60
 msgid "Attribute position"
 msgstr "موقعیت خواص"
 
-#: config/navigation.php:62 config/page.php:33 config/permission.php:30
-msgid "Logs"
-msgstr "گزارش ها"
-
-#: config/navigation.php:73 config/page.php:38 config/permission.php:34
+#: config/navigation.php:73 config/navigation.php:83 config/page.php:38
+#: config/permission.php:34
 msgid "Tools"
 msgstr "ابزار ها"
 
-#: config/navigation.php:84 config/permission.php:38
+#: config/navigation.php:94
+msgid "Sitemap"
+msgstr ""
+
+#: config/navigation.php:105 config/page.php:33 config/permission.php:30
+msgid "Logs"
+msgstr "گزارش ها"
+
+#: config/navigation.php:116 config/permission.php:38
 msgid "Json"
 msgstr "جیسون"
 
-#: config/navigation.php:97 config/page.php:63
+#: config/navigation.php:131 config/page.php:63
 msgid "Category list"
 msgstr "فهرست شاخه ها"
 
-#: config/navigation.php:107 config/page.php:76
+#: config/navigation.php:141 config/page.php:76
 msgid "Tag list"
 msgstr "فهرست برچسب ها"
 
-#: config/navigation.php:117
+#: config/navigation.php:151
 msgid "Your channel"
 msgstr "کانال شما"
 
-#: config/navigation.php:127 config/page.php:95 config/permission.php:53
+#: config/navigation.php:161 config/page.php:95 config/permission.php:53
 msgid "Submit"
 msgstr "ارسال"
 
