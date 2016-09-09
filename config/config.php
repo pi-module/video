@@ -203,6 +203,14 @@ return array(
             'filter' => 'number_int',
             'value' => 5
         ),
+        'view_url' => array(
+            'category' => 'view',
+            'title' => _a('Show output urls under player page'),
+            'description' => _a('Work just on Wowza Streaming Engine mode'),
+            'edit' => 'checkbox',
+            'filter' => 'number_int',
+            'value' => 1
+        ),
         // Media
         'media_size' => array(
             'category' => 'media',

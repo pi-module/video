@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-09-09 10:57+0430\n"
+"POT-Creation-Date: 2016-09-09 15:30+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -254,107 +254,115 @@ msgstr "نمایش ویدیو مشابه"
 msgid "Related video number"
 msgstr "تعداد ویدیو مشابه"
 
+#: config/config.php:208
+msgid "Show output urls under player page"
+msgstr "نمایش آدرس های پخش خروجی در زیر پلیر"
+
 #: config/config.php:209
+msgid "Work just on Wowza Streaming Engine mode"
+msgstr "فقط در حالت خروجی Wowza Streaming Engine کار میکند ، مناسب برای تست"
+
+#: config/config.php:217
 msgid "Video Size"
 msgstr "حجم فایل ویدیو"
 
-#: config/config.php:217
+#: config/config.php:225
 msgid "Video Extension"
 msgstr "سوند های مجار برای فایل ویدیو"
 
-#: config/config.php:226
+#: config/config.php:234
 msgid "Image Size"
 msgstr "حجم تصویر"
 
-#: config/config.php:234
+#: config/config.php:242
 msgid "Image quality"
 msgstr "کیفیت تصویر"
 
-#: config/config.php:235
+#: config/config.php:243
 msgid "Between 0 to 100 and support both of JPG and PNG, default is 75"
 msgstr "بین ۰ تا ۱۰۰ تنظیم شود و برای هر دو فرمت PNG و JPG ، مقدار پیش فرض ۷۵"
 
-#: config/config.php:242
+#: config/config.php:250
 msgid "Image path"
 msgstr "مسیر ذخیره تصویر"
 
-#: config/config.php:250
+#: config/config.php:258
 msgid "Image Extension"
 msgstr "پسوند های مجار برای تصویر"
 
-#: config/config.php:258
+#: config/config.php:266
 msgid "Large Image height"
 msgstr "ارتفاع تصویر بزرگ"
 
-#: config/config.php:266
+#: config/config.php:274
 msgid "Large Image width"
 msgstr "عرض تصویر بزرگ"
 
-#: config/config.php:274
+#: config/config.php:282
 msgid "Medium Image height"
 msgstr "ارتفاع تصویر متوسط"
 
-#: config/config.php:282
+#: config/config.php:290
 msgid "Medium Image width"
 msgstr "عرض تصویر متوسط"
 
-#: config/config.php:290
+#: config/config.php:298
 msgid "Thumb Image height"
 msgstr "ارتفاع تصویر بندانگشتی"
 
-#: config/config.php:298
+#: config/config.php:306
 msgid "Thumb Image width"
 msgstr "عرض تصویر بندانگشتی"
 
-#: config/config.php:306
+#: config/config.php:314
 msgid "Use lightbox"
 msgstr "استفاده از لایت باکس"
 
-#: config/config.php:314
+#: config/config.php:322
 msgid "Add Watermark"
 msgstr "اضافه کردن واترمارک به تصویر"
 
-#: config/config.php:322
+#: config/config.php:330
 msgid "Watermark Image"
 msgstr "تصویر واترمارک"
 
-#: config/config.php:329
+#: config/config.php:337
 msgid "Watermark Positio"
 msgstr "موقعیت واترمارک"
 
-#: config/config.php:335
+#: config/config.php:343
 msgid "Top Left"
 msgstr "بالا چپ"
 
-#: config/config.php:336
+#: config/config.php:344
 msgid "Top Right"
 msgstr "بالا راست"
 
-#: config/config.php:337
+#: config/config.php:345
 msgid "Bottom Left"
 msgstr "پایین چپ"
 
-#: config/config.php:338
+#: config/config.php:346
 msgid "Bottom Right"
 msgstr "پایین راست"
 
-#: config/config.php:348
+#: config/config.php:356
 msgid "Social sharing items"
 msgstr "اشتراک گذاری در شبکه های اجتماعی"
 
-#: config/config.php:362
+#: config/config.php:370
 msgid "Use vote system"
 msgstr "استفاده از سیستم رای"
 
-#: config/config.php:371
+#: config/config.php:379
 msgid "Use favourite system"
 msgstr "استفاده از سیستم مورد علاقه"
 
-#: config/config.php:380
+#: config/config.php:388
 msgid "Description for index page"
 msgstr "توضیحات برای صفحه اصلی"
 
-#: config/config.php:388
+#: config/config.php:396
 msgid "Force replace space by comma(,)"
 msgstr "جایگزینی اسپیس با کاما"
 

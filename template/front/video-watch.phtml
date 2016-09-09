@@ -176,6 +176,38 @@ EOT;
                                     </div>
                                 </div>
                             </div>
+                            <?php if ($config['view_url']) { ?>
+                                <div class="well text-left">
+                                    <div class="form-group">
+                                        <label><?php _e('MPEG-Dash Url'); ?></label>
+                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['mpegDashUrl']); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><?php _e('Adobe Hds Url'); ?></label>
+                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['adobeHdsUrl']); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><?php _e('Jwplayer Url'); ?></label>
+                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['jwplayerUrl']); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><?php _e('IOS Url'); ?></label>
+                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['iosUrl']); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><?php _e('Android Url'); ?></label>
+                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['androidUrl']); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><?php _e('RTSP Url'); ?></label>
+                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['rtspUrl']); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><?php _e('RTMP Url'); ?></label>
+                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['rtmpUrl']); ?>">
+                                    </div>
+                                </div>
+                            <?php } ?>
                         <?php } ?>
                     </div>
                 <?php } ?>

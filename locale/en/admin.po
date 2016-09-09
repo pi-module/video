@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-09-09 10:57+0430\n"
+"POT-Creation-Date: 2016-09-09 15:31+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -249,107 +249,115 @@ msgstr ""
 msgid "Related video number"
 msgstr ""
 
+#: config/config.php:208
+msgid "Show output urls under player page"
+msgstr ""
+
 #: config/config.php:209
-msgid "Video Size"
+msgid "Work just on Wowza Streaming Engine mode"
 msgstr ""
 
 #: config/config.php:217
+msgid "Video Size"
+msgstr ""
+
+#: config/config.php:225
 msgid "Video Extension"
 msgstr ""
 
-#: config/config.php:226
+#: config/config.php:234
 msgid "Image Size"
 msgstr ""
 
-#: config/config.php:234
+#: config/config.php:242
 msgid "Image quality"
 msgstr ""
 
-#: config/config.php:235
+#: config/config.php:243
 msgid "Between 0 to 100 and support both of JPG and PNG, default is 75"
 msgstr ""
 
-#: config/config.php:242
+#: config/config.php:250
 msgid "Image path"
 msgstr ""
 
-#: config/config.php:250
+#: config/config.php:258
 msgid "Image Extension"
 msgstr ""
 
-#: config/config.php:258
+#: config/config.php:266
 msgid "Large Image height"
 msgstr ""
 
-#: config/config.php:266
+#: config/config.php:274
 msgid "Large Image width"
 msgstr ""
 
-#: config/config.php:274
+#: config/config.php:282
 msgid "Medium Image height"
 msgstr ""
 
-#: config/config.php:282
+#: config/config.php:290
 msgid "Medium Image width"
 msgstr ""
 
-#: config/config.php:290
+#: config/config.php:298
 msgid "Thumb Image height"
 msgstr ""
 
-#: config/config.php:298
+#: config/config.php:306
 msgid "Thumb Image width"
 msgstr ""
 
-#: config/config.php:306
+#: config/config.php:314
 msgid "Use lightbox"
 msgstr ""
 
-#: config/config.php:314
+#: config/config.php:322
 msgid "Add Watermark"
 msgstr ""
 
-#: config/config.php:322
+#: config/config.php:330
 msgid "Watermark Image"
 msgstr ""
 
-#: config/config.php:329
+#: config/config.php:337
 msgid "Watermark Positio"
 msgstr ""
 
-#: config/config.php:335
+#: config/config.php:343
 msgid "Top Left"
 msgstr ""
 
-#: config/config.php:336
+#: config/config.php:344
 msgid "Top Right"
 msgstr ""
 
-#: config/config.php:337
+#: config/config.php:345
 msgid "Bottom Left"
 msgstr ""
 
-#: config/config.php:338
+#: config/config.php:346
 msgid "Bottom Right"
 msgstr ""
 
-#: config/config.php:348
+#: config/config.php:356
 msgid "Social sharing items"
 msgstr ""
 
-#: config/config.php:362
+#: config/config.php:370
 msgid "Use vote system"
 msgstr ""
 
-#: config/config.php:371
+#: config/config.php:379
 msgid "Use favourite system"
 msgstr ""
 
-#: config/config.php:380
+#: config/config.php:388
 msgid "Description for index page"
 msgstr ""
 
-#: config/config.php:388
+#: config/config.php:396
 msgid "Force replace space by comma(,)"
 msgstr ""
 

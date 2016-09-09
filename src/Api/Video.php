@@ -169,29 +169,34 @@ class Video extends AbstractApi
                     $video['video_file']
                 )));
 
-                // http://74.84.137.41:1935/nasrtv/_definst_/mp4:http2/7.mp4/manifest.mpd
-                // http://74.84.137.41:1935/nasrtv/_definst_/mp4:http2/upload/video/file/2016/08/media-57b40cc11a116.mp4/manifest.mpd
                 $video['mpegDashUrl'] = sprintf('http://%s/_definst_/%s/%s/%s/manifest.mpd',
                     $config['broadcast_url'],
                     $config['broadcast_source'],
                     $video['video_path'],
                     $video['video_file']
                 );
-                // http://74.84.137.41:1935/nasrtv/_definst_/mp4:http2/7.mp4/manifest.f4m
+
                 $video['adobeHdsUrl'] = sprintf('http://%s/_definst_/%s/%s/%s/manifest.f4m',
                     $config['broadcast_url'],
                     $config['broadcast_source'],
                     $video['video_path'],
                     $video['video_file']
                 );
-                // http://74.84.137.41:1935/nasrtv/_definst_/mp4:http2/7.mp4/playlist.m3u8
+
+                $video['jwplayerUrl'] = sprintf('http://%s/_definst_/%s/%s/%s/jwplayer.mpd',
+                    $config['broadcast_url'],
+                    $config['broadcast_source'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+
                 $video['iosUrl'] = sprintf('http://%s/_definst_/%s/%s/%s/playlist.m3u8',
                     $config['broadcast_url'],
                     $config['broadcast_source'],
                     $video['video_path'],
                     $video['video_file']
                 );
-                // rtsp://74.84.137.41:1935/nasrtv/_definst_/http2/7.mp4
+
                 $video['androidUrl'] = sprintf('rtsp://%s/_definst_/%s/%s/%s',
                     $config['broadcast_url'],
                     $config['broadcast_source'],
@@ -199,8 +204,19 @@ class Video extends AbstractApi
                     $video['video_file']
                 );
 
-                $video['rtspUrl'] = '';
-                $video['rtmpUrl'] = '';
+                $video['rtspUrl'] = sprintf('rtsp://%s/_definst_/%s/%s/%s',
+                    $config['broadcast_url'],
+                    $config['broadcast_source'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+
+                $video['rtmpUrl'] = sprintf('rtmp://%s/_definst_/%s/%s/%s',
+                    $config['broadcast_url'],
+                    $config['broadcast_source'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
                 break;
         }
         // Set video duration
