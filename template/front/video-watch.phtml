@@ -33,13 +33,12 @@ if (isset($videoItem['largeUrl']) && !empty($videoItem['largeUrl'])) {
 
 if ($config['broadcast_system'] == 'wowza') {
     $this->jQuery();
-    $this->headScript()->appendFile('https://cdnjs.cloudflare.com/ajax/libs/shaka-player/2.0.0/shaka-player.compiled.js');
-    //$this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
-    $this->js($this->assetModule('player/shaka/controls.js'));
-    $this->css($this->assetModule('player/shaka/controls.css'));
-    $this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto');
-    $this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-    $this->headLink()->appendStylesheet('https://fonts.googleapis.com/icon?family=Material+Icons');
+    $this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
+    //$this->js($this->assetModule('player/shaka/controls.js'));
+    //$this->css($this->assetModule('player/shaka/controls.css'));
+    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto');
+    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/icon?family=Material+Icons');
     $script = <<<'EOT'
     var manifestUri = '%s';
 
@@ -152,7 +151,7 @@ EOT;
                                        poster="<?php echo $this->escape($videoItem['largeUrl']); ?>"
                                        controls
                                        autoplay></video>
-                                <div id="giantPlayButtonContainer" class="overlay">
+                                <?php /* <div id="giantPlayButtonContainer" class="overlay">
                                     <button id="giantPlayButton" class="material-icons">play_arrow</button>
                                 </div>
                                 <div id="bufferingSpinner" class="overlay">
@@ -174,7 +173,7 @@ EOT;
                                         <button id="captionButton" class="material-icons">closed_caption</button>
                                         <button id="fullscreenButton" class="material-icons">fullscreen</button>
                                     </div>
-                                </div>
+                                </div> */ ?>
                             </div>
                             <?php if ($config['view_url']) { ?>
                                 <div class="well text-left">
