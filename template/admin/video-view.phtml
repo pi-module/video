@@ -3,11 +3,11 @@ $this->css($this->assetModule('css/admin.css'));
 if ($config['broadcast_system'] == 'wowza') {
     $this->jQuery();
     $this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
-    $this->js($this->assetModule('player/shaka/controls.js'));
-    $this->css($this->assetModule('player/shaka/controls.css'));
-    $this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto');
-    $this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-    $this->headLink()->appendStylesheet('https://fonts.googleapis.com/icon?family=Material+Icons');
+    //$this->js($this->assetModule('player/shaka/controls.js'));
+    //$this->css($this->assetModule('player/shaka/controls.css'));
+    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto');
+    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/icon?family=Material+Icons');
     $script = <<<'EOT'
     var manifestUri = '%s';
 
@@ -32,6 +32,9 @@ if ($config['broadcast_system'] == 'wowza') {
 
         // Attach player to the window to make it easy to access in the JS console.
         window.player = player;
+        
+        // Set config
+        // player.configure({});
 
         // Listen for error events.
         player.addEventListener('error', onErrorEvent);
@@ -87,31 +90,41 @@ EOT;
             <div class="clearfix">
                 <div id="videoContainer" class="overlay-parent">
                     <video id="video"
-                           poster="<?php echo $this->escape($video['largeUrl']); ?>"
-                           controls></video>
-                    <!-- <div id="giantPlayButtonContainer" class="overlay">
-                        <button id="giantPlayButton" class="material-icons">play_arrow</button>
+                           class="video-player"
+                           width="100%"
+                           poster="<?php echo $this->escape($videoItem['largeUrl']); ?>"
+                           controls
+                           autoplay></video>
+                </div>
+                <div class="well text-left">
+                    <div class="form-group">
+                        <label><?php _e('MPEG-Dash Url'); ?></label>
+                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['mpegDashUrl']); ?>">
                     </div>
-                    <div id="bufferingSpinner" class="overlay">
-                        <svg class="spinnerSvg" viewBox="25 25 50 50">
-                            <circle class="spinnerPath" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
-                        </svg>
+                    <div class="form-group">
+                        <label><?php _e('Adobe Hds Url'); ?></label>
+                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['adobeHdsUrl']); ?>">
                     </div>
-                    <div id="castReceiverName" class="overlay"></div>
-                    <div id="controlsContainer" class="overlay">
-                        <div id="controls">
-                            <button id="playPauseButton" class="material-icons">play_arrow</button>
-                            <input id="seekBar" type="range" step="any" min="0" max="1" value="0">
-                            <button id="rewindButton" class="material-icons">fast_rewind</button>
-                            <div id="currentTime">0:00</div>
-                            <button id="fastForwardButton" class="material-icons">fast_forward</button>
-                            <button id="muteButton" class="material-icons">volume_up</button>
-                            <input id="volumeBar" type="range" step="any" min="0" max="1" value="0">
-                            <button id="castButton" class="material-icons">cast</button>
-                            <button id="captionButton" class="material-icons">closed_caption</button>
-                            <button id="fullscreenButton" class="material-icons">fullscreen</button>
-                        </div>
-                    </div> -->
+                    <div class="form-group">
+                        <label><?php _e('Jwplayer Url'); ?></label>
+                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['jwplayerUrl']); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label><?php _e('IOS Url'); ?></label>
+                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['iosUrl']); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label><?php _e('Android Url'); ?></label>
+                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['androidUrl']); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label><?php _e('RTSP Url'); ?></label>
+                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['rtspUrl']); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label><?php _e('RTMP Url'); ?></label>
+                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['rtmpUrl']); ?>">
+                    </div>
                 </div>
             </div>
         <?php } ?>
