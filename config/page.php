@@ -25,6 +25,11 @@ return array(
             'permission'    => 'category',
         ),
         array(
+            'title'         => _a('Server'),
+            'controller'    => 'server',
+            'permission'    => 'server',
+        ),
+        array(
             'label' => _a('Attribute'),
             'controller' => 'attribute',
             'permission' => 'attribute',

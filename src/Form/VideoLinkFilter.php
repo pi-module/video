@@ -42,7 +42,7 @@ class VideoLinkFilter extends InputFilter
             ),
         ));
         // video_url
-        $this->add(array(
+        /* $this->add(array(
             'name' => 'video_url',
             'required' => true,
             'filters' => array(
@@ -50,17 +50,19 @@ class VideoLinkFilter extends InputFilter
                     'name' => 'StringTrim',
                 ),
             ),
-        ));
+        )); */
         // video_path
-        $this->add(array(
-            'name' => 'video_path',
-            'required' => true,
-            'filters' => array(
-                array(
-                    'name' => 'StringTrim',
+        if (in_array($option['server']['type'], array('file', 'wowza'))) {
+            $this->add(array(
+                'name' => 'video_path',
+                'required' => true,
+                'filters' => array(
+                    array(
+                        'name' => 'StringTrim',
+                    ),
                 ),
-            ),
-        ));
+            ));
+        }
         // video_file
         $this->add(array(
             'name' => 'video_file',

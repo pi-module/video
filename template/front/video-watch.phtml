@@ -5,8 +5,12 @@ $this->doctype('HTML5');
 $this->headMeta($this->escape($videoItem['title']), 'og:title', 'property');
 $this->headMeta($this->escape($videoItem['videoUrl']), 'og:url', 'property');
 $this->headMeta('video', 'og:type', 'property');
-$this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:url', 'property');
-$this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:secure_url', 'property');
+
+if ($videoItem['server']['type'] == 'file') {
+    $this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:url', 'property');
+    $this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:secure_url', 'property');
+}
+
 if ($videoItem['video_type'] == 'video') {
     $this->headMeta('video/mp4', 'og:video:type', 'property');
 } elseif ($videoItem['video_type'] == 'audio') {
@@ -31,14 +35,9 @@ if (isset($videoItem['largeUrl']) && !empty($videoItem['largeUrl'])) {
     $this->headMeta($this->escape($videoItem['largeUrl']), 'twitter:image');
 }
 
-if ($config['broadcast_system'] == 'wowza') {
+if ($videoItem['server']['type'] == 'wowza') {
     $this->jQuery();
     $this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
-    //$this->js($this->assetModule('player/shaka/controls.js'));
-    //$this->css($this->assetModule('player/shaka/controls.css'));
-    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto');
-    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/icon?family=Material+Icons');
     $script = <<<'EOT'
     var manifestUri = '%s';
 
@@ -92,6 +91,16 @@ if ($config['broadcast_system'] == 'wowza') {
 EOT;
     $script = sprintf($script, $videoItem['mpegDashUrl']);
     $this->footScript()->appendScript($script);
+} elseif ($videoItem['server']['type'] == 'qmery') {
+    $this->jQuery();
+    $script = <<<'EOT'
+    $.getJSON('%s').done(function (result) {
+        $('.qmery-player').html('<div id="embed_qmery_player_' + result.ga.idstring + '"></div><div id="embed_qmery_player_icons' + result.ga.idstring + '"></div>');
+    });
+EOT;
+    $script = sprintf($script, $videoItem['qmeryJson']);
+    $this->headScript()->appendScript($script);
+    $this->headScript()->appendFile($videoItem['qmeryScript']);
 }
 ?>
 <div class="clearfix video-page" itemscope itemtype="http://schema.org/VideoObject">
@@ -122,9 +131,11 @@ EOT;
                 <?php echo $videoItem['text_summary']; ?>
             </div>
             <div class="text-center video-player">
-                <?php if ($config['broadcast_system'] == 'file') { ?>
+                <?php if ($videoItem['server']['type'] == 'file') { ?>
                     <?php echo $this->videojs($videoItem['videoFileUrl'], $videoItem['largeUrl']); ?>
-                <?php } elseif ($config['broadcast_system'] == 'wowza') { ?>
+                <?php } elseif ($videoItem['server']['type'] == 'qmery') { ?>
+                    <div class="qmery-player"></div>
+                <?php } elseif ($videoItem['server']['type'] == 'wowza') { ?>
                     <div class="clearfix">
                         <?php $os = Pi::service('browser')->getPlatform(); ?>
                         <?php if (in_array($os, array('Android', 'WindowsPhone', 'BlackBerry'))) { ?>
@@ -151,62 +162,7 @@ EOT;
                                        poster="<?php echo $this->escape($videoItem['largeUrl']); ?>"
                                        controls
                                        autoplay></video>
-                                <?php /* <div id="giantPlayButtonContainer" class="overlay">
-                                    <button id="giantPlayButton" class="material-icons">play_arrow</button>
-                                </div>
-                                <div id="bufferingSpinner" class="overlay">
-                                    <svg class="spinnerSvg" viewBox="25 25 50 50">
-                                        <circle class="spinnerPath" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
-                                    </svg>
-                                </div>
-                                <div id="castReceiverName" class="overlay"></div>
-                                <div id="controlsContainer" class="overlay">
-                                    <div id="controls">
-                                        <button id="playPauseButton" class="material-icons">play_arrow</button>
-                                        <input id="seekBar" type="range" step="any" min="0" max="1" value="0">
-                                        <button id="rewindButton" class="material-icons">fast_rewind</button>
-                                        <div id="currentTime">0:00</div>
-                                        <button id="fastForwardButton" class="material-icons">fast_forward</button>
-                                        <button id="muteButton" class="material-icons">volume_up</button>
-                                        <input id="volumeBar" type="range" step="any" min="0" max="1" value="0">
-                                        <button id="castButton" class="material-icons">cast</button>
-                                        <button id="captionButton" class="material-icons">closed_caption</button>
-                                        <button id="fullscreenButton" class="material-icons">fullscreen</button>
-                                    </div>
-                                </div> */ ?>
                             </div>
-                            <?php if ($config['view_url']) { ?>
-                                <div class="well text-left">
-                                    <div class="form-group">
-                                        <label><?php _e('MPEG-Dash Url'); ?></label>
-                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['mpegDashUrl']); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label><?php _e('Adobe Hds Url'); ?></label>
-                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['adobeHdsUrl']); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label><?php _e('Jwplayer Url'); ?></label>
-                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['jwplayerUrl']); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label><?php _e('IOS Url'); ?></label>
-                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['iosUrl']); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label><?php _e('Android Url'); ?></label>
-                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['androidUrl']); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label><?php _e('RTSP Url'); ?></label>
-                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['rtspUrl']); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label><?php _e('RTMP Url'); ?></label>
-                                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['rtmpUrl']); ?>">
-                                    </div>
-                                </div>
-                            <?php } ?>
                         <?php } ?>
                     </div>
                 <?php } ?>

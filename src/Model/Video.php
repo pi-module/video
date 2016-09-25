@@ -54,5 +54,6 @@ class Video extends Model
         'video_size',
         'video_duration',
         'setting',
+        'video_server',
     );
 }

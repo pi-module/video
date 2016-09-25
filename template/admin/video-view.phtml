@@ -1,13 +1,8 @@
 <?php
 $this->css($this->assetModule('css/admin.css'));
-if ($config['broadcast_system'] == 'wowza') {
+if ($video['server']['type'] == 'wowza') {
     $this->jQuery();
     $this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
-    //$this->js($this->assetModule('player/shaka/controls.js'));
-    //$this->css($this->assetModule('player/shaka/controls.css'));
-    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto');
-    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-    //$this->headLink()->appendStylesheet('https://fonts.googleapis.com/icon?family=Material+Icons');
     $script = <<<'EOT'
     var manifestUri = '%s';
 
@@ -61,6 +56,16 @@ if ($config['broadcast_system'] == 'wowza') {
 EOT;
     $script = sprintf($script, $video['mpegDashUrl']);
     $this->footScript()->appendScript($script);
+} elseif ($video['server']['type'] == 'qmery') {
+    $this->jQuery();
+    $script = <<<'EOT'
+    $.getJSON('%s').done(function (result) {
+        $('.qmery-player').html('<div id="embed_qmery_player_' + result.ga.idstring + '"></div><div id="embed_qmery_player_icons' + result.ga.idstring + '"></div>');
+    });
+EOT;
+    $script = sprintf($script, $video['qmeryJson']);
+    $this->headScript()->appendScript($script);
+    $this->headScript()->appendFile($video['qmeryScript']);
 }
 ?>
 <div class="clearfix">
@@ -84,9 +89,11 @@ EOT;
         <h1><?php echo $this->escape($video['title']); ?></h1>
     </div>
     <div class="text-center video-player-box col-md-8 col-md-offset-2">
-        <?php if ($config['broadcast_system'] == 'file') { ?>
+        <?php if ($video['server']['type'] == 'file') { ?>
             <?php echo $this->videojs($video['videoFileUrl'], $video['largeUrl']); ?>
-        <?php } elseif ($config['broadcast_system'] == 'wowza') { ?>
+        <?php } elseif ($video['server']['type'] == 'qmery') { ?>
+            <div class="qmery-player"></div>
+        <?php } elseif ($video['server']['type'] == 'wowza') { ?>
             <div class="clearfix">
                 <div id="videoContainer" class="overlay-parent">
                     <video id="video"

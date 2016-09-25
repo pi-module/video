@@ -115,7 +115,7 @@ class Video extends AbstractApi
         return $time;
     }
 
-    public function canonizeVideo($video, $categoryList = array())
+    public function canonizeVideo($video, $categoryList = array(), $serverList = array())
     {
         // Check
         if (empty($video)) {
@@ -125,12 +125,16 @@ class Video extends AbstractApi
         $config = Pi::service('registry')->config->read($this->getModule());
         // Get category list
         $categoryList = (empty($categoryList)) ? Pi::registry('categoryList', 'video')->read() : $categoryList;
+        // Get server list
+        $serverList = (empty($serverList)) ? Pi::registry('serverList', 'video')->read() : $serverList;
         // boject to array
         $video = $video->toArray();
         // Check title
         if  (empty($video['title'])) {
             $video['title'] = sprintf(__('Submitted video on %s'), _date($video['time_create']));
         }
+        // Set server information
+        $video['server'] = $serverList[$video['video_server']];
         // Make setting
         $video['setting'] = json::decode($video['setting'], true);;
         // Set text_summary
@@ -153,67 +157,79 @@ class Video extends AbstractApi
             'id' => $video['uid'],
         )));
         // Set video file url
-        switch ($config['broadcast_system']) {
+        switch ($video['server']['type']) {
             case 'file':
-                $video['videoFileUrl'] = Pi::url(Pi::url(sprintf('%s/%s/%s',
-                    $video['video_url'],
+                $video['videoFileUrl'] = sprintf('%s/%s/%s',
+                    $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
-                )));
+                );
+                break;
+
+            case 'qmery':
+                $video['qmeryIframe'] = sprintf('%s/v/%s',
+                    $video['server']['url'],
+                    $video['video_file']
+                );
+                $video['qmeryScript'] = sprintf('%s/embed.js?video=%s&w=640&h=360',
+                    $video['server']['url'],
+                    $video['video_file']
+                );
+                $video['qmeryDirect'] = sprintf('%s/v/%s',
+                    $video['server']['url'],
+                    $video['video_file']
+                );
+                $video['qmeryJson'] = sprintf('%s/video/%s.json',
+                    $video['server']['url'],
+                    $video['video_file']
+                );
                 break;
 
             case 'wowza':
-                $video['videoFileUrl'] = Pi::url(Pi::url(sprintf('%s/%s/%s',
-                    $video['video_url'],
-                    $video['video_path'],
-                    $video['video_file']
-                )));
-
-                $video['mpegDashUrl'] = sprintf('http://%s/_definst_/%s/%s/%s/manifest.mpd',
-                    $config['broadcast_url'],
-                    $config['broadcast_source'],
+                $video['videoFileUrl'] = sprintf('%s/%s/%s',
+                    $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['adobeHdsUrl'] = sprintf('http://%s/_definst_/%s/%s/%s/manifest.f4m',
-                    $config['broadcast_url'],
-                    $config['broadcast_source'],
+                $video['mpegDashUrl'] = sprintf('http://%s/%s/%s/manifest.mpd',
+                    $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['jwplayerUrl'] = sprintf('http://%s/_definst_/%s/%s/%s/jwplayer.mpd',
-                    $config['broadcast_url'],
-                    $config['broadcast_source'],
+                $video['adobeHdsUrl'] = sprintf('http://%s/%s/%s/manifest.f4m',
+                    $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['iosUrl'] = sprintf('http://%s/_definst_/%s/%s/%s/playlist.m3u8',
-                    $config['broadcast_url'],
-                    $config['broadcast_source'],
+                $video['jwplayerUrl'] = sprintf('http://%s/%s/%s/jwplayer.mpd',
+                    $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['androidUrl'] = sprintf('rtsp://%s/_definst_/%s/%s/%s',
-                    $config['broadcast_url'],
-                    $config['broadcast_source'],
+                $video['iosUrl'] = sprintf('http://%s/%s/%s/playlist.m3u8',
+                    $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['rtspUrl'] = sprintf('rtsp://%s/_definst_/%s/%s/%s',
-                    $config['broadcast_url'],
-                    $config['broadcast_source'],
+                $video['androidUrl'] = sprintf('rtsp://%s/%s/%s',
+                    $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['rtmpUrl'] = sprintf('rtmp://%s/_definst_/%s/%s/%s',
-                    $config['broadcast_url'],
-                    $config['broadcast_source'],
+                $video['rtspUrl'] = sprintf('rtsp://%s/%s/%s',
+                    $video['server']['url'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+
+                $video['rtmpUrl'] = sprintf('rtmp://%s/%s/%s',
+                    $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
@@ -294,11 +310,11 @@ class Video extends AbstractApi
             'id' => $video['uid'],
         )));
         // Set video file url
-        $video['videoFileUrl'] = Pi::url(Pi::url(sprintf('%s/%s/%s',
-            $video['video_url'],
+        $video['videoFileUrl'] = Pi::url(sprintf('%s/%s/%s',
+            $video['server']['url'],
             $video['video_path'],
             $video['video_file']
-        )));
+        ));
         // Set image url
         if ($video['image']) {
             // Set image thumb url
@@ -365,11 +381,11 @@ class Video extends AbstractApi
             'id' => $video['uid'],
         )));
         // Set video file url
-        $video['videoFileUrl'] = Pi::url(Pi::url(sprintf('%s/%s/%s',
-            $video['video_url'],
+        $video['videoFileUrl'] = Pi::url(sprintf('%s/%s/%s',
+            $video['server']['url'],
             $video['video_path'],
             $video['video_file']
-        )));
+        ));
         // Set category information
         $video['category'] = Json::decode($video['category']);
         // Set image url
@@ -452,11 +468,11 @@ class Video extends AbstractApi
             'id' => $video['uid'],
         )));
         // Set video file url
-        $video['videoFileUrl'] = Pi::url(Pi::url(sprintf('%s/%s/%s',
-            $video['video_url'],
+        $video['videoFileUrl'] = Pi::url(sprintf('%s/%s/%s',
+            $video['server']['url'],
             $video['video_path'],
             $video['video_file']
-        )));
+        ));
         // Set category information
         $video['category'] = Json::decode($video['category']);
         foreach ($video['category'] as $category) {

@@ -22,6 +22,10 @@ return array(
             'title' => _a('Category'),
             'access' => array(),
         ),
+        'server' => array(
+            'title' => _a('Server'),
+            'access' => array(),
+        ),
         'attribute' => array(
             'title' => _a('Attribute'),
             'access' => array(),

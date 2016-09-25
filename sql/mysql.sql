@@ -23,12 +23,16 @@ CREATE TABLE `{video}` (
   `related`          TINYINT(3) UNSIGNED     NOT NULL DEFAULT '0',
   `recommended`      TINYINT(1) UNSIGNED     NOT NULL DEFAULT '0',
   `favourite`        INT(10) UNSIGNED        NOT NULL DEFAULT '0',
+
   `video_type`       ENUM ('video', 'audio') NOT NULL DEFAULT 'video',
   `video_extension`  ENUM ('mp4', 'mp3')     NOT NULL DEFAULT 'mp4',
   `video_link`       VARCHAR(255)            NOT NULL DEFAULT '',
   `video_url`        VARCHAR(64)             NOT NULL DEFAULT '',
+
+  `video_server`     INT(10) UNSIGNED        NOT NULL DEFAULT '0',
   `video_path`       VARCHAR(64)             NOT NULL DEFAULT '',
   `video_file`       VARCHAR(64)             NOT NULL DEFAULT '',
+
   `video_size`       VARCHAR(16)             NOT NULL DEFAULT '',
   `video_duration`   VARCHAR(16)             NOT NULL DEFAULT '',
   `setting`          TEXT,
@@ -169,4 +173,14 @@ CREATE TABLE `{service}` (
   PRIMARY KEY (`id`),
   KEY `video` (`video`),
   KEY `select` (`module_name`, `module_table`, `module_item`)
+);
+
+CREATE TABLE `{server}` (
+  `id`      INT(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
+  `title`   VARCHAR(255)                    NOT NULL DEFAULT '',
+  `status`  TINYINT(1) UNSIGNED             NOT NULL DEFAULT '1',
+  `type`    ENUM ('file', 'wowza', 'qmery') NOT NULL DEFAULT 'file',
+  `url`     VARCHAR(255)                    NOT NULL DEFAULT '',
+  `setting` TEXT,
+  PRIMARY KEY (`id`)
 );

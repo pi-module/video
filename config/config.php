@@ -21,14 +21,14 @@ return array(
             'title' => _a('Json output'),
             'name' => 'json'
         ),
-        array(
+        /* array(
             'title' => _a('Broadcasting System'),
             'name' => 'broadcast'
         ),
         array(
             'title' => _a('Manage link'),
             'name' => 'link'
-        ),
+        ), */
         array(
             'title' => _a('View'),
             'name' => 'view'
@@ -93,7 +93,7 @@ return array(
             'filter' => 'string',
             'value' => md5(rand(1,99999)),
         ),
-        // Broadcast
+        /* // Broadcast
         'broadcast_system' => array(
             'title' => _a('Broadcasting System'),
             'description' => '',
@@ -142,7 +142,7 @@ return array(
             'edit' => 'text',
             'filter' => 'string',
             'value' => ''
-        ),
+        ), */
         // View
         'view_perpage' => array(
             'category' => 'view',

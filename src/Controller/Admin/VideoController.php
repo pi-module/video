@@ -114,11 +114,14 @@ class VideoController extends ActionController
         $form = new AdminSearchForm('search');
         $form->setAttribute('action', $this->url('', array('action' => 'process')));
         $form->setData($values);
+        // Server list
+        $serverList = Pi::registry('serverList', 'video')->read();
         // Set view
         $this->view()->setTemplate('video-index');
         $this->view()->assign('list', $video);
         $this->view()->assign('paginator', $paginator);
         $this->view()->assign('form', $form);
+        $this->view()->assign('serverList', $serverList);
     }
 
     public function processAction()
@@ -161,8 +164,22 @@ class VideoController extends ActionController
                 'action' => 'update'
             ));
         }
+        // Server list
+        $serverList = Pi::registry('serverList', 'video')->read();
+        if (empty($serverList)) {
+            return $this->redirect()->toRoute('', array(
+                'controller' => 'server',
+                'action' => 'update'
+            ));
+        }
         // Get info from url
         $module = $this->params('module');
+        $server = $this->params('server');
+        // Check server
+        if (!isset($serverList[$server]) || empty($serverList[$server])) {
+            $message = __('please select true server');
+            $this->jump(array('action' => 'index'), $message, 'error');
+        }
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Set form
@@ -191,7 +208,7 @@ class VideoController extends ActionController
                         // Get video_file
                         $values['video_file'] = $uploader->getUploaded('video');
                         // Set video_url
-                        $values['video_url'] = Pi::url();
+                        //$values['video_url'] = Pi::url();
                     } else {
                         $this->jump(array('action' => 'upload'), __('Problem in upload video. please try again'));
                     }
@@ -206,6 +223,8 @@ class VideoController extends ActionController
                 $values['uid'] = Pi::user()->getId();
                 // Set status
                 $values['status'] = 2;
+                // Set server
+                $values['video_server'] = $serverList[$server]['id'];
                 // Set type
                 $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
                 switch ($extension) {
@@ -262,20 +281,39 @@ class VideoController extends ActionController
                 'action' => 'update'
             ));
         }
+        // Server list
+        $serverList = Pi::registry('serverList', 'video')->read();
+        if (empty($serverList)) {
+            return $this->redirect()->toRoute('', array(
+                'controller' => 'server',
+                'action' => 'update'
+            ));
+        }
         // Get info from url
         $id = $this->params('id');
         $module = $this->params('module');
+        $server = $this->params('server');
         // Get config
         $config = Pi::service('registry')->config->read($module);
         if ($id) {
             $video = Pi::api('video', 'video')->getVideoLight($id);
+            $server = $video['video_server'];
         }
+        // Check server
+        if (!isset($serverList[$server]) || empty($serverList[$server])) {
+            $message = __('please select true server');
+            $this->jump(array('action' => 'index'), $message, 'error');
+        }
+        // Set option
+        $option = array(
+            'server' => $serverList[$server],
+        );
         // Set form
-        $form = new VideoLinkForm('video');
+        $form = new VideoLinkForm('video', $option);
         $form->setAttribute('enctype', 'multipart/form-data');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
-            $form->setInputFilter(new VideoLinkFilter);
+            $form->setInputFilter(new VideoLinkFilter($option));
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
@@ -290,7 +328,7 @@ class VideoController extends ActionController
                 // Set status
                 $values['status'] = 2;
                 // Set type
-                $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
+                /* $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
                 switch ($extension) {
                     case 'mp3':
                         $values['video_type'] = 'audio';
@@ -301,7 +339,9 @@ class VideoController extends ActionController
                         $values['video_type'] = 'video';
                         $values['video_extension'] = 'mp4';
                         break;
-                }
+                } */
+                // Set server
+                $video['video_server'] = $serverList[$server]['id'];
                 // Save values
                 if ($values['id']) {
                     $row = $this->getModel('video')->find($values['id']);
@@ -323,7 +363,7 @@ class VideoController extends ActionController
                 $video['slug'] = $filter($slug);
                 // Set
                 if (!empty($config['link_url'])) {
-                    $video['video_url'] = $config['link_url'];
+                    //$video['video_url'] = $config['link_url'];
                 }
                 // Set
                 if (!empty($config['link_path'])) {

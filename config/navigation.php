@@ -36,6 +36,17 @@ return array(
             'action' => 'index',
         ),
 
+        'server' => array(
+            'label' => _a('Server'),
+            'permission' => array(
+                'resource' => 'server',
+            ),
+            'route' => 'admin',
+            'module' => 'video',
+            'controller' => 'server',
+            'action' => 'index',
+        ),
+
         'attribute' => array(
             'label' => _a('Attribute'),
             'permission' => array(

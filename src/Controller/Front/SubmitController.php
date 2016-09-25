@@ -77,7 +77,7 @@ class SubmitController extends IndexController
                         // Get video_file
                         $values['video_file'] = $uploader->getUploaded('video');
                         // Set video_url
-                        $values['video_url'] = Pi::url();
+                        //$values['video_url'] = Pi::url();
                     } else {
                         $this->jump(array('action' => 'upload'), __('Problem in upload video. please try again'));
                     }
