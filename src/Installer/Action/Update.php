@@ -115,12 +115,13 @@ CREATE TABLE `{server}` (
   `id`      INT(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
   `title`   VARCHAR(255)                    NOT NULL DEFAULT '',
   `status`  TINYINT(1) UNSIGNED             NOT NULL DEFAULT '1',
+  `default` TINYINT(1) UNSIGNED             NOT NULL DEFAULT '0',
   `type`    ENUM ('file', 'wowza', 'qmery') NOT NULL DEFAULT 'file',
   `url`     VARCHAR(255)                    NOT NULL DEFAULT '',
   `setting` TEXT,
   PRIMARY KEY (`id`)
 );
-INSERT INTO `{server}` (`id`, `title`, `status`, `type`, `url`, `setting`) VALUES ('1', '%s', '1', 'file', '%s', NULL);
+INSERT INTO `{server}` (`id`, `title`, `status`, `default`, `type`, `url`, `setting`) VALUES ('1', '%s', '1', '1', 'file', '%s', NULL);
 EOD;
             $sql = sprintf($sql, __('Test server'), Pi::url());
             SqlSchema::setType($this->module);
@@ -139,6 +140,32 @@ EOD;
 
             // Alter table field `video_server`
             $sql = sprintf("ALTER TABLE %s ADD `video_server` INT(10) UNSIGNED NOT NULL DEFAULT '1'", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+
+            // Alter table field `video_qmery_hash`
+            $sql = sprintf("ALTER TABLE %s ADD `video_qmery_hash` VARCHAR(64) NOT NULL DEFAULT ''", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+
+            // Alter table field `video_qmery_id`
+            $sql = sprintf("ALTER TABLE %s ADD `video_qmery_id` INT(10) UNSIGNED NOT NULL DEFAULT '0'", $videoTable);
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {

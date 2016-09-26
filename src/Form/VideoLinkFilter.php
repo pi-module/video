@@ -41,18 +41,9 @@ class VideoLinkFilter extends InputFilter
                 )),
             ),
         ));
-        // video_url
-        /* $this->add(array(
-            'name' => 'video_url',
-            'required' => true,
-            'filters' => array(
-                array(
-                    'name' => 'StringTrim',
-                ),
-            ),
-        )); */
-        // video_path
+        // Check
         if (in_array($option['server']['type'], array('file', 'wowza'))) {
+            // video_path
             $this->add(array(
                 'name' => 'video_path',
                 'required' => true,
@@ -62,16 +53,37 @@ class VideoLinkFilter extends InputFilter
                     ),
                 ),
             ));
-        }
-        // video_file
-        $this->add(array(
-            'name' => 'video_file',
-            'required' => true,
-            'filters' => array(
-                array(
-                    'name' => 'StringTrim',
+            // video_file
+            $this->add(array(
+                'name' => 'video_file',
+                'required' => true,
+                'filters' => array(
+                    array(
+                        'name' => 'StringTrim',
+                    ),
                 ),
-            ),
-        ));
+            ));
+        } elseif (in_array($option['server']['type'], array('qmery'))) {
+            // video_qmery_hash
+            $this->add(array(
+                'name' => 'video_qmery_hash',
+                'required' => true,
+                'filters' => array(
+                    array(
+                        'name' => 'StringTrim',
+                    ),
+                ),
+            ));
+            // video_qmery_id
+            $this->add(array(
+                'name' => 'video_qmery_id',
+                'required' => true,
+                'filters' => array(
+                    array(
+                        'name' => 'StringTrim',
+                    ),
+                ),
+            ));
+        }
     }
 }

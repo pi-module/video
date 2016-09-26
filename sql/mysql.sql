@@ -33,6 +33,9 @@ CREATE TABLE `{video}` (
   `video_path`       VARCHAR(64)             NOT NULL DEFAULT '',
   `video_file`       VARCHAR(64)             NOT NULL DEFAULT '',
 
+  `video_qmery_hash` VARCHAR(64)             NOT NULL DEFAULT '',
+  `video_qmery_id`   INT(10) UNSIGNED        NOT NULL DEFAULT '0',
+
   `video_size`       VARCHAR(16)             NOT NULL DEFAULT '',
   `video_duration`   VARCHAR(16)             NOT NULL DEFAULT '',
   `setting`          TEXT,
@@ -179,6 +182,7 @@ CREATE TABLE `{server}` (
   `id`      INT(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
   `title`   VARCHAR(255)                    NOT NULL DEFAULT '',
   `status`  TINYINT(1) UNSIGNED             NOT NULL DEFAULT '1',
+  `default` TINYINT(1) UNSIGNED             NOT NULL DEFAULT '0',
   `type`    ENUM ('file', 'wowza', 'qmery') NOT NULL DEFAULT 'file',
   `url`     VARCHAR(255)                    NOT NULL DEFAULT '',
   `setting` TEXT,

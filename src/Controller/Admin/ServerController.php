@@ -62,6 +62,11 @@ class ServerController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
+                // Check default
+                if ($values['default']) {
+                    $this->getModel('server')->update(array('default' => 0));
+                    $values['default'] = 1;
+                }
                 // Save values
                 if (!empty($values['id'])) {
                     $row = $this->getModel('server')->find($values['id']);
@@ -72,6 +77,7 @@ class ServerController extends ActionController
                 $row->save();
                 // Clear registry
                 Pi::registry('serverList', 'video')->clear();
+                Pi::registry('serverDefault', 'video')->clear();
                 // Add log
                 $operation = (empty($values['id'])) ? 'add' : 'edit';
                 Pi::api('log', 'video')->addLog('server', $row->id, $operation);

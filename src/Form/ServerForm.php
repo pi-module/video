@@ -98,6 +98,17 @@ class ServerForm extends BaseForm
                 'required' => true,
             )
         ));
+        // default
+        $this->add(array(
+            'name' => 'default',
+            'type' => 'checkbox',
+            'options' => array(
+                'label' => __('Default server ?'),
+            ),
+            'attributes' => array(
+                'description' => '',
+            )
+        ));
         // Save
         $this->add(array(
             'name' => 'submit',

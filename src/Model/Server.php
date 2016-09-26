@@ -24,6 +24,7 @@ class Server extends Model
         'id',
         'title',
         'status',
+        'default',
         'type',
         'url',
         'setting',

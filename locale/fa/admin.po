@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-09-09 15:30+0430\n"
+"POT-Creation-Date: 2016-09-26 15:11+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
@@ -24,7 +24,7 @@ msgid "New video list"
 msgstr "فهرست ویدیو های جدید"
 
 #: config/block.php:23 config/block.php:86 config/navigation.php:29
-#: config/page.php:23 config/page.php:57 config/permission.php:22
+#: config/page.php:23 config/page.php:62 config/permission.php:22
 msgid "Category"
 msgstr "شاخه"
 
@@ -66,8 +66,7 @@ msgstr "استفاده از افکت های بلاک"
 
 #: config/block.php:57 config/block.php:120 config/block.php:183
 msgid "Use block effects or set custom effect on theme"
-msgstr ""
-"استفاده از افکت های جاوا اسکریپت و سی اس اس بلاک یا شخصی سازی آن در قالب"
+msgstr "استفاده از افکت های جاوا اسکریپت و سی اس اس بلاک یا شخصی سازی آن در قالب"
 
 #: config/block.php:63 config/block.php:126 config/block.php:189
 msgid "Show More link to module page"
@@ -105,17 +104,9 @@ msgstr "نظرات ویدیو"
 msgid "Admin"
 msgstr "بخش مدیر"
 
-#: config/config.php:21 config/page.php:43 config/page.php:101
+#: config/config.php:21 config/page.php:48 config/page.php:106
 msgid "Json output"
 msgstr "خروجی حیسون"
-
-#: config/config.php:25 config/config.php:98
-msgid "Broadcasting System"
-msgstr "سیستم پخش ویدیو"
-
-#: config/config.php:29
-msgid "Manage link"
-msgstr "مدیریت لینک فایل ویدیو"
 
 #: config/config.php:33
 msgid "View"
@@ -164,55 +155,6 @@ msgstr "واژه رمز خروجی جیسون"
 #: config/config.php:91
 msgid "After use on mobile device , do not change it"
 msgstr "بعد از استفاده از این واژه رمز در نرم افزار موبایل ، آن را تغییر ندهید"
-
-#: config/config.php:104
-msgid "Broadcast from file"
-msgstr "پخش ساده از روی فایل"
-
-#: config/config.php:105
-msgid "Wowza Streaming Engine"
-msgstr "استریم با Wowza Streaming Engine"
-
-#: config/config.php:115
-msgid "Wowza url and application name"
-msgstr "آدرس و نام آپلیکشن در wowza"
-
-#: config/config.php:116
-msgid ""
-"Wowza server ip or url and port, without prefix ( http:// , rtmp:// , "
-"rtsp:// ), for example : 127.0.0.1:1935/vod"
-msgstr ""
-"آدرس آی پی یا یو آر ال سرور wowza به همراه پورت، بدون پیشوند (http:// , "
-"rtmp:// , rtsp://) ، به طور مثال 127.0.0.1:1935/vod"
-
-#: config/config.php:123
-msgid "Wowza source"
-msgstr "منبع پخش wowza"
-
-#: config/config.php:124
-msgid ""
-"Name of media source, than create on wowza vod or media cache service, for "
-"example : mp4:http"
-msgstr ""
-"نام منبع پخش مدیا در wowza که در سامانه wowza به صورت vod ، media cache یا "
-"live ساخه می شود. به طور مثال : mp4:http"
-
-#: config/config.php:132
-msgid "Default video url"
-msgstr "آدرس URL پیش فرض"
-
-#: config/config.php:133
-#, php-format
-msgid "Full url by http:// or https:// without add / on end, for example : %s"
-msgstr "آدرس کامل با http:// یا https:// بدون درج / در انتها، به طور مثال %s"
-
-#: config/config.php:140
-msgid "Default video path"
-msgstr "مسیر فایل پیش فرض"
-
-#: config/config.php:141
-msgid "Without add / on start and end, for example : upload/video/2016/09"
-msgstr "بدون درج / در ابتدا و انتهای مسیر ، به طور مثال : upload/video/2016/09"
 
 #: config/config.php:156
 msgid "Columns"
@@ -375,67 +317,107 @@ msgstr "ویدیو"
 msgid "Video play system."
 msgstr "ابزار پخش ویدیو"
 
-#: config/navigation.php:40 config/navigation.php:50 config/page.php:28
-#: config/permission.php:26
+#: config/navigation.php:40 config/page.php:28 config/permission.php:26
+msgid "Server"
+msgstr "سرور"
+
+#: config/navigation.php:51 config/navigation.php:61 config/page.php:33
+#: config/permission.php:30
 msgid "Attribute"
 msgstr "خواص"
 
-#: config/navigation.php:60
+#: config/navigation.php:71
 msgid "Attribute position"
 msgstr "موقعیت خواص"
 
-#: config/navigation.php:73 config/navigation.php:83 config/page.php:38
-#: config/permission.php:34
+#: config/navigation.php:84 config/navigation.php:94 config/page.php:43
+#: config/permission.php:38
 msgid "Tools"
 msgstr "ابزار ها"
 
-#: config/navigation.php:94
+#: config/navigation.php:105
 msgid "Sitemap"
-msgstr ""
+msgstr "نقشه سایت"
 
-#: config/navigation.php:105 config/page.php:33 config/permission.php:30
+#: config/navigation.php:116 config/page.php:38 config/permission.php:34
 msgid "Logs"
 msgstr "گزارش ها"
 
-#: config/navigation.php:116 config/permission.php:38
+#: config/navigation.php:127 config/permission.php:42
 msgid "Json"
 msgstr "جیسون"
 
-#: config/navigation.php:131 config/page.php:63
+#: config/navigation.php:142 config/page.php:68
 msgid "Category list"
 msgstr "فهرست شاخه ها"
 
-#: config/navigation.php:141 config/page.php:76
+#: config/navigation.php:152 config/page.php:81
 msgid "Tag list"
 msgstr "فهرست برچسب ها"
 
-#: config/navigation.php:151
+#: config/navigation.php:162
 msgid "Your channel"
 msgstr "کانال شما"
 
-#: config/navigation.php:161 config/page.php:95 config/permission.php:53
+#: config/navigation.php:172 config/page.php:100 config/permission.php:57
 msgid "Submit"
 msgstr "ارسال"
 
-#: config/page.php:51
+#: config/page.php:56
 msgid "Index"
 msgstr "صفحه اصلی"
 
-#: config/page.php:70
+#: config/page.php:75
 msgid "Tag"
 msgstr "برچسب"
 
-#: config/page.php:83
+#: config/page.php:88
 msgid "Watch video"
 msgstr "نمایش ویدیو"
 
-#: config/page.php:89 config/permission.php:60
+#: config/page.php:94 config/permission.php:64
 msgid "Channel"
 msgstr "کانال"
 
-#: config/permission.php:45
+#: config/permission.php:49
 msgid "Global public resource"
 msgstr "دسترسی های عمومی"
+
+#~ msgid "Broadcasting System"
+#~ msgstr "سیستم پخش ویدیو"
+
+#~ msgid "Manage link"
+#~ msgstr "مدیریت لینک فایل ویدیو"
+
+#~ msgid "Broadcast from file"
+#~ msgstr "پخش ساده از روی فایل"
+
+#~ msgid "Wowza Streaming Engine"
+#~ msgstr "استریم با Wowza Streaming Engine"
+
+#~ msgid "Wowza url and application name"
+#~ msgstr "آدرس و نام آپلیکشن در wowza"
+
+#~ msgid "Wowza server ip or url and port, without prefix ( http:// , rtmp:// , rtsp:// ), for example : 127.0.0.1:1935/vod"
+#~ msgstr "آدرس آی پی یا یو آر ال سرور wowza به همراه پورت، بدون پیشوند (http:// , rtmp:// , rtsp://) ، به طور مثال 127.0.0.1:1935/vod"
+
+#~ msgid "Wowza source"
+#~ msgstr "منبع پخش wowza"
+
+#~ msgid "Name of media source, than create on wowza vod or media cache service, for example : mp4:http"
+#~ msgstr "نام منبع پخش مدیا در wowza که در سامانه wowza به صورت vod ، media cache یا live ساخه می شود. به طور مثال : mp4:http"
+
+#~ msgid "Default video url"
+#~ msgstr "آدرس URL پیش فرض"
+
+#~ msgid "Full url by http:// or https:// without add / on end, for example : %s"
+#~ msgstr "آدرس کامل با http:// یا https:// بدون درج / در انتها، به طور مثال %s"
+
+#~ msgid "Default video path"
+#~ msgstr "مسیر فایل پیش فرض"
+
+#~ msgid "Without add / on start and end, for example : upload/video/2016/09"
+#~ msgstr "بدون درج / در ابتدا و انتهای مسیر ، به طور مثال : upload/video/2016/09"
 
 #~ msgid "Player"
 #~ msgstr "پلیر"
@@ -582,8 +564,7 @@ msgstr "دسترسی های عمومی"
 #~ msgstr "کلاس برای ابعدا تصویر"
 
 #~ msgid "Bootstrap 3 grid options like : col-xs-6 col-sm-6 col-md-3"
-#~ msgstr ""
-#~ "بر اساس سیستم گرید بوت استرپ ۳ ، به طور مثال : col-xs-6 col-sm-6 col-md-3"
+#~ msgstr "بر اساس سیستم گرید بوت استرپ ۳ ، به طور مثال : col-xs-6 col-sm-6 col-md-3"
 
 #~ msgid "News"
 #~ msgstr "اخبار"
@@ -604,8 +585,7 @@ msgstr "دسترسی های عمومی"
 #~ msgstr "تبلیغات"
 
 #~ msgid "Set topic as system page for support customise layout for blocks"
-#~ msgstr ""
-#~ "قراردادن موضوعات به عنوان یک صفحه سیستم برای شخصی سازی تنظیم بلاک و ویجت"
+#~ msgstr "قراردادن موضوعات به عنوان یک صفحه سیستم برای شخصی سازی تنظیم بلاک و ویجت"
 
 #~ msgid "Set story authors"
 #~ msgstr "تنظیم پدیدآورنده های مطلب"
@@ -662,8 +642,7 @@ msgstr "دسترسی های عمومی"
 #~ msgstr "فقط نمایش مطالب مربوط به X روز گذشته"
 
 #~ msgid "Set 0 for show all news, Or set day number for limit news in days"
-#~ msgstr ""
-#~ "برای نمایش همه مطالب ۰ وارد کنید و یا محدوده روز های اخیر را مشخص کنید"
+#~ msgstr "برای نمایش همه مطالب ۰ وارد کنید و یا محدوده روز های اخیر را مشخص کنید"
 
 #~ msgid "Show feed icon"
 #~ msgstr "نمایش آیکن خوراک"

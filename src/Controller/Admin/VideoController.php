@@ -225,6 +225,10 @@ class VideoController extends ActionController
                 $values['status'] = 2;
                 // Set server
                 $values['video_server'] = $serverList[$server]['id'];
+                if (!$values['video_server']) {
+                    $serverDefault = Pi::registry('serverDefault', 'video')->read();
+                    $values['video_server'] = $serverDefault['id'];
+                }
                 // Set type
                 $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
                 switch ($extension) {
@@ -341,7 +345,11 @@ class VideoController extends ActionController
                         break;
                 } */
                 // Set server
-                $video['video_server'] = $serverList[$server]['id'];
+                $values['video_server'] = $serverList[$server]['id'];
+                if (!$values['video_server']) {
+                    $serverDefault = Pi::registry('serverDefault', 'video')->read();
+                    $values['video_server'] = $serverDefault['id'];
+                }
                 // Save values
                 if ($values['id']) {
                     $row = $this->getModel('video')->find($values['id']);

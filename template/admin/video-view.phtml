@@ -58,13 +58,6 @@ EOT;
     $this->footScript()->appendScript($script);
 } elseif ($video['server']['type'] == 'qmery') {
     $this->jQuery();
-    $script = <<<'EOT'
-    $.getJSON('%s').done(function (result) {
-        $('.qmery-player').html('<div id="embed_qmery_player_' + result.ga.idstring + '"></div><div id="embed_qmery_player_icons' + result.ga.idstring + '"></div>');
-    });
-EOT;
-    $script = sprintf($script, $video['qmeryJson']);
-    $this->headScript()->appendScript($script);
     $this->headScript()->appendFile($video['qmeryScript']);
 }
 ?>
@@ -92,7 +85,10 @@ EOT;
         <?php if ($video['server']['type'] == 'file') { ?>
             <?php echo $this->videojs($video['videoFileUrl'], $video['largeUrl']); ?>
         <?php } elseif ($video['server']['type'] == 'qmery') { ?>
-            <div class="qmery-player"></div>
+            <div class="qmery-player">
+                <div id="embed_qmery_player_<?php echo $this->escape($video['video_qmery_id']); ?>"></div>
+                <div id="embed_qmery_player_icons<?php echo $this->escape($video['video_qmery_id']); ?>"></div>
+            </div>
         <?php } elseif ($video['server']['type'] == 'wowza') { ?>
             <div class="clearfix">
                 <div id="videoContainer" class="overlay-parent">

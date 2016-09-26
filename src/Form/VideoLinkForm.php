@@ -48,20 +48,8 @@ class VideoLinkForm  extends BaseForm
                 'type' => 'hidden',
             ),
         ));
-        // video_url
-        /* $this->add(array(
-            'name' => 'video_url',
-            'options' => array(
-                'label' => __('Video url'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
-                'description' => sprintf(__('Full url by http:// or https:// without add / on end, for example : %s'), Pi::url()),
-                'required' => true,
-            )
-        )); */
-        // video_path
         if (in_array($this->option['server']['type'], array('file', 'wowza'))) {
+            // video_path
             $this->add(array(
                 'name' => 'video_path',
                 'options' => array(
@@ -73,26 +61,43 @@ class VideoLinkForm  extends BaseForm
                     'required' => true,
                 )
             ));
-        }
-        // video_file
-        if (in_array($this->option['server']['type'], array('file', 'wowza'))) {
-            $title = __('Video file name');
-            $description = __('File name by extension, for example file.mp4');
+            // video_file
+            $this->add(array(
+                'name' => 'video_file',
+                'options' => array(
+                    'label' => __('Video file name'),
+                ),
+                'attributes' => array(
+                    'type' => 'text',
+                    'description' => __('File name by extension, for example file.mp4'),
+                    'required' => true,
+                )
+            ));
         } elseif (in_array($this->option['server']['type'], array('qmery'))) {
-            $title = __('Qmery hash code');
-            $description = __('hash code on qmery system , like : y4A7rBoLwe');
+            // video_qmery_hash
+            $this->add(array(
+                'name' => 'video_qmery_hash',
+                'options' => array(
+                    'label' => __('Qmery hash code'),
+                ),
+                'attributes' => array(
+                    'type' => 'text',
+                    'description' => __('hash code on qmery system , like : y4A7rBoLwe'),
+                    'required' => true,
+                )
+            ));
+            // video_qmery_id
+            $this->add(array(
+                'name' => 'video_qmery_id',
+                'options' => array(
+                    'label' => __('Qmery video id'),
+                ),
+                'attributes' => array(
+                    'type' => 'text',
+                    'required' => true,
+                )
+            ));
         }
-        $this->add(array(
-            'name' => 'video_file',
-            'options' => array(
-                'label' => $title,
-            ),
-            'attributes' => array(
-                'type' => 'text',
-                'description' => $description,
-                'required' => true,
-            )
-        ));
         // Save
         $this->add(array(
             'name' => 'submit',

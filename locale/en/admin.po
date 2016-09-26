@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-09-09 15:31+0430\n"
+"POT-Creation-Date: 2016-09-26 15:11+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
@@ -24,7 +24,7 @@ msgid "New video list"
 msgstr ""
 
 #: config/block.php:23 config/block.php:86 config/navigation.php:29
-#: config/page.php:23 config/page.php:57 config/permission.php:22
+#: config/page.php:23 config/page.php:62 config/permission.php:22
 msgid "Category"
 msgstr ""
 
@@ -104,16 +104,8 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: config/config.php:21 config/page.php:43 config/page.php:101
+#: config/config.php:21 config/page.php:48 config/page.php:106
 msgid "Json output"
-msgstr ""
-
-#: config/config.php:25 config/config.php:98
-msgid "Broadcasting System"
-msgstr ""
-
-#: config/config.php:29
-msgid "Manage link"
 msgstr ""
 
 #: config/config.php:33
@@ -162,51 +154,6 @@ msgstr ""
 
 #: config/config.php:91
 msgid "After use on mobile device , do not change it"
-msgstr ""
-
-#: config/config.php:104
-msgid "Broadcast from file"
-msgstr ""
-
-#: config/config.php:105
-msgid "Wowza Streaming Engine"
-msgstr ""
-
-#: config/config.php:115
-msgid "Wowza url and application name"
-msgstr ""
-
-#: config/config.php:116
-msgid ""
-"Wowza server ip or url and port, without prefix ( http:// , rtmp:// , "
-"rtsp:// ), for example : 127.0.0.1:1935/vod"
-msgstr ""
-
-#: config/config.php:123
-msgid "Wowza source"
-msgstr ""
-
-#: config/config.php:124
-msgid ""
-"Name of media source, than create on wowza vod or media cache service, for "
-"example : mp4:http"
-msgstr ""
-
-#: config/config.php:132
-msgid "Default video url"
-msgstr ""
-
-#: config/config.php:133
-#, php-format
-msgid "Full url by http:// or https:// without add / on end, for example : %s"
-msgstr ""
-
-#: config/config.php:140
-msgid "Default video path"
-msgstr ""
-
-#: config/config.php:141
-msgid "Without add / on start and end, for example : upload/video/2016/09"
 msgstr ""
 
 #: config/config.php:156
@@ -370,64 +317,68 @@ msgstr ""
 msgid "Video play system."
 msgstr ""
 
-#: config/navigation.php:40 config/navigation.php:50 config/page.php:28
-#: config/permission.php:26
+#: config/navigation.php:40 config/page.php:28 config/permission.php:26
+msgid "Server"
+msgstr ""
+
+#: config/navigation.php:51 config/navigation.php:61 config/page.php:33
+#: config/permission.php:30
 msgid "Attribute"
 msgstr ""
 
-#: config/navigation.php:60
+#: config/navigation.php:71
 msgid "Attribute position"
 msgstr ""
 
-#: config/navigation.php:73 config/navigation.php:83 config/page.php:38
-#: config/permission.php:34
+#: config/navigation.php:84 config/navigation.php:94 config/page.php:43
+#: config/permission.php:38
 msgid "Tools"
 msgstr ""
 
-#: config/navigation.php:94
+#: config/navigation.php:105
 msgid "Sitemap"
 msgstr ""
 
-#: config/navigation.php:105 config/page.php:33 config/permission.php:30
+#: config/navigation.php:116 config/page.php:38 config/permission.php:34
 msgid "Logs"
 msgstr ""
 
-#: config/navigation.php:116 config/permission.php:38
+#: config/navigation.php:127 config/permission.php:42
 msgid "Json"
 msgstr ""
 
-#: config/navigation.php:131 config/page.php:63
+#: config/navigation.php:142 config/page.php:68
 msgid "Category list"
 msgstr ""
 
-#: config/navigation.php:141 config/page.php:76
+#: config/navigation.php:152 config/page.php:81
 msgid "Tag list"
 msgstr ""
 
-#: config/navigation.php:151
+#: config/navigation.php:162
 msgid "Your channel"
 msgstr ""
 
-#: config/navigation.php:161 config/page.php:95 config/permission.php:53
+#: config/navigation.php:172 config/page.php:100 config/permission.php:57
 msgid "Submit"
 msgstr ""
 
-#: config/page.php:51
+#: config/page.php:56
 msgid "Index"
 msgstr ""
 
-#: config/page.php:70
+#: config/page.php:75
 msgid "Tag"
 msgstr ""
 
-#: config/page.php:83
+#: config/page.php:88
 msgid "Watch video"
 msgstr ""
 
-#: config/page.php:89 config/permission.php:60
+#: config/page.php:94 config/permission.php:64
 msgid "Channel"
 msgstr ""
 
-#: config/permission.php:45
+#: config/permission.php:49
 msgid "Global public resource"
 msgstr ""

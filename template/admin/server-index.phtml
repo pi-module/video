@@ -13,6 +13,7 @@
             <th><?php _e('Title'); ?></th>
             <th><?php _e('Type'); ?></th>
             <th><?php _e('Url'); ?></th>
+            <th><?php _e('Default'); ?></th>
             <th><?php _e('Action'); ?></th>
         </tr>
         <?php foreach ($list as $server) { ?>
@@ -30,6 +31,13 @@
                 <td><?php echo $this->escape($server['title']); ?></td>
                 <td><?php echo $this->escape($server['type_view']); ?></td>
                 <td><?php echo $this->escape($server['url']); ?></td>
+                <td>
+                    <?php if ($server['default']) { ?>
+                        <span class="label label-success"><?php _e('Yes'); ?></span>
+                    <?php } else { ?>
+                        <span class="label label-danger"><?php _e('No'); ?></span>
+                    <?php } ?>
+                </td>
                 <td>
                     <a class="btn btn-primary btn-xs" title="<?php _e('Edit'); ?>"
                        href="<?php echo $this->url('', array('action' => 'update', 'id' => $server['id'])); ?>"><i

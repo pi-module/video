@@ -55,5 +55,10 @@ class ServerFilter extends InputFilter
                 ),
             ),
         ));
+        // default
+        $this->add(array(
+            'name' => 'default',
+            'required' => false,
+        ));
     }
 }

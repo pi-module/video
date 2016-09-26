@@ -169,19 +169,19 @@ class Video extends AbstractApi
             case 'qmery':
                 $video['qmeryIframe'] = sprintf('%s/v/%s',
                     $video['server']['url'],
-                    $video['video_file']
+                    $video['video_qmery_hash']
                 );
                 $video['qmeryScript'] = sprintf('%s/embed.js?video=%s&w=640&h=360',
                     $video['server']['url'],
-                    $video['video_file']
+                    $video['video_qmery_hash']
                 );
                 $video['qmeryDirect'] = sprintf('%s/v/%s',
                     $video['server']['url'],
-                    $video['video_file']
+                    $video['video_qmery_hash']
                 );
                 $video['qmeryJson'] = sprintf('%s/video/%s.json',
                     $video['server']['url'],
-                    $video['video_file']
+                    $video['video_qmery_hash']
                 );
                 break;
 

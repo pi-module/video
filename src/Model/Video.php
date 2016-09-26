@@ -53,6 +53,8 @@ class Video extends Model
         'video_url',
         'video_size',
         'video_duration',
+        'video_qmery_hash',
+        'video_qmery_id',
         'setting',
         'video_server',
     );
