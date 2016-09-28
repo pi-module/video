@@ -22,8 +22,8 @@ class TagController extends IndexController
     {
         // Check tag
         if (!Pi::service('module')->isActive('tag')) {
-            $this->getResponse()->setStatusCode(404);
-            $this->terminate(__('Tag module not installed.'), '', 'error-404');
+            $this->getResponse()->setStatusCode(403);
+            $this->terminate(__('Tag module not installed.'), '', 'error-denied');
             $this->view()->setLayout('layout-simple');
             return;
         }

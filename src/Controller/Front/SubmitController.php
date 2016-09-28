@@ -34,6 +34,17 @@ class SubmitController extends IndexController
 
     public function indexAction()
     {
+        // Get info from url
+        $module = $this->params('module');
+        // Get config
+        $config = Pi::service('registry')->config->read($module);
+        // Check active
+        if (!$config['user_submit']) {
+            $this->getResponse()->setStatusCode(403);
+            $this->terminate(__('Submit video by users inactive'), '', 'error-denied');
+            $this->view()->setLayout('layout-simple');
+            return;
+        }
         // Check user is login or not
         Pi::service('authentication')->requireLogin();
         // check category
@@ -44,10 +55,6 @@ class SubmitController extends IndexController
                 'action' => 'update'
             ));
         }
-        // Get info from url
-        $module = $this->params('module');
-        // Get config
-        $config = Pi::service('registry')->config->read($module);
         // Set option
         $option = array();
         $option['side'] = 'front';
@@ -149,6 +156,18 @@ class SubmitController extends IndexController
 
     public function updateAction()
     {
+        // Get info from url
+        $id = $this->params('id');
+        $module = $this->params('module');
+        // Get config
+        $config = Pi::service('registry')->config->read($module);
+        // Check active
+        if (!$config['user_submit']) {
+            $this->getResponse()->setStatusCode(403);
+            $this->terminate(__('Submit video by users inactive'), '', 'error-denied');
+            $this->view()->setLayout('layout-simple');
+            return;
+        }
         // Check user is login or not
         Pi::service('authentication')->requireLogin();
         // check category
@@ -159,11 +178,6 @@ class SubmitController extends IndexController
                 'action'      => 'index',
             ));
         }
-        // Get info from url
-        $id = $this->params('id');
-        $module = $this->params('module');
-        // Get config
-        $config = Pi::service('registry')->config->read($module);
         // Check id
         if ($id) {
             // Get video
@@ -309,13 +323,20 @@ class SubmitController extends IndexController
 
     public function additionalAction()
     {
-        // Check user is login or not
-        Pi::service('authentication')->requireLogin();
         // Get id
         $id = $this->params('id');
         $module = $this->params('module');
         // Get config
         $config = Pi::service('registry')->config->read($module);
+        // Check active
+        if (!$config['user_submit']) {
+            $this->getResponse()->setStatusCode(403);
+            $this->terminate(__('Submit video by users inactive'), '', 'error-denied');
+            $this->view()->setLayout('layout-simple');
+            return;
+        }
+        // Check user is login or not
+        Pi::service('authentication')->requireLogin();
         // Find video
         if ($id) {
             // Get video
@@ -404,13 +425,20 @@ class SubmitController extends IndexController
 
     public function finishAction()
     {
-        // Check user is login or not
-        Pi::service('authentication')->requireLogin();
         // Get info from url
         $id = $this->params('id');
         $module = $this->params('module');
         // Get config
         $config = Pi::service('registry')->config->read($module);
+        // Check active
+        if (!$config['user_submit']) {
+            $this->getResponse()->setStatusCode(403);
+            $this->terminate(__('Submit video by users inactive'), '', 'error-denied');
+            $this->view()->setLayout('layout-simple');
+            return;
+        }
+        // Check user is login or not
+        Pi::service('authentication')->requireLogin();
         // Check
         if ($id) {
             // Get video

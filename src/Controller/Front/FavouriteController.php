@@ -25,8 +25,8 @@ class FavouriteController extends IndexController
         Pi::service('authentication')->requireLogin();
         // Check tag
         if (!Pi::service('module')->isActive('favourite')) {
-            $this->getResponse()->setStatusCode(404);
-            $this->terminate(__('Favourite module not installed.'), '', 'error-404');
+            $this->getResponse()->setStatusCode(403);
+            $this->terminate(__('Favourite module not installed.'), '', 'error-denied');
             $this->view()->setLayout('layout-simple');
             return;
         }

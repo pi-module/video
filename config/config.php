@@ -21,17 +21,13 @@ return array(
             'title' => _a('Json output'),
             'name' => 'json'
         ),
-        /* array(
-            'title' => _a('Broadcasting System'),
-            'name' => 'broadcast'
-        ),
-        array(
-            'title' => _a('Manage link'),
-            'name' => 'link'
-        ), */
         array(
             'title' => _a('View'),
             'name' => 'view'
+        ),
+        array(
+            'title' => _a('Submit'),
+            'name' => 'submit'
         ),
         array(
             'title' => _a('Media'),
@@ -93,56 +89,6 @@ return array(
             'filter' => 'string',
             'value' => md5(rand(1,99999)),
         ),
-        /* // Broadcast
-        'broadcast_system' => array(
-            'title' => _a('Broadcasting System'),
-            'description' => '',
-            'edit' => array(
-                'type' => 'select',
-                'options' => array(
-                    'options' => array(
-                        'file' => _a('Broadcast from file'),
-                        'wowza' => _a('Wowza Streaming Engine'),
-                    ),
-                ),
-            ),
-            'filter' => 'text',
-            'value' => 'file',
-            'category' => 'broadcast',
-        ),
-        'broadcast_url' => array(
-            'category' => 'broadcast',
-            'title' => _a('Wowza url and application name'),
-            'description' => _a('Wowza server ip or url and port, without prefix ( http:// , rtmp:// , rtsp:// ), for example : 127.0.0.1:1935/vod'),
-            'edit' => 'text',
-            'filter' => 'string',
-            'value' => ''
-        ),
-        'broadcast_source' => array(
-            'category' => 'broadcast',
-            'title' => _a('Wowza source'),
-            'description' => _a('Name of media source, than create on wowza vod or media cache service, for example : mp4:http'),
-            'edit' => 'text',
-            'filter' => 'string',
-            'value' => ''
-        ),
-        // Link
-        'link_url' => array(
-            'category' => 'link',
-            'title' => _a('Default video url'),
-            'description' => sprintf(_a('Full url by http:// or https:// without add / on end, for example : %s'), Pi::url()),
-            'edit' => 'text',
-            'filter' => 'string',
-            'value' => ''
-        ),
-        'link_path' => array(
-            'category' => 'link',
-            'title' => _a('Default video path'),
-            'description' => _a('Without add / on start and end, for example : upload/video/2016/09'),
-            'edit' => 'text',
-            'filter' => 'string',
-            'value' => ''
-        ), */
         // View
         'view_perpage' => array(
             'category' => 'view',
@@ -203,10 +149,11 @@ return array(
             'filter' => 'number_int',
             'value' => 5
         ),
-        'view_url' => array(
-            'category' => 'view',
-            'title' => _a('Show output urls under player page'),
-            'description' => _a('Work just on Wowza Streaming Engine mode'),
+        // Submit
+        'user_submit' => array(
+            'category' => 'submit',
+            'title' => _a('Users can submit videos'),
+            'description' => '',
             'edit' => 'checkbox',
             'filter' => 'number_int',
             'value' => 1
