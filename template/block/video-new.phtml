@@ -163,6 +163,48 @@
                     </div>
                 <?php } ?>
             </div>
+        <?php } elseif ($block['list-type'] == 'spotlight') { ?>
+            <div class="video-spotlight">
+                <?php $spotlight  = array_shift($block['resources']); ?>
+                <?php $this->headScript()->appendFile($spotlight['qmeryScript']); ?>
+                <div class="col-sm-12 col-md-12 h-review clearfix" itemscope itemtype="http://schema.org/VideoObject">
+                    <meta itemprop="thumbnail" content="<?php echo $this->escape($spotlight['largeUrl']); ?>" />
+                    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $spotlight['time_publish'])); ?>" />
+                    <meta itemprop="contentUrl" content="<?php echo $this->escape($spotlight['videoFileUrl']); ?>" />
+                    <div class="qmery-player">
+                        <div class="qmery-player">
+                            <div id="embed_qmery_player_<?php echo $this->escape($spotlight['video_qmery_id']); ?>"></div>
+                            <div id="embed_qmery_player_icons<?php echo $this->escape($spotlight['video_qmery_id']); ?>"></div>
+                        </div>
+                    </div>
+                </div>
+                <?php if (!empty($block['resources'])) { ?>
+                    <?php foreach ($block['resources'] as $video) { ?>
+                        <div class="col-sm-6 col-md-4 videoBox h-review" itemscope itemtype="http://schema.org/VideoObject">
+                            <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
+                            <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
+                            <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />
+                            <div class="thumbnail">
+                                <?php if ($video['image']) { ?>
+                                    <a itemprop="url" class="u-photo" title="<?php echo $this->escape($video['title']); ?>"
+                                       href="<?php echo $this->escape($video['videoUrl']); ?>">
+                                        <img itemprop="image" src="<?php echo $video['thumbUrl']; ?>"
+                                             alt="<?php echo $this->escape($video['title']); ?>"/>
+                                    </a>
+                                <?php } ?>
+                                <div class="caption">
+                                    <h4 itemprop="name" class="p-name">
+                                        <a itemprop="url" title="<?php echo $this->escape($video['title']); ?>"
+                                           href="<?php echo $this->escape($video['videoUrl']); ?>">
+                                            <?php echo $this->escape($video['title']); ?>
+                                        </a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+            </div>
         <?php } ?>
     </div>
     <?php if ($block['more-show'] && !empty($block['more-link'])) { ?>
