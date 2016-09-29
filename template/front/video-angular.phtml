@@ -85,13 +85,13 @@ switch ($config['view_column']) {
         <?php include $this->template('front/user'); ?>
     </div>
     <div class="col-sm-12 col-md-3">
-        <div class="video-search-form clearfix">
+        <div class="video-search-form well well-sm clearfix">
             <div class="page-header">
                 <h4><?php _e('Search on this group'); ?></h4>
             </div>
             <form>
                 <div class="form-group">
-                    <label><?php _e('Title'); ?></label>
+                    <label><i class="fa fa-search"></i> <?php _e('Title'); ?></label>
                     <input type="text" ng-model="filterTitle" class="form-control">
                 </div>
                 <?php $filterNameArray = array(); ?>
@@ -105,7 +105,14 @@ switch ($config['view_column']) {
                         );
                         ?>
                         <div class="form-group">
-                            <label><?php echo $singleFilter['title']; ?></label>
+                            <label>
+                                <?php if ($singleFilter['icon']) { ?>
+                                    <i class="fa <?php echo $singleFilter['icon']; ?>"></i>
+                                <?php } elseif ($singleFilter['image']) { ?>
+                                    <img src="<?php echo $singleFilter['image']; ?>" alt="<?php echo $singleFilter['title']; ?>">
+                                <?php } ?>
+                                <?php echo $singleFilter['title']; ?>
+                            </label>
                             <select ng-model="<?php echo $filterName; ?>" class="form-control">
                                 <option value=""><?php _e('All'); ?></option>
                                 <?php foreach ($singleFilter['value']['data'] as $valueData) { ?>
@@ -124,7 +131,14 @@ switch ($config['view_column']) {
                                 'filterName' => $filterName
                             );
                             ?>
-                            <label><?php echo $singleFilter['title']; ?></label>
+                            <label>
+                                <?php if ($singleFilter['icon']) { ?>
+                                    <i class="fa <?php echo $singleFilter['icon']; ?>"></i>
+                                <?php } elseif ($singleFilter['image']) { ?>
+                                    <img src="<?php echo $singleFilter['image']; ?>" alt="<?php echo $singleFilter['title']; ?>">
+                                <?php } ?>
+                                <?php echo $singleFilter['title']; ?>
+                            </label>
                             <input type="text" ng-model="<?php echo $filterName; ?>" class="form-control">
                         </div>
                     <?php } ?>

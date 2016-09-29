@@ -120,18 +120,13 @@ EOT;
     </div>
     <div class="row clearfix">
         <div class="col-md-8">
-            <div class="clearfix video-info-box" itemprop="description">
-                <?php echo $videoItem['text_summary']; ?>
-            </div>
             <div class="text-center video-player">
                 <?php if ($videoItem['server']['type'] == 'file') { ?>
                     <?php echo $this->videojs($videoItem['videoFileUrl'], $videoItem['largeUrl']); ?>
                 <?php } elseif ($videoItem['server']['type'] == 'qmery') { ?>
                     <div class="qmery-player">
-                        <div class="qmery-player">
-                            <div id="embed_qmery_player_<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
-                            <div id="embed_qmery_player_icons<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
-                        </div>
+                        <div id="embed_qmery_player_<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
+                        <div id="embed_qmery_player_icons<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
                     </div>
                 <?php } elseif ($videoItem['server']['type'] == 'wowza') { ?>
                     <div class="clearfix">
@@ -191,19 +186,25 @@ EOT;
                     <?php } ?>
                 </ul>
             </div>
-            <div class="clearfix video-info-box" itemprop="description">
-                <?php echo $videoItem['text_description']; ?>
+            <div class="well well-sm clearfix">
+                <h2><?php _e('Description'); ?></h2>
+                <div class="clearfix video-info-box" itemprop="description">
+                    <?php echo $videoItem['text_summary']; ?>
+                </div>
+                <div class="clearfix video-info-box" itemprop="description">
+                    <?php echo $videoItem['text_description']; ?>
+                </div>
             </div>
             <?php include $this->template('front/tag'); ?>
         </div>
         <div class="col-md-4">
-            <div class="video-channel" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <!-- <div class="video-channel" itemprop="author" itemscope itemtype="http://schema.org/Person">
                 <a title="<?php _e('User channel'); ?>" href="<?php echo $this->escape($videoItem['channelUrl']); ?>">
                     <?php echo $submitter['avatar']; ?>
                     <?php echo sprintf(__('%s channel'), $this->escape($submitter['name'])); ?>
                 </a>
                 <meta itemprop="name" content="<?php echo $this->escape($submitter['name']); ?>" />
-            </div>
+            </div> -->
             <?php include $this->template('front/attribute'); ?>
             <?php include $this->template('front/video-related'); ?>
         </div>

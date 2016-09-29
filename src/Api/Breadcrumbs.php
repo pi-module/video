@@ -52,13 +52,13 @@ class Breadcrumbs extends AbstractBreadcrumbs
                                 break;
 
                             case 'index':
-                                $result[] = array(
+                                /* $result[] = array(
                                     'label' => __('Category list'),
                                     'href' => Pi::url(Pi::service('url')->assemble('video', array(
                                         'module' => $this->getModule(),
                                         'controller' => 'category',
                                     ))),
-                                );
+                                ); */
 
                                 $category = Pi::api('category', 'video')->getCategory($params['slug'], 'slug');
                                 $result = $this->makeCategoryList($category['parent'], $result);
@@ -72,13 +72,13 @@ class Breadcrumbs extends AbstractBreadcrumbs
                     case 'watch':
                         $video = Pi::api('video', 'video')->getVideoLight($params['slug'], 'slug');
                         // Category list
-                        $result[] = array(
+                        /* $result[] = array(
                             'label' => __('Category list'),
                             'href' => Pi::url(Pi::service('url')->assemble('video', array(
                                 'module' => $this->getModule(),
                                 'controller' => 'category',
                             ))),
-                        );
+                        ); */
                         // Check have category_main
                         if ($video['category_main'] > 0) {
                             $category = Pi::api('category', 'video')->getCategory($video['category_main']);
