@@ -300,7 +300,7 @@ class VideoController extends ActionController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         if ($id) {
-            $video = Pi::api('video', 'video')->getVideoLight($id);
+            $video = Pi::api('video', 'video')->getVideo($id);
             $server = $video['video_server'];
         }
         // Check server
@@ -411,7 +411,7 @@ class VideoController extends ActionController
         $option = array();
         // Find video
         if ($id) {
-            $video = Pi::api('video', 'video')->getVideoLight($id);
+            $video = Pi::api('video', 'video')->getVideo($id);
             if ($video['image']) {
                 $option['thumbUrl'] = Pi::url($video['thumbUrl']);
                 $option['removeUrl'] = $this->url('', array('action' => 'remove', 'id' => $video['id']));
@@ -546,7 +546,7 @@ class VideoController extends ActionController
         $config = Pi::service('registry')->config->read($module);
         // Find video
         if ($id) {
-            $video = Pi::api('video', 'video')->getVideoLight($id);
+            $video = Pi::api('video', 'video')->getVideo($id);
         } else {
             $this->jump(array('action' => 'index'), __('Please select video'));
         }

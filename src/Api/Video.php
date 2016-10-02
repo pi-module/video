@@ -292,6 +292,12 @@ class Video extends AbstractApi
         }
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
+        // Get category list
+        // $categoryList = (empty($categoryList)) ? Pi::registry('categoryList', 'video')->read() : $categoryList;
+        // Get server list
+        $serverList = (empty($serverList)) ? Pi::registry('serverList', 'video')->read() : $serverList;
+        // Set server information
+        $video['server'] = $serverList[$video['video_server']];
         // boject to array
         $video = $video->toArray();
         // Set times
@@ -353,6 +359,10 @@ class Video extends AbstractApi
         $config = Pi::service('registry')->config->read($this->getModule());
         // Get category list
         $categoryList = (empty($categoryList)) ? Pi::registry('categoryList', 'video')->read() : $categoryList;
+        // Get server list
+        $serverList = (empty($serverList)) ? Pi::registry('serverList', 'video')->read() : $serverList;
+        // Set server information
+        $video['server'] = $serverList[$video['video_server']];
         // boject to array
         $video = $video->toArray();
         // Make setting
@@ -441,9 +451,12 @@ class Video extends AbstractApi
         }
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
-        $configSystem = Pi::service('registry')->config->read('system');
         // Get category list
         $categoryList = (empty($categoryList)) ? Pi::registry('categoryList', 'video')->read() : $categoryList;
+        // Get server list
+        $serverList = (empty($serverList)) ? Pi::registry('serverList', 'video')->read() : $serverList;
+        // Set server information
+        $video['server'] = $serverList[$video['video_server']];
         // boject to array
         $video = $video->toArray();
         // Make setting
