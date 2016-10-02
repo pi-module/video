@@ -101,14 +101,45 @@ class Video extends Standard
                             $matches['slug'] = $this->decode($parts[2]);
                         } elseif ($parts[1] == 'filterTag') {
                             $matches['slug'] = $this->decode($parts[2]);
-                        } elseif ($parts[1] == 'filterSearch') {
-                            $keyword = _get('keyword');
-                            if (isset($keyword) && !empty($keyword)) {
-                                $matches['keyword'] = $keyword;
-                            }
                         }
 
-                        if (isset($parts[2]) && $parts[2] == 'id') {
+                        if (in_array('id', $parts)) {
+                            $matches['id'] = intval($this->decode($parts[array_search('id', $parts) + 1]));
+                        }
+
+                        if (in_array('slug', $parts)) {
+                            $matches['slug'] = urldecode($this->decode($parts[array_search('slug', $parts) + 1]));
+                        }
+
+                        if (in_array('update', $parts)) {
+                            $matches['update'] = intval($this->decode($parts[array_search('update', $parts) + 1]));
+                        }
+
+                        if (in_array('password', $parts)) {
+                            $matches['password'] = urldecode($this->decode($parts[array_search('password', $parts) + 1]));
+                        }
+
+                        if (in_array('type', $parts)) {
+                            $matches['type'] = urldecode($this->decode($parts[array_search('type', $parts) + 1]));
+                        }
+
+                        if (in_array('order', $parts)) {
+                            $matches['order'] = urldecode($this->decode($parts[array_search('order', $parts) + 1]));
+                        }
+
+                        if (in_array('limit', $parts)) {
+                            $matches['limit'] = intval($this->decode($parts[array_search('limit', $parts) + 1]));
+                        }
+
+                        if (in_array('category', $parts)) {
+                            $matches['category'] = intval($this->decode($parts[array_search('category', $parts) + 1]));
+                        }
+
+                        if (in_array('keyword', $parts)) {
+                            $matches['keyword'] = urldecode($this->decode($parts[array_search('keyword', $parts) + 1]));
+                        }
+
+                        /* if (isset($parts[2]) && $parts[2] == 'id') {
                             $matches['id'] = intval($parts[3]);
                         }
 
@@ -122,7 +153,7 @@ class Video extends Standard
                             $matches['password'] = $this->decode($parts[5]);
                         } elseif (isset($parts[6]) && $parts[6] == 'password') {
                             $matches['password'] = $this->decode($parts[7]);
-                        }
+                        } */
 
                         break;
                 }

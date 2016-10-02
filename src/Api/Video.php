@@ -19,7 +19,8 @@ use Zend\Json\Json;
 
 /*
  * Pi::api('video', 'video')->getVideo($parameter, $type);
- * Pi::api('video', 'video')->getVideoLight($parameter, $type = 'id');
+ * Pi::api('video', 'video')->getVideoLight($parameter, $type);
+ * Pi::api('video', 'video')->getVideoJson($parameter, $type);
  * Pi::api('video', 'video')->getListFromId($id);
  * Pi::api('video', 'video')->attributeCount($id);
  * Pi::api('video', 'video')->canonizeVideo($video);
@@ -40,6 +41,14 @@ class Video extends AbstractApi
         // Get video
         $video = Pi::model('video', $this->getModule())->find($parameter, $type);
         $video = $this->canonizeVideoLight($video);
+        return $video;
+    }
+
+    public function getVideoJson($parameter, $type = 'id')
+    {
+        // Get video
+        $video = Pi::model('video', $this->getModule())->find($parameter, $type);
+        $video = $this->canonizeVideoJson($video);
         return $video;
     }
 
@@ -242,11 +251,11 @@ class Video extends AbstractApi
         foreach ($video['category'] as $category) {
             if (!empty($categoryList[$category]['title'])) {
                 $video['categories'][$category]['title'] = $categoryList[$category]['title'];
-                $video['categories'][$category]['url'] = Pi::service('url')->assemble('video', array(
+                $video['categories'][$category]['url'] = Pi::url(Pi::service('url')->assemble('video', array(
                     'module' => $this->getModule(),
                     'controller' => 'category',
                     'slug' => $categoryList[$category]['slug'],
-                ));
+                )));
             }
         }
         // Set image url
@@ -315,12 +324,6 @@ class Video extends AbstractApi
             'controller' => 'channel',
             'id' => $video['uid'],
         )));
-        // Set video file url
-        $video['videoFileUrl'] = Pi::url(sprintf('%s/%s/%s',
-            $video['server']['url'],
-            $video['video_path'],
-            $video['video_file']
-        ));
         // Set image url
         if ($video['image']) {
             // Set image thumb url
@@ -349,7 +352,7 @@ class Video extends AbstractApi
         return $video;
     }
 
-    public function canonizeVideoJson($video, $categoryList = array())
+    public function canonizeVideoJson($video, $categoryList = array(), $serverList = array())
     {
         // Check
         if (empty($video)) {
@@ -391,13 +394,98 @@ class Video extends AbstractApi
             'id' => $video['uid'],
         )));
         // Set video file url
-        $video['videoFileUrl'] = Pi::url(sprintf('%s/%s/%s',
-            $video['server']['url'],
-            $video['video_path'],
-            $video['video_file']
-        ));
+        switch ($video['server']['type']) {
+            case 'file':
+                $video['videoFileUrl'] = sprintf('%s/%s/%s',
+                    $video['server']['url'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+                break;
+
+            case 'qmery':
+                $video['qmeryIframe'] = sprintf('%s/v/%s',
+                    $video['server']['url'],
+                    $video['video_qmery_hash']
+                );
+                $video['qmeryScript'] = sprintf('%s/embed.js?video=%s&w=640&h=360',
+                    $video['server']['url'],
+                    $video['video_qmery_hash']
+                );
+                $video['qmeryDirect'] = sprintf('%s/v/%s',
+                    $video['server']['url'],
+                    $video['video_qmery_hash']
+                );
+                $video['qmeryJson'] = sprintf('%s/video/%s.json',
+                    $video['server']['url'],
+                    $video['video_qmery_hash']
+                );
+                break;
+
+            case 'wowza':
+                $video['videoFileUrl'] = sprintf('%s/%s/%s',
+                    $video['server']['url'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+
+                $video['mpegDashUrl'] = sprintf('http://%s/%s/%s/manifest.mpd',
+                    $video['server']['url'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+
+                $video['adobeHdsUrl'] = sprintf('http://%s/%s/%s/manifest.f4m',
+                    $video['server']['url'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+
+                $video['jwplayerUrl'] = sprintf('http://%s/%s/%s/jwplayer.mpd',
+                    $video['server']['url'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+
+                $video['iosUrl'] = sprintf('http://%s/%s/%s/playlist.m3u8',
+                    $video['server']['url'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+
+                $video['androidUrl'] = sprintf('rtsp://%s/%s/%s',
+                    $video['server']['url'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+
+                $video['rtspUrl'] = sprintf('rtsp://%s/%s/%s',
+                    $video['server']['url'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+
+                $video['rtmpUrl'] = sprintf('rtmp://%s/%s/%s',
+                    $video['server']['url'],
+                    $video['video_path'],
+                    $video['video_file']
+                );
+                break;
+        }
+        // Set video duration
+        $video['video_duration_view'] = $this->videoDuration($video['video_duration']);
         // Set category information
         $video['category'] = Json::decode($video['category']);
+        foreach ($video['category'] as $category) {
+            if (!empty($categoryList[$category]['title'])) {
+                $video['categories'][$category]['title'] = $categoryList[$category]['title'];
+                $video['categories'][$category]['url'] = Pi::url(Pi::service('url')->assemble('video', array(
+                    'module' => $this->getModule(),
+                    'controller' => 'category',
+                    'slug' => $categoryList[$category]['slug'],
+                )));
+            }
+        }
         // Set image url
         if ($video['image']) {
             // Set image original url
@@ -480,12 +568,6 @@ class Video extends AbstractApi
             'controller' => 'channel',
             'id' => $video['uid'],
         )));
-        // Set video file url
-        $video['videoFileUrl'] = Pi::url(sprintf('%s/%s/%s',
-            $video['server']['url'],
-            $video['video_path'],
-            $video['video_file']
-        ));
         // Set category information
         $video['category'] = Json::decode($video['category']);
         foreach ($video['category'] as $category) {
