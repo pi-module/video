@@ -44,7 +44,7 @@ class JsonController extends IndexController
         $module = $this->params('module');
         $type = $this->params('type');
         $limit = $this->params('limit');
-        $category = $this->params('category');
+        $id = $this->params('id');
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Get category list
@@ -83,7 +83,7 @@ class JsonController extends IndexController
 
             case 'category':
                 // Set info
-                $where['category'] = $category;
+                $where['category'] = $id;
                 $columns = array('video' => new Expression('DISTINCT video'));
                 // Get info from link table
                 $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order);
