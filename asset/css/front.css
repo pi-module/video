@@ -156,8 +156,6 @@
 }
 
 /* player */
-.video-player {}
-
-.video-player[poster] {
-
+.qmery-player {
+    min-height: 380px;
 }
