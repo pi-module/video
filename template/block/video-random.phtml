@@ -123,12 +123,14 @@
                                          alt="<?php echo $this->escape($video['title']); ?>"/>
                                 </a>
                             <?php } ?>
-                            <h3 itemprop="name" class="p-name">
-                                <a itemprop="url" class="u-url" title="<?php echo $this->escape($video['title']); ?>"
-                                   href="<?php echo $this->escape($video['videoUrl']); ?>">
-                                    <?php echo $this->escape($video['title']); ?>
-                                </a>
-                            </h3>
+                            <div class="caption">
+                                <h3 itemprop="name" class="p-name">
+                                    <a itemprop="url" class="u-url" title="<?php echo $this->escape($video['title']); ?>"
+                                       href="<?php echo $this->escape($video['videoUrl']); ?>">
+                                        <?php echo $this->escape($video['title']); ?>
+                                    </a>
+                                </h3>
+                            </div>
                         </div>
                     </div>
                 <?php } ?>
