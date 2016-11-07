@@ -401,7 +401,7 @@ class JsonController extends IndexController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Check password
-        if ($config['json_check_password']) {
+        /* if ($config['json_check_password']) {
             if ($config['json_password'] != $password) {
                 $this->getResponse()->setStatusCode(401);
                 $this->terminate(__('Password not set or wrong'), '', 'error-denied');
@@ -413,20 +413,27 @@ class JsonController extends IndexController
             $this->terminate(__('Password not set or wrong'), '', 'error-denied');
             $this->view()->setLayout('layout-simple');
             return;
-        }
+        } */
         // Check post
         if ($this->request->isPost()) {
-            $data = $this->request->getPost()->toArray();
-            $data = json_encode($data);
-            $this->getModel('video')->update(
-                array('setting' => $data),
+            //$data = $this->request->getPost();
+            //$data = json_encode($data);
+
+            Pi::model('video', $this->getModule())->update(
+                array('setting' => array(1)),
                 array('id' => $id)
             );
+
             return array(
                 'message' => 'success',
                 'status' => 1,
             );
         } else {
+            Pi::model('video', $this->getModule())->update(
+                array('setting' => array(2)),
+                array('id' => $id)
+            );
+
             return array(
                 'message' => 'error',
                 'status' => 0,

@@ -50,10 +50,8 @@ class SubmitController extends IndexController
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
-            return $this->redirect()->toRoute('', array(
-                'controller' => 'category',
-                'action' => 'update'
-            ));
+            $message = __('No category set by admin');
+            $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
         }
         // Set option
         $option = array();
@@ -170,10 +168,8 @@ class SubmitController extends IndexController
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
-            return $this->redirect()->toRoute('', array(
-                'controller'  => 'index',
-                'action'      => 'index',
-            ));
+            $message = __('No category set by admin');
+            $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
         }
         // Check id
         if ($id) {

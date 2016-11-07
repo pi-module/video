@@ -16,10 +16,7 @@ namespace Module\Video\Api;
 use Pi;
 use Pi\Application\Api\AbstractApi;
 use Zend\Json\Json;
-use Zend\Http\Client;
-use Zend\Http\Request;
-use Zend\Http\Headers;
-use Zend\Http\Client\Adapter\Curl;
+
 /*
  * Pi::api('video', 'video')->getVideo($parameter, $type);
  * Pi::api('video', 'video')->getVideoLight($parameter, $type);
@@ -653,24 +650,23 @@ class Video extends AbstractApi
         // Set video
         $video = $this->canonizeVideoFilter($video);
         $video['videoFilePath'] = Pi::path(sprintf('%s/%s', $video['video_path'], $video['video_file']));
-        $video['videoFileUrl'] = Pi::url(sprintf('%s/%s', $video['video_path'], $video['video_file']));
-        $video['callback_url'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
-            'controller' => 'json',
-            'action' => 'qmeryCallback',
-            'id' => $video['id'],
-            'password' => $config['json_password'],
-        )));
+        $video['videoFileUrl'] = sprintf('%s/%s/%s', 'http://www.ocook.org', $video['video_path'], $video['video_file']);
 
         // Set API url
         $apiUrl = 'http://api.qmery.com/v1/videos.json?api_token=7d7eabb0652b';
 
         // Set fields
         $fields = array();
-        //$fields['url'] = Pi::url($file);
-        $fields['url'] = 'http://www.osport.ir/upload/video/file/2016/07/media-5775c1449663d.mp4';
+        $fields['url'] = $video['videoFileUrl'];
+        $fields['user_id'] = Pi::user()->getId();
         $fields['group_id'] = '29628';
-        $fields['user_id'] = $video['uid'];
+        $fields['callback_url'] = Pi::url(Pi::service('url')->assemble('video', array(
+            'module' => $this->getModule(),
+            'controller' => 'json',
+            'action' => 'qmeryCallback',
+            'id' => $video['id'],
+            //'password' => $config['json_password'],
+        )));
 
         // Set header
         $headers = array(
@@ -678,7 +674,12 @@ class Video extends AbstractApi
         );
 
         // Remote post
-        return Pi::service('remote')->post($apiUrl, $fields, $headers);
+        Pi::service('remote')->post($apiUrl, $fields, $headers);
+
+        Pi::model('video', $this->getModule())->update(
+            array('setting' => json_encode(array($apiUrl, $fields, $headers))),
+            array('id' => $video['id'])
+        );
     }
 
     public function sitemap()
