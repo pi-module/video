@@ -416,11 +416,11 @@ class JsonController extends IndexController
         } */
         // Check post
         if ($this->request->isPost()) {
-            //$data = $this->request->getPost();
+            $data = $this->request->getPost();
             //$data = json_encode($data);
 
             Pi::model('video', $this->getModule())->update(
-                array('setting' => array(1)),
+                array('setting' => json_encode(array(1, $data))),
                 array('id' => $id)
             );
 
@@ -430,7 +430,7 @@ class JsonController extends IndexController
             );
         } else {
             Pi::model('video', $this->getModule())->update(
-                array('setting' => array(2)),
+                array('setting' => json_encode(array(2))),
                 array('id' => $id)
             );
 
