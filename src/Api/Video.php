@@ -16,7 +16,10 @@ namespace Module\Video\Api;
 use Pi;
 use Pi\Application\Api\AbstractApi;
 use Zend\Json\Json;
-
+use Zend\Http\Client;
+use Zend\Http\Request;
+use Zend\Http\Headers;
+use Zend\Http\Client\Adapter\Curl;
 /*
  * Pi::api('video', 'video')->getVideo($parameter, $type);
  * Pi::api('video', 'video')->getVideoLight($parameter, $type);
@@ -24,6 +27,7 @@ use Zend\Json\Json;
  * Pi::api('video', 'video')->getListFromId($id);
  * Pi::api('video', 'video')->attributeCount($id);
  * Pi::api('video', 'video')->canonizeVideo($video);
+ * Pi::api('video', 'video')->qmeryUpload($post);
  */
 
 class Video extends AbstractApi
@@ -577,15 +581,17 @@ class Video extends AbstractApi
             'id' => $video['uid'],
         )));
         // Set category information
-        $video['category'] = Json::decode($video['category']);
-        foreach ($video['category'] as $category) {
-            $video['categories'][$category]['id'] = $categoryList[$category]['id'];
-            $video['categories'][$category]['title'] = $categoryList[$category]['title'];
-            $video['categories'][$category]['url'] = Pi::url(Pi::service('url')->assemble('video', array(
-                'module' => $this->getModule(),
-                'controller' => 'category',
-                'slug' => $categoryList[$category]['slug'],
-            )));
+        if (isset($video['category']) && !empty($video['category'])) {
+            $video['category'] = Json::decode($video['category']);
+            foreach ($video['category'] as $category) {
+                $video['categories'][$category]['id'] = $categoryList[$category]['id'];
+                $video['categories'][$category]['title'] = $categoryList[$category]['title'];
+                $video['categories'][$category]['url'] = Pi::url(Pi::service('url')->assemble('video', array(
+                    'module' => $this->getModule(),
+                    'controller' => 'category',
+                    'slug' => $categoryList[$category]['slug'],
+                )));
+            }
         }
         // Set image url
         if ($video['image']) {
@@ -637,6 +643,42 @@ class Video extends AbstractApi
         unset($video['setting']);
         // return video
         return $video;
+    }
+
+    public function qmeryUpload($video)
+    {
+        // Get config
+        $config = Pi::service('registry')->config->read($this->getModule());
+
+        // Set video
+        $video = $this->canonizeVideoFilter($video);
+        $video['videoFilePath'] = Pi::path(sprintf('%s/%s', $video['video_path'], $video['video_file']));
+        $video['videoFileUrl'] = Pi::url(sprintf('%s/%s', $video['video_path'], $video['video_file']));
+        $video['callback_url'] = Pi::url(Pi::service('url')->assemble('video', array(
+            'module' => $this->getModule(),
+            'controller' => 'json',
+            'action' => 'qmeryCallback',
+            'id' => $video['id'],
+            'password' => $config['json_password'],
+        )));
+
+        // Set API url
+        $apiUrl = 'http://api.qmery.com/v1/videos.json?api_token=7d7eabb0652b';
+
+        // Set fields
+        $fields = array();
+        //$fields['url'] = Pi::url($file);
+        $fields['url'] = 'http://www.osport.ir/upload/video/file/2016/07/media-5775c1449663d.mp4';
+        $fields['group_id'] = '29628';
+        $fields['user_id'] = $video['uid'];
+
+        // Set header
+        $headers = array(
+            'Accept' => 'application/json',
+        );
+
+        // Remote post
+        return Pi::service('remote')->post($apiUrl, $fields, $headers);
     }
 
     public function sitemap()

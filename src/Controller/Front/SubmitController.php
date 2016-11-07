@@ -63,7 +63,7 @@ class SubmitController extends IndexController
         $form->setAttribute('enctype', 'multipart/form-data');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
-            $file = $this->request->getFiles();
+            $file = $this->request->getFiles()->toArray();
             $form->setInputFilter(new VideoUploadFilter);
             $form->setData($data);
             if ($form->isValid()) {
@@ -83,8 +83,6 @@ class SubmitController extends IndexController
                         $uploader->receive();
                         // Get video_file
                         $values['video_file'] = $uploader->getUploaded('video');
-                        // Set video_url
-                        //$values['video_url'] = Pi::url();
                     } else {
                         $this->jump(array('action' => 'upload'), __('Problem in upload video. please try again'));
                     }
@@ -116,9 +114,8 @@ class SubmitController extends IndexController
                 $row = $this->getModel('video')->createRow();
                 $row->assign($values);
                 $row->save();
-                // Jump
-                // $message = __('Video file upload successfully. Please complete update');
-                // $this->jump(array('action' => 'update', 'id' => $row->id), $message);
+                // Send video to qmery
+                Pi::api('video', 'video')->qmeryUpload($row);
                 // result
                 return array(
                     'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
