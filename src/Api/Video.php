@@ -662,28 +662,44 @@ class Video extends AbstractApi
             $video['video_path'],
             $video['video_file']
         ));
-        $fields['callback_url'] = Pi::url(Pi::service('url')->assemble('video', array(
+        /* $fields['callback_url'] = Pi::url(Pi::service('url')->assemble('video', array(
             'module' => $this->getModule(),
             'controller' => 'json',
             'action' => 'qmeryCallback',
             'id' => $video['id'],
             //'password' => $config['json_password'],
-        )));
+        ))); */
         $fields['url'] = str_replace("https://", "http://", $fields['url']);
-        $fields['callback_url'] = str_replace("https://", "http://", $fields['callback_url']);
+        //$fields['callback_url'] = str_replace("https://", "http://", $fields['callback_url']);
+        $fields = json_encode($fields);
 
-        // Set header
+        /* // Set header
         $headers = array(
             'Accept' => 'application/json',
         );
-
         // Remote post
-        Pi::service('remote')->post($apiUrl, $fields, $headers);
+        Pi::service('remote')->post($apiUrl, $fields, $headers); */
+
+        $ch = curl_init($apiUrl);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($fields))
+        );
+        $result = curl_exec($ch);
 
         Pi::model('video', $this->getModule())->update(
-            array('setting' => json_encode(array($apiUrl, $fields, $headers))),
+            array(
+                'video_qmery_hash' => $result['hash_id'],
+                'video_qmery_id' => $result['id'],
+                'video_qmery_hls' => $result['hls'],
+            ),
             array('id' => $video['id'])
         );
+
+        return $result;
     }
 
     public function sitemap()

@@ -35,6 +35,7 @@ CREATE TABLE `{video}` (
 
   `video_qmery_hash` VARCHAR(64)             NOT NULL DEFAULT '',
   `video_qmery_id`   INT(10) UNSIGNED        NOT NULL DEFAULT '0',
+  `video_qmery_hls`  VARCHAR(64)             NOT NULL DEFAULT '',
 
   `video_size`       VARCHAR(16)             NOT NULL DEFAULT '',
   `video_duration`   VARCHAR(16)             NOT NULL DEFAULT '',

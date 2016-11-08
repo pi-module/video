@@ -66,6 +66,9 @@ class SubmitController extends IndexController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
+                // Get server default
+                $serverDefault = Pi::registry('serverDefault', 'video')->read();
+                $values['video_server'] = $serverDefault['id'];
                 // upload video
                 if (!empty($file['video']['name'])) {
                     // Set upload path
@@ -113,7 +116,9 @@ class SubmitController extends IndexController
                 $row->assign($values);
                 $row->save();
                 // Send video to qmery
-                Pi::api('video', 'video')->qmeryUpload($row);
+                if ($serverDefault['type'] == 'qmery') {
+                    Pi::api('video', 'video')->qmeryUpload($row);
+                }
                 // result
                 return array(
                     'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
