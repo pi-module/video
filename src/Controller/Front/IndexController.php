@@ -30,23 +30,40 @@ class IndexController extends ActionController
         $config = Pi::service('registry')->config->read($module);
         // category list
         $categoriesJson = Pi::api('category', 'video')->categoryListJson();
-        // Set filter url
-        $filterUrl = Pi::url($this->url('', array(
-            'controller' => 'json',
-            'action' => 'filterIndex'
-        )));
-        // Set filter list
-        $filterList = Pi::api('attribute', 'video')->filterList();
-        // Set view
-        $this->view()->setTemplate('video-angular');
+        // Check homepage type
+        switch ($config['homepage_type']) {
+            default:
+            case 'list':
+                // Set filter url
+                $filterUrl = Pi::url($this->url('', array(
+                    'controller' => 'json',
+                    'action' => 'filterIndex'
+                )));
+                // Set filter list
+                $filterList = Pi::api('attribute', 'video')->filterList();
+                // Set view
+                $this->view()->setTemplate('video-angular');
+                $this->view()->assign('config', $config);
+                $this->view()->assign('categoriesJson', $categoriesJson);
+                $this->view()->assign('filterUrl', $filterUrl);
+                $this->view()->assign('filterList', $filterList);
+                $this->view()->assign('videoTitleH1', __('List of videos'));
+                $this->view()->assign('showIndexDesc', 1);
+                $this->view()->assign('isHomepage', 1);
+                break;
 
-        $this->view()->assign('config', $config);
-        $this->view()->assign('categoriesJson', $categoriesJson);
-        $this->view()->assign('filterUrl', $filterUrl);
-        $this->view()->assign('filterList', $filterList);
-        $this->view()->assign('videoTitleH1', __('List of videos'));
-        $this->view()->assign('showIndexDesc', 1);
-        $this->view()->assign('isHomepage', 1);
+            case 'custom':
+                // Set title
+                $title = (!empty($config['homepage_title'])) ? $config['homepage_title'] : __('List of videos');
+                // Set view
+                $this->view()->setTemplate('video-custom-index');
+                $this->view()->assign('config', $config);
+                $this->view()->assign('categoriesJson', $categoriesJson);
+                $this->view()->assign('productTitleH1', $title);
+                $this->view()->assign('showIndexDesc', 1);
+                $this->view()->assign('isHomepage', 1);
+                break;
+        }
     }
 
     public function videoList($where, $limit = 0)

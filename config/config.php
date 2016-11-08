@@ -90,6 +90,29 @@ return array(
             'value' => md5(rand(1,99999)),
         ),
         // View
+        'homepage_type' => array(
+            'title' => _a('Homepage type'),
+            'description' => '',
+            'edit' => array(
+                'type' => 'select',
+                'options' => array(
+                    'options' => array(
+                        'list' => _a('List of all videos'),
+                        'custom' => _a('List of custom widgets'),
+                    ),
+                ),
+            ),
+            'filter' => 'text',
+            'value' => 'list',
+            'category' => 'view',
+        ),
+        'homepage_title' => array(
+            'category' => 'view',
+            'title' => _a('Homepage title'),
+            'description' => '',
+            'edit' => 'text',
+            'filter' => 'string',
+        ),
         'view_perpage' => array(
             'category' => 'view',
             'title' => _a('Perpage'),

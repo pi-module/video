@@ -1,0 +1,60 @@
+<?php
+$scriptMenu = <<<'EOT'
+$(function() {
+    var json = '%s';
+    $('#category-tree-view').treeview({
+        levels: 1,
+        data: json,
+        enableLinks: true,
+        expandIcon: 'fa fa-plus',
+		collapseIcon: 'fa fa-minus',
+		emptyIcon: 'fa',
+		checkedIcon: 'fa fa-check-square-o',
+		uncheckedIcon: 'fa fa-square-o',
+    });
+});
+EOT;
+$scriptMenu = sprintf(
+    $scriptMenu,
+    $categoriesJson
+);
+
+// Load header files
+$this->jQuery();
+$this->js($this->assetModule('js/bootstrap-treeview.min.js'));
+$this->css($this->assetModule('css/front.css'));
+$this->footScript()->appendScript($scriptMenu);
+?>
+<div class="clearfix row">
+    <div class="col-sm-12 col-md-3">
+        <div class="clearfix category-list">
+            <div class="page-header">
+                <h4><?php _e('Category list'); ?></h4>
+            </div>
+            <div class="clearfix">
+                <div id="category-tree-view"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-9">
+        <div class="clearfix">
+            <div class="video-list clearfix">
+                <?php if (isset($videoTitleH1) && !empty($videoTitleH1)) { ?>
+                    <div class="page-header">
+                        <h1><?php echo $videoTitleH1; ?></h1>
+                    </div>
+                <?php } elseif (isset($videoTitleH2) && !empty($videoTitleH2)) { ?>
+                    <div class="page-header">
+                        <h2><?php echo $videoTitleH2; ?></h2>
+                    </div>
+                <?php } ?>
+                <?php if (!empty($config['text_description_index']) && isset($showIndexDesc) && $showIndexDesc == 1 && isset($page) && $page == 1) { ?>
+                    <div class="well videoIndexDescription">
+                        <?php echo $config['text_description_index']; ?>
+                    </div>
+                <?php } ?>
+                <?php include $this->template('front/custom-block'); ?>
+            </div>
+        </div>
+    </div>
+</div>
