@@ -689,6 +689,7 @@ class Video extends AbstractApi
                 'Content-Length: ' . strlen($fields))
         );
         $result = curl_exec($ch);
+        $result = json_decode($result, true);
 
         Pi::model('video', $this->getModule())->update(
             array(

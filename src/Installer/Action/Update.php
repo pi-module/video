@@ -180,7 +180,7 @@ EOD;
 
         if (version_compare($moduleVersion, '0.6.4', '<')) {
             // Alter table field `video_qmery_hls`
-            $sql = sprintf("ALTER TABLE %s ADD `video_qmery_hls` VARCHAR(64) NOT NULL DEFAULT ''", $videoTable);
+            $sql = sprintf("ALTER TABLE %s ADD `video_qmery_hls` VARCHAR(255) NOT NULL DEFAULT ''", $videoTable);
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {

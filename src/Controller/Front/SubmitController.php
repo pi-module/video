@@ -53,6 +53,12 @@ class SubmitController extends IndexController
             $message = __('No category set by admin');
             $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
         }
+        // Get server default
+        $serverDefault = Pi::registry('serverDefault', 'video')->read();
+        if (empty($serverDefault)) {
+            $message = __('No server set by admin');
+            $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
+        }
         // Set option
         $option = array();
         $option['side'] = 'front';
@@ -66,9 +72,6 @@ class SubmitController extends IndexController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                // Get server default
-                $serverDefault = Pi::registry('serverDefault', 'video')->read();
-                $values['video_server'] = $serverDefault['id'];
                 // upload video
                 if (!empty($file['video']['name'])) {
                     // Set upload path
@@ -98,6 +101,8 @@ class SubmitController extends IndexController
                 $values['uid'] = Pi::user()->getId();
                 // Set status
                 $values['status'] = 2;
+                // Set server
+                $values['video_server'] = $serverDefault['id'];
                 // Set type
                 $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
                 switch ($extension) {

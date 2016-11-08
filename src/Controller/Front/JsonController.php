@@ -392,7 +392,7 @@ class JsonController extends IndexController
         return $video;
     }
 
-    public function qmeryCallbackAction()
+    /* public function qmeryCallbackAction()
     {
         // Get info from url
         $module = $this->params('module');
@@ -401,7 +401,7 @@ class JsonController extends IndexController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Check password
-        /* if ($config['json_check_password']) {
+        if ($config['json_check_password']) {
             if ($config['json_password'] != $password) {
                 $this->getResponse()->setStatusCode(401);
                 $this->terminate(__('Password not set or wrong'), '', 'error-denied');
@@ -413,7 +413,7 @@ class JsonController extends IndexController
             $this->terminate(__('Password not set or wrong'), '', 'error-denied');
             $this->view()->setLayout('layout-simple');
             return;
-        } */
+        }
         // Check post
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
@@ -439,7 +439,7 @@ class JsonController extends IndexController
                 'status' => 0,
             );
         }
-    }
+    } */
 
     public function checkPassword() {
         // Get info from url
