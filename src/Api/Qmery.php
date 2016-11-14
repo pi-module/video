@@ -29,6 +29,13 @@ class Qmery extends AbstractApi
         // Canonize video
         $video = Pi::api('video', 'video')->canonizeVideoFilter($video);
 
+        // Check setting
+        if (empty($video['server']['qmery_upload_token']) || empty($video['server']['qmery_group_id'])) {
+            $result = array();
+            $result['status'] = 0;
+            return $result;
+        }
+
         // Set API url
         $apiUrl = sprintf(
             'http://api.qmery.com/v1/videos.json?api_token=%s',
