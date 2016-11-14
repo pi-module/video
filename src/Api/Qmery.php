@@ -32,6 +32,7 @@ class Qmery extends AbstractApi
         // Check setting
         if (empty($video['server']['qmery_upload_token']) || empty($video['server']['qmery_group_id'])) {
             $result = array();
+            $result['message'] = __('Please set token and group id');
             $result['status'] = 0;
         } else {
             // Set API url
@@ -70,30 +71,35 @@ class Qmery extends AbstractApi
                     'Content-Type: application/json',
                     'Content-Length: ' . strlen($fields))
             );
-            $result = curl_exec($ch);
-            $result = Json::decode($result, true);
-            $result['status'] = 0;
+            $qmeryResult = curl_exec($ch);
 
-            // Update db
-            if (!empty($result['hash_id']) && !empty($result['id'])) {
-                Pi::model('video', $this->getModule())->update(
-                    array(
-                        'video_qmery_hash' => $result['hash_id'],
-                        'video_qmery_id' => $result['id'],
-                        'video_qmery_hls' => !empty($result['hls']) ? $result['hls'] : '',
-                    ),
-                    array(
-                        'id' => $video['id']
-                    )
-                );
+            if (is_array($qmeryResult)) {
+                $result = Json::decode($qmeryResult, true);
                 $result['status'] = 1;
+                // Update db
+                if (!empty($result['hash_id']) && !empty($result['id'])) {
+                    Pi::model('video', $this->getModule())->update(
+                        array(
+                            'video_qmery_hash' => $result['hash_id'],
+                            'video_qmery_id' => $result['id'],
+                            'video_qmery_hls' => !empty($result['hls']) ? $result['hls'] : '',
+                        ),
+                        array(
+                            'id' => $video['id']
+                        )
+                    );
+                }
+            } else {
+                $result = array();
+                $result['message'] = $qmeryResult;
+                $result['status'] = 0;
             }
         }
         return $result;
     }
 
-    public function update($video)
+    /* public function update($video)
     {
         return $video;
-    }
+    } */
 }

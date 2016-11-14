@@ -253,14 +253,19 @@ class VideoController extends ActionController
                 if ($serverType == 'qmery') {
                     $qmery = Pi::api('qmery', 'video')->upload($row);
                     if (!$qmery['status']) {
-                        $message = __('Error to upload file on qmery server');
+                        $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : $qmery['message'];
                         $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
+                        exit();
+                    } else {
+                        return array(
+                            'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
+                        );
                     }
+                } else {
+                    return array(
+                        'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
+                    );
                 }
-                // result
-                return array(
-                    'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
-                );
             }
         } else {
             $video = array();
