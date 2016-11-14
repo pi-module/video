@@ -34,7 +34,7 @@ class ServerList extends AbstractRegistry
         $select = Pi::model('server', $this->module)->select()->where($where);
         $rowset = Pi::model('server', $this->module)->selectWith($select);
         foreach ($rowset as $row) {
-            $return[$row->id] = $row->toArray();
+            $return[$row->id] = Pi::api('server', 'video')->canonizeServer($row);
         }
         return $return;
     }

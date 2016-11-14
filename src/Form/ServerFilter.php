@@ -60,5 +60,35 @@ class ServerFilter extends InputFilter
             'name' => 'default',
             'required' => false,
         ));
+        // qmery_upload_token
+        $this->add(array(
+            'name' => 'qmery_upload_token',
+            'required' => false,
+            'filters' => array(
+                array(
+                    'name' => 'StringTrim',
+                ),
+            ),
+        ));
+        // qmery_update_token
+        $this->add(array(
+            'name' => 'qmery_update_token',
+            'required' => false,
+            'filters' => array(
+                array(
+                    'name' => 'StringTrim',
+                ),
+            ),
+        ));
+        // qmery_group_id
+        $this->add(array(
+            'name' => 'qmery_group_id',
+            'required' => false,
+            'filters' => array(
+                array(
+                    'name' => 'StringTrim',
+                ),
+            ),
+        ));
     }
 }

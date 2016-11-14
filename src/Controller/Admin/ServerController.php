@@ -17,6 +17,7 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\Video\Form\ServerForm;
 use Module\Video\Form\ServerFilter;
+use Zend\Json\Json;
 
 class ServerController extends ActionController
 {
@@ -67,6 +68,12 @@ class ServerController extends ActionController
                     $this->getModel('server')->update(array('default' => 0));
                     $values['default'] = 1;
                 }
+                // Set setting
+                $setting = array();
+                $setting['qmery_upload_token'] = $values['qmery_upload_token'];
+                $setting['qmery_update_token'] = $values['qmery_update_token'];
+                $setting['qmery_group_id'] = $values['qmery_group_id'];
+                $values['setting'] = Json::encode($setting);
                 // Save values
                 if (!empty($values['id'])) {
                     $row = $this->getModel('server')->find($values['id']);
@@ -87,6 +94,8 @@ class ServerController extends ActionController
         } else {
             if ($id) {
                 $server = $this->getModel('server')->find($id)->toArray();
+                $setting = Json::decode($server['setting'], true);
+                $server = array_merge($server, $setting);
                 $form->setData($server);
             }
         }

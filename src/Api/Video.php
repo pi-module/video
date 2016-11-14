@@ -24,7 +24,6 @@ use Zend\Json\Json;
  * Pi::api('video', 'video')->getListFromId($id);
  * Pi::api('video', 'video')->attributeCount($id);
  * Pi::api('video', 'video')->canonizeVideo($video);
- * Pi::api('video', 'video')->qmeryUpload($post);
  */
 
 class Video extends AbstractApi
@@ -557,11 +556,11 @@ class Video extends AbstractApi
         // boject to array
         $video = $video->toArray();
         // Make setting
-        $video['setting'] = json::decode($video['setting'], true);
+        // $video['setting'] = json::decode($video['setting'], true);
         // Set text_summary
-        $video['text_summary'] = Pi::service('markup')->render($video['text_summary'], 'html', 'html');
+        // $video['text_summary'] = Pi::service('markup')->render($video['text_summary'], 'html', 'html');
         // Set text_description
-        $video['text_description'] = Pi::service('markup')->render($video['text_description'], 'html', 'html');
+        // $video['text_description'] = Pi::service('markup')->render($video['text_description'], 'html', 'html');
         // Set times
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
@@ -640,67 +639,6 @@ class Video extends AbstractApi
         unset($video['setting']);
         // return video
         return $video;
-    }
-
-    public function qmeryUpload($video)
-    {
-        // Get config
-        $config = Pi::service('registry')->config->read($this->getModule());
-
-        // Set video
-        $video = $this->canonizeVideoFilter($video);
-
-        // Set API url
-        $apiUrl = 'http://api.qmery.com/v1/videos.json?api_token=7d7eabb0652b';
-
-        // Set fields
-        $fields = array();
-        $fields['user_id'] = Pi::user()->getId();
-        $fields['group_id'] = '29628';
-        $fields['url'] = Pi::url(sprintf(
-            '%s/%s',
-            $video['video_path'],
-            $video['video_file']
-        ));
-        /* $fields['callback_url'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
-            'controller' => 'json',
-            'action' => 'qmeryCallback',
-            'id' => $video['id'],
-            //'password' => $config['json_password'],
-        ))); */
-        $fields['url'] = str_replace("https://", "http://", $fields['url']);
-        //$fields['callback_url'] = str_replace("https://", "http://", $fields['callback_url']);
-        $fields = json_encode($fields);
-
-        /* // Set header
-        $headers = array(
-            'Accept' => 'application/json',
-        );
-        // Remote post
-        Pi::service('remote')->post($apiUrl, $fields, $headers); */
-
-        $ch = curl_init($apiUrl);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($fields))
-        );
-        $result = curl_exec($ch);
-        $result = json_decode($result, true);
-
-        Pi::model('video', $this->getModule())->update(
-            array(
-                'video_qmery_hash' => $result['hash_id'],
-                'video_qmery_id' => $result['id'],
-                'video_qmery_hls' => $result['hls'],
-            ),
-            array('id' => $video['id'])
-        );
-
-        return $result;
     }
 
     public function sitemap()

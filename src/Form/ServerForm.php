@@ -109,6 +109,47 @@ class ServerForm extends BaseForm
                 'description' => '',
             )
         ));
+        // extra_setting
+        $this->add(array(
+            'name' => 'extra_setting',
+            'type' => 'fieldset',
+            'options' => array(
+                'label' => __('Server setting'),
+            ),
+        ));
+        // qmery_upload_token
+        $this->add(array(
+            'name' => 'qmery_upload_token',
+            'options' => array(
+                'label' => __('Qmery upload token'),
+            ),
+            'attributes' => array(
+                'type' => 'text',
+                'description' => '',
+            )
+        ));
+        // qmery_update_token
+        $this->add(array(
+            'name' => 'qmery_update_token',
+            'options' => array(
+                'label' => __('Qmery update token'),
+            ),
+            'attributes' => array(
+                'type' => 'text',
+                'description' => '',
+            )
+        ));
+        // qmery_group_id
+        $this->add(array(
+            'name' => 'qmery_group_id',
+            'options' => array(
+                'label' => __('Qmery group ID'),
+            ),
+            'attributes' => array(
+                'type' => 'text',
+                'description' => '',
+            )
+        ));
         // Save
         $this->add(array(
             'name' => 'submit',

@@ -36,7 +36,8 @@ class ServerDefault extends AbstractRegistry
         $select = Pi::model('server', $this->module)->select()->where($where)->limit($limit)->order($order);
         $row = Pi::model('server', $this->module)->selectWith($select);
         if ($row) {
-            $return = $row->current()->toArray();
+            $row = $row->current();
+            $return = Pi::api('server', 'video')->canonizeServer($row);
         }
         return $return;
     }
