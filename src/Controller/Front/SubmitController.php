@@ -122,7 +122,11 @@ class SubmitController extends IndexController
                 $row->save();
                 // Send video to qmery
                 if ($serverDefault['type'] == 'qmery') {
-                    Pi::api('qmery', 'video')->upload($row);
+                    $qmery = Pi::api('qmery', 'video')->upload($row);
+                    if (!$qmery['status']) {
+                        $message = __('Error to upload file on qmery server');
+                        $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
+                    }
                 }
                 // result
                 return array(

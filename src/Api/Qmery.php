@@ -19,6 +19,7 @@ use Zend\Json\Json;
 
 /*
  * Pi::api('qmery', 'video')->upload($video);
+ * Pi::api('qmery', 'video')->update($video);
  */
 
 class Qmery extends AbstractApi
@@ -66,20 +67,27 @@ class Qmery extends AbstractApi
         );
         $result = curl_exec($ch);
         $result = Json::decode($result, true);
+        $result['status'] = 0;
 
         // Update db
-        Pi::model('video', $this->getModule())->update(
-            array(
-                'video_qmery_hash' => $result['hash_id'],
-                'video_qmery_id' => $result['id'],
-                'video_qmery_hls' => $result['hls'],
-                'setting' => json_decode(array($fields, $apiUrl)),
-            ),
-            array(
-                'id' => $video['id']
-            )
-        );
-
+        if (!empty($result['hash_id']) && !empty($result['id'])) {
+            Pi::model('video', $this->getModule())->update(
+                array(
+                    'video_qmery_hash' => $result['hash_id'],
+                    'video_qmery_id' => $result['id'],
+                    'video_qmery_hls' => !empty($result['hls']) ? $result['hls'] : '',
+                ),
+                array(
+                    'id' => $video['id']
+                )
+            );
+            $result['status'] = 1;
+        }
         return $result;
+    }
+
+    public function update($video)
+    {
+        return $video;
     }
 }

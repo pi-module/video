@@ -224,10 +224,13 @@ class VideoController extends ActionController
                 // Set status
                 $values['status'] = 2;
                 // Set server
-                $values['video_server'] = $serverList[$server]['id'];
-                if (!$values['video_server']) {
+                if (isset($server) and intval($server) > 0) {
+                    $values['video_server'] = $serverList[$server]['id'];
+                    $serverType = $serverList[$server]['type'];
+                } else {
                     $serverDefault = Pi::registry('serverDefault', 'video')->read();
                     $values['video_server'] = $serverDefault['id'];
+                    $serverType = $serverDefault['type'];
                 }
                 // Set type
                 $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
@@ -246,9 +249,14 @@ class VideoController extends ActionController
                 $row = $this->getModel('video')->createRow();
                 $row->assign($values);
                 $row->save();
-                // Jump
-                // $message = __('Video file upload successfully. Please complete update');
-                // $this->jump(array('action' => 'update', 'id' => $row->id), $message);
+                // Send video to qmery
+                if ($serverType == 'qmery') {
+                    $qmery = Pi::api('qmery', 'video')->upload($row);
+                    if (!$qmery['status']) {
+                        $message = __('Error to upload file on qmery server');
+                        $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
+                    }
+                }
                 // result
                 return array(
                     'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),

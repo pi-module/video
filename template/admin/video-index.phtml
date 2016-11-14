@@ -16,9 +16,38 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
 					</button>
 					<ul class="dropdown-menu" role="menu">
 						<?php foreach ($serverList as $server) { ?>
-							<li><a title="<?php echo $this->escape($server['title']); ?>"
-								   href="<?php echo $this->url('', array('controller' => 'video', 'action' => ($server['type'] == 'file') ? 'upload' : 'link' , 'server' => $server['id'])); ?>"><i
-										class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?></a></li>
+							<?php if ($server['type'] == 'file') { ?>
+								<li><a title="<?php echo $this->escape($server['title']); ?>"
+									   href="<?php echo $this->url('', array(
+										   'controller' => 'video',
+										   'action' => 'upload',
+										   'server' => $server['id']
+									   )); ?>"><i
+											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?></a></li>
+							<?php } elseif ($server['type'] == 'wowza') { ?>
+								<li><a title="<?php echo $this->escape($server['title']); ?>"
+									   href="<?php echo $this->url('', array(
+										   'controller' => 'video',
+										   'action' => 'link' ,
+										   'server' => $server['id']
+									   )); ?>"><i
+											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?></a></li>
+							<?php } elseif ($server['type'] == 'qmery') { ?>
+								<li><a title="<?php echo $this->escape($server['title']); ?>"
+									   href="<?php echo $this->url('', array(
+										   'controller' => 'video',
+										   'action' => 'upload',
+										   'server' => $server['id']
+									   )); ?>"><i
+											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> ( <?php _e('Upload'); ?>)</a></li>
+								<li><a title="<?php echo $this->escape($server['title']); ?>"
+									   href="<?php echo $this->url('', array(
+										   'controller' => 'video',
+										   'action' => 'link',
+										   'server' => $server['id']
+									   )); ?>"><i
+											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> ( <?php _e('Link'); ?>)</a></li>
+							<?php } ?>
 						<?php } ?>
 					</ul>
 				</div>
