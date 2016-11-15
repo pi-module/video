@@ -249,23 +249,10 @@ class VideoController extends ActionController
                 $row = $this->getModel('video')->createRow();
                 $row->assign($values);
                 $row->save();
-                // Send video to qmery
-                if ($serverType == 'qmery') {
-                    $qmery = Pi::api('qmery', 'video')->upload($row);
-                    if (!$qmery['status']) {
-                        $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : $qmery['message'];
-                        $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
-                        exit();
-                    } else {
-                        return array(
-                            'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
-                        );
-                    }
-                } else {
-                    return array(
-                        'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
-                    );
-                }
+                // Return url
+                return array(
+                    'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
+                );
             }
         } else {
             $video = array();
@@ -521,6 +508,18 @@ class VideoController extends ActionController
                     )));
                     // Update sitemap
                     Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->status, $module, 'video', $row->id);
+                }
+                // Send video to qmery
+                if ($video['server']['type'] == 'qmery'
+                    && empty($video['video_qmery_hash'])
+                    && empty($video['video_qmery_id'])
+                ) {
+                    $qmery = Pi::api('qmery', 'video')->upload($row);
+                    if (!$qmery['status']) {
+                        $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : $qmery['message'];
+                        $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
+                        exit();
+                    }
                 }
                 // Jump
                 $message = __('Video data saved successfully.');

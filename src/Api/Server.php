@@ -18,11 +18,19 @@ use Pi\Application\Api\AbstractApi;
 use Zend\Json\Json;
 
 /*
+ * Pi::api('server', 'video')->getServer($id);
  * Pi::api('server', 'video')->canonizeServer($server);
  */
 
 class Server extends AbstractApi
 {
+    public function getServer($id)
+    {
+        $server = Pi::model('server', $this->getModule())->find($id);
+        $server = $this->canonizeServer($server);
+        return $server;
+    }
+    
     public function canonizeServer($server)
     {
         // Check

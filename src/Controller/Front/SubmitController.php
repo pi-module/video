@@ -120,23 +120,10 @@ class SubmitController extends IndexController
                 $row = $this->getModel('video')->createRow();
                 $row->assign($values);
                 $row->save();
-                // Send video to qmery
-                if ($serverDefault['type'] == 'qmery') {
-                    $qmery = Pi::api('qmery', 'video')->upload($row);
-                    if (!$qmery['status']) {
-                        $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : $qmery['message'];
-                        $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
-                        exit();
-                    } else {
-                        return array(
-                            'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
-                        );
-                    }
-                } else {
-                    return array(
-                        'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
-                    );
-                }
+                // return url
+                return array(
+                    'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
+                );
             }
         } else {
             $video = array();
@@ -277,7 +264,6 @@ class SubmitController extends IndexController
                 $row->assign($values);
                 $row->save();
                 // Category
-                // Category
                 Pi::api('category', 'video')->setLink($row->id, $row->category, $row->time_create, $row->time_update, $row->status, $row->uid, $row->hits);
                 // Tag
                 if (isset($tag) && is_array($tag) && Pi::service('module')->isActive('tag')) {
@@ -293,6 +279,18 @@ class SubmitController extends IndexController
                     )));
                     // Update sitemap
                     Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->status, $module, 'video', $row->id);
+                }
+                // Send video to qmery
+                if ($video['server']['type'] == 'qmery'
+                    && empty($video['video_qmery_hash'])
+                    && empty($video['video_qmery_id'])
+                ) {
+                    $qmery = Pi::api('qmery', 'video')->upload($row);
+                    if (!$qmery['status']) {
+                        $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : $qmery['message'];
+                        $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
+                        exit();
+                    }
                 }
                 // Jump
                 $message = __('Video data saved successfully.');
