@@ -284,6 +284,7 @@ class SubmitController extends IndexController
                 if ($video['server']['type'] == 'qmery'
                     && empty($video['video_qmery_hash'])
                     && empty($video['video_qmery_id'])
+                    && Pi::service('file')->exists($video['localFilePath'])
                 ) {
                     $qmery = Pi::api('qmery', 'video')->upload($row);
                     if (!$qmery['status']) {

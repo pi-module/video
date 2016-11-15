@@ -165,6 +165,11 @@ class Video extends AbstractApi
             'controller' => 'channel',
             'id' => $video['uid'],
         )));
+        // Set local server path
+        $video['localFilePath'] = Pi::path(sprintf('%s/%s',
+            $video['video_path'],
+            $video['video_file']
+        ));
         // Set video file url
         switch ($video['server']['type']) {
             case 'file':

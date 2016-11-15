@@ -34,6 +34,10 @@ class Qmery extends AbstractApi
             $result = array();
             $result['message'] = __('Please set token and group id');
             $result['status'] = 0;
+        } elseif (!Pi::service('file')->exists($video['localFilePath'])) {
+            $result = array();
+            $result['message'] = __('Video file not exist on server');
+            $result['status'] = 0;
         } else {
             // Set API url
             $apiUrl = sprintf(
@@ -44,6 +48,7 @@ class Qmery extends AbstractApi
             // Set fields
             $fields = array();
             $fields['user_id'] = Pi::user()->getId();
+            $fields['title'] = $video['title'];
             $fields['group_id'] = $video['server']['qmery_group_id'];
             $fields['url'] = Pi::url(sprintf(
                 '%s/%s',
