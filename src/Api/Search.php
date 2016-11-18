@@ -58,8 +58,6 @@ class Search extends AbstractSearch
      */
     protected function buildUrl(array $item, $table)
     {
-
-
         switch ($table) {
             case 'category':
                 $link = Pi::url(Pi::service('url')->assemble('video', array(
