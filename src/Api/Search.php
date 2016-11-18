@@ -40,7 +40,6 @@ class Search extends AbstractSearch
         'title' => 'title',
         'text_summary' => 'content',
         'time_create' => 'time',
-        'uid' => 'uid',
         'slug' => 'slug',
         'image' => 'image',
         'path' => 'path',
