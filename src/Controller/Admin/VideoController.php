@@ -39,39 +39,62 @@ class VideoController extends ActionController
     public function indexAction()
     {
         // Get page
+        $module = $this->params('module');
+        $page = $this->params('page', 1);
         $page = $this->params('page', 1);
         $status = $this->params('status');
         $category = $this->params('category');
         $title = $this->params('title');
+        // Get config
+        $config = Pi::service('registry')->config->read($module);
         // Set info
         $offset = (int)($page - 1) * $this->config('admin_perpage');
         $order = array('time_create DESC', 'id DESC');
         $limit = intval($this->config('admin_perpage'));
         $video = array();
-        // Set where
-        $whereLink = array();
-        if (!empty($status)) {
-            $whereLink['status'] = $status;
-        }
-        if (!empty($category)) {
-            $whereLink['category'] = $category;
-        }
-        $columnsLink = array('video' => new Expression('DISTINCT video'));
-        // Get info from link table
-        $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsLink)->order($order)->offset($offset)->limit($limit);
-        $rowset = $this->getModel('link')->selectWith($select)->toArray();
-        // Make list
-        foreach ($rowset as $id) {
-            $videoId[] = $id['video'];
-        }
-        // Set info
-        $whereVideo = array();
-        if (!empty($videoId)) {
-            $whereVideo['id'] = $videoId;
-        }
+
         // Set title
-        if (!empty($title)) {
-            $whereVideo['title LIKE ?'] = '%' . $title . '%';
+        if (!empty($title) && !empty($category)) {
+            // Set where
+            $whereLink = array();
+            $whereLink['category'] = $category;
+            $columnsLink = array('video' => new Expression('DISTINCT video'));
+            // Get info from link table
+            $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsLink)->order($order);
+            $rowset = $this->getModel('link')->selectWith($select)->toArray();
+            // Make list
+            foreach ($rowset as $id) {
+                $videoId[] = $id['video'];
+            }
+            // Set info
+            $whereVideo = array('title LIKE ?' => '%' . $title . '%');
+            if (!empty($videoId)) {
+                $whereVideo['id'] = $videoId;
+            }
+        } elseif (!empty($title)) {
+            $whereVideo = array('title LIKE ?' => '%' . $title . '%');
+        } else {
+            // Set where
+            $whereLink = array();
+            if (!empty($status)) {
+                $whereLink['status'] = $status;
+            }
+            if (!empty($category)) {
+                $whereLink['category'] = $category;
+            }
+            $columnsLink = array('video' => new Expression('DISTINCT video'));
+            // Get info from link table
+            $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsLink)->order($order)->offset($offset)->limit($limit);
+            $rowset = $this->getModel('link')->selectWith($select)->toArray();
+            // Make list
+            foreach ($rowset as $id) {
+                $videoId[] = $id['video'];
+            }
+            // Set info
+            $whereVideo = array();
+            if (!empty($videoId)) {
+                $whereVideo['id'] = $videoId;
+            }
         }
         // Get list of product
         $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
