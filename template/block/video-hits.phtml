@@ -28,7 +28,7 @@
     <div class="clearfix">
         <?php if ($block['list-type'] == 'horizontal') { ?>
             <?php foreach ($block['resources'] as $video) { ?>
-                <div class="<?php echo $shopBlockBoxSize; ?> videoBox h-review" itemscope itemtype="http://schema.org/VideoObject">
+                <div class="<?php echo $videoBlockBoxSize; ?> videoBox h-review" itemscope itemtype="http://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
                     <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />
