@@ -1,8 +1,34 @@
+<?php switch ($block['column']) {
+    case 1:
+        $videoBlockBoxSize = 'col-xs-12 col-sm-12 col-md-12';
+        break;
+
+    case 2:
+        $videoBlockBoxSize = 'col-xs-12 col-sm-6 col-md-6';
+        break;
+
+    case 3:
+        $videoBlockBoxSize = 'col-xs-12 col-sm-4 col-md-4';
+        break;
+
+    case 4:
+        $videoBlockBoxSize = 'col-xs-12 col-sm-3 col-md-3';
+        break;
+
+    case 5:
+        $videoBlockBoxSize = 'col-xs-12 col-sm-2 col-md-2';
+        break;
+
+    default:
+        $videoBlockBoxSize = 'col-xs-12 col-sm-3 col-md-3';
+        break;
+}
+?>
 <div class="video-block video-block-tag">
     <div class="clearfix">
         <?php if ($block['list-type'] == 'horizontal') { ?>
             <?php foreach ($block['resources'] as $video) { ?>
-                <div class="col-sm-6 col-md-4 videoBox h-review" itemscope itemtype="http://schema.org/VideoObject">
+                <div class="<?php echo $shopBlockBoxSize; ?> videoBox h-review" itemscope itemtype="http://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
                     <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />

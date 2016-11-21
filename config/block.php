@@ -33,6 +33,13 @@ return array(
                 'filter' => 'number_int',
                 'value' => 10,
             ),
+            'recommended' => array(
+                'title' => _a('Show just recommended'),
+                'description' => '',
+                'edit' => 'checkbox',
+                'filter' => 'number_int',
+                'value' => 0,
+            ),
             'list-type' => array(
                 'title' => _a('Video list type'),
                 'description' => '',
@@ -52,6 +59,24 @@ return array(
                 ),
                 'filter' => 'text',
                 'value' => 'horizontal',
+            ),
+            'column' => array(
+                'title' => _a('Columns'),
+                'description' => '',
+                'edit' => array(
+                    'type' => 'select',
+                    'options' => array(
+                        'options' => array(
+                            1 => _a('One columns'),
+                            2 => _a('Two columns'),
+                            3 => _a('Three columns'),
+                            4 => _a('Four columns'),
+                            6 => _a('Six columns'),
+                        ),
+                    ),
+                ),
+                'filter' => 'text',
+                'value' => 3,
             ),
             'blockEffect' => array(
                 'title' => _a('Use block effects'),
@@ -97,6 +122,13 @@ return array(
                 'filter' => 'number_int',
                 'value' => 10,
             ),
+            'recommended' => array(
+                'title' => _a('Show just recommended'),
+                'description' => '',
+                'edit' => 'checkbox',
+                'filter' => 'number_int',
+                'value' => 0,
+            ),
             'list-type' => array(
                 'title' => _a('Video list type'),
                 'description' => '',
@@ -116,6 +148,24 @@ return array(
                 ),
                 'filter' => 'text',
                 'value' => 'horizontal',
+            ),
+            'column' => array(
+                'title' => _a('Columns'),
+                'description' => '',
+                'edit' => array(
+                    'type' => 'select',
+                    'options' => array(
+                        'options' => array(
+                            1 => _a('One columns'),
+                            2 => _a('Two columns'),
+                            3 => _a('Three columns'),
+                            4 => _a('Four columns'),
+                            6 => _a('Six columns'),
+                        ),
+                    ),
+                ),
+                'filter' => 'text',
+                'value' => 3,
             ),
             'blockEffect' => array(
                 'title' => _a('Use block effects'),
@@ -161,6 +211,13 @@ return array(
                 'filter' => 'number_int',
                 'value' => 10,
             ),
+            'recommended' => array(
+                'title' => _a('Show just recommended'),
+                'description' => '',
+                'edit' => 'checkbox',
+                'filter' => 'number_int',
+                'value' => 0,
+            ),
             'list-type' => array(
                 'title' => _a('Video list type'),
                 'description' => '',
@@ -180,6 +237,24 @@ return array(
                 ),
                 'filter' => 'text',
                 'value' => 'horizontal',
+            ),
+            'column' => array(
+                'title' => _a('Columns'),
+                'description' => '',
+                'edit' => array(
+                    'type' => 'select',
+                    'options' => array(
+                        'options' => array(
+                            1 => _a('One columns'),
+                            2 => _a('Two columns'),
+                            3 => _a('Three columns'),
+                            4 => _a('Four columns'),
+                            6 => _a('Six columns'),
+                        ),
+                    ),
+                ),
+                'filter' => 'text',
+                'value' => 3,
             ),
             'blockEffect' => array(
                 'title' => _a('Use block effects'),
@@ -232,6 +307,13 @@ return array(
                 'filter' => 'number_int',
                 'value' => 10,
             ),
+            'recommended' => array(
+                'title' => _a('Show just recommended'),
+                'description' => '',
+                'edit' => 'checkbox',
+                'filter' => 'number_int',
+                'value' => 0,
+            ),
             'list-type' => array(
                 'title' => _a('Video list type'),
                 'description' => '',
@@ -251,6 +333,24 @@ return array(
                 ),
                 'filter' => 'text',
                 'value' => 'horizontal',
+            ),
+            'column' => array(
+                'title' => _a('Columns'),
+                'description' => '',
+                'edit' => array(
+                    'type' => 'select',
+                    'options' => array(
+                        'options' => array(
+                            1 => _a('One columns'),
+                            2 => _a('Two columns'),
+                            3 => _a('Three columns'),
+                            4 => _a('Four columns'),
+                            6 => _a('Six columns'),
+                        ),
+                    ),
+                ),
+                'filter' => 'text',
+                'value' => 3,
             ),
             'blockEffect' => array(
                 'title' => _a('Use block effects'),
@@ -288,6 +388,35 @@ return array(
                 'edit' => 'text',
                 'filter' => 'number_int',
                 'value' => '',
+            ),
+            'size' => array(
+                'title' => _a('Player size'),
+                'description' => '',
+                'edit' => array(
+                    'type' => 'select',
+                    'options' => array(
+                        'options' => array(
+                            'responsive' => _a('Responsive'),
+                            'custom' => _a('Custom'),
+                        ),
+                    ),
+                ),
+                'filter' => 'text',
+                'value' => 'custom',
+            ),
+            'width' => array(
+                'title' => _a('Player width'),
+                'description' => '',
+                'edit' => 'text',
+                'filter' => 'number_int',
+                'value' => 640,
+            ),
+            'height' => array(
+                'title' => _a('Player height'),
+                'description' => '',
+                'edit' => 'text',
+                'filter' => 'number_int',
+                'value' => 360,
             ),
         ),
     ),
