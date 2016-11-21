@@ -103,23 +103,23 @@ EOT;
     <meta itemprop="thumbnail" content="<?php echo $this->escape($videoItem['largeUrl']); ?>" />
     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoItem['time_publish'])); ?>" />
     <meta itemprop="contentUrl" content="<?php echo $this->escape($videoItem['videoFileUrl']); ?>" />
-    <div class="clearfix video-information">
-        <ul class="text-muted list-inline small">
-            <li><i class="fa fa-calendar"></i> <?php echo $this->escape($videoItem['time_update_view']); ?></li>
-            <li><i class="fa fa-eye"></i> <?php echo _number($this->escape($videoItem['hits'])); ?></li>
-            <li><i class="fa fa-clock-o"></i> <?php echo $this->escape($videoItem['video_duration_view']); ?></li>
-            <li><i class="fa fa-folder"></i></li>
-            <?php foreach ($videoItem['categories'] as $videoCategory) { ?>
-                <li class="p-category" itemprop="about">
-                    <a title="<?php echo $this->escape($videoCategory['title']); ?>" href="<?php echo $this->escape($videoCategory['url']); ?>">
-                        <?php echo $this->escape($videoCategory['title']); ?>
-                    </a>
-                </li>
-            <?php } ?>
-        </ul>
-    </div>
     <div class="row clearfix">
         <div class="col-md-8">
+            <div class="clearfix video-information">
+                <ul class="text-muted list-inline small">
+                    <li><i class="fa fa-calendar"></i> <?php echo $this->escape($videoItem['time_update_view']); ?></li>
+                    <li><i class="fa fa-eye"></i> <?php echo _number($this->escape($videoItem['hits'])); ?></li>
+                    <li><i class="fa fa-clock-o"></i> <?php echo $this->escape($videoItem['video_duration_view']); ?></li>
+                    <li><i class="fa fa-folder"></i></li>
+                    <?php foreach ($videoItem['categories'] as $videoCategory) { ?>
+                        <li class="p-category" itemprop="about">
+                            <a title="<?php echo $this->escape($videoCategory['title']); ?>" href="<?php echo $this->escape($videoCategory['url']); ?>">
+                                <?php echo $this->escape($videoCategory['title']); ?>
+                            </a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
             <div class="text-center video-player">
                 <?php if ($videoItem['server']['type'] == 'file') { ?>
                     <?php echo $this->videojs($videoItem['videoFileUrl'], $videoItem['largeUrl']); ?>
