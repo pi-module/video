@@ -181,7 +181,7 @@ class JsonController extends IndexController
         $where = array(
             'status' => 1,
         );
-        $order = array('time_create DESC', 'id DESC');
+        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
         $columns = array('video' => new Expression('DISTINCT video'));
         // Get info from link table
         $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order);
