@@ -239,7 +239,7 @@ class JsonController extends IndexController
             'status' => 1,
             'category' => $idList,
         );
-        $order = array('time_create DESC', 'id DESC');
+        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
         $columns = array('video' => new Expression('DISTINCT video'));
         // Get info from link table
         $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order);
@@ -302,7 +302,7 @@ class JsonController extends IndexController
         $categoryList = Pi::registry('categoryList', 'video')->read();
         // Set info
         $where = array('status' => 1, 'id' => $tagId);
-        $order = array('time_create DESC', 'id DESC');
+        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
         // Get list of video
         $select = $this->getModel('video')->select()->where($where)->order($order);
         $rowset = $this->getModel('video')->selectWith($select);
@@ -341,7 +341,7 @@ class JsonController extends IndexController
         $categoryList = Pi::registry('categoryList', 'video')->read();
         // Set info
         $where = array('status' => 1, 'id' => $id);
-        $order = array('time_create DESC', 'id DESC');
+        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
         // Get list of video
         $select = $this->getModel('video')->select()->where($where)->order($order);
         $rowset = $this->getModel('video')->selectWith($select);
@@ -368,7 +368,7 @@ class JsonController extends IndexController
             'status' => 1,
             'uid' => $uid,
         );
-        $order = array('time_create DESC', 'id DESC');
+        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
         $columns = array('video' => new Expression('DISTINCT video'));
         // Get info from link table
         $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order);
