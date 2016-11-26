@@ -256,7 +256,6 @@ EOD;
             $select = $videoModel->select()->columns($columns)->where($where);
             $rowset = $videoModel->selectWith($select);
             foreach ($rowset as $row) {
-                $list[$row->id] = $row->id;
                 $linkModel->update(
                     array('recommended' => 1),
                     array('id' => $row->id)
