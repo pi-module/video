@@ -26,6 +26,8 @@ use Module\Video\Form\VideoUploadForm;
 use Module\Video\Form\VideoUploadFilter;
 use Module\Video\Form\VideoLinkForm;
 use Module\Video\Form\VideoLinkFilter;
+use Module\Video\Form\VideoExternalForm;
+use Module\Video\Form\VideoExternalFilter;
 use Module\Video\Form\AdminSearchForm;
 use Module\Video\Form\AdminSearchFilter;
 use Zend\Json\Json;
@@ -175,6 +177,98 @@ class VideoController extends ActionController
             );
         }
         return $this->jump($url, $message);
+    }
+
+    public function externalAction()
+    {
+        // check category
+        $categoryCount = Pi::api('category', 'video')->categoryCount();
+        if (!$categoryCount) {
+            return $this->redirect()->toRoute('', array(
+                'controller' => 'category',
+                'action' => 'update'
+            ));
+        }
+        // Server list
+        $serverList = Pi::registry('serverList', 'video')->read();
+        if (empty($serverList)) {
+            return $this->redirect()->toRoute('', array(
+                'controller' => 'server',
+                'action' => 'update'
+            ));
+        }
+        // Get info from url
+        $module = $this->params('module');
+        $server = $this->params('server');
+        // Check server
+        if (!isset($serverList[$server]) || empty($serverList[$server])) {
+            $message = __('please select true server');
+            $this->jump(array('action' => 'index'), $message, 'error');
+        }
+        // Get config
+        $config = Pi::service('registry')->config->read($module);
+        // Check server is qmery
+        if ($serverList[$server]['type'] != 'qmery') {
+            $message = __('This method just work on qmery server');
+            $this->jump(array('action' => 'index'), $message, 'error');
+        }
+        // Set option
+        $option = array();
+        // Set form
+        $form = new VideoExternalForm('video', $option);
+        $form->setAttribute('enctype', 'multipart/form-data');
+        if ($this->request->isPost()) {
+            $data = $this->request->getPost();
+            $form->setInputFilter(new VideoExternalFilter($option));
+            $form->setData($data);
+            if ($form->isValid()) {
+                $values = $form->getData();
+                // Set time_create
+                $values['time_create'] = time();
+                // Set time_update
+                $values['time_update'] = time();
+                // Set uid
+                $values['uid'] = Pi::user()->getId();
+                // Set status
+                $values['status'] = 2;
+                // Set server
+                $values['video_server'] = $serverList[$server]['id'];
+                // Save values
+                $row = $this->getModel('video')->createRow();
+                $row->assign($values);
+                $row->save();
+                // Send to qmery
+                $qmery = Pi::api('qmery', 'video')->link($row, $values['external_link']);
+                if (!$qmery['status']) {
+                    $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : $qmery['message'];
+                    $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
+                    exit();
+                } else {
+                    // Jump
+                    $message = __('Video external add successfully. Please complete update');
+                    $this->jump(array('action' => 'update', 'id' => $row->id), $message);
+                }
+            }
+        } else {
+            $video = array();
+            // Set sluf
+            $slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
+            $filter = new Filter\Slug;
+            $video['slug'] = $filter($slug);
+            // Set form
+            $form->setData($video);
+            // set nav
+            $nav = array(
+                'page' => 'link',
+            );
+        }
+        // Set view
+        $this->view()->setTemplate('video-link');
+        $this->view()->assign('form', $form);
+        $this->view()->assign('config', $config);
+        $this->view()->assign('title', __('Manage video link'));
+        $this->view()->assign('nav', $nav);
+        $this->view()->assign('video', $video);
     }
 
     public function uploadAction()
@@ -366,7 +460,9 @@ class VideoController extends ActionController
                 // Set uid
                 $values['uid'] = Pi::user()->getId();
                 // Set status
-                $values['status'] = 2;
+                if (empty($values['id'])) {
+                    $values['status'] = 2;
+                }
                 // Set type
                 /* $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
                 switch ($extension) {

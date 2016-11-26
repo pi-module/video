@@ -42,12 +42,14 @@ CREATE TABLE `{video}` (
   `setting`          TEXT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`),
+  KEY `recommended` (`recommended`),
   KEY `title` (`title`),
   KEY `time_create` (`time_create`),
   KEY `status` (`status`),
   KEY `uid` (`uid`),
   KEY `video_list` (`status`, `id`),
-  KEY `video_order` (`time_create`, `id`)
+  KEY `video_order` (`time_create`, `id`),
+  KEY `video_order_recommended` (`recommended`, `time_create`, `id`)
 );
 
 CREATE TABLE `{category}` (

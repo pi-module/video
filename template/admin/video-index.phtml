@@ -39,14 +39,21 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
 										   'action' => 'upload',
 										   'server' => $server['id']
 									   )); ?>"><i
-											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> ( <?php _e('Upload'); ?>)</a></li>
+											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('Upload'); ?>)</a></li>
 								<li><a title="<?php echo $this->escape($server['title']); ?>"
 									   href="<?php echo $this->url('', array(
 										   'controller' => 'video',
 										   'action' => 'link',
 										   'server' => $server['id']
 									   )); ?>"><i
-											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> ( <?php _e('Link'); ?>)</a></li>
+											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('Internal link'); ?>)</a></li>
+								<li><a title="<?php echo $this->escape($server['title']); ?>"
+									   href="<?php echo $this->url('', array(
+										   'controller' => 'video',
+										   'action' => 'external',
+										   'server' => $server['id']
+									   )); ?>"><i
+											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('External link'); ?>)</a></li>
 							<?php } ?>
 						<?php } ?>
 					</ul>

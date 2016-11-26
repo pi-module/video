@@ -95,7 +95,9 @@ class ServerController extends ActionController
             if ($id) {
                 $server = $this->getModel('server')->find($id)->toArray();
                 $setting = Json::decode($server['setting'], true);
-                $server = array_merge($server, $setting);
+                if (!empty($setting)) {
+                    $server = array_merge($server, $setting);
+                }
                 $form->setData($server);
             }
         }

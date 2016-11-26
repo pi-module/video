@@ -192,7 +192,34 @@ EOD;
                 return false;
             }
         }
-        
+
+        if (version_compare($moduleVersion, '0.6.7', '<')) {
+            // Alter table add index
+            $sql = sprintf("ALTER TABLE %s ADD INDEX `recommended` (`recommended`)", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+            // Alter table add index
+            $sql = sprintf("ALTER TABLE %s ADD INDEX `video_order_recommended` (`recommended`, `time_create`, `id`)", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+        }
+
         return true;
     }
 }
