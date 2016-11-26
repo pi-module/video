@@ -146,6 +146,11 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
 						   href="<?php echo $video['videoUrl']; ?>" target="_blank"><i
 									class="fa fa-eye"></i> <?php _e('View'); ?></a>
 					<?php } ?>
+					<?php if ($video['status'] != 5) { ?>
+						<a class="btn btn-danger btn-xs" title="<?php _e('Delete'); ?>" href="<?php echo $this->url('', array('action' => 'delete', 'id' => $video['id'])); ?>" onclick="return confirm('<?php echo _a('Are you sure to delete this video?'); ?>')">
+							<i class="fa fa-trash"></i>  <?php _e('Delete'); ?>
+						</a>
+					<?php } ?>
 				</td>
 			</tr>
 		<?php } ?>
