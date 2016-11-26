@@ -42,11 +42,11 @@ CREATE TABLE `{video}` (
   `setting`          TEXT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`),
-  KEY `recommended` (`recommended`),
   KEY `title` (`title`),
   KEY `time_create` (`time_create`),
   KEY `status` (`status`),
   KEY `uid` (`uid`),
+  KEY `recommended` (`recommended`),
   KEY `video_list` (`status`, `id`),
   KEY `video_order` (`time_create`, `id`),
   KEY `video_order_recommended` (`recommended`, `time_create`, `id`)
@@ -87,6 +87,7 @@ CREATE TABLE `{link}` (
   `time_create` INT(10) UNSIGNED    NOT NULL DEFAULT '0',
   `time_update` INT(10) UNSIGNED    NOT NULL DEFAULT '0',
   `status`      TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+  `recommended` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
   `hits`        INT(10) UNSIGNED    NOT NULL DEFAULT '0',
   `uid`         INT(10) UNSIGNED    NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -98,7 +99,8 @@ CREATE TABLE `{link}` (
   KEY `hits` (`hits`),
   KEY `category_list` (`status`, `category`, `time_create`),
   KEY `video_list` (`status`, `video`, `time_create`, `category`),
-  KEY `link_order` (`time_create`, `id`)
+  KEY `link_order` (`time_create`, `id`),
+  KEY `link_order_recommended` (`recommended`, `time_create`, `id`)
 );
 
 CREATE TABLE `{field}` (

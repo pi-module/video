@@ -16,6 +16,7 @@ namespace Module\Video\Api;
 use Pi;
 use Pi\Application\Api\AbstractApi;
 use Zend\Json\Json;
+use Zend\Db\Sql\Predicate\Expression;
 
 /*
  * Pi::api('category', 'video')->getCategory($parameter, $type = 'id');
@@ -140,7 +141,7 @@ class Category extends AbstractApi
 
     public function categoryCount()
     {
-        $columns = array('count' => new \Zend\Db\Sql\Predicate\Expression('count(*)'));
+        $columns = array('count' => new Expression('count(*)'));
         $select = Pi::model('category', $this->getModule())->select()->columns($columns);
         $count = Pi::model('category', $this->getModule())->selectWith($select)->current()->count;
         return $count;

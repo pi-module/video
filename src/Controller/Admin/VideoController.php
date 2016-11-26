@@ -43,7 +43,6 @@ class VideoController extends ActionController
         // Get page
         $module = $this->params('module');
         $page = $this->params('page', 1);
-        $page = $this->params('page', 1);
         $status = $this->params('status');
         $category = $this->params('category');
         $title = $this->params('title');
@@ -78,8 +77,10 @@ class VideoController extends ActionController
         } else {
             // Set where
             $whereLink = array();
-            if (!empty($status)) {
+            if (!empty($status) && in_array($status, array(1, 2, 3, 4, 5))) {
                 $whereLink['status'] = $status;
+            } else {
+                $whereLink['status'] = array(1, 2, 3, 4);
             }
             if (!empty($category)) {
                 $whereLink['category'] = $category;
@@ -147,6 +148,7 @@ class VideoController extends ActionController
         $this->view()->assign('paginator', $paginator);
         $this->view()->assign('form', $form);
         $this->view()->assign('serverList', $serverList);
+        $this->view()->assign('config', $config);
     }
 
     public function processAction()

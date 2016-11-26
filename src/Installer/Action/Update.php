@@ -49,6 +49,11 @@ class Update extends BasicUpdate
         $videoTable = $videoModel->getTable();
         $videoAdapter = $videoModel->getAdapter();
 
+        // Set link model
+        $linkModel = Pi::model('link', $this->module);
+        $linkTable = $linkModel->getTable();
+        $linkAdapter = $linkModel->getAdapter();
+
         if (version_compare($moduleVersion, '0.4.2', '<')) {
             // Alter table field `type`
             $sql = sprintf("ALTER TABLE %s ADD `text_summary` TEXT", $categoryTable);
@@ -218,6 +223,46 @@ EOD;
                 ));
                 return false;
             }
+        }
+
+        if (version_compare($moduleVersion, '0.6.8', '<')) {
+            // Alter table field `position`
+            $sql = sprintf("ALTER TABLE %s ADD `recommended` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0', ADD INDEX (`recommended`)", $linkTable);
+            try {
+                $linkAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+            // Alter table add index
+            $sql = sprintf("ALTER TABLE %s ADD INDEX `link_order_recommended` (`recommended`, `time_create`, `id`)", $linkTable);
+            try {
+                $linkAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+            // Update recommended value
+            $list = array();
+            $columns = array('id');
+            $where = array('recommended' => 1);
+            $select = $videoModel->select()->columns($columns)->where($where);
+            $rowset = $videoModel->selectWith($select);
+            foreach ($rowset as $row) {
+                $list[$row->id] = $row->id;
+            }
+            $linkModel->update(
+                array('recommended' => 1),
+                array('id' => $list)
+            );
         }
 
         return true;

@@ -16,6 +16,7 @@ namespace Module\Video\Api;
 use Pi;
 use Pi\Application\Api\AbstractApi;
 use Zend\Json\Json;
+use Zend\Db\Sql\Predicate\Expression;
 
 /*
  * Pi::api('video', 'video')->getVideo($parameter, $type);
@@ -79,7 +80,7 @@ class Video extends AbstractApi
     public function attributeCount($id)
     {
         // Get attach count
-        $columns = array('count' => new \Zend\Db\Sql\Predicate\Expression('count(*)'));
+        $columns = array('count' => new Expression('count(*)'));
         $select = Pi::model('field_data', $this->getModule())->select()->columns($columns);
         $count = Pi::model('field_data', $this->getModule())->selectWith($select)->current()->count;
         // Set attach count
