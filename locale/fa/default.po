@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-11-21 13:44+0330\n"
+"POT-Creation-Date: 2016-11-26 11:55+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Text"
 msgstr "متن"
 
-#: src/Api/Attribute.php:67 template/admin/video-index.phtml:49
+#: src/Api/Attribute.php:67
 msgid "Link"
 msgstr "لینک"
 
@@ -70,13 +70,13 @@ msgstr "فهرست شاخه ها"
 msgid "Tag list"
 msgstr "فهرست برچسب ها"
 
-#: src/Api/Breadcrumbs.php:120 src/Controller/Admin/VideoController.php:310
+#: src/Api/Breadcrumbs.php:120 src/Controller/Admin/VideoController.php:404
 #: src/Controller/Front/SubmitController.php:167
 msgid "Upload new video"
 msgstr "بارگذاری ویدیو جدید"
 
 #: src/Api/Breadcrumbs.php:126 src/Controller/Front/SubmitController.php:317
-#: template/admin/video-index.phtml:126 template/admin/video-index.phtml:128
+#: template/admin/video-index.phtml:133 template/admin/video-index.phtml:135
 #: template/admin/video-link.phtml:6 template/admin/video-update.phtml:13
 #: template/admin/video-view.phtml:68 template/front/submit-finish.phtml:10
 #: template/front/submit-update.phtml:10
@@ -84,7 +84,7 @@ msgid "Edit basic information"
 msgstr "ویرایش اطلاعات پایه"
 
 #: src/Api/Breadcrumbs.php:132 src/Controller/Front/SubmitController.php:419
-#: template/admin/video-index.phtml:129 template/admin/video-index.phtml:131
+#: template/admin/video-index.phtml:136 template/admin/video-index.phtml:138
 #: template/admin/video-link.phtml:7 template/admin/video-update.phtml:14
 #: template/admin/video-view.phtml:69 template/front/submit-finish.phtml:11
 #: template/front/submit-update.phtml:11
@@ -95,7 +95,7 @@ msgstr "ویرایش اطلاعات تکمیلی"
 msgid "Watch video"
 msgstr "مشاهده ویدیو"
 
-#: src/Api/Qmery.php:35
+#: src/Api/Qmery.php:36 src/Api/Qmery.php:111
 msgid "Please set token and group id"
 msgstr "لطفا توکن و شناسه شاخه را تنظیم نمایید "
 
@@ -126,7 +126,7 @@ msgid "Please select field"
 msgstr "لطفا یک فیل انتخاب نمایید"
 
 #: src/Controller/Admin/CategoryController.php:135
-#: src/Controller/Admin/VideoController.php:503
+#: src/Controller/Admin/VideoController.php:599
 #: src/Controller/Front/SubmitController.php:251
 msgid "Problem in upload image. please try again"
 msgstr "خطا در بارگذاری تصویر، دوباره تلاش کنید"
@@ -140,13 +140,13 @@ msgid "Add a category"
 msgstr "شاخه جدید"
 
 #: src/Controller/Admin/CategoryController.php:221
-#: src/Controller/Admin/VideoController.php:732
+#: src/Controller/Admin/VideoController.php:828
 #, php-format
 msgid "Image of %s removed"
 msgstr "تصویر مربوطز به %s حذف شد"
 
 #: src/Controller/Admin/CategoryController.php:224
-#: src/Controller/Admin/VideoController.php:735
+#: src/Controller/Admin/VideoController.php:831
 msgid "Image not remove"
 msgstr "تصویر حذف نشد"
 
@@ -179,7 +179,7 @@ msgstr "سرویس کیومری"
 msgid "Server data saved successfully."
 msgstr "اطلاعات سرور با موفقیت به روز شد"
 
-#: src/Controller/Admin/ServerController.php:105
+#: src/Controller/Admin/ServerController.php:107
 msgid "Manage server"
 msgstr "مدیریت سرور"
 
@@ -195,84 +195,96 @@ msgstr "دوباره سازی نقشه سایت پایان یافت"
 msgid "Rebuild sitemap links"
 msgstr "دوباره سازی لینک های نقشه سایت"
 
-#: src/Controller/Admin/VideoController.php:159
+#: src/Controller/Admin/VideoController.php:161
 msgid "View filtered videos"
 msgstr "نمایش ویدیو های فیلتر شده"
 
-#: src/Controller/Admin/VideoController.php:166
+#: src/Controller/Admin/VideoController.php:168
 msgid "Not valid"
 msgstr "صحیح نیست"
 
-#: src/Controller/Admin/VideoController.php:172
+#: src/Controller/Admin/VideoController.php:174
 msgid "Not set"
 msgstr "هنوز تنظیم نشده"
 
-#: src/Controller/Admin/VideoController.php:203
-#: src/Controller/Admin/VideoController.php:344
+#: src/Controller/Admin/VideoController.php:205
+#: src/Controller/Admin/VideoController.php:297
+#: src/Controller/Admin/VideoController.php:438
 msgid "please select true server"
 msgstr "لطفا سرور مناسب را انتخاب نمایید"
 
-#: src/Controller/Admin/VideoController.php:236
-#: src/Controller/Admin/VideoController.php:239
-#: src/Controller/Front/SubmitController.php:91
-#: src/Controller/Front/SubmitController.php:94
-msgid "Problem in upload video. please try again"
-msgstr "خطا در بارگذاری ویدیو، دوباره تلاش کنید"
+#: src/Controller/Admin/VideoController.php:212
+msgid "This method just work on qmery server"
+msgstr "این روش فقط برای سرور کیومری کار می کند"
 
-#: src/Controller/Admin/VideoController.php:279
+#: src/Controller/Admin/VideoController.php:243
+#: src/Controller/Admin/VideoController.php:373
 #: src/Controller/Front/SubmitController.php:127
 msgid "Error to upload file on qmery server"
 msgstr "خطا در بارگذاری فایل در سرور کیومری"
 
-#: src/Controller/Admin/VideoController.php:398
-msgid "Video link add successfully. Please complete update"
-msgstr "لینک مدیریو با موفقیت به روز شد، لطفا اطلاعات دیگر را به روز نمایید"
+#: src/Controller/Admin/VideoController.php:248
+msgid "Video external add successfully. Please complete update"
+msgstr ""
+"ویدیو خارجی با موفقیت در سیستم اضافه شد، لطفا اطلاعات تکمیلی را وارد نمایید"
 
-#: src/Controller/Admin/VideoController.php:427
-#: template/admin/video-index.phtml:123 template/admin/video-index.phtml:125
+#: src/Controller/Admin/VideoController.php:269
+#: src/Controller/Admin/VideoController.php:523
+#: template/admin/video-index.phtml:130 template/admin/video-index.phtml:132
 #: template/admin/video-link.phtml:5 template/admin/video-link.phtml:13
 #: template/admin/video-update.phtml:12 template/admin/video-view.phtml:67
 msgid "Manage video link"
 msgstr "مدیریت لینک ویدیو"
 
-#: src/Controller/Admin/VideoController.php:461
-#: src/Controller/Admin/VideoController.php:587
-#: src/Controller/Admin/VideoController.php:661
-#: src/Controller/Admin/VideoController.php:703
-#: src/Controller/Admin/VideoController.php:739
+#: src/Controller/Admin/VideoController.php:330
+#: src/Controller/Admin/VideoController.php:333
+#: src/Controller/Front/SubmitController.php:91
+#: src/Controller/Front/SubmitController.php:94
+msgid "Problem in upload video. please try again"
+msgstr "خطا در بارگذاری ویدیو، دوباره تلاش کنید"
+
+#: src/Controller/Admin/VideoController.php:494
+msgid "Video link add successfully. Please complete update"
+msgstr "لینک مدیریو با موفقیت به روز شد، لطفا اطلاعات دیگر را به روز نمایید"
+
+#: src/Controller/Admin/VideoController.php:557
+#: src/Controller/Admin/VideoController.php:683
+#: src/Controller/Admin/VideoController.php:757
+#: src/Controller/Admin/VideoController.php:799
+#: src/Controller/Admin/VideoController.php:835
 msgid "Please select video"
 msgstr "لطفا یک ویدیو انتخاب کنید"
 
-#: src/Controller/Admin/VideoController.php:549
-#: src/Controller/Admin/VideoController.php:595
-#: src/Controller/Admin/VideoController.php:626
+#: src/Controller/Admin/VideoController.php:645
+#: src/Controller/Admin/VideoController.php:691
+#: src/Controller/Admin/VideoController.php:722
 #: src/Controller/Front/SubmitController.php:298
 #: src/Controller/Front/SubmitController.php:372
 #: src/Controller/Front/SubmitController.php:403
 msgid "Video data saved successfully."
 msgstr "اطلاعات ویدیو با موفقیت ذخیره شد"
 
-#: src/Controller/Admin/VideoController.php:572
+#: src/Controller/Admin/VideoController.php:668
 #: src/Controller/Front/SubmitController.php:332
 msgid "Video information"
 msgstr "اطلاعات ویدیو"
 
-#: src/Controller/Admin/VideoController.php:646
+#: src/Controller/Admin/VideoController.php:742
 #: src/Controller/Front/SubmitController.php:434
 msgid "Video additional information"
 msgstr "اطلاعات تکمیلی ویدیو"
 
-#: src/Controller/Admin/VideoController.php:670
-#: template/admin/video-index.phtml:132 template/admin/video-index.phtml:134
+#: src/Controller/Admin/VideoController.php:766
+#: template/admin/video-index.phtml:139 template/admin/video-index.phtml:141
 msgid "View video"
 msgstr "نمایش ویدیو"
 
-#: src/Controller/Admin/VideoController.php:690
+#: src/Controller/Admin/VideoController.php:786
 #, php-format
 msgid "%s set recommended successfully"
 msgstr "%s به عنوان پیشنهاد شده ذخیره شد"
 
-#: src/Controller/Admin/VideoController.php:697
+#: src/Controller/Admin/VideoController.php:793
 #, php-format
 msgid "Error in set recommended for %s video"
 msgstr "خطا در ثبت ویدیو %s به عنوان پیشنهاد شده"
@@ -314,7 +326,7 @@ msgstr "تمام ویدیو های محبوب شما"
 
 #: src/Controller/Front/IndexController.php:50
 #: src/Controller/Front/IndexController.php:57 src/Form/CategoryForm.php:129
-#: template/admin/video-index.phtml:85
+#: template/admin/video-index.phtml:92
 msgid "List of videos"
 msgstr "فهرست ویدیو ها"
 
@@ -398,7 +410,7 @@ msgstr "ویدیو پیدا نشد"
 #: src/Form/VideoForm.php:90 template/admin/attribute-index.phtml:57
 #: template/admin/category-index.phtml:13
 #: template/admin/position-index.phtml:13 template/admin/server-index.phtml:13
-#: template/admin/video-index.phtml:88 template/front/video-angular.phtml:94
+#: template/admin/video-index.phtml:95 template/front/video-angular.phtml:94
 #: template/front/video-angular.phtml:180
 msgid "Title"
 msgstr "عنوان"
@@ -470,7 +482,8 @@ msgstr ""
 #: src/Form/AttributeForm.php:197 src/Form/CategoryForm.php:245
 #: src/Form/PositionForm.php:88 src/Form/ServerForm.php:158
 #: src/Form/SitemapForm.php:48 src/Form/VideoAdditionalForm.php:98
-#: src/Form/VideoForm.php:373 src/Form/VideoLinkForm.php:106
+#: src/Form/VideoExternalForm.php:68 src/Form/VideoForm.php:373
+#: src/Form/VideoLinkForm.php:106
 msgid "Submit"
 msgstr "ارسال"
 
@@ -509,29 +522,29 @@ msgstr "فهرست زیر شاخه ها"
 
 #: src/Form/CategoryForm.php:144 src/Form/PositionForm.php:75
 #: src/Form/ServerForm.php:62 src/Form/VideoForm.php:66
-#: template/admin/category-index.phtml:51 template/admin/video-index.phtml:62
-#: template/admin/video-index.phtml:64 template/admin/video-index.phtml:150
+#: template/admin/category-index.phtml:51 template/admin/video-index.phtml:69
+#: template/admin/video-index.phtml:71 template/admin/video-index.phtml:157
 msgid "Published"
 msgstr "منتشر شده"
 
 #: src/Form/CategoryForm.php:145 src/Form/PositionForm.php:76
 #: src/Form/ServerForm.php:63 src/Form/VideoForm.php:67
-#: template/admin/category-index.phtml:52 template/admin/video-index.phtml:65
-#: template/admin/video-index.phtml:67 template/admin/video-index.phtml:68
-#: template/admin/video-index.phtml:151
+#: template/admin/category-index.phtml:52 template/admin/video-index.phtml:72
+#: template/admin/video-index.phtml:74 template/admin/video-index.phtml:75
+#: template/admin/video-index.phtml:158
 msgid "Pending review"
 msgstr "در انتظار تایید"
 
 #: src/Form/CategoryForm.php:146 src/Form/PositionForm.php:77
 #: src/Form/ServerForm.php:64 src/Form/VideoForm.php:68
-#: template/admin/category-index.phtml:53 template/admin/video-index.phtml:70
+#: template/admin/category-index.phtml:53 template/admin/video-index.phtml:77
 msgid "Draft"
 msgstr "پیش نویس"
 
 #: src/Form/CategoryForm.php:147 src/Form/PositionForm.php:78
 #: src/Form/ServerForm.php:65 src/Form/VideoForm.php:69
-#: template/admin/category-index.phtml:54 template/admin/video-index.phtml:71
-#: template/admin/video-index.phtml:73
+#: template/admin/category-index.phtml:54 template/admin/video-index.phtml:78
+#: template/admin/video-index.phtml:80
 msgid "Private"
 msgstr "خصوصی"
 
@@ -628,6 +641,14 @@ msgstr "فقط جدول ویدیو ها"
 #: src/Form/SitemapForm.php:36
 msgid "Just category table"
 msgstr "فقط جدول شاخه ها"
+
+#: src/Form/VideoExternalForm.php:55 template/admin/video-index.phtml:56
+msgid "External link"
+msgstr "لینک خارجی"
+
+#: src/Form/VideoExternalForm.php:59
+msgid "External link of video from youtube or aparat or video direct link"
+msgstr "لینک خراجی ویدیو از یوتیوب یا آپارات یا لینک مستقیم فایل ویدیویی"
 
 #: src/Form/VideoForm.php:48
 msgid "General options"
@@ -785,20 +806,20 @@ msgstr "شناسه"
 
 #: template/admin/category-index.phtml:15
 #: template/admin/position-index.phtml:14 template/admin/server-index.phtml:17
-#: template/admin/video-index.phtml:89
+#: template/admin/video-index.phtml:96
 msgid "Action"
 msgstr "عملکرد"
 
 #: template/admin/category-index.phtml:40
-#: template/admin/category-index.phtml:41 template/admin/video-index.phtml:56
-#: template/admin/video-index.phtml:115 template/admin/video-index.phtml:138
-#: template/admin/video-index.phtml:140 template/admin/video-link.phtml:10
+#: template/admin/category-index.phtml:41 template/admin/video-index.phtml:63
+#: template/admin/video-index.phtml:122 template/admin/video-index.phtml:145
+#: template/admin/video-index.phtml:147 template/admin/video-link.phtml:10
 #: template/admin/video-update.phtml:17 template/admin/video-view.phtml:72
 msgid "View"
 msgstr "نمایش"
 
-#: template/admin/category-index.phtml:55 template/admin/video-index.phtml:74
-#: template/admin/video-index.phtml:76 template/admin/video-index.phtml:152
+#: template/admin/category-index.phtml:55 template/admin/video-index.phtml:81
+#: template/admin/video-index.phtml:83 template/admin/video-index.phtml:159
 msgid "Trash"
 msgstr "حذف شده"
 
@@ -886,19 +907,23 @@ msgstr "مدیریت لینک ها در ماژول نقشه سایت"
 msgid "Add video"
 msgstr "ویدیو جدید"
 
-#: template/admin/video-index.phtml:59 template/admin/video-index.phtml:61
+#: template/admin/video-index.phtml:49
+msgid "Internal link"
+msgstr "لینک داخلی"
+
+#: template/admin/video-index.phtml:66 template/admin/video-index.phtml:68
 msgid "All videos"
 msgstr "همه ویدیو ها"
 
-#: template/admin/video-index.phtml:114
+#: template/admin/video-index.phtml:121
 msgid "Server"
 msgstr "سرور"
 
-#: template/admin/video-index.phtml:120
+#: template/admin/video-index.phtml:127
 msgid "Manage"
 msgstr "مدیریت"
 
-#: template/admin/video-index.phtml:158
+#: template/admin/video-index.phtml:165
 msgid "Recommended in process"
 msgstr "اضافه به عنوان منتخب در حال اجرا است"
 
