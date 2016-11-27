@@ -53,7 +53,6 @@ class VideoController extends ActionController
         $order = array('time_create DESC', 'id DESC');
         $limit = intval($this->config('admin_perpage'));
         $video = array();
-
         // Set title
         if (!empty($title) && !empty($category)) {
             // Set where
@@ -72,9 +71,15 @@ class VideoController extends ActionController
             if (!empty($videoId)) {
                 $whereVideo['id'] = $videoId;
             }
+            // Get list of product
+            $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
+            $rowset = $this->getModel('video')->selectWith($select);
         } elseif (!empty($title)) {
             $whereVideo = array('title LIKE ?' => '%' . $title . '%');
-        } else {
+            // Get list of product
+            $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
+            $rowset = $this->getModel('video')->selectWith($select);
+        } elseif (!empty($category)) {
             // Set where
             $whereLink = array();
             if (!empty($status) && in_array($status, array(1, 2, 3, 4, 5))) {
@@ -98,16 +103,27 @@ class VideoController extends ActionController
             if (!empty($videoId)) {
                 $whereVideo['id'] = $videoId;
             }
+            // Get list of product
+            $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
+            $rowset = $this->getModel('video')->selectWith($select);
+        } else {
+            // Set info
+            $whereVideo = array();
+            if (!empty($status) && in_array($status, array(1, 2, 3, 4, 5))) {
+                $whereVideo['status'] = $status;
+            } else {
+                $whereVideo['status'] = array(1, 2, 3, 4);
+            }
+            // Get list of product
+            $select = $this->getModel('video')->select()->where($whereVideo)->order($order)->offset($offset)->limit($limit);
+            $rowset = $this->getModel('video')->selectWith($select);
         }
-        // Get list of product
-        $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
-        $rowset = $this->getModel('video')->selectWith($select);
         // Make list
         foreach ($rowset as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
         // Set count
-        if (empty($title)) {
+        if (isset($whereLink)) {
             $columnsLink = array('count' => new Expression('count(DISTINCT `video`)'));
             $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsLink);
             $count = $this->getModel('link')->selectWith($select)->current()->count;

@@ -1,0 +1,16 @@
+<?php
+$this->css($this->assetModule('css/admin.css'));
+$this->jQuery();
+$script = <<<'EOT'
+window.setTimeout(function() {
+    window.location.href = '%s';
+}, 10000);
+EOT;
+$script = sprintf($script, $url);
+$this->footScript()->appendScript($script);
+?>
+<div class="clearfix">
+    <div class="alert alert-warning">
+        <?php _e('At processing request, please wait dont close this page'); ?>
+    </div>
+</div>

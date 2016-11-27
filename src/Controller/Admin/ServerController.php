@@ -73,6 +73,8 @@ class ServerController extends ActionController
                 $setting['qmery_upload_token'] = $values['qmery_upload_token'];
                 $setting['qmery_update_token'] = $values['qmery_update_token'];
                 $setting['qmery_group_id'] = $values['qmery_group_id'];
+                $setting['qmery_group_hash'] = $values['qmery_group_hash'];
+                $setting['qmery_import'] = $values['qmery_import'];
                 $values['setting'] = Json::encode($setting);
                 // Save values
                 if (!empty($values['id'])) {
@@ -105,5 +107,45 @@ class ServerController extends ActionController
         $this->view()->setTemplate('server-update');
         $this->view()->assign('form', $form);
         $this->view()->assign('title', __('Manage server'));
+    }
+
+    public function processingAction()
+    {
+        // Get info from url
+        $server = $this->params('server');
+        $type = $this->params('type');
+        $page = $this->params('page', 1);
+        // Server list
+        $serverList = Pi::registry('serverList', 'video')->read();
+        // Check type
+        switch ($serverList[$server]['type']) {
+            case 'qmery':
+                // Check type
+                switch ($type) {
+                    case 'toQmery':
+
+                        break;
+
+                    case 'toWebsite':
+                        $count = Pi::api('qmery', 'video')->updateListToWebsite($serverList[$server], $page);
+                        if ($count > 0) {
+                            $url = Pi::url($this->url('', array(
+                                'controller' => 'server',
+                                'action' => 'processing',
+                                'server' => $server,
+                                'type' => 'toWebsite',
+                                'page' => $page + 1,
+                            )));
+                        }  else {
+                            $message = __('Update information form qmery server finished');
+                            $this->jump(array('action' => 'index'), $message);
+                        }
+                        break;
+                }
+                break;
+        }
+        // Set view
+        $this->view()->setTemplate('server-processing');
+        $this->view()->assign('url', $url);
     }
 }

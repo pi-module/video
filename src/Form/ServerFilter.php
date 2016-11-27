@@ -90,5 +90,20 @@ class ServerFilter extends InputFilter
                 ),
             ),
         ));
+        // qmery_group_hash
+        $this->add(array(
+            'name' => 'qmery_group_hash',
+            'required' => false,
+            'filters' => array(
+                array(
+                    'name' => 'StringTrim',
+                ),
+            ),
+        ));
+        // qmery_import
+        $this->add(array(
+            'name' => 'qmery_import',
+            'required' => false,
+        ));
     }
 }

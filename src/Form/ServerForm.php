@@ -150,6 +150,28 @@ class ServerForm extends BaseForm
                 'description' => '',
             )
         ));
+        // qmery_group_hash
+        $this->add(array(
+            'name' => 'qmery_group_hash',
+            'options' => array(
+                'label' => __('Qmery group hash'),
+            ),
+            'attributes' => array(
+                'type' => 'text',
+                'description' => '',
+            )
+        ));
+        // qmery_import
+        $this->add(array(
+            'name' => 'qmery_import',
+            'type' => 'checkbox',
+            'options' => array(
+                'label' => __('Import video'),
+            ),
+            'attributes' => array(
+                'description' => __('Import video from qmery to website if video not exist on website'),
+            )
+        ));
         // Save
         $this->add(array(
             'name' => 'submit',

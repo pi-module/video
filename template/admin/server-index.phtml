@@ -20,13 +20,15 @@
             <?php
             if ($server['status'] == 1) {
                 $labelIdClass = 'label-success';
+            } elseif ($server['status'] == 5) {
+                $labelIdClass = 'label-danger';
             } else {
                 $labelIdClass = 'label-warning';
             }
             ?>
             <tr>
-                <td><span
-                        class="label <?php echo $labelIdClass; ?>"><?php echo $this->escape($server['id']); ?></span>
+                <td>
+                    <span class="label <?php echo $labelIdClass; ?>"><?php echo $this->escape($server['id']); ?></span>
                 </td>
                 <td><?php echo $this->escape($server['title']); ?></td>
                 <td><?php echo $this->escape($server['type_view']); ?></td>
@@ -42,6 +44,21 @@
                     <a class="btn btn-primary btn-xs" title="<?php _e('Edit'); ?>"
                        href="<?php echo $this->url('', array('action' => 'update', 'id' => $server['id'])); ?>"><i
                             class="fa fa-edit"></i> <?php _e('Edit'); ?></a>
+                    <?php if ($server['type'] == 'qmery') { ?>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-wrench"></i> <?php _e('Update'); ?> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a title="<?php _e('From website to qmery'); ?>"
+                                       href="<?php echo $this->url('', array('controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'toQmery')); ?>"><i
+                                            class="fa fa-wrench"></i> <?php _e('From website to qmery'); ?></a></li>
+                                <li><a title="<?php _e('From qmery to website'); ?>"
+                                       href="<?php echo $this->url('', array('controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'toWebsite')); ?>"><i
+                                            class="fa fa-wrench"></i> <?php _e('From qmery to website'); ?></a></li>
+                            </ul>
+                        </div>
+                    <?php } ?>
                 </td>
             </tr>
         <?php } ?>

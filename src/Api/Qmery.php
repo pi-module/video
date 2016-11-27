@@ -16,11 +16,12 @@ namespace Module\Video\Api;
 use Pi;
 use Pi\Application\Api\AbstractApi;
 use Zend\Json\Json;
+use Zend\Math\Rand;
 
 /*
  * Pi::api('qmery', 'video')->upload($video);
  * Pi::api('qmery', 'video')->link($video, $link);
- * Pi::api('qmery', 'video')->update($video);
+ * Pi::api('qmery', 'video')->updateListToWebsite($server, $page);
  */
 
 class Qmery extends AbstractApi
@@ -170,8 +171,42 @@ class Qmery extends AbstractApi
         return $result;
     }
 
-    public function update($video)
+    public function updateListToQmery($videos)
     {
-        return $video;
+        return $videos;
+    }
+
+    public function updateListToWebsite($server, $page)
+    {
+        $apiUrl = 'http://api.qmery.com/v1/videos.json?api_token=%s&page=%s&per_page=%s&sort_dir';
+        $apiUrl = sprintf($apiUrl, $server['qmery_update_token'], $page, 50);
+        $videoList = Pi::service('remote')->get($apiUrl);
+        if (!empty($videoList)) {
+            foreach ($videoList as $videoSingle) {
+                if ($videoSingle['group_id'] == $server['qmery_group_id']) {
+                    $video = Pi::model('video', $this->getModule())->find($videoSingle['id'], 'video_qmery_id');
+                    if ($video) {
+                        $video->video_qmery_hash = $videoSingle['hash_id'];
+                        $video->video_qmery_id = $videoSingle['id'];
+                        $video->video_qmery_hls = isset($videoSingle['hls']) ? $videoSingle['hls'] : '';
+                        $video->save();
+                    } elseif ($server['qmery_import']) {
+                        $video = Pi::model('video', $this->getModule())->createRow();
+                        $video->title = $videoSingle['title'];
+                        $video->slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
+                        $video->time_create = time();
+                        $video->time_update = time();
+                        $video->uid = Pi::user()->getId();
+                        $video->status = 2;
+                        $video->video_server = $server['id'];
+                        $video->video_qmery_hash = $videoSingle['hash_id'];
+                        $video->video_qmery_id = $videoSingle['id'];
+                        $video->video_qmery_hls = isset($videoSingle['hls']) ? $videoSingle['hls'] : '';
+                        $video->save();
+                    }
+                }
+            }
+        }
+        return count($videoList);
     }
 }
