@@ -324,6 +324,33 @@ EOD;
 
         }
 
+        if (version_compare($moduleVersion, '0.7.1', '<')) {
+            // Alter table field `sale_type`
+            $sql = sprintf("ALTER TABLE %s ADD `sale_type` ENUM ('free', 'package', 'single') NOT NULL DEFAULT 'free'", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+            // Alter table field `sale_price`
+            $sql = sprintf("ALTER TABLE %s ADD `sale_price` DECIMAL(16, 2) NOT NULL DEFAULT '0.00'", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+        }
+
         return true;
     }
 }

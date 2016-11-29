@@ -38,6 +38,10 @@ return array(
             'name' => 'image'
         ),
         array(
+            'title' => _a('Order'),
+            'name' => 'order'
+        ),
+        array(
             'title' => _a('Social'),
             'name' => 'social'
         ),
@@ -320,6 +324,15 @@ return array(
             'filter' => 'text',
             'value' => 'bottom-right',
             'category' => 'image',
+        ),
+        // Order
+        'sale_video' => array(
+            'category' => 'order',
+            'title' => _a('Sale video'),
+            'description' => '',
+            'edit' => 'checkbox',
+            'filter' => 'number_int',
+            'value' => 0
         ),
         // Social
         'social_sharing' => array(
