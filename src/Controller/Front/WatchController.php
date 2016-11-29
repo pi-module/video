@@ -26,8 +26,7 @@ class WatchController extends IndexController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Find video
-        $video = $this->getModel('video')->find($slug, 'slug');
-        $video = Pi::api('video', 'video')->canonizeVideo($video);
+        $video = Pi::api('video', 'video')->getVideo($slug, 'slug');
         // Check video
         if (!$video || $video['status'] != 1) {
             $this->jump(array('', 'module' => $module, 'controller' => 'index'), __('The video not found.'), 'error');

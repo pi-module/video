@@ -125,6 +125,53 @@ class Video extends AbstractApi
         return $time;
     }
 
+    public function videoPrice($video)
+    {
+        // Get config
+        $config = Pi::service('registry')->config->read($this->getModule());
+        // Get user
+        $uid = Pi::user()->getId();
+        // Check system sale
+        if ($config['sale_video'] == 'free') {
+            $video['access'] = true;
+        } else {
+            switch ($video['sale_type']) {
+                case 'free':
+                    $video['access'] = true;
+                    break;
+
+                case 'package':
+                    if (Pi::service('authentication')->hasIdentity()) {
+                        $package = 1;
+                        $key = sprintf('video-package-%s-%s', $package, $uid);
+                        if (Pi::api('access', 'order')->hasAccess($key, true)) {
+                            $video['access'] = true;
+                        } else {
+                            $video['access'] = false;
+                        }
+                    } else {
+                        $video['access'] = false;
+                    }
+                    break;
+
+                case 'single':
+                    if (Pi::service('authentication')->hasIdentity()) {
+                        $key = sprintf('video-single-%s-%s', $video['id'], $uid);
+                        if (Pi::api('access', 'order')->hasAccess($key, true)) {
+                            $video['access'] = true;
+                        } else {
+                            $video['access'] = false;
+                        }
+                    } else {
+                        $video['access'] = false;
+                    }
+                    break;
+            }
+        }
+
+        return $video;
+    }
+
     public function canonizeVideo($video, $categoryList = array(), $serverList = array())
     {
         // Check

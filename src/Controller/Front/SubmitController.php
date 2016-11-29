@@ -220,7 +220,7 @@ class SubmitController extends IndexController
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $file = $this->request->getFiles();
-            $form->setInputFilter(new VideoFilter);
+            $form->setInputFilter(new VideoFilter($option));
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();

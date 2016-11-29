@@ -20,20 +20,17 @@ class VideoForm  extends BaseForm
 {
     public function __construct($name = null, $option = array())
     {
-        $this->side = $option['side'];
         $this->category = array(0 => ' ');
         $this->thumbUrl = empty($option['thumbUrl']) ? '' : $option['thumbUrl'];
         $this->removeUrl = empty($option['removeUrl']) ? '' : $option['removeUrl'];
-        $this->video_type = $option['video_type'];
-        $this->video_extension = $option['video_extension'];
-        $this->video_size = $option['video_size'];
+        $this->option = $option;
         parent::__construct($name);
     }
 
     public function getInputFilter()
     {
         if (!$this->filter) {
-            $this->filter = new VideoFilter;
+            $this->filter = new VideoFilter($this->option);
         }
         return $this->filter;
     }
@@ -56,7 +53,7 @@ class VideoForm  extends BaseForm
             ),
         ));
         // status
-        if ($this->side == 'admin') {
+        if ($this->option['side'] == 'admin') {
             $this->add(array(
                 'name' => 'status',
                 'type' => 'select',
@@ -96,7 +93,7 @@ class VideoForm  extends BaseForm
             )
         ));
         // slug
-        if ($this->side == 'admin') {
+        if ($this->option['side'] == 'admin') {
             $this->add(array(
                 'name' => 'slug',
                 'options' => array(
@@ -179,7 +176,7 @@ class VideoForm  extends BaseForm
                     'src' => $this->thumbUrl,
                 ),
             ));
-            if ($this->side == 'admin') {
+            if ($this->option['side'] == 'admin') {
                 $this->add(array(
                     'name' => 'remove',
                     'type' => 'Module\Video\Form\Element\Remove',
@@ -210,7 +207,7 @@ class VideoForm  extends BaseForm
             ));
         }
         // Video
-        if ($this->side == 'admin') {
+        if ($this->option['side'] == 'admin') {
             // extra_video
             $this->add(array(
                 'name' => 'extra_video',
@@ -219,7 +216,7 @@ class VideoForm  extends BaseForm
                     'label' => __('Video file'),
                 ),
             ));
-            // video_type
+            /* // video_type
             $this->add(array(
                 'name' => 'video_type',
                 'options' => array(
@@ -227,7 +224,7 @@ class VideoForm  extends BaseForm
                 ),
                 'attributes' => array(
                     'type' => 'description',
-                    'description' => $this->video_type,
+                    'description' => $this->option['video_type'],
                 )
             ));
             // video_extension
@@ -238,7 +235,7 @@ class VideoForm  extends BaseForm
                 ),
                 'attributes' => array(
                     'type' => 'description',
-                    'description' => $this->video_extension,
+                    'description' => $this->option['video_extension'],
                 )
             ));
             // video_size
@@ -249,9 +246,9 @@ class VideoForm  extends BaseForm
                 ),
                 'attributes' => array(
                     'type' => 'description',
-                    'description' => $this->video_size,
+                    'description' => $this->option['video_size'],
                 )
-            ));
+            )); */
             // video_duration
             $this->add(array(
                 'name' => 'video_duration',
@@ -260,7 +257,7 @@ class VideoForm  extends BaseForm
                 ),
                 'attributes' => array(
                     'type' => 'text',
-                    'description' => '',    
+                    'description' => '',
                 )
             ));
         } else {
@@ -272,8 +269,67 @@ class VideoForm  extends BaseForm
                 ),
             ));
         }
+        // Price
+        if ($this->option['side'] == 'admin' && $this->option['sale_video'] = 'package') {
+            // sale
+            $this->add(array(
+                'name' => 'sale',
+                'type' => 'checkbox',
+                'options' => array(
+                    'label' => __('Sale video'),
+                ),
+                'attributes' => array(
+                    'description' => __('If check it, users should buy package to watch this video'),
+                )
+            ));
+            // sale_price
+            $this->add(array(
+                'name' => 'sale_price',
+                'attributes' => array(
+                    'type' => 'hidden',
+                ),
+            ));
+        } elseif ($this->option['side'] == 'admin' && $this->option['sale_video'] = 'single') {
+            // sale
+            $this->add(array(
+                'name' => 'sale',
+                'type' => 'checkbox',
+                'options' => array(
+                    'label' => __('Sale video'),
+                ),
+                'attributes' => array(
+                    'description' => __('If check it and put price, users should pay to watch this video'),
+                )
+            ));
+            // sale_price
+            $this->add(array(
+                'name' => 'sale_price',
+                'options' => array(
+                    'label' => __('Sale Video price'),
+                ),
+                'attributes' => array(
+                    'type' => 'text',
+                    'description' => '',
+                )
+            ));
+        } else {
+            // sale
+            $this->add(array(
+                'name' => 'sale',
+                'attributes' => array(
+                    'type' => 'hidden',
+                ),
+            ));
+            // sale_price
+            $this->add(array(
+                'name' => 'sale_price',
+                'attributes' => array(
+                    'type' => 'hidden',
+                ),
+            ));
+        }
         // Seo
-        if ($this->side == 'admin') {
+        if ($this->option['side'] == 'admin') {
             // extra_seo
             $this->add(array(
                 'name' => 'extra_seo',

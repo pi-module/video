@@ -4,7 +4,7 @@ $this->jQuery();
 $script = <<<'EOT'
 window.setTimeout(function() {
     window.location.href = '%s';
-}, 10000);
+}, 5000);
 EOT;
 $script = sprintf($script, $url);
 $this->footScript()->appendScript($script);

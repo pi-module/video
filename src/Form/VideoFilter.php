@@ -18,7 +18,7 @@ use Zend\InputFilter\InputFilter;
 
 class VideoFilter extends InputFilter
 {
-    public function __construct()
+    public function __construct($option = array())
     {
         // id
         $this->add(array(
@@ -97,6 +97,16 @@ class VideoFilter extends InputFilter
         // video_duration
         $this->add(array(
             'name' => 'video_duration',
+            'required' => false,
+        ));
+        // sale
+        $this->add(array(
+            'name' => 'sale',
+            'required' => false,
+        ));
+        // sale_price
+        $this->add(array(
+            'name' => 'sale_price',
             'required' => false,
         ));
         // seo_title

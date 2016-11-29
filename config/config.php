@@ -38,7 +38,7 @@ return array(
             'name' => 'image'
         ),
         array(
-            'title' => _a('Order'),
+            'title' => _a('Order video'),
             'name' => 'order'
         ),
         array(
@@ -327,12 +327,21 @@ return array(
         ),
         // Order
         'sale_video' => array(
-            'category' => 'order',
             'title' => _a('Sale video'),
             'description' => '',
-            'edit' => 'checkbox',
-            'filter' => 'number_int',
-            'value' => 0
+            'edit' => array(
+                'type' => 'select',
+                'options' => array(
+                    'options' => array(
+                        'free' => _a('All videos is free'),
+                        'package' => _a('Users buy package to watch paid video'),
+                        'single' => _a('User pay one by one for paid video'),
+                    ),
+                ),
+            ),
+            'filter' => 'text',
+            'value' => 'free',
+            'category' => 'order',
         ),
         // Social
         'social_sharing' => array(
