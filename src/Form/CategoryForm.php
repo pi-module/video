@@ -190,6 +190,18 @@ class CategoryForm extends BaseForm
                 )
             ));
         }
+        // image_wide
+        $this->add(array(
+            'name' => 'image_wide',
+            'options' => array(
+                'label' => __('Wide image'),
+            ),
+            'attributes' => array(
+                'type' => 'text',
+                'description' => __('Set wide image url for category page header'),
+
+            )
+        ));
         // extra
         $this->add(array(
             'name' => 'extra_seo',

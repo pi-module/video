@@ -96,6 +96,16 @@ class CategoryFilter extends InputFilter
             'name' => 'image',
             'required' => false,
         ));
+        // image_wide
+        $this->add(array(
+            'name' => 'image_wide',
+            'required' => false,
+            'filters' => array(
+                array(
+                    'name' => 'StringTrim',
+                ),
+            ),
+        ));
         // seo_title
         $this->add(array(
             'name' => 'seo_title',

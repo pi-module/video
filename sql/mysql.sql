@@ -65,6 +65,7 @@ CREATE TABLE `{category}` (
   `text_summary`     TEXT,
   `text_description` TEXT,
   `image`            VARCHAR(255)                  NOT NULL DEFAULT '',
+  `image_wide`       VARCHAR(255)                  NOT NULL DEFAULT '',
   `path`             VARCHAR(16)                   NOT NULL DEFAULT '',
   `seo_title`        VARCHAR(255)                  NOT NULL DEFAULT '',
   `seo_keywords`     VARCHAR(255)                  NOT NULL DEFAULT '',

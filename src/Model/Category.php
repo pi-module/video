@@ -26,6 +26,7 @@ class Category extends Model
         'title',
         'slug',
         'image',
+        'image_wide',
         'path',
         'text_summary',
         'text_description',
