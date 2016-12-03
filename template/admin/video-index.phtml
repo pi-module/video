@@ -54,7 +54,15 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
 										   'server' => $server['id']
 									   )); ?>"><i
 											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('External link'); ?>)</a></li>
+								<li><a title="<?php _e('From qmery to website'); ?>"
+									   href="<?php echo $this->url('', array(
+										   'controller' => 'server',
+										   'action' => 'processing',
+										   'server' => $server['id'],
+										   'type' => 'toWebsite'
+									   )); ?>"><i class="fa fa-wrench"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('From qmery to website'); ?>)</a></li>
 							<?php } ?>
+							<li role="separator" class="divider"></li>
 						<?php } ?>
 					</ul>
 				</div>
