@@ -881,7 +881,7 @@ class VideoController extends ActionController
             $this->getModel('link')->update(array('status' => $row->status), array('video' => $row->id));
             // Remove sitemap
             if (Pi::service('module')->isActive('sitemap')) {
-                $loc = Pi::url($this->url('news', array(
+                $loc = Pi::url($this->url('video', array(
                     'module'      => $module,
                     'controller'  => 'video',
                     'slug'        => $row->slug
