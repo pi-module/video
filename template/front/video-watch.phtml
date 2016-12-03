@@ -124,9 +124,13 @@ EOT;
                 <?php if ($videoItem['server']['type'] == 'file') { ?>
                     <?php echo $this->videojs($videoItem['videoFileUrl'], $videoItem['largeUrl']); ?>
                 <?php } elseif ($videoItem['server']['type'] == 'qmery') { ?>
-                    <div class="qmery-player">
-                        <div id="embed_qmery_player_<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
-                        <div id="embed_qmery_player_icons<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
+                    <div class="qmery-player-min-height">
+                        <div class="qmery-player-full-height">
+                            <div class="qmery-player">
+                                <div id="embed_qmery_player_<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
+                                <div id="embed_qmery_player_icons<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
+                            </div>
+                        </div>
                     </div>
                 <?php } elseif ($videoItem['server']['type'] == 'wowza') { ?>
                     <div class="clearfix">

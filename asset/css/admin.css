@@ -19,3 +19,12 @@
 .progress {
     display: none;
 }
+
+/* player */
+.qmery-player-min-height {
+    min-height: 380px;
+}
+
+.qmery-player-full-heigh {
+    height: 100%;
+}

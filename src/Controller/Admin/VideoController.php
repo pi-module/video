@@ -715,7 +715,7 @@ class VideoController extends ActionController
         // Check attribute is empty
         if (empty($fields['attribute'])) {
             $message = __('Video data saved successfully.');
-            $this->jump(array('action' => 'view', 'id' => $video['id']), $message);
+            $this->jump(array('action' => 'watch', 'id' => $video['id']), $message);
         }
         // Check post
         if ($this->request->isPost()) {
@@ -746,7 +746,7 @@ class VideoController extends ActionController
                 }
                 // Jump
                 $message = __('Video data saved successfully.');
-                $this->jump(array('action' => 'view', 'id' => $row->id), $message);
+                $this->jump(array('action' => 'watch', 'id' => $row->id), $message);
             }
         } else {
             // Get attribute
@@ -769,7 +769,7 @@ class VideoController extends ActionController
         $this->view()->assign('nav', $nav);
     }
 
-    public function viewAction()
+    public function watchAction()
     {
         // Get info from url
         $id = $this->params('id');
@@ -788,7 +788,7 @@ class VideoController extends ActionController
             'page' => 'view',
         );
         // Set view
-        $this->view()->setTemplate('video-view');
+        $this->view()->setTemplate('video-watch');
         $this->view()->assign('title', __('View video'));
         $this->view()->assign('video', $video);
         $this->view()->assign('config', $config);
