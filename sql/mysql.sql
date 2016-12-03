@@ -36,8 +36,10 @@ CREATE TABLE `{video}` (
   `video_path`       VARCHAR(64)                        NOT NULL DEFAULT '',
   `video_file`       VARCHAR(64)                        NOT NULL DEFAULT '',
 
-  `video_qmery_hash` VARCHAR(64)                                 DEFAULT NULL,
-  `video_qmery_id`   INT(10) UNSIGNED                            DEFAULT NULL,
+  `video_qmery_hash` VARCHAR(255)
+                     CHARACTER SET utf8
+                     COLLATE utf8_bin                   NOT NULL DEFAULT '',
+  `video_qmery_id`   INT(10) UNSIGNED DEFAULT NULL,
   `video_qmery_hls`  VARCHAR(255)                       NOT NULL DEFAULT '',
 
   `video_size`       VARCHAR(16)                        NOT NULL DEFAULT '',
