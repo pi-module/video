@@ -15,7 +15,6 @@ namespace Module\Video\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Zend\Json\Json;
 
 /*
  * Pi::api('service', 'video')->getVideo($module, $table, $item, $hits);

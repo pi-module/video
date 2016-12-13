@@ -24,7 +24,6 @@ use Module\Video\Form\VideoAdditionalForm;
 use Module\Video\Form\VideoAdditionalFilter;
 use Module\Video\Form\VideoUploadForm;
 use Module\Video\Form\VideoUploadFilter;
-use Zend\Json\Json;
 use Zend\Math\Rand;
 use Zend\Db\Sql\Predicate\Expression;
 
@@ -254,7 +253,7 @@ class SubmitController extends IndexController
                     $values['image'] = '';
                 }
                 // Category
-                $values['category'] = Json::encode(array_unique($values['category']));
+                $values['category'] = json_encode(array_unique($values['category']));
                 // Set seo_title
                 $title = ($values['seo_title']) ? $values['seo_title'] : $values['title'];
                 $filter = new Filter\HeadTitle;

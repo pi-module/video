@@ -15,7 +15,6 @@ namespace Module\Video\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Zend\Json\Json;
 
 /*
  * Pi::api('attribute', 'video')->Get($category);
@@ -324,7 +323,7 @@ class Attribute extends AbstractApi
         foreach ($rowset as $row) {
             $return[$row->id] = $row->toArray();
             $return[$row->id]['position_vew'] = $position[$row->position];
-            $return[$row->id]['value'] = Json::decode($row->value, true);
+            $return[$row->id]['value'] = json_decode($row->value, true);
             $return[$row->id]['value']['data'] = explode('|', $return[$row->id]['value']['data']);
         }
         return $return;

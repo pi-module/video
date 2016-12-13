@@ -15,7 +15,6 @@ namespace Module\Video\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Zend\Json\Json;
 use Zend\Db\Sql\Predicate\Expression;
 
 /*
@@ -193,7 +192,7 @@ class Video extends AbstractApi
         // Set server information
         $video['server'] = $serverList[$video['video_server']];
         // Make setting
-        $video['setting'] = json::decode($video['setting'], true);;
+        $video['setting'] = json_decode($video['setting'], true);;
         // Set text_summary
         $video['text_summary'] = Pi::service('markup')->render($video['text_summary'], 'html', 'html');
         // Set text_description
@@ -306,7 +305,7 @@ class Video extends AbstractApi
         // Set video duration
         $video['video_duration_view'] = $this->videoDuration($video['video_duration']);
         // Set category information
-        $video['category'] = Json::decode($video['category']);
+        $video['category'] = json_decode($video['category']);
         foreach ($video['category'] as $category) {
             if (!empty($categoryList[$category]['title'])) {
                 $video['categories'][$category]['title'] = $categoryList[$category]['title'];
@@ -428,7 +427,7 @@ class Video extends AbstractApi
         // boject to array
         $video = $video->toArray();
         // Make setting
-        $video['setting'] = json::decode($video['setting'], true);
+        $video['setting'] = json_decode($video['setting'], true);
         // Set text_summary
         $video['text_summary'] = Pi::service('markup')->render($video['text_summary'], 'html', 'html');
         // Set text_description
@@ -538,7 +537,7 @@ class Video extends AbstractApi
         // Set video duration
         $video['video_duration_view'] = $this->videoDuration($video['video_duration']);
         // Set category information
-        $video['category'] = Json::decode($video['category']);
+        $video['category'] = json_decode($video['category']);
         foreach ($video['category'] as $category) {
             if (!empty($categoryList[$category]['title'])) {
                 $video['categories'][$category]['title'] = $categoryList[$category]['title'];
@@ -611,7 +610,7 @@ class Video extends AbstractApi
         // boject to array
         $video = $video->toArray();
         // Make setting
-        // $video['setting'] = json::decode($video['setting'], true);
+        // $video['setting'] = json_decode($video['setting'], true);
         // Set text_summary
         // $video['text_summary'] = Pi::service('markup')->render($video['text_summary'], 'html', 'html');
         // Set text_description
@@ -633,7 +632,7 @@ class Video extends AbstractApi
         )));
         // Set category information
         if (isset($video['category']) && !empty($video['category'])) {
-            $video['category'] = Json::decode($video['category']);
+            $video['category'] = json_decode($video['category']);
             foreach ($video['category'] as $category) {
                 $video['categories'][$category]['id'] = $categoryList[$category]['id'];
                 $video['categories'][$category]['title'] = $categoryList[$category]['title'];

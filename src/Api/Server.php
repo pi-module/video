@@ -15,7 +15,6 @@ namespace Module\Video\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Zend\Json\Json;
 
 /*
  * Pi::api('server', 'video')->getServer($id);
@@ -40,7 +39,7 @@ class Server extends AbstractApi
         // object to array
         $server = $server->toArray();
         // Get setting
-        $setting = Json::decode($server['setting'], true);
+        $setting = json_decode($server['setting'], true);
         $server = array_merge($server, $setting);
         // return
         return $server;

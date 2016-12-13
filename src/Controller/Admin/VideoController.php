@@ -30,7 +30,6 @@ use Module\Video\Form\VideoExternalForm;
 use Module\Video\Form\VideoExternalFilter;
 use Module\Video\Form\AdminSearchForm;
 use Module\Video\Form\AdminSearchFilter;
-use Zend\Json\Json;
 use Zend\Math\Rand;
 use Zend\Db\Sql\Predicate\Expression;
 
@@ -621,7 +620,7 @@ class VideoController extends ActionController
                     $values['image'] = '';
                 }
                 // Category
-                $values['category'] = Json::encode(array_unique($values['category']));
+                $values['category'] = json_encode(array_unique($values['category']));
                 // Set seo_title
                 $title = ($values['seo_title']) ? $values['seo_title'] : $values['title'];
                 $filter = new Filter\HeadTitle;

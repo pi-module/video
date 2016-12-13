@@ -15,7 +15,6 @@ namespace Module\Video\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Zend\Json\Json;
 use Zend\Db\Sql\Predicate\Expression;
 
 /*
@@ -48,7 +47,7 @@ class Category extends AbstractApi
         //Remove
         Pi::model('link', $this->getModule())->delete(array('video' => $video));
         // Add
-        $allCategory = Json::decode($category);
+        $allCategory = json_decode($category);
         foreach ($allCategory as $category) {
             // Set array
             $values['video'] = $video;
@@ -135,7 +134,7 @@ class Category extends AbstractApi
             );
         }
         $return = $this->makeTree($return);
-        $return =  Json::encode($return);
+        $return =  json_encode($return);
         return $return;
     }
 

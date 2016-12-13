@@ -15,7 +15,6 @@ namespace Module\Video\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Zend\Json\Json;
 use Zend\Math\Rand;
 
 /*
@@ -54,7 +53,7 @@ class Qmery extends AbstractApi
                 $video['video_file']
             ));
             //$fields['url'] = str_replace("https://", "http://", $fields['url']);
-            $fields = Json::encode($fields);
+            $fields = json_encode($fields);
 
             /* // Set header
             $headers = array(
@@ -77,7 +76,7 @@ class Qmery extends AbstractApi
             $qmeryResult = curl_exec($ch);
 
             if (is_array($qmeryResult)) {
-                $result = Json::decode($qmeryResult, true);
+                $result = json_decode($qmeryResult, true);
                 $result['status'] = 1;
                 // Update db
                 if (!empty($result['hash_id']) && !empty($result['id'])) {
@@ -124,7 +123,7 @@ class Qmery extends AbstractApi
             $fields['title'] = $video['title'];
             $fields['group_id'] = $video['server']['qmery_group_id'];
             $fields['url'] = $link;
-            $fields = Json::encode($fields);
+            $fields = json_encode($fields);
 
             /* // Set header
             $headers = array(
@@ -147,7 +146,7 @@ class Qmery extends AbstractApi
             $qmeryResult = curl_exec($ch);
 
             if (is_array($qmeryResult)) {
-                $result = Json::decode($qmeryResult, true);
+                $result = json_decode($qmeryResult, true);
                 $result['status'] = 1;
                 // Update db
                 if (!empty($result['hash_id']) && !empty($result['id'])) {
