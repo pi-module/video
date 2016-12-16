@@ -4,12 +4,12 @@ $this->jQuery();
 $script = <<<'EOT'
 window.setTimeout(function() {
     window.location.href = '%s';
-}, 10000);
+}, 3000);
 EOT;
 $script = sprintf($script, $url);
 $this->footScript()->appendScript($script);
 $script2 = <<<'EOT'
-    var count=10;
+    var count=3;
     var counter=setInterval(timer, 1000);
     function timer()
     {
