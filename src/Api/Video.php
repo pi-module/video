@@ -452,6 +452,7 @@ class Video extends AbstractApi
             'id' => $video['uid'],
         )));
         // Set video file url
+        // Set video file url
         switch ($video['server']['type']) {
             case 'file':
                 $video['videoFileUrl'] = sprintf('%s/%s/%s',
@@ -466,11 +467,13 @@ class Video extends AbstractApi
                     $video['server']['url'],
                     $video['video_qmery_hash']
                 );
-                $video['qmeryScript'] = sprintf('%s/embed.js?video=%s&w=640&h=360',
+                $video['qmeryScript'] = sprintf('%s/embed.js?video=%s&w=%s&h=%s',
                     $video['server']['url'],
-                    $video['video_qmery_hash']
+                    $video['video_qmery_hash'],
+                    640,
+                    360
                 );
-                $video['qmeryScriptResponsive'] = sprintf('%s/embed.js?video=%s',
+                $video['qmeryScriptResponsive'] = sprintf('%s/embed.js?video=%s&asp=16:9',
                     $video['server']['url'],
                     $video['video_qmery_hash']
                 );

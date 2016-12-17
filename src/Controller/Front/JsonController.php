@@ -43,7 +43,8 @@ class JsonController extends IndexController
         $module = $this->params('module');
         $type = $this->params('type');
         $limit = $this->params('limit');
-        $id = $this->params('id');
+        $id = $this->params('id', 0);
+        $update = $this->params('update', 0);
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Get category list
@@ -53,6 +54,9 @@ class JsonController extends IndexController
         // Set info
         $video = array();
         $where = array('status' => 1);
+        if ($update > 0) {
+            $where['time_update > ?'] = $update;
+        }
         $limit = (!empty($limit)) ? $limit : $config['json_perpage'];
         $order = array('time_create DESC', 'id DESC');
         // Set type
@@ -108,10 +112,18 @@ class JsonController extends IndexController
                 'id' => $singleVideo['id'],
                 'title' => $singleVideo['title'],
                 'slug' => $singleVideo['slug'],
+                'body' => '',
+                'category' => $singleVideo['category_main'],
+                'categoryMainTitle' => '',
+                'image' => $singleVideo['image'],
+                'recommended' => $singleVideo['recommended'],
                 'time_create' => $singleVideo['time_create'],
                 'time_create_view' => $singleVideo['time_create_view'],
+                'time_update' => $singleVideo['time_create'],
+                'time_update_view' => $singleVideo['time_create_view'],
                 'videoUrl' => $singleVideo['videoUrl'],
                 'largeUrl' => $singleVideo['largeUrl'],
+                'qmeryDirect' => $singleVideo['qmeryDirect'],
             );
         }
         // Set view
