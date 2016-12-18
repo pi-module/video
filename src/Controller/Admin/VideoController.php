@@ -812,6 +812,11 @@ class VideoController extends ActionController
                 $return['ajaxstatus'] = 1;
                 $return['id'] = $video->id;
                 $return['recommended'] = $video->recommended;
+                // Update recommended
+                $this->getModel('link')->update(
+                    array('recommended' => $video->recommended),
+                    array('video' => $video->id)
+                );
                 // Add log
                 Pi::api('log', 'video')->addLog('video', $video->id, 'recommend');
             } else {

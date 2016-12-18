@@ -36,6 +36,9 @@ class Block
                 'status' => 1,
                 'category' => $block['category'],
             );
+            if ($block['recommended']) {
+                $where['recommended'] = 1;
+            }
             // Set info
             $columns = array('video' => new Expression('DISTINCT video'));
             // Get info from link table
@@ -49,6 +52,9 @@ class Block
             $where = array('status' => 1, 'id' => $videoId);
         } else {
             $where = array('status' => 1);
+            if ($block['recommended']) {
+                $where['recommended'] = 1;
+            }
         }
         // Get list of video
         $select = Pi::model('video', $module)->select()->where($where)->order($order)->limit($limit);
