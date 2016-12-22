@@ -22,8 +22,16 @@ use Zend\Db\Sql\Predicate\Expression;
  * Pi::api('video', 'video')->getVideoLight($parameter, $type);
  * Pi::api('video', 'video')->getVideoJson($parameter, $type);
  * Pi::api('video', 'video')->getListFromId($id);
+ * Pi::api('video', 'video')->getListFromIdLight($id);
  * Pi::api('video', 'video')->attributeCount($id);
- * Pi::api('video', 'video')->canonizeVideo($video);
+ * Pi::api('video', 'video')->getDuration($secs);
+ * Pi::api('video', 'video')->getAccess($video);
+ * Pi::api('video', 'video')->getPayUrl($video);
+ * Pi::api('video', 'video')->canonizeVideo($video, $categoryList, $serverList);
+ * Pi::api('video', 'video')->canonizeVideoLight($video);
+ * Pi::api('video', 'video')->canonizeVideoJson($video, $categoryList, $serverList);
+ * Pi::api('video', 'video')->canonizeVideoFilter($video, $categoryList, $serverList);
+ * Pi::api('video', 'video')->sitemap();
  */
 
 class Video extends AbstractApi
@@ -86,7 +94,7 @@ class Video extends AbstractApi
         Pi::model('video', $this->getModule())->update(array('attribute' => $count), array('id' => $id));
     }
 
-    public function videoDuration($secs)
+    public function getDuration($secs)
     {
         if ($secs < 3600) {
             $times = array(60, 1);
@@ -124,51 +132,82 @@ class Video extends AbstractApi
         return $time;
     }
 
-    public function videoPrice($video)
+    public function getAccess($video)
     {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
         // Get user
         $uid = Pi::user()->getId();
+        // Set access
+        $access = false;
         // Check system sale
-        if ($config['sale_video'] == 'free') {
-            $video['access'] = true;
-        } else {
-            switch ($video['sale_type']) {
-                case 'free':
-                    $video['access'] = true;
-                    break;
+        switch ($config['sale_video']) {
+            case 'free':
+                $access = true;
+                break;
 
-                case 'package':
-                    if (Pi::service('authentication')->hasIdentity()) {
-                        $package = 1;
-                        $key = sprintf('video-package-%s-%s', $package, $uid);
-                        if (Pi::api('access', 'order')->hasAccess($key, true)) {
-                            $video['access'] = true;
-                        } else {
-                            $video['access'] = false;
-                        }
+            case 'package':
+                /* if (Pi::service('authentication')->hasIdentity()) {
+                    $package = 1;
+                    $key = sprintf('video-package-%s-%s', $package, $uid);
+                    if (Pi::api('access', 'order')->hasAccess($key, true)) {
+                        $access = true;
                     } else {
-                        $video['access'] = false;
+                        $access = false;
                     }
-                    break;
+                } else {
+                    $access = false;
+                } */
+                if (Pi::service('authentication')->hasIdentity()) {
+                    $access = true;
+                } else {
+                    $access = false;
+                }
+                break;
 
-                case 'single':
+            case 'single':
+                if ($video['sale_price'] > 0) {
                     if (Pi::service('authentication')->hasIdentity()) {
                         $key = sprintf('video-single-%s-%s', $video['id'], $uid);
                         if (Pi::api('access', 'order')->hasAccess($key, true)) {
-                            $video['access'] = true;
+                            $access = true;
                         } else {
-                            $video['access'] = false;
+                            $access = false;
                         }
                     } else {
-                        $video['access'] = false;
+                        $access = false;
                     }
-                    break;
-            }
+                } else {
+                    $access = true;
+                }
+                break;
         }
+        return $access;
+    }
 
-        return $video;
+    public function getPayUrl($video)
+    {
+        // Get config
+        $config = Pi::service('registry')->config->read($this->getModule());
+        // Set url
+        $url = '#';
+        // Check system sale
+        switch ($config['sale_video']) {
+            case 'package':
+                if (Pi::service('module')->isActive('plans')) {
+                    $url = Pi::url(Pi::service('url')->assemble('plans', array(
+                        'module' => 'plans',
+                        'controller' => 'index',
+                        'action' => 'index',
+                    )));
+                }
+                break;
+
+            case 'single':
+
+                break;
+        }
+        return $url;
     }
 
     public function canonizeVideo($video, $categoryList = array(), $serverList = array())
@@ -253,49 +292,49 @@ class Video extends AbstractApi
                 break;
 
             case 'wowza':
-                $video['videoFileUrl'] = sprintf('%s/%s/%s',
+                $video['videoFileUrl'] = sprintf('http://%s/%s/%s',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['mpegDashUrl'] = sprintf('http://%s/%s/%s/manifest.mpd',
+                $video['mpegDashUrl'] = sprintf('http://%s/%s/_definst_/%s/manifest.mpd',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['adobeHdsUrl'] = sprintf('http://%s/%s/%s/manifest.f4m',
+                $video['adobeHdsUrl'] = sprintf('http://%s/%s/_definst_/%s/manifest.f4m',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['jwplayerUrl'] = sprintf('http://%s/%s/%s/jwplayer.mpd',
+                $video['jwplayerUrl'] = sprintf('http://%s/%s/_definst_/%s/jwplayer.mpd',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['iosUrl'] = sprintf('http://%s/%s/%s/playlist.m3u8',
+                $video['iosUrl'] = sprintf('http://%s/%s/_definst_/%s/playlist.m3u8',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['androidUrl'] = sprintf('rtsp://%s/%s/%s',
+                $video['androidUrl'] = sprintf('rtsp://%s/%s/_definst_/%s',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['rtspUrl'] = sprintf('rtsp://%s/%s/%s',
+                $video['rtspUrl'] = sprintf('rtsp://%s/%s/_definst_/%s',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['rtmpUrl'] = sprintf('rtmp://%s/%s/%s',
+                $video['rtmpUrl'] = sprintf('rtmp://%s/%s/_definst_/%s',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
@@ -303,7 +342,7 @@ class Video extends AbstractApi
                 break;
         }
         // Set video duration
-        $video['video_duration_view'] = $this->videoDuration($video['video_duration']);
+        $video['video_duration_view'] = $this->getDuration($video['video_duration']);
         // Set category information
         $video['category'] = json_decode($video['category']);
         foreach ($video['category'] as $category) {
@@ -452,7 +491,6 @@ class Video extends AbstractApi
             'id' => $video['uid'],
         )));
         // Set video file url
-        // Set video file url
         switch ($video['server']['type']) {
             case 'file':
                 $video['videoFileUrl'] = sprintf('%s/%s/%s',
@@ -488,49 +526,49 @@ class Video extends AbstractApi
                 break;
 
             case 'wowza':
-                $video['videoFileUrl'] = sprintf('%s/%s/%s',
+                $video['videoFileUrl'] = sprintf('http://%s/%s/%s',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['mpegDashUrl'] = sprintf('http://%s/%s/%s/manifest.mpd',
+                $video['mpegDashUrl'] = sprintf('http://%s/%s/_definst_/%s/manifest.mpd',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['adobeHdsUrl'] = sprintf('http://%s/%s/%s/manifest.f4m',
+                $video['adobeHdsUrl'] = sprintf('http://%s/%s/_definst_/%s/manifest.f4m',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['jwplayerUrl'] = sprintf('http://%s/%s/%s/jwplayer.mpd',
+                $video['jwplayerUrl'] = sprintf('http://%s/%s/_definst_/%s/jwplayer.mpd',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['iosUrl'] = sprintf('http://%s/%s/%s/playlist.m3u8',
+                $video['iosUrl'] = sprintf('http://%s/%s/_definst_/%s/playlist.m3u8',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['androidUrl'] = sprintf('rtsp://%s/%s/%s',
+                $video['androidUrl'] = sprintf('rtsp://%s/%s/_definst_/%s',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['rtspUrl'] = sprintf('rtsp://%s/%s/%s',
+                $video['rtspUrl'] = sprintf('rtsp://%s/%s/_definst_/%s',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['rtmpUrl'] = sprintf('rtmp://%s/%s/%s',
+                $video['rtmpUrl'] = sprintf('rtmp://%s/%s/_definst_/%s',
                     $video['server']['url'],
                     $video['video_path'],
                     $video['video_file']
@@ -538,7 +576,7 @@ class Video extends AbstractApi
                 break;
         }
         // Set video duration
-        $video['video_duration_view'] = $this->videoDuration($video['video_duration']);
+        $video['video_duration_view'] = $this->getDuration($video['video_duration']);
         // Set category information
         $video['category'] = json_decode($video['category']);
         foreach ($video['category'] as $category) {

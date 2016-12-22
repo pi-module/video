@@ -270,63 +270,55 @@ class VideoForm  extends BaseForm
             ));
         }
         // Price
-        if ($this->option['side'] == 'admin' && $this->option['sale_video'] = 'package') {
-            // sale
-            $this->add(array(
-                'name' => 'sale',
-                'type' => 'checkbox',
-                'options' => array(
-                    'label' => __('Sale video'),
-                ),
-                'attributes' => array(
-                    'description' => __('If check it, users should buy package to watch this video'),
-                )
-            ));
-            // sale_price
-            $this->add(array(
-                'name' => 'sale_price',
-                'attributes' => array(
-                    'type' => 'hidden',
-                ),
-            ));
-        } elseif ($this->option['side'] == 'admin' && $this->option['sale_video'] = 'single') {
-            // sale
-            $this->add(array(
-                'name' => 'sale',
-                'type' => 'checkbox',
-                'options' => array(
-                    'label' => __('Sale video'),
-                ),
-                'attributes' => array(
-                    'description' => __('If check it and put price, users should pay to watch this video'),
-                )
-            ));
-            // sale_price
-            $this->add(array(
-                'name' => 'sale_price',
-                'options' => array(
-                    'label' => __('Sale Video price'),
-                ),
-                'attributes' => array(
-                    'type' => 'text',
-                    'description' => '',
-                )
-            ));
-        } else {
-            // sale
-            $this->add(array(
-                'name' => 'sale',
-                'attributes' => array(
-                    'type' => 'hidden',
-                ),
-            ));
-            // sale_price
-            $this->add(array(
-                'name' => 'sale_price',
-                'attributes' => array(
-                    'type' => 'hidden',
-                ),
-            ));
+        if ($this->option['side'] == 'admin') {
+            switch ($this->option['sale_video']) {
+                case 'package':
+                    // sale_type
+                    $this->add(array(
+                        'name' => 'sale_type',
+                        'type' => 'select',
+                        'options' => array(
+                            'label' => __('Sale video'),
+                            'value_options' => array(
+                                'free' => __('Free'),
+                                'paid' => __('Paid'),
+                            ),
+                        ),
+                        'attributes' => array(
+                            'description' => __('If check it, users should buy package to watch this video'),
+                        )
+                    ));
+                    break;
+
+                case 'single':
+                    // sale_type
+                    $this->add(array(
+                        'name' => 'sale_type',
+                        'type' => 'select',
+                        'options' => array(
+                            'label' => __('Sale video'),
+                            'value_options' => array(
+                                'free' => __('Free'),
+                                'paid' => __('Paid'),
+                            ),
+                        ),
+                        'attributes' => array(
+                            'description' => __('If check it and put price, users should pay to watch this video'),
+                        )
+                    ));
+                    // sale_price
+                    $this->add(array(
+                        'name' => 'sale_price',
+                        'options' => array(
+                            'label' => __('Sale Video price'),
+                        ),
+                        'attributes' => array(
+                            'type' => 'text',
+                            'description' => '',
+                        )
+                    ));
+                    break;
+            }
         }
         // Seo
         if ($this->option['side'] == 'admin') {

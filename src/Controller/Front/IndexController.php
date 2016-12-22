@@ -72,7 +72,8 @@ class IndexController extends ActionController
             $limit = $this->config('view_perpage');
         }
         // Set info
-        $id = array();
+        $video = array();
+        $videoId = array();
         $page = $this->params('page', 1);
         $module = $this->params('module');
         $sort = $this->params('sort', 'create');
@@ -89,13 +90,16 @@ class IndexController extends ActionController
         foreach ($rowset as $id) {
             $videoId[] = $id['video'];
         }
-        // Set info
-        $where = array('status' => 1, 'id' => $videoId);
-        // Get list of video
-        $select = $this->getModel('video')->select()->where($where)->order($order);
-        $rowset = $this->getModel('video')->selectWith($select);
-        foreach ($rowset as $row) {
-            $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
+        // Check not empty
+        if (!empty($videoId)) {
+            // Set info
+            $where = array('status' => 1, 'id' => $videoId);
+            // Get list of video
+            $select = $this->getModel('video')->select()->where($where)->order($order);
+            $rowset = $this->getModel('video')->selectWith($select);
+            foreach ($rowset as $row) {
+                $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
+            }
         }
         // return video
         return $video;

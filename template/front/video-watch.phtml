@@ -35,10 +35,11 @@ if (isset($videoItem['largeUrl']) && !empty($videoItem['largeUrl'])) {
     $this->headMeta($this->escape($videoItem['largeUrl']), 'twitter:image');
 }
 
-if ($videoItem['server']['type'] == 'wowza') {
-    $this->jQuery();
-    $this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
-    $script = <<<'EOT'
+if ($access) {
+    if ($videoItem['server']['type'] == 'wowza') {
+        $this->jQuery();
+        $this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
+        $script = <<<'EOT'
     var manifestUri = '%s';
 
     function initApp() {
@@ -89,11 +90,13 @@ if ($videoItem['server']['type'] == 'wowza') {
 
     document.addEventListener('DOMContentLoaded', initApp);
 EOT;
-    $script = sprintf($script, $videoItem['mpegDashUrl']);
-    $this->footScript()->appendScript($script);
-} elseif ($videoItem['server']['type'] == 'qmery') {
-    $this->jQuery();
-    $this->headScript()->appendFile($videoItem['qmeryScript']);
+        $script = sprintf($script, $videoItem['mpegDashUrl']);
+        $this->footScript()->appendScript($script);
+        $os = Pi::service('browser')->getPlatform();
+    } elseif ($videoItem['server']['type'] == 'qmery') {
+        $this->jQuery();
+        $this->headScript()->appendFile($videoItem['qmeryScript']);
+    }
 }
 ?>
 <div class="clearfix video-page" itemscope itemtype="http://schema.org/VideoObject">
@@ -101,7 +104,7 @@ EOT;
         <h1 itemprop="name"><?php echo $this->escape($videoItem['title']); ?></h1>
     </div>
     <meta itemprop="thumbnail" content="<?php echo $this->escape($videoItem['largeUrl']); ?>" />
-    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoItem['time_publish'])); ?>" />
+    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoItem['time_create'])); ?>" />
     <meta itemprop="contentUrl" content="<?php echo $this->escape($videoItem['videoFileUrl']); ?>" />
     <div class="row clearfix">
         <div class="col-md-8">
@@ -120,38 +123,38 @@ EOT;
                     <?php } ?>
                 </ul>
             </div>
-            <div class="text-center video-player">
-                <?php if ($videoItem['server']['type'] == 'file') { ?>
-                    <?php echo $this->videojs($videoItem['videoFileUrl'], $videoItem['largeUrl']); ?>
-                <?php } elseif ($videoItem['server']['type'] == 'qmery') { ?>
-                    <div class="qmery-player-min-height">
-                        <div class="qmery-player-full-height">
-                            <div class="qmery-player">
-                                <div id="embed_qmery_player_<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
-                                <div id="embed_qmery_player_icons<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
+            <?php if ($access) { ?>
+                <div class="text-center video-player">
+                    <?php if ($videoItem['server']['type'] == 'file') { ?>
+                        <?php echo $this->videojs($videoItem['videoFileUrl'], $videoItem['largeUrl']); ?>
+                    <?php } elseif ($videoItem['server']['type'] == 'qmery') { ?>
+                        <div class="qmery-player-min-height">
+                            <div class="qmery-player-full-height">
+                                <div class="qmery-player">
+                                    <div id="embed_qmery_player_<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
+                                    <div id="embed_qmery_player_icons<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php } elseif ($videoItem['server']['type'] == 'wowza') { ?>
-                    <div class="clearfix">
-                        <?php $os = Pi::service('browser')->getPlatform(); ?>
-                        <?php if (in_array($os, array('Android', 'WindowsPhone', 'BlackBerry'))) { ?>
-                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                <div class="btn-group" role="group">
-                                    <a href="<?php echo $this->escape($videoItem['androidUrl']); ?>" class="btn btn-success btn-lg">
-                                        <i class="fa fa-play" aria-hidden="true"></i> <?php _e('Play'); ?>
-                                    </a>
+                    <?php } elseif ($videoItem['server']['type'] == 'wowza') { ?>
+                        <div class="clearfix">
+                            <?php if (in_array($os, array('Android', 'WindowsPhone', 'BlackBerry'))) { ?>
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <a href="<?php echo $this->escape($videoItem['androidUrl']); ?>" class="btn btn-success btn-lg">
+                                            <i class="fa fa-play" aria-hidden="true"></i> <?php _e('Play'); ?>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php } elseif (in_array($os, array('Ios', 'iPhone', 'iPad'))) { ?>
-                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                <div class="btn-group" role="group">
-                                    <a href="<?php echo $this->escape($videoItem['iosUrl']); ?>" class="btn btn-success btn-lg">
-                                        <i class="fa fa-play" aria-hidden="true"></i> <?php _e('Play'); ?>
-                                    </a>
+                            <?php } elseif (in_array($os, array('Ios', 'iPhone', 'iPad'))) { ?>
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <a href="<?php echo $this->escape($videoItem['iosUrl']); ?>" class="btn btn-success btn-lg">
+                                            <i class="fa fa-play" aria-hidden="true"></i> <?php _e('Play'); ?>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php } else { ?>
+                            <?php } ?>
                             <div id="videoContainer" class="overlay-parent">
                                 <video id="video"
                                        class="video-player"
@@ -160,10 +163,22 @@ EOT;
                                        controls
                                        autoplay></video>
                             </div>
-                        <?php } ?>
+                        </div>
+                    <?php } ?>
+                </div>
+            <?php } else { ?>
+                <div class="clearfix">
+                    <div class="thumbnail text-center">
+                        <img class="img-responsive" src="<?php echo $this->escape($videoItem['largeUrl']); ?>" alt="<?php echo $this->escape($videoItem['title']); ?>">
+                        <div class="caption">
+                            <p><?php _e('This is paid video and you dont have access to watch it, use buy button to paid and watch this video'); ?></p>
+                            <div class="clearfix">
+                                <a target="_blank" href="<?php echo $this->escape($videoItem['payUrl']); ?>" class="btn btn-success"><?php _e('Pay and watch video'); ?></a>
+                            </div>
+                        </div>
                     </div>
-                <?php } ?>
-            </div>
+                </div>
+            <?php } ?>
             <div class="clearfix video-info-list">
                 <ul class="list-inline">
                     <?php if (!empty($vote)) { ?>

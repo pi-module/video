@@ -48,55 +48,96 @@ class VideoLinkForm  extends BaseForm
                 'type' => 'hidden',
             ),
         ));
-        if (in_array($this->option['server']['type'], array('file', 'wowza'))) {
-            // video_path
-            $this->add(array(
-                'name' => 'video_path',
-                'options' => array(
-                    'label' => __('Video path'),
-                ),
-                'attributes' => array(
-                    'type' => 'text',
-                    'description' => __('Without add / on start and end, for example : upload/video/2016/09'),
-                    'required' => true,
-                )
-            ));
-            // video_file
-            $this->add(array(
-                'name' => 'video_file',
-                'options' => array(
-                    'label' => __('Video file name'),
-                ),
-                'attributes' => array(
-                    'type' => 'text',
-                    'description' => __('File name by extension, for example file.mp4'),
-                    'required' => true,
-                )
-            ));
-        } elseif (in_array($this->option['server']['type'], array('qmery'))) {
-            // video_qmery_hash
-            $this->add(array(
-                'name' => 'video_qmery_hash',
-                'options' => array(
-                    'label' => __('Qmery hash code'),
-                ),
-                'attributes' => array(
-                    'type' => 'text',
-                    'description' => __('hash code on qmery system , like : y4A7rBoLwe'),
-                    'required' => true,
-                )
-            ));
-            // video_qmery_id
-            $this->add(array(
-                'name' => 'video_qmery_id',
-                'options' => array(
-                    'label' => __('Qmery video id'),
-                ),
-                'attributes' => array(
-                    'type' => 'text',
-                    'required' => true,
-                )
-            ));
+        // Check server type
+        switch ($this->option['server']['type']) {
+            case 'file':
+                // video_path
+                $this->add(array(
+                    'name' => 'video_path',
+                    'options' => array(
+                        'label' => __('Video path'),
+                    ),
+                    'attributes' => array(
+                        'type' => 'text',
+                        'description' => __('Without add / on start and end, for example : upload/video/2016/09'),
+                        'required' => true,
+                    )
+                ));
+                // video_file
+                $this->add(array(
+                    'name' => 'video_file',
+                    'options' => array(
+                        'label' => __('Video file name'),
+                    ),
+                    'attributes' => array(
+                        'type' => 'text',
+                        'description' => __('File name by extension, for example file.mp4'),
+                        'required' => true,
+                    )
+                ));
+                break;
+
+            case 'wowza':
+                // video_path
+                $this->add(array(
+                    'name' => 'video_path',
+                    'type' => 'select',
+                    'options' => array(
+                        'label' => __('Wowza engine'),
+                        'value_options' => array(
+                            'live' => 'live',
+                            'vod' => 'vod',
+                            'mediacache' => 'mediacache',
+                        ),
+                    ),
+                    'attributes' => array(
+                        'description' => __('one of this names : live / vod / mediacache'),
+                        'required' => true,
+                        'value' => $this->option['server']['wowza_default'],
+                    )
+                ));
+                // video_file
+                $this->add(array(
+                    'name' => 'video_file',
+                    'options' => array(
+                        'label' => __('Wowza stream name'),
+                    ),
+                    'attributes' => array(
+                        'type' => 'text',
+                        'description' => sprintf('<ul class="list-unstyled"><li>%s</li><li>%s</li></ul>',
+                            __('If engine is live name is like smil:myname.smil'),
+                            __('If engine is vod or mediacache name is like mp4:http/uploads/video/myvideo.mp4')
+                        ),
+                        'required' => true,
+                    )
+                ));
+                break;
+
+            case 'qmery':
+                // video_qmery_hash
+                $this->add(array(
+                    'name' => 'video_qmery_hash',
+                    'options' => array(
+                        'label' => __('Qmery hash code'),
+                    ),
+                    'attributes' => array(
+                        'type' => 'text',
+                        'description' => __('hash code on qmery system , like : y4A7rBoLwe'),
+                        'required' => true,
+                    )
+                ));
+                // video_qmery_id
+                $this->add(array(
+                    'name' => 'video_qmery_id',
+                    'options' => array(
+                        'label' => __('Qmery video id'),
+                    ),
+                    'attributes' => array(
+                        'type' => 'text',
+                        'required' => true,
+                    )
+                ));
+                break;
         }
         // Save
         $this->add(array(
@@ -106,5 +147,10 @@ class VideoLinkForm  extends BaseForm
                 'value' => __('Submit'),
             )
         ));
+
+        echo '<pre>';
+        print_r($this->option['server']['wowza_default']);
+        echo '</pre>';
+
     }
 }

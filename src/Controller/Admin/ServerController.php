@@ -74,6 +74,8 @@ class ServerController extends ActionController
                 $setting['qmery_group_id'] = $values['qmery_group_id'];
                 $setting['qmery_group_hash'] = $values['qmery_group_hash'];
                 $setting['qmery_import'] = $values['qmery_import'];
+                $setting['qmery_show_embed'] = $values['qmery_show_embed'];
+                $setting['wowza_default'] = $values['wowza_default'];
                 $values['setting'] = json_encode($setting);
                 // Save values
                 if (!empty($values['id'])) {
@@ -122,7 +124,7 @@ class ServerController extends ActionController
                 // Check type
                 switch ($type) {
                     case 'toQmery':
-
+                        return array('Nothing set');
                         break;
 
                     case 'toWebsite':

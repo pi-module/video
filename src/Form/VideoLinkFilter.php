@@ -41,49 +41,76 @@ class VideoLinkFilter extends InputFilter
                 )),
             ),
         ));
-        // Check
-        if (in_array($option['server']['type'], array('file', 'wowza'))) {
-            // video_path
-            $this->add(array(
-                'name' => 'video_path',
-                'required' => true,
-                'filters' => array(
-                    array(
-                        'name' => 'StringTrim',
+        // Check server type
+        switch ($option['server']['type']) {
+            case 'file':
+                // video_path
+                $this->add(array(
+                    'name' => 'video_path',
+                    'required' => true,
+                    'filters' => array(
+                        array(
+                            'name' => 'StringTrim',
+                        ),
                     ),
-                ),
-            ));
-            // video_file
-            $this->add(array(
-                'name' => 'video_file',
-                'required' => true,
-                'filters' => array(
-                    array(
-                        'name' => 'StringTrim',
+                ));
+                // video_file
+                $this->add(array(
+                    'name' => 'video_file',
+                    'required' => true,
+                    'filters' => array(
+                        array(
+                            'name' => 'StringTrim',
+                        ),
                     ),
-                ),
-            ));
-        } elseif (in_array($option['server']['type'], array('qmery'))) {
-            // video_qmery_hash
-            $this->add(array(
-                'name' => 'video_qmery_hash',
-                'required' => true,
-                'filters' => array(
-                    array(
-                        'name' => 'StringTrim',
+                ));
+                break;
+
+            case 'wowza':
+                // video_path
+                $this->add(array(
+                    'name' => 'video_path',
+                    'required' => true,
+                    'filters' => array(
+                        array(
+                            'name' => 'StringTrim',
+                        ),
                     ),
-                ),
-            ));
-            // video_qmery_id
-            $this->add(array(
-                'name' => 'video_qmery_id',
-                'required' => true,
-                'filters' => array(
-                    array(
-                        'name' => 'StringTrim',
+                ));
+                // video_file
+                $this->add(array(
+                    'name' => 'video_file',
+                    'required' => true,
+                    'filters' => array(
+                        array(
+                            'name' => 'StringTrim',
+                        ),
                     ),
-                ),
-            ));
+                ));
+                break;
+
+            case 'qmery':
+                // video_qmery_hash
+                $this->add(array(
+                    'name' => 'video_qmery_hash',
+                    'required' => true,
+                    'filters' => array(
+                        array(
+                            'name' => 'StringTrim',
+                        ),
+                    ),
+                ));
+                // video_qmery_id
+                $this->add(array(
+                    'name' => 'video_qmery_id',
+                    'required' => true,
+                    'filters' => array(
+                        array(
+                            'name' => 'StringTrim',
+                        ),
+                    ),
+                ));
+                break;
         }
     }
 }

@@ -94,7 +94,12 @@ class ServerForm extends BaseForm
             ),
             'attributes' => array(
                 'type' => 'text',
-                'description' => '',
+                'description' => sprintf(
+                    '<ul><li>%s</li><li>%s</li><li>%s</li></ul>',
+                    __('File : set url or ip by http:// or https:// without end slash'),
+                    __('Wowza : set url or ip without http:// or https:// and end slash'),
+                    __('Qmery : http://www.qmery.com or https://www.qmery.com')
+                ),
                 'required' => true,
             )
         ));
@@ -166,10 +171,38 @@ class ServerForm extends BaseForm
             'name' => 'qmery_import',
             'type' => 'checkbox',
             'options' => array(
-                'label' => __('Import video'),
+                'label' => __('Qmery import video'),
             ),
             'attributes' => array(
                 'description' => __('Import video from qmery to website if video not exist on website'),
+            )
+        ));
+        // qmery_show_embed
+        $this->add(array(
+            'name' => 'qmery_show_embed',
+            'type' => 'checkbox',
+            'options' => array(
+                'label' => __('Qmery show embed'),
+            ),
+            'attributes' => array(
+                'description' => __('Show embed code for copy to other pages and websites'),
+            )
+        ));
+        // wowza_default
+        $this->add(array(
+            'name' => 'wowza_default',
+            'type' => 'select',
+            'options' => array(
+                'label' => __('Wowza default engine'),
+                'value_options' => array(
+                    '' => '',
+                    'live' => 'live',
+                    'vod' => 'vod',
+                    'mediacache' => 'mediacache',
+                ),
+            ),
+            'attributes' => array(
+                'description' => __('one of this names : live / vod / mediacache'),
             )
         ));
         // Save

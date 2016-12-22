@@ -638,10 +638,6 @@ class VideoController extends ActionController
                 $values['seo_description'] = $filter($description);
                 // Set time_update
                 $values['time_update'] = time();
-                // check sale
-                if ($config['sale_video'] != 'free' && $values['sale']) {
-                    $video['sale_type'] = $config['sale_video'];
-                }
                 // Save values
                 $row = $this->getModel('video')->find($values['id']);
                 $row->assign($values);
@@ -674,9 +670,6 @@ class VideoController extends ActionController
                 if (is_array($tag)) {
                     $video['tag'] = implode('|', $tag);
                 }
-            }
-            if ($config['sale_video'] != 'free' && $video['sale_type'] != 'free') {
-                $video['sale'] = 1;
             }
             // Set form data
             $form->setData($video);

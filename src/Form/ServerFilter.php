@@ -105,5 +105,20 @@ class ServerFilter extends InputFilter
             'name' => 'qmery_import',
             'required' => false,
         ));
+        // qmery_show_embed
+        $this->add(array(
+            'name' => 'qmery_show_embed',
+            'required' => false,
+        ));
+        // wowza_default
+        $this->add(array(
+            'name' => 'wowza_default',
+            'required' => false,
+            'filters' => array(
+                array(
+                    'name' => 'StringTrim',
+                ),
+            ),
+        ));
     }
 }

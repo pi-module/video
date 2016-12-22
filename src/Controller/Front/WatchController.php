@@ -71,6 +71,12 @@ class WatchController extends IndexController
             $videoRelated = $this->videoList($where, $config['view_related_number']);
             $this->view()->assign('videoRelated', $videoRelated);
         }
+        // Check video access
+        $access = Pi::api('video', 'video')->getAccess($video);
+        // Set pay url
+        if (!$access) {
+            $video['payUrl'] = Pi::api('video', 'video')->getPayUrl($video);
+        }
         // Set submitter
         $submitter = Pi::api('channel', 'video')->user($video['uid']);
         $submitter['avatar'] = Pi::avatar()->get($video['uid'], 'small', array(
@@ -86,5 +92,6 @@ class WatchController extends IndexController
         $this->view()->assign('categoryItem', $video['categories']);
         $this->view()->assign('config', $config);
         $this->view()->assign('submitter', $submitter);
+        $this->view()->assign('access', $access);
     }
 }

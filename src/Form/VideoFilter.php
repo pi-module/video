@@ -99,16 +99,31 @@ class VideoFilter extends InputFilter
             'name' => 'video_duration',
             'required' => false,
         ));
-        // sale
-        $this->add(array(
-            'name' => 'sale',
-            'required' => false,
-        ));
-        // sale_price
-        $this->add(array(
-            'name' => 'sale_price',
-            'required' => false,
-        ));
+        // Check is admin
+        if ($option['side'] == 'admin') {
+            switch ($option['sale_video']) {
+                case 'package':
+                    // sale
+                    $this->add(array(
+                        'name' => 'sale_type',
+                        'required' => false,
+                    ));
+                    break;
+
+                case 'single':
+                    // sale
+                    $this->add(array(
+                        'name' => 'sale_type',
+                        'required' => false,
+                    ));
+                    // sale_price
+                    $this->add(array(
+                        'name' => 'sale_price',
+                        'required' => false,
+                    ));
+                    break;
+            }
+        }
         // seo_title
         $this->add(array(
             'name' => 'seo_title',

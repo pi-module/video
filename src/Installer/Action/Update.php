@@ -366,6 +366,33 @@ EOD;
             }
         }
 
+        if (version_compare($moduleVersion, '0.7.4', '<')) {
+            // Alter table field `video_qmery_hash`
+            $sql = sprintf("ALTER TABLE %s CHANGE `video_qmery_hash` `video_qmery_hash` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+            // Alter table field `sale_type`
+            $sql = sprintf("ALTER TABLE %s CHANGE `sale_type` `sale_type` ENUM ('free', 'paid') NOT NULL DEFAULT 'free'", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+        }
+
         return true;
     }
 }
