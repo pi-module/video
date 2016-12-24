@@ -385,16 +385,9 @@ class VideoController extends ActionController
                 $row->save();
                 // Send video to qmery
                 if ($serverType == 'qmery') {
-                    $qmery = Pi::api('qmery', 'video')->upload($row);
-                    if (!$qmery['status']) {
-                        $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : $qmery['message'];
-                        $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
-                        exit();
-                    } else {
-                        return array(
-                            'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
-                        );
-                    }
+                    return array(
+                        'url' => Pi::url($this->url('', array('action' => 'qmeryUpload', 'id' => $row->id))),
+                    );
                 } else {
                     return array(
                         'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
@@ -552,6 +545,14 @@ class VideoController extends ActionController
                 'action' => 'update'
             ));
         }
+        // Server list
+        $serverList = Pi::registry('serverList', 'video')->read();
+        if (empty($serverList)) {
+            return $this->redirect()->toRoute('', array(
+                'controller' => 'server',
+                'action' => 'update'
+            ));
+        }
         // Get info from url
         $id = $this->params('id');
         $module = $this->params('module');
@@ -659,9 +660,20 @@ class VideoController extends ActionController
                     // Update sitemap
                     Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->status, $module, 'video', $row->id);
                 }
-                // Jump
-                $message = __('Video data saved successfully.');
-                $this->jump(array('action' => 'additional', 'id' => $row->id), $message);
+                // Check server type
+                $serverType = $serverList[$row->server]['type'];
+                if ($serverType == 'qmery') {
+                    return $this->redirect()->toRoute('', array(
+                        'controller' => 'video',
+                        'action' => 'qmeryUpload',
+                        'id' => $row->id
+                    ));
+                } else {
+                    // Jump
+                    $message = __('Video data saved successfully.');
+                    $this->jump(array('action' => 'additional', 'id' => $row->id), $message);
+                }
+
             }
         } else {
             // Get tag list
@@ -889,5 +901,63 @@ class VideoController extends ActionController
             $this->jump(array('action' => 'index'), __('This video deleted'));
         }
         $this->jump(array('action' => 'index'), __('Please select video'));
+    }
+
+    public function qmeryUploadAction()
+    {
+        // Get info from url
+        $id = $this->params('id');
+        // Find video
+        if (!$id) {
+            // Jump
+            $message = __('Please select video');
+            $this->jump(array('action' => 'index'), $message);
+        }
+        // Get video object
+        $video = $this->getModel('video')->find($id);
+        // Upload to qmery server
+        $qmery = Pi::api('qmery', 'video')->upload($video);
+        // Check result
+        if ($qmery['status']) {
+            $message = __('Video added on qmery server and information save on website, please update extra information');
+            $this->jump(array('controller' => 'video', 'action' => 'update', 'id' => $video->id), $message);
+        } else {
+            $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : json_decode($qmery['message']);
+            $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
+            exit();
+        }
+    }
+
+    public function qmeryUpdateAction()
+    {
+        // Get info from url
+        $id = $this->params('id');
+        // Find video
+        if (!$id) {
+            // Jump
+            $message = __('Please select video');
+            $this->jump(array('action' => 'index'), $message);
+        }
+        // Get video object
+        $video = $this->getModel('video')->find($id);
+        // Upload to qmery server
+        $qmery = Pi::api('qmery', 'video')->update($video);
+        // Check result
+        switch ($qmery['status']) {
+            case 1:
+                $message = __('Video information updated from qmery server');
+                $this->jump(array('controller' => 'video', 'action' => 'additional', 'id' => $video->id), $message);
+                break;
+
+            case 2:
+                $message = __('Atention : Video still not ready on qmery server and video information not upload, please wail for min and check it later');
+                $this->jump(array('controller' => 'video', 'action' => 'additional', 'id' => $video->id), $message, 'error');
+                break;
+
+            case 3:
+                $message = empty($qmery['message']) ?  __('Error to update video from qmery server') : json_decode($qmery['message']);
+                $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
+                break;
+        }
     }
 }

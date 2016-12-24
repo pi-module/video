@@ -25,6 +25,68 @@ use Zend\Math\Rand;
 
 class Qmery extends AbstractApi
 {
+    public function update($video)
+    {
+        // Set retrun
+        $result = array();
+        // Canonize video
+        $video = Pi::api('video', 'video')->canonizeVideoFilter($video);
+        // Get video from qmery
+        $apiUrl = 'http://api.qmery.com/v1/videos/%s.json?api_token=%s';
+        $apiUrl = sprintf($apiUrl, $video['video_qmery_hash'], $video['server']['qmery_upload_token']);
+        $videoQmery = Pi::service('remote')->get($apiUrl);
+        // Check qmery status
+        switch ($videoQmery['status']) {
+            case 'not ready':
+                $result['status'] = 2;
+                break;
+
+            case 'ready':
+                // Check file exist
+                if (!empty($video['video_path']) && !empty($video['video_file'])) {
+                    // Set video file
+                    $file = Pi::path(
+                        sprintf('upload/video/file/%s/%s', $video['video_path'], $video['video_file'])
+                    );
+                    // Check file exist
+                    if (Pi::service('file')->exists($file)) {
+                        // remove file
+                        if (Pi::service('file')->remove($file)) {
+                            // Update db
+                            Pi::model('video', $this->getModule())->update(
+                                array(
+                                    'video_path' => '',
+                                    'video_file' => '',
+                                ),
+                                array(
+                                    'id' => $video['id']
+                                )
+                            );
+                        }
+                    }
+                }
+                // Check image
+                /* ToDo : download image from qmery */
+                if (!empty($video['file']) && !empty($video['image'])) {
+                    // Get config
+                    $config = Pi::service('registry')->config->read($this->getModule(), 'image');
+                    // Set video image
+                    $image = Pi::path(
+                        sprintf('upload/%s/original/%s/%s', $config['image_path'], $video['video_path'], $video['video_file'])
+                    );
+                    // Check image
+                    if (Pi::service('file')->exists($image)) {
+
+                    }
+                }
+
+
+                $result['status'] = 1;
+                break;
+        }
+        return $result;
+    }
+
     public function upload($video)
     {
         // Canonize video
@@ -74,26 +136,25 @@ class Qmery extends AbstractApi
                     'Content-Length: ' . strlen($fields))
             );
             $qmeryResult = curl_exec($ch);
-
-            if (is_array($qmeryResult)) {
-                $result = json_decode($qmeryResult, true);
+            $qmeryResult = json_decode($qmeryResult, true);
+            if (isset($qmeryResult['id']) && isset($qmeryResult['hash_id'])) {
+                $result = array();
                 $result['status'] = 1;
+                $result['qmery'] = $qmeryResult;
                 // Update db
-                if (!empty($result['hash_id']) && !empty($result['id'])) {
-                    Pi::model('video', $this->getModule())->update(
-                        array(
-                            'video_qmery_hash' => $result['hash_id'],
-                            'video_qmery_id' => $result['id'],
-                            'video_qmery_hls' => !empty($result['hls']) ? $result['hls'] : '',
-                        ),
-                        array(
-                            'id' => $video['id']
-                        )
-                    );
-                }
+                Pi::model('video', $this->getModule())->update(
+                    array(
+                        'video_qmery_hash' => $qmeryResult['hash_id'],
+                        'video_qmery_id' => $qmeryResult['id'],
+                        'video_qmery_hls' => !empty($qmeryResult['hls']) ? $qmeryResult['hls'] : '',
+                    ),
+                    array(
+                        'id' => $video['id']
+                    )
+                );
             } else {
                 $result = array();
-                $result['message'] = json_decode($qmeryResult, true);
+                $result['message'] = $qmeryResult;
                 $result['status'] = 0;
             }
         }

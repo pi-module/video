@@ -121,16 +121,9 @@ class SubmitController extends IndexController
                 $row->save();
                 // Send video to qmery
                 if ($serverDefault['type'] == 'qmery') {
-                    $qmery = Pi::api('qmery', 'video')->upload($row);
-                    if (!$qmery['status']) {
-                        $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : $qmery['message'];
-                        $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
-                        exit();
-                    } else {
-                        return array(
-                            'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
-                        );
-                    }
+                    return array(
+                        'url' => Pi::url($this->url('', array('action' => 'qmeryUpload', 'id' => $row->id))),
+                    );
                 } else {
                     return array(
                         'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
@@ -484,5 +477,48 @@ class SubmitController extends IndexController
         $this->view()->assign('config', $config);
         $this->view()->assign('title', $title);
         $this->view()->assign('nav', $nav);
+    }
+
+    public function qmeryUploadAction()
+    {
+        // Get info from url
+        $id = $this->params('id');
+        $module = $this->params('module');
+        // Get config
+        $config = Pi::service('registry')->config->read($module);
+        // Check active
+        if (!$config['user_submit']) {
+            $this->getResponse()->setStatusCode(403);
+            $this->terminate(__('Submit video by users inactive'), '', 'error-denied');
+            $this->view()->setLayout('layout-simple');
+            return;
+        }
+        // Check user is login or not
+        Pi::service('authentication')->requireLogin();
+        // Check
+        if ($id) {
+            // Get video object
+            $videoObject = $this->getModel('video')->find($id);
+            $video = Pi::api('video', 'video')->canonizeVideo($videoObject);
+            // Check
+            if (empty($video) || $video['status'] != 2 || $video['uid'] != Pi::user()->getId() || (time() - 3600) > $video['time_update']) {
+                $message = __('Please submit video');
+                $this->jump(array('action' => 'index'), $message);
+            }
+        } else {
+            $message = __('Please submit video');
+            $this->jump(array('action' => 'index'), $message);
+        }
+        // Upload to qmery server
+        $qmery = Pi::api('qmery', 'video')->upload($videoObject);
+        // Check result
+        if ($qmery['status']) {
+            $message = __('Video added on qmery server and information save on website, please update extra information');
+            $this->jump(array('controller' => 'submit', 'action' => 'update', 'id' => $video['id']), $message);
+        } else {
+            $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : json_decode($qmery['message']);
+            $this->jump(array('controller' => 'submit', 'action' => 'index'), $message);
+            exit();
+        }
     }
 }

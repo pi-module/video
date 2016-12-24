@@ -86,7 +86,7 @@ class Video extends Standard
                         break;
 
                     case 'submit':
-                        if (in_array($parts[1], array('index', 'update', 'additional', 'finish'))) {
+                        if (in_array($parts[1], array('index', 'update', 'additional', 'finish', 'qmeryUpload'))) {
                             $matches['action'] = $parts[1];
                             if (is_numeric($parts[2])) {
                                 $matches['id'] = intval($parts[2]);
