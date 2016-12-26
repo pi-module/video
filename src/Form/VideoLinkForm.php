@@ -100,7 +100,7 @@ class VideoLinkForm  extends BaseForm
                 $this->add(array(
                     'name' => 'video_file',
                     'options' => array(
-                        'label' => __('Wowza stream name'),
+                        'label' => __('Wowza stream link'),
                     ),
                     'attributes' => array(
                         'type' => 'text',
