@@ -661,7 +661,7 @@ class VideoController extends ActionController
                     Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->status, $module, 'video', $row->id);
                 }
                 // Check server type
-                $serverType = $serverList[$row->server]['type'];
+                $serverType = $serverList[$row->video_server]['type'];
                 if ($serverType == 'qmery') {
                     return $this->redirect()->toRoute('', array(
                         'controller' => 'video',
@@ -673,7 +673,6 @@ class VideoController extends ActionController
                     $message = __('Video data saved successfully.');
                     $this->jump(array('action' => 'additional', 'id' => $row->id), $message);
                 }
-
             }
         } else {
             // Get tag list
