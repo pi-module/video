@@ -144,10 +144,5 @@ class VideoLinkForm  extends BaseForm
                 'value' => __('Submit'),
             )
         ));
-
-        echo '<pre>';
-        print_r($this->option['server']['wowza_default']);
-        echo '</pre>';
-
     }
 }
