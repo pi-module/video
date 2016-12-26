@@ -147,21 +147,17 @@ class Video extends AbstractApi
                 break;
 
             case 'package':
-                /* if (Pi::service('authentication')->hasIdentity()) {
-                    $package = 1;
-                    $key = sprintf('video-package-%s-%s', $package, $uid);
-                    if (Pi::api('access', 'order')->hasAccess($key, true)) {
-                        $access = true;
-                    } else {
-                        $access = false;
-                    }
-                } else {
-                    $access = false;
-                } */
                 if (Pi::service('authentication')->hasIdentity()) {
-                    $access = true;
-                } else {
-                    $access = false;
+                    $packages = Pi::registry('planModuleList', 'plans')->read();
+                    foreach ($packages as $package) {
+                        if ($package['module'] == 'video') {
+                            $key = sprintf('video-package-%s-%s', $package['id'], $uid);
+                            if (Pi::api('access', 'order')->hasAccess($key, true)) {
+                                $access = true;
+                                break;
+                            }
+                        }
+                    }
                 }
                 break;
 
@@ -171,11 +167,7 @@ class Video extends AbstractApi
                         $key = sprintf('video-single-%s-%s', $video['id'], $uid);
                         if (Pi::api('access', 'order')->hasAccess($key, true)) {
                             $access = true;
-                        } else {
-                            $access = false;
                         }
-                    } else {
-                        $access = false;
                     }
                 } else {
                     $access = true;
