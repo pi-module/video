@@ -10,13 +10,16 @@ $this->angular(array(
 $this->js($this->assetModule('js/bootstrap-treeview.min.js'));
 $this->css($this->assetModule('css/front.css'));
 ?>
-<div class="row clearfix">
+<div class="row clearfix pi-item-angular">
+    <div class="ajax-spinner">
+        <img src="<?php echo $this->assetModule('image/spinner.gif'); ?>" class="ajax-spinner-loader"/>
+    </div>
     <div class="col-md-12">
         <?php include $this->template('front/category'); ?>
         <?php include $this->template('front/user'); ?>
     </div>
+    <div ng-view></div>
 </div>
-<div ng-view></div>
 <script>
     angular
         .module('video', ['ngRoute', 'ui.bootstrap', 'pi'])

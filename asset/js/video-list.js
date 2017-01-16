@@ -13,6 +13,7 @@ angular.module('video')
                         function ($q, $route, $rootScope, $location, server) {
                             var deferred = $q.defer();
                             var params = $route.current.params;
+                            $('.ajax-spinner').show();
 
                             if (config.pageType == 'category') {
                                 $location.search('category', config.categorySlug);
@@ -99,5 +100,7 @@ angular.module('video')
                     uncheckedIcon: 'fa fa-square-o',
                 });
             });
+
+            $('.ajax-spinner').hide();
         }
     ]);
