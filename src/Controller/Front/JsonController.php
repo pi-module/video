@@ -92,6 +92,8 @@ class JsonController extends IndexController
             foreach ($categories as $singleCategory) {
                 $categoryIDList[] = $singleCategory['id'];
             }
+            // Set page title
+            $pageTitle = sprintf(__('New videos from %s'), $category['title']);
         }
 
         // Get favourite list

@@ -1,4 +1,4 @@
-<?php if (isset($isChannel) && $isChannel) {
+<?php if (isset($pageType) && ($pageType == 'channel' || $pageType == 'favourite')) {
     $showNav = 0;
     include $this->templateModule('front/user-profile-topbar.phtml', 'user');
 } ?>
