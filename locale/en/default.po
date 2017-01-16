@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2016-11-26 11:58+0330\n"
+"POT-Creation-Date: 2017-01-16 19:54+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,58 +9,60 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _e;__\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/Api/Attribute.php:63
+#: src/Api/Attribute.php:62
 msgid "Text"
 msgstr ""
 
-#: src/Api/Attribute.php:67
+#: src/Api/Attribute.php:66
 msgid "Link"
 msgstr ""
 
-#: src/Api/Attribute.php:71 src/Form/VideoUploadForm.php:48
+#: src/Api/Attribute.php:70 src/Form/VideoUploadForm.php:48
 msgid "Video"
 msgstr ""
 
-#: src/Api/Attribute.php:75
+#: src/Api/Attribute.php:74
 msgid "Audio"
 msgstr ""
 
-#: src/Api/Attribute.php:79
+#: src/Api/Attribute.php:78
 msgid "File"
 msgstr ""
 
-#: src/Api/Attribute.php:83
+#: src/Api/Attribute.php:82
 msgid "Currency"
 msgstr ""
 
-#: src/Api/Attribute.php:87
+#: src/Api/Attribute.php:86
 msgid "Date"
 msgstr ""
 
-#: src/Api/Attribute.php:91
+#: src/Api/Attribute.php:90
 msgid "Number"
 msgstr ""
 
-#: src/Api/Attribute.php:95
+#: src/Api/Attribute.php:94
 msgid "Select"
 msgstr ""
 
-#: src/Api/Attribute.php:99
+#: src/Api/Attribute.php:98
 msgid "Checkbox"
 msgstr ""
 
-#: src/Api/Attribute.php:254
+#: src/Api/Attribute.php:253
 msgid "Hidden"
 msgstr ""
 
-#: src/Api/Breadcrumbs.php:50 src/Controller/Front/CategoryController.php:108
-#: template/front/category-list.phtml:4 template/front/video-angular.phtml:150
+#: src/Api/Breadcrumbs.php:50 src/Controller/Front/CategoryController.php:97
+#: template/front/category-list.phtml:4
+#: template/front/video-angular-old.phtml:150
+#: template/front/video-angular.phtml:39
 #: template/front/video-custom-index.phtml:32
 msgid "Category list"
 msgstr ""
@@ -70,23 +72,23 @@ msgstr ""
 msgid "Tag list"
 msgstr ""
 
-#: src/Api/Breadcrumbs.php:120 src/Controller/Admin/VideoController.php:404
-#: src/Controller/Front/SubmitController.php:167
+#: src/Api/Breadcrumbs.php:120 src/Controller/Admin/VideoController.php:448
+#: src/Controller/Front/SubmitController.php:159
 msgid "Upload new video"
 msgstr ""
 
-#: src/Api/Breadcrumbs.php:126 src/Controller/Front/SubmitController.php:317
-#: template/admin/video-index.phtml:133 template/admin/video-index.phtml:135
+#: src/Api/Breadcrumbs.php:126 src/Controller/Front/SubmitController.php:309
+#: template/admin/video-index.phtml:146 template/admin/video-index.phtml:148
 #: template/admin/video-link.phtml:6 template/admin/video-update.phtml:13
-#: template/admin/video-view.phtml:68 template/front/submit-finish.phtml:10
+#: template/admin/video-watch.phtml:68 template/front/submit-finish.phtml:10
 #: template/front/submit-update.phtml:10
 msgid "Edit basic information"
 msgstr ""
 
-#: src/Api/Breadcrumbs.php:132 src/Controller/Front/SubmitController.php:419
-#: template/admin/video-index.phtml:136 template/admin/video-index.phtml:138
+#: src/Api/Breadcrumbs.php:132 src/Controller/Front/SubmitController.php:411
+#: template/admin/video-index.phtml:149 template/admin/video-index.phtml:151
 #: template/admin/video-link.phtml:7 template/admin/video-update.phtml:14
-#: template/admin/video-view.phtml:69 template/front/submit-finish.phtml:11
+#: template/admin/video-watch.phtml:69 template/front/submit-finish.phtml:11
 #: template/front/submit-update.phtml:11
 msgid "Edit additional information"
 msgstr ""
@@ -95,62 +97,72 @@ msgstr ""
 msgid "Watch video"
 msgstr ""
 
-#: src/Api/Qmery.php:36 src/Api/Qmery.php:111
+#: src/Api/Breadcrumbs.php:147 src/Controller/Front/ChannelController.php:45
+#: src/Controller/Front/JsonController.php:121
+#, php-format
+msgid "All videos from %s channel"
+msgstr ""
+
+#: src/Api/Breadcrumbs.php:155 src/Controller/Front/FavouriteController.php:41
+msgid "All favourite videos by you"
+msgstr ""
+
+#: src/Api/Qmery.php:98 src/Api/Qmery.php:172
 msgid "Please set token and group id"
 msgstr ""
 
-#: src/Api/Video.php:143
+#: src/Api/Video.php:221
 #, php-format
 msgid "Submitted video on %s"
 msgstr ""
 
-#: src/Controller/Admin/AttributeController.php:54
+#: src/Controller/Admin/AttributeController.php:53
 msgid "Attribute field type not set."
 msgstr ""
 
-#: src/Controller/Admin/AttributeController.php:111
+#: src/Controller/Admin/AttributeController.php:110
 msgid "Attribute field data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/AttributeController.php:123
+#: src/Controller/Admin/AttributeController.php:122
 #, php-format
 msgid "Add attribute - type : %s"
 msgstr ""
 
-#: src/Controller/Admin/AttributeController.php:155
+#: src/Controller/Admin/AttributeController.php:154
 msgid "Selected field delete"
 msgstr ""
 
-#: src/Controller/Admin/AttributeController.php:157
+#: src/Controller/Admin/AttributeController.php:156
 msgid "Please select field"
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:135
-#: src/Controller/Admin/VideoController.php:599
-#: src/Controller/Front/SubmitController.php:251
+#: src/Controller/Admin/CategoryController.php:136
+#: src/Controller/Admin/VideoController.php:652
+#: src/Controller/Front/SubmitController.php:243
 msgid "Problem in upload image. please try again"
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:185
+#: src/Controller/Admin/CategoryController.php:186
 msgid "Category data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:196
+#: src/Controller/Admin/CategoryController.php:197
 msgid "Add a category"
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:221
-#: src/Controller/Admin/VideoController.php:828
+#: src/Controller/Admin/CategoryController.php:222
+#: src/Controller/Admin/VideoController.php:896
 #, php-format
 msgid "Image of %s removed"
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:224
-#: src/Controller/Admin/VideoController.php:831
+#: src/Controller/Admin/CategoryController.php:225
+#: src/Controller/Admin/VideoController.php:899
 msgid "Image not remove"
 msgstr ""
 
-#: src/Controller/Admin/CategoryController.php:228
+#: src/Controller/Admin/CategoryController.php:229
 msgid "Please select category"
 msgstr ""
 
@@ -163,24 +175,28 @@ msgstr ""
 msgid "Add position"
 msgstr ""
 
-#: src/Controller/Admin/ServerController.php:36 src/Form/ServerForm.php:80
+#: src/Controller/Admin/ServerController.php:35 src/Form/ServerForm.php:80
 msgid "File server"
 msgstr ""
 
-#: src/Controller/Admin/ServerController.php:40 src/Form/ServerForm.php:81
+#: src/Controller/Admin/ServerController.php:39 src/Form/ServerForm.php:81
 msgid "Wowza server"
 msgstr ""
 
-#: src/Controller/Admin/ServerController.php:44 src/Form/ServerForm.php:82
+#: src/Controller/Admin/ServerController.php:43 src/Form/ServerForm.php:82
 msgid "Qmery server"
 msgstr ""
 
-#: src/Controller/Admin/ServerController.php:91
+#: src/Controller/Admin/ServerController.php:94
 msgid "Server data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/ServerController.php:107
+#: src/Controller/Admin/ServerController.php:110
 msgid "Manage server"
+msgstr ""
+
+#: src/Controller/Admin/ServerController.php:141
+msgid "Update information form qmery server finished"
 msgstr ""
 
 #: src/Controller/Admin/ToolsController.php:31
@@ -195,97 +211,125 @@ msgstr ""
 msgid "Rebuild sitemap links"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:161
+#: src/Controller/Admin/VideoController.php:212
 msgid "View filtered videos"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:168
+#: src/Controller/Admin/VideoController.php:219
 msgid "Not valid"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:174
+#: src/Controller/Admin/VideoController.php:225
 msgid "Not set"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:205
-#: src/Controller/Admin/VideoController.php:297
-#: src/Controller/Admin/VideoController.php:438
+#: src/Controller/Admin/VideoController.php:256
+#: src/Controller/Admin/VideoController.php:348
+#: src/Controller/Admin/VideoController.php:482
 msgid "please select true server"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:212
+#: src/Controller/Admin/VideoController.php:263
 msgid "This method just work on qmery server"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:243
-#: src/Controller/Admin/VideoController.php:373
-#: src/Controller/Front/SubmitController.php:127
+#: src/Controller/Admin/VideoController.php:294
+#: src/Controller/Admin/VideoController.php:958
+#: src/Controller/Front/SubmitController.php:519
 msgid "Error to upload file on qmery server"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:248
+#: src/Controller/Admin/VideoController.php:299
 msgid "Video external add successfully. Please complete update"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:269
-#: src/Controller/Admin/VideoController.php:523
-#: template/admin/video-index.phtml:130 template/admin/video-index.phtml:132
+#: src/Controller/Admin/VideoController.php:320
+#: src/Controller/Admin/VideoController.php:567
+#: template/admin/video-index.phtml:143 template/admin/video-index.phtml:145
 #: template/admin/video-link.phtml:5 template/admin/video-link.phtml:13
-#: template/admin/video-update.phtml:12 template/admin/video-view.phtml:67
+#: template/admin/video-update.phtml:12 template/admin/video-watch.phtml:67
 msgid "Manage video link"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:330
-#: src/Controller/Admin/VideoController.php:333
-#: src/Controller/Front/SubmitController.php:91
-#: src/Controller/Front/SubmitController.php:94
+#: src/Controller/Admin/VideoController.php:381
+#: src/Controller/Admin/VideoController.php:384
+#: src/Controller/Front/SubmitController.php:90
+#: src/Controller/Front/SubmitController.php:93
 msgid "Problem in upload video. please try again"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:494
+#: src/Controller/Admin/VideoController.php:538
 msgid "Video link add successfully. Please complete update"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:557
-#: src/Controller/Admin/VideoController.php:683
-#: src/Controller/Admin/VideoController.php:757
-#: src/Controller/Admin/VideoController.php:799
-#: src/Controller/Admin/VideoController.php:835
+#: src/Controller/Admin/VideoController.php:610
+#: src/Controller/Admin/VideoController.php:746
+#: src/Controller/Admin/VideoController.php:820
+#: src/Controller/Admin/VideoController.php:867
+#: src/Controller/Admin/VideoController.php:903
+#: src/Controller/Admin/VideoController.php:936
+#: src/Controller/Admin/VideoController.php:946
+#: src/Controller/Admin/VideoController.php:971
 msgid "Please select video"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:645
-#: src/Controller/Admin/VideoController.php:691
-#: src/Controller/Admin/VideoController.php:722
-#: src/Controller/Front/SubmitController.php:298
-#: src/Controller/Front/SubmitController.php:372
-#: src/Controller/Front/SubmitController.php:403
+#: src/Controller/Admin/VideoController.php:707
+#: src/Controller/Admin/VideoController.php:754
+#: src/Controller/Admin/VideoController.php:785
+#: src/Controller/Front/SubmitController.php:290
+#: src/Controller/Front/SubmitController.php:364
+#: src/Controller/Front/SubmitController.php:395
 msgid "Video data saved successfully."
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:668
-#: src/Controller/Front/SubmitController.php:332
+#: src/Controller/Admin/VideoController.php:731
+#: src/Controller/Front/SubmitController.php:324
 msgid "Video information"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:742
-#: src/Controller/Front/SubmitController.php:434
+#: src/Controller/Admin/VideoController.php:805
+#: src/Controller/Front/SubmitController.php:426
 msgid "Video additional information"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:766
-#: template/admin/video-index.phtml:139 template/admin/video-index.phtml:141
+#: src/Controller/Admin/VideoController.php:829
+#: template/admin/video-index.phtml:152 template/admin/video-index.phtml:154
 msgid "View video"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:786
+#: src/Controller/Admin/VideoController.php:849
 #, php-format
 msgid "%s set recommended successfully"
 msgstr ""
 
-#: src/Controller/Admin/VideoController.php:793
+#: src/Controller/Admin/VideoController.php:861
 #, php-format
 msgid "Error in set recommended for %s video"
+msgstr ""
+
+#: src/Controller/Admin/VideoController.php:934
+msgid "This video deleted"
+msgstr ""
+
+#: src/Controller/Admin/VideoController.php:955
+#: src/Controller/Front/SubmitController.php:516
+msgid ""
+"Video added on qmery server and information save on website, please update "
+"extra information"
+msgstr ""
+
+#: src/Controller/Admin/VideoController.php:981
+msgid "Video information updated from qmery server"
+msgstr ""
+
+#: src/Controller/Admin/VideoController.php:986
+msgid ""
+"Atention : Video still not ready on qmery server and video information not "
+"upload, please wail for min and check it later"
+msgstr ""
+
+#: src/Controller/Admin/VideoController.php:991
+msgid "Error to update video from qmery server"
 msgstr ""
 
 #: src/Controller/Feed/IndexController.php:25
@@ -301,121 +345,113 @@ msgid "Click to see video"
 msgstr ""
 
 #: src/Controller/Front/CategoryController.php:35
-#: src/Controller/Front/JsonController.php:221
 msgid "The category not found."
 msgstr ""
 
-#: src/Controller/Front/ChannelController.php:38
+#: src/Controller/Front/ChannelController.php:36
 msgid "This channel not exist."
 msgstr ""
 
-#: src/Controller/Front/ChannelController.php:55
-#, php-format
-msgid "All videos from %s channel"
-msgstr ""
-
 #: src/Controller/Front/FavouriteController.php:29
-#: src/Controller/Front/JsonController.php:321
 msgid "Favourite module not installed."
 msgstr ""
 
-#: src/Controller/Front/FavouriteController.php:50
-msgid "All favourite videos by you"
-msgstr ""
-
-#: src/Controller/Front/IndexController.php:50
-#: src/Controller/Front/IndexController.php:57 src/Form/CategoryForm.php:129
-#: template/admin/video-index.phtml:92
+#: src/Controller/Front/IndexController.php:44 src/Form/CategoryForm.php:129
+#: template/admin/video-index.phtml:105
 msgid "List of videos"
 msgstr ""
 
-#: src/Controller/Front/JsonController.php:39
-#: src/Controller/Front/JsonController.php:127
+#: src/Controller/Front/JsonController.php:76
+msgid "New videos"
+msgstr ""
+
+#: src/Controller/Front/JsonController.php:95
+#, php-format
+msgid "New videos from %s"
+msgstr ""
+
+#: src/Controller/Front/JsonController.php:265
+#: src/Controller/Front/JsonController.php:365
 msgid "Password not set or wrong"
 msgstr ""
 
-#: src/Controller/Front/JsonController.php:271
-#: src/Controller/Front/TagController.php:26
-msgid "Tag module not installed."
-msgstr ""
-
-#: src/Controller/Front/JsonController.php:283
-#: src/Controller/Front/TagController.php:38
-msgid "The tag not set."
-msgstr ""
-
-#: src/Controller/Front/JsonController.php:296
-msgid "The tag not found."
-msgstr ""
-
-#: src/Controller/Front/JsonController.php:333
-msgid "Please login to see favourite list."
-msgstr ""
-
-#: src/Controller/Front/SubmitController.php:44
-#: src/Controller/Front/SubmitController.php:181
-#: src/Controller/Front/SubmitController.php:346
-#: src/Controller/Front/SubmitController.php:448
+#: src/Controller/Front/SubmitController.php:43
+#: src/Controller/Front/SubmitController.php:173
+#: src/Controller/Front/SubmitController.php:338
+#: src/Controller/Front/SubmitController.php:440
+#: src/Controller/Front/SubmitController.php:492
 msgid "Submit video by users inactive"
 msgstr ""
 
-#: src/Controller/Front/SubmitController.php:53
-#: src/Controller/Front/SubmitController.php:190
+#: src/Controller/Front/SubmitController.php:52
+#: src/Controller/Front/SubmitController.php:182
 msgid "No category set by admin"
 msgstr ""
 
-#: src/Controller/Front/SubmitController.php:59
+#: src/Controller/Front/SubmitController.php:58
 msgid "No server set by admin"
 msgstr ""
 
-#: src/Controller/Front/SubmitController.php:153
+#: src/Controller/Front/SubmitController.php:145
 #: template/admin/video-upload.phtml:54 template/front/submit-index.phtml:59
 msgid "Upload video"
 msgstr ""
 
-#: src/Controller/Front/SubmitController.php:199
-#: src/Controller/Front/SubmitController.php:214
-#: src/Controller/Front/SubmitController.php:358
-#: src/Controller/Front/SubmitController.php:363
-#: src/Controller/Front/SubmitController.php:460
-#: src/Controller/Front/SubmitController.php:464
+#: src/Controller/Front/SubmitController.php:191
+#: src/Controller/Front/SubmitController.php:206
+#: src/Controller/Front/SubmitController.php:350
+#: src/Controller/Front/SubmitController.php:355
+#: src/Controller/Front/SubmitController.php:452
+#: src/Controller/Front/SubmitController.php:456
+#: src/Controller/Front/SubmitController.php:505
+#: src/Controller/Front/SubmitController.php:509
 msgid "Please submit video"
 msgstr ""
 
-#: src/Controller/Front/SubmitController.php:472
+#: src/Controller/Front/SubmitController.php:464
 #: template/admin/video-link.phtml:8 template/admin/video-link.phtml:16
 #: template/admin/video-update.phtml:15 template/admin/video-upload.phtml:57
-#: template/admin/video-view.phtml:70 template/front/submit-finish.phtml:12
+#: template/admin/video-watch.phtml:70 template/front/submit-finish.phtml:12
 #: template/front/submit-index.phtml:62 template/front/submit-update.phtml:12
 msgid "Watch submitted video"
 msgstr ""
 
-#: src/Controller/Front/TagController.php:53
+#: src/Controller/Front/TagController.php:26
+msgid "Tag module not installed."
+msgstr ""
+
+#: src/Controller/Front/TagController.php:38
+msgid "The tag not set."
+msgstr ""
+
+#: src/Controller/Front/TagController.php:45
 #, php-format
 msgid "All videos by %s tag"
 msgstr ""
 
-#: src/Controller/Front/TagController.php:95
+#: src/Controller/Front/TagController.php:86
 msgid "List of all used tags on video"
 msgstr ""
 
-#: src/Controller/Front/WatchController.php:33
+#: src/Controller/Front/WatchController.php:32
 msgid "The video not found."
 msgstr ""
 
 #: src/Form/AdminSearchForm.php:40 src/Form/AdminSearchForm.php:45
 #: src/Form/AttributeForm.php:49 src/Form/CategoryForm.php:65
 #: src/Form/PositionForm.php:47 src/Form/ServerForm.php:47
-#: src/Form/VideoForm.php:90 template/admin/attribute-index.phtml:57
+#: src/Form/VideoForm.php:87 template/admin/attribute-index.phtml:57
 #: template/admin/category-index.phtml:13
 #: template/admin/position-index.phtml:13 template/admin/server-index.phtml:13
-#: template/admin/video-index.phtml:95 template/front/video-angular.phtml:94
-#: template/front/video-angular.phtml:180
+#: template/admin/video-index.phtml:108
+#: template/front/video-angular-old.phtml:94
+#: template/front/video-angular-old.phtml:180
+#: template/front/video-angular.phtml:37
 msgid "Title"
 msgstr ""
 
 #: src/Form/AdminSearchForm.php:53 src/Form/AttributeForm.php:74
-#: src/Form/VideoForm.php:148 template/front/category.phtml:50
+#: src/Form/VideoForm.php:145 template/front/category.phtml:61
 msgid "Category"
 msgstr ""
 
@@ -433,7 +469,7 @@ msgstr ""
 
 #: src/Form/AttributeForm.php:88 src/Form/CategoryForm.php:142
 #: src/Form/PositionForm.php:73 src/Form/ServerForm.php:60
-#: src/Form/VideoForm.php:64
+#: src/Form/VideoForm.php:61
 msgid "Status"
 msgstr ""
 
@@ -477,11 +513,11 @@ msgstr ""
 msgid "Use fontawesome.io icons, and set icon name like fa-home"
 msgstr ""
 
-#: src/Form/AttributeForm.php:197 src/Form/CategoryForm.php:245
-#: src/Form/PositionForm.php:88 src/Form/ServerForm.php:158
+#: src/Form/AttributeForm.php:197 src/Form/CategoryForm.php:257
+#: src/Form/PositionForm.php:88 src/Form/ServerForm.php:213
 #: src/Form/SitemapForm.php:48 src/Form/VideoAdditionalForm.php:98
-#: src/Form/VideoExternalForm.php:68 src/Form/VideoForm.php:373
-#: src/Form/VideoLinkForm.php:106
+#: src/Form/VideoExternalForm.php:68 src/Form/VideoForm.php:421
+#: src/Form/VideoLinkForm.php:144
 msgid "Submit"
 msgstr ""
 
@@ -489,20 +525,20 @@ msgstr ""
 msgid "Parent Category"
 msgstr ""
 
-#: src/Form/CategoryForm.php:77 src/Form/VideoForm.php:103
+#: src/Form/CategoryForm.php:77 src/Form/VideoForm.php:100
 msgid "slug"
 msgstr ""
 
-#: src/Form/CategoryForm.php:89 src/Form/VideoForm.php:122
+#: src/Form/CategoryForm.php:89 src/Form/VideoForm.php:119
 msgid "Summary"
 msgstr ""
 
-#: src/Form/CategoryForm.php:95 src/Form/VideoForm.php:128
+#: src/Form/CategoryForm.php:95 src/Form/VideoForm.php:125
 msgid "Keep summery short, 2 or 3 lines"
 msgstr ""
 
-#: src/Form/CategoryForm.php:102 src/Form/VideoForm.php:135
-#: template/front/video-watch.phtml:190
+#: src/Form/CategoryForm.php:102 src/Form/VideoForm.php:132
+#: template/front/video-watch.phtml:209
 msgid "Description"
 msgstr ""
 
@@ -519,66 +555,74 @@ msgid "List of sub category"
 msgstr ""
 
 #: src/Form/CategoryForm.php:144 src/Form/PositionForm.php:75
-#: src/Form/ServerForm.php:62 src/Form/VideoForm.php:66
-#: template/admin/category-index.phtml:51 template/admin/video-index.phtml:69
-#: template/admin/video-index.phtml:71 template/admin/video-index.phtml:157
+#: src/Form/ServerForm.php:62 src/Form/VideoForm.php:63
+#: template/admin/category-index.phtml:51 template/admin/video-index.phtml:77
+#: template/admin/video-index.phtml:79 template/admin/video-index.phtml:175
 msgid "Published"
 msgstr ""
 
 #: src/Form/CategoryForm.php:145 src/Form/PositionForm.php:76
-#: src/Form/ServerForm.php:63 src/Form/VideoForm.php:67
-#: template/admin/category-index.phtml:52 template/admin/video-index.phtml:72
-#: template/admin/video-index.phtml:74 template/admin/video-index.phtml:75
-#: template/admin/video-index.phtml:158
+#: src/Form/ServerForm.php:63 src/Form/VideoForm.php:64
+#: template/admin/category-index.phtml:52 template/admin/video-index.phtml:83
+#: template/admin/video-index.phtml:85 template/admin/video-index.phtml:86
+#: template/admin/video-index.phtml:176
 msgid "Pending review"
 msgstr ""
 
 #: src/Form/CategoryForm.php:146 src/Form/PositionForm.php:77
-#: src/Form/ServerForm.php:64 src/Form/VideoForm.php:68
-#: template/admin/category-index.phtml:53 template/admin/video-index.phtml:77
+#: src/Form/ServerForm.php:64 src/Form/VideoForm.php:65
+#: template/admin/category-index.phtml:53 template/admin/video-index.phtml:88
 msgid "Draft"
 msgstr ""
 
 #: src/Form/CategoryForm.php:147 src/Form/PositionForm.php:78
-#: src/Form/ServerForm.php:65 src/Form/VideoForm.php:69
-#: template/admin/category-index.phtml:54 template/admin/video-index.phtml:78
-#: template/admin/video-index.phtml:80
+#: src/Form/ServerForm.php:65 src/Form/VideoForm.php:66
+#: template/admin/category-index.phtml:54 template/admin/video-index.phtml:89
+#: template/admin/video-index.phtml:91
 msgid "Private"
 msgstr ""
 
-#: src/Form/CategoryForm.php:169 src/Form/VideoForm.php:187
+#: src/Form/CategoryForm.php:169 src/Form/VideoForm.php:184
 msgid "Remove image"
 msgstr ""
 
-#: src/Form/CategoryForm.php:185 src/Form/VideoForm.php:204
+#: src/Form/CategoryForm.php:185 src/Form/VideoForm.php:201
 msgid "Image"
 msgstr ""
 
-#: src/Form/CategoryForm.php:198 src/Form/VideoForm.php:282
+#: src/Form/CategoryForm.php:197
+msgid "Wide image"
+msgstr ""
+
+#: src/Form/CategoryForm.php:201
+msgid "Set wide image url for category page header"
+msgstr ""
+
+#: src/Form/CategoryForm.php:210 src/Form/VideoForm.php:330
 msgid "SEO options"
 msgstr ""
 
-#: src/Form/CategoryForm.php:205 src/Form/VideoForm.php:289
+#: src/Form/CategoryForm.php:217 src/Form/VideoForm.php:337
 msgid "SEO Title"
 msgstr ""
 
-#: src/Form/CategoryForm.php:211 src/Form/VideoForm.php:295
+#: src/Form/CategoryForm.php:223 src/Form/VideoForm.php:343
 msgid "Between 10 to 70 character"
 msgstr ""
 
-#: src/Form/CategoryForm.php:218 src/Form/VideoForm.php:302
+#: src/Form/CategoryForm.php:230 src/Form/VideoForm.php:350
 msgid "SEO Keywords"
 msgstr ""
 
-#: src/Form/CategoryForm.php:224 src/Form/VideoForm.php:308
+#: src/Form/CategoryForm.php:236 src/Form/VideoForm.php:356
 msgid "Between 5 to 10 words"
 msgstr ""
 
-#: src/Form/CategoryForm.php:231 src/Form/VideoForm.php:315
+#: src/Form/CategoryForm.php:243 src/Form/VideoForm.php:363
 msgid "SEO Description"
 msgstr ""
 
-#: src/Form/CategoryForm.php:237 src/Form/VideoForm.php:321
+#: src/Form/CategoryForm.php:249 src/Form/VideoForm.php:369
 msgid "Between 80 to 160 character"
 msgstr ""
 
@@ -591,12 +635,13 @@ msgid "Order"
 msgstr ""
 
 #: src/Form/PositionForm.php:79 src/Form/ServerForm.php:66
-#: src/Form/VideoForm.php:70 template/admin/attribute-index.phtml:72
+#: src/Form/VideoForm.php:67 template/admin/attribute-index.phtml:72
+#: template/admin/video-index.phtml:163 template/admin/video-index.phtml:164
 msgid "Delete"
 msgstr ""
 
-#: src/Form/ServerForm.php:78 src/Form/VideoForm.php:226
-#: template/admin/attribute-index.phtml:61 template/admin/server-index.phtml:14
+#: src/Form/ServerForm.php:78 template/admin/attribute-index.phtml:61
+#: template/admin/server-index.phtml:14
 msgid "Type"
 msgstr ""
 
@@ -604,24 +649,64 @@ msgstr ""
 msgid "Url"
 msgstr ""
 
-#: src/Form/ServerForm.php:106
+#: src/Form/ServerForm.php:99
+msgid "File : set url or ip by http:// or https:// without end slash"
+msgstr ""
+
+#: src/Form/ServerForm.php:100
+msgid "Wowza : set url or ip without http:// or https:// and end slash"
+msgstr ""
+
+#: src/Form/ServerForm.php:101
+msgid "Qmery : http://www.qmery.com or https://www.qmery.com"
+msgstr ""
+
+#: src/Form/ServerForm.php:111
 msgid "Default server ?"
 msgstr ""
 
-#: src/Form/ServerForm.php:117
+#: src/Form/ServerForm.php:122
 msgid "Server setting"
 msgstr ""
 
-#: src/Form/ServerForm.php:124
+#: src/Form/ServerForm.php:129
 msgid "Qmery upload token"
 msgstr ""
 
-#: src/Form/ServerForm.php:135
+#: src/Form/ServerForm.php:140
 msgid "Qmery update token"
 msgstr ""
 
-#: src/Form/ServerForm.php:146
+#: src/Form/ServerForm.php:151
 msgid "Qmery group ID"
+msgstr ""
+
+#: src/Form/ServerForm.php:162
+msgid "Qmery group hash"
+msgstr ""
+
+#: src/Form/ServerForm.php:174
+msgid "Qmery import video"
+msgstr ""
+
+#: src/Form/ServerForm.php:177
+msgid "Import video from qmery to website if video not exist on website"
+msgstr ""
+
+#: src/Form/ServerForm.php:185
+msgid "Qmery show embed"
+msgstr ""
+
+#: src/Form/ServerForm.php:188
+msgid "Show embed code for copy to other pages and websites"
+msgstr ""
+
+#: src/Form/ServerForm.php:196
+msgid "Wowza default engine"
+msgstr ""
+
+#: src/Form/ServerForm.php:205
+msgid "one of this names : live / vod / mediacache"
 msgstr ""
 
 #: src/Form/SitemapForm.php:32
@@ -648,67 +733,91 @@ msgstr ""
 msgid "External link of video from youtube or aparat or video direct link"
 msgstr ""
 
-#: src/Form/VideoForm.php:48
+#: src/Form/VideoForm.php:45
 msgid "General options"
 msgstr ""
 
-#: src/Form/VideoForm.php:160
+#: src/Form/VideoForm.php:157
 msgid "Main category"
 msgstr ""
 
-#: src/Form/VideoForm.php:166
+#: src/Form/VideoForm.php:163
 msgid "Use for breadcrumbs ,mobile app and attribute"
 msgstr ""
 
-#: src/Form/VideoForm.php:219
+#: src/Form/VideoForm.php:216
 msgid "Video file"
 msgstr ""
 
-#: src/Form/VideoForm.php:237
-msgid "Extension"
-msgstr ""
-
-#: src/Form/VideoForm.php:248
-msgid "Size"
-msgstr ""
-
-#: src/Form/VideoForm.php:259
+#: src/Form/VideoForm.php:256
 msgid "Duration ( second )"
 msgstr ""
 
-#: src/Form/VideoForm.php:330
+#: src/Form/VideoForm.php:281 src/Form/VideoForm.php:299
+msgid "Sale video"
+msgstr ""
+
+#: src/Form/VideoForm.php:283 src/Form/VideoForm.php:301
+msgid "Free"
+msgstr ""
+
+#: src/Form/VideoForm.php:284 src/Form/VideoForm.php:302
+msgid "Paid"
+msgstr ""
+
+#: src/Form/VideoForm.php:288
+msgid "If check it, users should buy package to watch this video"
+msgstr ""
+
+#: src/Form/VideoForm.php:306
+msgid "If check it and put price, users should pay to watch this video"
+msgstr ""
+
+#: src/Form/VideoForm.php:313
+msgid "Sale Video price"
+msgstr ""
+
+#: src/Form/VideoForm.php:378
 msgid "Tags"
 msgstr ""
 
-#: src/Form/VideoForm.php:334
+#: src/Form/VideoForm.php:382
 msgid "Use `|` as delimiter to separate tag terms"
 msgstr ""
 
-#: src/Form/VideoLinkForm.php:56
+#: src/Form/VideoLinkForm.php:58
 msgid "Video path"
 msgstr ""
 
-#: src/Form/VideoLinkForm.php:60
+#: src/Form/VideoLinkForm.php:62
 msgid "Without add / on start and end, for example : upload/video/2016/09"
 msgstr ""
 
-#: src/Form/VideoLinkForm.php:68
+#: src/Form/VideoLinkForm.php:70
 msgid "Video file name"
 msgstr ""
 
-#: src/Form/VideoLinkForm.php:72
+#: src/Form/VideoLinkForm.php:74
 msgid "File name by extension, for example file.mp4"
 msgstr ""
 
-#: src/Form/VideoLinkForm.php:81
+#: src/Form/VideoLinkForm.php:103
+msgid "Wowza stream link"
+msgstr ""
+
+#: src/Form/VideoLinkForm.php:107
+msgid "Put wowza url whitout ip or domain name"
+msgstr ""
+
+#: src/Form/VideoLinkForm.php:118
 msgid "Qmery hash code"
 msgstr ""
 
-#: src/Form/VideoLinkForm.php:85
+#: src/Form/VideoLinkForm.php:122
 msgid "hash code on qmery system , like : y4A7rBoLwe"
 msgstr ""
 
-#: src/Form/VideoLinkForm.php:93
+#: src/Form/VideoLinkForm.php:130
 msgid "Qmery video id"
 msgstr ""
 
@@ -716,7 +825,7 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: src/Installer/Action/Update.php:126
+#: src/Installer/Action/Update.php:131
 msgid "Test server"
 msgstr ""
 
@@ -782,8 +891,8 @@ msgstr ""
 #: template/admin/category-index.phtml:42
 #: template/admin/category-index.phtml:44
 #: template/admin/position-index.phtml:30
-#: template/admin/position-index.phtml:32 template/admin/server-index.phtml:42
-#: template/admin/server-index.phtml:44
+#: template/admin/position-index.phtml:32 template/admin/server-index.phtml:44
+#: template/admin/server-index.phtml:46
 msgid "Edit"
 msgstr ""
 
@@ -802,20 +911,20 @@ msgstr ""
 
 #: template/admin/category-index.phtml:15
 #: template/admin/position-index.phtml:14 template/admin/server-index.phtml:17
-#: template/admin/video-index.phtml:96
+#: template/admin/video-index.phtml:109
 msgid "Action"
 msgstr ""
 
 #: template/admin/category-index.phtml:40
-#: template/admin/category-index.phtml:41 template/admin/video-index.phtml:63
-#: template/admin/video-index.phtml:122 template/admin/video-index.phtml:145
-#: template/admin/video-index.phtml:147 template/admin/video-link.phtml:10
-#: template/admin/video-update.phtml:17 template/admin/video-view.phtml:72
+#: template/admin/category-index.phtml:41 template/admin/video-index.phtml:71
+#: template/admin/video-index.phtml:135 template/admin/video-index.phtml:158
+#: template/admin/video-index.phtml:160 template/admin/video-link.phtml:10
+#: template/admin/video-update.phtml:17 template/admin/video-watch.phtml:72
 msgid "View"
 msgstr ""
 
-#: template/admin/category-index.phtml:55 template/admin/video-index.phtml:81
-#: template/admin/video-index.phtml:83 template/admin/video-index.phtml:159
+#: template/admin/category-index.phtml:55 template/admin/video-index.phtml:92
+#: template/admin/video-index.phtml:94 template/admin/video-index.phtml:177
 msgid "Trash"
 msgstr ""
 
@@ -839,7 +948,7 @@ msgstr ""
 msgid "Ip"
 msgstr ""
 
-#: template/admin/log-index.phtml:9 template/front/video-angular.phtml:177
+#: template/admin/log-index.phtml:9 template/front/video-angular-old.phtml:177
 msgid "Time"
 msgstr ""
 
@@ -867,16 +976,42 @@ msgstr ""
 msgid "List of servers"
 msgstr ""
 
-#: template/admin/server-index.phtml:16 template/front/video-angular.phtml:181
+#: template/admin/server-index.phtml:16
+#: template/front/video-angular-old.phtml:181
 msgid "Default"
 msgstr ""
 
-#: template/admin/server-index.phtml:36
+#: template/admin/server-index.phtml:38
 msgid "Yes"
 msgstr ""
 
-#: template/admin/server-index.phtml:38
+#: template/admin/server-index.phtml:40
 msgid "No"
+msgstr ""
+
+#: template/admin/server-index.phtml:50
+msgid "Update"
+msgstr ""
+
+#: template/admin/server-index.phtml:53 template/admin/server-index.phtml:55
+msgid "From website to qmery"
+msgstr ""
+
+#: template/admin/server-index.phtml:56 template/admin/server-index.phtml:58
+#: template/admin/video-index.phtml:57 template/admin/video-index.phtml:63
+msgid "From qmery to website"
+msgstr ""
+
+#: template/admin/server-processing.phtml:25
+msgid "Please wait for"
+msgstr ""
+
+#: template/admin/server-processing.phtml:25
+msgid "secs"
+msgstr ""
+
+#: template/admin/server-processing.phtml:31
+msgid "At processing request, please wait dont close this page."
 msgstr ""
 
 #: template/admin/tools-index.phtml:4
@@ -905,19 +1040,23 @@ msgstr ""
 msgid "Internal link"
 msgstr ""
 
-#: template/admin/video-index.phtml:66 template/admin/video-index.phtml:68
+#: template/admin/video-index.phtml:74 template/admin/video-index.phtml:76
 msgid "All videos"
 msgstr ""
 
-#: template/admin/video-index.phtml:121
+#: template/admin/video-index.phtml:80 template/admin/video-index.phtml:82
+msgid "Recommended"
+msgstr ""
+
+#: template/admin/video-index.phtml:134
 msgid "Server"
 msgstr ""
 
-#: template/admin/video-index.phtml:127
+#: template/admin/video-index.phtml:140
 msgid "Manage"
 msgstr ""
 
-#: template/admin/video-index.phtml:165
+#: template/admin/video-index.phtml:183
 msgid "Recommended in process"
 msgstr ""
 
@@ -960,35 +1099,35 @@ msgid ""
 "upload size is <strong>%s</strong>"
 msgstr ""
 
-#: template/admin/video-view.phtml:78
+#: template/admin/video-watch.phtml:78
 msgid "This video not published on user side"
 msgstr ""
 
-#: template/admin/video-view.phtml:104
+#: template/admin/video-watch.phtml:108
 msgid "MPEG-Dash Url"
 msgstr ""
 
-#: template/admin/video-view.phtml:108
+#: template/admin/video-watch.phtml:112
 msgid "Adobe Hds Url"
 msgstr ""
 
-#: template/admin/video-view.phtml:112
+#: template/admin/video-watch.phtml:116
 msgid "Jwplayer Url"
 msgstr ""
 
-#: template/admin/video-view.phtml:116
+#: template/admin/video-watch.phtml:120
 msgid "IOS Url"
 msgstr ""
 
-#: template/admin/video-view.phtml:120
+#: template/admin/video-watch.phtml:124
 msgid "Android Url"
 msgstr ""
 
-#: template/admin/video-view.phtml:124
+#: template/admin/video-watch.phtml:128
 msgid "RTSP Url"
 msgstr ""
 
-#: template/admin/video-view.phtml:128
+#: template/admin/video-watch.phtml:132
 msgid "RTMP Url"
 msgstr ""
 
@@ -1013,7 +1152,7 @@ msgid ""
 "No category has been made on this part yet. please check this page later"
 msgstr ""
 
-#: template/front/category-single.phtml:45
+#: template/front/category-single.phtml:56
 msgid "List of sub categories"
 msgstr ""
 
@@ -1042,39 +1181,59 @@ msgstr ""
 msgid "Tag"
 msgstr ""
 
-#: template/front/video-angular.phtml:90
+#: template/front/video-angular-old.phtml:90
+#: template/front/video-angular.phtml:36
 msgid "Search on this group"
 msgstr ""
 
-#: template/front/video-angular.phtml:117
+#: template/front/video-angular-old.phtml:117
+#: template/front/video-angular.phtml:38
 msgid "All"
 msgstr ""
 
-#: template/front/video-angular.phtml:176
+#: template/front/video-angular-old.phtml:176
 msgid "Sort by"
 msgstr ""
 
-#: template/front/video-angular.phtml:178
+#: template/front/video-angular-old.phtml:178
 msgid "Hits"
 msgstr ""
 
-#: template/front/video-angular.phtml:179
+#: template/front/video-angular-old.phtml:179
 msgid "Favourite"
+msgstr ""
+
+#: template/front/video-angular.phtml:40
+msgid "Close"
+msgstr ""
+
+#: template/front/video-angular.phtml:41
+msgid "No video"
 msgstr ""
 
 #: template/front/video-related.phtml:4
 msgid "Related videos"
 msgstr ""
 
-#: template/front/video-watch.phtml:138 template/front/video-watch.phtml:146
+#: template/front/video-watch.phtml:145 template/front/video-watch.phtml:153
 msgid "Play"
 msgstr ""
 
-#: template/front/video-watch.phtml:202
+#: template/front/video-watch.phtml:174
+msgid ""
+"This is paid video and you dont have access to watch it, use buy button to "
+"paid and watch this video"
+msgstr ""
+
+#: template/front/video-watch.phtml:176
+msgid "Pay and watch video"
+msgstr ""
+
+#: template/front/video-watch.phtml:221
 msgid "User channel"
 msgstr ""
 
-#: template/front/video-watch.phtml:204
+#: template/front/video-watch.phtml:223
 #, php-format
 msgid "%s channel"
 msgstr ""
