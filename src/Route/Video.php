@@ -165,6 +165,12 @@ class Video extends Standard
                 $matches['controller'] = 'category';
                 $matches['action'] = 'index';
                 $matches['slug'] = $this->decode($parts[0]);
+            } elseif ($parts[0] == 'channel') {
+                $matches['controller'] = 'channel';
+                $matches['action'] = 'index';
+            } elseif ($parts[0] == 'favourite') {
+                $matches['controller'] = 'favourite';
+                $matches['action'] = 'index';
             } else {
                 $matches['controller'] = 'watch';
                 $matches['action'] = 'index';

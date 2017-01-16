@@ -140,6 +140,21 @@ class Breadcrumbs extends AbstractBreadcrumbs
                                 break;
                         }
                         break;
+
+                    case 'channel':
+                        $uid = isset($params['id']) ? intval($params['id']) : Pi::user()->getId();
+                        $user = Pi::api('channel', 'video')->user($uid);
+                        $title = sprintf(__('All videos from %s channel'), $user['name']);
+                        $result[] = array(
+                            'label' => $title,
+                        );
+                        break;
+
+                    case 'favourite':
+                        $result[] = array(
+                            'label' => __('All favourite videos by you'),
+                        );
+                        break;
                 }
             } else {
                 $result = array(

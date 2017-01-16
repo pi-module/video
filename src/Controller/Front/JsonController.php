@@ -19,7 +19,7 @@ use Zend\Db\Sql\Predicate\Expression;
 
 class JsonController extends IndexController
 {
-    public function indexAction()
+    /* public function indexAction()
     {
         // Set return
         $return = array(
@@ -28,6 +28,232 @@ class JsonController extends IndexController
         );
         // Set view
         return $return;
+    } */
+
+    public function searchAction()
+    {
+        // Get info from url
+        $module = $this->params('module');
+        $page = $this->params('page', 1);
+        $category = $this->params('category');
+        $tag = $this->params('tag');
+        $channel = $this->params('channel');
+        $favourite = $this->params('favourite');
+        $title = $this->params('title');
+
+        // Clean title
+        if (Pi::service('module')->isActive('search') && isset($title) && !empty($title)) {
+            $title = Pi::api('api', 'search')->parseQuery($title);
+        } elseif (isset($title) && !empty($title)) {
+            $title = _strip($title);
+        } else {
+            $title = '';
+        }
+
+        // Clean params
+        $paramsClean = array();
+        foreach ($_GET as $key => $value) {
+            $key = _strip($key);
+            $value = _strip($value);
+            $paramsClean[$key] = $value;
+        }
+
+        // Get config
+        $config = Pi::service('registry')->config->read($module);
+
+        // Set empty result
+        $result = array(
+            'videos' => array(),
+            'category' => array(),
+            'filterList' => array(),
+            'paginator' => array(),
+            'condition' => array(),
+        );
+
+        // Set where link
+        $whereLink = array('status' => 1);
+
+        // Set page title
+        $pageTitle = __('New videos');
+
+        // Get category information from model
+        if (!empty($category)) {
+            // Get category
+            $category = Pi::api('category', 'video')->getCategory($category, 'slug');
+            // Check category
+            if (!$category || $category['status'] != 1) {
+                return $result;
+            }
+            // category list
+            $categories = Pi::api('category', 'video')->categoryList($category['id']);
+            // Get id list
+            $categoryIDList = array();
+            $categoryIDList[] = $category['id'];
+            foreach ($categories as $singleCategory) {
+                $categoryIDList[] = $singleCategory['id'];
+            }
+        }
+
+        // Get favourite list
+        if (!empty($favourite)) {
+            // Check favourite
+            if (!Pi::service('module')->isActive('favourite')) {
+                return $result;
+            }
+            // Get uid
+            $uid = Pi::user()->getId();
+            // Check user
+            if (!$uid) {
+                return $result;
+            }
+            // Get id from favourite module
+            $videoIDFavourite = Pi::api('favourite', 'favourite')->userFavourite($uid, $module);
+            // Set page title
+            $pageTitle = ('All favourite videos by you');
+        }
+
+        // Get channel list
+        if (!empty($channel)) {
+            if (intval($channel) > 0) {
+                // Get user id
+                $user = Pi::api('channel', 'video')->user(intval($channel));
+                $pageTitle = sprintf(__('All videos from %s channel'), $user['name']);
+                // Set where link
+                $whereLink['uid'] = intval($channel);
+            } else {
+                return $result;
+            }
+        }
+
+        // Get search form
+        $filterList = Pi::api('attribute', 'video')->filterList();
+        $categoryList = Pi::registry('categoryList', 'video')->read();
+
+        // Set video ID list
+        $checkTitle = false;
+        $checkAttribute = false;
+        $videoIDList = array(
+            'title' => array(),
+            'attribute' => array(),
+        );
+
+        // Check title from video table
+        if (isset($title) && !empty($title)) {
+            $checkTitle = true;
+            $titles = is_array($title) ? $title : array($title);
+            $order = array('recommended DESC', 'time_create DESC', 'id DESC');
+            $columns = array('id');
+            $select = $this->getModel('video')->select()->columns($columns)->where(function ($where) use ($titles) {
+                $whereMain = clone $where;
+                $whereKey = clone $where;
+                $whereMain->equalTo('status', 1);
+                foreach ($titles as $title) {
+                    $whereKey->like('title', '%' . $title . '%')->or;
+                }
+                $where->andPredicate($whereMain)->andPredicate($whereKey);
+            })->order($order);
+            $rowset = $this->getModel('video')->selectWith($select);
+            foreach ($rowset as $row) {
+                $videoIDList['title'][$row->id] = $row->id;
+            }
+        }
+
+        // Check attribute
+        if (!empty($paramsClean)) {
+            // Make attribute list
+            $attributeList = array();
+            foreach ($filterList as $filterSingle) {
+                if (isset($paramsClean[$filterSingle['name']]) && !empty($paramsClean[$filterSingle['name']])) {
+                    $attributeList[$filterSingle['name']] = array(
+                        'field' => $filterSingle['id'],
+                        'data' => $paramsClean[$filterSingle['name']],
+                    );
+                }
+            }
+            // Search on attribute
+            if (!empty($attributeList)) {
+                $checkAttribute = true;
+                $column = array('video');
+                foreach ($attributeList as $attributeSingle) {
+                    $where = array(
+                        'field' => $attributeSingle['field'],
+                        'data' => $attributeSingle['data'],
+                    );
+                    $select = $this->getModel('field_data')->select()->where($where)->columns($column);
+                    $rowset = $this->getModel('field_data')->selectWith($select);
+                    foreach ($rowset as $row) {
+                        $videoIDList['attribute'][$row->video] = $row->video;
+                    }
+                }
+            }
+        }
+
+        // Set info
+        $video = array();
+        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
+        $columns = array('video' => new Expression('DISTINCT video'));
+        $offset = (int)($page - 1) * $config['view_perpage'];
+        $limit = intval($config['view_perpage']);
+        // Set where link
+        if (isset($categoryIDList) && !empty($categoryIDList)) {
+            $whereLink['category'] = $categoryIDList;
+        }
+        if ($checkTitle && $checkAttribute) {
+            $id = array_intersect($videoIDList['title'], $videoIDList['attribute']);
+            $whereLink['video'] = !empty($id) ? $id : '';
+        } elseif ($checkTitle) {
+            $whereLink['video'] = !empty($videoIDList['title']) ? $videoIDList['title'] : '';
+        } elseif ($checkAttribute) {
+            $whereLink['video'] = !empty($videoIDList['attribute']) ? $videoIDList['attribute'] : '';
+        }
+        if (isset($favourite)) {
+            $whereLink['video'] = array_intersect($videoIDFavourite, $whereLink['video']);
+        }
+
+        // Get info from link table
+        $select = $this->getModel('link')->select()->where($whereLink)->columns($columns)->order($order)->offset($offset)->limit($limit);
+        $rowset = $this->getModel('link')->selectWith($select)->toArray();
+        foreach ($rowset as $id) {
+            $videoIDSelect[] = $id['video'];
+        }
+
+        // Get list of video
+        if (!empty($videoIDSelect)) {
+            $where = array('status' => 1, 'id' => $videoIDSelect);
+            $select = $this->getModel('video')->select()->where($where)->order($order);
+            $rowset = $this->getModel('video')->selectWith($select);
+            foreach ($rowset as $row) {
+                $video[] = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
+            }
+        }
+
+        // Get count
+        $columnsCount = array('count' => new Expression('count(DISTINCT `video`)'));
+        $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsCount);
+        $count = $this->getModel('link')->selectWith($select)->current()->count;
+
+        // Set result
+        $result = array(
+            //'paramsClean' => $paramsClean,
+            //'whereLink' => $whereLink,
+            //'categoryIDList' => $categoryIDList,
+            //'videoIDList' => $videoIDList,
+
+            'videos' => $video,
+            'category' => $category,
+            'tag' => $tag,
+            'filterList' => $filterList,
+            'paginator' => array(
+                'count' => $count,
+                'limit' => intval($config['view_perpage']),
+                'page' => $page,
+            ),
+            'condition' => array(
+                'title' => $pageTitle,
+             ),
+        );
+
+        return $result;
     }
 
     public function videoListAction()
@@ -178,7 +404,7 @@ class JsonController extends IndexController
         return $video;
     }
 
-    public function filterIndexAction()
+    /* public function filterIndexAction()
     {
         // Get info from url
         $module = $this->params('module');
@@ -214,9 +440,9 @@ class JsonController extends IndexController
         }
         // Set view
         return $video;
-    }
+    } */
 
-    public function filterCategoryAction()
+    /* public function filterCategoryAction()
     {
         // Get info from url
         $module = $this->params('module');
@@ -272,9 +498,9 @@ class JsonController extends IndexController
         }
         // Set view
         return $video;
-    }
+    } */
 
-    public function filterTagAction()
+    /* public function filterTagAction()
     {
         // Check tag
         if (!Pi::service('module')->isActive('tag')) {
@@ -322,9 +548,9 @@ class JsonController extends IndexController
         }
         // Set view
         return $video;
-    }
+    } */
 
-    public function filterFavouriteAction()
+    /* public function filterFavouriteAction()
     {
         // Check tag
         if (!Pi::service('module')->isActive('favourite')) {
@@ -361,9 +587,9 @@ class JsonController extends IndexController
         }
         // Set view
         return $video;
-    }
+    } */
 
-    public function filterChannelAction()
+    /* public function filterChannelAction()
     {
         // Get info from url
         $module = $this->params('module');
@@ -401,7 +627,7 @@ class JsonController extends IndexController
         }
         // Set view
         return $video;
-    }
+    } */
 
     public function checkPassword() {
         // Get info from url

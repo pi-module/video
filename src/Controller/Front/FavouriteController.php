@@ -33,19 +33,10 @@ class FavouriteController extends IndexController
         // Get info from url
         $module = $this->params('module');
         $uid = Pi::user()->getId();
-        // Get user info
-        $user = Pi::api('channel', 'video')->user($uid);
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // category list
         $categoriesJson = Pi::api('category', 'video')->categoryListJson();
-        // Set filter url
-        $filterUrl = Pi::url($this->url('', array(
-            'controller' => 'json',
-            'action' => 'filterFavourite',
-        )));
-        // Set filter list
-        $filterList = Pi::api('attribute', 'video')->filterList();
         // Set header and title
         $title = __('All favourite videos by you');
         // Set seo_keywords
@@ -63,12 +54,7 @@ class FavouriteController extends IndexController
         $this->view()->setTemplate('video-angular');
         $this->view()->assign('config', $config);
         $this->view()->assign('categoriesJson', $categoriesJson);
-        $this->view()->assign('filterUrl', $filterUrl);
-        $this->view()->assign('filterList', $filterList);
-        $this->view()->assign('videoTitleH1', $title);
-        $this->view()->assign('user', $user);
         $this->view()->assign('uid', $uid);
-        $this->view()->assign('owner', 1);
-        $this->view()->assign('isChannel', 1);
+        $this->view()->assign('pageType', 'favourite');
     }
 }

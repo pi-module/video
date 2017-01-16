@@ -33,22 +33,10 @@ class IndexController extends ActionController
         switch ($config['homepage_type']) {
             default:
             case 'list':
-                // Set filter url
-                $filterUrl = Pi::url($this->url('', array(
-                    'controller' => 'json',
-                    'action' => 'filterIndex'
-                )));
-                // Set filter list
-                $filterList = Pi::api('attribute', 'video')->filterList();
-                // Set view
                 $this->view()->setTemplate('video-angular');
                 $this->view()->assign('config', $config);
                 $this->view()->assign('categoriesJson', $categoriesJson);
-                $this->view()->assign('filterUrl', $filterUrl);
-                $this->view()->assign('filterList', $filterList);
-                $this->view()->assign('videoTitleH1', __('List of videos'));
-                $this->view()->assign('showIndexDesc', 1);
-                $this->view()->assign('isHomepage', 1);
+                $this->view()->assign('pageType', 'all');
                 break;
 
             case 'custom':

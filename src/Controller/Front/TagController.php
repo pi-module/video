@@ -41,14 +41,6 @@ class TagController extends IndexController
         }
         // category list
         $categoriesJson = Pi::api('category', 'video')->categoryListJson();
-        // Set filter url
-        $filterUrl = Pi::url($this->url('', array(
-            'controller' => 'json',
-            'action' => 'filterTag',
-            'slug' => $slug
-        )));
-        // Set filter list
-        $filterList = Pi::api('attribute', 'video')->filterList();
         // Set header and title
         $title = sprintf(__('All videos by %s tag'), $slug);
         // Set seo_keywords
@@ -64,9 +56,8 @@ class TagController extends IndexController
         $this->view()->setTemplate('video-angular');
         $this->view()->assign('config', $config);
         $this->view()->assign('categoriesJson', $categoriesJson);
-        $this->view()->assign('filterUrl', $filterUrl);
-        $this->view()->assign('filterList', $filterList);
-        $this->view()->assign('videoTitleH1', $title);
+        $this->view()->assign('tag', $slug);
+        $this->view()->assign('pageType', 'tag');
     }
 
     public function listAction()

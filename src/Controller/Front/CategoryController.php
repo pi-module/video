@@ -41,18 +41,6 @@ class CategoryController extends IndexController
         // Check display type
         switch ($category['display_type']) {
             case 'video':
-                // Set filter url
-                $filterUrl = Pi::url($this->url('', array(
-                    'controller' => 'json',
-                    'action' => 'filterCategory',
-                    'slug' => $category['slug']
-                )));
-                // Set filter list
-                $filterList = Pi::api('attribute', 'video')->filterList();
-                // Set view
-                $this->view()->assign('filterUrl', $filterUrl);
-                $this->view()->assign('filterList', $filterList);
-                // Set template
                 $template = 'video-angular';
                 break;
 
@@ -81,6 +69,7 @@ class CategoryController extends IndexController
         $this->view()->assign('config', $config);
         $this->view()->assign('category', $category);
         $this->view()->assign('categoriesJson', $categoriesJson);
+        $this->view()->assign('pageType', 'category');
     }
 
     public function listAction()
