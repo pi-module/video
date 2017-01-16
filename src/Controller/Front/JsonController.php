@@ -64,7 +64,6 @@ class JsonController extends IndexController
         // Set empty result
         $result = array(
             'videos' => array(),
-            'category' => array(),
             'filterList' => array(),
             'paginator' => array(),
             'condition' => array(),
@@ -242,8 +241,8 @@ class JsonController extends IndexController
             //'videoIDList' => $videoIDList,
 
             'videos' => $video,
-            'category' => $category,
-            'tag' => $tag,
+            //'category' => $category,
+            //'tag' => $tag,
             'filterList' => $filterList,
             'paginator' => array(
                 'count' => $count,
