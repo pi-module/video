@@ -1,6 +1,7 @@
 <?php if ($block['resources']['server']['type'] == 'qmery') {
     $this->jQuery();
     $this->headScript()->appendFile($block['resources']['qmeryScriptResponsive']);
+    $this->css($this->assetModule('css/block.css', 'video'));
 } ?>
 <div class="video-block video-block-select">
     <div class="clearfix">
