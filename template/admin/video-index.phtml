@@ -77,6 +77,9 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
 						<li><a title="<?php _e('Published'); ?>"
 							   href="<?php echo $this->url('', array('controller' => 'video', 'action' => 'index', 'status' => '1')); ?>"><i
 										class="fa fa-file"></i> <?php _e('Published'); ?></a></li>
+                        <li><a title="<?php _e('Recommended'); ?>"
+                               href="<?php echo $this->url('', array('controller' => 'video', 'action' => 'index', 'recommended' => '1')); ?>"><i
+                                        class="fa fa-file"></i> <?php _e('Recommended'); ?></a></li>
 						<li><a title="<?php _e('Pending review'); ?>"
 							   href="<?php echo $this->url('', array('controller' => 'video', 'action' => 'index', 'status' => '2')); ?>"><i
 										class="fa fa-file"></i> <?php _e('Pending review'); ?></a></li>
@@ -94,7 +97,9 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
 			</div>
 		</div>
 		<div class="col-md-8">
-			<?php echo $this->form($form, 'inline'); ?>
+            <div class="pull-right">
+                <?php echo $this->form($form, 'inline'); ?>
+            </div>
 		</div>
 	</div>
 	<h3><?php _e('List of videos'); ?></h3>

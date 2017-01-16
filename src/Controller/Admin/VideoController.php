@@ -44,6 +44,7 @@ class VideoController extends ActionController
         $page = $this->params('page', 1);
         $status = $this->params('status');
         $category = $this->params('category');
+        $recommended = $this->params('recommended');
         $title = $this->params('title');
         // Get config
         $config = Pi::service('registry')->config->read($module);
@@ -52,6 +53,8 @@ class VideoController extends ActionController
         $order = array('time_create DESC', 'id DESC');
         $limit = intval($this->config('admin_perpage'));
         $video = array();
+        $videoId = array();
+        $whereVideo = array();
         // Set title
         if (!empty($title) && !empty($category)) {
             // Set where
@@ -63,22 +66,59 @@ class VideoController extends ActionController
             $rowset = $this->getModel('link')->selectWith($select)->toArray();
             // Make list
             foreach ($rowset as $id) {
-                $videoId[] = $id['video'];
+                $videoId[$id['video']] = $id['video'];
+            }
+            // Set title
+            if (Pi::service('module')->isActive('search') && isset($title) && !empty($title)) {
+                $title = Pi::api('api', 'search')->parseQuery($title);
+            } elseif (isset($title) && !empty($title)) {
+                $title = _strip($title);
+            }
+            $title = is_array($title) ? $title : array($title);
+            $columns = array('id');
+            $select = $this->getModel('video')->select()->columns($columns)->where(function ($where) use ($title) {
+                $whereMain = clone $where;
+                $whereKey = clone $where;
+                $whereMain->equalTo('status', 1);
+                foreach ($title as $term) {
+                    $whereKey->like('title', '%' . $term . '%')->or;
+                }
+                $where->andPredicate($whereMain)->andPredicate($whereKey);
+            });
+            $rowset = $this->getModel('video')->selectWith($select);
+            foreach ($rowset as $row) {
+                $videoId[$row->id] = $row->id;
             }
             // Set info
-            $whereVideo = array('title LIKE ?' => '%' . $title . '%');
             if (!empty($videoId)) {
                 $whereVideo['id'] = $videoId;
             }
-            // Get list of product
-            $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
-            $rowset = $this->getModel('video')->selectWith($select);
         } elseif (!empty($title)) {
-            $whereVideo = array('title LIKE ?' => '%' . $title . '%');
-            // Get list of product
-            $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
+            if (Pi::service('module')->isActive('search') && isset($title) && !empty($title)) {
+                $title = Pi::api('api', 'search')->parseQuery($title);
+            } elseif (isset($title) && !empty($title)) {
+                $title = _strip($title);
+            }
+            $title = is_array($title) ? $title : array($title);
+            $columns = array('id');
+            $select = $this->getModel('video')->select()->columns($columns)->where(function ($where) use ($title) {
+                $whereMain = clone $where;
+                $whereKey = clone $where;
+                $whereMain->equalTo('status', 1);
+                foreach ($title as $term) {
+                    $whereKey->like('title', '%' . $term . '%')->or;
+                }
+                $where->andPredicate($whereMain)->andPredicate($whereKey);
+            });
             $rowset = $this->getModel('video')->selectWith($select);
-        } elseif (!empty($category)) {
+            foreach ($rowset as $row) {
+                $videoId[$row->id] = $row->id;
+            }
+            // Set info
+            if (!empty($videoId)) {
+                $whereVideo['id'] = $videoId;
+            }
+        } else {
             // Set where
             $whereLink = array();
             if (!empty($status) && in_array($status, array(1, 2, 3, 4, 5))) {
@@ -89,6 +129,9 @@ class VideoController extends ActionController
             if (!empty($category)) {
                 $whereLink['category'] = $category;
             }
+            if (!empty($recommended)) {
+                $whereLink['recommended'] = 1;
+            }
             $columnsLink = array('video' => new Expression('DISTINCT video'));
             // Get info from link table
             $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsLink)->order($order)->offset($offset)->limit($limit);
@@ -98,31 +141,19 @@ class VideoController extends ActionController
                 $videoId[] = $id['video'];
             }
             // Set info
-            $whereVideo = array();
             if (!empty($videoId)) {
                 $whereVideo['id'] = $videoId;
             }
-            // Get list of product
-            $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
-            $rowset = $this->getModel('video')->selectWith($select);
-        } else {
-            // Set info
-            $whereVideo = array();
-            if (!empty($status) && in_array($status, array(1, 2, 3, 4, 5))) {
-                $whereVideo['status'] = $status;
-            } else {
-                $whereVideo['status'] = array(1, 2, 3, 4);
-            }
-            // Get list of product
-            $select = $this->getModel('video')->select()->where($whereVideo)->order($order)->offset($offset)->limit($limit);
-            $rowset = $this->getModel('video')->selectWith($select);
         }
+        // Get list of video
+        $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
+        $rowset = $this->getModel('video')->selectWith($select);
         // Make list
         foreach ($rowset as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
         // Set count
-        if (isset($whereLink)) {
+        if (empty($title)) {
             $columnsLink = array('count' => new Expression('count(DISTINCT `video`)'));
             $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsLink);
             $count = $this->getModel('link')->selectWith($select)->current()->count;
@@ -131,6 +162,8 @@ class VideoController extends ActionController
             $select = $this->getModel('video')->select()->where($whereVideo)->columns($columnsLink);
             $count = $this->getModel('video')->selectWith($select)->current()->count;
         }
+        // Set title
+        $title = is_array($title) ? implode(' ', $title) : $title;
         // Set paginator
         $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($this->config('admin_perpage'));
@@ -145,6 +178,7 @@ class VideoController extends ActionController
                 'category' => $category,
                 'status' => $status,
                 'title' => $title,
+                'recommended' => $recommended,
             )),
         ));
         // Set form
@@ -162,8 +196,8 @@ class VideoController extends ActionController
         $this->view()->assign('list', $video);
         $this->view()->assign('paginator', $paginator);
         $this->view()->assign('form', $form);
-        $this->view()->assign('serverList', $serverList);
         $this->view()->assign('config', $config);
+        $this->view()->assign('serverList', $serverList);
     }
 
     public function processAction()

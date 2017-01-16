@@ -39,9 +39,6 @@ class Category extends AbstractApi
         return $category;
     }
 
-    /**
-     * Set video category to link table
-     */
     public function setLink($video, $category, $create, $update, $status, $uid, $hits)
     {
         //Remove

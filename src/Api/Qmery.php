@@ -180,6 +180,8 @@ class Qmery extends AbstractApi
         $apiUrl = 'http://api.qmery.com/v1/videos.json?api_token=%s&page=%s&per_page=%s&sort_dir';
         $apiUrl = sprintf($apiUrl, $server['qmery_update_token'], $page, 50);
         $videoList = Pi::service('remote')->get($apiUrl);
+        $uid = Pi::user()->getId();
+        $time = time();
         if (!empty($videoList)) {
             foreach ($videoList as $videoSingle) {
                 if ($videoSingle['group_id'] == $server['qmery_group_id']) {
@@ -193,15 +195,17 @@ class Qmery extends AbstractApi
                         $video = Pi::model('video', $this->getModule())->createRow();
                         $video->title = $videoSingle['title'];
                         $video->slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
-                        $video->time_create = time();
-                        $video->time_update = time();
-                        $video->uid = Pi::user()->getId();
+                        $video->time_create = $time;
+                        $video->time_update = $time;
+                        $video->uid = $uid;
                         $video->status = 2;
                         $video->video_server = $server['id'];
                         $video->video_qmery_hash = $videoSingle['hash_id'];
                         $video->video_qmery_id = $videoSingle['id'];
                         $video->video_qmery_hls = isset($videoSingle['hls']) ? $videoSingle['hls'] : '';
                         $video->save();
+                        // Set to link table
+                        Pi::api('category', 'video')->setLink($video->id, 0, $time, $time, 2, $uid, 0);
                     }
                 }
             }
