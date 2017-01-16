@@ -147,21 +147,17 @@ class Video extends AbstractApi
                 break;
 
             case 'package':
-                /* if (Pi::service('authentication')->hasIdentity()) {
-                    $package = 1;
-                    $key = sprintf('video-package-%s-%s', $package, $uid);
-                    if (Pi::api('access', 'order')->hasAccess($key, true)) {
-                        $access = true;
-                    } else {
-                        $access = false;
-                    }
-                } else {
-                    $access = false;
-                } */
                 if (Pi::service('authentication')->hasIdentity()) {
-                    $access = true;
-                } else {
-                    $access = false;
+                    $packages = Pi::registry('planModuleList', 'plans')->read();
+                    foreach ($packages as $package) {
+                        if ($package['module'] == 'video') {
+                            $key = sprintf('video-package-%s-%s', $package['id'], $uid);
+                            if (Pi::api('access', 'order')->hasAccess($key, true)) {
+                                $access = true;
+                                break;
+                            }
+                        }
+                    }
                 }
                 break;
 
@@ -171,11 +167,7 @@ class Video extends AbstractApi
                         $key = sprintf('video-single-%s-%s', $video['id'], $uid);
                         if (Pi::api('access', 'order')->hasAccess($key, true)) {
                             $access = true;
-                        } else {
-                            $access = false;
                         }
-                    } else {
-                        $access = false;
                     }
                 } else {
                     $access = true;
@@ -292,51 +284,43 @@ class Video extends AbstractApi
                 break;
 
             case 'wowza':
-                $video['videoFileUrl'] = sprintf('http://%s/%s/%s',
+                $video['videoFileUrl'] = sprintf('http://%s/%s',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['mpegDashUrl'] = sprintf('http://%s/%s/_definst_/%s/manifest.mpd',
+                $video['mpegDashUrl'] = sprintf('http://%s/%s/manifest.mpd',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['adobeHdsUrl'] = sprintf('http://%s/%s/_definst_/%s/manifest.f4m',
+                $video['adobeHdsUrl'] = sprintf('http://%s/%s/manifest.f4m',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['jwplayerUrl'] = sprintf('http://%s/%s/_definst_/%s/jwplayer.mpd',
+                $video['jwplayerUrl'] = sprintf('http://%s/%s/jwplayer.mpd',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['iosUrl'] = sprintf('http://%s/%s/_definst_/%s/playlist.m3u8',
+                $video['iosUrl'] = sprintf('http://%s/%s/playlist.m3u8',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['androidUrl'] = sprintf('rtsp://%s/%s/_definst_/%s',
+                $video['androidUrl'] = sprintf('rtsp://%s/%s',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['rtspUrl'] = sprintf('rtsp://%s/%s/_definst_/%s',
+                $video['rtspUrl'] = sprintf('rtsp://%s/%s',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['rtmpUrl'] = sprintf('rtmp://%s/%s/_definst_/%s',
+                $video['rtmpUrl'] = sprintf('rtmp://%s/%s',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
                 break;
@@ -526,51 +510,43 @@ class Video extends AbstractApi
                 break;
 
             case 'wowza':
-                $video['videoFileUrl'] = sprintf('http://%s/%s/%s',
+                $video['videoFileUrl'] = sprintf('http://%s/%s',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['mpegDashUrl'] = sprintf('http://%s/%s/_definst_/%s/manifest.mpd',
+                $video['mpegDashUrl'] = sprintf('http://%s/%s/manifest.mpd',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['adobeHdsUrl'] = sprintf('http://%s/%s/_definst_/%s/manifest.f4m',
+                $video['adobeHdsUrl'] = sprintf('http://%s/%s/manifest.f4m',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['jwplayerUrl'] = sprintf('http://%s/%s/_definst_/%s/jwplayer.mpd',
+                $video['jwplayerUrl'] = sprintf('http://%s/%s/jwplayer.mpd',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['iosUrl'] = sprintf('http://%s/%s/_definst_/%s/playlist.m3u8',
+                $video['iosUrl'] = sprintf('http://%s/%s/playlist.m3u8',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['androidUrl'] = sprintf('rtsp://%s/%s/_definst_/%s',
+                $video['androidUrl'] = sprintf('rtsp://%s/%s',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['rtspUrl'] = sprintf('rtsp://%s/%s/_definst_/%s',
+                $video['rtspUrl'] = sprintf('rtsp://%s/%s',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
 
-                $video['rtmpUrl'] = sprintf('rtmp://%s/%s/_definst_/%s',
+                $video['rtmpUrl'] = sprintf('rtmp://%s/%s',
                     $video['server']['url'],
-                    $video['video_path'],
                     $video['video_file']
                 );
                 break;

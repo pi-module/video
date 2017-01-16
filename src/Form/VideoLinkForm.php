@@ -79,7 +79,7 @@ class VideoLinkForm  extends BaseForm
 
             case 'wowza':
                 // video_path
-                $this->add(array(
+                /* $this->add(array(
                     'name' => 'video_path',
                     'type' => 'select',
                     'options' => array(
@@ -95,19 +95,16 @@ class VideoLinkForm  extends BaseForm
                         'required' => true,
                         'value' => $this->option['server']['wowza_default'],
                     )
-                ));
+                )); */
                 // video_file
                 $this->add(array(
                     'name' => 'video_file',
                     'options' => array(
-                        'label' => __('Wowza stream name'),
+                        'label' => __('Wowza stream link'),
                     ),
                     'attributes' => array(
                         'type' => 'text',
-                        'description' => sprintf('<ul class="list-unstyled"><li>%s</li><li>%s</li></ul>',
-                            __('If engine is live name is like smil:myname.smil'),
-                            __('If engine is vod or mediacache name is like mp4:http/uploads/video/myvideo.mp4')
-                        ),
+                        'description' => __('Put wowza url whitout ip or domain name'),
                         'required' => true,
                     )
                 ));
@@ -147,10 +144,5 @@ class VideoLinkForm  extends BaseForm
                 'value' => __('Submit'),
             )
         ));
-
-        echo '<pre>';
-        print_r($this->option['server']['wowza_default']);
-        echo '</pre>';
-
     }
 }

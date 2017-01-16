@@ -68,7 +68,7 @@ class VideoLinkFilter extends InputFilter
 
             case 'wowza':
                 // video_path
-                $this->add(array(
+                /* $this->add(array(
                     'name' => 'video_path',
                     'required' => true,
                     'filters' => array(
@@ -76,7 +76,7 @@ class VideoLinkFilter extends InputFilter
                             'name' => 'StringTrim',
                         ),
                     ),
-                ));
+                )); */
                 // video_file
                 $this->add(array(
                     'name' => 'video_file',

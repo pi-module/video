@@ -1,6 +1,6 @@
 <div class="clearfix">
     <div class="well well-sm">
-        <ul class="nav nav-pills nav-justified">
+        <ul class="nav nav-pills">
             <?php if (isset($video['id'])) { ?>
                 <li<?php if ($nav['page'] == 'link') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'link', 'id' => $video['id'])); ?>"><?php _e('Manage video link'); ?></a></li>
                 <li<?php if ($nav['page'] == 'update') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'update', 'id' => $video['id'])); ?>"><?php _e('Edit basic information'); ?></a></li>
