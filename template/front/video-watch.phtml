@@ -130,7 +130,7 @@ EOT;
                     <?php } elseif ($videoItem['server']['type'] == 'qmery') { ?>
                         <?php if (isset($videoItem['server']['qmery_player_type']) && $videoItem['server']['qmery_player_type'] == 'iframe') { ?>
                             <div class="clearfix">
-                                <iframe src="<?php echo $this->escape($videoItem['qmeryDirect']); ?>?lan=fa&mobile=false" allowtransparency="true" scrolling="no" name="qmery_embed_video" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" oallowfullscreen="" msallowfullscreen="" frameborder="0" height="360" width="640"></iframe>
+                                <iframe src="<?php echo $this->escape($videoItem['qmeryDirect']); ?>" allowtransparency="true" scrolling="no" name="qmery_embed_video" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" oallowfullscreen="" msallowfullscreen="" frameborder="0" height="360" width="640"></iframe>
                             </div>
                         <?php } else { ?>
                             <div class="qmery-player-min-height">
