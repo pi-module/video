@@ -75,7 +75,7 @@ class ServerController extends ActionController
                 $setting['qmery_group_hash'] = $values['qmery_group_hash'];
                 $setting['qmery_import'] = $values['qmery_import'];
                 $setting['qmery_show_embed'] = $values['qmery_show_embed'];
-                $setting['wowza_default'] = $values['wowza_default'];
+                $setting['qmery_player_type'] = $values['qmery_player_type'];
                 $values['setting'] = json_encode($setting);
                 // Save values
                 if (!empty($values['id'])) {

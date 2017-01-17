@@ -110,9 +110,9 @@ class ServerFilter extends InputFilter
             'name' => 'qmery_show_embed',
             'required' => false,
         ));
-        // wowza_default
+        // qmery_player_type
         $this->add(array(
-            'name' => 'wowza_default',
+            'name' => 'qmery_player_type',
             'required' => false,
             'filters' => array(
                 array(

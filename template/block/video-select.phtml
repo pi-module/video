@@ -6,14 +6,20 @@
 <div class="video-block video-block-select">
     <div class="clearfix">
         <?php if ($block['resources']['server']['type'] == 'qmery') { ?>
-            <div class="qmery-player-min-height">
-                <div class="qmery-player-full-height">
-                    <div class="qmery-player">
-                        <div id="embed_qmery_player_<?php echo $this->escape($block['resources']['video_qmery_id']); ?>"></div>
-                        <div id="embed_qmery_player_icons<?php echo $this->escape($block['resources']['video_qmery_id']); ?>"></div>
+            <?php if (isset($block['resources']['server']['qmery_player_type']) && $block['resources']['server']['qmery_player_type'] == 'iframe') { ?>
+                <div class="clearfix">
+                    <iframe src="<?php echo $this->escape($block['resources']['qmeryDirect']); ?>?lan=fa&mobile=false" allowtransparency="true" scrolling="no" name="qmery_embed_video" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" oallowfullscreen="" msallowfullscreen="" frameborder="0" height="360" width="640"></iframe>
+                </div>
+            <?php } else { ?>
+                <div class="qmery-player-min-height">
+                    <div class="qmery-player-full-height">
+                        <div class="qmery-player">
+                            <div id="embed_qmery_player_<?php echo $this->escape($block['resources']['video_qmery_id']); ?>"></div>
+                            <div id="embed_qmery_player_icons<?php echo $this->escape($block['resources']['video_qmery_id']); ?>"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         <?php } ?>
     </div>
 </div>

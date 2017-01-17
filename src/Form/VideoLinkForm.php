@@ -78,24 +78,6 @@ class VideoLinkForm  extends BaseForm
                 break;
 
             case 'wowza':
-                // video_path
-                /* $this->add(array(
-                    'name' => 'video_path',
-                    'type' => 'select',
-                    'options' => array(
-                        'label' => __('Wowza engine'),
-                        'value_options' => array(
-                            'live' => 'live',
-                            'vod' => 'vod',
-                            'mediacache' => 'mediacache',
-                        ),
-                    ),
-                    'attributes' => array(
-                        'description' => __('one of this names : live / vod / mediacache'),
-                        'required' => true,
-                        'value' => $this->option['server']['wowza_default'],
-                    )
-                )); */
                 // video_file
                 $this->add(array(
                     'name' => 'video_file',

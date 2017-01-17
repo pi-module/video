@@ -188,22 +188,17 @@ class ServerForm extends BaseForm
                 'description' => __('Show embed code for copy to other pages and websites'),
             )
         ));
-        // wowza_default
+        // qmery_player_type
         $this->add(array(
-            'name' => 'wowza_default',
+            'name' => 'qmery_player_type',
             'type' => 'select',
             'options' => array(
-                'label' => __('Wowza default engine'),
+                'label' => __('Qmery player type'),
                 'value_options' => array(
-                    '' => '',
-                    'live' => 'live',
-                    'vod' => 'vod',
-                    'mediacache' => 'mediacache',
+                    'embed' => __('embed'),
+                    'iframe' => __('iframe'),
                 ),
             ),
-            'attributes' => array(
-                'description' => __('one of this names : live / vod / mediacache'),
-            )
         ));
         // Save
         $this->add(array(
