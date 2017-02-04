@@ -58,6 +58,15 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
+    protected $order = array(
+        'recommended DESC',
+        'time_create DESC',
+        'id DESC'
+    );
+
+    /**
+     * {@inheritDoc}
+     */
     protected function buildUrl(array $item, $table = '')
     {
         switch ($table) {
