@@ -93,6 +93,9 @@ class VideoController extends ActionController
             if (!empty($videoId)) {
                 $whereVideo['id'] = $videoId;
             }
+            // Get list of video
+            $select = $this->getModel('video')->select()->where($whereVideo)->order($order)->offset($offset)->limit($limit);
+            $rowset = $this->getModel('video')->selectWith($select);
         } elseif (!empty($title)) {
             if (Pi::service('module')->isActive('search') && isset($title) && !empty($title)) {
                 $title = Pi::api('api', 'search')->parseQuery($title);
@@ -118,6 +121,9 @@ class VideoController extends ActionController
             if (!empty($videoId)) {
                 $whereVideo['id'] = $videoId;
             }
+            // Get list of video
+            $select = $this->getModel('video')->select()->where($whereVideo)->order($order)->offset($offset)->limit($limit);
+            $rowset = $this->getModel('video')->selectWith($select);
         } else {
             // Set where
             $whereLink = array();
@@ -132,22 +138,24 @@ class VideoController extends ActionController
             if (!empty($recommended)) {
                 $whereLink['recommended'] = 1;
             }
-            $columnsLink = array('video' => new Expression('DISTINCT video'));
             // Get info from link table
-            $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsLink)->order($order)->offset($offset)->limit($limit);
-            $rowset = $this->getModel('link')->selectWith($select)->toArray();
-            // Make list
-            foreach ($rowset as $id) {
-                $videoId[] = $id['video'];
+            if (!empty($whereLink)) {
+                $columnsLink = array('video' => new Expression('DISTINCT video'));
+                $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsLink)->order($order)->offset($offset)->limit($limit);
+                $rowset = $this->getModel('link')->selectWith($select)->toArray();
+                // Make list
+                foreach ($rowset as $id) {
+                    $videoId[] = $id['video'];
+                }
+                // Set info
+                if (!empty($videoId)) {
+                    $whereVideo['id'] = $videoId;
+                }
             }
-            // Set info
-            if (!empty($videoId)) {
-                $whereVideo['id'] = $videoId;
-            }
+            // Get list of video
+            $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
+            $rowset = $this->getModel('video')->selectWith($select);
         }
-        // Get list of video
-        $select = $this->getModel('video')->select()->where($whereVideo)->order($order);
-        $rowset = $this->getModel('video')->selectWith($select);
         // Make list
         foreach ($rowset as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
