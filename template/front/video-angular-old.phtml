@@ -56,23 +56,23 @@ $this->footScript()->appendScript($scriptMenu);
 // Set box site
 switch ($config['view_column']) {
     case 1:
-        $videoBoxSize = 'col-xs-12 col-sm-12 col-md-12';
+        $videoBoxSize = 'col-md-12';
         break;
 
     case 2:
-        $videoBoxSize = 'col-xs-12 col-sm-12 col-md-6';
+        $videoBoxSize = 'col-md-6';
         break;
 
     case 3:
-        $videoBoxSize = 'col-xs-12 col-sm-12 col-md-4';
+        $videoBoxSize = 'col-md-4';
         break;
 
     case 4:
-        $videoBoxSize = 'col-xs-12 col-sm-12 col-md-3';
+        $videoBoxSize = 'col-md-3';
         break;
 
     case 5:
-        $videoBoxSize = 'col-xs-12 col-sm-12 col-md-2';
+        $videoBoxSize = 'col-md-2';
         break;
 }
 ?>
@@ -80,11 +80,11 @@ switch ($config['view_column']) {
     <div class="ajax-spinner">
         <img src="<?php echo $this->assetModule('image/spinner.gif'); ?>" class="ajax-spinner-loader"/>
     </div>
-    <div class="col-sm-12 col-md-12">
+    <div class="col-md-12">
         <?php include $this->template('front/category'); ?>
         <?php include $this->template('front/user'); ?>
     </div>
-    <div class="col-sm-12 col-md-3">
+    <div class="col-md-3">
         <div class="video-search-form well well-sm clearfix">
             <div class="page-header">
                 <h4><?php _e('Search on this group'); ?></h4>
@@ -154,7 +154,7 @@ switch ($config['view_column']) {
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-md-9" ng-controller="listdata">
+    <div class="col-md-9" ng-controller="listdata">
         <div class="clearfix">
             <div class="video-list clearfix">
                 <?php if (isset($videoTitleH1) && !empty($videoTitleH1)) { ?>

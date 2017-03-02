@@ -1,26 +1,26 @@
 <?php switch ($block['column']) {
     case 1:
-        $videoBlockBoxSize = 'col-xs-12 col-sm-12 col-md-12';
+        $videoBlockBoxSize = 'col-md-12';
         break;
 
     case 2:
-        $videoBlockBoxSize = 'col-xs-6 col-sm-6 col-md-6';
+        $videoBlockBoxSize = 'col-md-6';
         break;
 
     case 3:
-        $videoBlockBoxSize = 'col-xs-6 col-sm-4 col-md-4';
+        $videoBlockBoxSize = 'col-md-4';
         break;
 
     case 4:
-        $videoBlockBoxSize = 'col-xs-6 col-sm-3 col-md-3';
+        $videoBlockBoxSize = 'col-md-3';
         break;
 
     case 6:
-        $videoBlockBoxSize = 'col-xs-6 col-sm-2 col-md-2';
+        $videoBlockBoxSize = 'col-md-2';
         break;
 
     default:
-        $videoBlockBoxSize = 'col-xs-6 col-sm-3 col-md-3';
+        $videoBlockBoxSize = 'col-md-3';
         break;
 }
 ?>
@@ -53,7 +53,7 @@
             <?php } ?>
         <?php } elseif ($block['list-type'] == 'vertical') { ?>
             <?php foreach ($block['resources'] as $video) { ?>
-                <div class="col-sm-12 col-md-12 videoBox h-review" itemscope itemtype="http://schema.org/VideoObject">
+                <div class="col-md-12 videoBox h-review" itemscope itemtype="http://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
                     <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />
@@ -80,13 +80,13 @@
             <?php $i = 1;?>
             <?php foreach($block['resources'] as $video) { ?>
                 <?php if (in_array($i, array(1,11,21,31,41,51,61))) {
-                    $class = 'col-md-6 col-sm-12 col-xs-12 videoBoxBig pull-left';
+                    $class = 'col-md-6 videoBoxBig pull-left';
                     $img = $video['largeUrl'];
                 } elseif (in_array($i, array(6,16,26,36,46,56,66))) {
-                    $class = 'col-md-6 col-sm-12 col-xs-12 videoBoxBig pull-right';
+                    $class = 'col-md-6 videoBoxBig pull-right';
                     $img = $video['largeUrl'];
                 } else {
-                    $class = 'col-md-3 col-sm-12 col-xs-12';
+                    $class = 'col-md-3';
                     $img = $video['thumbUrl'];
                 } ?>
                 <div class="<?php echo $class;?> videoBox h-review" itemscope itemtype="http://schema.org/VideoObject">
