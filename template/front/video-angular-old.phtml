@@ -183,7 +183,7 @@ switch ($config['view_column']) {
                 </div>
                 <div class="row">
                     <div dir-paginate="video in videos|orderBy:sortKey:reverse|filter: {<?php if (!empty($filterNameArray)) { ?><?php foreach ($filterNameArray as $filterNameSingle) { ?><?php echo $filterNameSingle['fieldName'] ?> : <?php echo $filterNameSingle['filterName'] ?>,<?php } ?><?php } ?> title : filterTitle, marketable : filterMarketable } |itemsPerPage:<?php echo $config['view_perpage']; ?>"
-                         class="<?php echo $videoBoxSize; ?> video-box h-video" itemscope itemtype="http://schema.org/VideoObject">
+                         class="<?php echo $videoBoxSize; ?> video-box h-video" itemscope itemtype="https://schema.org/VideoObject">
                         <div class="thumbnail" ng-mouseover="hoverCompare = true" ng-mouseleave="hoverCompare = false">
                             <a itemprop="url" class="u-photo" title="{{video.title}}" href="{{video.videoUrl}}" target="_blank">
                                 <img itemprop="image thumbnail" src="{{video.thumbUrl}}" alt="{{video.title}}"/>

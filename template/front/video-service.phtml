@@ -4,7 +4,7 @@
     } ?>
     <div class="clearfix row video-service-list">
         <?php foreach ($videoServiceList as $videoService) { ?>
-            <div class="video-service <?php echo $videoServiceCol; ?>" itemscope itemtype="http://schema.org/VideoObject">
+            <div class="video-service <?php echo $videoServiceCol; ?>" itemscope itemtype="https://schema.org/VideoObject">
                 <meta itemprop="thumbnail" content="<?php echo $this->escape($videoService['largeUrl']); ?>" />
                 <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoService['time_publish'])); ?>" />
                 <meta itemprop="contentUrl" content="<?php echo $this->escape($videoService['videoFileUrl']); ?>" />
