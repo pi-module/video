@@ -107,7 +107,7 @@ EOT;
     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoItem['time_create'])); ?>" />
     <meta itemprop="contentUrl" content="<?php echo $this->escape($videoItem['videoFileUrl']); ?>" />
     <div class="row clearfix">
-        <div class="col-md-8">
+        <div class="col-xs-8">
             <div class="clearfix video-information">
                 <ul class="text-muted list-inline small">
                     <li><i class="fa fa-calendar"></i> <?php echo $this->escape($videoItem['time_update_view']); ?></li>
@@ -188,17 +188,17 @@ EOT;
             <div class="clearfix video-info-list">
                 <ul class="list-inline">
                     <?php if (!empty($vote)) { ?>
-                        <li class="col-md-3">
+                        <li class="col-xs-3">
                             <?php include $this->template('votebar.phtml', 'front', 'vote'); ?>
                         </li>
                     <?php } ?>
                     <?php if (!empty($favourite)) { ?>
-                        <li class="col-md-3">
+                        <li class="col-xs-3">
                             <?php include $this->template('favouritebar.phtml', 'front', 'favourite'); ?>
                         </li>
                     <?php } ?>
                     <?php if ($config['social_sharing']) { ?>
-                        <li class="col-md-6">
+                        <li class="col-xs-6">
                             <div class="socialSharing">
                                 <?php echo $this->socialSharing(
                                     $config['social_sharing'],
@@ -222,7 +222,7 @@ EOT;
             </div>
             <?php include $this->template('front/tag'); ?>
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-4">
             <!-- <div class="video-channel" itemprop="author" itemscope itemtype="https://schema.org/Person">
                 <a title="<?php _e('User channel'); ?>" href="<?php echo $this->escape($videoItem['channelUrl']); ?>">
                     <?php echo $submitter['avatar']; ?>

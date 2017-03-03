@@ -10,7 +10,7 @@
                         <?php if (!empty($field['data'])) { ?>
                             <tr>
                                 <?php if ($field['type'] == 'text' || $field['type'] == 'select') { ?>
-                                    <td class="col-md-4 attribute-title">
+                                    <td class="col-xs-4 attribute-title">
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
@@ -18,9 +18,9 @@
                                         <?php } ?>
                                         <?php echo $field['title']; ?>
                                     </td>
-                                    <td class="col-md-8 attribute-body"><?php echo $field['data']; ?></td>
+                                    <td class="col-xs-8 attribute-body"><?php echo $field['data']; ?></td>
                                 <?php } elseif ($field['type'] == 'link') { ?>
-                                    <td class="col-md-12 attribute-body" colspan="2">
+                                    <td class="col-xs-12 attribute-body" colspan="2">
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
@@ -30,7 +30,7 @@
                                             title="<?php echo $field['title']; ?>" href="<?php echo $field['data']; ?>"
                                             target="_blank"><?php echo $field['title']; ?></a></td>
                                 <?php } elseif ($field['type'] == 'file') { ?>
-                                    <td class="col-md-12 attribute-body" colspan="2">
+                                    <td class="col-xs-12 attribute-body" colspan="2">
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
@@ -40,7 +40,7 @@
                                             title="<?php echo $field['title']; ?>"
                                             href="<?php echo $field['data']; ?>"><?php echo $field['title']; ?></a></td>
                                 <?php } elseif ($field['type'] == 'currency') { ?>
-                                    <td class="col-md-4 attribute-title">
+                                    <td class="col-xs-4 attribute-title">
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
@@ -48,9 +48,9 @@
                                         <?php } ?>
                                         <?php echo $field['title']; ?>
                                     </td>
-                                    <td class="col-md-8 attribute-body"><?php echo $this->currencyFormat($field['data'], "USD", "en_US"); ?></td>
+                                    <td class="col-xs-8 attribute-body"><?php echo $this->currencyFormat($field['data'], "USD", "en_US"); ?></td>
                                 <?php } elseif ($field['type'] == 'date') { ?>
-                                    <td class="col-md-4 attribute-title">
+                                    <td class="col-xs-4 attribute-title">
                                         <?php echo $field['title']; ?>
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
@@ -58,9 +58,9 @@
                                             <img src="<?php echo $field['image']; ?>" alt="<?php echo $field['title']; ?>">
                                         <?php } ?>
                                     </td>
-                                    <td class="col-md-8 attribute-body"><?php echo $this->dateFormat($field['data'], IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM, "en_US"); ?></td>
+                                    <td class="col-xs-8 attribute-body"><?php echo $this->dateFormat($field['data'], IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM, "en_US"); ?></td>
                                 <?php } elseif ($field['type'] == 'number') { ?>
-                                    <td class="col-md-4 attribute-title">
+                                    <td class="col-xs-4 attribute-title">
                                         <?php echo $field['title']; ?>
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
@@ -68,10 +68,10 @@
                                             <img src="<?php echo $field['image']; ?>" alt="<?php echo $field['title']; ?>">
                                         <?php } ?>
                                     </td>
-                                    <td class="col-md-8 attribute-body"><?php echo $this->numberFormat($field['data'], NumberFormatter::PATTERN_DECIMAL, NumberFormatter::TYPE_DEFAULT, "en_US"); ?></td>
+                                    <td class="col-xs-8 attribute-body"><?php echo $this->numberFormat($field['data'], NumberFormatter::PATTERN_DECIMAL, NumberFormatter::TYPE_DEFAULT, "en_US"); ?></td>
                                 <?php } elseif ($field['type'] == 'checkbox') { ?>
                                     <?php if ($field['data']) { ?>
-                                        <td class="col-md-12 attribute-body"
+                                        <td class="col-xs-12 attribute-body"
                                             colspan="2">
                                             <?php echo $field['title']; ?>
                                             <?php if ($field['icon']) { ?>

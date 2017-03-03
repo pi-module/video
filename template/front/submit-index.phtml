@@ -49,11 +49,11 @@ $script = sprintf($script, $fileSize, $fileExtension, $config['media_size'], $fi
 $this->footScript()->appendScript($script);
 ?>
 <div class="clearfix">
-    <div class="col-md-3">
+    <div class="col-xs-3">
         <?php $sideActive = 'video'; ?>
         <?php include $this->templateModule('front/user-profile-sidebar.phtml', 'user'); ?>
     </div>
-    <div class="col-md-9">
+    <div class="col-xs-9">
         <div class="well well-sm">
             <ul class="nav nav-pills">
                 <li class="active"><a href="<?php echo $this->url('', array('action' => 'upload')); ?>"><?php _e('Upload video'); ?></a></li>
