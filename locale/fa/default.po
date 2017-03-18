@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2017-01-16 19:56+0330\n"
+"POT-Creation-Date: 2017-03-18 10:11+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _e;__\n"
 "X-Poedit-Basepath: ../..\n"
@@ -72,7 +72,7 @@ msgstr "فهرست شاخه ها"
 msgid "Tag list"
 msgstr "فهرست برچسب ها"
 
-#: src/Api/Breadcrumbs.php:120 src/Controller/Admin/VideoController.php:448
+#: src/Api/Breadcrumbs.php:120 src/Controller/Admin/VideoController.php:387
 #: src/Controller/Front/SubmitController.php:159
 msgid "Upload new video"
 msgstr "بارگذاری ویدیو جدید"
@@ -98,7 +98,7 @@ msgid "Watch video"
 msgstr "مشاهده ویدیو"
 
 #: src/Api/Breadcrumbs.php:147 src/Controller/Front/ChannelController.php:45
-#: src/Controller/Front/JsonController.php:121
+#: src/Controller/Front/JsonController.php:124
 #, php-format
 msgid "All videos from %s channel"
 msgstr "همه ویدیو از کانال %s"
@@ -106,6 +106,10 @@ msgstr "همه ویدیو از کانال %s"
 #: src/Api/Breadcrumbs.php:155 src/Controller/Front/FavouriteController.php:41
 msgid "All favourite videos by you"
 msgstr "تمام ویدیو های محبوب شما"
+
+#: src/Api/Breadcrumbs.php:161
+msgid "Search result"
+msgstr "نتایج جستجو"
 
 #: src/Api/Qmery.php:98 src/Api/Qmery.php:172
 msgid "Please set token and group id"
@@ -138,7 +142,7 @@ msgid "Please select field"
 msgstr "لطفا یک فیل انتخاب نمایید"
 
 #: src/Controller/Admin/CategoryController.php:136
-#: src/Controller/Admin/VideoController.php:652
+#: src/Controller/Admin/VideoController.php:591
 #: src/Controller/Front/SubmitController.php:243
 msgid "Problem in upload image. please try again"
 msgstr "خطا در بارگذاری تصویر، دوباره تلاش کنید"
@@ -152,13 +156,13 @@ msgid "Add a category"
 msgstr "شاخه جدید"
 
 #: src/Controller/Admin/CategoryController.php:222
-#: src/Controller/Admin/VideoController.php:896
+#: src/Controller/Admin/VideoController.php:835
 #, php-format
 msgid "Image of %s removed"
 msgstr "تصویر مربوطز به %s حذف شد"
 
 #: src/Controller/Admin/CategoryController.php:225
-#: src/Controller/Admin/VideoController.php:899
+#: src/Controller/Admin/VideoController.php:838
 msgid "Image not remove"
 msgstr "تصویر حذف نشد"
 
@@ -211,108 +215,108 @@ msgstr "دوباره سازی نقشه سایت پایان یافت"
 msgid "Rebuild sitemap links"
 msgstr "دوباره سازی لینک های نقشه سایت"
 
-#: src/Controller/Admin/VideoController.php:212
+#: src/Controller/Admin/VideoController.php:151
 msgid "View filtered videos"
 msgstr "نمایش ویدیو های فیلتر شده"
 
-#: src/Controller/Admin/VideoController.php:219
+#: src/Controller/Admin/VideoController.php:158
 msgid "Not valid"
 msgstr "صحیح نیست"
 
-#: src/Controller/Admin/VideoController.php:225
+#: src/Controller/Admin/VideoController.php:164
 msgid "Not set"
 msgstr "هنوز تنظیم نشده"
 
-#: src/Controller/Admin/VideoController.php:256
-#: src/Controller/Admin/VideoController.php:348
-#: src/Controller/Admin/VideoController.php:482
+#: src/Controller/Admin/VideoController.php:195
+#: src/Controller/Admin/VideoController.php:287
+#: src/Controller/Admin/VideoController.php:421
 msgid "please select true server"
 msgstr "لطفا سرور مناسب را انتخاب نمایید"
 
-#: src/Controller/Admin/VideoController.php:263
+#: src/Controller/Admin/VideoController.php:202
 msgid "This method just work on qmery server"
 msgstr "این روش فقط برای سرور کیومری کار می کند"
 
-#: src/Controller/Admin/VideoController.php:294
-#: src/Controller/Admin/VideoController.php:958
+#: src/Controller/Admin/VideoController.php:233
+#: src/Controller/Admin/VideoController.php:897
 #: src/Controller/Front/SubmitController.php:519
 msgid "Error to upload file on qmery server"
 msgstr "خطا در بارگذاری فایل در سرور کیومری"
 
-#: src/Controller/Admin/VideoController.php:299
+#: src/Controller/Admin/VideoController.php:238
 msgid "Video external add successfully. Please complete update"
 msgstr ""
 "ویدیو خارجی با موفقیت در سیستم اضافه شد، لطفا اطلاعات تکمیلی را وارد نمایید"
 
-#: src/Controller/Admin/VideoController.php:320
-#: src/Controller/Admin/VideoController.php:567
+#: src/Controller/Admin/VideoController.php:259
+#: src/Controller/Admin/VideoController.php:506
 #: template/admin/video-index.phtml:143 template/admin/video-index.phtml:145
 #: template/admin/video-link.phtml:5 template/admin/video-link.phtml:13
 #: template/admin/video-update.phtml:12 template/admin/video-watch.phtml:67
 msgid "Manage video link"
 msgstr "مدیریت لینک ویدیو"
 
-#: src/Controller/Admin/VideoController.php:381
-#: src/Controller/Admin/VideoController.php:384
+#: src/Controller/Admin/VideoController.php:320
+#: src/Controller/Admin/VideoController.php:323
 #: src/Controller/Front/SubmitController.php:90
 #: src/Controller/Front/SubmitController.php:93
 msgid "Problem in upload video. please try again"
 msgstr "خطا در بارگذاری ویدیو، دوباره تلاش کنید"
 
-#: src/Controller/Admin/VideoController.php:538
+#: src/Controller/Admin/VideoController.php:477
 msgid "Video link add successfully. Please complete update"
 msgstr "لینک مدیریو با موفقیت به روز شد، لطفا اطلاعات دیگر را به روز نمایید"
 
-#: src/Controller/Admin/VideoController.php:610
-#: src/Controller/Admin/VideoController.php:746
-#: src/Controller/Admin/VideoController.php:820
-#: src/Controller/Admin/VideoController.php:867
-#: src/Controller/Admin/VideoController.php:903
-#: src/Controller/Admin/VideoController.php:936
-#: src/Controller/Admin/VideoController.php:946
-#: src/Controller/Admin/VideoController.php:971
+#: src/Controller/Admin/VideoController.php:549
+#: src/Controller/Admin/VideoController.php:685
+#: src/Controller/Admin/VideoController.php:759
+#: src/Controller/Admin/VideoController.php:806
+#: src/Controller/Admin/VideoController.php:842
+#: src/Controller/Admin/VideoController.php:875
+#: src/Controller/Admin/VideoController.php:885
+#: src/Controller/Admin/VideoController.php:910
 msgid "Please select video"
 msgstr "لطفا یک ویدیو انتخاب کنید"
 
-#: src/Controller/Admin/VideoController.php:707
-#: src/Controller/Admin/VideoController.php:754
-#: src/Controller/Admin/VideoController.php:785
+#: src/Controller/Admin/VideoController.php:646
+#: src/Controller/Admin/VideoController.php:693
+#: src/Controller/Admin/VideoController.php:724
 #: src/Controller/Front/SubmitController.php:290
 #: src/Controller/Front/SubmitController.php:364
 #: src/Controller/Front/SubmitController.php:395
 msgid "Video data saved successfully."
 msgstr "اطلاعات ویدیو با موفقیت ذخیره شد"
 
-#: src/Controller/Admin/VideoController.php:731
+#: src/Controller/Admin/VideoController.php:670
 #: src/Controller/Front/SubmitController.php:324
 msgid "Video information"
 msgstr "اطلاعات ویدیو"
 
-#: src/Controller/Admin/VideoController.php:805
+#: src/Controller/Admin/VideoController.php:744
 #: src/Controller/Front/SubmitController.php:426
 msgid "Video additional information"
 msgstr "اطلاعات تکمیلی ویدیو"
 
-#: src/Controller/Admin/VideoController.php:829
+#: src/Controller/Admin/VideoController.php:768
 #: template/admin/video-index.phtml:152 template/admin/video-index.phtml:154
 msgid "View video"
 msgstr "نمایش ویدیو"
 
-#: src/Controller/Admin/VideoController.php:849
+#: src/Controller/Admin/VideoController.php:788
 #, php-format
 msgid "%s set recommended successfully"
 msgstr "%s به عنوان پیشنهاد شده ذخیره شد"
 
-#: src/Controller/Admin/VideoController.php:861
+#: src/Controller/Admin/VideoController.php:800
 #, php-format
 msgid "Error in set recommended for %s video"
 msgstr "خطا در ثبت ویدیو %s به عنوان پیشنهاد شده"
 
-#: src/Controller/Admin/VideoController.php:934
+#: src/Controller/Admin/VideoController.php:873
 msgid "This video deleted"
 msgstr "این ویدیو حذف شد"
 
-#: src/Controller/Admin/VideoController.php:955
+#: src/Controller/Admin/VideoController.php:894
 #: src/Controller/Front/SubmitController.php:516
 msgid ""
 "Video added on qmery server and information save on website, please update "
@@ -321,11 +325,11 @@ msgstr ""
 "ویدیو در سرور کیومری درج شد و اطلاعات آن در وب سایت ذخیره شد، لطفا اطلاعات "
 "تکمیلی را به روز فرمایید"
 
-#: src/Controller/Admin/VideoController.php:981
+#: src/Controller/Admin/VideoController.php:920
 msgid "Video information updated from qmery server"
 msgstr "اطلاعات ویدیو از سرور کیومری به روز شد"
 
-#: src/Controller/Admin/VideoController.php:986
+#: src/Controller/Admin/VideoController.php:925
 msgid ""
 "Atention : Video still not ready on qmery server and video information not "
 "upload, please wail for min and check it later"
@@ -334,7 +338,7 @@ msgstr ""
 "تبدیل ویدیو در حال انجام است و اطلاعات ویدیو به روز نشده است. لطفا چند دقیقه "
 "صبر نموده و مجددا تلاش فرمایید"
 
-#: src/Controller/Admin/VideoController.php:991
+#: src/Controller/Admin/VideoController.php:930
 msgid "Error to update video from qmery server"
 msgstr "خطا در به روز رسانی ویدیو از سرور کیومری"
 
@@ -362,22 +366,19 @@ msgstr "کانال موجود نیست"
 msgid "Favourite module not installed."
 msgstr "ماژول فهرست علاقه مندی ها نصب نشده است"
 
-#: src/Controller/Front/IndexController.php:44 src/Form/CategoryForm.php:129
+#: src/Controller/Front/IndexController.php:44
+#: src/Controller/Front/JsonController.php:79 src/Form/CategoryForm.php:129
 #: template/admin/video-index.phtml:105
 msgid "List of videos"
 msgstr "فهرست ویدیو ها"
 
-#: src/Controller/Front/JsonController.php:76
-msgid "New videos"
-msgstr "ویدیو های جدید"
-
-#: src/Controller/Front/JsonController.php:95
+#: src/Controller/Front/JsonController.php:98
 #, php-format
-msgid "New videos from %s"
-msgstr "ویدیو های جدید در %s"
+msgid "List of videos on %s category"
+msgstr "فهرست تمام ویدیو های شاخه %s"
 
-#: src/Controller/Front/JsonController.php:265
-#: src/Controller/Front/JsonController.php:365
+#: src/Controller/Front/JsonController.php:286
+#: src/Controller/Front/JsonController.php:386
 msgid "Password not set or wrong"
 msgstr "واژه رمز تنظیم نشده یا اشتباه است"
 
@@ -521,10 +522,10 @@ msgstr ""
 "از آیکن های fontawesome.io استفاده شود، و نام آیکن موارد شود ، مثل : fa-home"
 
 #: src/Form/AttributeForm.php:197 src/Form/CategoryForm.php:257
-#: src/Form/PositionForm.php:88 src/Form/ServerForm.php:213
+#: src/Form/PositionForm.php:88 src/Form/ServerForm.php:208
 #: src/Form/SitemapForm.php:48 src/Form/VideoAdditionalForm.php:98
 #: src/Form/VideoExternalForm.php:68 src/Form/VideoForm.php:421
-#: src/Form/VideoLinkForm.php:144
+#: src/Form/VideoLinkForm.php:126
 msgid "Submit"
 msgstr "ارسال"
 
@@ -545,7 +546,7 @@ msgid "Keep summery short, 2 or 3 lines"
 msgstr "متن خلاصه کوتاه و نهایتا ۲ یا ۳ خط نگه دارید"
 
 #: src/Form/CategoryForm.php:102 src/Form/VideoForm.php:132
-#: template/front/video-watch.phtml:209
+#: template/front/video-watch.phtml:215
 msgid "Description"
 msgstr "توضیحات"
 
@@ -713,12 +714,16 @@ msgid "Show embed code for copy to other pages and websites"
 msgstr "نمایش کد امبد برای کپی ویدیو در صفحات یا وب سایت های دیگر"
 
 #: src/Form/ServerForm.php:196
-msgid "Wowza default engine"
-msgstr ""
+msgid "Qmery player type"
+msgstr "نوع لود شدن پلیر کیومری"
 
-#: src/Form/ServerForm.php:205
-msgid "one of this names : live / vod / mediacache"
-msgstr ""
+#: src/Form/ServerForm.php:198
+msgid "embed"
+msgstr "embed"
+
+#: src/Form/ServerForm.php:199
+msgid "iframe"
+msgstr "iframe"
 
 #: src/Form/SitemapForm.php:32
 msgid "Select for rebuild"
@@ -818,23 +823,23 @@ msgstr ""
 "نام کامل فایل با پیوند، به طور مثال file.mp4، لازم به توضیح است استفاده از "
 "اسپیس در نام فال مجاز نیست"
 
-#: src/Form/VideoLinkForm.php:103
+#: src/Form/VideoLinkForm.php:85
 msgid "Wowza stream link"
 msgstr "لینک استریم ووزا"
 
-#: src/Form/VideoLinkForm.php:107
+#: src/Form/VideoLinkForm.php:89
 msgid "Put wowza url whitout ip or domain name"
 msgstr "لینک استریم ووزا را بدون آدرس یو آر ال یا آی پی"
 
-#: src/Form/VideoLinkForm.php:118
+#: src/Form/VideoLinkForm.php:100
 msgid "Qmery hash code"
 msgstr "کد هش کیومری"
 
-#: src/Form/VideoLinkForm.php:122
+#: src/Form/VideoLinkForm.php:104
 msgid "hash code on qmery system , like : y4A7rBoLwe"
 msgstr "کد هش شده ویدیو در سیستم کیومری، به طور مثال : y4A7rBoLwe"
 
-#: src/Form/VideoLinkForm.php:130
+#: src/Form/VideoLinkForm.php:112
 msgid "Qmery video id"
 msgstr "شناسه ویدیو در کیومری"
 
@@ -1247,11 +1252,11 @@ msgstr "هیچ ویدیو برای نمایش وجود ندارد"
 msgid "Related videos"
 msgstr "ویدیو های مشابه"
 
-#: template/front/video-watch.phtml:145 template/front/video-watch.phtml:153
+#: template/front/video-watch.phtml:151 template/front/video-watch.phtml:159
 msgid "Play"
 msgstr "پخش"
 
-#: template/front/video-watch.phtml:174
+#: template/front/video-watch.phtml:180
 msgid ""
 "This is paid video and you dont have access to watch it, use buy button to "
 "paid and watch this video"
@@ -1259,18 +1264,24 @@ msgstr ""
 "این یک ویدیو غیر رایگان است و شما دسترسی برای مشاهده آن را ندارید، با "
 "استفاده از دکمه پرداخت ، هزینه مربوطه را پرداخت نموده و ویدیو را مشاهده کنید"
 
-#: template/front/video-watch.phtml:176
+#: template/front/video-watch.phtml:182
 msgid "Pay and watch video"
 msgstr "پرداخت و مشاهده ویدیو"
 
-#: template/front/video-watch.phtml:221
+#: template/front/video-watch.phtml:227
 msgid "User channel"
 msgstr "کانال کاربر"
 
-#: template/front/video-watch.phtml:223
+#: template/front/video-watch.phtml:229
 #, php-format
 msgid "%s channel"
 msgstr "کانال %s"
+
+#~ msgid "New videos"
+#~ msgstr "ویدیو های جدید"
+
+#~ msgid "New videos from %s"
+#~ msgstr "ویدیو های جدید در %s"
 
 #~ msgid "The tag not found."
 #~ msgstr "برچسب پیدا نشد"

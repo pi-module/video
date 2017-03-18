@@ -155,6 +155,12 @@ class Breadcrumbs extends AbstractBreadcrumbs
                             'label' => __('All favourite videos by you'),
                         );
                         break;
+
+                    case 'result':
+                        $result[] = array(
+                            'label' => __('Search result'),
+                        );
+                        break;
                 }
             } else {
                 $result = array(
