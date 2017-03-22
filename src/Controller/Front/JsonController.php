@@ -26,6 +26,7 @@ class JsonController extends IndexController
         $page = $this->params('page', 1);
         $title = $this->params('title');
         $category = $this->params('category');
+        $tag = $this->params('tag');
         $favourite = $this->params('favourite');
         $recommended = $this->params('recommended');
         $limit = $this->params('limit');
@@ -129,6 +130,22 @@ class JsonController extends IndexController
             }
             // Set page title
             $pageTitle = sprintf(__('List of videos on %s category'), $category['title']);
+        }
+
+        // Get tag list
+        if (!empty($tag)) {
+            $videoIDTag = array();
+            // Check favourite
+            if (!Pi::service('module')->isActive('tag')) {
+                return $result;
+            }
+            // Get id from tag module
+            $tagList = Pi::service('tag')->getList($tag, $module);
+            foreach ($tagList as $tagSingle) {
+                $videoIDTag[] = $tagSingle['item'];
+            }
+            // Set header and title
+            $pageTitle = sprintf(__('All videos from %s'), $tag);
         }
 
         // Get favourite list
@@ -265,8 +282,21 @@ class JsonController extends IndexController
         if (!empty($favourite) && $favourite == 1 && isset($videoIDFavourite)) {
             if (isset($whereLink['video']) && !empty($whereLink['video'])) {
                 $whereLink['video'] = array_intersect($videoIDFavourite, $whereLink['video']);
-            } else {
+            } elseif (!empty($whereLink['video'])) {
                 $whereLink['video'] = $videoIDFavourite;
+            } else {
+                $hasSearchResult = false;
+            }
+        }
+
+        // Set tag videos on where link
+        if (!empty($tag) && isset($videoIDTag)) {
+            if (isset($whereLink['video']) && !empty($whereLink['video'])) {
+                $whereLink['video'] = array_intersect($videoIDTag, $whereLink['video']);
+            } elseif (!empty($whereLink['video'])) {
+                $whereLink['video'] = $videoIDTag;
+            } else {
+                $hasSearchResult = false;
             }
         }
 
