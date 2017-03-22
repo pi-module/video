@@ -19,17 +19,6 @@ use Zend\Db\Sql\Predicate\Expression;
 
 class JsonController extends IndexController
 {
-    /* public function indexAction()
-    {
-        // Set return
-        $return = array(
-            'website' => Pi::url(),
-            'module' => $this->params('module'),
-        );
-        // Set view
-        return $return;
-    } */
-
     public function searchAction()
     {
         // Get info from url
@@ -38,7 +27,9 @@ class JsonController extends IndexController
         $title = $this->params('title');
         $category = $this->params('category');
         $favourite = $this->params('favourite');
-        $tag = $this->params('tag');
+        $recommended = $this->params('recommended');
+        $limit = $this->params('limit');
+        $order = $this->params('order');
         $channel = $this->params('channel');
 
         // Set has search result
@@ -74,9 +65,51 @@ class JsonController extends IndexController
 
         // Set where link
         $whereLink = array('status' => 1);
+        if (!empty($recommended) && $recommended == 1) {
+            $whereLink['recommended'] = 1;
+        }
 
         // Set page title
         $pageTitle = __('List of videos');
+
+        // Set order
+        switch ($order) {
+            case 'title':
+                $order = array('title DESC', 'id DESC');
+                break;
+
+            case 'titleASC':
+                $order = array('title ASC', 'id ASC');
+                break;
+
+            case 'hits':
+                $order = array('hits DESC', 'id DESC');
+                break;
+
+            case 'hitsASC':
+                $order = array('hits ASC', 'id ASC');
+                break;
+
+            case 'create':
+                $order = array('time_create DESC', 'id DESC');
+                break;
+
+            case 'createASC':
+                $order = array('time_create ASC', 'id ASC');
+                break;
+
+            case 'update':
+                $order = array('time_update DESC', 'id DESC');
+                break;
+
+            case 'recommended':
+                $order = array('recommended DESC', 'time_create DESC', 'id DESC');
+                break;
+
+            default:
+                $order = array('time_create DESC', 'id DESC');
+                break;
+        }
 
         // Get category information from model
         if (!empty($category)) {
@@ -99,7 +132,7 @@ class JsonController extends IndexController
         }
 
         // Get favourite list
-        if (!empty($favourite)) {
+        if (!empty($favourite) && $favourite == 1) {
             // Check favourite
             if (!Pi::service('module')->isActive('favourite')) {
                 return $result;
@@ -145,12 +178,14 @@ class JsonController extends IndexController
         if (isset($title) && !empty($title)) {
             $checkTitle = true;
             $titles = is_array($title) ? $title : array($title);
-            $order = array('recommended DESC', 'time_create DESC', 'id DESC');
             $columns = array('id');
-            $select = $this->getModel('video')->select()->columns($columns)->where(function ($where) use ($titles) {
+            $select = $this->getModel('video')->select()->columns($columns)->where(function ($where) use ($titles, $recommended) {
                 $whereMain = clone $where;
                 $whereKey = clone $where;
                 $whereMain->equalTo('status', 1);
+                if (!empty($recommended) && $recommended == 1) {
+                    $whereMain->equalTo('recommended', 1);
+                }
                 foreach ($titles as $title) {
                     $whereKey->like('title', '%' . $title . '%')->and;
                 }
@@ -196,10 +231,9 @@ class JsonController extends IndexController
         $video = array();
         $count = 0;
 
-        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
         $columns = array('video' => new Expression('DISTINCT video'));
         $offset = (int)($page - 1) * $config['view_perpage'];
-        $limit = intval($config['view_perpage']);
+        $limit = (intval($limit) > 0) ? intval($limit) : intval($config['view_perpage']);
 
         // Set category on where link
         if (isset($categoryIDList) && !empty($categoryIDList)) {
@@ -228,7 +262,7 @@ class JsonController extends IndexController
         }
 
         // Set favourite videos on where link
-        if (isset($favourite)) {
+        if (!empty($favourite) && $favourite == 1 && isset($videoIDFavourite)) {
             if (isset($whereLink['video']) && !empty($whereLink['video'])) {
                 $whereLink['video'] = array_intersect($videoIDFavourite, $whereLink['video']);
             } else {
@@ -425,231 +459,6 @@ class JsonController extends IndexController
         );
         return $video;
     }
-
-    /* public function filterIndexAction()
-    {
-        // Get info from url
-        $module = $this->params('module');
-        // Get config
-        $config = Pi::service('registry')->config->read($module);
-        // Get search form
-        $filterList = Pi::api('attribute', 'video')->filterList();
-        $categoryList = Pi::registry('categoryList', 'video')->read();
-        // Set info
-        $video = array();
-        $where = array(
-            'status' => 1,
-        );
-        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
-        $columns = array('video' => new Expression('DISTINCT video'));
-        // Get info from link table
-        $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order);
-        $rowset = $this->getModel('link')->selectWith($select)->toArray();
-        // Make list
-        foreach ($rowset as $id) {
-            $videoId[] = $id['video'];
-        }
-        if (empty($videoId)) {
-            return $video;
-        }
-        // Set info
-        $where = array('status' => 1, 'id' => $videoId);
-        // Get list of video
-        $select = $this->getModel('video')->select()->where($where)->order($order);
-        $rowset = $this->getModel('video')->selectWith($select);
-        foreach ($rowset as $row) {
-            $video[] = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
-        }
-        // Set view
-        return $video;
-    } */
-
-    /* public function filterCategoryAction()
-    {
-        // Get info from url
-        $module = $this->params('module');
-        $slug = $this->params('slug');
-        // Get config
-        $config = Pi::service('registry')->config->read($module);
-        // Get category information from model
-        $category = $this->getModel('category')->find($slug, 'slug');
-        $category = Pi::api('category', 'video')->canonizeCategory($category, 'compact');
-        // Check category
-        if (!$category || $category['status'] != 1) {
-            $this->getResponse()->setStatusCode(404);
-            $this->terminate(__('The category not found.'), '', 'error-404');
-            $this->view()->setLayout('layout-simple');
-            return;
-        }
-        // Get search form
-        $filterList = Pi::api('attribute', 'video')->filterList();
-        $categoryList = Pi::registry('categoryList', 'video')->read();
-        // category list
-        $categories = Pi::api('category', 'video')->categoryList($category['id']);
-        // Get id list
-        $idList = array();
-        $idList[] = $category['id'];
-        foreach ($categories as $singleCategory) {
-            $idList[] = $singleCategory['id'];
-        }
-        // Set info
-        $video = array();
-        $where = array(
-            'status' => 1,
-            'category' => $idList,
-        );
-        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
-        $columns = array('video' => new Expression('DISTINCT video'));
-        // Get info from link table
-        $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order);
-        $rowset = $this->getModel('link')->selectWith($select)->toArray();
-        // Make list
-        foreach ($rowset as $id) {
-            $videoId[] = $id['video'];
-        }
-        if (empty($videoId)) {
-            return $video;
-        }
-        // Set info
-        $where = array('status' => 1, 'id' => $videoId);
-        // Get list of video
-        $select = $this->getModel('video')->select()->where($where)->order($order);
-        $rowset = $this->getModel('video')->selectWith($select);
-        foreach ($rowset as $row) {
-            $video[] = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
-        }
-        // Set view
-        return $video;
-    } */
-
-    /* public function filterTagAction()
-    {
-        // Check tag
-        if (!Pi::service('module')->isActive('tag')) {
-            $this->getResponse()->setStatusCode(404);
-            $this->terminate(__('Tag module not installed.'), '', 'error-404');
-            $this->view()->setLayout('layout-simple');
-            return;
-        }
-        // Get info from url
-        $module = $this->params('module');
-        $slug = $this->params('slug');
-        // Get config
-        $config = Pi::service('registry')->config->read($module);
-        // Check slug
-        if (!isset($slug) || empty($slug)) {
-            $this->getResponse()->setStatusCode(404);
-            $this->terminate(__('The tag not set.'), '', 'error-404');
-            $this->view()->setLayout('layout-simple');
-            return;
-        }
-        // Get id from tag module
-        $tagId = array();
-        $tags = Pi::service('tag')->getList($slug, $module);
-        foreach ($tags as $tag) {
-            $tagId[] = $tag['item'];
-        }
-        // Check slug
-        if (empty($tagId)) {
-            $this->getResponse()->setStatusCode(404);
-            $this->terminate(__('The tag not found.'), '', 'error-404');
-            $this->view()->setLayout('layout-simple');
-            return;
-        }
-        // Get search form
-        $filterList = Pi::api('attribute', 'video')->filterList();
-        $categoryList = Pi::registry('categoryList', 'video')->read();
-        // Set info
-        $where = array('status' => 1, 'id' => $tagId);
-        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
-        // Get list of video
-        $select = $this->getModel('video')->select()->where($where)->order($order);
-        $rowset = $this->getModel('video')->selectWith($select);
-        foreach ($rowset as $row) {
-            $video[] = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
-        }
-        // Set view
-        return $video;
-    } */
-
-    /* public function filterFavouriteAction()
-    {
-        // Check tag
-        if (!Pi::service('module')->isActive('favourite')) {
-            $this->getResponse()->setStatusCode(404);
-            $this->terminate(__('Favourite module not installed.'), '', 'error-404');
-            $this->view()->setLayout('layout-simple');
-            return;
-        }
-        // Get info from url
-        $module = $this->params('module');
-        $uid = Pi::user()->getId();
-        // Get config
-        $config = Pi::service('registry')->config->read($module);
-        // Check user
-        if (!$uid) {
-            $this->getResponse()->setStatusCode(401);
-            $this->terminate(__('Please login to see favourite list.'), '', 'error-denied');
-            $this->view()->setLayout('layout-simple');
-            return;
-        }
-        // Get id from favourite module
-        $id = Pi::api('favourite', 'favourite')->userFavourite($uid, $module);
-        // Get search form
-        $filterList = Pi::api('attribute', 'video')->filterList();
-        $categoryList = Pi::registry('categoryList', 'video')->read();
-        // Set info
-        $where = array('status' => 1, 'id' => $id);
-        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
-        // Get list of video
-        $select = $this->getModel('video')->select()->where($where)->order($order);
-        $rowset = $this->getModel('video')->selectWith($select);
-        foreach ($rowset as $row) {
-            $video[] = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
-        }
-        // Set view
-        return $video;
-    } */
-
-    /* public function filterChannelAction()
-    {
-        // Get info from url
-        $module = $this->params('module');
-        $uid = $this->params('id');
-        // Get config
-        $config = Pi::service('registry')->config->read($module);
-        // Get search form
-        $filterList = Pi::api('attribute', 'video')->filterList();
-        $categoryList = Pi::registry('categoryList', 'video')->read();
-        // Set info
-        $video = array();
-        $where = array(
-            'status' => 1,
-            'uid' => $uid,
-        );
-        $order = array('recommended DESC', 'time_create DESC', 'id DESC');
-        $columns = array('video' => new Expression('DISTINCT video'));
-        // Get info from link table
-        $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order);
-        $rowset = $this->getModel('link')->selectWith($select)->toArray();
-        // Make list
-        foreach ($rowset as $id) {
-            $videoId[] = $id['video'];
-        }
-        if (empty($videoId)) {
-            return $video;
-        }
-        // Set info
-        $where = array('status' => 1, 'id' => $videoId);
-        // Get list of video
-        $select = $this->getModel('video')->select()->where($where)->order($order);
-        $rowset = $this->getModel('video')->selectWith($select);
-        foreach ($rowset as $row) {
-            $video[] = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
-        }
-        // Set view
-        return $video;
-    } */
 
     public function checkPassword() {
         // Get info from url
