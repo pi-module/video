@@ -38,6 +38,8 @@ class Category extends Model
         'setting',
         'status',
         'display_order',
-        'display_type'
+        'display_type',
+        'type',
+        'hits',
     );
 }
