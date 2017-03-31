@@ -259,6 +259,10 @@ class Video extends AbstractApi
                 break;
 
             case 'qmery':
+                $video['videoFileUrl'] = sprintf('%s/v/%s',
+                    $video['server']['url'],
+                    $video['video_qmery_hash']
+                );
                 $video['qmeryIframe'] = sprintf('%s/v/%s',
                     $video['server']['url'],
                     $video['video_qmery_hash']

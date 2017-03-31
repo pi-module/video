@@ -5,11 +5,8 @@ $this->doctype('HTML5');
 $this->headMeta($this->escape($videoItem['title']), 'og:title', 'property');
 $this->headMeta($this->escape($videoItem['videoUrl']), 'og:url', 'property');
 $this->headMeta('video', 'og:type', 'property');
-
-if ($videoItem['server']['type'] == 'file') {
-    $this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:url', 'property');
-    $this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:secure_url', 'property');
-}
+$this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:url', 'property');
+$this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:secure_url', 'property');
 
 if ($videoItem['video_type'] == 'video') {
     $this->headMeta('video/mp4', 'og:video:type', 'property');
