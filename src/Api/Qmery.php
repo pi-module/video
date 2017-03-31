@@ -32,7 +32,7 @@ class Qmery extends AbstractApi
         // Canonize video
         $video = Pi::api('video', 'video')->canonizeVideoFilter($video);
         // Get video from qmery
-        $apiUrl = 'http://api.qmery.com/v1/videos/%s.json?api_token=%s';
+        $apiUrl = 'https://api.qmery.com/v1/videos/%s.json?api_token=%s';
         $apiUrl = sprintf($apiUrl, $video['video_qmery_hash'], $video['server']['qmery_upload_token']);
         $videoQmery = Pi::service('remote')->get($apiUrl);
         // Check qmery status
@@ -100,7 +100,7 @@ class Qmery extends AbstractApi
         } else {
             // Set API url
             $apiUrl = sprintf(
-                'http://api.qmery.com/v1/videos.json?api_token=%s',
+                'https://api.qmery.com/v1/videos.json?api_token=%s',
                 $video['server']['qmery_upload_token']
             );
 
@@ -114,7 +114,6 @@ class Qmery extends AbstractApi
                 $video['video_path'],
                 $video['video_file']
             ));
-            //$fields['url'] = str_replace("https://", "http://", $fields['url']);
             $fields = json_encode($fields);
 
             /* // Set header
@@ -174,7 +173,7 @@ class Qmery extends AbstractApi
         } else {
             // Set API url
             $apiUrl = sprintf(
-                'http://api.qmery.com/v1/videos.json?api_token=%s',
+                'https://api.qmery.com/v1/videos.json?api_token=%s',
                 $video['server']['qmery_upload_token']
             );
 
@@ -238,7 +237,7 @@ class Qmery extends AbstractApi
 
     public function updateListToWebsite($server, $page)
     {
-        $apiUrl = 'http://api.qmery.com/v1/videos.json?api_token=%s&page=%s&per_page=%s&sort_dir';
+        $apiUrl = 'https://api.qmery.com/v1/videos.json?api_token=%s&page=%s&per_page=%s&sort_dir';
         $apiUrl = sprintf($apiUrl, $server['qmery_update_token'], $page, 50);
         $videoList = Pi::service('remote')->get($apiUrl);
         $uid = Pi::user()->getId();

@@ -194,10 +194,7 @@
         <?php } elseif ($block['list-type'] == 'spotlight') { ?>
             <div class="video-spotlight">
                 <?php $spotlight = array_shift($block['resources']); ?>
-                <?php $this->headScript()->appendFile(sprintf('%s/embed.js?video=%s&w=640&h=360',
-                    $spotlight['server']['url'],
-                    $spotlight['video_qmery_hash']
-                )); ?>
+                <?php $this->headScript()->appendFile($spotlight['qmeryScript']); ?>
                 <div class="col-xs-12 h-review clearfix video-spotlight" itemscope itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($spotlight['largeUrl']); ?>" />
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $spotlight['time_create'])); ?>" />
