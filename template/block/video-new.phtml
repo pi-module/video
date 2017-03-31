@@ -30,7 +30,7 @@
             <?php foreach ($block['resources'] as $video) { ?>
                 <div class="<?php echo $videoBlockBoxSize; ?> videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
-                    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
+                    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>" />
                     <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />
                     <div class="thumbnail">
                         <?php if ($video['image']) { ?>
@@ -55,7 +55,7 @@
             <?php foreach ($block['resources'] as $video) { ?>
                 <div class="col-xs-12 videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
-                    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
+                    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>" />
                     <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />
                     <div class="thumbnail">
                         <?php if ($video['image']) { ?>
@@ -91,7 +91,7 @@
                 } ?>
                 <div class="<?php echo $class;?> videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
-                    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
+                    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>" />
                     <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />
                     <div class="thumbnail">
                         <?php if($video['image']) { ?>
@@ -116,7 +116,7 @@
                 <?php foreach ($block['resources'] as $video) { ?>
                     <li class="p-name list-group-item" itemscope itemtype="https://schema.org/VideoObject">
                         <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
-                        <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
+                        <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>" />
                         <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />
                         <a itemprop="name" title="<?php echo $this->escape($video['title']); ?>"
                            href="<?php echo $this->escape($video['videoUrl']); ?>">
@@ -138,7 +138,7 @@
                 <?php foreach ($block['resources'] as $video) { ?>
                     <div class="item h-review" itemscope itemtype="https://schema.org/VideoObject">
                         <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
-                        <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
+                        <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>" />
                         <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />
                         <div class="thumbnail p-item h-card">
                             <?php if ($video['image']) { ?>
@@ -174,7 +174,7 @@
                 <?php foreach ($block['resources'] as $video) { ?>
                     <div class="item hover-captions hover-captions-slide" itemscope itemtype="https://schema.org/VideoObject">
                         <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
-                        <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
+                        <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>" />
                         <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />
                         <div class="hover-caption">
                             <h3 itemprop="name"><?php echo $this->escape($video['title']); ?></h3>
@@ -200,7 +200,7 @@
                 )); ?>
                 <div class="col-xs-12 h-review clearfix video-spotlight" itemscope itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($spotlight['largeUrl']); ?>" />
-                    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $spotlight['time_publish'])); ?>" />
+                    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $spotlight['time_create'])); ?>" />
                     <meta itemprop="contentUrl" content="<?php echo $this->escape($spotlight['videoFileUrl']); ?>" />
                     <div class="thumbnail">
                         <div class="qmery-player">
@@ -227,7 +227,7 @@
                         <?php foreach ($block['resources'] as $video) { ?>
                             <div class="col-xs-6 videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
                                 <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>" />
-                                <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_publish'])); ?>" />
+                                <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>" />
                                 <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoFileUrl']); ?>" />
                                 <div class="thumbnail">
                                     <?php if ($video['image']) { ?>
