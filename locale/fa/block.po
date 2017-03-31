@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2017-03-18 10:12+0330\n"
+"POT-Creation-Date: 2017-03-31 11:33+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,10 +20,10 @@ msgstr ""
 msgid "View"
 msgstr "مشاهده"
 
-#: template/block/video-hits.phtml:258 template/block/video-hits.phtml:259
-#: template/block/video-new.phtml:258 template/block/video-new.phtml:259
-#: template/block/video-random.phtml:258 template/block/video-random.phtml:259
-#: template/block/video-tag.phtml:258 template/block/video-tag.phtml:259
+#: template/block/video-hits.phtml:255 template/block/video-hits.phtml:256
+#: template/block/video-new.phtml:259 template/block/video-new.phtml:260
+#: template/block/video-random.phtml:255 template/block/video-random.phtml:256
+#: template/block/video-tag.phtml:255 template/block/video-tag.phtml:256
 msgid "More videos"
 msgstr "ویدیو های بیشتر"
 

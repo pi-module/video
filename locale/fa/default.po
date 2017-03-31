@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2017-03-18 10:11+0330\n"
+"POT-Creation-Date: 2017-03-31 11:33+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -59,7 +59,7 @@ msgstr "چک باکس"
 msgid "Hidden"
 msgstr "مخفی"
 
-#: src/Api/Breadcrumbs.php:50 src/Controller/Front/CategoryController.php:97
+#: src/Api/Breadcrumbs.php:50 src/Controller/Front/CategoryController.php:99
 #: template/front/category-list.phtml:4
 #: template/front/video-angular-old.phtml:150
 #: template/front/video-angular.phtml:39
@@ -98,7 +98,7 @@ msgid "Watch video"
 msgstr "مشاهده ویدیو"
 
 #: src/Api/Breadcrumbs.php:147 src/Controller/Front/ChannelController.php:45
-#: src/Controller/Front/JsonController.php:124
+#: src/Controller/Front/JsonController.php:174
 #, php-format
 msgid "All videos from %s channel"
 msgstr "همه ویدیو از کانال %s"
@@ -111,7 +111,7 @@ msgstr "تمام ویدیو های محبوب شما"
 msgid "Search result"
 msgstr "نتایج جستجو"
 
-#: src/Api/Qmery.php:98 src/Api/Qmery.php:172
+#: src/Api/Qmery.php:98 src/Api/Qmery.php:171
 msgid "Please set token and group id"
 msgstr "لطفا توکن و شناسه شاخه را تنظیم نمایید "
 
@@ -367,18 +367,23 @@ msgid "Favourite module not installed."
 msgstr "ماژول فهرست علاقه مندی ها نصب نشده است"
 
 #: src/Controller/Front/IndexController.php:44
-#: src/Controller/Front/JsonController.php:79 src/Form/CategoryForm.php:129
+#: src/Controller/Front/JsonController.php:74 src/Form/CategoryForm.php:144
 #: template/admin/video-index.phtml:105
 msgid "List of videos"
 msgstr "فهرست ویدیو ها"
 
-#: src/Controller/Front/JsonController.php:98
+#: src/Controller/Front/JsonController.php:132
 #, php-format
 msgid "List of videos on %s category"
 msgstr "فهرست تمام ویدیو های شاخه %s"
 
-#: src/Controller/Front/JsonController.php:286
-#: src/Controller/Front/JsonController.php:386
+#: src/Controller/Front/JsonController.php:148
+#, php-format
+msgid "All videos from %s"
+msgstr "همه ویدیو ها از %s"
+
+#: src/Controller/Front/JsonController.php:350
+#: src/Controller/Front/JsonController.php:450
 msgid "Password not set or wrong"
 msgstr "واژه رمز تنظیم نشده یا اشتباه است"
 
@@ -458,7 +463,8 @@ msgid "Title"
 msgstr "عنوان"
 
 #: src/Form/AdminSearchForm.php:53 src/Form/AttributeForm.php:74
-#: src/Form/VideoForm.php:145 template/front/category.phtml:61
+#: src/Form/CategoryForm.php:117 src/Form/VideoForm.php:145
+#: template/front/category.phtml:61
 msgid "Category"
 msgstr "شاخه"
 
@@ -474,7 +480,7 @@ msgstr "نام"
 msgid "Set name for call anywhere, a-z 0-9 allowed"
 msgstr "تنظیم نام برای فراخوانی در تمام بخش‌ها، مقادیر مجاز a-z 0-9 می باشد."
 
-#: src/Form/AttributeForm.php:88 src/Form/CategoryForm.php:142
+#: src/Form/AttributeForm.php:88 src/Form/CategoryForm.php:157
 #: src/Form/PositionForm.php:73 src/Form/ServerForm.php:60
 #: src/Form/VideoForm.php:61
 msgid "Status"
@@ -521,7 +527,7 @@ msgid "Use fontawesome.io icons, and set icon name like fa-home"
 msgstr ""
 "از آیکن های fontawesome.io استفاده شود، و نام آیکن موارد شود ، مثل : fa-home"
 
-#: src/Form/AttributeForm.php:197 src/Form/CategoryForm.php:257
+#: src/Form/AttributeForm.php:197 src/Form/CategoryForm.php:272
 #: src/Form/PositionForm.php:88 src/Form/ServerForm.php:208
 #: src/Form/SitemapForm.php:48 src/Form/VideoAdditionalForm.php:98
 #: src/Form/VideoExternalForm.php:68 src/Form/VideoForm.php:421
@@ -546,30 +552,38 @@ msgid "Keep summery short, 2 or 3 lines"
 msgstr "متن خلاصه کوتاه و نهایتا ۲ یا ۳ خط نگه دارید"
 
 #: src/Form/CategoryForm.php:102 src/Form/VideoForm.php:132
-#: template/front/video-watch.phtml:215
+#: template/front/video-watch.phtml:212
 msgid "Description"
 msgstr "توضیحات"
 
-#: src/Form/CategoryForm.php:114 template/admin/category-index.phtml:14
+#: src/Form/CategoryForm.php:115
+msgid "Category type"
+msgstr "نوع شاخه"
+
+#: src/Form/CategoryForm.php:118
+msgid "Brand"
+msgstr "برند"
+
+#: src/Form/CategoryForm.php:129 template/admin/category-index.phtml:14
 msgid "Display order"
 msgstr "ترتیب نمایش"
 
-#: src/Form/CategoryForm.php:127
+#: src/Form/CategoryForm.php:142
 msgid "Display type"
 msgstr "نوع نمایش"
 
-#: src/Form/CategoryForm.php:130
+#: src/Form/CategoryForm.php:145
 msgid "List of sub category"
 msgstr "فهرست زیر شاخه ها"
 
-#: src/Form/CategoryForm.php:144 src/Form/PositionForm.php:75
+#: src/Form/CategoryForm.php:159 src/Form/PositionForm.php:75
 #: src/Form/ServerForm.php:62 src/Form/VideoForm.php:63
 #: template/admin/category-index.phtml:51 template/admin/video-index.phtml:77
 #: template/admin/video-index.phtml:79 template/admin/video-index.phtml:175
 msgid "Published"
 msgstr "منتشر شده"
 
-#: src/Form/CategoryForm.php:145 src/Form/PositionForm.php:76
+#: src/Form/CategoryForm.php:160 src/Form/PositionForm.php:76
 #: src/Form/ServerForm.php:63 src/Form/VideoForm.php:64
 #: template/admin/category-index.phtml:52 template/admin/video-index.phtml:83
 #: template/admin/video-index.phtml:85 template/admin/video-index.phtml:86
@@ -577,60 +591,60 @@ msgstr "منتشر شده"
 msgid "Pending review"
 msgstr "در انتظار تایید"
 
-#: src/Form/CategoryForm.php:146 src/Form/PositionForm.php:77
+#: src/Form/CategoryForm.php:161 src/Form/PositionForm.php:77
 #: src/Form/ServerForm.php:64 src/Form/VideoForm.php:65
 #: template/admin/category-index.phtml:53 template/admin/video-index.phtml:88
 msgid "Draft"
 msgstr "پیش نویس"
 
-#: src/Form/CategoryForm.php:147 src/Form/PositionForm.php:78
+#: src/Form/CategoryForm.php:162 src/Form/PositionForm.php:78
 #: src/Form/ServerForm.php:65 src/Form/VideoForm.php:66
 #: template/admin/category-index.phtml:54 template/admin/video-index.phtml:89
 #: template/admin/video-index.phtml:91
 msgid "Private"
 msgstr "خصوصی"
 
-#: src/Form/CategoryForm.php:169 src/Form/VideoForm.php:184
+#: src/Form/CategoryForm.php:184 src/Form/VideoForm.php:184
 msgid "Remove image"
 msgstr "حذف تصویر"
 
-#: src/Form/CategoryForm.php:185 src/Form/VideoForm.php:201
+#: src/Form/CategoryForm.php:200 src/Form/VideoForm.php:201
 msgid "Image"
 msgstr "تصویر"
 
-#: src/Form/CategoryForm.php:197
+#: src/Form/CategoryForm.php:212
 msgid "Wide image"
 msgstr "تصویر عریض"
 
-#: src/Form/CategoryForm.php:201
+#: src/Form/CategoryForm.php:216
 msgid "Set wide image url for category page header"
 msgstr "آدرس تصویر عریض برای نمایش در هدر شاخه را وارد نمایید"
 
-#: src/Form/CategoryForm.php:210 src/Form/VideoForm.php:330
+#: src/Form/CategoryForm.php:225 src/Form/VideoForm.php:330
 msgid "SEO options"
 msgstr "گزینه های سئو"
 
-#: src/Form/CategoryForm.php:217 src/Form/VideoForm.php:337
+#: src/Form/CategoryForm.php:232 src/Form/VideoForm.php:337
 msgid "SEO Title"
 msgstr "عنوان سئو"
 
-#: src/Form/CategoryForm.php:223 src/Form/VideoForm.php:343
+#: src/Form/CategoryForm.php:238 src/Form/VideoForm.php:343
 msgid "Between 10 to 70 character"
 msgstr "بین ۱۰ تا ۷۰ کارکتر"
 
-#: src/Form/CategoryForm.php:230 src/Form/VideoForm.php:350
+#: src/Form/CategoryForm.php:245 src/Form/VideoForm.php:350
 msgid "SEO Keywords"
 msgstr "کلمات کلیدی سئو"
 
-#: src/Form/CategoryForm.php:236 src/Form/VideoForm.php:356
+#: src/Form/CategoryForm.php:251 src/Form/VideoForm.php:356
 msgid "Between 5 to 10 words"
 msgstr "بین ۵ تا ۱۰ کلمه"
 
-#: src/Form/CategoryForm.php:243 src/Form/VideoForm.php:363
+#: src/Form/CategoryForm.php:258 src/Form/VideoForm.php:363
 msgid "SEO Description"
 msgstr "توضیح سئو"
 
-#: src/Form/CategoryForm.php:249 src/Form/VideoForm.php:369
+#: src/Form/CategoryForm.php:264 src/Form/VideoForm.php:369
 msgid "Between 80 to 160 character"
 msgstr "بین ۸۰ تا ۱۶۰ کلمه"
 
@@ -1252,11 +1266,11 @@ msgstr "هیچ ویدیو برای نمایش وجود ندارد"
 msgid "Related videos"
 msgstr "ویدیو های مشابه"
 
-#: template/front/video-watch.phtml:151 template/front/video-watch.phtml:159
+#: template/front/video-watch.phtml:148 template/front/video-watch.phtml:156
 msgid "Play"
 msgstr "پخش"
 
-#: template/front/video-watch.phtml:180
+#: template/front/video-watch.phtml:177
 msgid ""
 "This is paid video and you dont have access to watch it, use buy button to "
 "paid and watch this video"
@@ -1264,15 +1278,15 @@ msgstr ""
 "این یک ویدیو غیر رایگان است و شما دسترسی برای مشاهده آن را ندارید، با "
 "استفاده از دکمه پرداخت ، هزینه مربوطه را پرداخت نموده و ویدیو را مشاهده کنید"
 
-#: template/front/video-watch.phtml:182
+#: template/front/video-watch.phtml:179
 msgid "Pay and watch video"
 msgstr "پرداخت و مشاهده ویدیو"
 
-#: template/front/video-watch.phtml:227
+#: template/front/video-watch.phtml:224
 msgid "User channel"
 msgstr "کانال کاربر"
 
-#: template/front/video-watch.phtml:229
+#: template/front/video-watch.phtml:226
 #, php-format
 msgid "%s channel"
 msgstr "کانال %s"
@@ -1399,9 +1413,6 @@ msgstr "کانال %s"
 
 #~ msgid "Please select channel."
 #~ msgstr "لطفا یک کانال انتخاب کنید"
-
-#~ msgid "All videos from %s"
-#~ msgstr "همه ویدیو ها از %s"
 
 #~ msgid "List of all used tags"
 #~ msgstr "فهرست همه برچسب ها"
