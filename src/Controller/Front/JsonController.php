@@ -282,7 +282,7 @@ class JsonController extends IndexController
         if (!empty($favourite) && $favourite == 1 && isset($videoIDFavourite)) {
             if (isset($whereLink['video']) && !empty($whereLink['video'])) {
                 $whereLink['video'] = array_intersect($videoIDFavourite, $whereLink['video']);
-            } elseif (!empty($whereLink['video'])) {
+            } elseif (!isset($whereLink['video']) || empty($whereLink['video'])) {
                 $whereLink['video'] = $videoIDFavourite;
             } else {
                 $hasSearchResult = false;
@@ -293,7 +293,7 @@ class JsonController extends IndexController
         if (!empty($tag) && isset($videoIDTag)) {
             if (isset($whereLink['video']) && !empty($whereLink['video'])) {
                 $whereLink['video'] = array_intersect($videoIDTag, $whereLink['video']);
-            } elseif (!empty($whereLink['video'])) {
+            } elseif (!isset($whereLink['video']) || empty($whereLink['video'])) {
                 $whereLink['video'] = $videoIDTag;
             } else {
                 $hasSearchResult = false;
