@@ -19,7 +19,7 @@ use Zend\Db\Sql\Predicate\Expression;
 
 /*
  * Pi::api('category', 'video')->getCategory($parameter, $type = 'id');
- * Pi::api('category', 'video')->setLink($video, $category, $create, $update, $status, $uid, $hits);
+ * Pi::api('category', 'video')->setLink($video, $category, $create, $update, $status, $uid, $hits, $recommended);
  * Pi::api('category', 'video')->findFromCategory($category);
  * Pi::api('category', 'video')->categoryList($parent);
  * Pi::api('category', 'video')->categoryListJson();
@@ -39,7 +39,7 @@ class Category extends AbstractApi
         return $category;
     }
 
-    public function setLink($video, $category, $create, $update, $status, $uid, $hits)
+    public function setLink($video, $category, $create, $update, $status, $uid, $hits, $recommended = 0)
     {
         //Remove
         Pi::model('link', $this->getModule())->delete(array('video' => $video));
@@ -54,6 +54,7 @@ class Category extends AbstractApi
             $values['status'] = $status;
             $values['uid'] = $uid;
             $values['hits'] = $hits;
+            $values['recommended'] = $recommended;
             // Save
             $row = Pi::model('link', $this->getModule())->createRow();
             $row->assign($values);

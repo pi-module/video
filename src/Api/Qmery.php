@@ -303,7 +303,7 @@ class Qmery extends AbstractApi
                         $video->video_qmery_hls = isset($videoSingle['hls']) ? $videoSingle['hls'] : '';
                         $video->save();
                         // Set to link table
-                        Pi::api('category', 'video')->setLink($video->id, 0, $time, $time, 2, $uid, 0);
+                        Pi::api('category', 'video')->setLink($video->id, 0, $time, $time, 2, $uid, 0, 0);
                     }
                 }
             }

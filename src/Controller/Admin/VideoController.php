@@ -617,7 +617,7 @@ class VideoController extends ActionController
                 $row->assign($values);
                 $row->save();
                 // Category
-                Pi::api('category', 'video')->setLink($row->id, $row->category, $row->time_create, $row->time_update, $row->status, $row->uid, $row->hits);
+                Pi::api('category', 'video')->setLink($row->id, $row->category, $row->time_create, $row->time_update, $row->status, $row->uid, $row->hits, $row->recommended);
                 // Tag
                 if (isset($tag) && is_array($tag) && Pi::service('module')->isActive('tag')) {
                     Pi::service('tag')->update($module, $row->id, '', $tag);
