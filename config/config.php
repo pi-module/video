@@ -176,6 +176,14 @@ return array(
             'filter' => 'number_int',
             'value' => 5
         ),
+        'view_attribute' => array(
+            'category' => 'view',
+            'title' => _a('Show attribute fields'),
+            'description' => '',
+            'edit' => 'checkbox',
+            'filter' => 'number_int',
+            'value' => 1
+        ),
         // Submit
         'user_submit' => array(
             'category' => 'submit',

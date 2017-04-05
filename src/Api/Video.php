@@ -96,37 +96,40 @@ class Video extends AbstractApi
 
     public function getDuration($secs)
     {
-        if ($secs < 3600) {
-            $times = array(60, 1);
-            $time = '';
-            for ($i = 0; $i < 2; $i++) {
-                $tmp = floor($secs / $times[$i]);
-                if ($tmp < 1) {
-                    $tmp = '00';
-                } elseif ($tmp < 10) {
-                    $tmp = '0' . $tmp;
+        $time = '';
+        if (!empty($secs)) {
+            if ($secs < 3600) {
+                $times = array(60, 1);
+                $time = '';
+                for ($i = 0; $i < 2; $i++) {
+                    $tmp = floor($secs / $times[$i]);
+                    if ($tmp < 1) {
+                        $tmp = '00';
+                    } elseif ($tmp < 10) {
+                        $tmp = '0' . $tmp;
+                    }
+                    $time .= $tmp;
+                    if ($i < 1) {
+                        $time .= ':';
+                    }
+                    $secs = $secs % $times[$i];
                 }
-                $time .= $tmp;
-                if ($i < 1) {
-                    $time .= ':';
+            } else {
+                $times = array(3600, 60, 1);
+                $time = '';
+                for ($i = 0; $i < 3; $i++) {
+                    $tmp = floor($secs / $times[$i]);
+                    if ($tmp < 1) {
+                        $tmp = '00';
+                    } elseif ($tmp < 10) {
+                        $tmp = '0' . $tmp;
+                    }
+                    $time .= $tmp;
+                    if ($i < 2) {
+                        $time .= ':';
+                    }
+                    $secs = $secs % $times[$i];
                 }
-                $secs = $secs % $times[$i];
-            }
-        } else {
-            $times = array(3600, 60, 1);
-            $time = '';
-            for ($i = 0; $i < 3; $i++) {
-                $tmp = floor($secs / $times[$i]);
-                if ($tmp < 1) {
-                    $tmp = '00';
-                } elseif ($tmp < 10) {
-                    $tmp = '0' . $tmp;
-                }
-                $time .= $tmp;
-                if ($i < 2) {
-                    $time .= ':';
-                }
-                $secs = $secs % $times[$i];
             }
         }
         return $time;
