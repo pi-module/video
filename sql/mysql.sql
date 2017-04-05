@@ -108,6 +108,7 @@ CREATE TABLE `{link}` (
   KEY `status` (`status`),
   KEY `uid` (`uid`),
   KEY `hits` (`hits`),
+  KEY `recommended` (`recommended`),
   KEY `category_list` (`status`, `category`, `time_create`),
   KEY `video_list` (`status`, `video`, `time_create`, `category`),
   KEY `link_order` (`time_create`, `id`),
