@@ -607,7 +607,7 @@ class Video extends AbstractApi
         $video['categoryMainTitle'] = $categoryList[$video['category_main']]['title'];
         // Set attribute
         if ($video['attribute'] && $config['view_attribute']) {
-            $attributes = Pi::api('attribute', 'video')->Video($video['id']);
+            $attributes = Pi::api('attribute', 'video')->Video($video['id'], $video['category_main']);
             //$videoSingle['attributes'] = $attributes['all'];
             foreach ($attributes['all'] as $attribute) {
                 $video['attribute-' . $attribute['id']] = $attribute['data'];

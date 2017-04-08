@@ -20,7 +20,7 @@ use Pi\Application\Api\AbstractApi;
  * Pi::api('attribute', 'video')->Get($category);
  * Pi::api('attribute', 'video')->Set($attribute, $video);
  * Pi::api('attribute', 'video')->Form($values);
- * Pi::api('attribute', 'video')->video($id);
+ * Pi::api('attribute', 'video')->video($id, $category);
  * Pi::api('attribute', 'video')->SearchForm($form);
  * Pi::api('attribute', 'video')->findFromattribute($search);
  * Pi::api('attribute', 'video')->setCategory($field, $categoryArr);
