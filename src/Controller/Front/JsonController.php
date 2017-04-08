@@ -465,6 +465,23 @@ class JsonController extends IndexController
         } else {
             return false;
         }
+        // Set r
+        $where = array(
+            'status'          => 1,
+            'category'        => $singleVideo['category'],
+            'video != ?'       => $singleVideo['id'],
+        );
+        $videoRelated = array();
+        $videoRelatedList = $this->videoList($where, $config['view_related_number']);
+        foreach ($videoRelatedList as $videoRelatedSingle) {
+            $videoRelated[] = array(
+                'id' => $videoRelatedSingle['id'],
+                'title' => $videoRelatedSingle['title'],
+                'slug' => $videoRelatedSingle['slug'],
+                'mediumUrl' => $videoRelatedSingle['mediumUrl'],
+                'thumbUrl' => $videoRelatedSingle['thumbUrl'],
+            );
+        }
         // Set video
         $video = array();
         $video[] = array(
@@ -486,6 +503,7 @@ class JsonController extends IndexController
             'qmeryScript' => $singleVideo['qmeryScript'],
             'video_qmery_id' => $singleVideo['video_qmery_id'],
             'video_qmery_hash' => $singleVideo['video_qmery_hash'],
+            'videoRelated' => $videoRelated,
         );
         return $video;
     }
