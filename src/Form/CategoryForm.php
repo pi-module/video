@@ -22,6 +22,7 @@ class CategoryForm extends BaseForm
 
     public function __construct($name = null, $option = array())
     {
+        $this->option = $option;
         $this->category = array(0 => '');
         $this->thumbUrl = $option['thumbUrl'];
         $this->removeUrl = empty($option['removeUrl']) ? '' : $option['removeUrl'];
@@ -31,7 +32,7 @@ class CategoryForm extends BaseForm
     public function getInputFilter()
     {
         if (!$this->filter) {
-            $this->filter = new CategoryFilter;
+            $this->filter = new CategoryFilter($this->option);
         }
         return $this->filter;
     }
@@ -120,6 +121,7 @@ class CategoryForm extends BaseForm
             ),
             'attributes' => array(
                 'required' => true,
+                'value' => $this->option['type'],
             )
         ));
         // display_order

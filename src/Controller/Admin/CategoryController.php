@@ -27,7 +27,7 @@ class CategoryController extends ActionController
     /**
      * Image Prefix
      */
-    protected $ImageCategoryPrefix = 'category_';
+    protected $ImageCategoryPrefix = 'category-';
 
     /**
      * index Action
@@ -37,13 +37,15 @@ class CategoryController extends ActionController
         // Get page
         $page = $this->params('page', 1);
         $module = $this->params('module');
+        $type = $this->params('type', 'category');
         // Get info
         $list = array();
-        $columns = array('id', 'title', 'slug', 'status', 'display_order');
+        $where = array('type' => $type);
+        $columns = array('id', 'title', 'slug', 'status', 'display_order', 'type');
         $order = array('id DESC', 'time_create DESC');
         $offset = (int)($page - 1) * $this->config('admin_perpage');
         $limit = intval($this->config('admin_perpage'));
-        $select = $this->getModel('category')->select()->columns($columns)->order($order)->offset($offset)->limit($limit);
+        $select = $this->getModel('category')->select()->columns($columns)->where($where)->order($order)->offset($offset)->limit($limit);
         $rowset = $this->getModel('category')->selectWith($select);
         // Make list
         foreach ($rowset as $row) {
@@ -54,13 +56,9 @@ class CategoryController extends ActionController
                 'slug' => $list[$row->id]['slug'],
             )));
         }
-        // Go to update page if empty
-        if (empty($list)) {
-            return $this->redirect()->toRoute('', array('action' => 'update'));
-        }
         // Set paginator
         $count = array('count' => new Expression('count(*)'));
-        $select = $this->getModel('category')->select()->columns($count);
+        $select = $this->getModel('category')->select()->columns($count)->where($where);
         $count = $this->getModel('category')->selectWith($select)->current()->count;
         $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($this->config('admin_perpage'));
@@ -72,6 +70,7 @@ class CategoryController extends ActionController
                 'module' => $this->getModule(),
                 'controller' => 'category',
                 'action' => 'index',
+                'type' => $type,
             )),
         ));
         // Set view
@@ -88,7 +87,11 @@ class CategoryController extends ActionController
         // Get id
         $id = $this->params('id');
         $module = $this->params('module');
-        $option = array();
+        $type = $this->params('type', 'category');
+        $option = array(
+            'isNew' => true,
+            'type' => $type,
+        );
         // Find category
         if ($id) {
             $category = $this->getModel('category')->find($id)->toArray();
@@ -97,6 +100,7 @@ class CategoryController extends ActionController
                 $option['thumbUrl'] = Pi::url($category['thumbUrl']);
                 $option['removeUrl'] = $this->url('', array('action' => 'remove', 'id' => $category['id']));
             }
+            $option['isNew'] = false;
         }
         // Set form
         $form = new CategoryForm('category', $option);
@@ -109,7 +113,7 @@ class CategoryController extends ActionController
             $filter = new Filter\Slug;
             $data['slug'] = $filter($slug);
             // Form filter
-            $form->setInputFilter(new CategoryFilter);
+            $form->setInputFilter(new CategoryFilter($option));
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
@@ -184,7 +188,7 @@ class CategoryController extends ActionController
                 $operation = (empty($values['id'])) ? 'add' : 'edit';
                 Pi::api('log', 'video')->addLog('category', $row->id, $operation);
                 $message = __('Category data saved successfully.');
-                $this->jump(array('action' => 'index'), $message);
+                $this->jump(array('action' => 'index', 'type' => $type), $message);
             }
         } else {
             if ($id) {

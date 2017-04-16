@@ -18,7 +18,7 @@ use Zend\InputFilter\InputFilter;
 
 class CategoryFilter extends InputFilter
 {
-    public function __construct()
+    public function __construct($option)
     {
         // id
         $this->add(array(
