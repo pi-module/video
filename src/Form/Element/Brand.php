@@ -16,7 +16,7 @@ namespace Module\Video\Form\Element;
 use Pi;
 use Zend\Form\Element\Select;
 
-class Category extends Select
+class Brand extends Select
 {
 
     /**
@@ -27,7 +27,7 @@ class Category extends Select
         if (empty($this->valueOptions)) {
             // Get topic list
             $columns = array('id', 'parent', 'title');
-            $where = array('status' => 1, 'type' => 'category');
+            $where = array('status' => 1, 'type' => 'brand');
             $select = Pi::model('category', 'video')->select()->columns($columns)->where($where);
             $rowset = Pi::model('category', 'video')->selectWith($select);
             foreach ($rowset as $row) {

@@ -4,6 +4,7 @@ CREATE TABLE `{video}` (
   `slug`             VARCHAR(255)            NOT NULL DEFAULT '',
   `category`         VARCHAR(255)            NOT NULL DEFAULT '',
   `category_main`    INT(10) UNSIGNED        NOT NULL DEFAULT '0',
+  `brand`            INT(10) UNSIGNED        NOT NULL DEFAULT '0',
   `text_summary`     TEXT,
   `text_description` TEXT,
   `seo_title`        VARCHAR(255)            NOT NULL DEFAULT '',
@@ -54,6 +55,7 @@ CREATE TABLE `{video}` (
   KEY `status` (`status`),
   KEY `uid` (`uid`),
   KEY `recommended` (`recommended`),
+  KEY `brand` (`brand`),
   KEY `video_list` (`status`, `id`),
   KEY `video_order` (`time_create`, `id`),
   KEY `video_order_recommended` (`recommended`, `time_create`, `id`)

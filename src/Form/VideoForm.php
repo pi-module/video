@@ -164,6 +164,20 @@ class VideoForm  extends BaseForm
                 'required' => true,
             ),
         ));
+        // brand
+        $this->add(array(
+            'name' => 'brand',
+            'type' => 'Module\Shop\Form\Element\Brand',
+            'options' => array(
+                'label' => __('Brand'),
+                'category' => $this->category,
+            ),
+            'attributes' => array(
+                'size' => 1,
+                'multiple' => 0,
+                'required' => false,
+            ),
+        ));
         // Image
         if ($this->thumbUrl) {
             $this->add(array(

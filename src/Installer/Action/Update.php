@@ -420,6 +420,21 @@ EOD;
             }
         }
 
+        if (version_compare($moduleVersion, '0.8.4', '<')) {
+            // Alter table field `brand`
+            $sql = sprintf("ALTER TABLE %s ADD `brand` INT(10) UNSIGNED NOT NULL DEFAULT '0', ADD INDEX (`brand`)", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+        }
+
         return true;
     }
 }

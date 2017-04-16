@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Model;
 
 use Pi\Application\Model\Model;
@@ -26,6 +27,7 @@ class Video extends Model
         'slug',
         'category',
         'category_main',
+        'brand',
         'text_summary',
         'text_description',
         'seo_title',

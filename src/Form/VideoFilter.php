@@ -89,6 +89,11 @@ class VideoFilter extends InputFilter
                 new \Module\Video\Validator\Category,
             ),
         ));
+        // brand
+        $this->add(array(
+            'name' => 'brand',
+            'required' => false,
+        ));
         // image
         $this->add(array(
             'name' => 'image',
