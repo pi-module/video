@@ -83,6 +83,11 @@ class WatchController extends IndexController
             'alt' => _escape($submitter['name']),
             'class' => 'img-circle',
         ));
+        // Set main category info
+        if ($config['view_description_product']) {
+            $category = Pi::api('category', 'video')->getCategory($video['category_main']);
+            $this->view()->assign('category', $category);
+        }
         // Set view
         $this->view()->headTitle($video['seo_title']);
         $this->view()->headDescription($video['seo_description'], 'set');

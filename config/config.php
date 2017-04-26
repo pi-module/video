@@ -184,6 +184,22 @@ return array(
             'filter' => 'number_int',
             'value' => 1
         ),
+        'view_description_category' => array(
+            'category' => 'view',
+            'title' => _a('Show category description on category page'),
+            'description' => '',
+            'edit' => 'checkbox',
+            'filter' => 'number_int',
+            'value' => 1
+        ),
+        'view_description_product' => array(
+            'category' => 'view',
+            'title' => _a('Show category description on product page'),
+            'description' => '',
+            'edit' => 'checkbox',
+            'filter' => 'number_int',
+            'value' => 0
+        ),
         // Submit
         'user_submit' => array(
             'category' => 'submit',
