@@ -469,7 +469,7 @@ class JsonController extends IndexController
         $where = array(
             'status'          => 1,
             'category'        => $singleVideo['category'],
-            'video != ?'       => $singleVideo['id'],
+            'video != ?'      => $singleVideo['id'],
         );
         $videoRelated = array();
         $videoRelatedList = $this->videoList($where, $config['view_related_number']);
@@ -495,7 +495,8 @@ class JsonController extends IndexController
             'recommended' => $singleVideo['recommended'],
             'favourite' => $singleVideo['favourite'],
             'video_duration_view' => $singleVideo['video_duration_view'],
-            'body' => $singleVideo['body'],
+            'text_summary' => $singleVideo['text_summary'],
+            'text_description' => $singleVideo['text_description'],
             'channelUrl' => $singleVideo['channelUrl'],
             'videoUrl' => $singleVideo['videoUrl'],
             'largeUrl' => $singleVideo['largeUrl'],

@@ -462,10 +462,6 @@ class Video extends AbstractApi
         $video['text_summary'] = Pi::service('markup')->render($video['text_summary'], 'html', 'html');
         // Set text_description
         $video['text_description'] = Pi::service('markup')->render($video['text_description'], 'html', 'html');
-        // Set body
-        $video['body'] = $video['text_summary'] . $video['text_description'];
-        unset($video['text_summary']);
-        unset($video['text_description']);
         // Set times
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
