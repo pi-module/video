@@ -90,10 +90,12 @@ class VideoFilter extends InputFilter
             ),
         ));
         // brand
-        $this->add(array(
-            'name' => 'brand',
-            'required' => false,
-        ));
+        if ($option['brand_system']) {
+            $this->add(array(
+                'name' => 'brand',
+                'required' => false,
+            ));
+        }
         // image
         $this->add(array(
             'name' => 'image',

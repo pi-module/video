@@ -532,6 +532,7 @@ class VideoController extends ActionController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         $option = array();
+        $option['brand'] = $config['brand_system'];
         // Find video
         if ($id) {
             $video = Pi::api('video', 'video')->getVideo($id);
