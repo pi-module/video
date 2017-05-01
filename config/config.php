@@ -200,9 +200,9 @@ return array(
             'filter' => 'number_int',
             'value' => 1
         ),
-        'view_description_product' => array(
+        'view_description_video' => array(
             'category' => 'view',
-            'title' => _a('Show category description on product page'),
+            'title' => _a('Show category description on video page'),
             'description' => '',
             'edit' => 'checkbox',
             'filter' => 'number_int',

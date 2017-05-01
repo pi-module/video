@@ -216,9 +216,9 @@ EOT;
                 <div class="clearfix video-info-box" itemprop="description">
                     <?php echo $videoItem['text_description']; ?>
                 </div>
-                <?php if ($config['view_description_product'] && !empty($category['text_description'])) { ?>
+                <?php if ($config['view_description_video'] && !empty($categorySingle['text_description'])) { ?>
                     <div class="video-info-box p-review clearfix" itemprop="description">
-                        <?php echo $category['text_description']; ?>
+                        <?php echo $categorySingle['text_description']; ?>
                     </div>
                 <?php } ?>
             </div>
