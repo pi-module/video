@@ -168,7 +168,7 @@ class VideoForm  extends BaseForm
         if ($this->option['brand_system']) {
             $this->add(array(
                 'name' => 'brand',
-                'type' => 'Module\Shop\Form\Element\Brand',
+                'type' => 'Module\Video\Form\Element\Brand',
                 'options' => array(
                     'label' => __('Brand'),
                     'category' => $this->category,

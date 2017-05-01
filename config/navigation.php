@@ -31,7 +31,7 @@ return array(
                 'resource' => 'category',
             ),
             'route' => 'admin',
-            'module' => 'shop',
+            'module' => 'video',
             'controller' => 'category',
             'action' => 'index',
             'params'        => array(
@@ -45,7 +45,7 @@ return array(
                         'resource' => 'category',
                     ),
                     'route' => 'admin',
-                    'module' => 'shop',
+                    'module' => 'video',
                     'controller' => 'category',
                     'action' => 'index',
                     'params'        => array(
@@ -58,7 +58,7 @@ return array(
                         'resource' => 'category',
                     ),
                     'route' => 'admin',
-                    'module' => 'shop',
+                    'module' => 'video',
                     'controller' => 'category',
                     'action' => 'index',
                     'params'        => array(
@@ -71,7 +71,7 @@ return array(
                         'resource' => 'category',
                     ),
                     'route' => 'admin',
-                    'module' => 'shop',
+                    'module' => 'video',
                     'controller' => 'category',
                     'action' => 'update',
                     'params'        => array(
@@ -84,7 +84,7 @@ return array(
                         'resource' => 'category',
                     ),
                     'route' => 'admin',
-                    'module' => 'shop',
+                    'module' => 'video',
                     'controller' => 'category',
                     'action' => 'update',
                     'params'        => array(
