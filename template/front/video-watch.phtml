@@ -31,6 +31,7 @@ if (isset($videoItem['text_summary']) && !empty($videoItem['text_summary'])) {
 if (isset($videoItem['largeUrl']) && !empty($videoItem['largeUrl'])) {
     $this->headMeta($this->escape($videoItem['largeUrl']), 'twitter:image');
 }
+$this->headMeta($this->escape($videoItem['videoUrl']), 'twitter:player');
 
 if ($access) {
     if ($videoItem['server']['type'] == 'wowza') {

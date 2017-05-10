@@ -88,11 +88,20 @@ class WatchController extends IndexController
             $categorySingle = Pi::api('category', 'video')->getCategory($video['category_main']);
             $this->view()->assign('categorySingle', $categorySingle);
         }
+        // Set template
+        $platform = Pi::service('browser')->getPlatform();
+        if (in_array($platform, array('iPhone', 'iPad', 'Android')) && $access) {
+            $template = 'video-watch-mobile';
+            $layout = 'layout-content';
+        } else {
+            $template = 'video-watch';
+            $layout = 'layout-front';
+        }
         // Set view
         $this->view()->headTitle($video['seo_title']);
         $this->view()->headDescription($video['seo_description'], 'set');
         $this->view()->headKeywords($video['seo_keywords'], 'set');
-        $this->view()->setTemplate('video-watch');
+        $this->view()->setTemplate($template)->setLayout($layout);
         $this->view()->assign('videoItem', $video);
         $this->view()->assign('categoryItem', $video['categories']);
         $this->view()->assign('config', $config);
