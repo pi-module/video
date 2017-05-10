@@ -35,26 +35,11 @@ $this->headMeta($this->escape($videoItem['videoUrl']), 'twitter:player');
 
 if ($videoItem['server']['type'] == 'qmery') {
     $this->jQuery();
-    $this->headScript()->appendFile($videoItem['qmeryScript']);
+    $this->headScript()->appendFile($videoItem['qmeryScriptFullSize']);
 }
 ?>
-<div class="text-center video-player">
-    <?php if ($videoItem['server']['type'] == 'file') { ?>
-        <?php echo $this->videojs($videoItem['videoFileUrl'], $videoItem['largeUrl']); ?>
-    <?php } elseif ($videoItem['server']['type'] == 'qmery') { ?>
-        <?php if (isset($videoItem['server']['qmery_player_type']) && $videoItem['server']['qmery_player_type'] == 'iframe') { ?>
-            <div class="clearfix">
-                <iframe src="<?php echo $this->escape($videoItem['qmeryDirect']); ?>" allowtransparency="true" scrolling="no" name="qmery_embed_video" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" oallowfullscreen="" msallowfullscreen="" frameborder="0" height="100%" width="100%"></iframe>
-            </div>
-        <?php } else { ?>
-            <div class="qmery-player-min-height">
-                <div class="qmery-player-full-height">
-                    <div class="qmery-player">
-                        <div id="embed_qmery_player_<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
-                        <div id="embed_qmery_player_icons<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
-    <?php } ?>
-</div>
+<?php if ($videoItem['server']['type'] == 'file') { ?>
+    <?php echo $this->videojs($videoItem['videoFileUrl'], $videoItem['largeUrl']); ?>
+<?php } elseif ($videoItem['server']['type'] == 'qmery') { ?>
+    <iframe id="video-player" src="<?php echo $this->escape($videoItem['qmeryDirect']); ?>" allowtransparency="true" scrolling="no" name="qmery_embed_video" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true" frameborder="0" height="100%" width="100%"></iframe>
+<?php } ?>

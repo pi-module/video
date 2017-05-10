@@ -280,6 +280,10 @@ class Video extends AbstractApi
                     $video['server']['url'],
                     $video['video_qmery_hash']
                 );
+                $video['qmeryScriptFullSize'] = sprintf('%s/embed.js?video=%s',
+                    $video['server']['url'],
+                    $video['video_qmery_hash']
+                );
                 $video['qmeryDirect'] = sprintf('%s/v/%s',
                     $video['server']['url'],
                     $video['video_qmery_hash']
@@ -499,6 +503,10 @@ class Video extends AbstractApi
                     360
                 );
                 $video['qmeryScriptResponsive'] = sprintf('%s/embed.js?video=%s&asp=16:9',
+                    $video['server']['url'],
+                    $video['video_qmery_hash']
+                );
+                $video['qmeryScriptFullSize'] = sprintf('%s/embed.js?video=%s',
                     $video['server']['url'],
                     $video['video_qmery_hash']
                 );
