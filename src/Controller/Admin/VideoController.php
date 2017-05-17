@@ -595,6 +595,7 @@ class VideoController extends ActionController
                     $values['image'] = '';
                 }
                 // Category
+                $values['category'][] = $values['category_main'];
                 $values['category'] = json_encode(array_unique($values['category']));
                 // Set seo_title
                 $title = ($values['seo_title']) ? $values['seo_title'] : $values['title'];
