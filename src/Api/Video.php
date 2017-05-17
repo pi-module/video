@@ -437,9 +437,6 @@ class Video extends AbstractApi
         unset($video['count']);
         unset($video['favorite']);
         unset($video['attribute']);
-        unset($video['recommended']);
-        unset($video['uid']);
-        unset($video['hits']);
         // return video
         return $video;
     }

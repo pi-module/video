@@ -258,7 +258,7 @@ class CategoryController extends ActionController
                 'title' => $row->title,
                 'display_order' => $row->display_order,
                 'status' => $row->status,
-                'view_url' => Pi::url($this->url('shop', array(
+                'view_url' => Pi::url($this->url('video', array(
                     'module' => $module,
                     'controller' => 'category',
                     'slug' => $row->slug,
@@ -297,7 +297,7 @@ class CategoryController extends ActionController
         // Check confirm
         if ($confirm == 1) {
             // Get category list
-            $categoryList = Pi::registry('categoryList', 'shop')->read();
+            $categoryList = Pi::registry('categoryList', 'video')->read();
             // Server list
             $serverList = Pi::registry('serverList', 'video')->read();
             // Get videos and send
@@ -318,7 +318,7 @@ class CategoryController extends ActionController
                 $category = json_encode(array_unique($category));
 
                 // Update link table
-                Pi::api('category', 'shop')->setLink(
+                Pi::api('category', 'video')->setLink(
                     $video['id'],
                     $category,
                     $video['time_create'],
@@ -383,5 +383,221 @@ class CategoryController extends ActionController
         $this->view()->assign('percent', $percent);
         $this->view()->assign('info', $info);
         $this->view()->assign('confirm', $confirm);
+    }
+
+    public function mergeAction()
+    {
+        $start = $this->params('start', 0);
+        $count = $this->params('count');
+        $complete = $this->params('complete', 0);
+        $categoryFrom1 = $this->params('categoryFrom1', 0);
+        $categoryFrom2 = $this->params('categoryFrom2', 0);
+        $categoryTo = $this->params('categoryTo', 0);
+        $whereType = $this->params('whereType', 'and');
+        $info = array();
+        $videosId = array();
+        $percent = 0;
+        // Set option
+        $option = array();
+        // Set form
+        $form = new CategoryMergeForm('category', $option);
+        $form->setAttribute('enctype', 'multipart/form-data');
+        if ($this->request->isPost()) {
+            // Get information
+            $data = $this->request->getPost();
+            $form->setInputFilter(new CategoryMergeFilter);
+            $form->setData($data);
+            if ($form->isValid()) {
+                $values = $form->getData();
+
+
+                // Set redirect
+                return $this->redirect()->toRoute('', array(
+                    'controller' => 'category',
+                    'action' => 'merge',
+                    'categoryFrom1' => $values['category_from_1'],
+                    'categoryFrom2' => $values['category_from_2'],
+                    'categoryTo' => $values['category_to'],
+                    'whereType' => $values['where_type'],
+                    'start' => 0,
+                    'complete' => 0,
+                    'count' => 0,
+                ));
+
+            }
+        } elseif ($categoryFrom1 > 0 && $categoryFrom2 > 0 && $categoryTo > 0 && in_array($whereType, array('and', 'or'))) {
+
+            // Get list of videos
+            switch ($whereType) {
+                case 'or':
+                    $whereLink = array(
+                        'video > ?' => $start,
+                        'category' => array(
+                            $categoryFrom1,
+                            $categoryFrom2,
+                        )
+                    );
+                    $order = array('video ASC');
+                    $select = $this->getModel('link')->select()->where($whereLink)->order($order)->limit(25);
+                    $rowSet = $this->getModel('link')->selectWith($select);
+
+                    // Get count
+                    if (!$count) {
+                        $where = array('category' => array(
+                            $categoryFrom1,
+                            $categoryFrom2,
+                        ));
+                        $columns = array('count' => new Expression('count(*)'));
+                        $select = $this->getModel('link')->select()->columns($columns)->where($where);
+                        $count = $this->getModel('link')->selectWith($select)->current()->count;
+                    }
+                    break;
+
+                default:
+                case 'and':
+                    $linkTable = $this->getModel('link')->getTable();
+                    $where = array(
+                        'link1.video > ?' => $start,
+                        'link1.category' => $categoryFrom1
+                    );
+                    $order = array('link1.video ASC');
+                    $select = Pi::db()->select();
+                    $select->from(array('link1' => $linkTable));
+                    $select->columns(array('video1' => 'video'));
+                    $select->join(
+                        array('link2' => $linkTable),
+                        new Expression(sprintf(
+                            'link1.video = link2.video AND link2.category = %s',
+                            $categoryFrom2
+                        )),
+                        array('video2' => 'video'),
+                        ''
+                    );
+                    $select->where($where)->order($order)->limit(25);
+                    $rowSet = Pi::db()->query($select);
+
+                    // Get count
+                    if (!$count) {
+                        $whereCount = array(
+                            'link1.category' => $categoryFrom1
+                        );
+                        $selectCount = Pi::db()->select();
+                        $selectCount->from(array('link1' => $linkTable));
+                        $selectCount->columns(array('video1' => 'video'));
+                        $selectCount->join(
+                            array('link2' => $linkTable),
+                            new Expression(sprintf(
+                                'link1.video = link2.video AND link2.category = %s',
+                                $categoryFrom2
+                            )),
+                            array('video2' => 'video'),
+                            ''
+                        );
+                        $selectCount->where($whereCount);
+                        $countSet = Pi::db()->query($selectCount);
+                        foreach ($countSet as $countRow) {
+                            $videoCount[] = $countRow['video1'];
+                        }
+                        $count = count($videoCount);
+                    }
+
+                    break;
+            }
+
+            // Set form
+            $data = array(
+                'category_from_1' => $categoryFrom1,
+                'category_from_2' => $categoryFrom2,
+                'category_to' => $categoryTo,
+                'where_type' => $whereType,
+            );
+            $form->setData($data);
+
+            // Get list of video ids
+            foreach ($rowSet as $row) {
+                $videosId[] = $row['video1'];
+            }
+
+
+            // Work on videos
+            foreach ($videosId as $videoId) {
+                $video = Pi::api('video', 'video')->getVideoLight($videoId);
+
+
+                // Make category list as json
+                $category = $video['category'];
+                $category[] = $categoryTo;
+                $category[] = $video['category_main'];
+                $category = json_encode(array_unique($category));
+
+                // Update link table
+                Pi::api('category', 'video')->setLink(
+                    $video['id'],
+                    $category,
+                    $video['time_create'],
+                    $video['time_update'],
+                    $video['status'],
+                    $video['uid'],
+                    $video['hits'],
+                    $video['recommended']
+                );
+
+                // Update video
+                $this->getModel('video')->update(
+                    array('category' => $category),
+                    array('id' => (int) $video['id'])
+                );
+
+                // Set info
+                $lastId = $video['id'];
+                $complete++;
+            }
+
+            // Set complete
+            $percent = (100 * $complete) / $count;
+
+            // Set next url
+            if ($complete >= $count) {
+                $nextUrl = '';
+            } else {
+                $nextUrl = Pi::url($this->url('', array(
+                    'controller' => 'category',
+                    'action' => 'merge',
+                    'categoryFrom1' => $categoryFrom1,
+                    'categoryFrom2' => $categoryFrom2,
+                    'categoryTo' => $categoryTo,
+                    'whereType' => $whereType,
+                    'start' => $lastId,
+                    'count' => $count,
+                    'complete' => $complete,
+                )));
+            }
+
+            $info = array(
+                'categoryFrom1' => $categoryFrom1,
+                'categoryFrom2' => $categoryFrom2,
+                'categoryTo' => $categoryTo,
+                'whereType' => $whereType,
+                'start' => $lastId,
+                'count' => $count,
+                'complete' => $complete,
+                'percent' => $percent,
+                'nextUrl' => $nextUrl,
+            );
+
+            $percent = ($percent > 99 && $percent < 100) ? (intval($percent) + 1) : intval($percent);
+        }
+
+        // Set view
+        $this->view()->setTemplate('category-merge');
+        $this->view()->assign('form', $form);
+        $this->view()->assign('categoryFrom1', $categoryFrom1);
+        $this->view()->assign('categoryFrom2', $categoryFrom2);
+        $this->view()->assign('categoryTo', $categoryTo);
+        $this->view()->assign('whereType', $whereType);
+        $this->view()->assign('count', $count);
+        $this->view()->assign('info', $info);
+        $this->view()->assign('nextUrl', $nextUrl);
+        $this->view()->assign('percent', $percent);
     }
 }
