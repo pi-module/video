@@ -65,7 +65,7 @@ class Brand extends Select
         // Set default category options
         if ($parentId == 0) {
             if (!isset($this->options['category'])) {
-                $branch[0] = __('All Category');
+                $branch[0] = __('All brands');
             } else {
                 $branch = $this->options['category'];
             }

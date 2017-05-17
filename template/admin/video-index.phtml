@@ -1,200 +1,189 @@
 <?php
 $this->css(array(
-		$this->assetModule('css/admin.css'),
-		$this->assetModule('script/system-ui.css', 'system'),
+    $this->assetModule('css/admin.css'),
+    $this->assetModule('script/system-ui.css', 'system'),
 ));
 $this->jQuery();
 $this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 <div class="clearfix">
-	<div class="admin-header clearfix well well-sm">
-		<div class="col-md-4">
-			<div class="nav">
-				<div class="btn-group">
-					<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-						<i class="fa fa-folder-open"></i> <?php _e('Add video'); ?> <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<?php foreach ($serverList as $server) { ?>
-							<?php if ($server['type'] == 'file') { ?>
-								<li><a title="<?php echo $this->escape($server['title']); ?>"
-									   href="<?php echo $this->url('', array(
-										   'controller' => 'video',
-										   'action' => 'upload',
-										   'server' => $server['id']
-									   )); ?>"><i
-											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?></a></li>
-							<?php } elseif ($server['type'] == 'wowza') { ?>
-								<li><a title="<?php echo $this->escape($server['title']); ?>"
-									   href="<?php echo $this->url('', array(
-										   'controller' => 'video',
-										   'action' => 'link' ,
-										   'server' => $server['id']
-									   )); ?>"><i
-											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?></a></li>
-							<?php } elseif ($server['type'] == 'qmery') { ?>
-								<li><a title="<?php echo $this->escape($server['title']); ?>"
-									   href="<?php echo $this->url('', array(
-										   'controller' => 'video',
-										   'action' => 'upload',
-										   'server' => $server['id']
-									   )); ?>"><i
-											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('Upload'); ?>)</a></li>
-								<li><a title="<?php echo $this->escape($server['title']); ?>"
-									   href="<?php echo $this->url('', array(
-										   'controller' => 'video',
-										   'action' => 'link',
-										   'server' => $server['id']
-									   )); ?>"><i
-											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('Internal link'); ?>)</a></li>
-								<li><a title="<?php echo $this->escape($server['title']); ?>"
-									   href="<?php echo $this->url('', array(
-										   'controller' => 'video',
-										   'action' => 'external',
-										   'server' => $server['id']
-									   )); ?>"><i
-											class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('External link'); ?>)</a></li>
-								<li><a title="<?php _e('From qmery to website'); ?>"
-									   href="<?php echo $this->url('', array(
-										   'controller' => 'server',
-										   'action' => 'processing',
-										   'server' => $server['id'],
-										   'type' => 'toWebsite'
-									   )); ?>"><i class="fa fa-wrench"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('From qmery to website'); ?>)</a></li>
-							<?php } ?>
-							<li role="separator" class="divider"></li>
-						<?php } ?>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-						<i class="fa fa-eye"></i> <?php _e('View'); ?> <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<li><a title="<?php _e('All videos'); ?>"
-							   href="<?php echo $this->url('', array('controller' => 'video', 'action' => 'index')); ?>"><i
-										class="fa fa-file"></i> <?php _e('All videos'); ?></a></li>
-						<li><a title="<?php _e('Published'); ?>"
-							   href="<?php echo $this->url('', array('controller' => 'video', 'action' => 'index', 'status' => '1')); ?>"><i
-										class="fa fa-file"></i> <?php _e('Published'); ?></a></li>
-                        <li><a title="<?php _e('Recommended'); ?>"
-                               href="<?php echo $this->url('', array('controller' => 'video', 'action' => 'index', 'recommended' => '1')); ?>"><i
-                                        class="fa fa-file"></i> <?php _e('Recommended'); ?></a></li>
-						<li><a title="<?php _e('Pending review'); ?>"
-							   href="<?php echo $this->url('', array('controller' => 'video', 'action' => 'index', 'status' => '2')); ?>"><i
-										class="fa fa-file"></i> <?php _e('Pending review'); ?></a></li>
-						<li><a title="<?php _e('Pending review'); ?>"
-							   href="<?php echo $this->url('', array('controller' => 'video', 'action' => 'index', 'status' => '3')); ?>"><i
-										class="fa fa-file"></i> <?php _e('Draft'); ?></a></li>
-						<li><a title="<?php _e('Private'); ?>"
-							   href="<?php echo $this->url('', array('controller' => 'video', 'action' => 'index', 'status' => '4')); ?>"><i
-										class="fa fa-file"></i> <?php _e('Private'); ?></a></li>
-						<li><a title="<?php _e('Trash'); ?>"
-							   href="<?php echo $this->url('', array('controller' => 'video', 'action' => 'index', 'status' => '5')); ?>"><i
-										class="fa fa-file"></i> <?php _e('Trash'); ?></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-8">
-            <div class="pull-right">
-                <?php echo $this->form($form, 'inline'); ?>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingForm">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseForm" aria-expanded="false" aria-controls="collapseForm">
+                        <i class="fa fa-plus"></i> <?php _e('Filter videos'); ?>
+                    </a>
+                </h4>
             </div>
-		</div>
-	</div>
-	<h3><?php _e('List of videos'); ?></h3>
-	<table id="video-list" class="table table-striped table-bordered table-condensed">
-		<tr>
-			<th class="col-md-6"><?php _e('Title'); ?></th>
-			<th class="col-md-2"><?php _e('Action'); ?></th>
-		</tr>
-		<?php foreach ($list as $video) { ?>
-			<?php
-			if ($video['status'] == 1) {
-				$labelIdClass = 'label-success';
-			} else {
-				$labelIdClass = 'label-warning';
-			}
-			?>
-			<tr>
-				<td class="video-ajax">
-					<span class="label <?php echo $labelIdClass; ?>"><?php echo $this->escape($video['id']); ?></span>
-					<?php if ($video['recommended'] == 1) { ?>
-						<button id="button-<?php echo $video['id']; ?>" type="button" class="btn btn-link"
-								data-toggle="button"
-								data-link="<?php echo $this->url('', array('action' => 'recommend', 'id' => $video['id'], 'recommended' => '0')); ?>">
-							<i class="fa fa-heart"></i></button>
-					<?php } else { ?>
-						<button id="button-<?php echo $video['id']; ?>" type="button" class="btn btn-link"
-								data-toggle="button"
-								data-link="<?php echo $this->url('', array('action' => 'recommend', 'id' => $video['id'], 'recommended' => '1')); ?>">
-							<i class="fa fa-heart-o"></i></button>
-					<?php } ?>
-					<?php echo $this->escape($video['title']); ?>
-					( <?php _e('Server'); ?> : <?php echo $this->escape($video['server']['title']); ?> )
-					<?php if ($video['hits'] > 0) { ?> ( <?php _e('View'); ?> : <?php echo $this->escape(_number($video['hits'])); ?> )<?php } ?>
-				</td>
-				<td>
-					<div class="btn-group">
-						<button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-edit"></i> <?php _e('Manage'); ?> <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li><a title="<?php _e('Manage video link'); ?>"
-								   href="<?php echo $this->url('', array('action' => 'link', 'id' => $video['id'])); ?>"><i
-										class="fa fa-edit"></i> <?php _e('Manage video link'); ?></a></li>
-							<li><a title="<?php _e('Edit basic information'); ?>"
-								   href="<?php echo $this->url('', array('action' => 'update', 'id' => $video['id'])); ?>"><i
-										class="fa fa-edit"></i> <?php _e('Edit basic information'); ?></a></li>
-							<li><a title="<?php _e('Edit additional information'); ?>"
-								   href="<?php echo $this->url('', array('action' => 'additional', 'id' => $video['id'])); ?>"><i
-											class="fa fa-edit"></i> <?php _e('Edit additional information'); ?></a></li>
-							<li><a title="<?php _e('View video'); ?>"
-								   href="<?php echo $this->url('', array('action' => 'watch', 'id' => $video['id'])); ?>"><i
-											class="fa fa-edit"></i> <?php _e('View video'); ?></a></li>
-						</ul>
-					</div>
-					<?php if ($video['status'] == 1) { ?>
-						<a class="btn btn-success btn-xs" title="<?php _e('View'); ?>"
-						   href="<?php echo $video['videoUrl']; ?>" target="_blank"><i
-									class="fa fa-eye"></i> <?php _e('View'); ?></a>
-					<?php } ?>
-					<?php if ($video['status'] != 5) { ?>
-						<a class="btn btn-danger btn-xs" title="<?php _e('Delete'); ?>" href="<?php echo $this->url('', array('action' => 'delete', 'id' => $video['id'])); ?>" onclick="return confirm('<?php echo _a('Are you sure to delete this video?'); ?>')">
-							<i class="fa fa-trash"></i>  <?php _e('Delete'); ?>
-						</a>
-					<?php } ?>
-				</td>
-			</tr>
-		<?php } ?>
-	</table>
-	<div class="paginator">
-		<?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
-	</div>
-	<p>
-		<span class="label label-success"><?php _e('Published'); ?></span>
-		<span class="label label-warning"><?php _e('Pending review'); ?></span>
-		<span class="label label-danger"><?php _e('Trash'); ?></span>
-	</p>
+            <div id="collapseForm" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingForm">
+                <div class="panel-body">
+                    <?php echo $this->form($form); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix row list-header">
+        <div class="col-xs-6">
+            <h3><?php _e('List of videos'); ?></h3>
+        </div>
+        <div class="col-xs-6 text-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-folder-open"></i> <?php _e('Add video'); ?> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-left" role="menu">
+                    <?php foreach ($serverList as $server) { ?>
+                        <?php if ($server['type'] == 'file') { ?>
+                            <li><a title="<?php echo $this->escape($server['title']); ?>"
+                                   href="<?php echo $this->url('', array(
+                                       'controller' => 'video',
+                                       'action' => 'upload',
+                                       'server' => $server['id']
+                                   )); ?>"><i
+                                            class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?></a></li>
+                        <?php } elseif ($server['type'] == 'wowza') { ?>
+                            <li><a title="<?php echo $this->escape($server['title']); ?>"
+                                   href="<?php echo $this->url('', array(
+                                       'controller' => 'video',
+                                       'action' => 'link' ,
+                                       'server' => $server['id']
+                                   )); ?>"><i
+                                            class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?></a></li>
+                        <?php } elseif ($server['type'] == 'qmery') { ?>
+                            <li><a title="<?php echo $this->escape($server['title']); ?>"
+                                   href="<?php echo $this->url('', array(
+                                       'controller' => 'video',
+                                       'action' => 'upload',
+                                       'server' => $server['id']
+                                   )); ?>"><i
+                                            class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('Upload'); ?>)</a></li>
+                            <li><a title="<?php echo $this->escape($server['title']); ?>"
+                                   href="<?php echo $this->url('', array(
+                                       'controller' => 'video',
+                                       'action' => 'link',
+                                       'server' => $server['id']
+                                   )); ?>"><i
+                                            class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('Internal link'); ?>)</a></li>
+                            <li><a title="<?php echo $this->escape($server['title']); ?>"
+                                   href="<?php echo $this->url('', array(
+                                       'controller' => 'video',
+                                       'action' => 'external',
+                                       'server' => $server['id']
+                                   )); ?>"><i
+                                            class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('External link'); ?>)</a></li>
+                            <li><a title="<?php _e('From qmery to website'); ?>"
+                                   href="<?php echo $this->url('', array(
+                                       'controller' => 'server',
+                                       'action' => 'processing',
+                                       'server' => $server['id'],
+                                       'type' => 'toWebsite'
+                                   )); ?>"><i class="fa fa-wrench"></i> <?php echo $this->escape($server['title']); ?> (<?php _e('From qmery to website'); ?>)</a></li>
+                        <?php } ?>
+                        <li role="separator" class="divider"></li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php if (!empty($list)) { ?>
+        <table id="video-list" class="table table-striped table-bordered table-condensed">
+            <tr>
+                <th class="col-md-6"><?php _e('Title'); ?></th>
+                <th class="col-md-2"><?php _e('Action'); ?></th>
+            </tr>
+            <?php foreach ($list as $video) { ?>
+                <?php if ($video['status'] == 1) {
+                    $labelIdClass = 'label-success';
+                } elseif ($video['status'] == 5) {
+                    $labelIdClass = 'label-danger';
+                } else {
+                    $labelIdClass = 'label-warning';
+                } ?>
+                <tr>
+                    <td class="video-ajax">
+                        <span class="label <?php echo $labelIdClass; ?>"><?php echo $this->escape($video['id']); ?></span>
+                        <?php if ($video['recommended'] == 1) { ?>
+                            <button id="button-<?php echo $video['id']; ?>" type="button" class="btn btn-link"
+                                    data-toggle="button"
+                                    data-link="<?php echo $this->url('', array('action' => 'recommend', 'id' => $video['id'], 'recommended' => '0')); ?>">
+                                <i class="fa fa-heart"></i></button>
+                        <?php } else { ?>
+                            <button id="button-<?php echo $video['id']; ?>" type="button" class="btn btn-link"
+                                    data-toggle="button"
+                                    data-link="<?php echo $this->url('', array('action' => 'recommend', 'id' => $video['id'], 'recommended' => '1')); ?>">
+                                <i class="fa fa-heart-o"></i></button>
+                        <?php } ?>
+                        <?php echo $this->escape($video['title']); ?>
+                        ( <?php _e('Server'); ?> : <?php echo $this->escape($video['server']['title']); ?> )
+                        <?php if ($video['hits'] > 0) { ?> ( <?php _e('View'); ?> : <?php echo $this->escape(_number($video['hits'])); ?> )<?php } ?>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-edit"></i> <?php _e('Manage'); ?> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a title="<?php _e('Manage video link'); ?>"
+                                       href="<?php echo $this->url('', array('action' => 'link', 'id' => $video['id'])); ?>"><i
+                                                class="fa fa-edit"></i> <?php _e('Manage video link'); ?></a></li>
+                                <li><a title="<?php _e('Edit basic information'); ?>"
+                                       href="<?php echo $this->url('', array('action' => 'update', 'id' => $video['id'])); ?>"><i
+                                                class="fa fa-edit"></i> <?php _e('Edit basic information'); ?></a></li>
+                                <li><a title="<?php _e('Edit additional information'); ?>"
+                                       href="<?php echo $this->url('', array('action' => 'additional', 'id' => $video['id'])); ?>"><i
+                                                class="fa fa-edit"></i> <?php _e('Edit additional information'); ?></a></li>
+                                <li><a title="<?php _e('View video'); ?>"
+                                       href="<?php echo $this->url('', array('action' => 'watch', 'id' => $video['id'])); ?>"><i
+                                                class="fa fa-edit"></i> <?php _e('View video'); ?></a></li>
+                            </ul>
+                        </div>
+                        <?php if ($video['status'] == 1) { ?>
+                            <a class="btn btn-success btn-xs" title="<?php _e('View'); ?>"
+                               href="<?php echo $video['videoUrl']; ?>" target="_blank"><i
+                                        class="fa fa-eye"></i> <?php _e('View'); ?></a>
+                        <?php } ?>
+                        <?php if ($video['status'] != 5) { ?>
+                            <a class="btn btn-danger btn-xs" title="<?php _e('Delete'); ?>" href="<?php echo $this->url('', array('action' => 'delete', 'id' => $video['id'])); ?>" onclick="return confirm('<?php echo _a('Are you sure to delete this video?'); ?>')">
+                                <i class="fa fa-trash"></i>  <?php _e('Delete'); ?>
+                            </a>
+                        <?php } ?>
+                    </td>
+                </tr>
+            <?php } ?>
+        </table>
+        <div class="paginator">
+            <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+        </div>
+        <p>
+            <span class="label label-success"><?php _e('Published'); ?></span>
+            <span class="label label-warning"><?php _e('Pending review'); ?></span>
+            <span class="label label-danger"><?php _e('Trash'); ?></span>
+        </p>
+    <?php } else { ?>
+        <div class="alert alert-danger" role="alert">
+            <?php _e('Product list is empty, perhaps you still didn\'t add any product or your selected filter didn\'t have any result'); ?>
+        </div>
+    <?php } ?>
 </div>
 <script type="text/javascript">
-	(function ($) {
-		$("#video-list .video-ajax").on("click", "button", function () {
-			systemMessage.wait("<?php _e('Recommended in process'); ?>");
-			$.getJSON($(this).attr("data-link")).done(function (result) {
-				if (result.ajaxstatus == 1) {
-					if (result.recommended == 1) {
-						var buttonClass = 'fa fa-heart';
-					}
-					if (result.recommended == 0) {
-						var buttonClass = 'fa fa-heart-o';
-					}
-					$('#button-' + result.id + ' i').attr('class', buttonClass);
-					systemMessage.succ(result.message);
-				} else {
-					systemMessage.fail(result.message);
-				}
-			});
-		});
-	})(jQuery)
+    (function ($) {
+        $("#video-list .video-ajax").on("click", "button", function () {
+            systemMessage.wait("<?php _e('Recommended in process'); ?>");
+            $.getJSON($(this).attr("data-link")).done(function (result) {
+                if (result.ajaxstatus == 1) {
+                    if (result.recommended == 1) {
+                        var buttonClass = 'fa fa-heart';
+                    }
+                    if (result.recommended == 0) {
+                        var buttonClass = 'fa fa-heart-o';
+                    }
+                    $('#button-' + result.id + ' i').attr('class', buttonClass);
+                    systemMessage.succ(result.message);
+                } else {
+                    systemMessage.fail(result.message);
+                }
+            });
+        });
+    })(jQuery)
 </script>

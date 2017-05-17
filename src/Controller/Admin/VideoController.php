@@ -44,6 +44,7 @@ class VideoController extends ActionController
         $page = $this->params('page', 1);
         $status = $this->params('status');
         $category = $this->params('category');
+        $brand = $this->params('brand');
         $recommended = $this->params('recommended');
         $title = $this->params('title');
         // Get config
@@ -58,8 +59,22 @@ class VideoController extends ActionController
         if (!empty($recommended)) {
             $whereVideo['recommended'] = 1;
         }
+        if (!empty($brand)) {
+            $whereVideo['brand'] = $brand;
+        }
         if (!empty($category)) {
-            $whereVideo['category_main'] = $category;
+            $videoId = array();
+            $whereLink = array('category' => $category);
+            $selectLink = $this->getModel('link')->select()->where($whereLink);
+            $rowLink = $this->getModel('link')->selectWith($selectLink);
+            foreach ($rowLink as $link) {
+                $videoId[] = $link['video'];
+            }
+            if (!empty($videoId)) {
+                $whereVideo['id'] = $videoId;
+            } else {
+                $whereVideo['id'] = 0;
+            }
         }
         if (!empty($status) && in_array($status, array(1, 2, 3, 4, 5))) {
             $whereVideo['status'] = $status;
@@ -115,6 +130,7 @@ class VideoController extends ActionController
                 'controller' => 'video',
                 'action' => 'index',
                 'category' => $category,
+                'brand' => $brand,
                 'status' => $status,
                 'title' => $title,
                 'recommended' => $recommended,
@@ -124,6 +140,9 @@ class VideoController extends ActionController
         $values = array(
             'title' => $title,
             'category' => $category,
+            'brand' => $brand,
+            'status' => $status,
+            'recommended' => $recommended,
         );
         $form = new AdminSearchForm('search');
         $form->setAttribute('action', $this->url('', array('action' => 'process')));
@@ -153,6 +172,9 @@ class VideoController extends ActionController
                     'action' => 'index',
                     'title' => $values['title'],
                     'category' => $values['category'],
+                    'brand' => $values['brand'],
+                    'status' => $values['status'],
+                    'recommended' => $values['recommended'],
                 );
             } else {
                 $message = __('Not valid');
