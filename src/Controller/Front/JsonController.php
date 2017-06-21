@@ -249,8 +249,9 @@ class JsonController extends IndexController
         $count = 0;
 
         $columns = array('video' => new Expression('DISTINCT video'));
-        $offset = (int)($page - 1) * $config['view_perpage'];
         $limit = (intval($limit) > 0) ? intval($limit) : intval($config['view_perpage']);
+        $offset = (int)($page - 1) * $limit;
+
 
         // Set category on where link
         if (isset($categoryIDList) && !empty($categoryIDList)) {
@@ -331,7 +332,7 @@ class JsonController extends IndexController
             'filterList' => $filterList,
             'paginator' => array(
                 'count' => $count,
-                'limit' => intval($config['view_perpage']),
+                'limit' => $limit,
                 'page' => $page,
             ),
             'condition' => array(
@@ -502,8 +503,10 @@ class JsonController extends IndexController
             'largeUrl' => $singleVideo['largeUrl'],
             'qmeryDirect' => $singleVideo['qmeryDirect'],
             'qmeryScript' => $singleVideo['qmeryScript'],
+            'qmeryScript' => $singleVideo['qmeryScript'],
             'video_qmery_id' => $singleVideo['video_qmery_id'],
             'video_qmery_hash' => $singleVideo['video_qmery_hash'],
+            'video_qmery_hls' => $singleVideo['video_qmery_hls'],
             'videoRelated' => $videoRelated,
         );
         return $video;
