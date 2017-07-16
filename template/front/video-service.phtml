@@ -1,17 +1,26 @@
-<?php if (isset($videoServiceList) && !empty($videoServiceList)) { ?>
-    <?php if (!isset($videoServiceCol) || empty($videoServiceCol)) {
-        $videoServiceCol = 'col-xs-8 col-xs-offset-2';
+<?php if (isset($videoServiceList) && !empty($videoServiceList)) {
+    $this->css($this->assetModule('css/front.css', 'video'));
+    if (!isset($videoServiceCol) || empty($videoServiceCol)) {
+        $videoServiceCol = 'col-md-8 col-md-offset-2 col-xs-12';
     } ?>
     <div class="clearfix row video-service-list">
         <?php foreach ($videoServiceList as $videoService) { ?>
+            <?php $this->headScript()->appendFile($videoService['qmeryScript']); ?>
             <div class="video-service <?php echo $videoServiceCol; ?>" itemscope itemtype="https://schema.org/VideoObject">
                 <meta itemprop="thumbnail" content="<?php echo $this->escape($videoService['largeUrl']); ?>" />
                 <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoService['time_create'])); ?>" />
                 <meta itemprop="contentUrl" content="<?php echo $this->escape($videoService['videoFileUrl']); ?>" />
                 <div class="clearfix text-center video-player">
-                    <?php echo $this->videojs($videoService['videoFileUrl'], $videoService['largeUrl']); ?>
+                    <div class="qmery-player-min-height">
+                        <div class="qmery-player-full-height">
+                            <div class="qmery-player">
+                                <div id="embed_qmery_player_<?php echo $this->escape($videoService['video_qmery_id']); ?>"></div>
+                                <div id="embed_qmery_player_icons<?php echo $this->escape($videoService['video_qmery_id']); ?>"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="clearfix video-information">
+                <?php /* <div class="clearfix video-information">
                     <ul class="text-muted list-inline small">
                         <li>
                             <i class="fa fa-file"></i>
@@ -21,17 +30,8 @@
                         </li>
                         <li><i class="fa fa-calendar"></i> <?php echo $this->escape($videoService['time_update_view']); ?></li>
                         <li><i class="fa fa-eye"></i> <?php echo _number($this->escape($videoService['hits'])); ?></li>
-                        <li><i class="fa fa-clock-o"></i> <?php echo $this->escape($videoService['video_duration_view']); ?></li>
-                        <li><i class="fa fa-folder"></i></li>
-                        <?php foreach ($videoService['categories'] as $videoServiceCategory) { ?>
-                            <li class="p-category" itemprop="about">
-                                <a title="<?php echo $this->escape($videoServiceCategory['title']); ?>" href="<?php echo $this->escape($videoServiceCategory['url']); ?>" target="_blank" rel="external">
-                                    <?php echo $this->escape($videoServiceCategory['title']); ?>
-                                </a>
-                            </li>
-                        <?php } ?>
                     </ul>
-                </div>
+                </div> */ ?>
             </div>
         <?php } ?>
     </div>

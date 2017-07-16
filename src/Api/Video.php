@@ -515,6 +515,7 @@ class Video extends AbstractApi
                     $video['server']['url'],
                     $video['video_qmery_hash']
                 );
+
                 break;
 
             case 'wowza':

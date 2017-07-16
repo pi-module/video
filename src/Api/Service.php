@@ -37,7 +37,7 @@ class Service extends AbstractApi
         $rowset = Pi::model('service', $this->getModule())->selectWith($select);
         foreach ($rowset as $row) {
             // Canonize video
-            $list[$row->id] = Pi::api('video', 'video')->getVideo($row->id);;
+            $list[$row->id] = Pi::api('video', 'video')->getVideo($row->id);
             // Update Hits
             if ($hits) {
                 Pi::model('video', $this->getModule())->increment('hits', array('id' => $row->id));
