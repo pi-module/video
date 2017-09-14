@@ -437,6 +437,9 @@ class JsonController extends IndexController
                 'videoUrl' => $singleVideo['videoUrl'],
                 'largeUrl' => $singleVideo['largeUrl'],
                 'qmeryDirect' => $singleVideo['qmeryDirect'],
+                'video_qmery_id' => $singleVideo['video_qmery_id'],
+                'video_qmery_hash' => $singleVideo['video_qmery_hash'],
+                'video_qmery_hls' => $singleVideo['video_qmery_hls'],
             );
         }
         // Set view
@@ -481,6 +484,7 @@ class JsonController extends IndexController
                 'slug' => $videoRelatedSingle['slug'],
                 'mediumUrl' => $videoRelatedSingle['mediumUrl'],
                 'thumbUrl' => $videoRelatedSingle['thumbUrl'],
+                'video_qmery_hls' => $videoRelatedSingle['video_qmery_hls'],
             );
         }
         // Set video
