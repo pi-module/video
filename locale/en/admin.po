@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2017-05-17 11:18+0430\n"
+"POT-Creation-Date: 2017-11-03 10:27+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
@@ -213,7 +213,7 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: config/config.php:29 config/navigation.php:240 config/page.php:100
+#: config/config.php:29 config/navigation.php:250 config/page.php:100
 #: config/permission.php:57
 msgid "Submit"
 msgstr ""
@@ -463,45 +463,49 @@ msgstr ""
 msgid "Sync category"
 msgstr ""
 
-#: config/navigation.php:108 config/page.php:28 config/permission.php:26
+#: config/navigation.php:105
+msgid "Merge category"
+msgstr ""
+
+#: config/navigation.php:118 config/page.php:28 config/permission.php:26
 msgid "Server"
 msgstr ""
 
-#: config/navigation.php:119 config/navigation.php:129 config/page.php:33
+#: config/navigation.php:129 config/navigation.php:139 config/page.php:33
 #: config/permission.php:30
 msgid "Attribute"
 msgstr ""
 
-#: config/navigation.php:139
+#: config/navigation.php:149
 msgid "Attribute position"
 msgstr ""
 
-#: config/navigation.php:152 config/navigation.php:162 config/page.php:43
+#: config/navigation.php:162 config/navigation.php:172 config/page.php:43
 #: config/permission.php:38
 msgid "Tools"
 msgstr ""
 
-#: config/navigation.php:173
+#: config/navigation.php:183
 msgid "Sitemap"
 msgstr ""
 
-#: config/navigation.php:184 config/page.php:38 config/permission.php:34
+#: config/navigation.php:194 config/page.php:38 config/permission.php:34
 msgid "Logs"
 msgstr ""
 
-#: config/navigation.php:195 config/permission.php:42
+#: config/navigation.php:205 config/permission.php:42
 msgid "Json"
 msgstr ""
 
-#: config/navigation.php:210 config/page.php:68
+#: config/navigation.php:220 config/page.php:68
 msgid "Category list"
 msgstr ""
 
-#: config/navigation.php:220 config/page.php:81
+#: config/navigation.php:230 config/page.php:81
 msgid "Tag list"
 msgstr ""
 
-#: config/navigation.php:230
+#: config/navigation.php:240
 msgid "Your channel"
 msgstr ""
 
@@ -525,6 +529,6 @@ msgstr ""
 msgid "Global public resource"
 msgstr ""
 
-#: template/admin/video-index.phtml:147
+#: template/admin/video-index.phtml:157
 msgid "Are you sure to delete this video?"
 msgstr ""
