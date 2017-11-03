@@ -46,7 +46,7 @@ class JsonController extends IndexController
         }
 
         // Clean params
-        $paramsClean = array();
+        $paramsClean = [];
         foreach ($_GET as $key => $value) {
             $key = _strip(urldecode($key));
             $value = _strip(urldecode($value));
@@ -57,15 +57,15 @@ class JsonController extends IndexController
         $config = Pi::service('registry')->config->read($module);
 
         // Set empty result
-        $result = array(
-            'videos' => array(),
-            'filterList' => array(),
-            'paginator' => array(),
-            'condition' => array(),
-        );
+        $result = [
+            'videos'     => [],
+            'filterList' => [],
+            'paginator'  => [],
+            'condition'  => [],
+        ];
 
         // Set where link
-        $whereLink = array('status' => 1);
+        $whereLink = ['status' => 1];
         if (!empty($recommended) && $recommended == 1) {
             $whereLink['recommended'] = 1;
         }
@@ -76,39 +76,39 @@ class JsonController extends IndexController
         // Set order
         switch ($order) {
             case 'title':
-                $order = array('title DESC', 'id DESC');
+                $order = ['title DESC', 'id DESC'];
                 break;
 
             case 'titleASC':
-                $order = array('title ASC', 'id ASC');
+                $order = ['title ASC', 'id ASC'];
                 break;
 
             case 'hits':
-                $order = array('hits DESC', 'id DESC');
+                $order = ['hits DESC', 'id DESC'];
                 break;
 
             case 'hitsASC':
-                $order = array('hits ASC', 'id ASC');
+                $order = ['hits ASC', 'id ASC'];
                 break;
 
             case 'create':
-                $order = array('time_create DESC', 'id DESC');
+                $order = ['time_create DESC', 'id DESC'];
                 break;
 
             case 'createASC':
-                $order = array('time_create ASC', 'id ASC');
+                $order = ['time_create ASC', 'id ASC'];
                 break;
 
             case 'update':
-                $order = array('time_update DESC', 'id DESC');
+                $order = ['time_update DESC', 'id DESC'];
                 break;
 
             case 'recommended':
-                $order = array('recommended DESC', 'time_create DESC', 'id DESC');
+                $order = ['recommended DESC', 'time_create DESC', 'id DESC'];
                 break;
 
             default:
-                $order = array('time_create DESC', 'id DESC');
+                $order = ['time_create DESC', 'id DESC'];
                 break;
         }
 
@@ -123,7 +123,7 @@ class JsonController extends IndexController
             // category list
             $categories = Pi::api('category', 'video')->categoryList($category['id']);
             // Get id list
-            $categoryIDList = array();
+            $categoryIDList = [];
             $categoryIDList[] = $category['id'];
             foreach ($categories as $singleCategory) {
                 $categoryIDList[] = $singleCategory['id'];
@@ -134,7 +134,7 @@ class JsonController extends IndexController
 
         // Get tag list
         if (!empty($tag)) {
-            $videoIDTag = array();
+            $videoIDTag = [];
             // Check favourite
             if (!Pi::service('module')->isActive('tag')) {
                 return $result;
@@ -186,16 +186,16 @@ class JsonController extends IndexController
         // Set video ID list
         $checkTitle = false;
         $checkAttribute = false;
-        $videoIDList = array(
-            'title' => array(),
-            'attribute' => array(),
-        );
+        $videoIDList = [
+            'title'     => [],
+            'attribute' => [],
+        ];
 
         // Check title from video table
         if (isset($title) && !empty($title)) {
             $checkTitle = true;
-            $titles = is_array($title) ? $title : array($title);
-            $columns = array('id');
+            $titles = is_array($title) ? $title : [$title];
+            $columns = ['id'];
             $select = $this->getModel('video')->select()->columns($columns)->where(function ($where) use ($titles, $recommended) {
                 $whereMain = clone $where;
                 $whereKey = clone $where;
@@ -217,24 +217,24 @@ class JsonController extends IndexController
         // Check attribute
         if (!empty($paramsClean)) {
             // Make attribute list
-            $attributeList = array();
+            $attributeList = [];
             foreach ($filterList as $filterSingle) {
                 if (isset($paramsClean[$filterSingle['name']]) && !empty($paramsClean[$filterSingle['name']])) {
-                    $attributeList[$filterSingle['name']] = array(
+                    $attributeList[$filterSingle['name']] = [
                         'field' => $filterSingle['id'],
-                        'data' => $paramsClean[$filterSingle['name']],
-                    );
+                        'data'  => $paramsClean[$filterSingle['name']],
+                    ];
                 }
             }
             // Search on attribute
             if (!empty($attributeList)) {
                 $checkAttribute = true;
-                $column = array('video');
+                $column = ['video'];
                 foreach ($attributeList as $attributeSingle) {
-                    $where = array(
+                    $where = [
                         'field' => $attributeSingle['field'],
-                        'data' => $attributeSingle['data'],
-                    );
+                        'data'  => $attributeSingle['data'],
+                    ];
                     $select = $this->getModel('field_data')->select()->where($where)->columns($column);
                     $rowset = $this->getModel('field_data')->selectWith($select);
                     foreach ($rowset as $row) {
@@ -245,10 +245,10 @@ class JsonController extends IndexController
         }
 
         // Set info
-        $video = array();
+        $video = [];
         $count = 0;
 
-        $columns = array('video' => new Expression('DISTINCT video'));
+        $columns = ['video' => new Expression('DISTINCT video')];
         $limit = (intval($limit) > 0) ? intval($limit) : intval($config['view_perpage']);
         $offset = (int)($page - 1) * $limit;
 
@@ -312,7 +312,7 @@ class JsonController extends IndexController
 
             // Get list of video
             if (!empty($videoIDSelect)) {
-                $where = array('status' => 1, 'id' => $videoIDSelect);
+                $where = ['status' => 1, 'id' => $videoIDSelect];
                 $select = $this->getModel('video')->select()->where($where)->order($order);
                 $rowset = $this->getModel('video')->selectWith($select);
                 foreach ($rowset as $row) {
@@ -321,24 +321,24 @@ class JsonController extends IndexController
             }
 
             // Get count
-            $columnsCount = array('count' => new Expression('count(DISTINCT `video`)'));
+            $columnsCount = ['count' => new Expression('count(DISTINCT `video`)')];
             $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsCount);
             $count = $this->getModel('link')->selectWith($select)->current()->count;
         }
 
         // Set result
-        $result = array(
-            'videos' => $video,
+        $result = [
+            'videos'     => $video,
             'filterList' => $filterList,
-            'paginator' => array(
+            'paginator'  => [
                 'count' => $count,
                 'limit' => $limit,
-                'page' => $page,
-            ),
-            'condition' => array(
+                'page'  => $page,
+            ],
+            'condition'  => [
                 'title' => $pageTitle,
-            ),
-        );
+            ],
+        ];
 
         return $result;
     }
@@ -365,13 +365,13 @@ class JsonController extends IndexController
         // Get server list
         $serverList = Pi::registry('serverList', 'video')->read();
         // Set info
-        $video = array();
-        $where = array('status' => 1);
+        $video = [];
+        $where = ['status' => 1];
         if ($update > 0) {
             $where['time_update > ?'] = $update;
         }
         $limit = (!empty($limit)) ? $limit : $config['json_perpage'];
-        $order = array('time_create DESC', 'id DESC');
+        $order = ['time_create DESC', 'id DESC'];
         // Set type
         switch ($type) {
             default:
@@ -391,7 +391,7 @@ class JsonController extends IndexController
 
             case 'hit':
                 // Set info
-                $order = array('hits DESC', 'time_create DESC', 'id DESC');
+                $order = ['hits DESC', 'time_create DESC', 'id DESC'];
                 // Get list of video
                 $select = $this->getModel('video')->select()->where($where)->order($order)->limit($limit);
                 $rowset = $this->getModel('video')->selectWith($select);
@@ -400,7 +400,7 @@ class JsonController extends IndexController
             case 'category':
                 // Set info
                 $where['category'] = $id;
-                $columns = array('video' => new Expression('DISTINCT video'));
+                $columns = ['video' => new Expression('DISTINCT video')];
                 // Get info from link table
                 $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order);
                 $rowset = $this->getModel('link')->selectWith($select)->toArray();
@@ -412,7 +412,7 @@ class JsonController extends IndexController
                     return $video;
                 }
                 // Set info
-                $where = array('status' => 1, 'id' => $videoId);
+                $where = ['status' => 1, 'id' => $videoId];
                 // Get list of video
                 $select = $this->getModel('video')->select()->where($where)->order($order);
                 $rowset = $this->getModel('video')->selectWith($select);
@@ -421,26 +421,26 @@ class JsonController extends IndexController
         // canonize video
         foreach ($rowset as $row) {
             $singleVideo = Pi::api('video', 'video')->canonizeVideoJson($row, $categoryList, $serverList);
-            $video[] = array(
-                'id' => $singleVideo['id'],
-                'title' => $singleVideo['title'],
-                'slug' => $singleVideo['slug'],
-                'body' => '',
-                'category' => $singleVideo['category_main'],
+            $video[] = [
+                'id'                => $singleVideo['id'],
+                'title'             => $singleVideo['title'],
+                'slug'              => $singleVideo['slug'],
+                'body'              => '',
+                'category'          => $singleVideo['category_main'],
                 'categoryMainTitle' => '',
-                'image' => $singleVideo['image'],
-                'recommended' => $singleVideo['recommended'],
-                'time_create' => $singleVideo['time_create'],
-                'time_create_view' => $singleVideo['time_create_view'],
-                'time_update' => $singleVideo['time_create'],
-                'time_update_view' => $singleVideo['time_create_view'],
-                'videoUrl' => $singleVideo['videoUrl'],
-                'largeUrl' => $singleVideo['largeUrl'],
-                'qmeryDirect' => $singleVideo['qmeryDirect'],
-                'video_qmery_id' => $singleVideo['video_qmery_id'],
-                'video_qmery_hash' => $singleVideo['video_qmery_hash'],
-                'video_qmery_hls' => $singleVideo['video_qmery_hls'],
-            );
+                'image'             => $singleVideo['image'],
+                'recommended'       => $singleVideo['recommended'],
+                'time_create'       => $singleVideo['time_create'],
+                'time_create_view'  => $singleVideo['time_create_view'],
+                'time_update'       => $singleVideo['time_create'],
+                'time_update_view'  => $singleVideo['time_create_view'],
+                'videoUrl'          => $singleVideo['videoUrl'],
+                'largeUrl'          => $singleVideo['largeUrl'],
+                'qmeryDirect'       => $singleVideo['qmeryDirect'],
+                'video_qmery_id'    => $singleVideo['video_qmery_id'],
+                'video_qmery_hash'  => $singleVideo['video_qmery_hash'],
+                'video_qmery_hls'   => $singleVideo['video_qmery_hls'],
+            ];
         }
         // Set view
         return $video;
@@ -470,53 +470,54 @@ class JsonController extends IndexController
             return false;
         }
         // Set r
-        $where = array(
-            'status'          => 1,
-            'category'        => $singleVideo['category'],
-            'video != ?'      => $singleVideo['id'],
-        );
-        $videoRelated = array();
+        $where = [
+            'status'     => 1,
+            'category'   => $singleVideo['category'],
+            'video != ?' => $singleVideo['id'],
+        ];
+        $videoRelated = [];
         $videoRelatedList = $this->videoList($where, $config['view_related_number']);
         foreach ($videoRelatedList as $videoRelatedSingle) {
-            $videoRelated[] = array(
-                'id' => $videoRelatedSingle['id'],
-                'title' => $videoRelatedSingle['title'],
-                'slug' => $videoRelatedSingle['slug'],
-                'mediumUrl' => $videoRelatedSingle['mediumUrl'],
-                'thumbUrl' => $videoRelatedSingle['thumbUrl'],
+            $videoRelated[] = [
+                'id'              => $videoRelatedSingle['id'],
+                'title'           => $videoRelatedSingle['title'],
+                'slug'            => $videoRelatedSingle['slug'],
+                'mediumUrl'       => $videoRelatedSingle['mediumUrl'],
+                'thumbUrl'        => $videoRelatedSingle['thumbUrl'],
                 'video_qmery_hls' => $videoRelatedSingle['video_qmery_hls'],
-            );
+            ];
         }
         // Set video
-        $video = array();
-        $video[] = array(
-            'id' => $singleVideo['id'],
-            'title' => $singleVideo['title'],
-            'slug' => $singleVideo['slug'],
-            'time_create' => $singleVideo['time_create'],
-            'time_create_view' => $singleVideo['time_create_view'],
-            'categories' => $singleVideo['categories'],
-            'hits' => $singleVideo['hits'],
-            'recommended' => $singleVideo['recommended'],
-            'favourite' => $singleVideo['favourite'],
+        $video = [];
+        $video[] = [
+            'id'                  => $singleVideo['id'],
+            'title'               => $singleVideo['title'],
+            'slug'                => $singleVideo['slug'],
+            'time_create'         => $singleVideo['time_create'],
+            'time_create_view'    => $singleVideo['time_create_view'],
+            'categories'          => $singleVideo['categories'],
+            'hits'                => $singleVideo['hits'],
+            'recommended'         => $singleVideo['recommended'],
+            'favourite'           => $singleVideo['favourite'],
             'video_duration_view' => $singleVideo['video_duration_view'],
-            'text_summary' => $singleVideo['text_summary'],
-            'text_description' => $singleVideo['text_description'],
-            'channelUrl' => $singleVideo['channelUrl'],
-            'videoUrl' => $singleVideo['videoUrl'],
-            'largeUrl' => $singleVideo['largeUrl'],
-            'qmeryDirect' => $singleVideo['qmeryDirect'],
-            'qmeryScript' => $singleVideo['qmeryScript'],
-            'qmeryScript' => $singleVideo['qmeryScript'],
-            'video_qmery_id' => $singleVideo['video_qmery_id'],
-            'video_qmery_hash' => $singleVideo['video_qmery_hash'],
-            'video_qmery_hls' => $singleVideo['video_qmery_hls'],
-            'videoRelated' => $videoRelated,
-        );
+            'text_summary'        => $singleVideo['text_summary'],
+            'text_description'    => $singleVideo['text_description'],
+            'channelUrl'          => $singleVideo['channelUrl'],
+            'videoUrl'            => $singleVideo['videoUrl'],
+            'largeUrl'            => $singleVideo['largeUrl'],
+            'qmeryDirect'         => $singleVideo['qmeryDirect'],
+            'qmeryScript'         => $singleVideo['qmeryScript'],
+            'qmeryScript'         => $singleVideo['qmeryScript'],
+            'video_qmery_id'      => $singleVideo['video_qmery_id'],
+            'video_qmery_hash'    => $singleVideo['video_qmery_hash'],
+            'video_qmery_hls'     => $singleVideo['video_qmery_hls'],
+            'videoRelated'        => $videoRelated,
+        ];
         return $video;
     }
 
-    public function checkPassword() {
+    public function checkPassword()
+    {
         // Get info from url
         $module = $this->params('module');
         $password = $this->params('password');

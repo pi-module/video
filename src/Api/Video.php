@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Api;
 
 use Pi;
@@ -62,8 +63,8 @@ class Video extends AbstractApi
 
     public function getListFromId($id)
     {
-        $list = array();
-        $where = array('id' => $id, 'status' => 1);
+        $list = [];
+        $where = ['id' => $id, 'status' => 1];
         $select = Pi::model('video', $this->getModule())->select()->where($where);
         $rowset = Pi::model('video', $this->getModule())->selectWith($select);
         foreach ($rowset as $row) {
@@ -74,8 +75,8 @@ class Video extends AbstractApi
 
     public function getListFromIdLight($id)
     {
-        $list = array();
-        $where = array('id' => $id, 'status' => 1);
+        $list = [];
+        $where = ['id' => $id, 'status' => 1];
         $select = Pi::model('video', $this->getModule())->select()->where($where);
         $rowset = Pi::model('video', $this->getModule())->selectWith($select);
         foreach ($rowset as $row) {
@@ -87,11 +88,11 @@ class Video extends AbstractApi
     public function attributeCount($id)
     {
         // Get attach count
-        $columns = array('count' => new Expression('count(*)'));
+        $columns = ['count' => new Expression('count(*)')];
         $select = Pi::model('field_data', $this->getModule())->select()->columns($columns);
         $count = Pi::model('field_data', $this->getModule())->selectWith($select)->current()->count;
         // Set attach count
-        Pi::model('video', $this->getModule())->update(array('attribute' => $count), array('id' => $id));
+        Pi::model('video', $this->getModule())->update(['attribute' => $count], ['id' => $id]);
     }
 
     public function getDuration($secs)
@@ -99,7 +100,7 @@ class Video extends AbstractApi
         $time = '';
         if (!empty($secs)) {
             if ($secs < 3600) {
-                $times = array(60, 1);
+                $times = [60, 1];
                 $time = '';
                 for ($i = 0; $i < 2; $i++) {
                     $tmp = floor($secs / $times[$i]);
@@ -115,7 +116,7 @@ class Video extends AbstractApi
                     $secs = $secs % $times[$i];
                 }
             } else {
-                $times = array(3600, 60, 1);
+                $times = [3600, 60, 1];
                 $time = '';
                 for ($i = 0; $i < 3; $i++) {
                     $tmp = floor($secs / $times[$i]);
@@ -190,11 +191,11 @@ class Video extends AbstractApi
         switch ($config['sale_video']) {
             case 'package':
                 if (Pi::service('module')->isActive('plans')) {
-                    $url = Pi::url(Pi::service('url')->assemble('plans', array(
-                        'module' => 'plans',
+                    $url = Pi::url(Pi::service('url')->assemble('plans', [
+                        'module'     => 'plans',
                         'controller' => 'index',
-                        'action' => 'index',
-                    )));
+                        'action'     => 'index',
+                    ]));
                 }
                 break;
 
@@ -205,7 +206,7 @@ class Video extends AbstractApi
         return $url;
     }
 
-    public function canonizeVideo($video, $categoryList = array(), $serverList = array())
+    public function canonizeVideo($video, $categoryList = [], $serverList = [])
     {
         // Check
         if (empty($video)) {
@@ -220,7 +221,7 @@ class Video extends AbstractApi
         // boject to array
         $video = $video->toArray();
         // Check title
-        if  (empty($video['title'])) {
+        if (empty($video['title'])) {
             $video['title'] = sprintf(__('Submitted video on %s'), _date($video['time_create']));
         }
         // Set server information
@@ -235,17 +236,17 @@ class Video extends AbstractApi
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
         // Set video url
-        $video['videoUrl'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
+        $video['videoUrl'] = Pi::url(Pi::service('url')->assemble('video', [
+            'module'     => $this->getModule(),
             'controller' => 'watch',
-            'slug' => $video['slug'],
-        )));
+            'slug'       => $video['slug'],
+        ]));
         // Set channel url
-        $video['channelUrl'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
+        $video['channelUrl'] = Pi::url(Pi::service('url')->assemble('video', [
+            'module'     => $this->getModule(),
             'controller' => 'channel',
-            'id' => $video['uid'],
-        )));
+            'id'         => $video['uid'],
+        ]));
         // Set local server path
         $video['localFilePath'] = Pi::path(sprintf('%s/%s',
             $video['video_path'],
@@ -343,11 +344,11 @@ class Video extends AbstractApi
         foreach ($video['category'] as $category) {
             if (!empty($categoryList[$category]['title'])) {
                 $video['categories'][$category]['title'] = $categoryList[$category]['title'];
-                $video['categories'][$category]['url'] = Pi::url(Pi::service('url')->assemble('video', array(
-                    'module' => $this->getModule(),
+                $video['categories'][$category]['url'] = Pi::url(Pi::service('url')->assemble('video', [
+                    'module'     => $this->getModule(),
                     'controller' => 'category',
-                    'slug' => $categoryList[$category]['slug'],
-                )));
+                    'slug'       => $categoryList[$category]['slug'],
+                ]));
             }
         }
         // Set image url
@@ -405,17 +406,17 @@ class Video extends AbstractApi
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
         // Set video url
-        $video['videoUrl'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
+        $video['videoUrl'] = Pi::url(Pi::service('url')->assemble('video', [
+            'module'     => $this->getModule(),
             'controller' => 'watch',
-            'slug' => $video['slug'],
-        )));
+            'slug'       => $video['slug'],
+        ]));
         // Set channel url
-        $video['channelUrl'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
+        $video['channelUrl'] = Pi::url(Pi::service('url')->assemble('video', [
+            'module'     => $this->getModule(),
             'controller' => 'channel',
-            'id' => $video['uid'],
-        )));
+            'id'         => $video['uid'],
+        ]));
         // Set image url
         if ($video['image']) {
             // Set image thumb url
@@ -441,7 +442,7 @@ class Video extends AbstractApi
         return $video;
     }
 
-    public function canonizeVideoJson($video, $categoryList = array(), $serverList = array())
+    public function canonizeVideoJson($video, $categoryList = [], $serverList = [])
     {
         // Check
         if (empty($video)) {
@@ -467,17 +468,17 @@ class Video extends AbstractApi
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
         // Set video url
-        $video['videoUrl'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
+        $video['videoUrl'] = Pi::url(Pi::service('url')->assemble('video', [
+            'module'     => $this->getModule(),
             'controller' => 'watch',
-            'slug' => $video['slug'],
-        )));
+            'slug'       => $video['slug'],
+        ]));
         // Set channel url
-        $video['channelUrl'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
+        $video['channelUrl'] = Pi::url(Pi::service('url')->assemble('video', [
+            'module'     => $this->getModule(),
             'controller' => 'channel',
-            'id' => $video['uid'],
-        )));
+            'id'         => $video['uid'],
+        ]));
         // Set video file url
         switch ($video['server']['type']) {
             case 'file':
@@ -567,11 +568,11 @@ class Video extends AbstractApi
         foreach ($video['category'] as $category) {
             if (!empty($categoryList[$category]['title'])) {
                 $video['categories'][$category]['title'] = $categoryList[$category]['title'];
-                $video['categories'][$category]['url'] = Pi::url(Pi::service('url')->assemble('video', array(
-                    'module' => $this->getModule(),
+                $video['categories'][$category]['url'] = Pi::url(Pi::service('url')->assemble('video', [
+                    'module'     => $this->getModule(),
                     'controller' => 'category',
-                    'slug' => $categoryList[$category]['slug'],
-                )));
+                    'slug'       => $categoryList[$category]['slug'],
+                ]));
             }
         }
         // Set image url
@@ -619,7 +620,7 @@ class Video extends AbstractApi
         return $video;
     }
 
-    public function canonizeVideoFilter($video, $categoryList = array(), $filterList = array())
+    public function canonizeVideoFilter($video, $categoryList = [], $filterList = [])
     {
         // Check
         if (empty($video)) {
@@ -645,28 +646,28 @@ class Video extends AbstractApi
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
         // Set video url
-        $video['videoUrl'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
+        $video['videoUrl'] = Pi::url(Pi::service('url')->assemble('video', [
+            'module'     => $this->getModule(),
             'controller' => 'watch',
-            'slug' => $video['slug'],
-        )));
+            'slug'       => $video['slug'],
+        ]));
         // Set channel url
-        $video['channelUrl'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
+        $video['channelUrl'] = Pi::url(Pi::service('url')->assemble('video', [
+            'module'     => $this->getModule(),
             'controller' => 'channel',
-            'id' => $video['uid'],
-        )));
+            'id'         => $video['uid'],
+        ]));
         // Set category information
         if (isset($video['category']) && !empty($video['category'])) {
             $video['category'] = json_decode($video['category']);
             foreach ($video['category'] as $category) {
                 $video['categories'][$category]['id'] = $categoryList[$category]['id'];
                 $video['categories'][$category]['title'] = $categoryList[$category]['title'];
-                $video['categories'][$category]['url'] = Pi::url(Pi::service('url')->assemble('video', array(
-                    'module' => $this->getModule(),
+                $video['categories'][$category]['url'] = Pi::url(Pi::service('url')->assemble('video', [
+                    'module'     => $this->getModule(),
                     'controller' => 'category',
-                    'slug' => $categoryList[$category]['slug'],
-                )));
+                    'slug'       => $categoryList[$category]['slug'],
+                ]));
             }
         }
         // Set image url
@@ -727,16 +728,16 @@ class Video extends AbstractApi
             // Remove old links
             Pi::api('sitemap', 'sitemap')->removeAll($this->getModule(), 'video');
             // find and import
-            $columns = array('id', 'slug', 'status');
+            $columns = ['id', 'slug', 'status'];
             $select = Pi::model('video', $this->getModule())->select()->columns($columns);
             $rowset = Pi::model('video', $this->getModule())->selectWith($select);
             foreach ($rowset as $row) {
                 // Make url
-                $loc = Pi::url(Pi::service('url')->assemble('video', array(
-                    'module' => $this->getModule(),
+                $loc = Pi::url(Pi::service('url')->assemble('video', [
+                    'module'     => $this->getModule(),
                     'controller' => 'watch',
-                    'slug' => $row->slug,
-                )));
+                    'slug'       => $row->slug,
+                ]));
                 // Add to sitemap
                 Pi::api('sitemap', 'sitemap')->groupLink($loc, $row->status, $this->getModule(), 'video', $row->id);
             }

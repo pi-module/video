@@ -11,27 +11,28 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Controller\Admin;
 
+use Module\Video\Form\AdminSearchFilter;
+use Module\Video\Form\AdminSearchForm;
+use Module\Video\Form\VideoAdditionalFilter;
+use Module\Video\Form\VideoAdditionalForm;
+use Module\Video\Form\VideoExternalFilter;
+use Module\Video\Form\VideoExternalForm;
+use Module\Video\Form\VideoFilter;
+use Module\Video\Form\VideoForm;
+use Module\Video\Form\VideoLinkFilter;
+use Module\Video\Form\VideoLinkForm;
+use Module\Video\Form\VideoUploadFilter;
+use Module\Video\Form\VideoUploadForm;
 use Pi;
+use Pi\File\Transfer\Upload;
 use Pi\Filter;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Pi\File\Transfer\Upload;
-use Module\Video\Form\VideoForm;
-use Module\Video\Form\VideoFilter;
-use Module\Video\Form\VideoAdditionalForm;
-use Module\Video\Form\VideoAdditionalFilter;
-use Module\Video\Form\VideoUploadForm;
-use Module\Video\Form\VideoUploadFilter;
-use Module\Video\Form\VideoLinkForm;
-use Module\Video\Form\VideoLinkFilter;
-use Module\Video\Form\VideoExternalForm;
-use Module\Video\Form\VideoExternalFilter;
-use Module\Video\Form\AdminSearchForm;
-use Module\Video\Form\AdminSearchFilter;
-use Zend\Math\Rand;
 use Zend\Db\Sql\Predicate\Expression;
+use Zend\Math\Rand;
 
 class VideoController extends ActionController
 {
@@ -51,11 +52,11 @@ class VideoController extends ActionController
         $config = Pi::service('registry')->config->read($module);
         // Set info
         $offset = (int)($page - 1) * $this->config('admin_perpage');
-        $order = array('time_create DESC', 'id DESC');
+        $order = ['time_create DESC', 'id DESC'];
         $limit = intval($this->config('admin_perpage'));
-        $video = array();
+        $video = [];
         // Set where
-        $whereVideo = array();
+        $whereVideo = [];
         if (!empty($recommended)) {
             $whereVideo['recommended'] = 1;
         }
@@ -63,8 +64,8 @@ class VideoController extends ActionController
             $whereVideo['brand'] = $brand;
         }
         if (!empty($category)) {
-            $videoId = array();
-            $whereLink = array('category' => $category);
+            $videoId = [];
+            $whereLink = ['category' => $category];
             $selectLink = $this->getModel('link')->select()->where($whereLink);
             $rowLink = $this->getModel('link')->selectWith($selectLink);
             foreach ($rowLink as $link) {
@@ -76,10 +77,10 @@ class VideoController extends ActionController
                 $whereVideo['id'] = 0;
             }
         }
-        if (!empty($status) && in_array($status, array(1, 2, 3, 4, 5))) {
+        if (!empty($status) && in_array($status, [1, 2, 3, 4, 5])) {
             $whereVideo['status'] = $status;
         } else {
-            $whereVideo['status'] = array(1, 2, 3, 4);
+            $whereVideo['status'] = [1, 2, 3, 4];
         }
         if (!empty($title)) {
             // Set title
@@ -88,7 +89,7 @@ class VideoController extends ActionController
             } elseif (isset($title) && !empty($title)) {
                 $title = _strip($title);
             }
-            $title = is_array($title) ? $title : array($title);
+            $title = is_array($title) ? $title : [$title];
             $titleWhere = function ($where) use ($title) {
                 $whereKey = clone $where;
                 foreach ($title as $term) {
@@ -109,7 +110,7 @@ class VideoController extends ActionController
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
         // Set count
-        $columnsLink = array('count' => new Expression('count(*)'));
+        $columnsLink = ['count' => new Expression('count(*)')];
         $select = $this->getModel('video')->select();
         if (!empty($title)) {
             $select->where($titleWhere);
@@ -122,30 +123,30 @@ class VideoController extends ActionController
         $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($this->config('admin_perpage'));
         $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions(array(
+        $paginator->setUrlOptions([
             'router' => $this->getEvent()->getRouter(),
-            'route' => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params' => array_filter(array(
-                'module' => $this->getModule(),
-                'controller' => 'video',
-                'action' => 'index',
-                'category' => $category,
-                'brand' => $brand,
-                'status' => $status,
-                'title' => $title,
+            'route'  => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+            'params' => array_filter([
+                'module'      => $this->getModule(),
+                'controller'  => 'video',
+                'action'      => 'index',
+                'category'    => $category,
+                'brand'       => $brand,
+                'status'      => $status,
+                'title'       => $title,
                 'recommended' => $recommended,
-            )),
-        ));
+            ]),
+        ]);
         // Set form
-        $values = array(
-            'title' => $title,
-            'category' => $category,
-            'brand' => $brand,
-            'status' => $status,
+        $values = [
+            'title'       => $title,
+            'category'    => $category,
+            'brand'       => $brand,
+            'status'      => $status,
             'recommended' => $recommended,
-        );
+        ];
         $form = new AdminSearchForm('search');
-        $form->setAttribute('action', $this->url('', array('action' => 'process')));
+        $form->setAttribute('action', $this->url('', ['action' => 'process']));
         $form->setData($values);
         // Server list
         $serverList = Pi::registry('serverList', 'video')->read();
@@ -168,25 +169,25 @@ class VideoController extends ActionController
             if ($form->isValid()) {
                 $values = $form->getData();
                 $message = __('View filtered videos');
-                $url = array(
-                    'action' => 'index',
-                    'title' => $values['title'],
-                    'category' => $values['category'],
-                    'brand' => $values['brand'],
-                    'status' => $values['status'],
+                $url = [
+                    'action'      => 'index',
+                    'title'       => $values['title'],
+                    'category'    => $values['category'],
+                    'brand'       => $values['brand'],
+                    'status'      => $values['status'],
                     'recommended' => $values['recommended'],
-                );
+                ];
             } else {
                 $message = __('Not valid');
-                $url = array(
+                $url = [
                     'action' => 'index',
-                );
+                ];
             }
         } else {
             $message = __('Not set');
-            $url = array(
+            $url = [
                 'action' => 'index',
-            );
+            ];
         }
         return $this->jump($url, $message);
     }
@@ -196,18 +197,18 @@ class VideoController extends ActionController
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
-            return $this->redirect()->toRoute('', array(
+            return $this->redirect()->toRoute('', [
                 'controller' => 'category',
-                'action' => 'update'
-            ));
+                'action'     => 'update',
+            ]);
         }
         // Server list
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
-            return $this->redirect()->toRoute('', array(
+            return $this->redirect()->toRoute('', [
                 'controller' => 'server',
-                'action' => 'update'
-            ));
+                'action'     => 'update',
+            ]);
         }
         // Get info from url
         $module = $this->params('module');
@@ -215,17 +216,17 @@ class VideoController extends ActionController
         // Check server
         if (!isset($serverList[$server]) || empty($serverList[$server])) {
             $message = __('please select true server');
-            $this->jump(array('action' => 'index'), $message, 'error');
+            $this->jump(['action' => 'index'], $message, 'error');
         }
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Check server is qmery
         if ($serverList[$server]['type'] != 'qmery') {
             $message = __('This method just work on qmery server');
-            $this->jump(array('action' => 'index'), $message, 'error');
+            $this->jump(['action' => 'index'], $message, 'error');
         }
         // Set option
-        $option = array();
+        $option = [];
         // Set form
         $form = new VideoExternalForm('video', $option);
         $form->setAttribute('enctype', 'multipart/form-data');
@@ -252,17 +253,17 @@ class VideoController extends ActionController
                 // Send to qmery
                 $qmery = Pi::api('qmery', 'video')->link($row, $values['external_link']);
                 if (!$qmery['status']) {
-                    $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : $qmery['message'];
-                    $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
+                    $message = empty($qmery['message']) ? __('Error to upload file on qmery server') : $qmery['message'];
+                    $this->jump(['controller' => 'video', 'action' => 'index'], $message);
                     exit();
                 } else {
                     // Jump
                     $message = __('Video external add successfully. Please complete update');
-                    $this->jump(array('action' => 'update', 'id' => $row->id), $message);
+                    $this->jump(['action' => 'update', 'id' => $row->id], $message);
                 }
             }
         } else {
-            $video = array();
+            $video = [];
             // Set sluf
             $slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
             $filter = new Filter\Slug;
@@ -270,9 +271,9 @@ class VideoController extends ActionController
             // Set form
             $form->setData($video);
             // set nav
-            $nav = array(
+            $nav = [
                 'page' => 'link',
-            );
+            ];
         }
         // Set view
         $this->view()->setTemplate('video-link');
@@ -288,18 +289,18 @@ class VideoController extends ActionController
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
-            return $this->redirect()->toRoute('', array(
+            return $this->redirect()->toRoute('', [
                 'controller' => 'category',
-                'action' => 'update'
-            ));
+                'action'     => 'update',
+            ]);
         }
         // Server list
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
-            return $this->redirect()->toRoute('', array(
+            return $this->redirect()->toRoute('', [
                 'controller' => 'server',
-                'action' => 'update'
-            ));
+                'action'     => 'update',
+            ]);
         }
         // Get info from url
         $module = $this->params('module');
@@ -307,7 +308,7 @@ class VideoController extends ActionController
         // Check server
         if (!isset($serverList[$server]) || empty($serverList[$server])) {
             $message = __('please select true server');
-            $this->jump(array('action' => 'index'), $message, 'error');
+            $this->jump(['action' => 'index'], $message, 'error');
         }
         // Get config
         $config = Pi::service('registry')->config->read($module);
@@ -339,10 +340,10 @@ class VideoController extends ActionController
                         // Set video_url
                         //$values['video_url'] = Pi::url();
                     } else {
-                        $this->jump(array('action' => 'upload'), __('Problem in upload video. please try again'));
+                        $this->jump(['action' => 'upload'], __('Problem in upload video. please try again'));
                     }
                 } else {
-                    $this->jump(array('action' => 'upload'), __('Problem in upload video. please try again'));
+                    $this->jump(['action' => 'upload'], __('Problem in upload video. please try again'));
                 }
                 // Set time_create
                 $values['time_create'] = time();
@@ -380,17 +381,17 @@ class VideoController extends ActionController
                 $row->save();
                 // Send video to qmery
                 if ($serverType == 'qmery') {
-                    return array(
-                        'url' => Pi::url($this->url('', array('action' => 'qmeryUpload', 'id' => $row->id))),
-                    );
+                    return [
+                        'url' => Pi::url($this->url('', ['action' => 'qmeryUpload', 'id' => $row->id])),
+                    ];
                 } else {
-                    return array(
-                        'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
-                    );
+                    return [
+                        'url' => Pi::url($this->url('', ['action' => 'update', 'id' => $row->id])),
+                    ];
                 }
             }
         } else {
-            $video = array();
+            $video = [];
             // Set slug
             $slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
             $filter = new Filter\Slug;
@@ -398,9 +399,9 @@ class VideoController extends ActionController
             // Set form
             $form->setData($video);
             // set nav
-            $nav = array(
+            $nav = [
                 'page' => 'upload',
-            );
+            ];
         }
         // Set view
         $this->view()->setTemplate('video-upload');
@@ -415,18 +416,18 @@ class VideoController extends ActionController
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
-            return $this->redirect()->toRoute('', array(
+            return $this->redirect()->toRoute('', [
                 'controller' => 'category',
-                'action' => 'update'
-            ));
+                'action'     => 'update',
+            ]);
         }
         // Server list
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
-            return $this->redirect()->toRoute('', array(
+            return $this->redirect()->toRoute('', [
                 'controller' => 'server',
-                'action' => 'update'
-            ));
+                'action'     => 'update',
+            ]);
         }
         // Get info from url
         $id = $this->params('id');
@@ -441,12 +442,12 @@ class VideoController extends ActionController
         // Check server
         if (!isset($serverList[$server]) || empty($serverList[$server])) {
             $message = __('please select true server');
-            $this->jump(array('action' => 'index'), $message, 'error');
+            $this->jump(['action' => 'index'], $message, 'error');
         }
         // Set option
-        $option = array(
+        $option = [
             'server' => $serverList[$server],
-        );
+        ];
         // Set form
         $form = new VideoLinkForm('video', $option);
         $form->setAttribute('enctype', 'multipart/form-data');
@@ -497,11 +498,11 @@ class VideoController extends ActionController
                 $row->save();
                 // Jump
                 $message = __('Video link add successfully. Please complete update');
-                $this->jump(array('action' => 'update', 'id' => $row->id), $message);
+                $this->jump(['action' => 'update', 'id' => $row->id], $message);
             }
         } else {
             if (!$id) {
-                $video = array();
+                $video = [];
                 // Set sluf
                 $slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
                 $filter = new Filter\Slug;
@@ -517,9 +518,9 @@ class VideoController extends ActionController
             }
             $form->setData($video);
             // set nav
-            $nav = array(
+            $nav = [
                 'page' => 'link',
-            );
+            ];
         }
         // Set view
         $this->view()->setTemplate('video-link');
@@ -535,32 +536,32 @@ class VideoController extends ActionController
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
-            return $this->redirect()->toRoute('', array(
+            return $this->redirect()->toRoute('', [
                 'controller' => 'category',
-                'action' => 'update'
-            ));
+                'action'     => 'update',
+            ]);
         }
         // Server list
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
-            return $this->redirect()->toRoute('', array(
+            return $this->redirect()->toRoute('', [
                 'controller' => 'server',
-                'action' => 'update'
-            ));
+                'action'     => 'update',
+            ]);
         }
         // Get info from url
         $id = $this->params('id');
         $module = $this->params('module');
         // Get config
         $config = Pi::service('registry')->config->read($module);
-        $option = array();
+        $option = [];
         $option['brand_system'] = $config['brand_system'];
         // Find video
         if ($id) {
             $video = Pi::api('video', 'video')->getVideo($id);
             if ($video['image']) {
                 $option['thumbUrl'] = Pi::url($video['thumbUrl']);
-                $option['removeUrl'] = $this->url('', array('action' => 'remove', 'id' => $video['id']));
+                $option['removeUrl'] = $this->url('', ['action' => 'remove', 'id' => $video['id']]);
             }
             $option['side'] = 'admin';
             $option['video_type'] = $video['video_type'];
@@ -570,7 +571,7 @@ class VideoController extends ActionController
         } else {
             // Jump
             $message = __('Please select video');
-            $this->jump(array('action' => 'index'), $message);
+            $this->jump(['action' => 'index'], $message);
         }
         // Set form
         $form = new VideoForm('video', $option);
@@ -611,7 +612,7 @@ class VideoController extends ActionController
                         // process image
                         Pi::api('image', 'video')->process($values['image'], $values['path']);
                     } else {
-                        $this->jump(array('action' => 'update'), __('Problem in upload image. please try again'));
+                        $this->jump(['action' => 'update'], __('Problem in upload image. please try again'));
                     }
                 } elseif (!isset($values['image'])) {
                     $values['image'] = '';
@@ -626,9 +627,9 @@ class VideoController extends ActionController
                 // Set seo_keywords
                 $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
                 $filter = new Filter\HeadKeywords;
-                $filter->setOptions(array(
+                $filter->setOptions([
                     'force_replace_space' => (bool)$this->config('force_replace_space'),
-                ));
+                ]);
                 $values['seo_keywords'] = $filter($keywords);
                 // Set seo_description
                 $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
@@ -649,26 +650,26 @@ class VideoController extends ActionController
                 // Add / Edit sitemap
                 if (Pi::service('module')->isActive('sitemap')) {
                     // Set loc
-                    $loc = Pi::url($this->url('video', array(
-                        'module' => $module,
+                    $loc = Pi::url($this->url('video', [
+                        'module'     => $module,
                         'controller' => 'watch',
-                        'slug' => $values['slug']
-                    )));
+                        'slug'       => $values['slug'],
+                    ]));
                     // Update sitemap
                     Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->status, $module, 'video', $row->id);
                 }
                 // Check server type
                 $serverType = $serverList[$row->video_server]['type'];
                 if ($serverType == 'qmery') {
-                    return $this->redirect()->toRoute('', array(
+                    return $this->redirect()->toRoute('', [
                         'controller' => 'video',
-                        'action' => 'qmeryUpload',
-                        'id' => $row->id
-                    ));
+                        'action'     => 'qmeryUpload',
+                        'id'         => $row->id,
+                    ]);
                 } else {
                     // Jump
                     $message = __('Video data saved successfully.');
-                    $this->jump(array('action' => 'additional', 'id' => $row->id), $message);
+                    $this->jump(['action' => 'additional', 'id' => $row->id], $message);
                 }
             }
         } else {
@@ -682,9 +683,9 @@ class VideoController extends ActionController
             // Set form data
             $form->setData($video);
             // set nav
-            $nav = array(
+            $nav = [
                 'page' => 'update',
-            );
+            ];
         }
         // Set view
         $this->view()->setTemplate('video-update');
@@ -706,7 +707,7 @@ class VideoController extends ActionController
         if ($id) {
             $video = Pi::api('video', 'video')->getVideo($id);
         } else {
-            $this->jump(array('action' => 'index'), __('Please select video'));
+            $this->jump(['action' => 'index'], __('Please select video'));
         }
         // Get attribute field
         $fields = Pi::api('attribute', 'video')->Get($video['category_main']);
@@ -715,7 +716,7 @@ class VideoController extends ActionController
         // Check attribute is empty
         if (empty($fields['attribute'])) {
             $message = __('Video data saved successfully.');
-            $this->jump(array('action' => 'watch', 'id' => $video['id']), $message);
+            $this->jump(['action' => 'watch', 'id' => $video['id']], $message);
         }
         // Check post
         if ($this->request->isPost()) {
@@ -746,7 +747,7 @@ class VideoController extends ActionController
                 }
                 // Jump
                 $message = __('Video data saved successfully.');
-                $this->jump(array('action' => 'watch', 'id' => $row->id), $message);
+                $this->jump(['action' => 'watch', 'id' => $row->id], $message);
             }
         } else {
             // Get attribute
@@ -757,9 +758,9 @@ class VideoController extends ActionController
             $form->setData($video);
         }
         // set nav
-        $nav = array(
+        $nav = [
             'page' => 'additional',
-        );
+        ];
         // Set view
         $this->view()->setTemplate('video-update');
         $this->view()->assign('form', $form);
@@ -781,12 +782,12 @@ class VideoController extends ActionController
             $video = Pi::api('video', 'video')->getVideo($id);
         } else {
             $message = __('Please select video');
-            $this->jump(array('action' => 'index'), $message);
+            $this->jump(['action' => 'index'], $message);
         }
         // set nav
-        $nav = array(
+        $nav = [
             'page' => 'view',
-        );
+        ];
         // Set view
         $this->view()->setTemplate('video-watch');
         $this->view()->assign('title', __('View video'));
@@ -800,11 +801,11 @@ class VideoController extends ActionController
         // Get id and recommended
         $id = $this->params('id');
         $recommended = $this->params('recommended');
-        $return = array();
+        $return = [];
         // set video
         $video = $this->getModel('video')->find($id);
         // Check
-        if ($video && in_array($recommended, array(0, 1))) {
+        if ($video && in_array($recommended, [0, 1])) {
             // Accept
             $video->recommended = $recommended;
             // Save
@@ -815,8 +816,8 @@ class VideoController extends ActionController
                 $return['recommended'] = $video->recommended;
                 // Update recommended
                 $this->getModel('link')->update(
-                    array('recommended' => $video->recommended),
-                    array('video' => $video->id)
+                    ['recommended' => $video->recommended],
+                    ['video' => $video->id]
                 );
                 // Add log
                 Pi::api('log', 'video')->addLog('video', $video->id, 'recommend');
@@ -866,10 +867,10 @@ class VideoController extends ActionController
             $message = __('Please select video');
             $status = 0;
         }
-        return array(
-            'status' => $status,
+        return [
+            'status'  => $status,
             'message' => $message,
-        );
+        ];
     }
 
     public function deleteAction()
@@ -883,20 +884,20 @@ class VideoController extends ActionController
             $row->status = 5;
             $row->save();
             // update links
-            $this->getModel('link')->update(array('status' => $row->status), array('video' => $row->id));
+            $this->getModel('link')->update(['status' => $row->status], ['video' => $row->id]);
             // Remove sitemap
             if (Pi::service('module')->isActive('sitemap')) {
-                $loc = Pi::url($this->url('video', array(
-                    'module'      => $module,
-                    'controller'  => 'video',
-                    'slug'        => $row->slug
-                )));
+                $loc = Pi::url($this->url('video', [
+                    'module'     => $module,
+                    'controller' => 'video',
+                    'slug'       => $row->slug,
+                ]));
                 Pi::api('sitemap', 'sitemap')->remove($loc);
             }
             // Remove page
-            $this->jump(array('action' => 'index'), __('This video deleted'));
+            $this->jump(['action' => 'index'], __('This video deleted'));
         }
-        $this->jump(array('action' => 'index'), __('Please select video'));
+        $this->jump(['action' => 'index'], __('Please select video'));
     }
 
     public function qmeryUploadAction()
@@ -907,7 +908,7 @@ class VideoController extends ActionController
         if (!$id) {
             // Jump
             $message = __('Please select video');
-            $this->jump(array('action' => 'index'), $message);
+            $this->jump(['action' => 'index'], $message);
         }
         // Get video object
         $video = $this->getModel('video')->find($id);
@@ -916,10 +917,10 @@ class VideoController extends ActionController
         // Check result
         if ($qmery['status']) {
             $message = __('Video added on qmery server and information save on website, please update extra information');
-            $this->jump(array('controller' => 'video', 'action' => 'update', 'id' => $video->id), $message);
+            $this->jump(['controller' => 'video', 'action' => 'update', 'id' => $video->id], $message);
         } else {
-            $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : json_decode($qmery['message']);
-            $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
+            $message = empty($qmery['message']) ? __('Error to upload file on qmery server') : json_decode($qmery['message']);
+            $this->jump(['controller' => 'video', 'action' => 'index'], $message);
             exit();
         }
     }
@@ -932,7 +933,7 @@ class VideoController extends ActionController
         if (!$id) {
             // Jump
             $message = __('Please select video');
-            $this->jump(array('action' => 'index'), $message);
+            $this->jump(['action' => 'index'], $message);
         }
         // Get video object
         $video = $this->getModel('video')->find($id);
@@ -942,17 +943,17 @@ class VideoController extends ActionController
         switch ($qmery['status']) {
             case 1:
                 $message = __('Video information updated from qmery server');
-                $this->jump(array('controller' => 'video', 'action' => 'additional', 'id' => $video->id), $message);
+                $this->jump(['controller' => 'video', 'action' => 'additional', 'id' => $video->id], $message);
                 break;
 
             case 2:
                 $message = __('Atention : Video still not ready on qmery server and video information not upload, please wail for min and check it later');
-                $this->jump(array('controller' => 'video', 'action' => 'additional', 'id' => $video->id), $message, 'error');
+                $this->jump(['controller' => 'video', 'action' => 'additional', 'id' => $video->id], $message, 'error');
                 break;
 
             case 3:
-                $message = empty($qmery['message']) ?  __('Error to update video from qmery server') : json_decode($qmery['message']);
-                $this->jump(array('controller' => 'video', 'action' => 'index'), $message);
+                $message = empty($qmery['message']) ? __('Error to update video from qmery server') : json_decode($qmery['message']);
+                $this->jump(['controller' => 'video', 'action' => 'index'], $message);
                 break;
         }
     }

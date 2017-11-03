@@ -14,7 +14,8 @@
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
-                                            <img src="<?php echo $field['image']; ?>" alt="<?php echo $field['title']; ?>">
+                                            <img src="<?php echo $field['image']; ?>"
+                                                 alt="<?php echo $field['title']; ?>">
                                         <?php } ?>
                                         <?php echo $field['title']; ?>
                                     </td>
@@ -24,27 +25,32 @@
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
-                                            <img src="<?php echo $field['image']; ?>" alt="<?php echo $field['title']; ?>">
+                                            <img src="<?php echo $field['image']; ?>"
+                                                 alt="<?php echo $field['title']; ?>">
                                         <?php } ?>
                                         <a
-                                            title="<?php echo $field['title']; ?>" href="<?php echo $field['data']; ?>"
-                                            target="_blank"><?php echo $field['title']; ?></a></td>
+                                                title="<?php echo $field['title']; ?>"
+                                                href="<?php echo $field['data']; ?>"
+                                                target="_blank"><?php echo $field['title']; ?></a></td>
                                 <?php } elseif ($field['type'] == 'file') { ?>
                                     <td class="col-xs-12 attribute-body" colspan="2">
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
-                                            <img src="<?php echo $field['image']; ?>" alt="<?php echo $field['title']; ?>">
+                                            <img src="<?php echo $field['image']; ?>"
+                                                 alt="<?php echo $field['title']; ?>">
                                         <?php } ?>
                                         <a
-                                            title="<?php echo $field['title']; ?>"
-                                            href="<?php echo $field['data']; ?>"><?php echo $field['title']; ?></a></td>
+                                                title="<?php echo $field['title']; ?>"
+                                                href="<?php echo $field['data']; ?>"><?php echo $field['title']; ?></a>
+                                    </td>
                                 <?php } elseif ($field['type'] == 'currency') { ?>
                                     <td class="col-xs-4 attribute-title">
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
-                                            <img src="<?php echo $field['image']; ?>" alt="<?php echo $field['title']; ?>">
+                                            <img src="<?php echo $field['image']; ?>"
+                                                 alt="<?php echo $field['title']; ?>">
                                         <?php } ?>
                                         <?php echo $field['title']; ?>
                                     </td>
@@ -55,7 +61,8 @@
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
-                                            <img src="<?php echo $field['image']; ?>" alt="<?php echo $field['title']; ?>">
+                                            <img src="<?php echo $field['image']; ?>"
+                                                 alt="<?php echo $field['title']; ?>">
                                         <?php } ?>
                                     </td>
                                     <td class="col-xs-8 attribute-body"><?php echo $this->dateFormat($field['data'], IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM, "en_US"); ?></td>
@@ -65,7 +72,8 @@
                                         <?php if ($field['icon']) { ?>
                                             <i class="fa <?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
-                                            <img src="<?php echo $field['image']; ?>" alt="<?php echo $field['title']; ?>">
+                                            <img src="<?php echo $field['image']; ?>"
+                                                 alt="<?php echo $field['title']; ?>">
                                         <?php } ?>
                                     </td>
                                     <td class="col-xs-8 attribute-body"><?php echo $this->numberFormat($field['data'], NumberFormatter::PATTERN_DECIMAL, NumberFormatter::TYPE_DEFAULT, "en_US"); ?></td>
@@ -77,7 +85,8 @@
                                             <?php if ($field['icon']) { ?>
                                                 <i class="fa <?php echo $field['icon']; ?>"></i>
                                             <?php } elseif ($field['image']) { ?>
-                                                <img src="<?php echo $field['image']; ?>" alt="<?php echo $field['title']; ?>">
+                                                <img src="<?php echo $field['image']; ?>"
+                                                     alt="<?php echo $field['title']; ?>">
                                             <?php } ?>
                                         </td>
                                     <?php } ?>

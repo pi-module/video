@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Api;
 
 use Pi;
@@ -25,8 +26,8 @@ class Service extends AbstractApi
 {
     public function getVideo($module, $table = '', $item = '', $hits = true)
     {
-        $list = array();
-        $where = array('module_name' => $module);
+        $list = [];
+        $where = ['module_name' => $module];
         if (isset($table) && !empty($table)) {
             $where['module_table'] = $table;
         }
@@ -40,7 +41,7 @@ class Service extends AbstractApi
             $list[$row->id] = Pi::api('video', 'video')->getVideo($row->id);
             // Update Hits
             if ($hits) {
-                Pi::model('video', $this->getModule())->increment('hits', array('id' => $row->id));
+                Pi::model('video', $this->getModule())->increment('hits', ['id' => $row->id]);
             }
         }
         return $list;
@@ -49,16 +50,16 @@ class Service extends AbstractApi
     public function setVideo($videos, $module, $table, $item)
     {
         // Set where
-        $where = array(
-            'module_name' => $module,
+        $where = [
+            'module_name'  => $module,
             'module_table' => $table,
-            'module_item' => $item,
-        );
+            'module_item'  => $item,
+        ];
         //Remove
         Pi::model('service', $this->getModule())->delete($where);
         // Set videos
         if (!empty($videos)) {
-            $videos = is_array($videos) ? $videos : array($videos);
+            $videos = is_array($videos) ? $videos : [$videos];
             foreach ($videos as $video) {
                 // Set array
                 $values['video'] = $video;

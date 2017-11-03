@@ -11,34 +11,34 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-return array(
+return [
     // Module meta
-    'meta'         => array(
-        'title'         => _a('Video'),
-        'description'   => _a('Video play system.'),
-        'version'       => '0.9.1',
-        'license'       => 'New BSD',
-        'logo'          => 'image/logo.png',
-        'readme'        => 'docs/readme.txt',
-        'demo'          => '',
-        'icon'          => 'fa-video-camera',
-    ),
+    'meta'     => [
+        'title'       => _a('Video'),
+        'description' => _a('Video play system.'),
+        'version'     => '0.9.1',
+        'license'     => 'New BSD',
+        'logo'        => 'image/logo.png',
+        'readme'      => 'docs/readme.txt',
+        'demo'        => '',
+        'icon'        => 'fa-video-camera',
+    ],
     // Author information
-    'author'        => array(
-        'Name'          => 'Somayeh Karami',
-        'email'         => 'somayeh.karami@gmail.com',
-        'website'       => '',
-        'credits'       => ''
-    ),
+    'author'   => [
+        'Name'    => 'Somayeh Karami',
+        'email'   => 'somayeh.karami@gmail.com',
+        'website' => '',
+        'credits' => '',
+    ],
     // Resource
-    'resource' => array(
-        'database'      => 'database.php',
-        'config'        => 'config.php',
-        'permission'    => 'permission.php',
-        'page'          => 'page.php',
-        'navigation'    => 'navigation.php',
-        'block'         => 'block.php',
-        'route'         => 'route.php',
-        'comment'       => 'comment.php',
-    ),
-);
+    'resource' => [
+        'database'   => 'database.php',
+        'config'     => 'config.php',
+        'permission' => 'permission.php',
+        'page'       => 'page.php',
+        'navigation' => 'navigation.php',
+        'block'      => 'block.php',
+        'route'      => 'route.php',
+        'comment'    => 'comment.php',
+    ],
+];

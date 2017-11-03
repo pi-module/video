@@ -2,8 +2,8 @@
 <div class="clearfix">
     <p>
         <a class="btn btn-primary" title="<?php _e('Add server'); ?>"
-           href="<?php echo $this->url('', array('controller' => 'server', 'action' => 'update')); ?>"><i
-                class="fa fa-folder-open"></i> <?php _e('Add server'); ?></a>
+           href="<?php echo $this->url('', ['controller' => 'server', 'action' => 'update']); ?>"><i
+                    class="fa fa-folder-open"></i> <?php _e('Add server'); ?></a>
     </p>
 
     <h3><?php _e('List of servers'); ?></h3>
@@ -42,8 +42,8 @@
                 </td>
                 <td>
                     <a class="btn btn-primary btn-xs" title="<?php _e('Edit'); ?>"
-                       href="<?php echo $this->url('', array('action' => 'update', 'id' => $server['id'])); ?>"><i
-                            class="fa fa-edit"></i> <?php _e('Edit'); ?></a>
+                       href="<?php echo $this->url('', ['action' => 'update', 'id' => $server['id']]); ?>"><i
+                                class="fa fa-edit"></i> <?php _e('Edit'); ?></a>
                     <?php if ($server['type'] == 'qmery') { ?>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -51,11 +51,11 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <!-- <li><a title="<?php _e('From website to qmery'); ?>"
-                                       href="<?php echo $this->url('', array('controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'toQmery')); ?>"><i
+                                       href="<?php echo $this->url('', ['controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'toQmery']); ?>"><i
                                             class="fa fa-wrench"></i> <?php _e('From website to qmery'); ?></a></li> -->
                                 <li><a title="<?php _e('From qmery to website'); ?>"
-                                       href="<?php echo $this->url('', array('controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'toWebsite')); ?>"><i
-                                            class="fa fa-wrench"></i> <?php _e('From qmery to website'); ?></a></li>
+                                       href="<?php echo $this->url('', ['controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'toWebsite']); ?>"><i
+                                                class="fa fa-wrench"></i> <?php _e('From qmery to website'); ?></a></li>
                             </ul>
                         </div>
                     <?php } ?>

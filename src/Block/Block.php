@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Block;
 
 use Pi;
@@ -18,29 +19,29 @@ use Zend\Db\Sql\Predicate\Expression;
 
 class Block
 {
-    public static function videoNew($options = array(), $module = null)
+    public static function videoNew($options = [], $module = null)
     {
         // Set options
-        $block = array();
+        $block = [];
         $block = array_merge($block, $options);
-        $video = array();
+        $video = [];
         // Set info
-        $order = array('time_create DESC', 'id DESC');
+        $order = ['time_create DESC', 'id DESC'];
         $limit = intval($block['number']);
         if (isset($block['category']) &&
             !empty($block['category']) &&
             !in_array(0, $block['category'])
         ) {
             // Set info
-            $where = array(
-                'status' => 1,
+            $where = [
+                'status'   => 1,
                 'category' => $block['category'],
-            );
+            ];
             if ($block['recommended']) {
                 $where['recommended'] = 1;
             }
             // Set info
-            $columns = array('video' => new Expression('DISTINCT video'));
+            $columns = ['video' => new Expression('DISTINCT video')];
             // Get info from link table
             $select = Pi::model('link', $module)->select()->where($where)->columns($columns)->order($order)->limit($limit);
             $rowset = Pi::model('link', $module)->selectWith($select)->toArray();
@@ -49,9 +50,9 @@ class Block
                 $videoId[] = $id['video'];
             }
             // Set info
-            $where = array('status' => 1, 'id' => $videoId);
+            $where = ['status' => 1, 'id' => $videoId];
         } else {
-            $where = array('status' => 1);
+            $where = ['status' => 1];
             if ($block['recommended']) {
                 $where['recommended'] = 1;
             }
@@ -68,26 +69,26 @@ class Block
         return $block;
     }
 
-    public static function videoRandom($options = array(), $module = null)
+    public static function videoRandom($options = [], $module = null)
     {
         // Set options
-        $block = array();
+        $block = [];
         $block = array_merge($block, $options);
-        $video = array();
+        $video = [];
         // Set info
-        $order = array(new Expression('RAND()'));
+        $order = [new Expression('RAND()')];
         $limit = intval($block['number']);
         if (isset($block['category']) &&
             !empty($block['category']) &&
             !in_array(0, $block['category'])
         ) {
             // Set info
-            $where = array(
-                'status' => 1,
+            $where = [
+                'status'   => 1,
                 'category' => $block['category'],
-            );
+            ];
             // Set info
-            $columns = array('video' => new Expression('DISTINCT video'));
+            $columns = ['video' => new Expression('DISTINCT video')];
             // Get info from link table
             $select = Pi::model('link', $module)->select()->where($where)->columns($columns)->order($order)->limit($limit);
             $rowset = Pi::model('link', $module)->selectWith($select)->toArray();
@@ -96,9 +97,9 @@ class Block
                 $videoId[] = $id['video'];
             }
             // Set info
-            $where = array('status' => 1, 'id' => $videoId);
+            $where = ['status' => 1, 'id' => $videoId];
         } else {
-            $where = array('status' => 1);
+            $where = ['status' => 1];
         }
         // Get list of video
         $select = Pi::model('video', $module)->select()->where($where)->order($order)->limit($limit);
@@ -112,12 +113,12 @@ class Block
         return $block;
     }
 
-    public static function videoTag($options = array(), $module = null)
+    public static function videoTag($options = [], $module = null)
     {
         // Set options
-        $block = array();
+        $block = [];
         $block = array_merge($block, $options);
-        $video = array();
+        $video = [];
         // Check tag term
         if (!empty($block['tag-term'])) {
             // Get video ides from tag term
@@ -128,8 +129,8 @@ class Block
             // get videos
             if (!empty($tagId)) {
                 // Set info
-                $where = array('status' => 1, 'id' => $tagId);
-                $order = array(new Expression('RAND()'));
+                $where = ['status' => 1, 'id' => $tagId];
+                $order = [new Expression('RAND()')];
                 $limit = intval($block['number']);
                 // Get list of video
                 $select = Pi::model('video', $module)->select()->where($where)->order($order)->limit($limit);
@@ -143,33 +144,33 @@ class Block
         // Set block array
         $block['resources'] = $video;
         // Load language
-        Pi::service('i18n')->load(array('module/video', 'default'));
+        Pi::service('i18n')->load(['module/video', 'default']);
         return $block;
     }
 
-    public static function videoHits($options = array(), $module = null)
+    public static function videoHits($options = [], $module = null)
     {
         // Set options
-        $block = array();
+        $block = [];
         $block = array_merge($block, $options);
-        $video = array();
+        $video = [];
         // Set day
         $time = time() - (60 * 60 * 24 * $block['day']);
         // Set info
-        $order = array('hits DESC', 'time_update DESC' , 'id DESC');
+        $order = ['hits DESC', 'time_update DESC', 'id DESC'];
         $limit = intval($block['number']);
         if (isset($block['category']) &&
             !empty($block['category']) &&
             !in_array(0, $block['category'])
         ) {
             // Set info
-            $where = array(
-                'status' => 1,
-                'category' => $block['category'],
+            $where = [
+                'status'           => 1,
+                'category'         => $block['category'],
                 'time_update >= ?' => $time,
-            );
+            ];
             // Set info
-            $columns = array('video' => new Expression('DISTINCT video'));
+            $columns = ['video' => new Expression('DISTINCT video')];
             // Get info from link table
             $select = Pi::model('link', $module)->select()->where($where)->columns($columns)->order($order)->limit($limit);
             $rowset = Pi::model('link', $module)->selectWith($select)->toArray();
@@ -178,9 +179,9 @@ class Block
                 $videoId[] = $id['video'];
             }
             // Set info
-            $where = array('status' => 1, 'id' => $videoId);
+            $where = ['status' => 1, 'id' => $videoId];
         } else {
-            $where = array('status' => 1, 'time_update >= ?' => $time,);
+            $where = ['status' => 1, 'time_update >= ?' => $time,];
         }
         // Get list of video
         $select = Pi::model('video', $module)->select()->where($where)->order($order)->limit($limit);
@@ -194,10 +195,10 @@ class Block
         return $block;
     }
 
-    public static function videoSelect($options = array(), $module = null)
+    public static function videoSelect($options = [], $module = null)
     {
         // Set options
-        $block = array();
+        $block = [];
         $block = array_merge($block, $options);
         // Get video
         if (isset($block['vid']) && intval($block['vid']) > 0) {

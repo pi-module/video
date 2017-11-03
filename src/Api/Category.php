@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Api;
 
 use Pi;
@@ -42,9 +43,9 @@ class Category extends AbstractApi
     public function setLink($video, $category, $create, $update, $status, $uid, $hits, $recommended = 0)
     {
         //Remove
-        Pi::model('link', $this->getModule())->delete(array('video' => $video));
+        Pi::model('link', $this->getModule())->delete(['video' => $video]);
         // Add
-        $allCategory =  json_decode($category, true);
+        $allCategory = json_decode($category, true);
         foreach ($allCategory as $category) {
             // Set array
             $values['video'] = $video;
@@ -64,8 +65,8 @@ class Category extends AbstractApi
 
     public function findFromCategory($category)
     {
-        $list = array();
-        $where = array('category' => $category);
+        $list = [];
+        $where = ['category' => $category];
         $select = Pi::model('link', $this->getModule())->select()->where($where);
         $rowset = Pi::model('link', $this->getModule())->selectWith($select);
         foreach ($rowset as $row) {
@@ -82,22 +83,22 @@ class Category extends AbstractApi
 
         // Check type
         if (is_null($parent)) {
-            $where = array('status' => 1);
+            $where = ['status' => 1];
         } else {
-            $where = array('status' => 1, 'parent' => $parent);
+            $where = ['status' => 1, 'parent' => $parent];
         }
-        $return = array();
-        $order = array('display_order ASC');
+        $return = [];
+        $order = ['display_order ASC'];
         // Make list
         $select = Pi::model('category', $this->getModule())->select()->where($where)->order($order);
         $rowset = Pi::model('category', $this->getModule())->selectWith($select);
         foreach ($rowset as $row) {
             $return[$row->id] = $row->toArray();
-            $return[$row->id]['url'] = Pi::url(Pi::service('url')->assemble('video', array(
-                'module' => $this->getModule(),
+            $return[$row->id]['url'] = Pi::url(Pi::service('url')->assemble('video', [
+                'module'     => $this->getModule(),
                 'controller' => 'category',
-                'slug' => $return[$row->id]['slug'],
-            )));
+                'slug'       => $return[$row->id]['slug'],
+            ]));
             if ($row->image) {
                 $return[$row->id]['thumbUrl'] = Pi::url(
                     sprintf('upload/%s/thumb/%s/%s',
@@ -113,32 +114,32 @@ class Category extends AbstractApi
 
     public function categoryListJson()
     {
-        $return = array();
-        $where = array('status' => 1);
-        $order = array('display_order ASC');
+        $return = [];
+        $where = ['status' => 1];
+        $order = ['display_order ASC'];
         // Make list
         $select = Pi::model('category', $this->getModule())->select()->where($where)->order($order);
         $rowset = Pi::model('category', $this->getModule())->selectWith($select);
         foreach ($rowset as $row) {
-            $return[] = array(
-                'id' => $row->id,
+            $return[] = [
+                'id'     => $row->id,
                 'parent' => $row->parent,
-                'text' => $row->title,
-                'href' => Pi::url(Pi::service('url')->assemble('video', array(
-                    'module' => $this->getModule(),
+                'text'   => $row->title,
+                'href'   => Pi::url(Pi::service('url')->assemble('video', [
+                    'module'     => $this->getModule(),
                     'controller' => 'category',
-                    'slug' => $row->slug,
-                ))),
-            );
+                    'slug'       => $row->slug,
+                ])),
+            ];
         }
         $return = $this->makeTree($return);
-        $return =  json_encode($return);
+        $return = json_encode($return);
         return $return;
     }
 
     public function categoryCount()
     {
-        $columns = array('count' => new Expression('count(*)'));
+        $columns = ['count' => new Expression('count(*)')];
         $select = Pi::model('category', $this->getModule())->select()->columns($columns);
         $count = Pi::model('category', $this->getModule())->selectWith($select)->current()->count;
         return $count;
@@ -160,11 +161,11 @@ class Category extends AbstractApi
         $category['time_create_view'] = _date($category['time_create']);
         $category['time_update_view'] = _date($category['time_update']);
         // Set item url
-        $category['categoryUrl'] = Pi::url(Pi::service('url')->assemble('video', array(
-            'module' => $this->getModule(),
+        $category['categoryUrl'] = Pi::url(Pi::service('url')->assemble('video', [
+            'module'     => $this->getModule(),
             'controller' => 'category',
-            'slug' => $category['slug'],
-        )));
+            'slug'       => $category['slug'],
+        ]));
         // Set image url
         if ($category['image']) {
             // Set image original url
@@ -206,16 +207,16 @@ class Category extends AbstractApi
             // Remove old links
             Pi::api('sitemap', 'sitemap')->removeAll($this->getModule(), 'category');
             // find and import
-            $columns = array('id', 'slug', 'status');
+            $columns = ['id', 'slug', 'status'];
             $select = Pi::model('category', $this->getModule())->select()->columns($columns);
             $rowset = Pi::model('category', $this->getModule())->selectWith($select);
             foreach ($rowset as $row) {
                 // Make url
-                $loc = Pi::url(Pi::service('url')->assemble('video', array(
-                    'module' => $this->getModule(),
+                $loc = Pi::url(Pi::service('url')->assemble('video', [
+                    'module'     => $this->getModule(),
                     'controller' => 'category',
-                    'slug' => $row->slug,
-                )));
+                    'slug'       => $row->slug,
+                ]));
                 // Add to sitemap
                 Pi::api('sitemap', 'sitemap')->groupLink($loc, $row->status, $this->getModule(), 'category', $row->id);
             }
@@ -224,7 +225,7 @@ class Category extends AbstractApi
 
     public function makeTree($elements, $parentId = 0)
     {
-        $branch = array();
+        $branch = [];
         foreach ($elements as $element) {
             if ($element['parent'] == $parentId) {
                 $children = $this->makeTree($elements, $element['id']);
@@ -241,7 +242,7 @@ class Category extends AbstractApi
 
     public function makeTreeOrder($elements, $parentId = 0)
     {
-        $branch = array();
+        $branch = [];
         // Set category list as tree
         foreach ($elements as $element) {
             if ($element['parent'] == $parentId) {

@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Model;
 
 use Pi\Application\Model\Model;
@@ -20,7 +21,7 @@ class Category extends Model
     /**
      * {@inheritDoc}
      */
-    protected $columns = array(
+    protected $columns = [
         'id',
         'parent',
         'title',
@@ -41,5 +42,5 @@ class Category extends Model
         'display_type',
         'type',
         'hits',
-    );
+    ];
 }

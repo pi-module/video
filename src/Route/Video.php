@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Route;
 
 use Pi;
@@ -22,15 +23,15 @@ class Video extends Standard
      * Default values.
      * @var array
      */
-    protected $defaults = array(
-        'module' => 'video',
+    protected $defaults = [
+        'module'     => 'video',
         'controller' => 'index',
-        'action' => 'index'
-    );
+        'action'     => 'index',
+    ];
 
-    protected $controllerList = array(
-        'category', 'channel', 'favourite', 'index', 'submit', 'tag', 'watch', 'json'
-    );
+    protected $controllerList = [
+        'category', 'channel', 'favourite', 'index', 'submit', 'tag', 'watch', 'json',
+    ];
 
     /**
      * {@inheritDoc}
@@ -42,7 +43,7 @@ class Video extends Standard
      */
     protected function parse($path)
     {
-        $matches = array();
+        $matches = [];
         $parts = array_filter(explode($this->structureDelimiter, $path));
 
         // Set controller
@@ -86,7 +87,7 @@ class Video extends Standard
                         break;
 
                     case 'submit':
-                        if (in_array($parts[1], array('index', 'update', 'additional', 'finish', 'qmeryUpload'))) {
+                        if (in_array($parts[1], ['index', 'update', 'additional', 'finish', 'qmeryUpload'])) {
                             $matches['action'] = $parts[1];
                             if (is_numeric($parts[2])) {
                                 $matches['id'] = intval($parts[2]);
@@ -195,8 +196,8 @@ class Video extends Standard
      * @return string
      */
     public function assemble(
-        array $params = array(),
-        array $options = array()
+        array $params = [],
+        array $options = []
     )
     {
         $mergedParams = array_merge($this->defaults, $params);

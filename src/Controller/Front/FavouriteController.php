@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Controller\Front;
 
 use Pi;
@@ -19,7 +20,7 @@ use Pi\Mvc\Controller\ActionController;
 
 class FavouriteController extends IndexController
 {
-	public function indexAction()
+    public function indexAction()
     {
         // Check user is login or not
         Pi::service('authentication')->requireLogin();
@@ -41,12 +42,12 @@ class FavouriteController extends IndexController
         $title = __('All favourite videos by you');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions(array(
-            'force_replace_space' => true
-        ));
+        $filter->setOptions([
+            'force_replace_space' => true,
+        ]);
         $seoKeywords = $filter($title);
         // load language
-        Pi::service('i18n')->load(array('module/user', 'default'));
+        Pi::service('i18n')->load(['module/user', 'default']);
         // Set view
         $this->view()->headTitle($title);
         $this->view()->headDescription($title, 'set');

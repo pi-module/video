@@ -11,11 +11,11 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-return array(
-    'news' => array(
+return [
+    'news' => [
         'title'    => _a('Video comments'),
         'icon'     => 'icon-post',
         'callback' => 'Module\Video\Api\Comment',
         'locator'  => 'Module\Video\Api\Comment',
-    ),
-);
+    ],
+];

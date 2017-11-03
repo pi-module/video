@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Api;
 
 use Pi;
@@ -82,9 +83,9 @@ class Image extends AbstractApi
         );
 
         // Set options
-        $options = array(
+        $options = [
             'quality' => empty($config['image_quality']) ? 75 : $config['image_quality'],
-        );
+        ];
 
         // Get image size
         $size = getimagesize($original);
@@ -93,7 +94,7 @@ class Image extends AbstractApi
         if ($size[0] > $config['image_largew'] && $size[1] > $config['image_largeh']) {
             Pi::service('image')->resize(
                 $original,
-                array($config['image_largew'], $config['image_largeh'], true),
+                [$config['image_largew'], $config['image_largeh'], true],
                 $large,
                 '',
                 $options
@@ -106,7 +107,7 @@ class Image extends AbstractApi
         if ($size[0] > $config['image_mediumw'] && $size[1] > $config['image_mediumh']) {
             Pi::service('image')->resize(
                 $original,
-                array($config['image_mediumw'], $config['image_mediumh'], true),
+                [$config['image_mediumw'], $config['image_mediumh'], true],
                 $medium,
                 '',
                 $options
@@ -119,7 +120,7 @@ class Image extends AbstractApi
         if ($size[0] > $config['image_thumbw'] && $size[1] > $config['image_thumbh']) {
             Pi::service('image')->resize(
                 $original,
-                array($config['image_thumbw'], $config['image_thumbh'], true),
+                [$config['image_thumbw'], $config['image_thumbh'], true],
                 $thumb,
                 '',
                 $options

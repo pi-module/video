@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Form\Element;
 
 use Pi;
@@ -23,10 +24,10 @@ class Image extends ZendImage
      */
     public function getAttributes()
     {
-        $this->Attributes = array(
+        $this->Attributes = [
             'class' => 'img-thumbnail item-img',
-            'src' => $this->attributes['src'],
-        );
+            'src'   => $this->attributes['src'],
+        ];
         return $this->Attributes;
     }
 }

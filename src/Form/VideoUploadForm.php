@@ -11,14 +11,15 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Form;
 
 use Pi;
 use Pi\Form\Form as BaseForm;
 
-class VideoUploadForm  extends BaseForm
+class VideoUploadForm extends BaseForm
 {
-    public function __construct($name = null, $option = array())
+    public function __construct($name = null, $option = [])
     {
         $this->option = $option;
         parent::__construct($name);
@@ -35,33 +36,33 @@ class VideoUploadForm  extends BaseForm
     public function init()
     {
         // slug
-        $this->add(array(
-            'name' => 'slug',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'slug',
+            'attributes' => [
                 'type' => 'hidden',
-            ),
-        ));
+            ],
+        ]);
         // video
-        $this->add(array(
-            'name' => 'video',
-            'options' => array(
+        $this->add([
+            'name'       => 'video',
+            'options'    => [
                 'label' => __('Video'),
-            ),
-            'attributes' => array(
-                'type' => 'file',
+            ],
+            'attributes' => [
+                'type'        => 'file',
                 'description' => '',
-                'id' => 'videoFile',
-            )
-        ));
+                'id'          => 'videoFile',
+            ],
+        ]);
         // Save
-        $this->add(array(
-            'name' => 'submit',
-            'type' => 'submit',
-            'attributes' => array(
-                'value' => __('Upload'),
-                'class' => 'btn btn-success videoUpload',
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
+                'value'   => __('Upload'),
+                'class'   => 'btn btn-success videoUpload',
                 'onclick' => 'upload_image();',
-            )
-        ));
+            ],
+        ]);
     }
 }

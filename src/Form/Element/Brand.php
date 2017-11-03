@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Form\Element;
 
 use Pi;
@@ -26,8 +27,8 @@ class Brand extends Select
     {
         if (empty($this->valueOptions)) {
             // Get topic list
-            $columns = array('id', 'parent', 'title');
-            $where = array('status' => 1, 'type' => 'brand');
+            $columns = ['id', 'parent', 'title'];
+            $where = ['status' => 1, 'type' => 'brand'];
             $select = Pi::model('category', 'video')->select()->columns($columns)->where($where);
             $rowset = Pi::model('category', 'video')->selectWith($select);
             foreach ($rowset as $row) {
@@ -43,11 +44,11 @@ class Brand extends Select
      */
     public function getAttributes()
     {
-        $this->Attributes = array(
-            'size' => 5,
+        $this->Attributes = [
+            'size'     => 5,
             'multiple' => 1,
-            'class' => 'form-control',
-        );
+            'class'    => 'form-control',
+        ];
         // check form size
         if (isset($this->attributes['size'])) {
             $this->Attributes['size'] = $this->attributes['size'];
@@ -61,7 +62,7 @@ class Brand extends Select
 
     public function getTree($elements, $parentId = 0)
     {
-        $branch = array();
+        $branch = [];
         // Set default category options
         if ($parentId == 0) {
             if (!isset($this->options['category'])) {

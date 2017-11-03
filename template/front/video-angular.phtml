@@ -1,12 +1,12 @@
 <?php
 // Load header files
 $this->jQuery();
-$this->angular(array(
+$this->angular([
     'angular-route.js',
     'ui-bootstrap-custom-tpls-0.7.0.js',
     'pi.js',
-    'i18n'
-));
+    'i18n',
+]);
 $this->js($this->assetModule('js/bootstrap-treeview.min.js'));
 $this->css($this->assetModule('css/front.css'));
 ?>
@@ -25,8 +25,8 @@ $this->css($this->assetModule('css/front.css'));
         .module('video', ['ngRoute', 'ui.bootstrap', 'pi'])
         .constant('config', {
             pageType: '<?php echo $pageType; ?>',
-            urlRoot: '<?php echo Pi::url($this->url('', array('controller' => 'json', 'action' => 'var'))); ?>'.replace(/var\/?$/, ''),
-            urlCompare: '<?php echo Pi::url($this->url('', array('controller' => 'compare'))); ?>',
+            urlRoot: '<?php echo Pi::url($this->url('', ['controller' => 'json', 'action' => 'var'])); ?>'.replace(/var\/?$/, ''),
+            urlCompare: '<?php echo Pi::url($this->url('', ['controller' => 'compare'])); ?>',
             assetRoot: '<?php echo $this->assetModule('ng-template/front/', '', false); ?>',
             categoryJson: '<?php echo $categoriesJson; ?>',
             categorySlug: '<?php echo isset($category) ? $category['slug'] : '' ?>',

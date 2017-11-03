@@ -11,20 +11,21 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Controller\Admin;
 
+use Module\Video\Form\ServerFilter;
+use Module\Video\Form\ServerForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\Video\Form\ServerForm;
-use Module\Video\Form\ServerFilter;
 
 class ServerController extends ActionController
 {
     public function indexAction()
     {
         // Get info
-        $list = array();
-        $order = array('id DESC');
+        $list = [];
+        $order = ['id DESC'];
         $select = $this->getModel('server')->select()->order($order);
         $rowset = $this->getModel('server')->selectWith($select);
         // Make list
@@ -64,11 +65,11 @@ class ServerController extends ActionController
                 $values = $form->getData();
                 // Check default
                 if ($values['default']) {
-                    $this->getModel('server')->update(array('default' => 0));
+                    $this->getModel('server')->update(['default' => 0]);
                     $values['default'] = 1;
                 }
                 // Set setting
-                $setting = array();
+                $setting = [];
                 $setting['qmery_upload_token'] = $values['qmery_upload_token'];
                 $setting['qmery_update_token'] = $values['qmery_update_token'];
                 $setting['qmery_group_id'] = $values['qmery_group_id'];
@@ -92,7 +93,7 @@ class ServerController extends ActionController
                 $operation = (empty($values['id'])) ? 'add' : 'edit';
                 Pi::api('log', 'video')->addLog('server', $row->id, $operation);
                 $message = __('Server data saved successfully.');
-                $this->jump(array('action' => 'index'), $message);
+                $this->jump(['action' => 'index'], $message);
             }
         } else {
             if ($id) {
@@ -124,22 +125,22 @@ class ServerController extends ActionController
                 // Check type
                 switch ($type) {
                     case 'toQmery':
-                        return array('Nothing set');
+                        return ['Nothing set'];
                         break;
 
                     case 'toWebsite':
                         $count = Pi::api('qmery', 'video')->updateListToWebsite($serverList[$server], $page);
                         if ($count > 0) {
-                            $url = Pi::url($this->url('', array(
+                            $url = Pi::url($this->url('', [
                                 'controller' => 'server',
-                                'action' => 'processing',
-                                'server' => $server,
-                                'type' => 'toWebsite',
-                                'page' => $page + 1,
-                            )));
-                        }  else {
+                                'action'     => 'processing',
+                                'server'     => $server,
+                                'type'       => 'toWebsite',
+                                'page'       => $page + 1,
+                            ]));
+                        } else {
                             $message = __('Update information form qmery server finished');
-                            $this->jump(array('action' => 'index'), $message);
+                            $this->jump(['action' => 'index'], $message);
                         }
                         break;
                 }

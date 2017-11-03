@@ -1,23 +1,26 @@
 <?php if (isset($videoRelated) && !empty($videoRelated)) { ?>
-	<div class="video-related">
-		<h2 class="video-related-title">
-			<i class="fa fa-caret-square-o-left"></i> <?php _e('Related videos'); ?>
-		</h2>
-		<div class="list-group">
-			<?php foreach($videoRelated as $related) { ?>
-				<div class="list-group-item clearfix">
-					<div class="row clearfix">
-						<a title="<?php echo $this->escape($related['title']); ?>" href="<?php echo $this->escape($related['videoUrl']); ?>" class="col-xs-4">
-							<img src="<?php echo $this->escape($related['thumbUrl']); ?>" alt="<?php echo $this->escape($related['title']); ?>" class="img-responsive">
-						</a>
-						<h5>
-							<a title="<?php echo $this->escape($related['title']); ?>" href="<?php echo $this->escape($related['videoUrl']); ?>" class="col-xs-8">
-								<?php echo $this->escape($related['title']); ?>
-							</a>
-						</h5>
-					</div>
-				</div>
-			<?php } ?>
-		</div>
-	</div>
+    <div class="video-related">
+        <h2 class="video-related-title">
+            <i class="fa fa-caret-square-o-left"></i> <?php _e('Related videos'); ?>
+        </h2>
+        <div class="list-group">
+            <?php foreach ($videoRelated as $related) { ?>
+                <div class="list-group-item clearfix">
+                    <div class="row clearfix">
+                        <a title="<?php echo $this->escape($related['title']); ?>"
+                           href="<?php echo $this->escape($related['videoUrl']); ?>" class="col-xs-4">
+                            <img src="<?php echo $this->escape($related['thumbUrl']); ?>"
+                                 alt="<?php echo $this->escape($related['title']); ?>" class="img-responsive">
+                        </a>
+                        <h5>
+                            <a title="<?php echo $this->escape($related['title']); ?>"
+                               href="<?php echo $this->escape($related['videoUrl']); ?>" class="col-xs-8">
+                                <?php echo $this->escape($related['title']); ?>
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
 <?php } ?>

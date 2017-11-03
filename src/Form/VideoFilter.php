@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Form;
 
 use Pi;
@@ -18,155 +19,155 @@ use Zend\InputFilter\InputFilter;
 
 class VideoFilter extends InputFilter
 {
-    public function __construct($option = array())
+    public function __construct($option = [])
     {
         // id
-        $this->add(array(
-            'name' => 'id',
+        $this->add([
+            'name'     => 'id',
             'required' => false,
-        ));
+        ]);
         // title
-        $this->add(array(
-            'name' => 'title',
+        $this->add([
+            'name'     => 'title',
             'required' => true,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // slug
-        $this->add(array(
-            'name'          => 'slug',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                new \Module\Video\Validator\SlugDuplicate(array(
-                    'module'            => Pi::service('module')->current(),
-                    'table'             => 'video',
-                )),
-            ),
-        ));
+        $this->add([
+            'name'       => 'slug',
+            'required'   => false,
+            'filters'    => [
+                [
+                    'name' => 'StringTrim',
+                ],
+            ],
+            'validators' => [
+                new \Module\Video\Validator\SlugDuplicate([
+                    'module' => Pi::service('module')->current(),
+                    'table'  => 'video',
+                ]),
+            ],
+        ]);
         // text_summary
-        $this->add(array(
-            'name' => 'text_summary',
+        $this->add([
+            'name'     => 'text_summary',
             'required' => false,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // text_description
-        $this->add(array(
-            'name' => 'text_description',
+        $this->add([
+            'name'     => 'text_description',
             'required' => false,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // status
-        $this->add(array(
-            'name' => 'status',
+        $this->add([
+            'name'     => 'status',
             'required' => true,
-        ));
+        ]);
         // category
-        $this->add(array(
-            'name' => 'category',
+        $this->add([
+            'name'     => 'category',
             'required' => true,
-        ));
+        ]);
         // category_main
-        $this->add(array(
-            'name' => 'category_main',
-            'required' => true,
-            'validators' => array(
+        $this->add([
+            'name'       => 'category_main',
+            'required'   => true,
+            'validators' => [
                 new \Module\Video\Validator\Category,
-            ),
-        ));
+            ],
+        ]);
         // brand
         if ($option['brand_system']) {
-            $this->add(array(
-                'name' => 'brand',
+            $this->add([
+                'name'     => 'brand',
                 'required' => false,
-            ));
+            ]);
         }
         // image
-        $this->add(array(
-            'name' => 'image',
+        $this->add([
+            'name'     => 'image',
             'required' => false,
-        ));
+        ]);
         // video_duration
-        $this->add(array(
-            'name' => 'video_duration',
+        $this->add([
+            'name'     => 'video_duration',
             'required' => false,
-        ));
+        ]);
         // Check is admin
         if ($option['side'] == 'admin') {
             switch ($option['sale_video']) {
                 case 'package':
                     // sale
-                    $this->add(array(
-                        'name' => 'sale_type',
+                    $this->add([
+                        'name'     => 'sale_type',
                         'required' => false,
-                    ));
+                    ]);
                     break;
 
                 case 'single':
                     // sale
-                    $this->add(array(
-                        'name' => 'sale_type',
+                    $this->add([
+                        'name'     => 'sale_type',
                         'required' => false,
-                    ));
+                    ]);
                     // sale_price
-                    $this->add(array(
-                        'name' => 'sale_price',
+                    $this->add([
+                        'name'     => 'sale_price',
                         'required' => false,
-                    ));
+                    ]);
                     break;
             }
         }
         // seo_title
-        $this->add(array(
-            'name' => 'seo_title',
+        $this->add([
+            'name'     => 'seo_title',
             'required' => false,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // seo_keywords
-        $this->add(array(
-            'name' => 'seo_keywords',
+        $this->add([
+            'name'     => 'seo_keywords',
             'required' => false,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // seo_description
-        $this->add(array(
-            'name' => 'seo_description',
+        $this->add([
+            'name'     => 'seo_description',
             'required' => false,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // tag
         if (Pi::service('module')->isActive('tag')) {
-            $this->add(array(
-                'name' => 'tag',
+            $this->add([
+                'name'     => 'tag',
                 'required' => false,
-            ));
+            ]);
         }
     }
 }

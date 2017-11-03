@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Api;
 
 use Pi;
@@ -30,20 +31,20 @@ class Comment extends AbstractComment
      */
     public function get($item)
     {
-        
-        $result = array();
-        $items = (array) $item;
+
+        $result = [];
+        $items = (array)$item;
 
         // Set options
         $video = Pi::api('video', 'video')->getListFromId($items);
 
         foreach ($items as $id) {
-            $result[$id] = array(
+            $result[$id] = [
                 'title' => $video[$id]['title'],
                 'url'   => $video[$id]['videoUrl'],
                 'uid'   => $video[$id]['uid'],
                 'time'  => $video[$id]['time_create'],
-            );
+            ];
         }
 
         if (is_scalar($item)) {

@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Api;
 
 use Pi;
@@ -29,7 +30,7 @@ class Server extends AbstractApi
         $server = $this->canonizeServer($server);
         return $server;
     }
-    
+
     public function canonizeServer($server)
     {
         // Check

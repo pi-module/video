@@ -11,102 +11,102 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-return array(
+return [
     // Admin section
-    'admin' => array(
-        array(
-            'title'         => _a('Video'),
-            'controller'    => 'video',
-            'permission'    => 'video',
-        ),
-        array(
-            'title'         => _a('Category'),
-            'controller'    => 'category',
-            'permission'    => 'category',
-        ),
-        array(
-            'title'         => _a('Server'),
-            'controller'    => 'server',
-            'permission'    => 'server',
-        ),
-        array(
-            'label' => _a('Attribute'),
+    'admin' => [
+        [
+            'title'      => _a('Video'),
+            'controller' => 'video',
+            'permission' => 'video',
+        ],
+        [
+            'title'      => _a('Category'),
+            'controller' => 'category',
+            'permission' => 'category',
+        ],
+        [
+            'title'      => _a('Server'),
+            'controller' => 'server',
+            'permission' => 'server',
+        ],
+        [
+            'label'      => _a('Attribute'),
             'controller' => 'attribute',
             'permission' => 'attribute',
-        ),
-        array(
-            'label' => _a('Logs'),
+        ],
+        [
+            'label'      => _a('Logs'),
             'controller' => 'log',
             'permission' => 'log',
-        ),
-        array(
-            'label' => _a('Tools'),
+        ],
+        [
+            'label'      => _a('Tools'),
             'controller' => 'tools',
             'permission' => 'tools',
-        ),
-        array(
-            'title' => _a('Json output'),
+        ],
+        [
+            'title'      => _a('Json output'),
             'controller' => 'json',
             'permission' => 'json',
-        ),
-    ),
+        ],
+    ],
     // Front section
-    'front' => array(
-        array(
-            'title'         => _a('Index'),
-            'controller'    => 'index',
-            'permission'    => 'public',
-            'block'         => 1,
-        ),
-        array(
-            'title'         => _a('Category'),
-            'controller'    => 'category',
-            'permission'    => 'public',
-            'block'         => 1,
-        ),
-        array(
-            'title'         => _a('Category list'),
-            'controller'    => 'category',
-            'action'        => 'list',
-            'permission'    => 'public',
-            'block'         => 1,
-        ),
-        array(
-            'title'         => _a('Tag'),
-            'controller'    => 'tag',
-            'permission'    => 'public',
-            'block'         => 1,
-        ),
-        array(
-            'title'         => _a('Tag list'),
-            'controller'    => 'tag',
-            'action'        => 'list',
-            'permission'    => 'public',
-            'block'         => 1,
-        ),
-        array(
-            'title'         => _a('Watch video'),
-            'controller'    => 'watch',
-            'permission'    => 'public',
-            'block'         => 1,
-        ),
-        array(
-            'title'         => _a('Channel'),
-            'controller'    => 'channel',
-            'permission'    => 'channel',
-            'block'         => 1,
-        ),
-        array(
-            'title'         => _a('Submit'),
-            'controller'    => 'submit',
-            'permission'    => 'public',
-            'block'         => 1,
-        ),
-        array(
-            'label' => _a('Json output'),
+    'front' => [
+        [
+            'title'      => _a('Index'),
+            'controller' => 'index',
+            'permission' => 'public',
+            'block'      => 1,
+        ],
+        [
+            'title'      => _a('Category'),
+            'controller' => 'category',
+            'permission' => 'public',
+            'block'      => 1,
+        ],
+        [
+            'title'      => _a('Category list'),
+            'controller' => 'category',
+            'action'     => 'list',
+            'permission' => 'public',
+            'block'      => 1,
+        ],
+        [
+            'title'      => _a('Tag'),
+            'controller' => 'tag',
+            'permission' => 'public',
+            'block'      => 1,
+        ],
+        [
+            'title'      => _a('Tag list'),
+            'controller' => 'tag',
+            'action'     => 'list',
+            'permission' => 'public',
+            'block'      => 1,
+        ],
+        [
+            'title'      => _a('Watch video'),
+            'controller' => 'watch',
+            'permission' => 'public',
+            'block'      => 1,
+        ],
+        [
+            'title'      => _a('Channel'),
+            'controller' => 'channel',
+            'permission' => 'channel',
+            'block'      => 1,
+        ],
+        [
+            'title'      => _a('Submit'),
+            'controller' => 'submit',
+            'permission' => 'public',
+            'block'      => 1,
+        ],
+        [
+            'label'      => _a('Json output'),
             'controller' => 'json',
             'permission' => 'public',
-            'block' => 0,
-        ),
-    ),
-);
+            'block'      => 0,
+        ],
+    ],
+];

@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Validator;
 
 use Pi;
@@ -23,11 +24,11 @@ class Category extends AbstractValidator
     /**
      * @var array
      */
-    protected $messageTemplates = array(
+    protected $messageTemplates = [
         self::TAKEN => 'Please select category',
-    );
+    ];
 
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Slug validate

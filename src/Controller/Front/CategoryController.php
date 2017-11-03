@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Controller\Front;
 
 use Pi;
@@ -37,7 +38,7 @@ class CategoryController extends IndexController
             return;
         }
         // Update Hits
-        $this->getModel('category')->increment('hits', array('id' => $category['id']));
+        $this->getModel('category')->increment('hits', ['id' => $category['id']]);
         // category list
         $categoriesJson = Pi::api('category', 'video')->categoryListJson();
         // Check display type
@@ -48,9 +49,9 @@ class CategoryController extends IndexController
 
             case 'subcategory':
                 // Get info
-                $list = array();
-                $where = array('status' => 1, 'parent' => $category['id']);
-                $order = array('display_order ASC', 'time_create DESC', 'title ASC');
+                $list = [];
+                $where = ['status' => 1, 'parent' => $category['id']];
+                $order = ['display_order ASC', 'time_create DESC', 'title ASC'];
                 $select = $this->getModel('category')->select()->where($where)->order($order);
                 $rowset = $this->getModel('category')->selectWith($select);
                 // Make list
@@ -81,9 +82,9 @@ class CategoryController extends IndexController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Set info
-        $categories = array();
-        $where = array('status' => 1);
-        $order = array('display_order DESC', 'title ASC', 'id DESC');
+        $categories = [];
+        $where = ['status' => 1];
+        $order = ['display_order DESC', 'title ASC', 'id DESC'];
         $select = $this->getModel('category')->select()->where($where)->order($order);
         $rowset = $this->getModel('category')->selectWith($select);
         // Make list
@@ -91,7 +92,7 @@ class CategoryController extends IndexController
             $categories[$row->id] = Pi::api('category', 'video')->canonizeCategory($row);
         }
         // Set category tree
-        $categoryTree = array();
+        $categoryTree = [];
         if (!empty($categories)) {
             $categoryTree = Pi::api('category', 'video')->makeTreeOrder($categories);
         }
@@ -99,9 +100,9 @@ class CategoryController extends IndexController
         $title = __('Category list');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions(array(
-            'force_replace_space' => true
-        ));
+        $filter->setOptions([
+            'force_replace_space' => true,
+        ]);
         $seoKeywords = $filter($title);
         // Set view
         $this->view()->headTitle($title);

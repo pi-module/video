@@ -88,7 +88,7 @@ angular.module('video')
             }
 
             // category list
-            $(function() {
+            $(function () {
                 $('.pi-item-category').treeview({
                     levels: 1,
                     data: config.categoryJson,

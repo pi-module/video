@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Api;
 
 use Pi;
@@ -21,47 +22,47 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    protected $table = array(
+    protected $table = [
         'video',
         'category',
-    );
+    ];
 
     /**
      * {@inheritDoc}
      */
-    protected $searchIn = array(
+    protected $searchIn = [
         'title',
         'text_summary',
         'text_description',
-    );
+    ];
 
     /**
      * {@inheritDoc}
      */
-    protected $meta = array(
-        'id'            => 'id',
-        'title'         => 'title',
-        'text_summary'  => 'content',
-        'time_create'   => 'time',
-        'slug'          => 'slug',
-        'image'         => 'image',
-        'path'          => 'path',
-    );
+    protected $meta = [
+        'id'           => 'id',
+        'title'        => 'title',
+        'text_summary' => 'content',
+        'time_create'  => 'time',
+        'slug'         => 'slug',
+        'image'        => 'image',
+        'path'         => 'path',
+    ];
 
     /**
      * {@inheritDoc}
      */
-    protected $condition = array(
+    protected $condition = [
         'status' => 1,
-    );
+    ];
 
     /**
      * {@inheritDoc}
      */
-    protected $order = array(
+    protected $order = [
         'time_create DESC',
-        'id DESC'
-    );
+        'id DESC',
+    ];
 
     /**
      * {@inheritDoc}
@@ -70,19 +71,19 @@ class Search extends AbstractSearch
     {
         switch ($table) {
             case 'category':
-                $link = Pi::url(Pi::service('url')->assemble('video', array(
-                    'module' => $this->getModule(),
+                $link = Pi::url(Pi::service('url')->assemble('video', [
+                    'module'     => $this->getModule(),
                     'controller' => 'category',
-                    'slug' => $item['slug'],
-                )));
+                    'slug'       => $item['slug'],
+                ]));
                 break;
 
             case 'video':
-                $link = Pi::url(Pi::service('url')->assemble('video', array(
-                    'module' => $this->getModule(),
+                $link = Pi::url(Pi::service('url')->assemble('video', [
+                    'module'     => $this->getModule(),
                     'controller' => 'watch',
-                    'slug' => $item['slug'],
-                )));
+                    'slug'       => $item['slug'],
+                ]));
                 break;
         }
 

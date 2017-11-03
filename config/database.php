@@ -11,6 +11,6 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-return array(
-    'sqlfile'   => 'sql/mysql.sql',
-);
+return [
+    'sqlfile' => 'sql/mysql.sql',
+];

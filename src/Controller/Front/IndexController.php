@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Controller\Front;
 
 use Pi;
@@ -60,8 +61,8 @@ class IndexController extends ActionController
             $limit = $this->config('view_perpage');
         }
         // Set info
-        $video = array();
-        $videoId = array();
+        $video = [];
+        $videoId = [];
         $page = $this->params('page', 1);
         $module = $this->params('module');
         $sort = $this->params('sort', 'create');
@@ -69,10 +70,10 @@ class IndexController extends ActionController
         $limit = intval($limit);
         $order = $this->setOrder($sort);
         // Set info
-        $columns = array('video' => new Expression('DISTINCT video'));
+        $columns = ['video' => new Expression('DISTINCT video')];
         // Get info from link table
         $select = $this->getModel('link')->select()->where($where)->columns($columns)
-        ->order($order)->offset($offset)->limit($limit);
+            ->order($order)->offset($offset)->limit($limit);
         $rowset = $this->getModel('link')->selectWith($select)->toArray();
         // Make list
         foreach ($rowset as $id) {
@@ -81,7 +82,7 @@ class IndexController extends ActionController
         // Check not empty
         if (!empty($videoId)) {
             // Set info
-            $where = array('status' => 1, 'id' => $videoId);
+            $where = ['status' => 1, 'id' => $videoId];
             // Get list of video
             $select = $this->getModel('video')->select()->where($where)->order($order);
             $rowset = $this->getModel('video')->selectWith($select);
@@ -96,7 +97,7 @@ class IndexController extends ActionController
     public function channelList($where)
     {
         // Set info
-        $id = array();
+        $id = [];
         $page = $this->params('page', 1);
         $module = $this->params('module');
         $sort = $this->params('sort', 'create');
@@ -119,7 +120,7 @@ class IndexController extends ActionController
         $template['sort'] = $this->params('sort');
         $template['page'] = $this->params('page', 1);
         // get count     
-        $columns = array('count' => new Expression('count(DISTINCT `video`)'));
+        $columns = ['count' => new Expression('count(DISTINCT `video`)')];
         $select = $this->getModel('link')->select()->where($where)->columns($columns);
         $template['count'] = $this->getModel('link')->selectWith($select)->current()->count;
         // paginator
@@ -133,7 +134,7 @@ class IndexController extends ActionController
         $template['sort'] = $this->params('sort');
         $template['page'] = $this->params('page', 1);
         // get count     
-        $columns = array('count' => new Expression('count(*)'));
+        $columns = ['count' => new Expression('count(*)')];
         $select = $this->getModel('video')->select()->where($where)->columns($columns);
         $template['count'] = $this->getModel('video')->selectWith($select)->current()->count;
         // paginator
@@ -148,17 +149,17 @@ class IndexController extends ActionController
         $paginator = Paginator::factory(intval($template['count']));
         $paginator->setItemCountPerPage(intval($this->config('view_perpage')));
         $paginator->setCurrentPageNumber(intval($template['page']));
-        $paginator->setUrlOptions(array(
-            'router'    => $this->getEvent()->getRouter(),
-            'route'     => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params'    => array_filter(array(
-                'module'        => $this->getModule(),
-                'controller'    => $template['controller'],
-                'action'        => $template['action'],
-                'slug'          => $template['slug'],
-                'sort'          => $template['sort'],
-            )),
-        ));
+        $paginator->setUrlOptions([
+            'router' => $this->getEvent()->getRouter(),
+            'route'  => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+            'params' => array_filter([
+                'module'     => $this->getModule(),
+                'controller' => $template['controller'],
+                'action'     => $template['action'],
+                'slug'       => $template['slug'],
+                'sort'       => $template['sort'],
+            ]),
+        ]);
         return $paginator;
     }
 
@@ -167,14 +168,14 @@ class IndexController extends ActionController
         // Set order
         switch ($sort) {
             case 'update':
-                $order = array('time_update DESC', 'id DESC');
-                break; 
+                $order = ['time_update DESC', 'id DESC'];
+                break;
 
             case 'create':
             default:
-                $order = array('time_create DESC', 'id DESC');
+                $order = ['time_create DESC', 'id DESC'];
                 break;
-        } 
+        }
         return $order;
     }
 }

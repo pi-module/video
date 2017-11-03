@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Form\Element;
 
 use Pi;
@@ -23,11 +24,11 @@ class Remove extends ZendButton
      */
     public function getAttributes()
     {
-        $this->Attributes = array(
-            'class' => 'img-remove btn btn-danger btn-sm',
+        $this->Attributes = [
+            'class'       => 'img-remove btn btn-danger btn-sm',
             'data-toggle' => 'button',
-            'data-link' => $this->attributes['link'],
-        );
+            'data-link'   => $this->attributes['link'],
+        ];
         return $this->Attributes;
     }
 }

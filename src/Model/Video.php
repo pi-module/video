@@ -21,7 +21,7 @@ class Video extends Model
     /**
      * {@inheritDoc}
      */
-    protected $columns = array(
+    protected $columns = [
         'id',
         'title',
         'slug',
@@ -62,5 +62,5 @@ class Video extends Model
         'video_size',
         'video_duration',
         'setting',
-    );
+    ];
 }

@@ -18,7 +18,7 @@ use Pi\Form\Form as BaseForm;
 
 class ServerForm extends BaseForm
 {
-    public function __construct($name = null, $option = array())
+    public function __construct($name = null, $option = [])
     {
         parent::__construct($name);
     }
@@ -34,179 +34,179 @@ class ServerForm extends BaseForm
     public function init()
     {
         // id
-        $this->add(array(
-            'name' => 'id',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'id',
+            'attributes' => [
                 'type' => 'hidden',
-            ),
-        ));
+            ],
+        ]);
         // title
-        $this->add(array(
-            'name' => 'title',
-            'options' => array(
+        $this->add([
+            'name'       => 'title',
+            'options'    => [
                 'label' => __('Title'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => '',
-                'required' => true,
-            )
-        ));
+                'required'    => true,
+            ],
+        ]);
         // status
-        $this->add(array(
-            'name' => 'status',
-            'type' => 'select',
-            'options' => array(
-                'label' => __('Status'),
-                'value_options' => array(
+        $this->add([
+            'name'       => 'status',
+            'type'       => 'select',
+            'options'    => [
+                'label'         => __('Status'),
+                'value_options' => [
                     1 => __('Published'),
                     2 => __('Pending review'),
                     3 => __('Draft'),
                     4 => __('Private'),
                     5 => __('Delete'),
-                ),
-            ),
-            'attributes' => array(
+                ],
+            ],
+            'attributes' => [
                 'required' => true,
-            )
-        ));
+            ],
+        ]);
         // type
-        $this->add(array(
-            'name' => 'type',
-            'type' => 'select',
-            'options' => array(
-                'label' => __('Type'),
-                'value_options' => array(
-                    'file' => __('File server'),
+        $this->add([
+            'name'       => 'type',
+            'type'       => 'select',
+            'options'    => [
+                'label'         => __('Type'),
+                'value_options' => [
+                    'file'  => __('File server'),
                     'wowza' => __('Wowza server'),
                     'qmery' => __('Qmery server'),
-                ),
-            ),
-            'attributes' => array(
+                ],
+            ],
+            'attributes' => [
                 'required' => true,
-            )
-        ));
+            ],
+        ]);
         // url
-        $this->add(array(
-            'name' => 'url',
-            'options' => array(
+        $this->add([
+            'name'       => 'url',
+            'options'    => [
                 'label' => __('Url'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => sprintf(
                     '<ul><li>%s</li><li>%s</li><li>%s</li></ul>',
                     __('File : set url or ip by http:// or https:// without end slash'),
                     __('Wowza : set url or ip without http:// or https:// and end slash'),
                     __('Qmery : http://www.qmery.com or https://www.qmery.com')
                 ),
-                'required' => true,
-            )
-        ));
+                'required'    => true,
+            ],
+        ]);
         // default
-        $this->add(array(
-            'name' => 'default',
-            'type' => 'checkbox',
-            'options' => array(
+        $this->add([
+            'name'       => 'default',
+            'type'       => 'checkbox',
+            'options'    => [
                 'label' => __('Default server ?'),
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'description' => '',
-            )
-        ));
+            ],
+        ]);
         // extra_setting
-        $this->add(array(
-            'name' => 'extra_setting',
-            'type' => 'fieldset',
-            'options' => array(
+        $this->add([
+            'name'    => 'extra_setting',
+            'type'    => 'fieldset',
+            'options' => [
                 'label' => __('Server setting'),
-            ),
-        ));
+            ],
+        ]);
         // qmery_upload_token
-        $this->add(array(
-            'name' => 'qmery_upload_token',
-            'options' => array(
+        $this->add([
+            'name'       => 'qmery_upload_token',
+            'options'    => [
                 'label' => __('Qmery upload token'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => '',
-            )
-        ));
+            ],
+        ]);
         // qmery_update_token
-        $this->add(array(
-            'name' => 'qmery_update_token',
-            'options' => array(
+        $this->add([
+            'name'       => 'qmery_update_token',
+            'options'    => [
                 'label' => __('Qmery update token'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => '',
-            )
-        ));
+            ],
+        ]);
         // qmery_group_id
-        $this->add(array(
-            'name' => 'qmery_group_id',
-            'options' => array(
+        $this->add([
+            'name'       => 'qmery_group_id',
+            'options'    => [
                 'label' => __('Qmery group ID'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => '',
-            )
-        ));
+            ],
+        ]);
         // qmery_group_hash
-        $this->add(array(
-            'name' => 'qmery_group_hash',
-            'options' => array(
+        $this->add([
+            'name'       => 'qmery_group_hash',
+            'options'    => [
                 'label' => __('Qmery group hash'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => '',
-            )
-        ));
+            ],
+        ]);
         // qmery_import
-        $this->add(array(
-            'name' => 'qmery_import',
-            'type' => 'checkbox',
-            'options' => array(
+        $this->add([
+            'name'       => 'qmery_import',
+            'type'       => 'checkbox',
+            'options'    => [
                 'label' => __('Qmery import video'),
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'description' => __('Import video from qmery to website if video not exist on website'),
-            )
-        ));
+            ],
+        ]);
         // qmery_show_embed
-        $this->add(array(
-            'name' => 'qmery_show_embed',
-            'type' => 'checkbox',
-            'options' => array(
+        $this->add([
+            'name'       => 'qmery_show_embed',
+            'type'       => 'checkbox',
+            'options'    => [
                 'label' => __('Qmery show embed'),
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'description' => __('Show embed code for copy to other pages and websites'),
-            )
-        ));
+            ],
+        ]);
         // qmery_player_type
-        $this->add(array(
-            'name' => 'qmery_player_type',
-            'type' => 'select',
-            'options' => array(
-                'label' => __('Qmery player type'),
-                'value_options' => array(
-                    'embed' => __('embed'),
+        $this->add([
+            'name'    => 'qmery_player_type',
+            'type'    => 'select',
+            'options' => [
+                'label'         => __('Qmery player type'),
+                'value_options' => [
+                    'embed'  => __('embed'),
                     'iframe' => __('iframe'),
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // Save
-        $this->add(array(
-            'name' => 'submit',
-            'type' => 'submit',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 }

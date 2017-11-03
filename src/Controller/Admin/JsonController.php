@@ -11,12 +11,13 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Controller\Admin;
 
+use Module\Guide\Form\RegenerateImageForm;
+use Module\Guide\Form\SitemapForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\Guide\Form\SitemapForm;
-use Module\Guide\Form\RegenerateImageForm;
 
 class JsonController extends ActionController
 {
@@ -27,32 +28,32 @@ class JsonController extends ActionController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Get config
-        $links = array();
+        $links = [];
 
-        $links['videoAll'] = Pi::url($this->url('video', array(
-            'module' => $module,
+        $links['videoAll'] = Pi::url($this->url('video', [
+            'module'     => $module,
             'controller' => 'json',
-            'action' => 'videoAll',
-            'update' => strtotime("11-12-10"),
-            'password' => (!empty($config['json_password'])) ? $config['json_password'] : '',
-        )));
+            'action'     => 'videoAll',
+            'update'     => strtotime("11-12-10"),
+            'password'   => (!empty($config['json_password'])) ? $config['json_password'] : '',
+        ]));
 
-        $links['videoCategory'] = Pi::url($this->url('video', array(
-            'module' => $module,
+        $links['videoCategory'] = Pi::url($this->url('video', [
+            'module'     => $module,
             'controller' => 'json',
-            'action' => 'videoCategory',
-            'id' => 1,
-            'update' => strtotime("11-12-10"),
-            'password' => (!empty($config['json_password'])) ? $config['json_password'] : '',
-        )));
+            'action'     => 'videoCategory',
+            'id'         => 1,
+            'update'     => strtotime("11-12-10"),
+            'password'   => (!empty($config['json_password'])) ? $config['json_password'] : '',
+        ]));
 
-        $links['videoSingle'] = Pi::url($this->url('video', array(
-            'module' => $module,
+        $links['videoSingle'] = Pi::url($this->url('video', [
+            'module'     => $module,
             'controller' => 'json',
-            'action' => 'videoSingle',
-            'id' => 1,
-            'password' => (!empty($config['json_password'])) ? $config['json_password'] : '',
-        )));
+            'action'     => 'videoSingle',
+            'id'         => 1,
+            'password'   => (!empty($config['json_password'])) ? $config['json_password'] : '',
+        ]));
 
         // Set template
         $this->view()->setTemplate('json-index');

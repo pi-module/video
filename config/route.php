@@ -11,18 +11,18 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-return array(
+return [
     // route name
-    'video'  => array(
-        'name'      => 'video',
-        'type'      => 'Module\Video\Route\Video',
-        'options'   => array(
-            'route'     => '/video',
-            'defaults'  => array(
-                'module'        => 'video',
-                'controller'    => 'index',
-                'action'        => 'index'
-            )
-        ),
-    )
-);
+    'video' => [
+        'name'    => 'video',
+        'type'    => 'Module\Video\Route\Video',
+        'options' => [
+            'route'    => '/video',
+            'defaults' => [
+                'module'     => 'video',
+                'controller' => 'index',
+                'action'     => 'index',
+            ],
+        ],
+    ],
+];

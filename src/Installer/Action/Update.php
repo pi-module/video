@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Installer\Action;
 
 use Pi;
@@ -26,9 +27,9 @@ class Update extends BasicUpdate
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('update.pre', array($this, 'updateSchema'));
+        $events->attach('update.pre', [$this, 'updateSchema']);
         parent::attachDefaultListeners();
-        
+
         return $this;
     }
 
@@ -60,11 +61,11 @@ class Update extends BasicUpdate
             try {
                 $categoryAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
         }
@@ -75,11 +76,11 @@ class Update extends BasicUpdate
             try {
                 $categoryAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
         }
@@ -103,11 +104,11 @@ EOD;
             try {
                 $sqlHandler->queryContent($sql);
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'SQL schema query for author table failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
 
                 return false;
             }
@@ -134,11 +135,11 @@ EOD;
             try {
                 $sqlHandler->queryContent($sql);
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'SQL schema query for author table failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
 
                 return false;
             }
@@ -148,11 +149,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
 
@@ -161,11 +162,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
 
@@ -174,11 +175,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
         }
@@ -189,11 +190,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
         }
@@ -204,11 +205,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
             // Alter table add index
@@ -216,11 +217,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
         }
@@ -231,11 +232,11 @@ EOD;
             try {
                 $linkAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
             // Alter table add index
@@ -243,22 +244,22 @@ EOD;
             try {
                 $linkAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
             // Update recommended value
-            $columns = array('id');
-            $where = array('recommended' => 1);
+            $columns = ['id'];
+            $where = ['recommended' => 1];
             $select = $videoModel->select()->columns($columns)->where($where);
             $rowset = $videoModel->selectWith($select);
             foreach ($rowset as $row) {
                 $linkModel->update(
-                    array('recommended' => 1),
-                    array('id' => $row->id)
+                    ['recommended' => 1],
+                    ['id' => $row->id]
                 );
             }
         }
@@ -269,11 +270,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
             // Alter table add index
@@ -281,32 +282,32 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
             // Update qmery video
             $videoModel->update(
-                array('video_qmery_id' => NULL),
-                array('video_qmery_id' => 0)
+                ['video_qmery_id' => NULL],
+                ['video_qmery_id' => 0]
             );
             $videoModel->update(
-                array('video_qmery_hash' => NULL),
-                array('video_qmery_hash' => '')
+                ['video_qmery_hash' => NULL],
+                ['video_qmery_hash' => '']
             );
             // Alter table add index
             $sql = sprintf("ALTER TABLE %s ADD UNIQUE `video_qmery_hash` (`video_qmery_hash`)", $videoTable);
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
             // Alter table add index
@@ -314,11 +315,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
 
@@ -330,11 +331,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
             // Alter table field `sale_price`
@@ -342,11 +343,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
         }
@@ -357,11 +358,11 @@ EOD;
             try {
                 $categoryAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
         }
@@ -372,11 +373,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
             // Alter table field `sale_type`
@@ -384,11 +385,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
         }
@@ -399,11 +400,11 @@ EOD;
             try {
                 $categoryAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
             // Alter table field `hits`
@@ -411,11 +412,11 @@ EOD;
             try {
                 $categoryAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
         }
@@ -426,11 +427,11 @@ EOD;
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult('db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]);
                 return false;
             }
         }

@@ -11,11 +11,12 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Controller\Admin;
 
+use Module\Video\Form\SitemapForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\Video\Form\SitemapForm;
 
 class ToolsController extends ActionController
 {

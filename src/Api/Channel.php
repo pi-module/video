@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Api;
 
 use Pi;
@@ -25,7 +26,7 @@ class Channel extends AbstractApi
     public function user($uid)
     {
         // Get user
-        $parameters = array('id', 'identity', 'name', 'email', 'gender', 'birthdate');
+        $parameters = ['id', 'identity', 'name', 'email', 'gender', 'birthdate'];
         $user = Pi::api('user', 'user')->get(
             $uid,
             $parameters,

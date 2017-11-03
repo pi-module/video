@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Form;
 
 use Pi;
@@ -20,10 +21,10 @@ class CategoryForm extends BaseForm
 {
     protected $thumbUrl = '';
 
-    public function __construct($name = null, $option = array())
+    public function __construct($name = null, $option = [])
     {
         $this->option = $option;
-        $this->category = array(0 => '');
+        $this->category = [0 => ''];
         $this->thumbUrl = $option['thumbUrl'];
         $this->removeUrl = empty($option['removeUrl']) ? '' : $option['removeUrl'];
         parent::__construct($name);
@@ -40,241 +41,241 @@ class CategoryForm extends BaseForm
     public function init()
     {
         // id
-        $this->add(array(
-            'name' => 'id',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'id',
+            'attributes' => [
                 'type' => 'hidden',
-            ),
-        ));
+            ],
+        ]);
         // parent
         if ($this->option['type'] == 'category') {
-            $this->add(array(
-                'name' => 'parent',
-                'type' => 'Module\Video\Form\Element\Category',
-                'options' => array(
-                    'label' => __('Parent Category'),
+            $this->add([
+                'name'       => 'parent',
+                'type'       => 'Module\Video\Form\Element\Category',
+                'options'    => [
+                    'label'    => __('Parent Category'),
                     'category' => $this->category,
-                ),
-                'attributes' => array(
-                    'size' => 1,
+                ],
+                'attributes' => [
+                    'size'     => 1,
                     'multiple' => 0,
-                ),
-            ));
+                ],
+            ]);
         }
         // title
-        $this->add(array(
-            'name' => 'title',
-            'options' => array(
+        $this->add([
+            'name'       => 'title',
+            'options'    => [
                 'label' => __('Title'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => '',
-                'required' => true,
-            )
-        ));
+                'required'    => true,
+            ],
+        ]);
         // slug
-        $this->add(array(
-            'name' => 'slug',
-            'options' => array(
+        $this->add([
+            'name'       => 'slug',
+            'options'    => [
                 'label' => __('slug'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => '',
 
-            )
-        ));
+            ],
+        ]);
         // text_summary
-        $this->add(array(
-            'name' => 'text_summary',
-            'options' => array(
+        $this->add([
+            'name'       => 'text_summary',
+            'options'    => [
                 'label' => __('Summary'),
-            ),
-            'attributes' => array(
-                'type' => 'textarea',
-                'rows' => '5',
-                'cols' => '40',
+            ],
+            'attributes' => [
+                'type'        => 'textarea',
+                'rows'        => '5',
+                'cols'        => '40',
                 'description' => __('Keep summery short, 2 or 3 lines'),
-            )
-        ));
+            ],
+        ]);
         // text_description
-        $this->add(array(
-            'name' => 'text_description',
-            'options' => array(
-                'label' => __('Description'),
+        $this->add([
+            'name'       => 'text_description',
+            'options'    => [
+                'label'  => __('Description'),
                 'editor' => 'html',
-            ),
-            'attributes' => array(
-                'type' => 'editor',
+            ],
+            'attributes' => [
+                'type'        => 'editor',
                 'description' => '',
-            )
-        ));
+            ],
+        ]);
         // type
-        $this->add(array(
-            'name' => 'type',
-            'type' => 'select',
-            'options' => array(
-                'label' => __('Category type'),
-                'value_options' => array(
+        $this->add([
+            'name'       => 'type',
+            'type'       => 'select',
+            'options'    => [
+                'label'         => __('Category type'),
+                'value_options' => [
                     'category' => __('Category'),
-                    'brand' => __('Brand'),
-                ),
-            ),
-            'attributes' => array(
+                    'brand'    => __('Brand'),
+                ],
+            ],
+            'attributes' => [
                 'required' => true,
-                'value' => $this->option['type'],
-            )
-        ));
+                'value'    => $this->option['type'],
+            ],
+        ]);
         // display_order
-        $this->add(array(
-            'name' => 'display_order',
-            'options' => array(
+        $this->add([
+            'name'       => 'display_order',
+            'options'    => [
                 'label' => __('Display order'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => '',
-                'required' => false,
-            )
-        ));
+                'required'    => false,
+            ],
+        ]);
         // display_type
-        $this->add(array(
-            'name' => 'display_type',
-            'type' => 'select',
-            'options' => array(
-                'label' => __('Display type'),
-                'value_options' => array(
-                    'video' => __('List of videos'),
+        $this->add([
+            'name'       => 'display_type',
+            'type'       => 'select',
+            'options'    => [
+                'label'         => __('Display type'),
+                'value_options' => [
+                    'video'       => __('List of videos'),
                     'subcategory' => __('List of sub category'),
-                ),
-            ),
-            'attributes' => array(
+                ],
+            ],
+            'attributes' => [
                 'required' => true,
-            )
-        ));
+            ],
+        ]);
         // status
-        $this->add(array(
-            'name' => 'status',
-            'type' => 'select',
-            'options' => array(
-                'label' => __('Status'),
-                'value_options' => array(
+        $this->add([
+            'name'       => 'status',
+            'type'       => 'select',
+            'options'    => [
+                'label'         => __('Status'),
+                'value_options' => [
                     1 => __('Published'),
                     2 => __('Pending review'),
                     3 => __('Draft'),
                     4 => __('Private'),
-                ),
-            ),
-            'attributes' => array(
+                ],
+            ],
+            'attributes' => [
                 'required' => true,
-            )
-        ));
+            ],
+        ]);
         // Image
         if ($this->thumbUrl) {
-            $this->add(array(
-                'name' => 'imageview',
-                'type' => 'Module\Video\Form\Element\Image',
-                'options' => array(//'label' => __('Image'),
-                ),
-                'attributes' => array(
+            $this->add([
+                'name'       => 'imageview',
+                'type'       => 'Module\Video\Form\Element\Image',
+                'options'    => [//'label' => __('Image'),
+                ],
+                'attributes' => [
                     'src' => $this->thumbUrl,
-                ),
-            ));
-            $this->add(array(
-                'name' => 'remove',
-                'type' => 'Module\Video\Form\Element\Remove',
-                'options' => array(
+                ],
+            ]);
+            $this->add([
+                'name'       => 'remove',
+                'type'       => 'Module\Video\Form\Element\Remove',
+                'options'    => [
                     'label' => __('Remove image'),
-                ),
-                'attributes' => array(
+                ],
+                'attributes' => [
                     'link' => $this->removeUrl,
-                ),
-            ));
-            $this->add(array(
-                'name' => 'image',
-                'attributes' => array(
+                ],
+            ]);
+            $this->add([
+                'name'       => 'image',
+                'attributes' => [
                     'type' => 'hidden',
-                ),
-            ));
+                ],
+            ]);
         } else {
-            $this->add(array(
-                'name' => 'image',
-                'options' => array(
+            $this->add([
+                'name'       => 'image',
+                'options'    => [
                     'label' => __('Image'),
-                ),
-                'attributes' => array(
-                    'type' => 'file',
+                ],
+                'attributes' => [
+                    'type'        => 'file',
                     'description' => '',
-                )
-            ));
+                ],
+            ]);
         }
         // image_wide
-        $this->add(array(
-            'name' => 'image_wide',
-            'options' => array(
+        $this->add([
+            'name'       => 'image_wide',
+            'options'    => [
                 'label' => __('Wide image'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => __('Set wide image url for category page header'),
 
-            )
-        ));
+            ],
+        ]);
         // extra
-        $this->add(array(
-            'name' => 'extra_seo',
-            'type' => 'fieldset',
-            'options' => array(
+        $this->add([
+            'name'    => 'extra_seo',
+            'type'    => 'fieldset',
+            'options' => [
                 'label' => __('SEO options'),
-            ),
-        ));
+            ],
+        ]);
         // seo_title
-        $this->add(array(
-            'name' => 'seo_title',
-            'options' => array(
+        $this->add([
+            'name'       => 'seo_title',
+            'options'    => [
                 'label' => __('SEO Title'),
-            ),
-            'attributes' => array(
-                'type' => 'textarea',
-                'rows' => '2',
-                'cols' => '40',
+            ],
+            'attributes' => [
+                'type'        => 'textarea',
+                'rows'        => '2',
+                'cols'        => '40',
                 'description' => __('Between 10 to 70 character'),
-            )
-        ));
+            ],
+        ]);
         // seo_keywords
-        $this->add(array(
-            'name' => 'seo_keywords',
-            'options' => array(
+        $this->add([
+            'name'       => 'seo_keywords',
+            'options'    => [
                 'label' => __('SEO Keywords'),
-            ),
-            'attributes' => array(
-                'type' => 'textarea',
-                'rows' => '2',
-                'cols' => '40',
+            ],
+            'attributes' => [
+                'type'        => 'textarea',
+                'rows'        => '2',
+                'cols'        => '40',
                 'description' => __('Between 5 to 10 words'),
-            )
-        ));
+            ],
+        ]);
         // seo_description
-        $this->add(array(
-            'name' => 'seo_description',
-            'options' => array(
+        $this->add([
+            'name'       => 'seo_description',
+            'options'    => [
                 'label' => __('SEO Description'),
-            ),
-            'attributes' => array(
-                'type' => 'textarea',
-                'rows' => '3',
-                'cols' => '40',
+            ],
+            'attributes' => [
+                'type'        => 'textarea',
+                'rows'        => '3',
+                'cols'        => '40',
                 'description' => __('Between 80 to 160 character'),
-            )
-        ));
+            ],
+        ]);
         // Save
-        $this->add(array(
-            'name' => 'submit',
-            'type' => 'submit',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 }

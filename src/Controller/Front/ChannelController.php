@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Controller\Front;
 
 use Pi;
@@ -19,14 +20,14 @@ use Pi\Mvc\Controller\ActionController;
 
 class ChannelController extends IndexController
 {
-	public function indexAction()
+    public function indexAction()
     {
         // Get info from url
         $module = $this->params('module');
         $uid = $this->params('id');
         // Check id
         if (!isset($uid) && empty($uid)) {
-        	$uid = Pi::user()->getId();
+            $uid = Pi::user()->getId();
         }
         // Get user info
         $user = Pi::api('channel', 'video')->user($uid);
@@ -45,9 +46,9 @@ class ChannelController extends IndexController
         $title = sprintf(__('All videos from %s channel'), $user['name']);
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions(array(
-            'force_replace_space' => true
-        ));
+        $filter->setOptions([
+            'force_replace_space' => true,
+        ]);
         $seoKeywords = $filter($title);
         // Set view
         $this->view()->headTitle($title);

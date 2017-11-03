@@ -1,10 +1,10 @@
 <?php
 $this->jquery();
 $this->css($this->assetModule('css/admin.css'));
-$this->js(array(
+$this->js([
     $this->assetModule('js/jquery.form.js'),
     $this->assetModule('js/progress-bar.js'),
-));
+]);
 $script = <<<'EOT'
     $('#videoFile').on('change', function (e) {
         var file = this.files[0];
@@ -42,16 +42,18 @@ $script = <<<'EOT'
     });
 EOT;
 $fileSize = __('Your selected file size is');
-$fileExtension  = __('And file extension is');
+$fileExtension = __('And file extension is');
 $fileSizeError = sprintf(__('You attach to large file, allowed upload size is %s'), number_format($config['media_size'] / 1000000, 2) . ' MB');
-$fileExtensionError  = sprintf(__('You attach wrong file, allowed extensions is %s'), $config['media_extension']);
+$fileExtensionError = sprintf(__('You attach wrong file, allowed extensions is %s'), $config['media_extension']);
 $script = sprintf($script, $fileSize, $fileExtension, $config['media_size'], $fileSizeError, $fileExtensionError);
 $this->footScript()->appendScript($script);
 ?>
 <div class="clearfix">
     <div class="well well-sm">
         <ul class="nav nav-pills">
-            <li class="active"><a href="<?php echo $this->url('', array('action' => 'upload')); ?>"><?php _e('Upload video'); ?></a></li>
+            <li class="active"><a
+                        href="<?php echo $this->url('', ['action' => 'upload']); ?>"><?php _e('Upload video'); ?></a>
+            </li>
             <li><a href="#"><?php _e('Add basic information'); ?></a></li>
             <li><a href="#"><?php _e('Add additional information'); ?></a></li>
             <li><a href="#"><?php _e('Watch submitted video'); ?></a></li>
@@ -72,7 +74,8 @@ $this->footScript()->appendScript($script);
         <?php echo $this->form($form, 'inline'); ?>
     </div>
     <div id="progress-bar" class="progress">
-        <div id="bar" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+        <div id="bar" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
             <div id="percent">0%</div>
         </div>
     </div>

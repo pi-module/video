@@ -21,104 +21,104 @@ class ServerFilter extends InputFilter
     public function __construct()
     {
         // id
-        $this->add(array(
-            'name' => 'id',
+        $this->add([
+            'name'     => 'id',
             'required' => false,
-        ));
+        ]);
         // title
-        $this->add(array(
-            'name' => 'title',
+        $this->add([
+            'name'     => 'title',
             'required' => true,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // status
-        $this->add(array(
-            'name' => 'status',
+        $this->add([
+            'name'     => 'status',
             'required' => false,
-        ));
+        ]);
         // type
-        $this->add(array(
-            'name' => 'type',
+        $this->add([
+            'name'     => 'type',
             'required' => false,
-        ));
+        ]);
         // url
-        $this->add(array(
-            'name' => 'url',
+        $this->add([
+            'name'     => 'url',
             'required' => true,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // default
-        $this->add(array(
-            'name' => 'default',
+        $this->add([
+            'name'     => 'default',
             'required' => false,
-        ));
+        ]);
         // qmery_upload_token
-        $this->add(array(
-            'name' => 'qmery_upload_token',
+        $this->add([
+            'name'     => 'qmery_upload_token',
             'required' => false,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // qmery_update_token
-        $this->add(array(
-            'name' => 'qmery_update_token',
+        $this->add([
+            'name'     => 'qmery_update_token',
             'required' => false,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // qmery_group_id
-        $this->add(array(
-            'name' => 'qmery_group_id',
+        $this->add([
+            'name'     => 'qmery_group_id',
             'required' => false,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // qmery_group_hash
-        $this->add(array(
-            'name' => 'qmery_group_hash',
+        $this->add([
+            'name'     => 'qmery_group_hash',
             'required' => false,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
         // qmery_import
-        $this->add(array(
-            'name' => 'qmery_import',
+        $this->add([
+            'name'     => 'qmery_import',
             'required' => false,
-        ));
+        ]);
         // qmery_show_embed
-        $this->add(array(
-            'name' => 'qmery_show_embed',
+        $this->add([
+            'name'     => 'qmery_show_embed',
             'required' => false,
-        ));
+        ]);
         // qmery_player_type
-        $this->add(array(
-            'name' => 'qmery_player_type',
+        $this->add([
+            'name'     => 'qmery_player_type',
             'required' => false,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
     }
 }

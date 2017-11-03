@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Form\Element;
 
 use Pi;
@@ -25,11 +26,11 @@ class Service extends Select
     {
         if (empty($this->valueOptions)) {
             // Get topic list
-            $columns = array('id', 'title');
-            $where = array('status' => 1);
-            $order = array('time_create DESC', 'title ASC');
+            $columns = ['id', 'title'];
+            $where = ['status' => 1];
+            $order = ['time_create DESC', 'title ASC'];
             $limit = 250;
-            $list = array('' => '');
+            $list = ['' => ''];
             $select = Pi::model('video', 'video')->select()->columns($columns)->where($where)->order($order)->limit($limit);
             $rowset = Pi::model('video', 'video')->selectWith($select);
             foreach ($rowset as $row) {
@@ -45,11 +46,11 @@ class Service extends Select
      */
     public function getAttributes()
     {
-        $this->Attributes = array(
-            'size' => 1,
+        $this->Attributes = [
+            'size'     => 1,
             'multiple' => 0,
-            'class' => 'form-control',
-        );
+            'class'    => 'form-control',
+        ];
         // check form size
         if (isset($this->attributes['size'])) {
             $this->Attributes['size'] = $this->attributes['size'];

@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Model;
 
 use Pi\Application\Model\Model;
@@ -20,11 +21,11 @@ class Service extends Model
     /**
      * {@inheritDoc}
      */
-    protected $columns = array(
+    protected $columns = [
         'id',
         'video',
         'module_name',
         'module_table',
         'module_item',
-    );
+    ];
 }

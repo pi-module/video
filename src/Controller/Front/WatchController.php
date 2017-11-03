@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Controller\Front;
 
 use Pi;
@@ -29,10 +30,10 @@ class WatchController extends IndexController
         $video = Pi::api('video', 'video')->getVideo($slug, 'slug');
         // Check video
         if (!$video || $video['status'] != 1) {
-            $this->jump(array('', 'module' => $module, 'controller' => 'index'), __('The video not found.'), 'error');
+            $this->jump(['', 'module' => $module, 'controller' => 'index'], __('The video not found.'), 'error');
         }
         // Update Hits
-        $this->getModel('video')->increment('hits', array('id' => $video['id']));
+        $this->getModel('video')->increment('hits', ['id' => $video['id']]);
         // Get attribute
         if ($video['attribute']) {
             $attribute = Pi::api('attribute', 'video')->Video($video['id'], $video['category_main']);
@@ -41,7 +42,7 @@ class WatchController extends IndexController
         // Tag
         if ($config['view_tag'] && Pi::service('module')->isActive('tag')) {
             $tag = Pi::service('tag')->get($module, $video['id'], '');
-            $this->view()->assign('tag', $tag);  
+            $this->view()->assign('tag', $tag);
         }
         // Set vote
         if ($config['vote_bar'] && Pi::service('module')->isActive('vote')) {
@@ -63,11 +64,11 @@ class WatchController extends IndexController
         }
         // Get new items in category
         if ($config['view_related'] && $config['view_related_number'] > 0) {
-            $where = array(
-                'status'          => 1,
-                'category'        => $video['category'],
-                'video != ?'       => $video['id'],
-            );
+            $where = [
+                'status'     => 1,
+                'category'   => $video['category'],
+                'video != ?' => $video['id'],
+            ];
             $videoRelated = $this->videoList($where, $config['view_related_number']);
             $this->view()->assign('videoRelated', $videoRelated);
         }
@@ -79,10 +80,10 @@ class WatchController extends IndexController
         }
         // Set submitter
         $submitter = Pi::api('channel', 'video')->user($video['uid']);
-        $submitter['avatar'] = Pi::avatar()->get($video['uid'], 'small', array(
-            'alt' => _escape($submitter['name']),
+        $submitter['avatar'] = Pi::avatar()->get($video['uid'], 'small', [
+            'alt'   => _escape($submitter['name']),
             'class' => 'img-circle',
-        ));
+        ]);
         // Set main category info
         if ($config['view_description_video']) {
             $categorySingle = Pi::api('category', 'video')->getCategory($video['category_main']);
@@ -90,7 +91,7 @@ class WatchController extends IndexController
         }
         // Set template
         $platform = Pi::service('browser')->getPlatform();
-        if (in_array($platform, array('iPhone', 'iPad', 'Android')) && $access) {
+        if (in_array($platform, ['iPhone', 'iPad', 'Android']) && $access) {
             $template = 'video-watch-mobile';
             $layout = 'layout-content';
         } else {

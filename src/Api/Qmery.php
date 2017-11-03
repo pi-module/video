@@ -11,6 +11,7 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Api;
 
 use Pi;
@@ -28,7 +29,7 @@ class Qmery extends AbstractApi
     public function update($video)
     {
         // Set retrun
-        $result = array();
+        $result = [];
         // Canonize video
         $video = Pi::api('video', 'video')->canonizeVideoFilter($video);
         // Get video from qmery
@@ -54,13 +55,13 @@ class Qmery extends AbstractApi
                         if (Pi::service('file')->remove($file)) {
                             // Update db
                             Pi::model('video', $this->getModule())->update(
-                                array(
+                                [
                                     'video_path' => '',
                                     'video_file' => '',
-                                ),
-                                array(
-                                    'id' => $video['id']
-                                )
+                                ],
+                                [
+                                    'id' => $video['id'],
+                                ]
                             );
                         }
                     }
@@ -84,13 +85,13 @@ class Qmery extends AbstractApi
                     Pi::api('image', 'video')->process($image, $path);
                     // Update db
                     Pi::model('video', $this->getModule())->update(
-                        array(
+                        [
                             'image' => $image,
-                            'path' => $path,
-                        ),
-                        array(
-                            'id' => $video['id']
-                        )
+                            'path'  => $path,
+                        ],
+                        [
+                            'id' => $video['id'],
+                        ]
                     );
                 }
 
@@ -107,7 +108,7 @@ class Qmery extends AbstractApi
 
         // Check setting
         if (empty($video['server']['qmery_upload_token']) || empty($video['server']['qmery_group_id'])) {
-            $result = array();
+            $result = [];
             $result['message'] = __('Please set token and group id');
             $result['status'] = 0;
         } else {
@@ -118,7 +119,7 @@ class Qmery extends AbstractApi
             );
 
             // Set fields
-            $fields = array();
+            $fields = [];
             $fields['user_id'] = Pi::user()->getId();
             $fields['title'] = $video['title'];
             $fields['group_id'] = $video['server']['qmery_group_id'];
@@ -145,29 +146,29 @@ class Qmery extends AbstractApi
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
                     'Content-Type: application/json',
-                    'Content-Length: ' . strlen($fields))
+                    'Content-Length: ' . strlen($fields)]
             );
             $qmeryResult = curl_exec($ch);
             $qmeryResult = json_decode($qmeryResult, true);
             if (isset($qmeryResult['id']) && isset($qmeryResult['hash_id'])) {
-                $result = array();
+                $result = [];
                 $result['status'] = 1;
                 $result['qmery'] = $qmeryResult;
                 // Update db
                 Pi::model('video', $this->getModule())->update(
-                    array(
+                    [
                         'video_qmery_hash' => $qmeryResult['hash_id'],
-                        'video_qmery_id' => $qmeryResult['id'],
-                        'video_qmery_hls' => !empty($qmeryResult['hls']) ? $qmeryResult['hls'] : '',
-                    ),
-                    array(
-                        'id' => $video['id']
-                    )
+                        'video_qmery_id'   => $qmeryResult['id'],
+                        'video_qmery_hls'  => !empty($qmeryResult['hls']) ? $qmeryResult['hls'] : '',
+                    ],
+                    [
+                        'id' => $video['id'],
+                    ]
                 );
             } else {
-                $result = array();
+                $result = [];
                 $result['message'] = $qmeryResult;
                 $result['status'] = 0;
             }
@@ -182,7 +183,7 @@ class Qmery extends AbstractApi
 
         // Check setting
         if (empty($video['server']['qmery_upload_token']) || empty($video['server']['qmery_group_id'])) {
-            $result = array();
+            $result = [];
             $result['message'] = __('Please set token and group id');
             $result['status'] = 0;
         } else {
@@ -193,7 +194,7 @@ class Qmery extends AbstractApi
             );
 
             // Set fields
-            $fields = array();
+            $fields = [];
             $fields['user_id'] = Pi::user()->getId();
             $fields['title'] = $video['title'];
             $fields['group_id'] = $video['server']['qmery_group_id'];
@@ -216,9 +217,9 @@ class Qmery extends AbstractApi
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
                     'Content-Type: application/json',
-                    'Content-Length: ' . strlen($fields))
+                    'Content-Length: ' . strlen($fields)]
             );
             $qmeryResult = curl_exec($ch);
 
@@ -228,18 +229,18 @@ class Qmery extends AbstractApi
                 // Update db
                 if (!empty($result['hash_id']) && !empty($result['id'])) {
                     Pi::model('video', $this->getModule())->update(
-                        array(
+                        [
                             'video_qmery_hash' => $result['hash_id'],
-                            'video_qmery_id' => $result['id'],
-                            'video_qmery_hls' => !empty($result['hls']) ? $result['hls'] : '',
-                        ),
-                        array(
-                            'id' => $video['id']
-                        )
+                            'video_qmery_id'   => $result['id'],
+                            'video_qmery_hls'  => !empty($result['hls']) ? $result['hls'] : '',
+                        ],
+                        [
+                            'id' => $video['id'],
+                        ]
                     );
                 }
             } else {
-                $result = array();
+                $result = [];
                 $result['message'] = json_decode($qmeryResult, true);
                 $result['status'] = 0;
             }

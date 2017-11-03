@@ -10,6 +10,7 @@
 /**
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Api;
 
 use Pi;
@@ -33,22 +34,22 @@ class Breadcrumbs extends AbstractBreadcrumbs
             // Make tree
             if (!empty($params['controller']) && $params['controller'] != 'index') {
                 // Set index
-                $result = array(
-                    array(
+                $result = [
+                    [
                         'label' => $moduleData['title'],
-                        'href' => Pi::url(Pi::service('url')->assemble('video', array(
+                        'href'  => Pi::url(Pi::service('url')->assemble('video', [
                             'module' => $this->getModule(),
-                        ))),
-                    ),
-                );
+                        ])),
+                    ],
+                ];
                 // Set
                 switch ($params['controller']) {
                     case 'category':
                         switch ($params['action']) {
                             case 'list':
-                                $result[] = array(
+                                $result[] = [
                                     'label' => __('Category list'),
-                                );
+                                ];
                                 break;
 
                             case 'index':
@@ -62,9 +63,9 @@ class Breadcrumbs extends AbstractBreadcrumbs
 
                                 $category = Pi::api('category', 'video')->getCategory($params['slug'], 'slug');
                                 $result = $this->makeCategoryList($category['parent'], $result);
-                                $result[] = array(
+                                $result[] = [
                                     'label' => $category['title'],
-                                );
+                                ];
                                 break;
                         }
                         break;
@@ -83,60 +84,60 @@ class Breadcrumbs extends AbstractBreadcrumbs
                         if ($video['category_main'] > 0) {
                             $category = Pi::api('category', 'video')->getCategory($video['category_main']);
                             $result = $this->makeCategoryList($category['parent'], $result);
-                            $result[] = array(
+                            $result[] = [
                                 'label' => $category['title'],
-                                'href' => $category['categoryUrl'],
-                            );
+                                'href'  => $category['categoryUrl'],
+                            ];
                         }
                         // Set video title
-                        $result[] = array(
+                        $result[] = [
                             'label' => $video['title'],
-                        );
+                        ];
                         break;
 
                     case 'tag':
                         if (!empty($params['slug'])) {
-                            $result[] = array(
+                            $result[] = [
                                 'label' => __('Tag list'),
-                                'href' => Pi::url(Pi::service('url')->assemble('video', array(
+                                'href'  => Pi::url(Pi::service('url')->assemble('video', [
                                     'controller' => 'tag',
-                                    'action' => 'index',
-                                ))),
-                            );
-                            $result[] = array(
+                                    'action'     => 'index',
+                                ])),
+                            ];
+                            $result[] = [
                                 'label' => $params['slug'],
-                            );
+                            ];
                         } else {
-                            $result[] = array(
+                            $result[] = [
                                 'label' => __('Tag list'),
-                            );
+                            ];
                         }
                         break;
 
                     case 'submit':
                         switch ($params['action']) {
                             case 'index':
-                                $result[] = array(
+                                $result[] = [
                                     'label' => __('Upload new video'),
-                                );
+                                ];
                                 break;
 
                             case 'update':
-                                $result[] = array(
+                                $result[] = [
                                     'label' => __('Edit basic information'),
-                                );
+                                ];
                                 break;
 
                             case 'additional':
-                                $result[] = array(
+                                $result[] = [
                                     'label' => __('Edit additional information'),
-                                );
+                                ];
                                 break;
 
                             case 'finish':
-                                $result[] = array(
+                                $result[] = [
                                     'label' => __('Watch video'),
-                                );
+                                ];
                                 break;
                         }
                         break;
@@ -145,29 +146,29 @@ class Breadcrumbs extends AbstractBreadcrumbs
                         $uid = isset($params['id']) ? intval($params['id']) : Pi::user()->getId();
                         $user = Pi::api('channel', 'video')->user($uid);
                         $title = sprintf(__('All videos from %s channel'), $user['name']);
-                        $result[] = array(
+                        $result[] = [
                             'label' => $title,
-                        );
+                        ];
                         break;
 
                     case 'favourite':
-                        $result[] = array(
+                        $result[] = [
                             'label' => __('All favourite videos by you'),
-                        );
+                        ];
                         break;
 
                     case 'result':
-                        $result[] = array(
+                        $result[] = [
                             'label' => __('Search result'),
-                        );
+                        ];
                         break;
                 }
             } else {
-                $result = array(
-                    array(
+                $result = [
+                    [
                         'label' => $moduleData['title'],
-                    ),
-                );
+                    ],
+                ];
             }
             return $result;
         } else {
@@ -180,10 +181,10 @@ class Breadcrumbs extends AbstractBreadcrumbs
         if ($parent > 0) {
             $category = Pi::api('category', 'video')->getCategory($parent);
             $result = $this->makeCategoryList($category['parent'], $result);
-            $result[] = array(
+            $result[] = [
                 'label' => $category['title'],
-                'href' => $category['categoryUrl'],
-            );
+                'href'  => $category['categoryUrl'],
+            ];
 
         }
         return $result;

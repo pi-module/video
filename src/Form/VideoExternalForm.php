@@ -11,14 +11,15 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Form;
 
 use Pi;
 use Pi\Form\Form as BaseForm;
 
-class VideoExternalForm  extends BaseForm
+class VideoExternalForm extends BaseForm
 {
-    public function __construct($name = null, $option = array())
+    public function __construct($name = null, $option = [])
     {
         $this->option = $option;
         parent::__construct($name);
@@ -35,38 +36,38 @@ class VideoExternalForm  extends BaseForm
     public function init()
     {
         // id
-        $this->add(array(
-            'name' => 'id',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'id',
+            'attributes' => [
                 'type' => 'hidden',
-            ),
-        ));
+            ],
+        ]);
         // slug
-        $this->add(array(
-            'name' => 'slug',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'slug',
+            'attributes' => [
                 'type' => 'hidden',
-            ),
-        ));
+            ],
+        ]);
         // external_link
-        $this->add(array(
-            'name' => 'external_link',
-            'options' => array(
+        $this->add([
+            'name'       => 'external_link',
+            'options'    => [
                 'label' => __('External link'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
+            ],
+            'attributes' => [
+                'type'        => 'text',
                 'description' => __('External link of video from youtube or aparat or video direct link'),
-                'required' => true,
-            )
-        ));
+                'required'    => true,
+            ],
+        ]);
         // Save
-        $this->add(array(
-            'name' => 'submit',
-            'type' => 'submit',
-            'attributes' => array(
+        $this->add([
+            'name'       => 'submit',
+            'type'       => 'submit',
+            'attributes' => [
                 'value' => __('Submit'),
-            )
-        ));
+            ],
+        ]);
     }
 }

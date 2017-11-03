@@ -41,5 +41,8 @@ if ($videoItem['server']['type'] == 'qmery') {
 <?php if ($videoItem['server']['type'] == 'file') { ?>
     <?php echo $this->videojs($videoItem['videoFileUrl'], $videoItem['largeUrl']); ?>
 <?php } elseif ($videoItem['server']['type'] == 'qmery') { ?>
-    <iframe id="video-player" src="<?php echo $this->escape($videoItem['qmeryDirect']); ?>" allowtransparency="true" scrolling="no" name="qmery_embed_video" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true" frameborder="0" height="100%" width="100%"></iframe>
+    <iframe id="video-player" src="<?php echo $this->escape($videoItem['qmeryDirect']); ?>" allowtransparency="true"
+            scrolling="no" name="qmery_embed_video" allowfullscreen="true" mozallowfullscreen="true"
+            webkitallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true" frameborder="0" height="100%"
+            width="100%"></iframe>
 <?php } ?>

@@ -11,21 +11,22 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Video\Controller\Front;
 
+use Module\Video\Form\VideoAdditionalFilter;
+use Module\Video\Form\VideoAdditionalForm;
+use Module\Video\Form\VideoFilter;
+use Module\Video\Form\VideoForm;
+use Module\Video\Form\VideoUploadFilter;
+use Module\Video\Form\VideoUploadForm;
 use Pi;
+use Pi\File\Transfer\Upload;
 use Pi\Filter;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Pi\File\Transfer\Upload;
-use Module\Video\Form\VideoForm;
-use Module\Video\Form\VideoFilter;
-use Module\Video\Form\VideoAdditionalForm;
-use Module\Video\Form\VideoAdditionalFilter;
-use Module\Video\Form\VideoUploadForm;
-use Module\Video\Form\VideoUploadFilter;
-use Zend\Math\Rand;
 use Zend\Db\Sql\Predicate\Expression;
+use Zend\Math\Rand;
 
 class SubmitController extends IndexController
 {
@@ -50,16 +51,16 @@ class SubmitController extends IndexController
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
             $message = __('No category set by admin');
-            $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
+            $this->jump(['controller' => 'index', 'action' => 'index'], $message);
         }
         // Get server default
         $serverDefault = Pi::registry('serverDefault', 'video')->read();
         if (empty($serverDefault)) {
             $message = __('No server set by admin');
-            $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
+            $this->jump(['controller' => 'index', 'action' => 'index'], $message);
         }
         // Set option
-        $option = array();
+        $option = [];
         $option['side'] = 'front';
         // Set form
         $form = new VideoUploadForm('video', $option);
@@ -87,10 +88,10 @@ class SubmitController extends IndexController
                         // Get video_file
                         $values['video_file'] = $uploader->getUploaded('video');
                     } else {
-                        $this->jump(array('action' => 'upload'), __('Problem in upload video. please try again'));
+                        $this->jump(['action' => 'upload'], __('Problem in upload video. please try again'));
                     }
                 } else {
-                    $this->jump(array('action' => 'upload'), __('Problem in upload video. please try again'));
+                    $this->jump(['action' => 'upload'], __('Problem in upload video. please try again'));
                 }
                 // Set time_create
                 $values['time_create'] = time();
@@ -121,33 +122,33 @@ class SubmitController extends IndexController
                 $row->save();
                 // Send video to qmery
                 if ($serverDefault['type'] == 'qmery') {
-                    return array(
-                        'url' => Pi::url($this->url('', array('action' => 'qmeryUpload', 'id' => $row->id))),
-                    );
+                    return [
+                        'url' => Pi::url($this->url('', ['action' => 'qmeryUpload', 'id' => $row->id])),
+                    ];
                 } else {
-                    return array(
-                        'url' => Pi::url($this->url('', array('action' => 'update', 'id' => $row->id))),
-                    );
+                    return [
+                        'url' => Pi::url($this->url('', ['action' => 'update', 'id' => $row->id])),
+                    ];
                 }
             }
         } else {
-            $video = array();
+            $video = [];
             $slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
             $filter = new Filter\Slug;
             $video['slug'] = $filter($slug);
             $form->setData($video);
             // set nav
-            $nav = array(
+            $nav = [
                 'page' => 'upload',
-            );
+            ];
         }
         // Set header and title
         $title = __('Upload video');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions(array(
-            'force_replace_space' => true
-        ));
+        $filter->setOptions([
+            'force_replace_space' => true,
+        ]);
         $seoKeywords = $filter($title);
         // Set view
         $this->view()->headTitle($title);
@@ -180,7 +181,7 @@ class SubmitController extends IndexController
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
             $message = __('No category set by admin');
-            $this->jump(array('controller' => 'index', 'action' => 'index'), $message);
+            $this->jump(['controller' => 'index', 'action' => 'index'], $message);
         }
         // Check id
         if ($id) {
@@ -189,13 +190,13 @@ class SubmitController extends IndexController
             // Check
             if (empty($video) || $video['status'] != 2 || $video['uid'] != Pi::user()->getId() || (time() - 3600) > $video['time_update']) {
                 $message = __('Please submit video');
-                $this->jump(array('action' => 'index'), $message);
+                $this->jump(['action' => 'index'], $message);
             }
             // Set information
             if ($video['image']) {
                 $video['thumbUrl'] = sprintf('upload/video/image/thumb/%s/%s', $video['path'], $video['image']);
                 $option['thumbUrl'] = Pi::url($video['thumbUrl']);
-                $option['removeUrl'] = $this->url('', array('action' => 'remove', 'id' => $video['id']));
+                $option['removeUrl'] = $this->url('', ['action' => 'remove', 'id' => $video['id']]);
             }
             $option['side'] = 'front';
             $option['video_type'] = $video['video_type'];
@@ -204,7 +205,7 @@ class SubmitController extends IndexController
         } else {
             // Jump
             $message = __('Please submit video');
-            $this->jump(array('action' => 'index'), $message);
+            $this->jump(['action' => 'index'], $message);
         }
         // Set form
         $form = new VideoForm('video', $option);
@@ -240,7 +241,7 @@ class SubmitController extends IndexController
                         // process image
                         Pi::api('image', 'video')->process($values['image'], $values['path']);
                     } else {
-                        $this->jump(array('action' => 'update'), __('Problem in upload image. please try again'));
+                        $this->jump(['action' => 'update'], __('Problem in upload image. please try again'));
                     }
                 } elseif (!isset($values['image'])) {
                     $values['image'] = '';
@@ -254,9 +255,9 @@ class SubmitController extends IndexController
                 // Set seo_keywords
                 $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
                 $filter = new Filter\HeadKeywords;
-                $filter->setOptions(array(
+                $filter->setOptions([
                     'force_replace_space' => (bool)$this->config('force_replace_space'),
-                ));
+                ]);
                 $values['seo_keywords'] = $filter($keywords);
                 // Set seo_description
                 $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
@@ -278,17 +279,17 @@ class SubmitController extends IndexController
                 // Add / Edit sitemap
                 if (Pi::service('module')->isActive('sitemap')) {
                     // Set loc
-                    $loc = Pi::url($this->url('video', array(
-                        'module' => $module,
+                    $loc = Pi::url($this->url('video', [
+                        'module'     => $module,
                         'controller' => 'watch',
-                        'slug' => $values['slug']
-                    )));
+                        'slug'       => $values['slug'],
+                    ]));
                     // Update sitemap
                     Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->status, $module, 'video', $row->id);
                 }
                 // Jump
                 $message = __('Video data saved successfully.');
-                $this->jump(array('action' => 'additional', 'id' => $row->id), $message);
+                $this->jump(['action' => 'additional', 'id' => $row->id], $message);
             }
         } else {
             // Get tag list
@@ -301,17 +302,17 @@ class SubmitController extends IndexController
             // Set form data
             $form->setData($video);
             // set nav
-            $nav = array(
+            $nav = [
                 'page' => 'update',
-            );
+            ];
         }
         // Set header and title
         $title = __('Edit basic information');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions(array(
-            'force_replace_space' => true
-        ));
+        $filter->setOptions([
+            'force_replace_space' => true,
+        ]);
         $seoKeywords = $filter($title);
         // Set view
         $this->view()->headTitle($title);
@@ -348,12 +349,12 @@ class SubmitController extends IndexController
             // Check
             if (empty($video) || $video['status'] != 2 || $video['uid'] != Pi::user()->getId() || (time() - 3600) > $video['time_update']) {
                 $message = __('Please submit video');
-                $this->jump(array('action' => 'index'), $message);
+                $this->jump(['action' => 'index'], $message);
             }
         } else {
             // Jump
             $message = __('Please submit video');
-            $this->jump(array('action' => 'index'), $message);
+            $this->jump(['action' => 'index'], $message);
         }
         // Get attribute field
         $fields = Pi::api('attribute', 'video')->Get($video['category_main']);
@@ -362,7 +363,7 @@ class SubmitController extends IndexController
         // Check attribute is empty
         if (empty($fields['attribute'])) {
             $message = __('Video data saved successfully.');
-            $this->jump(array('action' => 'finish', 'id' => $video['id']), $message);
+            $this->jump(['action' => 'finish', 'id' => $video['id']], $message);
         }
         // Check post
         if ($this->request->isPost()) {
@@ -393,7 +394,7 @@ class SubmitController extends IndexController
                 }
                 // Jump
                 $message = __('Video data saved successfully.');
-                $this->jump(array('action' => 'finish', 'id' => $row->id), $message);
+                $this->jump(['action' => 'finish', 'id' => $row->id], $message);
             }
         } else {
             // Get attribute
@@ -404,16 +405,16 @@ class SubmitController extends IndexController
             $form->setData($video);
         }
         // set nav
-        $nav = array(
+        $nav = [
             'page' => 'additional',
-        );
+        ];
         // Set header and title
         $title = __('Edit additional information');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions(array(
-            'force_replace_space' => true
-        ));
+        $filter->setOptions([
+            'force_replace_space' => true,
+        ]);
         $seoKeywords = $filter($title);
         // Set view
         $this->view()->headTitle($title);
@@ -450,23 +451,23 @@ class SubmitController extends IndexController
             // Check
             if (empty($video) || $video['status'] != 2 || $video['uid'] != Pi::user()->getId() || (time() - 3600) > $video['time_update']) {
                 $message = __('Please submit video');
-                $this->jump(array('action' => 'index'), $message);
+                $this->jump(['action' => 'index'], $message);
             }
         } else {
             $message = __('Please submit video');
-            $this->jump(array('action' => 'index'), $message);
+            $this->jump(['action' => 'index'], $message);
         }
         // set nav
-        $nav = array(
+        $nav = [
             'page' => 'finish',
-        );
+        ];
         // Set header and title
         $title = __('Watch submitted video');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions(array(
-            'force_replace_space' => true
-        ));
+        $filter->setOptions([
+            'force_replace_space' => true,
+        ]);
         $seoKeywords = $filter($title);
         // Set view
         $this->view()->headTitle($title);
@@ -503,21 +504,21 @@ class SubmitController extends IndexController
             // Check
             if (empty($video) || $video['status'] != 2 || $video['uid'] != Pi::user()->getId() || (time() - 3600) > $video['time_update']) {
                 $message = __('Please submit video');
-                $this->jump(array('action' => 'index'), $message);
+                $this->jump(['action' => 'index'], $message);
             }
         } else {
             $message = __('Please submit video');
-            $this->jump(array('action' => 'index'), $message);
+            $this->jump(['action' => 'index'], $message);
         }
         // Upload to qmery server
         $qmery = Pi::api('qmery', 'video')->upload($videoObject);
         // Check result
         if ($qmery['status']) {
             $message = __('Video added on qmery server and information save on website, please update extra information');
-            $this->jump(array('controller' => 'submit', 'action' => 'update', 'id' => $video['id']), $message);
+            $this->jump(['controller' => 'submit', 'action' => 'update', 'id' => $video['id']], $message);
         } else {
-            $message = empty($qmery['message']) ?  __('Error to upload file on qmery server') : json_decode($qmery['message']);
-            $this->jump(array('controller' => 'submit', 'action' => 'index'), $message);
+            $message = empty($qmery['message']) ? __('Error to upload file on qmery server') : json_decode($qmery['message']);
+            $this->jump(['controller' => 'submit', 'action' => 'index'], $message);
             exit();
         }
     }

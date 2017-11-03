@@ -11,61 +11,61 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-return array(
+return [
     // Admin section
-    'admin' => array(
-        'video' => array(
-            'title' => _a('Video'),
-            'access' => array(),
-        ),
-        'category' => array(
-            'title' => _a('Category'),
-            'access' => array(),
-        ),
-        'server' => array(
-            'title' => _a('Server'),
-            'access' => array(),
-        ),
-        'attribute' => array(
-            'title' => _a('Attribute'),
-            'access' => array(),
-        ),
-        'log' => array(
-            'title' => _a('Logs'),
-            'access' => array(),
-        ),
-        'tools' => array(
-            'title' => _a('Tools'),
-            'access' => array(),
-        ),
-        'json' => array(
-            'title' => _a('Json'),
-            'access' => array(),
-        ),
-    ),
+    'admin' => [
+        'video'     => [
+            'title'  => _a('Video'),
+            'access' => [],
+        ],
+        'category'  => [
+            'title'  => _a('Category'),
+            'access' => [],
+        ],
+        'server'    => [
+            'title'  => _a('Server'),
+            'access' => [],
+        ],
+        'attribute' => [
+            'title'  => _a('Attribute'),
+            'access' => [],
+        ],
+        'log'       => [
+            'title'  => _a('Logs'),
+            'access' => [],
+        ],
+        'tools'     => [
+            'title'  => _a('Tools'),
+            'access' => [],
+        ],
+        'json'      => [
+            'title'  => _a('Json'),
+            'access' => [],
+        ],
+    ],
     // Front section
-    'front' => array(
-        'public' => array(
-            'title' => _a('Global public resource'),
-            'access' => array(
+    'front' => [
+        'public' => [
+            'title'  => _a('Global public resource'),
+            'access' => [
                 'guest',
                 'member',
-            ),
-        ),
+            ],
+        ],
 
-        'submit' => array(
-            'title' => _a('Submit'),
-            'access' => array(
+        'submit' => [
+            'title'  => _a('Submit'),
+            'access' => [
                 'member',
-            ),
-        ),
+            ],
+        ],
 
-        'channel' => array(
-            'title' => _a('Channel'),
-            'access' => array(
+        'channel' => [
+            'title'  => _a('Channel'),
+            'access' => [
                 'guest',
                 'member',
-            ),
-        ),
-    ),
-);
+            ],
+        ],
+    ],
+];

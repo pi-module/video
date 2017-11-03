@@ -64,12 +64,29 @@ EOT;
 <div class="clearfix">
     <div class="well well-sm">
         <ul class="nav nav-pills">
-            <li<?php if ($nav['page'] == 'link') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'link', 'id' => $video['id'])); ?>"><?php _e('Manage video link'); ?></a></li>
-            <li<?php if ($nav['page'] == 'update') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'update', 'id' => $video['id'])); ?>"><?php _e('Edit basic information'); ?></a></li>
-            <li<?php if ($nav['page'] == 'additional') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'additional', 'id' => $video['id'])); ?>"><?php _e('Edit additional information'); ?></a></li>
-            <li<?php if ($nav['page'] == 'view') { echo ' class="active"';} ?>><a href="<?php echo $this->url('', array('action' => 'watch', 'id' => $video['id'])); ?>"><?php _e('Watch submitted video'); ?></a></li>
+            <li<?php if ($nav['page'] == 'link') {
+                echo ' class="active"';
+            } ?>>
+                <a href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><?php _e('Manage video link'); ?></a>
+            </li>
+            <li<?php if ($nav['page'] == 'update') {
+                echo ' class="active"';
+            } ?>>
+                <a href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Edit basic information'); ?></a>
+            </li>
+            <li<?php if ($nav['page'] == 'additional') {
+                echo ' class="active"';
+            } ?>>
+                <a href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Edit additional information'); ?></a>
+            </li>
+            <li<?php if ($nav['page'] == 'view') {
+                echo ' class="active"';
+            } ?>>
+                <a href="<?php echo $this->url('', ['action' => 'watch', 'id' => $video['id']]); ?>"><?php _e('Watch submitted video'); ?></a>
+            </li>
             <?php if ($video['status'] == 1) { ?>
-                <li class="active pull-right"><a target="_blank" href="<?php echo $video['videoUrl']; ?>"><?php _e('View'); ?></a></li>
+                <li class="active pull-right"><a target="_blank"
+                                                 href="<?php echo $video['videoUrl']; ?>"><?php _e('View'); ?></a></li>
             <?php } ?>
         </ul>
     </div>
@@ -106,31 +123,38 @@ EOT;
                 <div class="well text-left">
                     <div class="form-group">
                         <label><?php _e('MPEG-Dash Url'); ?></label>
-                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['mpegDashUrl']); ?>">
+                        <input type="text" class="form-control"
+                               value="<?php echo $this->escape($videoItem['mpegDashUrl']); ?>">
                     </div>
                     <div class="form-group">
                         <label><?php _e('Adobe Hds Url'); ?></label>
-                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['adobeHdsUrl']); ?>">
+                        <input type="text" class="form-control"
+                               value="<?php echo $this->escape($videoItem['adobeHdsUrl']); ?>">
                     </div>
                     <div class="form-group">
                         <label><?php _e('Jwplayer Url'); ?></label>
-                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['jwplayerUrl']); ?>">
+                        <input type="text" class="form-control"
+                               value="<?php echo $this->escape($videoItem['jwplayerUrl']); ?>">
                     </div>
                     <div class="form-group">
                         <label><?php _e('IOS Url'); ?></label>
-                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['iosUrl']); ?>">
+                        <input type="text" class="form-control"
+                               value="<?php echo $this->escape($videoItem['iosUrl']); ?>">
                     </div>
                     <div class="form-group">
                         <label><?php _e('Android Url'); ?></label>
-                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['androidUrl']); ?>">
+                        <input type="text" class="form-control"
+                               value="<?php echo $this->escape($videoItem['androidUrl']); ?>">
                     </div>
                     <div class="form-group">
                         <label><?php _e('RTSP Url'); ?></label>
-                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['rtspUrl']); ?>">
+                        <input type="text" class="form-control"
+                               value="<?php echo $this->escape($videoItem['rtspUrl']); ?>">
                     </div>
                     <div class="form-group">
                         <label><?php _e('RTMP Url'); ?></label>
-                        <input type="text" class="form-control" value="<?php echo $this->escape($videoItem['rtmpUrl']); ?>">
+                        <input type="text" class="form-control"
+                               value="<?php echo $this->escape($videoItem['rtmpUrl']); ?>">
                     </div>
                 </div>
             </div>

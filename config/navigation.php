@@ -11,250 +11,250 @@
  * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-return array(
+return [
     // Admin section
-    'admin' => array(
-        'video' => array(
-            'label' => _a('Video'),
-            'permission' => array(
+    'admin' => [
+        'video' => [
+            'label'      => _a('Video'),
+            'permission' => [
                 'resource' => 'video',
-            ),
-            'route' => 'admin',
-            'module' => 'video',
+            ],
+            'route'      => 'admin',
+            'module'     => 'video',
             'controller' => 'video',
-            'action' => 'index',
-        ),
+            'action'     => 'index',
+        ],
 
-        'category' => array(
-            'label' => _a('Category'),
-            'permission' => array(
+        'category' => [
+            'label'      => _a('Category'),
+            'permission' => [
                 'resource' => 'category',
-            ),
-            'route' => 'admin',
-            'module' => 'video',
+            ],
+            'route'      => 'admin',
+            'module'     => 'video',
             'controller' => 'category',
-            'action' => 'index',
-            'params'        => array(
-                'type'    => 'category',
-            ),
+            'action'     => 'index',
+            'params'     => [
+                'type' => 'category',
+            ],
 
-            'pages' => array(
-                'category' => array(
-                    'label' => _a('Category'),
-                    'permission' => array(
+            'pages' => [
+                'category'        => [
+                    'label'      => _a('Category'),
+                    'permission' => [
                         'resource' => 'category',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'category',
-                    'action' => 'index',
-                    'params'        => array(
-                        'type'    => 'category',
-                    ),
-                ),
-                'brand' => array(
-                    'label' => _a('Brand'),
-                    'permission' => array(
+                    'action'     => 'index',
+                    'params'     => [
+                        'type' => 'category',
+                    ],
+                ],
+                'brand'           => [
+                    'label'      => _a('Brand'),
+                    'permission' => [
                         'resource' => 'category',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'category',
-                    'action' => 'index',
-                    'params'        => array(
-                        'type'    => 'brand',
-                    ),
-                ),
-                'update-category' => array(
-                    'label' => _a('New category'),
-                    'permission' => array(
+                    'action'     => 'index',
+                    'params'     => [
+                        'type' => 'brand',
+                    ],
+                ],
+                'update-category' => [
+                    'label'      => _a('New category'),
+                    'permission' => [
                         'resource' => 'category',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'category',
-                    'action' => 'update',
-                    'params'        => array(
-                        'type'    => 'category',
-                    ),
-                ),
-                'update-brand' => array(
-                    'label' => _a('New brand'),
-                    'permission' => array(
+                    'action'     => 'update',
+                    'params'     => [
+                        'type' => 'category',
+                    ],
+                ],
+                'update-brand'    => [
+                    'label'      => _a('New brand'),
+                    'permission' => [
                         'resource' => 'category',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'category',
-                    'action' => 'update',
-                    'params'        => array(
-                        'type'    => 'brand',
-                    ),
-                ),
-                'sync' => array(
-                    'label' => _a('Sync category'),
-                    'permission' => array(
+                    'action'     => 'update',
+                    'params'     => [
+                        'type' => 'brand',
+                    ],
+                ],
+                'sync'            => [
+                    'label'      => _a('Sync category'),
+                    'permission' => [
                         'resource' => 'category',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'category',
-                    'action' => 'sync',
-                ),
-                'merge' => array(
-                    'label' => _a('Merge category'),
-                    'permission' => array(
+                    'action'     => 'sync',
+                ],
+                'merge'           => [
+                    'label'      => _a('Merge category'),
+                    'permission' => [
                         'resource' => 'category',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'shop',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'shop',
                     'controller' => 'category',
-                    'action' => 'merge',
-                ),
-            ),
-        ),
+                    'action'     => 'merge',
+                ],
+            ],
+        ],
 
-        'server' => array(
-            'label' => _a('Server'),
-            'permission' => array(
+        'server' => [
+            'label'      => _a('Server'),
+            'permission' => [
                 'resource' => 'server',
-            ),
-            'route' => 'admin',
-            'module' => 'video',
+            ],
+            'route'      => 'admin',
+            'module'     => 'video',
             'controller' => 'server',
-            'action' => 'index',
-        ),
+            'action'     => 'index',
+        ],
 
-        'attribute' => array(
-            'label' => _a('Attribute'),
-            'permission' => array(
+        'attribute' => [
+            'label'      => _a('Attribute'),
+            'permission' => [
                 'resource' => 'attribute',
-            ),
-            'route' => 'admin',
-            'module' => 'video',
+            ],
+            'route'      => 'admin',
+            'module'     => 'video',
             'controller' => 'attribute',
-            'action' => 'index',
-            'pages' => array(
-                'attribute' => array(
-                    'label' => _a('Attribute'),
-                    'permission' => array(
+            'action'     => 'index',
+            'pages'      => [
+                'attribute' => [
+                    'label'      => _a('Attribute'),
+                    'permission' => [
                         'resource' => 'attribute',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'attribute',
-                    'action' => 'index',
-                ),
-                'position' => array(
-                    'label' => _a('Attribute position'),
-                    'permission' => array(
+                    'action'     => 'index',
+                ],
+                'position'  => [
+                    'label'      => _a('Attribute position'),
+                    'permission' => [
                         'resource' => 'position',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'position',
-                    'action' => 'index',
-                ),
-            ),
-        ),
+                    'action'     => 'index',
+                ],
+            ],
+        ],
 
-        'tools' => array(
-            'label' => _a('Tools'),
-            'permission' => array(
+        'tools' => [
+            'label'      => _a('Tools'),
+            'permission' => [
                 'resource' => 'tools',
-            ),
-            'route' => 'admin',
-            'module' => 'video',
+            ],
+            'route'      => 'admin',
+            'module'     => 'video',
             'controller' => 'tools',
-            'action' => 'index',
-            'pages' => array(
-                'tools' => array(
-                    'label' => _a('Tools'),
-                    'permission' => array(
+            'action'     => 'index',
+            'pages'      => [
+                'tools' => [
+                    'label'      => _a('Tools'),
+                    'permission' => [
                         'resource' => 'tools',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'tools',
-                    'action' => 'index',
-                ),
+                    'action'     => 'index',
+                ],
 
-                'sitemap' => array(
-                    'label' => _a('Sitemap'),
-                    'permission' => array(
+                'sitemap' => [
+                    'label'      => _a('Sitemap'),
+                    'permission' => [
                         'resource' => 'tools',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'tools',
-                    'action' => 'sitemap',
-                ),
+                    'action'     => 'sitemap',
+                ],
 
-                'log' => array(
-                    'label' => _a('Logs'),
-                    'permission' => array(
+                'log' => [
+                    'label'      => _a('Logs'),
+                    'permission' => [
                         'resource' => 'log',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'log',
-                    'action' => 'index',
-                ),
+                    'action'     => 'index',
+                ],
 
-                'json' => array(
-                    'label' => _a('Json'),
-                    'permission' => array(
+                'json' => [
+                    'label'      => _a('Json'),
+                    'permission' => [
                         'resource' => 'json',
-                    ),
-                    'route' => 'admin',
-                    'module' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
                     'controller' => 'json',
-                    'action' => 'index',
-                ),
-            ),
-        ),
-    ),
+                    'action'     => 'index',
+                ],
+            ],
+        ],
+    ],
     // Front section
-    'front' => array(
-        'category' => array(
-            'label' => _a('Category list'),
-            'permission' => array(
+    'front' => [
+        'category' => [
+            'label'      => _a('Category list'),
+            'permission' => [
                 'resource' => 'public',
-            ),
-            'route' => 'video',
-            'module' => 'video',
+            ],
+            'route'      => 'video',
+            'module'     => 'video',
             'controller' => 'category',
-        ),
+        ],
 
-        'tag' => array(
-            'label' => _a('Tag list'),
-            'permission' => array(
+        'tag' => [
+            'label'      => _a('Tag list'),
+            'permission' => [
                 'resource' => 'public',
-            ),
-            'route' => 'video',
-            'module' => 'video',
+            ],
+            'route'      => 'video',
+            'module'     => 'video',
             'controller' => 'tag',
-        ),
+        ],
 
-        'channel' => array(
-            'label' => _a('Your channel'),
-            'permission' => array(
+        'channel' => [
+            'label'      => _a('Your channel'),
+            'permission' => [
                 'resource' => 'public',
-            ),
-            'route' => 'video',
-            'module' => 'video',
+            ],
+            'route'      => 'video',
+            'module'     => 'video',
             'controller' => 'channel',
-        ),
+        ],
 
-        'submit' => array(
-            'label' => _a('Submit'),
-            'permission' => array(
+        'submit' => [
+            'label'      => _a('Submit'),
+            'permission' => [
                 'resource' => 'public',
-            ),
-            'route' => 'video',
-            'module' => 'video',
+            ],
+            'route'      => 'video',
+            'module'     => 'video',
             'controller' => 'submit',
-        ),
+        ],
 
-    ),
-);
+    ],
+];
