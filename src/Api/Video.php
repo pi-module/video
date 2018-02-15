@@ -22,6 +22,7 @@ use Zend\Db\Sql\Predicate\Expression;
  * Pi::api('video', 'video')->getVideo($parameter, $type);
  * Pi::api('video', 'video')->getVideoLight($parameter, $type);
  * Pi::api('video', 'video')->getVideoJson($parameter, $type);
+ * Pi::api('video', 'video')->getList($where, $limit, $order);
  * Pi::api('video', 'video')->getListFromId($id);
  * Pi::api('video', 'video')->getListFromIdLight($id);
  * Pi::api('video', 'video')->attributeCount($id);
@@ -59,6 +60,35 @@ class Video extends AbstractApi
         $video = Pi::model('video', $this->getModule())->find($parameter, $type);
         $video = $this->canonizeVideoJson($video);
         return $video;
+    }
+
+    public function getList($where, $limit = '', $order = [])
+    {
+        // Get config
+        $config = Pi::service('registry')->config->read($this->getModule());
+
+        // Set limit
+        $limit = empty($limit) ? $config['view_perpage'] : $limit;
+
+        // Set order
+        $order = empty($order) ? $order = ['time_create DESC', 'id DESC'] : $order;
+
+        $columns = ['video' => new Expression('DISTINCT video')];
+
+        // Get info from link table
+        $select = Pi::model('link', $this->getModule())->select()->where($where)->columns($columns)->order($order)->limit($limit);
+        $rowset = Pi::model('link', $this->getModule())->selectWith($select)->toArray();
+
+        // Make list
+        foreach ($rowset as $id) {
+            $videoId[] = $id['video'];
+        }
+        // Check not empty
+        if (!empty($videoId)) {
+            $videos = $this->getListFromId($videoId);
+        }
+
+        return $videos;
     }
 
     public function getListFromId($id)

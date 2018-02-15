@@ -122,22 +122,22 @@ class ServerForm extends BaseForm
                 'label' => __('Server setting'),
             ],
         ]);
-        // qmery_upload_token
+        // qmery_token
         $this->add([
-            'name'       => 'qmery_upload_token',
+            'name'       => 'qmery_token',
             'options'    => [
-                'label' => __('Qmery upload token'),
+                'label' => __('Qmery token'),
             ],
             'attributes' => [
                 'type'        => 'text',
                 'description' => '',
             ],
         ]);
-        // qmery_update_token
+        // qmery_refresh_value
         $this->add([
-            'name'       => 'qmery_update_token',
+            'name'       => 'qmery_refresh_value',
             'options'    => [
-                'label' => __('Qmery update token'),
+                'label' => __('Qmery refreshvalue'),
             ],
             'attributes' => [
                 'type'        => 'text',

@@ -19,6 +19,7 @@ use Pi\Application\Api\AbstractApi;
 use Zend\Math\Rand;
 
 /*
+ * Pi::api('qmery', 'video')->refreshToken($serverId = '');
  * Pi::api('qmery', 'video')->upload($video);
  * Pi::api('qmery', 'video')->link($video, $link);
  * Pi::api('qmery', 'video')->updateListToWebsite($server, $page);
@@ -26,6 +27,47 @@ use Zend\Math\Rand;
 
 class Qmery extends AbstractApi
 {
+    public function RefreshToken($serverId = '')
+    {
+        // Get server
+        if (!empty($serverId)) {
+            $serverList = Pi::registry('serverList', 'video')->read();
+            $server = $serverList[$serverId];
+        } else {
+            $server = Pi::registry('serverDefault', 'video')->read();
+        }
+
+        // Set post methods
+        $url    = 'http://api.qmery.com/base/token/refresh';
+        $params = [
+            'value'         => $server['qmery_token'],
+            'refresh_value' => $server['qmery_refresh_value'],
+        ];
+
+        // $result = Pi::service('remote')->post($url, $params, $params);
+
+        $v = sprintf('value=%s&refresh_value=%s', $server['qmery_token'], $server['qmery_refresh_value']);
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $v);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen(json_encode($params))]
+        );
+        $result = curl_exec ($ch);
+        curl_close ($ch);
+
+
+        echo '<pre>';
+        print_r([$url,$params,$v, $result]
+        );
+        echo '</pre>';
+    }
+
     public function update($video)
     {
         // Set retrun
@@ -33,8 +75,8 @@ class Qmery extends AbstractApi
         // Canonize video
         $video = Pi::api('video', 'video')->canonizeVideoFilter($video);
         // Get video from qmery
-        $apiUrl = 'http://api.qmery.com/v1/videos/%s.json?api_token=%s';
-        $apiUrl = sprintf($apiUrl, $video['video_qmery_hash'], $video['server']['qmery_upload_token']);
+        $apiUrl     = 'http://api.qmery.com/v1/videos/%s.json?api_token=%s';
+        $apiUrl     = sprintf($apiUrl, $video['video_qmery_hash'], $video['server']['qmery_token']);
         $videoQmery = Pi::service('remote')->get($apiUrl);
         // Check qmery status
         switch ($videoQmery['status']) {
@@ -71,13 +113,13 @@ class Qmery extends AbstractApi
                     // Get config
                     $config = Pi::service('registry')->config->read($this->getModule(), 'image');
                     // Set path
-                    $path = sprintf('%s/%s', date('Y'), date('m'));
+                    $path         = sprintf('%s/%s', date('Y'), date('m'));
                     $originalPath = Pi::path(sprintf('upload/%s/original/%s', $config['image_path'], $path));
                     // Build upload image path
                     Pi::service('file')->mkdir($originalPath);
                     // Set
-                    $key = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
-                    $image = sprintf('%s.jpg', $key);
+                    $key           = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
+                    $image         = sprintf('%s.jpg', $key);
                     $originalImage = sprintf('%s/%s', $originalPath, $image);
                     // download image
                     Pi::service('remote')->download($videoQmery['thumbnail'][1], $originalImage);
@@ -107,28 +149,28 @@ class Qmery extends AbstractApi
         $video = Pi::api('video', 'video')->canonizeVideoFilter($video);
 
         // Check setting
-        if (empty($video['server']['qmery_upload_token']) || empty($video['server']['qmery_group_id'])) {
-            $result = [];
+        if (empty($video['server']['qmery_token']) || empty($video['server']['qmery_group_id'])) {
+            $result            = [];
             $result['message'] = __('Please set token and group id');
-            $result['status'] = 0;
+            $result['status']  = 0;
         } else {
             // Set API url
             $apiUrl = sprintf(
                 'http://api.qmery.com/v1/videos.json?api_token=%s',
-                $video['server']['qmery_upload_token']
+                $video['server']['qmery_token']
             );
 
             // Set fields
-            $fields = [];
-            $fields['user_id'] = Pi::user()->getId();
-            $fields['title'] = $video['title'];
+            $fields             = [];
+            $fields['user_id']  = Pi::user()->getId();
+            $fields['title']    = $video['title'];
             $fields['group_id'] = $video['server']['qmery_group_id'];
-            $fields['url'] = Pi::url(sprintf(
+            $fields['url']      = Pi::url(sprintf(
                 '%s/%s',
                 $video['video_path'],
                 $video['video_file']
             ));
-            $fields = json_encode($fields);
+            $fields             = json_encode($fields);
 
             /* // Set header
             $headers = array(
@@ -153,9 +195,9 @@ class Qmery extends AbstractApi
             $qmeryResult = curl_exec($ch);
             $qmeryResult = json_decode($qmeryResult, true);
             if (isset($qmeryResult['id']) && isset($qmeryResult['hash_id'])) {
-                $result = [];
+                $result           = [];
                 $result['status'] = 1;
-                $result['qmery'] = $qmeryResult;
+                $result['qmery']  = $qmeryResult;
                 // Update db
                 Pi::model('video', $this->getModule())->update(
                     [
@@ -168,9 +210,9 @@ class Qmery extends AbstractApi
                     ]
                 );
             } else {
-                $result = [];
+                $result            = [];
                 $result['message'] = $qmeryResult;
-                $result['status'] = 0;
+                $result['status']  = 0;
             }
         }
         return $result;
@@ -182,24 +224,24 @@ class Qmery extends AbstractApi
         $video = Pi::api('video', 'video')->canonizeVideoFilter($video);
 
         // Check setting
-        if (empty($video['server']['qmery_upload_token']) || empty($video['server']['qmery_group_id'])) {
-            $result = [];
+        if (empty($video['server']['qmery_token']) || empty($video['server']['qmery_group_id'])) {
+            $result            = [];
             $result['message'] = __('Please set token and group id');
-            $result['status'] = 0;
+            $result['status']  = 0;
         } else {
             // Set API url
             $apiUrl = sprintf(
                 'http://api.qmery.com/v1/videos.json?api_token=%s',
-                $video['server']['qmery_upload_token']
+                $video['server']['qmery_token']
             );
 
             // Set fields
-            $fields = [];
-            $fields['user_id'] = Pi::user()->getId();
-            $fields['title'] = $video['title'];
+            $fields             = [];
+            $fields['user_id']  = Pi::user()->getId();
+            $fields['title']    = $video['title'];
             $fields['group_id'] = $video['server']['qmery_group_id'];
-            $fields['url'] = $link;
-            $fields = json_encode($fields);
+            $fields['url']      = $link;
+            $fields             = json_encode($fields);
 
             /* // Set header
             $headers = array(
@@ -224,7 +266,7 @@ class Qmery extends AbstractApi
             $qmeryResult = curl_exec($ch);
 
             if (is_array($qmeryResult)) {
-                $result = json_decode($qmeryResult, true);
+                $result           = json_decode($qmeryResult, true);
                 $result['status'] = 1;
                 // Update db
                 if (!empty($result['hash_id']) && !empty($result['id'])) {
@@ -240,9 +282,9 @@ class Qmery extends AbstractApi
                     );
                 }
             } else {
-                $result = [];
+                $result            = [];
                 $result['message'] = json_decode($qmeryResult, true);
-                $result['status'] = 0;
+                $result['status']  = 0;
             }
         }
         return $result;
@@ -259,13 +301,13 @@ class Qmery extends AbstractApi
         $config = Pi::service('registry')->config->read($this->getModule());
         // Set url
         $apiUrl = 'http://api.qmery.com/v1/videos.json?api_token=%s&page=%s&per_page=%s&sort_dir';
-        $apiUrl = sprintf($apiUrl, $server['qmery_update_token'], $page, 50);
+        $apiUrl = sprintf($apiUrl, $server['qmery_token'], $page, 50);
         // Get video list
         $videoList = Pi::service('remote')->get($apiUrl);
         // Set
-        $uid = Pi::user()->getId();
-        $time = time();
-        $path = sprintf('%s/%s', date('Y'), date('m'));
+        $uid          = Pi::user()->getId();
+        $time         = time();
+        $path         = sprintf('%s/%s', date('Y'), date('m'));
         $originalPath = Pi::path(sprintf('upload/%s/original/%s', $config['image_path'], $path));
         // Build upload image path
         Pi::service('file')->mkdir($originalPath);
@@ -276,32 +318,32 @@ class Qmery extends AbstractApi
                     $video = Pi::model('video', $this->getModule())->find($videoSingle['id'], 'video_qmery_id');
                     if ($video) {
                         $video->video_qmery_hash = $videoSingle['hash_id'];
-                        $video->video_qmery_id = $videoSingle['id'];
-                        $video->video_qmery_hls = isset($videoSingle['hls']) ? $videoSingle['hls'] : '';
+                        $video->video_qmery_id   = $videoSingle['id'];
+                        $video->video_qmery_hls  = isset($videoSingle['hls']) ? $videoSingle['hls'] : '';
                         $video->save();
                     } elseif ($server['qmery_import']) {
                         // Set
-                        $key = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
-                        $image = sprintf('%s.jpg', $key);
+                        $key           = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
+                        $image         = sprintf('%s.jpg', $key);
                         $originalImage = sprintf('%s/%s', $originalPath, $image);
                         // download image
                         Pi::service('remote')->download($videoSingle['thumbnail'][1], $originalImage);
                         // Resize image
                         Pi::api('image', 'video')->process($image, $path);
                         // Save
-                        $video = Pi::model('video', $this->getModule())->createRow();
-                        $video->title = $videoSingle['title'];
-                        $video->slug = $key;
-                        $video->time_create = $time;
-                        $video->time_update = $time;
-                        $video->uid = $uid;
-                        $video->status = 2;
-                        $video->image = $image;
-                        $video->path = $path;
-                        $video->video_server = $server['id'];
+                        $video                   = Pi::model('video', $this->getModule())->createRow();
+                        $video->title            = $videoSingle['title'];
+                        $video->slug             = $key;
+                        $video->time_create      = $time;
+                        $video->time_update      = $time;
+                        $video->uid              = $uid;
+                        $video->status           = 2;
+                        $video->image            = $image;
+                        $video->path             = $path;
+                        $video->video_server     = $server['id'];
                         $video->video_qmery_hash = $videoSingle['hash_id'];
-                        $video->video_qmery_id = $videoSingle['id'];
-                        $video->video_qmery_hls = isset($videoSingle['hls']) ? $videoSingle['hls'] : '';
+                        $video->video_qmery_id   = $videoSingle['id'];
+                        $video->video_qmery_hls  = isset($videoSingle['hls']) ? $videoSingle['hls'] : '';
                         $video->save();
                         // Set to link table
                         Pi::api('category', 'video')->setLink($video->id, 0, $time, $time, 2, $uid, 0, 0);

@@ -24,8 +24,8 @@ class ServerController extends ActionController
     public function indexAction()
     {
         // Get info
-        $list = [];
-        $order = ['id DESC'];
+        $list   = [];
+        $order  = ['id DESC'];
         $select = $this->getModel('server')->select()->order($order);
         $rowset = $this->getModel('server')->selectWith($select);
         // Make list
@@ -48,6 +48,9 @@ class ServerController extends ActionController
         // Set view
         $this->view()->setTemplate('server-index');
         $this->view()->assign('list', $list);
+
+
+        Pi::api('qmery', 'video')->refreshToken();
     }
 
     public function updateAction()
@@ -69,15 +72,16 @@ class ServerController extends ActionController
                     $values['default'] = 1;
                 }
                 // Set setting
-                $setting = [];
-                $setting['qmery_upload_token'] = $values['qmery_upload_token'];
-                $setting['qmery_update_token'] = $values['qmery_update_token'];
-                $setting['qmery_group_id'] = $values['qmery_group_id'];
-                $setting['qmery_group_hash'] = $values['qmery_group_hash'];
-                $setting['qmery_import'] = $values['qmery_import'];
-                $setting['qmery_show_embed'] = $values['qmery_show_embed'];
-                $setting['qmery_player_type'] = $values['qmery_player_type'];
-                $values['setting'] = json_encode($setting);
+                $setting                        = [];
+                $setting['qmery_token']         = $values['qmery_token'];
+                $setting['qmery_refresh_value'] = $values['qmery_refresh_value'];
+                $setting['qmery_group_id']      = $values['qmery_group_id'];
+                $setting['qmery_group_hash']    = $values['qmery_group_hash'];
+                $setting['qmery_import']        = $values['qmery_import'];
+                $setting['qmery_show_embed']    = $values['qmery_show_embed'];
+                $setting['qmery_player_type']   = $values['qmery_player_type'];
+                $values['setting']              = json_encode($setting);
+
                 // Save values
                 if (!empty($values['id'])) {
                     $row = $this->getModel('server')->find($values['id']);
@@ -97,7 +101,7 @@ class ServerController extends ActionController
             }
         } else {
             if ($id) {
-                $server = $this->getModel('server')->find($id)->toArray();
+                $server  = $this->getModel('server')->find($id)->toArray();
                 $setting = json_decode($server['setting'], true);
                 if (!empty($setting)) {
                     $server = array_merge($server, $setting);
@@ -115,8 +119,8 @@ class ServerController extends ActionController
     {
         // Get info from url
         $server = $this->params('server');
-        $type = $this->params('type');
-        $page = $this->params('page', 1);
+        $type   = $this->params('type');
+        $page   = $this->params('page', 1);
         // Server list
         $serverList = Pi::registry('serverList', 'video')->read();
         // Check type

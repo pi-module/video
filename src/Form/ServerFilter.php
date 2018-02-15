@@ -60,9 +60,9 @@ class ServerFilter extends InputFilter
             'name'     => 'default',
             'required' => false,
         ]);
-        // qmery_upload_token
+        // qmery_token
         $this->add([
-            'name'     => 'qmery_upload_token',
+            'name'     => 'qmery_token',
             'required' => false,
             'filters'  => [
                 [
@@ -70,9 +70,9 @@ class ServerFilter extends InputFilter
                 ],
             ],
         ]);
-        // qmery_update_token
+        // qmery_refresh_value
         $this->add([
-            'name'     => 'qmery_update_token',
+            'name'     => 'qmery_refresh_value',
             'required' => false,
             'filters'  => [
                 [
