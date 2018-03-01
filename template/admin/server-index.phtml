@@ -50,12 +50,12 @@
                                 <i class="fa fa-wrench"></i> <?php _e('Update'); ?> <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <!-- <li><a title="<?php _e('From website to qmery'); ?>"
-                                       href="<?php echo $this->url('', ['controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'toQmery']); ?>"><i
-                                            class="fa fa-wrench"></i> <?php _e('From website to qmery'); ?></a></li> -->
-                                <li><a title="<?php _e('From qmery to website'); ?>"
-                                       href="<?php echo $this->url('', ['controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'toWebsite']); ?>"><i
-                                                class="fa fa-wrench"></i> <?php _e('From qmery to website'); ?></a></li>
+                                <li><a title="<?php _e('From qmery server'); ?>"
+                                       href="<?php echo $this->url('', ['controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'syncVideoList']); ?>"><i
+                                                class="fa fa-wrench"></i> <?php _e('From qmery server'); ?></a></li>
+                                <li><a title="<?php _e('Website videos'); ?>"
+                                       href="<?php echo $this->url('', ['controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'syncVideoSingle']); ?>"><i
+                                                class="fa fa-wrench"></i> <?php _e('Website videos from qmery'); ?></a></li>
                             </ul>
                         </div>
                     <?php } ?>

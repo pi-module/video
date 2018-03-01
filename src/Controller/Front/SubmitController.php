@@ -510,8 +510,10 @@ class SubmitController extends IndexController
             $message = __('Please submit video');
             $this->jump(['action' => 'index'], $message);
         }
+
         // Upload to qmery server
-        $qmery = Pi::api('qmery', 'video')->upload($videoObject);
+        $qmery = Pi::api('qmery', 'video')->uploadVideo($videoObject);
+
         // Check result
         if ($qmery['status']) {
             $message = __('Video added on qmery server and information save on website, please update extra information');

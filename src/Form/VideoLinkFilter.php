@@ -91,19 +91,9 @@ class VideoLinkFilter extends InputFilter
                 break;
 
             case 'qmery':
-                // video_qmery_hash
+                // qmery_url
                 $this->add([
-                    'name'     => 'video_qmery_hash',
-                    'required' => true,
-                    'filters'  => [
-                        [
-                            'name' => 'StringTrim',
-                        ],
-                    ],
-                ]);
-                // video_qmery_id
-                $this->add([
-                    'name'     => 'video_qmery_id',
+                    'name'     => 'qmery_url',
                     'required' => true,
                     'filters'  => [
                         [

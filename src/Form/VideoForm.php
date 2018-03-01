@@ -144,7 +144,7 @@ class VideoForm extends BaseForm
             'type'       => 'Module\Video\Form\Element\Category',
             'options'    => [
                 'label'    => __('Category'),
-                'category' => '',
+                'category' => $this->category,
             ],
             'attributes' => [
                 'required' => true,

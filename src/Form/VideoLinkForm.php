@@ -94,27 +94,16 @@ class VideoLinkForm extends BaseForm
                 break;
 
             case 'qmery':
-                // video_qmery_hash
+                // qmery_url
                 $this->add([
-                    'name'       => 'video_qmery_hash',
+                    'name'       => 'qmery_url',
                     'options'    => [
-                        'label' => __('Qmery hash code'),
+                        'label' => __('Qmery url'),
                     ],
                     'attributes' => [
-                        'type'        => 'text',
-                        'description' => __('hash code on qmery system , like : y4A7rBoLwe'),
+                        'type'        => 'url',
+                        'description' => __('Qmery video dashboard url , like : https://dashboard.qmery.com/videos/Mlvp4aykvq'),
                         'required'    => true,
-                    ],
-                ]);
-                // video_qmery_id
-                $this->add([
-                    'name'       => 'video_qmery_id',
-                    'options'    => [
-                        'label' => __('Qmery video id'),
-                    ],
-                    'attributes' => [
-                        'type'     => 'text',
-                        'required' => true,
                     ],
                 ]);
                 break;
