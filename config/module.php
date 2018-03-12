@@ -16,7 +16,7 @@ return [
     'meta'     => [
         'title'       => _a('Video'),
         'description' => _a('Video play system.'),
-        'version'     => '0.9.1',
+        'version'     => '0.9.2',
         'license'     => 'New BSD',
         'logo'        => 'image/logo.png',
         'readme'      => 'docs/readme.txt',

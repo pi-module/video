@@ -343,7 +343,7 @@ class JsonController extends IndexController
         return $result;
     }
 
-    public function videoListAction()
+    /* public function videoListAction()
     {
         // Check password
         if (!$this->checkPassword()) {
@@ -533,5 +533,5 @@ class JsonController extends IndexController
         } else {
             return true;
         }
-    }
+    } */
 }

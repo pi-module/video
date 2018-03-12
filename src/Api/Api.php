@@ -22,6 +22,7 @@ use Zend\Db\Sql\Predicate\Expression;
  * Pi::api('api', 'video')->videoList($params);
  * Pi::api('api', 'video')->videoSingle($params);
  * Pi::api('api', 'video')->categoryList($params);
+ * Pi::api('api', 'video')->setAccess($params)
  */
 
 class Api extends AbstractApi
@@ -315,7 +316,9 @@ class Api extends AbstractApi
                 $select = Pi::model('video', $this->getModule())->select()->where($where)->order($order);
                 $rowset = Pi::model('video', $this->getModule())->selectWith($select);
                 foreach ($rowset as $row) {
-                    $video[] = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
+                    $singleVideo = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
+                    $singleVideo['access'] = Pi::api('video', 'video')->getAccess($video);
+                    $video[] = $singleVideo;
                 }
             }
 
@@ -395,7 +398,6 @@ class Api extends AbstractApi
             'largeUrl'            => $singleVideo['largeUrl'],
             'qmeryDirect'         => $singleVideo['qmeryDirect'],
             'qmeryScript'         => $singleVideo['qmeryScript'],
-            'qmeryScript'         => $singleVideo['qmeryScript'],
             'video_qmery_id'      => $singleVideo['video_qmery_id'],
             'video_qmery_hash'    => $singleVideo['video_qmery_hash'],
             'video_qmery_hls'     => $singleVideo['video_qmery_hls'],
@@ -442,5 +444,67 @@ class Api extends AbstractApi
         ];
 
         return $result;
+    }
+
+    public function setAccess($params)
+    {
+        // Get config
+        $config = Pi::service('registry')->config->read($this->getModule());
+
+        // Check VAS payment
+        if ($config['sale_video'] == 'single' && $config['sale_video_single'] == 'mobile') {
+            // Get video
+            $video = Pi::api('video', 'video')->getVideoLight($params['id']);
+
+
+            // http://IP:port/charging_websrv/services/Charging?wsdl
+
+
+            //  Method : SingleCharge
+            //  username
+            //  password
+            //  domain
+            //  channel
+            //  mobilenum
+            //  serviceId
+            //  result : PardisID
+
+            //  Method : DynamicCharge
+            //  username
+            //  password
+            //  domain
+            //  channel
+            //  mobilenum
+            //  serviceId
+            //  price
+            //  result : PardisID
+
+
+            //  Method : sendVerificationCode
+            //  username
+            //  password
+            //  domain
+            //  channel
+            //  mobilenum
+            //  serviceId
+            //  result : PardisID
+
+
+            //  Method : verifySubscriber
+            //  username
+            //  password
+            //  domain
+            //  channel
+            //  mobilenum
+            //  serviceId
+            //  token
+
+            return Pi::api('video', 'video')->setAccess($video, $params['uid']);
+        } else {
+            return [
+                'status'  => 0,
+                'message' => '',
+            ];
+        }
     }
 }

@@ -375,6 +375,23 @@ return [
             'value'       => 'free',
             'category'    => 'order',
         ],
+        'sale_video_single'                => [
+            'title'       => _a('Sale method for single video'),
+            'description' => '',
+            'edit'        => [
+                'type'    => 'select',
+                'options' => [
+                    'options' => [
+                        'buy'    => _a('Buy each video online'),
+                        'credit' => _a('Use user credit'),
+                        'mobile'  => _a('Mobile payment method (VAS)'),
+                    ],
+                ],
+            ],
+            'filter'      => 'text',
+            'value'       => 'buy',
+            'category'    => 'order',
+        ],
         // Social
         'social_sharing'            => [
             'title'       => _t('Social sharing items'),
