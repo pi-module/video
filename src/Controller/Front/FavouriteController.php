@@ -48,6 +48,12 @@ class FavouriteController extends IndexController
         $seoKeywords = $filter($title);
         // load language
         Pi::service('i18n')->load(['module/user', 'default']);
+
+        // Save statistics
+        if (Pi::service('module')->isActive('statistics')) {
+            Pi::api('log', 'statistics')->save('video', 'favourite');
+        }
+
         // Set view
         $this->view()->headTitle($title);
         $this->view()->headDescription($title, 'set');

@@ -50,6 +50,12 @@ class ChannelController extends IndexController
             'force_replace_space' => true,
         ]);
         $seoKeywords = $filter($title);
+
+        // Save statistics
+        if (Pi::service('module')->isActive('statistics')) {
+            Pi::api('log', 'statistics')->save('video', 'channel', $uid);
+        }
+
         // Set view
         $this->view()->headTitle($title);
         $this->view()->headDescription($title, 'set');

@@ -150,6 +150,12 @@ class SubmitController extends IndexController
             'force_replace_space' => true,
         ]);
         $seoKeywords = $filter($title);
+
+        // Save statistics
+        if (Pi::service('module')->isActive('statistics')) {
+            Pi::api('log', 'statistics')->save('video', 'submit');
+        }
+
         // Set view
         $this->view()->headTitle($title);
         $this->view()->headDescription($title, 'set');

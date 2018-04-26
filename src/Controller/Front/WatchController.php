@@ -98,6 +98,12 @@ class WatchController extends IndexController
             $template = 'video-watch';
             $layout = 'layout-front';
         }
+
+        // Save statistics
+        if (Pi::service('module')->isActive('statistics')) {
+            Pi::api('log', 'statistics')->save('video', 'watch', $video['id']);
+        }
+
         // Set view
         $this->view()->headTitle($video['seo_title']);
         $this->view()->headDescription($video['seo_description'], 'set');

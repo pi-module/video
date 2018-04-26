@@ -30,6 +30,12 @@ class IndexController extends ActionController
         $config = Pi::service('registry')->config->read($module);
         // category list
         $categoriesJson = Pi::api('category', 'video')->categoryListJson();
+
+        // Save statistics
+        if (Pi::service('module')->isActive('statistics')) {
+            Pi::api('log', 'statistics')->save('video', 'index');
+        }
+
         // Check homepage type
         switch ($config['homepage_type']) {
             default:
