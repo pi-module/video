@@ -1,26 +1,26 @@
 <?php switch ($block['column']) {
     case 1:
-        $videoBlockBoxSize = 'col-xs-12';
+        $videoBlockBoxSize = 'col-md-12 col-xs-12';
         break;
 
     case 2:
-        $videoBlockBoxSize = 'col-xs-6';
+        $videoBlockBoxSize = 'col-md-6 col-xs-12';
         break;
 
     case 3:
-        $videoBlockBoxSize = 'col-xs-4';
+        $videoBlockBoxSize = 'col-md-4 col-xs-12';
         break;
 
     case 4:
-        $videoBlockBoxSize = 'col-xs-3';
+        $videoBlockBoxSize = 'col-md-3 col-xs-12';
         break;
 
     case 6:
-        $videoBlockBoxSize = 'col-xs-2';
+        $videoBlockBoxSize = 'col-md-2 col-xs-12';
         break;
 
     default:
-        $videoBlockBoxSize = 'col-xs-3';
+        $videoBlockBoxSize = 'col-md-3 col-xs-12';
         break;
 }
 ?>
@@ -249,7 +249,7 @@
                                         <a itemprop="url" class="u-photo"
                                            title="<?php echo $this->escape($video['title']); ?>"
                                            href="<?php echo $this->escape($video['videoUrl']); ?>">
-                                            <img itemprop="image" src="<?php echo $video['thumbUrl']; ?>"
+                                            <img itemprop="image img-responsive" src="<?php echo $video['thumbUrl']; ?>"
                                                  alt="<?php echo $this->escape($video['title']); ?>"/>
                                         </a>
                                     <?php } ?>
