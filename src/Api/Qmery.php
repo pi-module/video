@@ -31,7 +31,8 @@ class Qmery extends AbstractApi
     public function getVideo($url, $token)
     {
         // Clean video
-        $hash = str_replace('https://dashboard.qmery.com/videos/', '', $url);
+        $url  = str_replace('https://api.qmery.com/ovp/v/', '', $url);
+        $hash = trim($url);
 
         // Set api url
         $apiUrl = 'https://api.qmery.com/ovp/videos/%s.json?api_token=%s';
@@ -46,7 +47,7 @@ class Qmery extends AbstractApi
         // Set retrun
         $result = [
             'status' => 0,
-            'date' => [],
+            'date'   => [],
         ];
 
         // Set api url
@@ -54,7 +55,7 @@ class Qmery extends AbstractApi
         $apiUrl = sprintf($apiUrl, $video['video_qmery_hash'], $video['server']['qmery_token']);
 
         // Get video from qmery
-        $qmeryVideo = Pi::service('remote')->get($apiUrl);
+        $qmeryVideo     = Pi::service('remote')->get($apiUrl);
         $result['date'] = $qmeryVideo;
 
         // Check qmery status
@@ -216,7 +217,7 @@ class Qmery extends AbstractApi
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
             curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                    'Content-Type: multipart/form-data'
+                    'Content-Type: multipart/form-data',
                 ]
             );
             $qmeryResult = curl_exec($ch);

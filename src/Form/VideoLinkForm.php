@@ -102,7 +102,7 @@ class VideoLinkForm extends BaseForm
                     ],
                     'attributes' => [
                         'type'        => 'url',
-                        'description' => __('Qmery video dashboard url , like : https://dashboard.qmery.com/videos/Mlvp4aykvq'),
+                        'description' => __('Qmery video api url , like : https://api.qmery.com/ovp/v/Mlvp4aykvq'),
                         'required'    => true,
                     ],
                 ]);

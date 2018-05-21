@@ -535,7 +535,7 @@ class VideoController extends ActionController
             } else {
                 switch ($serverList[$video['video_server']]['type']) {
                     case 'qmery':
-                        $video['qmery_url'] = sprintf('https://dashboard.qmery.com/videos/%s', $video['video_qmery_hash']);
+                        $video['qmery_url'] = sprintf('https://api.qmery.com/ovp/v/%s', $video['video_qmery_hash']);
                         break;
                 }
             }
