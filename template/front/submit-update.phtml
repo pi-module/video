@@ -1,26 +1,20 @@
 <?php $this->css($this->assetModule('css/front.css')); ?>
 <div class="clearfix">
-    <div class="col-xs-3">
+    <div class="col-3">
         <?php $sideActive = 'video'; ?>
         <?php include $this->templateModule('front/user-profile-sidebar.phtml', 'user'); ?>
     </div>
-    <div class="col-xs-9">
-        <div class="well well-sm">
-            <ul class="nav nav-pills">
-                <li<?php if ($nav['page'] == 'update') {
-                    echo ' class="active"';
-                } ?>>
-                    <a href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Edit basic information'); ?></a>
+    <div class="col-9">
+        <div class="card card-body bg-light mb-3">
+            <ul class="nav nav-pills bg-light mb-3 p-3">
+                <li class="nav-item">
+                    <a class="nav-link <?php if ($nav['page'] == 'update') {  echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Edit basic information'); ?></a>
                 </li>
-                <li<?php if ($nav['page'] == 'additional') {
-                    echo ' class="active"';
-                } ?>>
-                    <a href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Edit additional information'); ?></a>
+                <li class="nav-item">
+                    <a class="nav-link <?php if ($nav['page'] == 'additional') {  echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Edit additional information'); ?></a>
                 </li>
-                <li<?php if ($nav['page'] == 'finish') {
-                    echo ' class="active"';
-                } ?>>
-                    <a href="<?php echo $this->url('', ['action' => 'finish', 'id' => $video['id']]); ?>"><?php _e('Watch submitted video'); ?></a>
+                <li class="nav-item">
+                    <a class="nav-link <?php if ($nav['page'] == 'finish') {  echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'finish', 'id' => $video['id']]); ?>"><?php _e('Watch submitted video'); ?></a>
                 </li>
             </ul>
         </div>

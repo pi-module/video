@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt BSD 3-Clause License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -82,7 +82,7 @@ class WatchController extends IndexController
         $submitter = Pi::api('channel', 'video')->user($video['uid']);
         $submitter['avatar'] = Pi::avatar()->get($video['uid'], 'small', [
             'alt'   => _escape($submitter['name']),
-            'class' => 'img-circle',
+            'class' => 'rounded-circle',
         ]);
         // Set main category info
         if ($config['view_description_video']) {

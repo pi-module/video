@@ -49,23 +49,27 @@ $script = sprintf($script, $fileSize, $fileExtension, $config['media_size'], $fi
 $this->footScript()->appendScript($script);
 ?>
 <div class="clearfix">
-    <div class="well well-sm">
-        <ul class="nav nav-pills">
-            <li class="active"><a
-                        href="<?php echo $this->url('', ['action' => 'upload']); ?>"><?php _e('Upload video'); ?></a>
-            </li>
-            <li><a href="#"><?php _e('Add basic information'); ?></a></li>
-            <li><a href="#"><?php _e('Add additional information'); ?></a></li>
-            <li><a href="#"><?php _e('Watch submitted video'); ?></a></li>
-        </ul>
-    </div>
+    <ul class="nav nav-pills bg-light mb-3 p-3">
+        <li class="nav-item">
+            <a class="nav-link active" href="<?php echo $this->url('', ['action' => 'upload']); ?>"><?php _e('Upload video'); ?></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><?php _e('Add basic information'); ?></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><?php _e('Add additional information'); ?></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><?php _e('Watch submitted video'); ?></a>
+        </li>
+    </ul>
     <div class="page-header">
         <h1><?php echo $this->escape($title); ?></h1>
     </div>
     <div class="alert alert-info">
         <?php echo sprintf(__('You just allow upload media with <strong>%s</strong> extensions, maximum upload size is <strong>%s</strong>'), $config['media_extension'], number_format($config['media_size'] / 1000000, 2) . ' MB') ?>
     </div>
-    <div class="well well-sm">
+    <div class="card card-body bg-light mb-3">
         <div class="fileInformation hidden">
             <div class="fileInformationSize text-success"></div>
             <div class="fileInformationSizeError text-danger hidden"></div>
@@ -74,7 +78,7 @@ $this->footScript()->appendScript($script);
         <?php echo $this->form($form, 'inline'); ?>
     </div>
     <div id="progress-bar" class="progress">
-        <div id="bar" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+        <div id="bar" class="progress-bar bg-success bg-striped active" role="progressbar"
              aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
             <div id="percent">0%</div>
         </div>

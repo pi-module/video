@@ -7,31 +7,31 @@ $this->jQuery();
 $this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
 <div class="clearfix">
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingForm">
-                <h4 class="panel-title">
+    <div class="card-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="card card-body bg-light mb-3">
+            <div class="card-heading" role="tab" id="headingForm">
+                <h4 class="card-title">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
                        href="#collapseForm" aria-expanded="false" aria-controls="collapseForm">
                         <i class="fa fa-plus"></i> <?php _e('Filter videos'); ?>
                     </a>
                 </h4>
             </div>
-            <div id="collapseForm" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingForm">
-                <div class="panel-body">
+            <div id="collapseForm" class="card-collapse collapse" role="tabpanel" aria-labelledby="headingForm">
+                <div class="card-text">
                     <?php echo $this->form($form); ?>
                 </div>
             </div>
         </div>
     </div>
     <div class="clearfix row list-header">
-        <div class="col-xs-6">
+        <div class="col-6">
             <h3><?php _e('List of videos'); ?></h3>
         </div>
-        <div class="col-xs-6 text-right">
+        <div class="col-6 text-right">
             <div class="btn-group">
                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-folder-open"></i> <?php _e('Add video'); ?> <span class="caret"></span>
+                    <i class="fa fa-folder-open"></i> <?php _e('Add video'); ?>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-left" role="menu">
                     <?php foreach ($serverList as $server) { ?>
@@ -94,7 +94,7 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
         </div>
     </div>
     <?php if (!empty($list)) { ?>
-        <table id="video-list" class="table table-striped table-bordered table-condensed">
+        <table id="video-list" class="table table-striped table-bordered table-sm">
             <tr>
                 <th class="col-md-6"><?php _e('Title'); ?></th>
                 <th class="col-md-2"><?php _e('Action'); ?></th>
@@ -127,32 +127,32 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                     </td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-edit"></i> <?php _e('Manage'); ?> <span class="caret"></span>
+                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-edit"></i> <?php _e('Manage'); ?>
                             </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a title="<?php _e('Manage video link'); ?>"
+                            <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" title="<?php _e('Manage video link'); ?>"
                                        href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><i
-                                                class="fa fa-edit"></i> <?php _e('Manage video link'); ?></a></li>
-                                <li><a title="<?php _e('Edit basic information'); ?>"
+                                                class="fa fa-edit"></i> <?php _e('Manage video link'); ?></a>
+                                <a class="dropdown-item" title="<?php _e('Edit basic information'); ?>"
                                        href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><i
-                                                class="fa fa-edit"></i> <?php _e('Edit basic information'); ?></a></li>
-                                <li><a title="<?php _e('Edit additional information'); ?>"
+                                                class="fa fa-edit"></i> <?php _e('Edit basic information'); ?></a>
+                                <a class="dropdown-item" title="<?php _e('Edit additional information'); ?>"
                                        href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><i
                                                 class="fa fa-edit"></i> <?php _e('Edit additional information'); ?></a>
-                                </li>
-                                <li><a title="<?php _e('View video'); ?>"
+
+                                <a class="dropdown-item" title="<?php _e('View video'); ?>"
                                        href="<?php echo $this->url('', ['action' => 'watch', 'id' => $video['id']]); ?>"><i
-                                                class="fa fa-edit"></i> <?php _e('View video'); ?></a></li>
-                            </ul>
+                                                class="fa fa-edit"></i> <?php _e('View video'); ?></a>
+                            </div>
                         </div>
                         <?php if ($video['status'] == 1) { ?>
-                            <a class="btn btn-success btn-xs" title="<?php _e('View'); ?>"
+                            <a class="btn btn-success btn-sm" title="<?php _e('View'); ?>"
                                href="<?php echo $video['videoUrl']; ?>" target="_blank"><i
                                         class="fa fa-eye"></i> <?php _e('View'); ?></a>
                         <?php } ?>
                         <?php if ($video['status'] != 5) { ?>
-                            <a class="btn btn-danger btn-xs" title="<?php _e('Delete'); ?>"
+                            <a class="btn btn-danger btn-sm" title="<?php _e('Delete'); ?>"
                                href="<?php echo $this->url('', ['action' => 'delete', 'id' => $video['id']]); ?>"
                                onclick="return confirm('<?php echo _a('Are you sure to delete this video?'); ?>')">
                                 <i class="fa fa-trash"></i> <?php _e('Delete'); ?>
@@ -166,9 +166,9 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
             <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
         </div>
         <p>
-            <span class="label label-success"><?php _e('Published'); ?></span>
-            <span class="label label-warning"><?php _e('Pending review'); ?></span>
-            <span class="label label-danger"><?php _e('Trash'); ?></span>
+            <span class="badge badge-success"><?php _e('Published'); ?></span>
+            <span class="badge badge-warning"><?php _e('Pending review'); ?></span>
+            <span class="badge badge-danger"><?php _e('Trash'); ?></span>
         </p>
     <?php } else { ?>
         <div class="alert alert-danger" role="alert">

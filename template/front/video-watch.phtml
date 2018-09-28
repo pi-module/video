@@ -106,16 +106,16 @@ EOT;
           content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoItem['time_create'])); ?>"/>
     <meta itemprop="contentUrl" content="<?php echo $this->escape($videoItem['videoFileUrl']); ?>"/>
     <div class="row clearfix">
-        <div class="col-md-8 col-xs-12">
+        <div class="col-md-8 col-12">
             <div class="clearfix video-information">
                 <ul class="text-muted list-inline small">
-                    <li><i class="fa fa-calendar"></i> <?php echo $this->escape($videoItem['time_update_view']); ?></li>
-                    <li><i class="fa fa-eye"></i> <?php echo _number($this->escape($videoItem['hits'])); ?></li>
-                    <li><i class="fa fa-clock-o"></i> <?php echo $this->escape($videoItem['video_duration_view']); ?>
+                    <li class="list-inline-item"><i class="fa fa-calendar"></i> <?php echo $this->escape($videoItem['time_update_view']); ?></li>
+                    <li class="list-inline-item"><i class="fa fa-eye"></i> <?php echo _number($this->escape($videoItem['hits'])); ?></li>
+                    <li class="list-inline-item"><i class="fa fa-clock-o"></i> <?php echo $this->escape($videoItem['video_duration_view']); ?>
                     </li>
-                    <li><i class="fa fa-folder"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-folder"></i></li>
                     <?php foreach ($videoItem['categories'] as $videoCategory) { ?>
-                        <li class="p-category" itemprop="about">
+                        <li class="p-category list-inline-item" itemprop="about">
                             <a title="<?php echo $this->escape($videoCategory['title']); ?>"
                                href="<?php echo $this->escape($videoCategory['url']); ?>">
                                 <?php echo $this->escape($videoCategory['title']); ?>
@@ -149,7 +149,7 @@ EOT;
                     <?php } elseif ($videoItem['server']['type'] == 'wowza') { ?>
                         <div class="clearfix">
                             <?php if (in_array($os, ['Android', 'WindowsPhone', 'BlackBerry'])) { ?>
-                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group d-flex" role="group" aria-label="...">
                                     <div class="btn-group" role="group">
                                         <a href="<?php echo $this->escape($videoItem['androidUrl']); ?>"
                                            class="btn btn-success btn-lg">
@@ -158,7 +158,7 @@ EOT;
                                     </div>
                                 </div>
                             <?php } elseif (in_array($os, ['Ios', 'iPhone', 'iPad'])) { ?>
-                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group d-flex" role="group" aria-label="...">
                                     <div class="btn-group" role="group">
                                         <a href="<?php echo $this->escape($videoItem['iosUrl']); ?>"
                                            class="btn btn-success btn-lg">
@@ -181,7 +181,7 @@ EOT;
             <?php } else { ?>
                 <div class="clearfix">
                     <div class="thumbnail text-center">
-                        <img class="img-responsive" src="<?php echo $this->escape($videoItem['largeUrl']); ?>"
+                        <img class="img-fluid" src="<?php echo $this->escape($videoItem['largeUrl']); ?>"
                              alt="<?php echo $this->escape($videoItem['title']); ?>">
                         <div class="caption">
                             <p><?php _e('This is paid video and you dont have access to watch it, use buy button to paid and watch this video'); ?></p>
@@ -196,17 +196,17 @@ EOT;
             <div class="clearfix video-info-list">
                 <ul class="list-inline">
                     <?php if (!empty($vote)) { ?>
-                        <li class="col-md-3 col-xs-6">
+                        <li class="col-md-3 col-6 list-inline-item">
                             <?php include $this->template('votebar.phtml', 'front', 'vote'); ?>
                         </li>
                     <?php } ?>
                     <?php if (!empty($favourite)) { ?>
-                        <li class="col-md-3 col-xs-6">
+                        <li class="col-md-3 col-6 list-inline-item">
                             <?php include $this->template('favouritebar.phtml', 'front', 'favourite'); ?>
                         </li>
                     <?php } ?>
                     <?php if ($config['social_sharing']) { ?>
-                        <li class="col-md-6 col-xs-12">
+                        <li class="col-md-6 col-12 list-inline-item">
                             <div class="socialSharing">
                                 <?php echo $this->socialSharing(
                                     $config['social_sharing'],
@@ -219,7 +219,7 @@ EOT;
                     <?php } ?>
                 </ul>
             </div>
-            <div class="well well-sm clearfix">
+            <div class="card card-body bg-light mb-3 clearfix">
                 <h2><?php _e('Description'); ?></h2>
                 <div class="clearfix video-info-box" itemprop="description">
                     <?php echo $videoItem['text_summary']; ?>
@@ -235,7 +235,7 @@ EOT;
             </div>
             <?php include $this->template('front/tag'); ?>
         </div>
-        <div class="col-md-4 col-xs-12">
+        <div class="col-md-4 col-12">
             <!-- <div class="video-channel" itemprop="author" itemscope itemtype="https://schema.org/Person">
                 <a title="<?php _e('User channel'); ?>" href="<?php echo $this->escape($videoItem['channelUrl']); ?>">
                     <?php echo $submitter['avatar']; ?>

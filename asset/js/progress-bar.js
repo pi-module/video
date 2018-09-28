@@ -1,4 +1,4 @@
-/* From : http://talkerscode.com/webtricks/file-upload-progress-bar-using-jquery-and-php.php */
+/* From : http://talkerscode.com/webtricks/file-upload-bg-using-jquery-and-php.php */
 function upload_image() {
     var bar = $('#bar');
     var percent = $('#percent');

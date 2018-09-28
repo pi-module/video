@@ -1,42 +1,38 @@
 <div class="clearfix">
-    <div class="well well-sm">
-        <ul class="nav nav-pills">
-            <?php if (isset($video['id'])) { ?>
-                <li<?php if ($nav['page'] == 'link') {
-                    echo ' class="active"';
-                } ?>>
-                    <a href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><?php _e('Manage video link'); ?></a>
+    <ul class="nav nav-pills bg-light mb-3 p-3">
+        <?php if (isset($video['id'])) { ?>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($nav['page'] == 'link') { echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><?php _e('Manage video link'); ?></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($nav['page'] == 'update') { echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Edit basic information'); ?></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($nav['page'] == 'additional') { echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Edit additional information'); ?></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($nav['page'] == 'view') { echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'watch', 'id' => $video['id']]); ?>"><?php _e('Watch submitted video'); ?></a>
+            </li>
+            <?php if ($video['status'] == 1) { ?>
+                <li class="nav-item pull-right">
+                    <a class="nav-link active" target="_blank" href="<?php echo $video['videoUrl']; ?>"><?php _e('View'); ?></a>
                 </li>
-                <li<?php if ($nav['page'] == 'update') {
-                    echo ' class="active"';
-                } ?>>
-                    <a href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Edit basic information'); ?></a>
-                </li>
-                <li<?php if ($nav['page'] == 'additional') {
-                    echo ' class="active"';
-                } ?>>
-                    <a href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Edit additional information'); ?></a>
-                </li>
-                <li<?php if ($nav['page'] == 'view') {
-                    echo ' class="active"';
-                } ?>>
-                    <a href="<?php echo $this->url('', ['action' => 'watch', 'id' => $video['id']]); ?>"><?php _e('Watch submitted video'); ?></a>
-                </li>
-                <?php if ($video['status'] == 1) { ?>
-                    <li class="active pull-right"><a target="_blank"
-                                                     href="<?php echo $video['videoUrl']; ?>"><?php _e('View'); ?></a>
-                    </li>
-                <?php } ?>
-            <?php } else { ?>
-                <li class="active"><a
-                            href="<?php echo $this->url('', ['action' => 'link']); ?>"><?php _e('Manage video link'); ?></a>
-                </li>
-                <li class="disabled"><a href="#"><?php _e('Add basic information'); ?></a></li>
-                <li class="disabled"><a href="#"><?php _e('Add additional information'); ?></a></li>
-                <li class="disabled"><a href="#"><?php _e('Watch submitted video'); ?></a></li>
             <?php } ?>
-        </ul>
-    </div>
+        <?php } else { ?>
+            <li class="nav-item">
+                <a class="nav-link active" href="<?php echo $this->url('', ['action' => 'upload']); ?>"><?php _e('Upload video'); ?></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><?php _e('Add basic information'); ?></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><?php _e('Add additional information'); ?></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><?php _e('Watch submitted video'); ?></a>
+            </li>
+        <?php } ?>
+    </ul>
     <div class="page-header">
         <h1><?php echo $this->escape($title); ?></h1>
     </div>

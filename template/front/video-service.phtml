@@ -1,7 +1,7 @@
 <?php if (isset($videoServiceList) && !empty($videoServiceList)) {
     $this->css($this->assetModule('css/front.css', 'video'));
     if (!isset($videoServiceCol) || empty($videoServiceCol)) {
-        $videoServiceCol = 'col-md-8 col-md-offset-2 col-xs-12';
+        $videoServiceCol = 'col-md-8 col-md-offset-2 col-12';
     } ?>
     <div class="clearfix row video-service-list">
         <?php foreach ($videoServiceList as $videoService) { ?>
@@ -24,14 +24,14 @@
                 </div>
                 <?php /* <div class="clearfix video-information">
                     <ul class="text-muted list-inline small">
-                        <li>
+                        <li class="list-inline-item">
                             <i class="fa fa-file"></i>
                             <a itemprop="name" title="<?php echo $this->escape($videoService['title']); ?>" href="<?php echo $this->escape($videoService['videoUrl']); ?>" target="_blank" rel="external">
                                 <?php echo $this->escape($videoService['title']); ?>
                             </a>
                         </li>
-                        <li><i class="fa fa-calendar"></i> <?php echo $this->escape($videoService['time_update_view']); ?></li>
-                        <li><i class="fa fa-eye"></i> <?php echo _number($this->escape($videoService['hits'])); ?></li>
+                        <li class="list-inline-item"><i class="fa fa-calendar"></i> <?php echo $this->escape($videoService['time_update_view']); ?></li>
+                        <li class="list-inline-item"><i class="fa fa-eye"></i> <?php echo _number($this->escape($videoService['hits'])); ?></li>
                     </ul>
                 </div> */ ?>
             </div>

@@ -56,23 +56,23 @@ $this->footScript()->appendScript($scriptMenu);
 // Set box site
 switch ($config['view_column']) {
     case 1:
-        $videoBoxSize = 'col-xs-12';
+        $videoBoxSize = 'col-12';
         break;
 
     case 2:
-        $videoBoxSize = 'col-xs-6';
+        $videoBoxSize = 'col-6';
         break;
 
     case 3:
-        $videoBoxSize = 'col-xs-4';
+        $videoBoxSize = 'col-4';
         break;
 
     case 4:
-        $videoBoxSize = 'col-xs-3';
+        $videoBoxSize = 'col-3';
         break;
 
     case 5:
-        $videoBoxSize = 'col-xs-2';
+        $videoBoxSize = 'col-2';
         break;
 }
 ?>
@@ -80,12 +80,12 @@ switch ($config['view_column']) {
     <div class="ajax-spinner">
         <img src="<?php echo $this->assetModule('image/spinner.gif'); ?>" class="ajax-spinner-loader"/>
     </div>
-    <div class="col-xs-12">
+    <div class="col-12">
         <?php include $this->template('front/category'); ?>
         <?php include $this->template('front/user'); ?>
     </div>
-    <div class="col-xs-3">
-        <div class="video-search-form well well-sm clearfix">
+    <div class="col-3">
+        <div class="video-search-form card card-body bg-light mb-3 clearfix">
             <div class="page-header">
                 <h4><?php _e('Search on this group'); ?></h4>
             </div>
@@ -156,7 +156,7 @@ switch ($config['view_column']) {
             </div>
         </div>
     </div>
-    <div class="col-xs-9" ng-controller="listdata">
+    <div class="col-9" ng-controller="listdata">
         <div class="clearfix">
             <div class="video-list clearfix">
                 <?php if (isset($videoTitleH1) && !empty($videoTitleH1)) { ?>
@@ -169,27 +169,27 @@ switch ($config['view_column']) {
                     </div>
                 <?php } ?>
                 <?php if (!empty($config['text_description_index']) && isset($showIndexDesc) && $showIndexDesc == 1 && isset($page) && $page == 1) { ?>
-                    <div class="well videoIndexDescription">
+                    <div class="card card-body bg-light mb-3 videoIndexDescription">
                         <?php echo $config['text_description_index']; ?>
                     </div>
                 <?php } ?>
                 <div class="clearfix video-sort">
                     <ul class="list-inline">
-                        <li><?php _e('Sort by'); ?> :</li>
-                        <li class="video-sort-type" ng-click="sort('time_create')"><?php _e('Time'); ?> <i
+                        <li class="list-inline-item"><?php _e('Sort by'); ?> :</li>
+                        <li class="list-inline-item video-sort-type" ng-click="sort('time_create')"><?php _e('Time'); ?> <i
                                     class="fa sort-icon" ng-show="sortKey=='time_create'"
                                     ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i></li>
-                        <li class="video-sort-type" ng-click="sort('hits')"><?php _e('Hits'); ?> <i class="fa sort-icon"
+                        <li class="list-inline-item video-sort-type" ng-click="sort('hits')"><?php _e('Hits'); ?> <i class="fa sort-icon"
                                                                                                     ng-show="sortKey=='hits'"
                                                                                                     ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i>
                         </li>
-                        <li class="video-sort-type" ng-click="sort('favourite')"><?php _e('Favourite'); ?> <i
+                        <li class="list-inline-item video-sort-type" ng-click="sort('favourite')"><?php _e('Favourite'); ?> <i
                                     class="fa sort-icon" ng-show="sortKey=='favourite'"
                                     ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i></li>
-                        <li class="video-sort-type" ng-click="sort('title')"><?php _e('Title'); ?> <i
+                        <li class="list-inline-item video-sort-type" ng-click="sort('title')"><?php _e('Title'); ?> <i
                                     class="fa sort-icon" ng-show="sortKey=='title'"
                                     ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i></li>
-                        <li class="video-sort-type" ng-click="sortKey=''"><?php _e('Default'); ?></li>
+                        <li class="list-inline-item video-sort-type" ng-click="sortKey=''"><?php _e('Default'); ?></li>
                     </ul>
                 </div>
                 <div class="row">

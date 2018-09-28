@@ -26,7 +26,7 @@ $this->css($this->assetModule('css/front.css'));
 $this->footScript()->appendScript($scriptMenu);
 ?>
 <div class="clearfix row">
-    <div class="col-xs-3">
+    <div class="col-3">
         <div class="clearfix category-list">
             <div class="page-header">
                 <h4><?php _e('Category list'); ?></h4>
@@ -36,7 +36,7 @@ $this->footScript()->appendScript($scriptMenu);
             </div>
         </div>
     </div>
-    <div class="col-xs-9">
+    <div class="col-9">
         <div class="clearfix">
             <div class="video-list clearfix">
                 <?php if (isset($videoTitleH1) && !empty($videoTitleH1)) { ?>
@@ -49,7 +49,7 @@ $this->footScript()->appendScript($scriptMenu);
                     </div>
                 <?php } ?>
                 <?php if (!empty($config['text_description_index']) && isset($showIndexDesc) && $showIndexDesc == 1 && isset($page) && $page == 1) { ?>
-                    <div class="well videoIndexDescription">
+                    <div class="card card-body bg-light mb-3 videoIndexDescription">
                         <?php echo $config['text_description_index']; ?>
                     </div>
                 <?php } ?>

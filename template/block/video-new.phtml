@@ -1,26 +1,26 @@
 <?php switch ($block['column']) {
     case 1:
-        $videoBlockBoxSize = 'col-md-12 col-xs-12';
+        $videoBlockBoxSize = 'col-md-12 col-12';
         break;
 
     case 2:
-        $videoBlockBoxSize = 'col-md-6 col-xs-12';
+        $videoBlockBoxSize = 'col-md-6 col-12';
         break;
 
     case 3:
-        $videoBlockBoxSize = 'col-md-4 col-xs-12';
+        $videoBlockBoxSize = 'col-md-4 col-12';
         break;
 
     case 4:
-        $videoBlockBoxSize = 'col-md-3 col-xs-12';
+        $videoBlockBoxSize = 'col-md-3 col-12';
         break;
 
     case 6:
-        $videoBlockBoxSize = 'col-md-2 col-xs-12';
+        $videoBlockBoxSize = 'col-md-2 col-12';
         break;
 
     default:
-        $videoBlockBoxSize = 'col-md-3 col-xs-12';
+        $videoBlockBoxSize = 'col-md-3 col-12';
         break;
 }
 ?>
@@ -148,7 +148,7 @@
                             <?php if ($video['image']) { ?>
                                 <a itemprop="url" class="u-url" title="<?php echo $this->escape($video['title']); ?>"
                                    href="<?php echo $this->escape($video['videoUrl']); ?>">
-                                    <img itemprop="image" class="img-responsive u-photo"
+                                    <img itemprop="image" class="img-fluid u-photo"
                                          src="<?php echo $this->escape($video['mediumUrl']); ?>"
                                          alt="<?php echo $this->escape($video['title']); ?>"/>
                                 </a>
@@ -193,7 +193,7 @@
                                 </a>
                             </p>
                         </div>
-                        <img itemprop="image" class="media-object img-responsive u-photo"
+                        <img itemprop="image" class="media-object img-fluid u-photo"
                              src="<?php echo $video['mediumUrl']; ?>"
                              alt="<?php echo $this->escape($video['title']); ?>">
                     </div>
@@ -244,7 +244,7 @@
                                     <a itemprop="url" class="u-photo"
                                        title="<?php echo $this->escape($video['title']); ?>"
                                        href="<?php echo $this->escape($video['videoUrl']); ?>">
-                                        <img itemprop="image img-responsive" src="<?php echo $video['thumbUrl']; ?>"
+                                        <img itemprop="image img-fluid" src="<?php echo $video['thumbUrl']; ?>"
                                              alt="<?php echo $this->escape($video['title']); ?>"/>
                                     </a>
                                 <?php } ?>
