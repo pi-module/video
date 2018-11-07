@@ -21,104 +21,130 @@ class ServerFilter extends InputFilter
     public function __construct()
     {
         // id
-        $this->add([
-            'name'     => 'id',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'id',
+                'required' => false,
+            ]
+        );
         // title
-        $this->add([
-            'name'     => 'title',
-            'required' => true,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'title',
+                'required' => true,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // status
-        $this->add([
-            'name'     => 'status',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'status',
+                'required' => false,
+            ]
+        );
         // type
-        $this->add([
-            'name'     => 'type',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'type',
+                'required' => false,
+            ]
+        );
         // url
-        $this->add([
-            'name'     => 'url',
-            'required' => true,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'url',
+                'required' => true,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // default
-        $this->add([
-            'name'     => 'default',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'default',
+                'required' => false,
+            ]
+        );
         // qmery_token
-        $this->add([
-            'name'     => 'qmery_token',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'qmery_token',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // qmery_refresh_value
-        $this->add([
-            'name'     => 'qmery_refresh_value',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'qmery_refresh_value',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // qmery_group_id
-        $this->add([
-            'name'     => 'qmery_group_id',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'qmery_group_id',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // qmery_group_hash
-        $this->add([
-            'name'     => 'qmery_group_hash',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'qmery_group_hash',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // qmery_import
-        $this->add([
-            'name'     => 'qmery_import',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'qmery_import',
+                'required' => false,
+            ]
+        );
         // qmery_show_embed
-        $this->add([
-            'name'     => 'qmery_show_embed',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'qmery_show_embed',
+                'required' => false,
+            ]
+        );
         // qmery_player_type
-        $this->add([
-            'name'     => 'qmery_player_type',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'qmery_player_type',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
     }
 }

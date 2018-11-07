@@ -33,7 +33,7 @@ class Image extends AbstractApi
             return $prefix . '%random%';
         }
         // Separating image name and extension
-        $name = pathinfo($image, PATHINFO_FILENAME);
+        $name      = pathinfo($image, PATHINFO_FILENAME);
         $extension = pathinfo($image, PATHINFO_EXTENSION);
         $extension = strtolower($extension);
         // strip name
@@ -134,7 +134,7 @@ class Image extends AbstractApi
             // Set watermark image
             $watermarkImage = (empty($config['image_watermark_source'])) ? '' : Pi::path($config['image_watermark_source']);
             if (empty($watermarkImage) || !file_exists($watermarkImage)) {
-                $logoFile = Pi::service('asset')->logo();
+                $logoFile       = Pi::service('asset')->logo();
                 $watermarkImage = Pi::path($logoFile);
             }
 

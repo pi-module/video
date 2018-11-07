@@ -195,11 +195,13 @@ class Qmery extends AbstractApi
 
             // Set link
             if (empty($link)) {
-                $link = Pi::url(sprintf(
-                    '%s/%s',
-                    $video['video_path'],
-                    $video['video_file']
-                ));
+                $link = Pi::url(
+                    sprintf(
+                        '%s/%s',
+                        $video['video_path'],
+                        $video['video_file']
+                    )
+                );
             }
 
             // Set fields
@@ -216,7 +218,8 @@ class Qmery extends AbstractApi
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            curl_setopt(
+                $ch, CURLOPT_HTTPHEADER, [
                     'Content-Type: multipart/form-data',
                 ]
             );

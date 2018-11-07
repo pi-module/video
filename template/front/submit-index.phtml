@@ -1,11 +1,14 @@
 <?php
 $this->jquery();
 $this->css($this->assetModule('css/front.css'));
-$this->js([
-    $this->assetModule('js/jquery.form.js'),
-    $this->assetModule('js/progress-bar.js'),
-]);
-$script = <<<'EOT'
+$this->js(
+    [
+        $this->assetModule('js/jquery.form.js'),
+        $this->assetModule('js/progress-bar.js'),
+    ]
+);
+$script
+                    = <<<'EOT'
     $('#videoFile').on('change', function (e) {
         var file = this.files[0];
         var fileSize = (file.size / 1000000).toFixed(2);
@@ -41,11 +44,11 @@ $script = <<<'EOT'
         }
     });
 EOT;
-$fileSize = __('Your selected file size is');
-$fileExtension = __('And file extension is');
-$fileSizeError = sprintf(__('You attach to large file, allowed upload size is %s'), number_format($config['media_size'] / 1000000, 2) . ' MB');
+$fileSize           = __('Your selected file size is');
+$fileExtension      = __('And file extension is');
+$fileSizeError      = sprintf(__('You attach to large file, allowed upload size is %s'), number_format($config['media_size'] / 1000000, 2) . ' MB');
 $fileExtensionError = sprintf(__('You attach wrong file, allowed extensions is %s'), $config['media_extension']);
-$script = sprintf($script, $fileSize, $fileExtension, $config['media_size'], $fileSizeError, $fileExtensionError);
+$script             = sprintf($script, $fileSize, $fileExtension, $config['media_size'], $fileSizeError, $fileExtensionError);
 $this->footScript()->appendScript($script);
 ?>
 <div class="clearfix">
@@ -56,7 +59,8 @@ $this->footScript()->appendScript($script);
     <div class="col-9">
         <div class="card card-body bg-light mb-3">
             <ul class="nav nav-pills bg-light mb-3 p-3">
-                <li class="nav-item"><a class="nav-link active" href="<?php echo $this->url('', ['action' => 'upload']); ?>"><?php _e('Upload video'); ?></a></li>
+                <li class="nav-item"><a class="nav-link active" href="<?php echo $this->url('', ['action' => 'upload']); ?>"><?php _e('Upload video'); ?></a>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="#"><?php _e('Add basic information'); ?></a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><?php _e('Add additional information'); ?></a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><?php _e('Watch submitted video'); ?></a></li>
@@ -66,7 +70,10 @@ $this->footScript()->appendScript($script);
             <h1><?php echo $this->escape($title); ?></h1>
         </div>
         <div class="alert alert-info">
-            <?php echo sprintf(__('You just allow upload media with <strong>%s</strong> extensions, maximum upload size is <strong>%s</strong>'), $config['media_extension'], number_format($config['media_size'] / 1000000, 2) . ' MB') ?>
+            <?php echo sprintf(
+                __('You just allow upload media with <strong>%s</strong> extensions, maximum upload size is <strong>%s</strong>'), $config['media_extension'],
+                number_format($config['media_size'] / 1000000, 2) . ' MB'
+            ) ?>
         </div>
         <div class="card card-body bg-light mb-3">
             <div class="fileInformation hidden">

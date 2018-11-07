@@ -31,7 +31,7 @@ class ServerList extends AbstractRegistry
     protected function loadDynamic($options = [])
     {
         $return = [];
-        $where = ['status' => 1];
+        $where  = ['status' => 1];
         $select = Pi::model('server', $this->module)->select()->where($where);
         $rowset = Pi::model('server', $this->module)->selectWith($select);
         foreach ($rowset as $row) {
@@ -47,7 +47,7 @@ class ServerList extends AbstractRegistry
     public function read()
     {
         $options = [];
-        $result = $this->loadData($options);
+        $result  = $this->loadData($options);
 
         return $result;
     }

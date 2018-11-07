@@ -22,49 +22,59 @@ class VideoLinkFilter extends InputFilter
     public function __construct($option = [])
     {
         // id
-        $this->add([
-            'name'     => 'id',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'id',
+                'required' => false,
+            ]
+        );
         // slug
-        $this->add([
-            'name'       => 'slug',
-            'required'   => true,
-            'filters'    => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'       => 'slug',
+                'required'   => true,
+                'filters'    => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-            'validators' => [
-                new \Module\Video\Validator\SlugDuplicate([
-                    'module' => Pi::service('module')->current(),
-                    'table'  => 'video',
-                ]),
-            ],
-        ]);
+                'validators' => [
+                    new \Module\Video\Validator\SlugDuplicate(
+                        [
+                            'module' => Pi::service('module')->current(),
+                            'table'  => 'video',
+                        ]
+                    ),
+                ],
+            ]
+        );
         // Check server type
         switch ($option['server']['type']) {
             case 'file':
                 // video_path
-                $this->add([
-                    'name'     => 'video_path',
-                    'required' => true,
-                    'filters'  => [
-                        [
-                            'name' => 'StringTrim',
+                $this->add(
+                    [
+                        'name'     => 'video_path',
+                        'required' => true,
+                        'filters'  => [
+                            [
+                                'name' => 'StringTrim',
+                            ],
                         ],
-                    ],
-                ]);
+                    ]
+                );
                 // video_file
-                $this->add([
-                    'name'     => 'video_file',
-                    'required' => true,
-                    'filters'  => [
-                        [
-                            'name' => 'StringTrim',
+                $this->add(
+                    [
+                        'name'     => 'video_file',
+                        'required' => true,
+                        'filters'  => [
+                            [
+                                'name' => 'StringTrim',
+                            ],
                         ],
-                    ],
-                ]);
+                    ]
+                );
                 break;
 
             case 'wowza':
@@ -79,28 +89,32 @@ class VideoLinkFilter extends InputFilter
                     ),
                 )); */
                 // video_file
-                $this->add([
-                    'name'     => 'video_file',
-                    'required' => true,
-                    'filters'  => [
-                        [
-                            'name' => 'StringTrim',
+                $this->add(
+                    [
+                        'name'     => 'video_file',
+                        'required' => true,
+                        'filters'  => [
+                            [
+                                'name' => 'StringTrim',
+                            ],
                         ],
-                    ],
-                ]);
+                    ]
+                );
                 break;
 
             case 'qmery':
                 // qmery_url
-                $this->add([
-                    'name'     => 'qmery_url',
-                    'required' => true,
-                    'filters'  => [
-                        [
-                            'name' => 'StringTrim',
+                $this->add(
+                    [
+                        'name'     => 'qmery_url',
+                        'required' => true,
+                        'filters'  => [
+                            [
+                                'name' => 'StringTrim',
+                            ],
                         ],
-                    ],
-                ]);
+                    ]
+                );
                 break;
         }
     }

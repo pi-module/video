@@ -1,7 +1,8 @@
 <?php
 
 // Set script
-$script = <<<'EOT'
+$script
+        = <<<'EOT'
 $("#grid-data").bootgrid({
     ajax: true,
     post: function () {
@@ -41,11 +42,15 @@ EOT;
 $script = sprintf(
     $script,
     'b0df282a-0d67-40e5-8558-c9e93b7befed',
-    Pi::url($this->url('', [
-        'controller' => 'category',
-        'action'     => 'ajax',
-        'type'       => $type,
-    ])),
+    Pi::url(
+        $this->url(
+            '', [
+            'controller' => 'category',
+            'action'     => 'ajax',
+            'type'       => $type,
+        ]
+        )
+    ),
     __('Edit'),
     __('View'),
     __('All'),
@@ -57,14 +62,18 @@ $script = sprintf(
 );
 // Load header
 $this->jQuery();
-$this->js([
-    $this->assetModule('js/jquery.bootgrid.min.js'),
-    $this->assetModule('js/jquery.bootgrid.fa.min.js'),
-]);
-$this->css([
-    $this->assetModule('css/admin.css'),
-    $this->assetModule('css/jquery.bootgrid.min.css'),
-]);
+$this->js(
+    [
+        $this->assetModule('js/jquery.bootgrid.min.js'),
+        $this->assetModule('js/jquery.bootgrid.fa.min.js'),
+    ]
+);
+$this->css(
+    [
+        $this->assetModule('css/admin.css'),
+        $this->assetModule('css/jquery.bootgrid.min.css'),
+    ]
+);
 $this->footScript()->appendScript($script);
 ?>
 <div class="clearfix">

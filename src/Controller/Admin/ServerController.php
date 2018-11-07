@@ -135,13 +135,17 @@ class ServerController extends ActionController
 
                         // Check count
                         if ($count > 0) {
-                            $url = Pi::url($this->url('', [
-                                'controller' => 'server',
-                                'action'     => 'processing',
-                                'server'     => $server,
-                                'type'       => 'syncVideoList',
-                                'page'       => $page + 1,
-                            ]));
+                            $url = Pi::url(
+                                $this->url(
+                                    '', [
+                                    'controller' => 'server',
+                                    'action'     => 'processing',
+                                    'server'     => $server,
+                                    'type'       => 'syncVideoList',
+                                    'page'       => $page + 1,
+                                ]
+                                )
+                            );
                         } else {
                             $message = __('Update information form qmery server finished');
                             $this->jump(['action' => 'index'], $message);
@@ -167,13 +171,17 @@ class ServerController extends ActionController
 
                         // Check count
                         if ($count > 0) {
-                            $url = Pi::url($this->url('', [
-                                'controller' => 'server',
-                                'action'     => 'processing',
-                                'server'     => $server,
-                                'type'       => 'syncVideoSingle',
-                                'page'       => $page + 1,
-                            ]));
+                            $url = Pi::url(
+                                $this->url(
+                                    '', [
+                                    'controller' => 'server',
+                                    'action'     => 'processing',
+                                    'server'     => $server,
+                                    'type'       => 'syncVideoSingle',
+                                    'page'       => $page + 1,
+                                ]
+                                )
+                            );
                         } else {
                             $message = __('Update information form qmery server finished');
                             $this->jump(['action' => 'index'], $message);

@@ -28,9 +28,9 @@ class Category extends Select
         if (empty($this->valueOptions)) {
             // Get topic list
             $columns = ['id', 'parent', 'title'];
-            $where = ['status' => 1, 'type' => 'category'];
-            $select = Pi::model('category', 'video')->select()->columns($columns)->where($where);
-            $rowset = Pi::model('category', 'video')->selectWith($select);
+            $where   = ['status' => 1, 'type' => 'category'];
+            $select  = Pi::model('category', 'video')->select()->columns($columns)->where($where);
+            $rowset  = Pi::model('category', 'video')->selectWith($select);
             foreach ($rowset as $row) {
                 $list[$row->id] = $row->toArray();
             }
@@ -74,9 +74,9 @@ class Category extends Select
         // Set category list as tree
         foreach ($elements as $element) {
             if ($element['parent'] == $parentId) {
-                $depth = 0;
+                $depth                  = 0;
                 $branch[$element['id']] = $element['title'];
-                $children = $this->getTree($elements, $element['id']);
+                $children               = $this->getTree($elements, $element['id']);
                 if ($children) {
                     $depth++;
                     foreach ($children as $key => $value) {

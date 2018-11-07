@@ -80,7 +80,7 @@
             return this.attr.apply(this, arguments);
         }
         var val = this.prop.apply(this, arguments);
-        if (( val && val.jquery ) || typeof val === 'string') {
+        if ((val && val.jquery) || typeof val === 'string') {
             return val;
         }
         return this.attr.apply(this, arguments);
@@ -167,7 +167,7 @@
 
         var q = $.param(a, traditional);
         if (qx) {
-            q = ( q ? (q + '&' + qx) : qx );
+            q = (q ? (q + '&' + qx) : qx);
         }
         if (options.type.toUpperCase() == 'GET') {
             options.url += (options.url.indexOf('?') >= 0 ? '&' : '?') + q;
@@ -192,7 +192,7 @@
         // perform a load on the target only if dataType is not provided
         if (!options.dataType && options.target) {
             var oldSuccess = options.success || function () {
-                };
+            };
             callbacks.push(function (data) {
                 var fn = options.replaceTarget ? 'replaceWith' : 'html';
                 $(options.target)[fn](data).each(oldSuccess, arguments);
@@ -805,20 +805,20 @@
             }
 
             var toXml = $.parseXML || function (s, doc) { // use parseXML if available (jQuery 1.5+)
-                    if (window.ActiveXObject) {
-                        doc = new ActiveXObject('Microsoft.XMLDOM');
-                        doc.async = 'false';
-                        doc.loadXML(s);
-                    }
-                    else {
-                        doc = (new DOMParser()).parseFromString(s, 'text/xml');
-                    }
-                    return (doc && doc.documentElement && doc.documentElement.nodeName != 'parsererror') ? doc : null;
-                };
+                if (window.ActiveXObject) {
+                    doc = new ActiveXObject('Microsoft.XMLDOM');
+                    doc.async = 'false';
+                    doc.loadXML(s);
+                }
+                else {
+                    doc = (new DOMParser()).parseFromString(s, 'text/xml');
+                }
+                return (doc && doc.documentElement && doc.documentElement.nodeName != 'parsererror') ? doc : null;
+            };
             var parseJSON = $.parseJSON || function (s) {
-                    /*jslint evil:true */
-                    return window['eval']('(' + s + ')');
-                };
+                /*jslint evil:true */
+                return window['eval']('(' + s + ')');
+            };
 
             var httpData = function (xhr, type, s) { // mostly lifted from jq1.4.4
 

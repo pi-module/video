@@ -67,14 +67,14 @@ class IndexController extends ActionController
             $limit = $this->config('view_perpage');
         }
         // Set info
-        $video = [];
+        $video   = [];
         $videoId = [];
-        $page = $this->params('page', 1);
-        $module = $this->params('module');
-        $sort = $this->params('sort', 'create');
-        $offset = (int)($page - 1) * $limit;
-        $limit = intval($limit);
-        $order = $this->setOrder($sort);
+        $page    = $this->params('page', 1);
+        $module  = $this->params('module');
+        $sort    = $this->params('sort', 'create');
+        $offset  = (int)($page - 1) * $limit;
+        $limit   = intval($limit);
+        $order   = $this->setOrder($sort);
         // Set info
         $columns = ['video' => new Expression('DISTINCT video')];
         // Get info from link table
@@ -103,13 +103,13 @@ class IndexController extends ActionController
     public function channelList($where)
     {
         // Set info
-        $id = [];
-        $page = $this->params('page', 1);
+        $id     = [];
+        $page   = $this->params('page', 1);
         $module = $this->params('module');
-        $sort = $this->params('sort', 'create');
+        $sort   = $this->params('sort', 'create');
         $offset = (int)($page - 1) * $this->config('view_perpage');
-        $limit = intval($this->config('view_perpage'));
-        $order = $this->setOrder($sort);
+        $limit  = intval($this->config('view_perpage'));
+        $order  = $this->setOrder($sort);
         // Get list of video
         $select = $this->getModel('video')->select()->where($where)->order($order);
         $rowset = $this->getModel('video')->selectWith($select);
@@ -123,11 +123,11 @@ class IndexController extends ActionController
     public function videoPaginator($template, $where)
     {
         $template['module'] = $this->params('module');
-        $template['sort'] = $this->params('sort');
-        $template['page'] = $this->params('page', 1);
+        $template['sort']   = $this->params('sort');
+        $template['page']   = $this->params('page', 1);
         // get count     
-        $columns = ['count' => new Expression('count(DISTINCT `video`)')];
-        $select = $this->getModel('link')->select()->where($where)->columns($columns);
+        $columns           = ['count' => new Expression('count(DISTINCT `video`)')];
+        $select            = $this->getModel('link')->select()->where($where)->columns($columns);
         $template['count'] = $this->getModel('link')->selectWith($select)->current()->count;
         // paginator
         $paginator = $this->canonizePaginator($template);
@@ -137,11 +137,11 @@ class IndexController extends ActionController
     public function channelPaginator($template, $where)
     {
         $template['module'] = $this->params('module');
-        $template['sort'] = $this->params('sort');
-        $template['page'] = $this->params('page', 1);
+        $template['sort']   = $this->params('sort');
+        $template['page']   = $this->params('page', 1);
         // get count     
-        $columns = ['count' => new Expression('count(*)')];
-        $select = $this->getModel('video')->select()->where($where)->columns($columns);
+        $columns           = ['count' => new Expression('count(*)')];
+        $select            = $this->getModel('video')->select()->where($where)->columns($columns);
         $template['count'] = $this->getModel('video')->selectWith($select)->current()->count;
         // paginator
         $paginator = $this->canonizePaginator($template);
@@ -155,17 +155,21 @@ class IndexController extends ActionController
         $paginator = Paginator::factory(intval($template['count']));
         $paginator->setItemCountPerPage(intval($this->config('view_perpage')));
         $paginator->setCurrentPageNumber(intval($template['page']));
-        $paginator->setUrlOptions([
-            'router' => $this->getEvent()->getRouter(),
-            'route'  => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params' => array_filter([
-                'module'     => $this->getModule(),
-                'controller' => $template['controller'],
-                'action'     => $template['action'],
-                'slug'       => $template['slug'],
-                'sort'       => $template['sort'],
-            ]),
-        ]);
+        $paginator->setUrlOptions(
+            [
+                'router' => $this->getEvent()->getRouter(),
+                'route'  => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+                'params' => array_filter(
+                    [
+                        'module'     => $this->getModule(),
+                        'controller' => $template['controller'],
+                        'action'     => $template['action'],
+                        'slug'       => $template['slug'],
+                        'sort'       => $template['sort'],
+                    ]
+                ),
+            ]
+        );
         return $paginator;
     }
 

@@ -37,9 +37,13 @@ class Breadcrumbs extends AbstractBreadcrumbs
                 $result = [
                     [
                         'label' => $moduleData['title'],
-                        'href'  => Pi::url(Pi::service('url')->assemble('video', [
-                            'module' => $this->getModule(),
-                        ])),
+                        'href'  => Pi::url(
+                            Pi::service('url')->assemble(
+                                'video', [
+                                'module' => $this->getModule(),
+                            ]
+                            )
+                        ),
                     ],
                 ];
                 // Set
@@ -62,7 +66,7 @@ class Breadcrumbs extends AbstractBreadcrumbs
                                 ); */
 
                                 $category = Pi::api('category', 'video')->getCategory($params['slug'], 'slug');
-                                $result = $this->makeCategoryList($category['parent'], $result);
+                                $result   = $this->makeCategoryList($category['parent'], $result);
                                 $result[] = [
                                     'label' => $category['title'],
                                 ];
@@ -83,7 +87,7 @@ class Breadcrumbs extends AbstractBreadcrumbs
                         // Check have category_main
                         if ($video['category_main'] > 0) {
                             $category = Pi::api('category', 'video')->getCategory($video['category_main']);
-                            $result = $this->makeCategoryList($category['parent'], $result);
+                            $result   = $this->makeCategoryList($category['parent'], $result);
                             $result[] = [
                                 'label' => $category['title'],
                                 'href'  => $category['categoryUrl'],
@@ -99,10 +103,14 @@ class Breadcrumbs extends AbstractBreadcrumbs
                         if (!empty($params['slug'])) {
                             $result[] = [
                                 'label' => __('Tag list'),
-                                'href'  => Pi::url(Pi::service('url')->assemble('video', [
-                                    'controller' => 'tag',
-                                    'action'     => 'index',
-                                ])),
+                                'href'  => Pi::url(
+                                    Pi::service('url')->assemble(
+                                        'video', [
+                                        'controller' => 'tag',
+                                        'action'     => 'index',
+                                    ]
+                                    )
+                                ),
                             ];
                             $result[] = [
                                 'label' => $params['slug'],
@@ -143,9 +151,9 @@ class Breadcrumbs extends AbstractBreadcrumbs
                         break;
 
                     case 'channel':
-                        $uid = isset($params['id']) ? intval($params['id']) : Pi::user()->getId();
-                        $user = Pi::api('channel', 'video')->user($uid);
-                        $title = sprintf(__('All videos from %s channel'), $user['name']);
+                        $uid      = isset($params['id']) ? intval($params['id']) : Pi::user()->getId();
+                        $user     = Pi::api('channel', 'video')->user($uid);
+                        $title    = sprintf(__('All videos from %s channel'), $user['name']);
                         $result[] = [
                             'label' => $title,
                         ];
@@ -180,7 +188,7 @@ class Breadcrumbs extends AbstractBreadcrumbs
     {
         if ($parent > 0) {
             $category = Pi::api('category', 'video')->getCategory($parent);
-            $result = $this->makeCategoryList($category['parent'], $result);
+            $result   = $this->makeCategoryList($category['parent'], $result);
             $result[] = [
                 'label' => $category['title'],
                 'href'  => $category['categoryUrl'],

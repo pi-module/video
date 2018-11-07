@@ -26,28 +26,32 @@ class SitemapForm extends BaseForm
     public function init()
     {
         // type
-        $this->add([
-            'name'       => 'type',
-            'type'       => 'select',
-            'options'    => [
-                'label'         => __('Select for rebuild'),
-                'value_options' => [
-                    1 => __('All of tables'),
-                    2 => __('Just video table'),
-                    3 => __('Just category table'),
+        $this->add(
+            [
+                'name'       => 'type',
+                'type'       => 'select',
+                'options'    => [
+                    'label'         => __('Select for rebuild'),
+                    'value_options' => [
+                        1 => __('All of tables'),
+                        2 => __('Just video table'),
+                        3 => __('Just category table'),
+                    ],
                 ],
-            ],
-            'attributes' => [
-                'required' => true,
-            ],
-        ]);
+                'attributes' => [
+                    'required' => true,
+                ],
+            ]
+        );
         // Save
-        $this->add([
-            'name'       => 'submit',
-            'type'       => 'submit',
-            'attributes' => [
-                'value' => __('Submit'),
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'submit',
+                'type'       => 'submit',
+                'attributes' => [
+                    'value' => __('Submit'),
+                ],
+            ]
+        );
     }
 }	

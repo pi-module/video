@@ -31,7 +31,7 @@ class AttributeController extends ActionController
         $rowset = $this->getModel('field')->selectWith($select);
         // Make list
         foreach ($rowset as $row) {
-            $field[$row->position][$row->id] = $row->toArray();
+            $field[$row->position][$row->id]                  = $row->toArray();
             $field[$row->position][$row->id]['position_view'] = $position[$row->position];
         }
         // Set view
@@ -46,23 +46,23 @@ class AttributeController extends ActionController
     public function updateAction()
     {
         // Get id
-        $id = $this->params('id');
-        $type = $this->params('type');
+        $id      = $this->params('id');
+        $type    = $this->params('type');
         $options = [];
         // check type
         if (!in_array($type, ['text', 'link', 'currency', 'date', 'number', 'select', 'video', 'audio', 'file', 'checkbox'])) {
             $message = __('Attribute field type not set.');
-            $url = ['action' => 'index'];
+            $url     = ['action' => 'index'];
             $this->jump($url, $message);
         }
         $options['type'] = $type;
         if ($id) {
-            $attribute = $this->getModel('field')->find($id)->toArray();
+            $attribute             = $this->getModel('field')->find($id)->toArray();
             $attribute['category'] = Pi::api('attribute', 'video')->getCategory($attribute['id']);
             // Set value
-            $value = json_decode($attribute['value'], true);
-            $attribute['data'] = $value['data'];
-            $attribute['default'] = $value['default'];
+            $value                    = json_decode($attribute['value'], true);
+            $attribute['data']        = $value['data'];
+            $attribute['default']     = $value['default'];
             $attribute['information'] = $value['information'];
         }
         // Set form
@@ -71,7 +71,7 @@ class AttributeController extends ActionController
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             // Set name
-            $filter = new Filter\Slug;
+            $filter       = new Filter\Slug;
             $data['name'] = $filter($data['name']);
             // Form filter
             $form->setInputFilter(new AttributeFilter($options));
@@ -79,7 +79,7 @@ class AttributeController extends ActionController
             if ($form->isValid()) {
                 $values = $form->getData();
                 // Set value
-                $value = [
+                $value           = [
                     'data'        => (isset($data['data'])) ? $data['data'] : '',
                     'default'     => (isset($data['default'])) ? $data['default'] : '',
                     'information' => $data['information'],
@@ -89,9 +89,9 @@ class AttributeController extends ActionController
                 $values['type'] = $type;
                 // Set order
                 if (empty($values['id'])) {
-                    $columns = ['order'];
-                    $order = ['order DESC'];
-                    $select = $this->getModel('field')->select()->columns($columns)->order($order)->limit(1);
+                    $columns         = ['order'];
+                    $order           = ['order DESC'];
+                    $select          = $this->getModel('field')->select()->columns($columns)->order($order)->limit(1);
                     $values['order'] = $this->getModel('field')->selectWith($select)->current()->order + 1;
                 }
                 // Save values
@@ -109,7 +109,7 @@ class AttributeController extends ActionController
                 Pi::api('log', 'video')->addLog('attribute', $row->id, $operation);
                 // Check it save or not
                 $message = __('Attribute field data saved successfully.');
-                $url = ['action' => 'index'];
+                $url     = ['action' => 'index'];
                 $this->jump($url, $message);
             }
         } else {
@@ -130,7 +130,7 @@ class AttributeController extends ActionController
             $data = $this->request->getPost();
             foreach ($data['mod'] as $id) {
                 if ($id > 0) {
-                    $row = $this->getModel('field')->find($id);
+                    $row        = $this->getModel('field')->find($id);
                     $row->order = $order;
                     $row->save();
                     $order++;
@@ -145,7 +145,7 @@ class AttributeController extends ActionController
     {
         // Get information
         $this->view()->setTemplate(false);
-        $id = $this->params('id');
+        $id  = $this->params('id');
         $row = $this->getModel('field')->find($id);
         if ($row) {
             // Remove all data

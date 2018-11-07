@@ -60,7 +60,7 @@ class SubmitController extends IndexController
             $this->jump(['controller' => 'index', 'action' => 'index'], $message);
         }
         // Set option
-        $option = [];
+        $option         = [];
         $option['side'] = 'front';
         // Set form
         $form = new VideoUploadForm('video', $option);
@@ -76,7 +76,7 @@ class SubmitController extends IndexController
                 if (!empty($file['video']['name'])) {
                     // Set upload path
                     $values['video_path'] = sprintf('upload/video/file/%s/%s', date('Y'), date('m'));
-                    $videoPath = Pi::path($values['video_path']);
+                    $videoPath            = Pi::path($values['video_path']);
                     // Upload
                     $uploader = new Upload;
                     $uploader->setDestination($videoPath);
@@ -107,12 +107,12 @@ class SubmitController extends IndexController
                 $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
                 switch ($extension) {
                     case 'mp3':
-                        $values['video_type'] = 'audio';
+                        $values['video_type']      = 'audio';
                         $values['video_extension'] = 'mp3';
                         break;
 
                     case 'mp4':
-                        $values['video_type'] = 'video';
+                        $values['video_type']      = 'video';
                         $values['video_extension'] = 'mp4';
                         break;
                 }
@@ -132,9 +132,9 @@ class SubmitController extends IndexController
                 }
             }
         } else {
-            $video = [];
-            $slug = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
-            $filter = new Filter\Slug;
+            $video         = [];
+            $slug          = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
+            $filter        = new Filter\Slug;
             $video['slug'] = $filter($slug);
             $form->setData($video);
             // set nav
@@ -146,9 +146,11 @@ class SubmitController extends IndexController
         $title = __('Upload video');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions([
-            'force_replace_space' => true,
-        ]);
+        $filter->setOptions(
+            [
+                'force_replace_space' => true,
+            ]
+        );
         $seoKeywords = $filter($title);
 
         // Save statistics
@@ -170,7 +172,7 @@ class SubmitController extends IndexController
     public function updateAction()
     {
         // Get info from url
-        $id = $this->params('id');
+        $id     = $this->params('id');
         $module = $this->params('module');
         // Get config
         $config = Pi::service('registry')->config->read($module);
@@ -200,14 +202,14 @@ class SubmitController extends IndexController
             }
             // Set information
             if ($video['image']) {
-                $video['thumbUrl'] = sprintf('upload/video/image/thumb/%s/%s', $video['path'], $video['image']);
-                $option['thumbUrl'] = Pi::url($video['thumbUrl']);
+                $video['thumbUrl']   = sprintf('upload/video/image/thumb/%s/%s', $video['path'], $video['image']);
+                $option['thumbUrl']  = Pi::url($video['thumbUrl']);
                 $option['removeUrl'] = $this->url('', ['action' => 'remove', 'id' => $video['id']]);
             }
-            $option['side'] = 'front';
-            $option['video_type'] = $video['video_type'];
+            $option['side']            = 'front';
+            $option['video_type']      = $video['video_type'];
             $option['video_extension'] = $video['video_extension'];
-            $option['video_size'] = $video['video_size'];
+            $option['video_size']      = $video['video_size'];
         } else {
             // Jump
             $message = __('Please submit video');
@@ -231,7 +233,7 @@ class SubmitController extends IndexController
                 if (!empty($file['image']['name'])) {
                     // Set upload path
                     $values['path'] = sprintf('%s/%s', date('Y'), date('m'));
-                    $originalPath = Pi::path(sprintf('upload/%s/original/%s', $this->config('image_path'), $values['path']));
+                    $originalPath   = Pi::path(sprintf('upload/%s/original/%s', $this->config('image_path'), $values['path']));
                     // Image name
                     $imageName = Pi::api('image', 'video')->rename($file['image']['name'], $this->mediaPrefix, $values['path']);
                     // Upload
@@ -255,19 +257,21 @@ class SubmitController extends IndexController
                 // Category
                 $values['category'] = json_encode(array_unique($values['category']));
                 // Set seo_title
-                $title = ($values['seo_title']) ? $values['seo_title'] : $values['title'];
-                $filter = new Filter\HeadTitle;
+                $title               = ($values['seo_title']) ? $values['seo_title'] : $values['title'];
+                $filter              = new Filter\HeadTitle;
                 $values['seo_title'] = $filter($title);
                 // Set seo_keywords
                 $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
-                $filter = new Filter\HeadKeywords;
-                $filter->setOptions([
-                    'force_replace_space' => (bool)$this->config('force_replace_space'),
-                ]);
+                $filter   = new Filter\HeadKeywords;
+                $filter->setOptions(
+                    [
+                        'force_replace_space' => (bool)$this->config('force_replace_space'),
+                    ]
+                );
                 $values['seo_keywords'] = $filter($keywords);
                 // Set seo_description
-                $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
-                $filter = new Filter\HeadDescription;
+                $description               = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
+                $filter                    = new Filter\HeadDescription;
                 $values['seo_description'] = $filter($description);
                 // Set time_update
                 $values['time_update'] = time();
@@ -285,11 +289,15 @@ class SubmitController extends IndexController
                 // Add / Edit sitemap
                 if (Pi::service('module')->isActive('sitemap')) {
                     // Set loc
-                    $loc = Pi::url($this->url('video', [
-                        'module'     => $module,
-                        'controller' => 'watch',
-                        'slug'       => $values['slug'],
-                    ]));
+                    $loc = Pi::url(
+                        $this->url(
+                            'video', [
+                            'module'     => $module,
+                            'controller' => 'watch',
+                            'slug'       => $values['slug'],
+                        ]
+                        )
+                    );
                     // Update sitemap
                     Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->status, $module, 'video', $row->id);
                 }
@@ -316,9 +324,11 @@ class SubmitController extends IndexController
         $title = __('Edit basic information');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions([
-            'force_replace_space' => true,
-        ]);
+        $filter->setOptions(
+            [
+                'force_replace_space' => true,
+            ]
+        );
         $seoKeywords = $filter($title);
         // Set view
         $this->view()->headTitle($title);
@@ -335,7 +345,7 @@ class SubmitController extends IndexController
     public function additionalAction()
     {
         // Get id
-        $id = $this->params('id');
+        $id     = $this->params('id');
         $module = $this->params('module');
         // Get config
         $config = Pi::service('registry')->config->read($module);
@@ -363,9 +373,9 @@ class SubmitController extends IndexController
             $this->jump(['action' => 'index'], $message);
         }
         // Get attribute field
-        $fields = Pi::api('attribute', 'video')->Get($video['category_main']);
+        $fields          = Pi::api('attribute', 'video')->Get($video['category_main']);
         $option['field'] = $fields['attribute'];
-        $option['side'] = 'front';
+        $option['side']  = 'front';
         // Check attribute is empty
         if (empty($fields['attribute'])) {
             $message = __('Video data saved successfully.');
@@ -385,7 +395,7 @@ class SubmitController extends IndexController
                 if (!empty($fields['field'])) {
                     foreach ($fields['field'] as $field) {
                         $attribute[$field]['field'] = $field;
-                        $attribute[$field]['data'] = $values[$field];
+                        $attribute[$field]['data']  = $values[$field];
                     }
                 }
                 // Set time
@@ -418,9 +428,11 @@ class SubmitController extends IndexController
         $title = __('Edit additional information');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions([
-            'force_replace_space' => true,
-        ]);
+        $filter->setOptions(
+            [
+                'force_replace_space' => true,
+            ]
+        );
         $seoKeywords = $filter($title);
         // Set view
         $this->view()->headTitle($title);
@@ -437,7 +449,7 @@ class SubmitController extends IndexController
     public function finishAction()
     {
         // Get info from url
-        $id = $this->params('id');
+        $id     = $this->params('id');
         $module = $this->params('module');
         // Get config
         $config = Pi::service('registry')->config->read($module);
@@ -471,9 +483,11 @@ class SubmitController extends IndexController
         $title = __('Watch submitted video');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions([
-            'force_replace_space' => true,
-        ]);
+        $filter->setOptions(
+            [
+                'force_replace_space' => true,
+            ]
+        );
         $seoKeywords = $filter($title);
         // Set view
         $this->view()->headTitle($title);
@@ -489,7 +503,7 @@ class SubmitController extends IndexController
     public function qmeryUploadAction()
     {
         // Get info from url
-        $id = $this->params('id');
+        $id     = $this->params('id');
         $module = $this->params('module');
         // Get config
         $config = Pi::service('registry')->config->read($module);
@@ -506,7 +520,7 @@ class SubmitController extends IndexController
         if ($id) {
             // Get video object
             $videoObject = $this->getModel('video')->find($id);
-            $video = Pi::api('video', 'video')->canonizeVideo($videoObject);
+            $video       = Pi::api('video', 'video')->canonizeVideo($videoObject);
             // Check
             if (empty($video) || $video['status'] != 2 || $video['uid'] != Pi::user()->getId() || (time() - 3600) > $video['time_update']) {
                 $message = __('Please submit video');

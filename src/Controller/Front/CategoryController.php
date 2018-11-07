@@ -24,7 +24,7 @@ class CategoryController extends IndexController
     {
         // Get info from url
         $module = $this->params('module');
-        $slug = $this->params('slug');
+        $slug   = $this->params('slug');
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Get category information from model
@@ -49,9 +49,9 @@ class CategoryController extends IndexController
 
             case 'subcategory':
                 // Get info
-                $list = [];
-                $where = ['status' => 1, 'parent' => $category['id']];
-                $order = ['display_order ASC', 'time_create DESC', 'title ASC'];
+                $list   = [];
+                $where  = ['status' => 1, 'parent' => $category['id']];
+                $order  = ['display_order ASC', 'time_create DESC', 'title ASC'];
                 $select = $this->getModel('category')->select()->where($where)->order($order);
                 $rowset = $this->getModel('category')->selectWith($select);
                 // Make list
@@ -89,10 +89,10 @@ class CategoryController extends IndexController
         $config = Pi::service('registry')->config->read($module);
         // Set info
         $categories = [];
-        $where = ['status' => 1];
-        $order = ['display_order DESC', 'title ASC', 'id DESC'];
-        $select = $this->getModel('category')->select()->where($where)->order($order);
-        $rowset = $this->getModel('category')->selectWith($select);
+        $where      = ['status' => 1];
+        $order      = ['display_order DESC', 'title ASC', 'id DESC'];
+        $select     = $this->getModel('category')->select()->where($where)->order($order);
+        $rowset     = $this->getModel('category')->selectWith($select);
         // Make list
         foreach ($rowset as $row) {
             $categories[$row->id] = Pi::api('category', 'video')->canonizeCategory($row);
@@ -106,9 +106,11 @@ class CategoryController extends IndexController
         $title = __('Category list');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions([
-            'force_replace_space' => true,
-        ]);
+        $filter->setOptions(
+            [
+                'force_replace_space' => true,
+            ]
+        );
         $seoKeywords = $filter($title);
 
         // Save statistics

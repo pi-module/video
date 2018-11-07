@@ -36,85 +36,99 @@ class VideoLinkForm extends BaseForm
     public function init()
     {
         // id
-        $this->add([
-            'name'       => 'id',
-            'attributes' => [
-                'type' => 'hidden',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'id',
+                'attributes' => [
+                    'type' => 'hidden',
+                ],
+            ]
+        );
         // slug
-        $this->add([
-            'name'       => 'slug',
-            'attributes' => [
-                'type' => 'hidden',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'slug',
+                'attributes' => [
+                    'type' => 'hidden',
+                ],
+            ]
+        );
         // Check server type
         switch ($this->option['server']['type']) {
             case 'file':
                 // video_path
-                $this->add([
-                    'name'       => 'video_path',
-                    'options'    => [
-                        'label' => __('Video path'),
-                    ],
-                    'attributes' => [
-                        'type'        => 'text',
-                        'description' => __('Without add / on start and end, for example : upload/video/2016/09'),
-                        'required'    => true,
-                    ],
-                ]);
+                $this->add(
+                    [
+                        'name'       => 'video_path',
+                        'options'    => [
+                            'label' => __('Video path'),
+                        ],
+                        'attributes' => [
+                            'type'        => 'text',
+                            'description' => __('Without add / on start and end, for example : upload/video/2016/09'),
+                            'required'    => true,
+                        ],
+                    ]
+                );
                 // video_file
-                $this->add([
-                    'name'       => 'video_file',
-                    'options'    => [
-                        'label' => __('Video file name'),
-                    ],
-                    'attributes' => [
-                        'type'        => 'text',
-                        'description' => __('File name by extension, for example file.mp4'),
-                        'required'    => true,
-                    ],
-                ]);
+                $this->add(
+                    [
+                        'name'       => 'video_file',
+                        'options'    => [
+                            'label' => __('Video file name'),
+                        ],
+                        'attributes' => [
+                            'type'        => 'text',
+                            'description' => __('File name by extension, for example file.mp4'),
+                            'required'    => true,
+                        ],
+                    ]
+                );
                 break;
 
             case 'wowza':
                 // video_file
-                $this->add([
-                    'name'       => 'video_file',
-                    'options'    => [
-                        'label' => __('Wowza stream link'),
-                    ],
-                    'attributes' => [
-                        'type'        => 'text',
-                        'description' => __('Put wowza url whitout ip or domain name'),
-                        'required'    => true,
-                    ],
-                ]);
+                $this->add(
+                    [
+                        'name'       => 'video_file',
+                        'options'    => [
+                            'label' => __('Wowza stream link'),
+                        ],
+                        'attributes' => [
+                            'type'        => 'text',
+                            'description' => __('Put wowza url whitout ip or domain name'),
+                            'required'    => true,
+                        ],
+                    ]
+                );
                 break;
 
             case 'qmery':
                 // qmery_url
-                $this->add([
-                    'name'       => 'qmery_url',
-                    'options'    => [
-                        'label' => __('Qmery url'),
-                    ],
-                    'attributes' => [
-                        'type'        => 'url',
-                        'description' => __('Qmery video api url , like : https://api.qmery.com/ovp/v/Mlvp4aykvq'),
-                        'required'    => true,
-                    ],
-                ]);
+                $this->add(
+                    [
+                        'name'       => 'qmery_url',
+                        'options'    => [
+                            'label' => __('Qmery url'),
+                        ],
+                        'attributes' => [
+                            'type'        => 'url',
+                            'description' => __('Qmery video api url , like : https://api.qmery.com/ovp/v/Mlvp4aykvq'),
+                            'required'    => true,
+                        ],
+                    ]
+                );
                 break;
         }
         // Save
-        $this->add([
-            'name'       => 'submit',
-            'type'       => 'submit',
-            'attributes' => [
-                'value' => __('Submit'),
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'submit',
+                'type'       => 'submit',
+                'attributes' => [
+                    'value' => __('Submit'),
+                ],
+            ]
+        );
     }
 }

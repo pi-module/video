@@ -375,7 +375,7 @@ return [
             'value'       => 'free',
             'category'    => 'order',
         ],
-        'sale_video_single'                => [
+        'sale_video_single'         => [
             'title'       => _a('Sale method for single video'),
             'description' => '',
             'edit'        => [
@@ -384,7 +384,7 @@ return [
                     'options' => [
                         'buy'    => _a('Buy each video online'),
                         'credit' => _a('Use user credit'),
-                        'mobile'  => _a('Mobile payment method (VAS)'),
+                        'mobile' => _a('Mobile payment method (VAS)'),
                     ],
                 ],
             ],

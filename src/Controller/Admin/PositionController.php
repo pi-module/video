@@ -28,8 +28,8 @@ class PositionController extends ActionController
         // Get from url
         $module = $this->params('module');
         // Get info
-        $list = [];
-        $order = ['order ASC', 'id ASC'];
+        $list   = [];
+        $order  = ['order ASC', 'id ASC'];
         $select = $this->getModel('field_position')->select()->order($order);
         $rowset = $this->getModel('field_position')->selectWith($select);
         // Make list
@@ -48,7 +48,7 @@ class PositionController extends ActionController
     public function updateAction()
     {
         // Get id
-        $id = $this->params('id');
+        $id     = $this->params('id');
         $module = $this->params('module');
         // Set form
         $form = new PositionForm('position');

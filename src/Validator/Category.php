@@ -24,9 +24,10 @@ class Category extends AbstractValidator
     /**
      * @var array
      */
-    protected $messageTemplates = [
-        self::TAKEN => 'Please select category',
-    ];
+    protected $messageTemplates
+        = [
+            self::TAKEN => 'Please select category',
+        ];
 
     protected $options = [];
 
@@ -35,6 +36,7 @@ class Category extends AbstractValidator
      *
      * @param  mixed $value
      * @param  array $context
+     *
      * @return boolean
      */
     public function isValid($value, $context = null)

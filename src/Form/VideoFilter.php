@@ -22,152 +22,190 @@ class VideoFilter extends InputFilter
     public function __construct($option = [])
     {
         // id
-        $this->add([
-            'name'     => 'id',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'id',
+                'required' => false,
+            ]
+        );
         // title
-        $this->add([
-            'name'     => 'title',
-            'required' => true,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'title',
+                'required' => true,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // slug
-        $this->add([
-            'name'       => 'slug',
-            'required'   => false,
-            'filters'    => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'       => 'slug',
+                'required'   => false,
+                'filters'    => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-            'validators' => [
-                new \Module\Video\Validator\SlugDuplicate([
-                    'module' => Pi::service('module')->current(),
-                    'table'  => 'video',
-                ]),
-            ],
-        ]);
+                'validators' => [
+                    new \Module\Video\Validator\SlugDuplicate(
+                        [
+                            'module' => Pi::service('module')->current(),
+                            'table'  => 'video',
+                        ]
+                    ),
+                ],
+            ]
+        );
         // text_summary
-        $this->add([
-            'name'     => 'text_summary',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'text_summary',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // text_description
-        $this->add([
-            'name'     => 'text_description',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'text_description',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // status
-        $this->add([
-            'name'     => 'status',
-            'required' => true,
-        ]);
+        $this->add(
+            [
+                'name'     => 'status',
+                'required' => true,
+            ]
+        );
         // category
-        $this->add([
-            'name'     => 'category',
-            'required' => true,
-        ]);
+        $this->add(
+            [
+                'name'     => 'category',
+                'required' => true,
+            ]
+        );
         // category_main
-        $this->add([
-            'name'       => 'category_main',
-            'required'   => true,
-            'validators' => [
-                new \Module\Video\Validator\Category,
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'category_main',
+                'required'   => true,
+                'validators' => [
+                    new \Module\Video\Validator\Category,
+                ],
+            ]
+        );
         // brand
         if ($option['brand_system']) {
-            $this->add([
-                'name'     => 'brand',
-                'required' => false,
-            ]);
+            $this->add(
+                [
+                    'name'     => 'brand',
+                    'required' => false,
+                ]
+            );
         }
         // image
-        $this->add([
-            'name'     => 'image',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'image',
+                'required' => false,
+            ]
+        );
         // video_duration
-        $this->add([
-            'name'     => 'video_duration',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'video_duration',
+                'required' => false,
+            ]
+        );
         // Check is admin
         if ($option['side'] == 'admin') {
             switch ($option['sale_video']) {
                 case 'package':
                     // sale
-                    $this->add([
-                        'name'     => 'sale_type',
-                        'required' => false,
-                    ]);
+                    $this->add(
+                        [
+                            'name'     => 'sale_type',
+                            'required' => false,
+                        ]
+                    );
                     break;
 
                 case 'single':
                     // sale
-                    $this->add([
-                        'name'     => 'sale_type',
-                        'required' => false,
-                    ]);
+                    $this->add(
+                        [
+                            'name'     => 'sale_type',
+                            'required' => false,
+                        ]
+                    );
                     // sale_price
-                    $this->add([
-                        'name'     => 'sale_price',
-                        'required' => false,
-                    ]);
+                    $this->add(
+                        [
+                            'name'     => 'sale_price',
+                            'required' => false,
+                        ]
+                    );
                     break;
             }
         }
         // seo_title
-        $this->add([
-            'name'     => 'seo_title',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'seo_title',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // seo_keywords
-        $this->add([
-            'name'     => 'seo_keywords',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'seo_keywords',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // seo_description
-        $this->add([
-            'name'     => 'seo_description',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'seo_description',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // tag
         if (Pi::service('module')->isActive('tag')) {
-            $this->add([
-                'name'     => 'tag',
-                'required' => false,
-            ]);
+            $this->add(
+                [
+                    'name'     => 'tag',
+                    'required' => false,
+                ]
+            );
         }
     }
 }

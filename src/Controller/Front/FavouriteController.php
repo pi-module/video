@@ -33,7 +33,7 @@ class FavouriteController extends IndexController
         }
         // Get info from url
         $module = $this->params('module');
-        $uid = Pi::user()->getId();
+        $uid    = Pi::user()->getId();
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // category list
@@ -42,9 +42,11 @@ class FavouriteController extends IndexController
         $title = __('All favourite videos by you');
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions([
-            'force_replace_space' => true,
-        ]);
+        $filter->setOptions(
+            [
+                'force_replace_space' => true,
+            ]
+        );
         $seoKeywords = $filter($title);
         // load language
         Pi::service('i18n')->load(['module/user', 'default']);

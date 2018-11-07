@@ -1,14 +1,16 @@
 <?php
 $this->css($this->assetModule('css/admin.css'));
 $this->jQuery();
-$script = <<<'EOT'
+$script
+        = <<<'EOT'
 window.setTimeout(function() {
     window.location.href = '%s';
 }, 3000);
 EOT;
 $script = sprintf($script, $url);
 $this->footScript()->appendScript($script);
-$script2 = <<<'EOT'
+$script2
+         = <<<'EOT'
     var count=3;
     var counter=setInterval(timer, 1000);
     function timer()

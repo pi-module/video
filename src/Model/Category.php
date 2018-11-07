@@ -21,26 +21,27 @@ class Category extends Model
     /**
      * {@inheritDoc}
      */
-    protected $columns = [
-        'id',
-        'parent',
-        'title',
-        'slug',
-        'image',
-        'image_wide',
-        'path',
-        'text_summary',
-        'text_description',
-        'seo_title',
-        'seo_keywords',
-        'seo_description',
-        'time_create',
-        'time_update',
-        'setting',
-        'status',
-        'display_order',
-        'display_type',
-        'type',
-        'hits',
-    ];
+    protected $columns
+        = [
+            'id',
+            'parent',
+            'title',
+            'slug',
+            'image',
+            'image_wide',
+            'path',
+            'text_summary',
+            'text_description',
+            'seo_title',
+            'seo_keywords',
+            'seo_description',
+            'time_create',
+            'time_update',
+            'setting',
+            'status',
+            'display_order',
+            'display_type',
+            'type',
+            'hits',
+        ];
 }

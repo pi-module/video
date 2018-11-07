@@ -28,9 +28,9 @@ class Block
         // Set info
         $order = ['time_create DESC', 'id DESC'];
         $limit = intval($block['number']);
-        if (isset($block['category']) &&
-            !empty($block['category']) &&
-            !in_array(0, $block['category'])
+        if (isset($block['category'])
+            && !empty($block['category'])
+            && !in_array(0, $block['category'])
         ) {
             // Set info
             $where = [
@@ -78,9 +78,9 @@ class Block
         // Set info
         $order = [new Expression('RAND()')];
         $limit = intval($block['number']);
-        if (isset($block['category']) &&
-            !empty($block['category']) &&
-            !in_array(0, $block['category'])
+        if (isset($block['category'])
+            && !empty($block['category'])
+            && !in_array(0, $block['category'])
         ) {
             // Set info
             $where = [
@@ -159,9 +159,9 @@ class Block
         // Set info
         $order = ['hits DESC', 'time_update DESC', 'id DESC'];
         $limit = intval($block['number']);
-        if (isset($block['category']) &&
-            !empty($block['category']) &&
-            !in_array(0, $block['category'])
+        if (isset($block['category'])
+            && !empty($block['category'])
+            && !in_array(0, $block['category'])
         ) {
             // Set info
             $where = [
@@ -213,10 +213,12 @@ class Block
                 break;
 
             case 'custom':
-                $video['playerUrl'] = sprintf('%s&w=%s&h=%s',
+                $video['playerUrl'] = sprintf(
+                    '%s&w=%s&h=%s',
                     $video['qmeryScriptResponsive'],
                     $block['width'],
-                    $block['height']);
+                    $block['height']
+                );
                 break;
         }
         // Set block array

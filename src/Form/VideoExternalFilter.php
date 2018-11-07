@@ -22,35 +22,43 @@ class VideoExternalFilter extends InputFilter
     public function __construct($option = [])
     {
         // id
-        $this->add([
-            'name'     => 'id',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'id',
+                'required' => false,
+            ]
+        );
         // slug
-        $this->add([
-            'name'       => 'slug',
-            'required'   => true,
-            'filters'    => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'       => 'slug',
+                'required'   => true,
+                'filters'    => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-            'validators' => [
-                new \Module\Video\Validator\SlugDuplicate([
-                    'module' => Pi::service('module')->current(),
-                    'table'  => 'video',
-                ]),
-            ],
-        ]);
+                'validators' => [
+                    new \Module\Video\Validator\SlugDuplicate(
+                        [
+                            'module' => Pi::service('module')->current(),
+                            'table'  => 'video',
+                        ]
+                    ),
+                ],
+            ]
+        );
         // external_link
-        $this->add([
-            'name'     => 'external_link',
-            'required' => true,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'external_link',
+                'required' => true,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
     }
 }

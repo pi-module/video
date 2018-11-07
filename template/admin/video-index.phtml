@@ -1,8 +1,10 @@
 <?php
-$this->css([
-    $this->assetModule('css/admin.css'),
-    $this->assetModule('script/system-ui.css', 'system'),
-]);
+$this->css(
+    [
+        $this->assetModule('css/admin.css'),
+        $this->assetModule('script/system-ui.css', 'system'),
+    ]
+);
 $this->jQuery();
 $this->js($this->assetModule('script/system-msg.js', 'system'));
 ?>
@@ -37,54 +39,66 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                     <?php foreach ($serverList as $server) { ?>
                         <?php if ($server['type'] == 'file') { ?>
                             <li><a title="<?php echo $this->escape($server['title']); ?>"
-                                   href="<?php echo $this->url('', [
+                                   href="<?php echo $this->url(
+                                       '', [
                                        'controller' => 'video',
                                        'action'     => 'upload',
                                        'server'     => $server['id'],
-                                   ]); ?>"><i
+                                   ]
+                                   ); ?>"><i
                                             class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?></a>
                             </li>
                         <?php } elseif ($server['type'] == 'wowza') { ?>
                             <li><a title="<?php echo $this->escape($server['title']); ?>"
-                                   href="<?php echo $this->url('', [
+                                   href="<?php echo $this->url(
+                                       '', [
                                        'controller' => 'video',
                                        'action'     => 'link',
                                        'server'     => $server['id'],
-                                   ]); ?>"><i
+                                   ]
+                                   ); ?>"><i
                                             class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?></a>
                             </li>
                         <?php } elseif ($server['type'] == 'qmery') { ?>
                             <li><a title="<?php echo $this->escape($server['title']); ?>"
-                                   href="<?php echo $this->url('', [
+                                   href="<?php echo $this->url(
+                                       '', [
                                        'controller' => 'video',
                                        'action'     => 'upload',
                                        'server'     => $server['id'],
-                                   ]); ?>"><i
+                                   ]
+                                   ); ?>"><i
                                             class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?>
                                     (<?php _e('Upload'); ?>)</a></li>
                             <li><a title="<?php echo $this->escape($server['title']); ?>"
-                                   href="<?php echo $this->url('', [
+                                   href="<?php echo $this->url(
+                                       '', [
                                        'controller' => 'video',
                                        'action'     => 'link',
                                        'server'     => $server['id'],
-                                   ]); ?>"><i
+                                   ]
+                                   ); ?>"><i
                                             class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?>
                                     (<?php _e('Internal link'); ?>)</a></li>
                             <li><a title="<?php echo $this->escape($server['title']); ?>"
-                                   href="<?php echo $this->url('', [
+                                   href="<?php echo $this->url(
+                                       '', [
                                        'controller' => 'video',
                                        'action'     => 'external',
                                        'server'     => $server['id'],
-                                   ]); ?>"><i
+                                   ]
+                                   ); ?>"><i
                                             class="fa fa-file"></i> <?php echo $this->escape($server['title']); ?>
                                     (<?php _e('External link'); ?>)</a></li>
                             <li><a title="<?php _e('From qmery to website'); ?>"
-                                   href="<?php echo $this->url('', [
+                                   href="<?php echo $this->url(
+                                       '', [
                                        'controller' => 'server',
                                        'action'     => 'processing',
                                        'server'     => $server['id'],
                                        'type'       => 'syncVideoList',
-                                   ]); ?>"><i class="fa fa-wrench"></i> <?php echo $this->escape($server['title']); ?>
+                                   ]
+                                   ); ?>"><i class="fa fa-wrench"></i> <?php echo $this->escape($server['title']); ?>
                                     (<?php _e('From qmery to website'); ?>)</a></li>
                         <?php } ?>
                         <li role="separator" class="divider"></li>
@@ -132,18 +146,18 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                             </button>
                             <div class="dropdown-menu" role="menu">
                                 <a class="dropdown-item" title="<?php _e('Manage video link'); ?>"
-                                       href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><i
-                                                class="fa fa-edit"></i> <?php _e('Manage video link'); ?></a>
+                                   href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><i
+                                            class="fa fa-edit"></i> <?php _e('Manage video link'); ?></a>
                                 <a class="dropdown-item" title="<?php _e('Edit basic information'); ?>"
-                                       href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><i
-                                                class="fa fa-edit"></i> <?php _e('Edit basic information'); ?></a>
+                                   href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><i
+                                            class="fa fa-edit"></i> <?php _e('Edit basic information'); ?></a>
                                 <a class="dropdown-item" title="<?php _e('Edit additional information'); ?>"
-                                       href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><i
-                                                class="fa fa-edit"></i> <?php _e('Edit additional information'); ?></a>
+                                   href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><i
+                                            class="fa fa-edit"></i> <?php _e('Edit additional information'); ?></a>
 
                                 <a class="dropdown-item" title="<?php _e('View video'); ?>"
-                                       href="<?php echo $this->url('', ['action' => 'watch', 'id' => $video['id']]); ?>"><i
-                                                class="fa fa-edit"></i> <?php _e('View video'); ?></a>
+                                   href="<?php echo $this->url('', ['action' => 'watch', 'id' => $video['id']]); ?>"><i
+                                            class="fa fa-edit"></i> <?php _e('View video'); ?></a>
                             </div>
                         </div>
                         <?php if ($video['status'] == 1) { ?>

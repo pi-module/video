@@ -8,13 +8,19 @@
         <div class="card card-body bg-light mb-3">
             <ul class="nav nav-pills bg-light mb-3 p-3">
                 <li class="nav-item">
-                    <a class="nav-link <?php if ($nav['page'] == 'update') {  echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Edit basic information'); ?></a>
+                    <a class="nav-link <?php if ($nav['page'] == 'update') {
+                        echo 'active';
+                    } ?>" href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Edit basic information'); ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php if ($nav['page'] == 'additional') {  echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Edit additional information'); ?></a>
+                    <a class="nav-link <?php if ($nav['page'] == 'additional') {
+                        echo 'active';
+                    } ?>" href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Edit additional information'); ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php if ($nav['page'] == 'finish') {  echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'finish', 'id' => $video['id']]); ?>"><?php _e('Watch submitted video'); ?></a>
+                    <a class="nav-link <?php if ($nav['page'] == 'finish') {
+                        echo 'active';
+                    } ?>" href="<?php echo $this->url('', ['action' => 'finish', 'id' => $video['id']]); ?>"><?php _e('Watch submitted video'); ?></a>
                 </li>
             </ul>
         </div>
@@ -23,7 +29,9 @@
         </div>
         <div class="video-submit-form alert alert-warning">
             <h4><?php _e('Congratulations'); ?></h4>
-            <p><?php _e('Your submit video save on our system successfully. this video not published on website yet and will publish after admin review. please wait to website admin and do not submit this file again'); ?></p>
+            <p><?php _e(
+                    'Your submit video save on our system successfully. this video not published on website yet and will publish after admin review. please wait to website admin and do not submit this file again'
+                ); ?></p>
         </div>
         <div class="text-center video-player-box clearfix">
             <div class="col-10 col-offset-1">

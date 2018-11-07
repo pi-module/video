@@ -21,28 +21,34 @@ class IndexController extends FeedController
 {
     public function indexAction()
     {
-        $feed = $this->getDataModel([
-            'title'        => __('Video feed'),
-            'description'  => __('Recent videos and audios.'),
-            'date_created' => time(),
-        ]);
-        $order = ['time_create DESC', 'id DESC'];
-        $where = ['status' => 1];
+        $feed   = $this->getDataModel(
+            [
+                'title'        => __('Video feed'),
+                'description'  => __('Recent videos and audios.'),
+                'date_created' => time(),
+            ]
+        );
+        $order  = ['time_create DESC', 'id DESC'];
+        $where  = ['status' => 1];
         $select = $this->getModel('video')->select()->where($where)->order($order)->limit(10);
         $rowset = $this->getModel('video')->selectWith($select);
         foreach ($rowset as $row) {
-            $entry = [];
-            $entry['title'] = $row->title;
-            $description = (empty($row->description)) ? __('Click to see video') : $row->description;
-            $description = strtolower(trim($description));
-            $entry['description'] = (empty($description)) ? ' ' : $description;
+            $entry                  = [];
+            $entry['title']         = $row->title;
+            $description            = (empty($row->description)) ? __('Click to see video') : $row->description;
+            $description            = strtolower(trim($description));
+            $entry['description']   = (empty($description)) ? ' ' : $description;
             $entry['date_modified'] = (int)$row->time_create;
-            $entry['link'] = Pi::url(Pi::service('url')->assemble('video', [
-                'module'     => $this->getModule(),
-                'controller' => 'video',
-                'slug'       => $row->slug,
-            ]));
-            $feed->entry = $entry;
+            $entry['link']          = Pi::url(
+                Pi::service('url')->assemble(
+                    'video', [
+                    'module'     => $this->getModule(),
+                    'controller' => 'video',
+                    'slug'       => $row->slug,
+                ]
+                )
+            );
+            $feed->entry            = $entry;
         }
         return $feed;
     }

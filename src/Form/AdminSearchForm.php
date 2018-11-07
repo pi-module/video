@@ -35,78 +35,90 @@ class AdminSearchForm extends BaseForm
     public function init()
     {
         // title
-        $this->add([
-            'name'       => 'title',
-            'options'    => [
-                'label' => __('Title'),
-            ],
-            'attributes' => [
-                'type'        => 'text',
-                'description' => '',
-                'placeholder' => __('Title'),
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'title',
+                'options'    => [
+                    'label' => __('Title'),
+                ],
+                'attributes' => [
+                    'type'        => 'text',
+                    'description' => '',
+                    'placeholder' => __('Title'),
+                ],
+            ]
+        );
         // category
-        $this->add([
-            'name'       => 'category',
-            'type'       => 'Module\Video\Form\Element\Category',
-            'options'    => [
-                'label' => __('Category'),
-                //'category' => $this->category,
-            ],
-            'attributes' => [
-                'size'     => 1,
-                'multiple' => 0,
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'category',
+                'type'       => 'Module\Video\Form\Element\Category',
+                'options'    => [
+                    'label' => __('Category'),
+                    //'category' => $this->category,
+                ],
+                'attributes' => [
+                    'size'     => 1,
+                    'multiple' => 0,
+                ],
+            ]
+        );
         // brand
-        $this->add([
-            'name'       => 'brand',
-            'type'       => 'Module\Video\Form\Element\Brand',
-            'options'    => [
-                'label' => __('Brand'),
-                //'category' => $this->category,
-            ],
-            'attributes' => [
-                'size'     => 1,
-                'multiple' => 0,
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'brand',
+                'type'       => 'Module\Video\Form\Element\Brand',
+                'options'    => [
+                    'label' => __('Brand'),
+                    //'category' => $this->category,
+                ],
+                'attributes' => [
+                    'size'     => 1,
+                    'multiple' => 0,
+                ],
+            ]
+        );
         // status
-        $this->add([
-            'name'    => 'status',
-            'type'    => 'select',
-            'options' => [
-                'label'         => __('Status'),
-                'value_options' => [
-                    '' => __('All status'),
-                    1  => __('Published'),
-                    2  => __('Pending review'),
-                    3  => __('Draft'),
-                    4  => __('Private'),
-                    5  => __('Delete'),
+        $this->add(
+            [
+                'name'    => 'status',
+                'type'    => 'select',
+                'options' => [
+                    'label'         => __('Status'),
+                    'value_options' => [
+                        '' => __('All status'),
+                        1  => __('Published'),
+                        2  => __('Pending review'),
+                        3  => __('Draft'),
+                        4  => __('Private'),
+                        5  => __('Delete'),
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // recommended
-        $this->add([
-            'name'    => 'recommended',
-            'type'    => 'select',
-            'options' => [
-                'label'         => __('Recommended'),
-                'value_options' => [
-                    '' => __('All'),
-                    1  => __('Recommended'),
+        $this->add(
+            [
+                'name'    => 'recommended',
+                'type'    => 'select',
+                'options' => [
+                    'label'         => __('Recommended'),
+                    'value_options' => [
+                        '' => __('All'),
+                        1  => __('Recommended'),
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // Save
-        $this->add([
-            'name'       => 'submit',
-            'type'       => 'submit',
-            'attributes' => [
-                'value' => __('Search'),
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'submit',
+                'type'       => 'submit',
+                'attributes' => [
+                    'value' => __('Search'),
+                ],
+            ]
+        );
     }
 }

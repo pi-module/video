@@ -36,38 +36,46 @@ class VideoExternalForm extends BaseForm
     public function init()
     {
         // id
-        $this->add([
-            'name'       => 'id',
-            'attributes' => [
-                'type' => 'hidden',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'id',
+                'attributes' => [
+                    'type' => 'hidden',
+                ],
+            ]
+        );
         // slug
-        $this->add([
-            'name'       => 'slug',
-            'attributes' => [
-                'type' => 'hidden',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'slug',
+                'attributes' => [
+                    'type' => 'hidden',
+                ],
+            ]
+        );
         // external_link
-        $this->add([
-            'name'       => 'external_link',
-            'options'    => [
-                'label' => __('External link'),
-            ],
-            'attributes' => [
-                'type'        => 'text',
-                'description' => __('External link of video from youtube or aparat or video direct link'),
-                'required'    => true,
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'external_link',
+                'options'    => [
+                    'label' => __('External link'),
+                ],
+                'attributes' => [
+                    'type'        => 'text',
+                    'description' => __('External link of video from youtube or aparat or video direct link'),
+                    'required'    => true,
+                ],
+            ]
+        );
         // Save
-        $this->add([
-            'name'       => 'submit',
-            'type'       => 'submit',
-            'attributes' => [
-                'value' => __('Submit'),
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'submit',
+                'type'       => 'submit',
+                'attributes' => [
+                    'value' => __('Submit'),
+                ],
+            ]
+        );
     }
 }

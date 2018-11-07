@@ -21,29 +21,37 @@ class PositionFilter extends InputFilter
     public function __construct()
     {
         // id
-        $this->add([
-            'name'     => 'id',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'id',
+                'required' => false,
+            ]
+        );
         // title
-        $this->add([
-            'name'     => 'title',
-            'required' => true,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'title',
+                'required' => true,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
         // order
-        $this->add([
-            'name'     => 'order',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'order',
+                'required' => false,
+            ]
+        );
         // status
-        $this->add([
-            'name'     => 'status',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'status',
+                'required' => false,
+            ]
+        );
     }
 }

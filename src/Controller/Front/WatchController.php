@@ -22,7 +22,7 @@ class WatchController extends IndexController
     public function indexAction()
     {
         // Get info from url
-        $slug = $this->params('slug');
+        $slug   = $this->params('slug');
         $module = $this->params('module');
         // Get config
         $config = Pi::service('registry')->config->read($module);
@@ -46,25 +46,25 @@ class WatchController extends IndexController
         }
         // Set vote
         if ($config['vote_bar'] && Pi::service('module')->isActive('vote')) {
-            $vote['point'] = $video['point'];
-            $vote['count'] = $video['count'];
-            $vote['item'] = $video['id'];
-            $vote['table'] = 'video';
+            $vote['point']  = $video['point'];
+            $vote['count']  = $video['count'];
+            $vote['item']   = $video['id'];
+            $vote['table']  = 'video';
             $vote['module'] = $module;
-            $vote['type'] = 'plus';
+            $vote['type']   = 'plus';
             $this->view()->assign('vote', $vote);
         }
         // favourite
         if ($config['favourite_bar'] && Pi::service('module')->isActive('favourite')) {
-            $favourite['is'] = Pi::api('favourite', 'favourite')->loadFavourite($module, 'video', $video['id']);
-            $favourite['item'] = $video['id'];
-            $favourite['table'] = 'video';
+            $favourite['is']     = Pi::api('favourite', 'favourite')->loadFavourite($module, 'video', $video['id']);
+            $favourite['item']   = $video['id'];
+            $favourite['table']  = 'video';
             $favourite['module'] = $module;
             $this->view()->assign('favourite', $favourite);
         }
         // Get new items in category
         if ($config['view_related'] && $config['view_related_number'] > 0) {
-            $where = [
+            $where        = [
                 'status'     => 1,
                 'category'   => $video['category'],
                 'video != ?' => $video['id'],
@@ -79,11 +79,13 @@ class WatchController extends IndexController
             $video['payUrl'] = Pi::api('video', 'video')->getPayUrl($video);
         }
         // Set submitter
-        $submitter = Pi::api('channel', 'video')->user($video['uid']);
-        $submitter['avatar'] = Pi::avatar()->get($video['uid'], 'small', [
+        $submitter           = Pi::api('channel', 'video')->user($video['uid']);
+        $submitter['avatar'] = Pi::avatar()->get(
+            $video['uid'], 'small', [
             'alt'   => _escape($submitter['name']),
             'class' => 'rounded-circle',
-        ]);
+        ]
+        );
         // Set main category info
         if ($config['view_description_video']) {
             $categorySingle = Pi::api('category', 'video')->getCategory($video['category_main']);
@@ -93,10 +95,10 @@ class WatchController extends IndexController
         $platform = Pi::service('browser')->getPlatform();
         if (in_array($platform, ['iPhone', 'iPad', 'Android']) && $access) {
             $template = 'video-watch-mobile';
-            $layout = 'layout-content';
+            $layout   = 'layout-content';
         } else {
             $template = 'video-watch';
-            $layout = 'layout-front';
+            $layout   = 'layout-front';
         }
 
         // Save statistics

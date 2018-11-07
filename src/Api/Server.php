@@ -41,7 +41,7 @@ class Server extends AbstractApi
         $server = $server->toArray();
         // Get setting
         $setting = json_decode($server['setting'], true);
-        $server = array_merge($server, $setting);
+        $server  = array_merge($server, $setting);
         // return
         return $server;
     }

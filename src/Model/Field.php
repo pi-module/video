@@ -21,16 +21,17 @@ class Field extends Model
     /**
      * {@inheritDoc}
      */
-    protected $columns = [
-        'id',
-        'title',
-        'icon',
-        'type',
-        'order',
-        'status',
-        'search',
-        'value',
-        'position',
-        'name',
-    ];
+    protected $columns
+        = [
+            'id',
+            'title',
+            'icon',
+            'type',
+            'order',
+            'status',
+            'search',
+            'value',
+            'position',
+            'name',
+        ];
 }

@@ -21,11 +21,12 @@ class Service extends Model
     /**
      * {@inheritDoc}
      */
-    protected $columns = [
-        'id',
-        'video',
-        'module_name',
-        'module_table',
-        'module_item',
-    ];
+    protected $columns
+        = [
+            'id',
+            'video',
+            'module_name',
+            'module_table',
+            'module_item',
+        ];
 }

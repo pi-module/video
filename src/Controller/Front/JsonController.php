@@ -22,16 +22,16 @@ class JsonController extends IndexController
     public function searchAction()
     {
         // Get info from url
-        $module = $this->params('module');
-        $page = $this->params('page', 1);
-        $title = $this->params('title');
-        $category = $this->params('category');
-        $tag = $this->params('tag');
-        $favourite = $this->params('favourite');
+        $module      = $this->params('module');
+        $page        = $this->params('page', 1);
+        $title       = $this->params('title');
+        $category    = $this->params('category');
+        $tag         = $this->params('tag');
+        $favourite   = $this->params('favourite');
         $recommended = $this->params('recommended');
-        $limit = $this->params('limit');
-        $order = $this->params('order');
-        $channel = $this->params('channel');
+        $limit       = $this->params('limit');
+        $order       = $this->params('order');
+        $channel     = $this->params('channel');
 
         // Set has search result
         $hasSearchResult = true;
@@ -48,8 +48,8 @@ class JsonController extends IndexController
         // Clean params
         $paramsClean = [];
         foreach ($_GET as $key => $value) {
-            $key = _strip(urldecode($key));
-            $value = _strip(urldecode($value));
+            $key               = _strip(urldecode($key));
+            $value             = _strip(urldecode($value));
             $paramsClean[$key] = $value;
         }
 
@@ -123,7 +123,7 @@ class JsonController extends IndexController
             // category list
             $categories = Pi::api('category', 'video')->categoryList($category['id']);
             // Get id list
-            $categoryIDList = [];
+            $categoryIDList   = [];
             $categoryIDList[] = $category['id'];
             foreach ($categories as $singleCategory) {
                 $categoryIDList[] = $singleCategory['id'];
@@ -170,7 +170,7 @@ class JsonController extends IndexController
         if (!empty($channel)) {
             if (intval($channel) > 0) {
                 // Get user id
-                $user = Pi::api('channel', 'video')->user(intval($channel));
+                $user      = Pi::api('channel', 'video')->user(intval($channel));
                 $pageTitle = sprintf(__('All videos from %s channel'), $user['name']);
                 // Set where link
                 $whereLink['uid'] = intval($channel);
@@ -180,13 +180,13 @@ class JsonController extends IndexController
         }
 
         // Get search form
-        $filterList = Pi::api('attribute', 'video')->filterList();
+        $filterList   = Pi::api('attribute', 'video')->filterList();
         $categoryList = Pi::registry('categoryList', 'video')->read();
 
         // Set video ID list
-        $checkTitle = false;
+        $checkTitle     = false;
         $checkAttribute = false;
-        $videoIDList = [
+        $videoIDList    = [
             'title'     => [],
             'attribute' => [],
         ];
@@ -194,21 +194,23 @@ class JsonController extends IndexController
         // Check title from video table
         if (isset($title) && !empty($title)) {
             $checkTitle = true;
-            $titles = is_array($title) ? $title : [$title];
-            $columns = ['id'];
-            $select = $this->getModel('video')->select()->columns($columns)->where(function ($where) use ($titles, $recommended) {
-                $whereMain = clone $where;
-                $whereKey = clone $where;
-                $whereMain->equalTo('status', 1);
-                if (!empty($recommended) && $recommended == 1) {
-                    $whereMain->equalTo('recommended', 1);
+            $titles     = is_array($title) ? $title : [$title];
+            $columns    = ['id'];
+            $select     = $this->getModel('video')->select()->columns($columns)->where(
+                function ($where) use ($titles, $recommended) {
+                    $whereMain = clone $where;
+                    $whereKey  = clone $where;
+                    $whereMain->equalTo('status', 1);
+                    if (!empty($recommended) && $recommended == 1) {
+                        $whereMain->equalTo('recommended', 1);
+                    }
+                    foreach ($titles as $title) {
+                        $whereKey->like('title', '%' . $title . '%')->and;
+                    }
+                    $where->andPredicate($whereMain)->andPredicate($whereKey);
                 }
-                foreach ($titles as $title) {
-                    $whereKey->like('title', '%' . $title . '%')->and;
-                }
-                $where->andPredicate($whereMain)->andPredicate($whereKey);
-            })->order($order);
-            $rowset = $this->getModel('video')->selectWith($select);
+            )->order($order);
+            $rowset     = $this->getModel('video')->selectWith($select);
             foreach ($rowset as $row) {
                 $videoIDList['title'][$row->id] = $row->id;
             }
@@ -229,9 +231,9 @@ class JsonController extends IndexController
             // Search on attribute
             if (!empty($attributeList)) {
                 $checkAttribute = true;
-                $column = ['video'];
+                $column         = ['video'];
                 foreach ($attributeList as $attributeSingle) {
-                    $where = [
+                    $where  = [
                         'field' => $attributeSingle['field'],
                         'data'  => $attributeSingle['data'],
                     ];
@@ -249,8 +251,8 @@ class JsonController extends IndexController
         $count = 0;
 
         $columns = ['video' => new Expression('DISTINCT video')];
-        $limit = (intval($limit) > 0) ? intval($limit) : intval($config['view_perpage']);
-        $offset = (int)($page - 1) * $limit;
+        $limit   = (intval($limit) > 0) ? intval($limit) : intval($config['view_perpage']);
+        $offset  = (int)($page - 1) * $limit;
 
 
         // Set category on where link
@@ -312,7 +314,7 @@ class JsonController extends IndexController
 
             // Get list of video
             if (!empty($videoIDSelect)) {
-                $where = ['status' => 1, 'id' => $videoIDSelect];
+                $where  = ['status' => 1, 'id' => $videoIDSelect];
                 $select = $this->getModel('video')->select()->where($where)->order($order);
                 $rowset = $this->getModel('video')->selectWith($select);
                 foreach ($rowset as $row) {
@@ -322,8 +324,8 @@ class JsonController extends IndexController
 
             // Get count
             $columnsCount = ['count' => new Expression('count(DISTINCT `video`)')];
-            $select = $this->getModel('link')->select()->where($whereLink)->columns($columnsCount);
-            $count = $this->getModel('link')->selectWith($select)->current()->count;
+            $select       = $this->getModel('link')->select()->where($whereLink)->columns($columnsCount);
+            $count        = $this->getModel('link')->selectWith($select)->current()->count;
         }
 
         // Set result

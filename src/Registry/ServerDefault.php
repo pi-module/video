@@ -31,13 +31,13 @@ class ServerDefault extends AbstractRegistry
     protected function loadDynamic($options = [])
     {
         $return = [];
-        $where = ['status' => 1, 'default' => 1];
-        $limit = 1;
-        $order = ['id DESC'];
+        $where  = ['status' => 1, 'default' => 1];
+        $limit  = 1;
+        $order  = ['id DESC'];
         $select = Pi::model('server', $this->module)->select()->where($where)->limit($limit)->order($order);
-        $row = Pi::model('server', $this->module)->selectWith($select);
+        $row    = Pi::model('server', $this->module)->selectWith($select);
         if ($row) {
-            $row = $row->current();
+            $row    = $row->current();
             $return = Pi::api('server', 'video')->canonizeServer($row);
         }
         return $return;
@@ -50,7 +50,7 @@ class ServerDefault extends AbstractRegistry
     public function read()
     {
         $options = [];
-        $result = $this->loadData($options);
+        $result  = $this->loadData($options);
 
         return $result;
     }

@@ -20,10 +20,10 @@ class VideoAdditionalForm extends BaseForm
 {
     public function __construct($name = null, $option = [])
     {
-        $this->option = $option;
-        $this->field = $option['field'];
+        $this->option   = $option;
+        $this->field    = $option['field'];
         $this->position = Pi::api('attribute', 'video')->attributePositionForm();
-        $this->module = Pi::service('module')->current();
+        $this->module   = Pi::service('module')->current();
         parent::__construct($name);
     }
 
@@ -38,74 +38,86 @@ class VideoAdditionalForm extends BaseForm
     public function init()
     {
         // id
-        $this->add([
-            'name'       => 'id',
-            'attributes' => [
-                'type' => 'hidden',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'id',
+                'attributes' => [
+                    'type' => 'hidden',
+                ],
+            ]
+        );
         // Set attribute field
         if (!empty($this->field)) {
             foreach ($this->position as $key => $value) {
                 if (!empty($this->field[$key])) {
                     // Set fieldset
-                    $this->add([
-                        'name'    => 'extra_position_' . $key,
-                        'type'    => 'fieldset',
-                        'options' => [
-                            'label' => $value,
-                        ],
-                    ]);
+                    $this->add(
+                        [
+                            'name'    => 'extra_position_' . $key,
+                            'type'    => 'fieldset',
+                            'options' => [
+                                'label' => $value,
+                            ],
+                        ]
+                    );
                     // Set list of attributes
                     foreach ($this->field[$key] as $field) {
                         if ($field['type'] == 'select') {
-                            $this->add([
-                                'name'    => $field['id'],
-                                'type'    => 'select',
-                                'options' => [
-                                    'label'         => $field['title'],
-                                    'value_options' => $this->makeArray($field['value']),
-                                ],
-                            ]);
+                            $this->add(
+                                [
+                                    'name'    => $field['id'],
+                                    'type'    => 'select',
+                                    'options' => [
+                                        'label'         => $field['title'],
+                                        'value_options' => $this->makeArray($field['value']),
+                                    ],
+                                ]
+                            );
                         } elseif ($field['type'] == 'checkbox') {
-                            $this->add([
-                                'name'       => $field['id'],
-                                'type'       => 'checkbox',
-                                'options'    => [
-                                    'label' => $field['title'],
-                                ],
-                                'attributes' => [],
-                            ]);
+                            $this->add(
+                                [
+                                    'name'       => $field['id'],
+                                    'type'       => 'checkbox',
+                                    'options'    => [
+                                        'label' => $field['title'],
+                                    ],
+                                    'attributes' => [],
+                                ]
+                            );
                         } else {
-                            $this->add([
-                                'name'       => $field['id'],
-                                'options'    => [
-                                    'label' => $field['title'],
-                                ],
-                                'attributes' => [
-                                    'type' => 'text',
-                                ],
-                            ]);
+                            $this->add(
+                                [
+                                    'name'       => $field['id'],
+                                    'options'    => [
+                                        'label' => $field['title'],
+                                    ],
+                                    'attributes' => [
+                                        'type' => 'text',
+                                    ],
+                                ]
+                            );
                         }
                     }
                 }
             }
         }
         // Save
-        $this->add([
-            'name'       => 'submit',
-            'type'       => 'submit',
-            'attributes' => [
-                'value' => __('Submit'),
-                'class' => 'btn btn-primary',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'submit',
+                'type'       => 'submit',
+                'attributes' => [
+                    'value' => __('Submit'),
+                    'class' => 'btn btn-primary',
+                ],
+            ]
+        );
     }
 
     public function makeArray($values)
     {
-        $list = [];
-        $values = json_decode($values, true);
+        $list     = [];
+        $values   = json_decode($values, true);
         $variable = explode('|', $values['data']);
         foreach ($variable as $value) {
             $list[$value] = $value;

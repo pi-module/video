@@ -27,11 +27,11 @@ class CategoryRoute extends AbstractRegistry
      */
     protected function loadDynamic($options = [])
     {
-        $return = [];
-        $where = ['status' => 1];
+        $return  = [];
+        $where   = ['status' => 1];
         $columns = ['id', 'slug'];
-        $select = Pi::model('category', $this->module)->select()->columns($columns)->where($where);
-        $rowset = Pi::model('category', $this->module)->selectWith($select);
+        $select  = Pi::model('category', $this->module)->select()->columns($columns)->where($where);
+        $rowset  = Pi::model('category', $this->module)->selectWith($select);
         foreach ($rowset as $row) {
             $return[$row->id] = $row->slug;
         }
@@ -45,7 +45,7 @@ class CategoryRoute extends AbstractRegistry
     public function read()
     {
         $options = [];
-        $result = $this->loadData($options);
+        $result  = $this->loadData($options);
         return $result;
     }
 

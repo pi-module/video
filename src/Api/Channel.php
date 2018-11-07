@@ -27,7 +27,7 @@ class Channel extends AbstractApi
     {
         // Get user
         $parameters = ['id', 'identity', 'name', 'email', 'gender', 'birthdate'];
-        $user = Pi::api('user', 'user')->get(
+        $user       = Pi::api('user', 'user')->get(
             $uid,
             $parameters,
             true,

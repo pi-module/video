@@ -36,69 +36,79 @@ class CategoryMergeForm extends BaseForm
     public function init()
     {
         // category_from_1
-        $this->add([
-            'name'       => 'category_from_1',
-            'type'       => 'Module\Video\Form\Element\Category',
-            'options'    => [
-                'label'    => __('From category'),
-                'category' => ['' => __('Please select category')],
-            ],
-            'attributes' => [
-                'size'     => 1,
-                'multiple' => 0,
-                'required' => true,
-            ],
-        ]);
-        // category_from_2
-        $this->add([
-            'name'       => 'category_from_2',
-            'type'       => 'Module\Video\Form\Element\Category',
-            'options'    => [
-                'label'    => __('From category'),
-                'category' => ['' => __('Please select category')],
-            ],
-            'attributes' => [
-                'size'     => 1,
-                'multiple' => 0,
-                'required' => true,
-            ],
-        ]);
-        // where_type
-        $this->add([
-            'name'       => 'where_type',
-            'type'       => 'select',
-            'options'    => [
-                'label'         => __('Where_type'),
-                'value_options' => [
-                    'and' => 'AND',
-                    'or'  => 'OR',
+        $this->add(
+            [
+                'name'       => 'category_from_1',
+                'type'       => 'Module\Video\Form\Element\Category',
+                'options'    => [
+                    'label'    => __('From category'),
+                    'category' => ['' => __('Please select category')],
                 ],
-            ],
-            'attributes' => [
-                'required' => true,
-            ],
-        ]);
+                'attributes' => [
+                    'size'     => 1,
+                    'multiple' => 0,
+                    'required' => true,
+                ],
+            ]
+        );
+        // category_from_2
+        $this->add(
+            [
+                'name'       => 'category_from_2',
+                'type'       => 'Module\Video\Form\Element\Category',
+                'options'    => [
+                    'label'    => __('From category'),
+                    'category' => ['' => __('Please select category')],
+                ],
+                'attributes' => [
+                    'size'     => 1,
+                    'multiple' => 0,
+                    'required' => true,
+                ],
+            ]
+        );
+        // where_type
+        $this->add(
+            [
+                'name'       => 'where_type',
+                'type'       => 'select',
+                'options'    => [
+                    'label'         => __('Where_type'),
+                    'value_options' => [
+                        'and' => 'AND',
+                        'or'  => 'OR',
+                    ],
+                ],
+                'attributes' => [
+                    'required' => true,
+                ],
+            ]
+        );
         // category_main
-        $this->add([
-            'name'       => 'category_to',
-            'type'       => 'Module\Video\Form\Element\Category',
-            'options'    => [
-                'label'    => __('To category'),
-                'category' => ['' => __('Please select category')],
-            ],
-            'attributes' => [
-                'size'     => 1,
-                'multiple' => 0,
-                'required' => true,
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'category_to',
+                'type'       => 'Module\Video\Form\Element\Category',
+                'options'    => [
+                    'label'    => __('To category'),
+                    'category' => ['' => __('Please select category')],
+                ],
+                'attributes' => [
+                    'size'     => 1,
+                    'multiple' => 0,
+                    'required' => true,
+                ],
+            ]
+        );
         // Save
-        $this->add([
-            'name'       => 'submit',
-            'type'       => 'submit',
-            'attributes' => [
-                'value' => __('Submit'),
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'submit',
+                'type'       => 'submit',
+                'attributes' => [
+                    'value' => __('Submit'),
+                ],
+            ]
+        );
     }
 }

@@ -26,7 +26,7 @@ class Service extends AbstractApi
 {
     public function getVideo($module, $table = '', $item = '', $hits = true)
     {
-        $list = [];
+        $list  = [];
         $where = ['module_name' => $module];
         if (isset($table) && !empty($table)) {
             $where['module_table'] = $table;
@@ -62,10 +62,10 @@ class Service extends AbstractApi
             $videos = is_array($videos) ? $videos : [$videos];
             foreach ($videos as $video) {
                 // Set array
-                $values['video'] = $video;
-                $values['module_name'] = $module;
+                $values['video']        = $video;
+                $values['module_name']  = $module;
                 $values['module_table'] = $table;
-                $values['module_item'] = $item;
+                $values['module_item']  = $item;
                 // Save
                 $row = Pi::model('service', $this->getModule())->createRow();
                 $row->assign($values);

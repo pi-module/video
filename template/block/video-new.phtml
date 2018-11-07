@@ -80,13 +80,13 @@
             <?php foreach ($block['resources'] as $video) { ?>
                 <?php if (in_array($i, [1, 11, 21, 31, 41, 51, 61])) {
                     $class = 'col-md-6 videoBoxBig pull-left';
-                    $img = $video['largeUrl'];
+                    $img   = $video['largeUrl'];
                 } elseif (in_array($i, [6, 16, 26, 36, 46, 56, 66])) {
                     $class = 'col-md-6 videoBoxBig pull-right';
-                    $img = $video['largeUrl'];
+                    $img   = $video['largeUrl'];
                 } else {
                     $class = 'col-md-3';
-                    $img = $video['thumbUrl'];
+                    $img   = $video['thumbUrl'];
                 } ?>
                 <div class="<?php echo $class; ?> videoBox h-review" itemscope
                      itemtype="https://schema.org/VideoObject">
@@ -130,10 +130,12 @@
             </ul>
         <?php } elseif ($block['list-type'] == 'slide') { ?>
             <?php if ($block['blockEffect']) {
-                $this->jQuery([
-                    'extension/owl.carousel.min.js',
-                    'extension/owl.carousel.css',
-                ]);
+                $this->jQuery(
+                    [
+                        'extension/owl.carousel.min.js',
+                        'extension/owl.carousel.css',
+                    ]
+                );
                 $this->js($this->assetModule('js/owl.carousel.config.js', 'video'));
                 $this->css($this->assetModule('css/block.css', 'video'));
             } ?>
@@ -168,10 +170,12 @@
             </div>
         <?php } elseif ($block['list-type'] == 'slidehover') { ?>
             <?php if ($block['blockEffect']) {
-                $this->jQuery([
-                    'extension/owl.carousel.min.js',
-                    'extension/owl.carousel.css',
-                ]);
+                $this->jQuery(
+                    [
+                        'extension/owl.carousel.min.js',
+                        'extension/owl.carousel.css',
+                    ]
+                );
                 $this->js($this->assetModule('js/owl.carousel.config.js', 'video'));
                 $this->js($this->assetModule('js/caption.hover.js', 'video'));
             } ?>

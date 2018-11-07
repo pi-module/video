@@ -65,7 +65,9 @@
                                                  alt="<?php echo $field['title']; ?>">
                                         <?php } ?>
                                     </td>
-                                    <td class="col-8 attribute-body"><?php echo $this->dateFormat($field['data'], IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM, "en_US"); ?></td>
+                                    <td class="col-8 attribute-body"><?php echo $this->dateFormat(
+                                            $field['data'], IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM, "en_US"
+                                        ); ?></td>
                                 <?php } elseif ($field['type'] == 'number') { ?>
                                     <td class="col-4 attribute-title">
                                         <?php echo $field['title']; ?>
@@ -76,7 +78,9 @@
                                                  alt="<?php echo $field['title']; ?>">
                                         <?php } ?>
                                     </td>
-                                    <td class="col-8 attribute-body"><?php echo $this->numberFormat($field['data'], NumberFormatter::PATTERN_DECIMAL, NumberFormatter::TYPE_DEFAULT, "en_US"); ?></td>
+                                    <td class="col-8 attribute-body"><?php echo $this->numberFormat(
+                                            $field['data'], NumberFormatter::PATTERN_DECIMAL, NumberFormatter::TYPE_DEFAULT, "en_US"
+                                        ); ?></td>
                                 <?php } elseif ($field['type'] == 'checkbox') { ?>
                                     <?php if ($field['data']) { ?>
                                         <td class="col-12 attribute-body"

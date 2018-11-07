@@ -33,7 +33,7 @@ class Comment extends AbstractComment
     {
 
         $result = [];
-        $items = (array)$item;
+        $items  = (array)$item;
 
         // Set options
         $video = Pi::api('video', 'video')->getListFromId($items);
@@ -73,7 +73,7 @@ class Comment extends AbstractComment
             && !empty($params['slug'])
         ) {
             $video = Pi::api('video', 'video')->getVideo($params['slug'], 'slug');
-            $item = $video['id'];
+            $item  = $video['id'];
         } else {
             $item = false;
         }

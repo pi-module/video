@@ -123,20 +123,24 @@ class VideoController extends ActionController
         $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($this->config('admin_perpage'));
         $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions([
-            'router' => $this->getEvent()->getRouter(),
-            'route'  => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params' => array_filter([
-                'module'      => $this->getModule(),
-                'controller'  => 'video',
-                'action'      => 'index',
-                'category'    => $category,
-                'brand'       => $brand,
-                'status'      => $status,
-                'title'       => $title,
-                'recommended' => $recommended,
-            ]),
-        ]);
+        $paginator->setUrlOptions(
+            [
+                'router' => $this->getEvent()->getRouter(),
+                'route'  => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+                'params' => array_filter(
+                    [
+                        'module'      => $this->getModule(),
+                        'controller'  => 'video',
+                        'action'      => 'index',
+                        'category'    => $category,
+                        'brand'       => $brand,
+                        'status'      => $status,
+                        'title'       => $title,
+                        'recommended' => $recommended,
+                    ]
+                ),
+            ]
+        );
         // Set form
         $values = [
             'title'       => $title,
@@ -197,18 +201,22 @@ class VideoController extends ActionController
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
-            return $this->redirect()->toRoute('', [
+            return $this->redirect()->toRoute(
+                '', [
                 'controller' => 'category',
                 'action'     => 'update',
-            ]);
+            ]
+            );
         }
         // Server list
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
-            return $this->redirect()->toRoute('', [
+            return $this->redirect()->toRoute(
+                '', [
                 'controller' => 'server',
                 'action'     => 'update',
-            ]);
+            ]
+            );
         }
         // Get info from url
         $module = $this->params('module');
@@ -289,18 +297,22 @@ class VideoController extends ActionController
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
-            return $this->redirect()->toRoute('', [
+            return $this->redirect()->toRoute(
+                '', [
                 'controller' => 'category',
                 'action'     => 'update',
-            ]);
+            ]
+            );
         }
         // Server list
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
-            return $this->redirect()->toRoute('', [
+            return $this->redirect()->toRoute(
+                '', [
                 'controller' => 'server',
                 'action'     => 'update',
-            ]);
+            ]
+            );
         }
         // Get info from url
         $module = $this->params('module');
@@ -416,19 +428,23 @@ class VideoController extends ActionController
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
-            return $this->redirect()->toRoute('', [
+            return $this->redirect()->toRoute(
+                '', [
                 'controller' => 'category',
                 'action'     => 'update',
-            ]);
+            ]
+            );
         }
 
         // Server list
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
-            return $this->redirect()->toRoute('', [
+            return $this->redirect()->toRoute(
+                '', [
                 'controller' => 'server',
                 'action'     => 'update',
-            ]);
+            ]
+            );
         }
 
         // Get info from url
@@ -560,18 +576,22 @@ class VideoController extends ActionController
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
-            return $this->redirect()->toRoute('', [
+            return $this->redirect()->toRoute(
+                '', [
                 'controller' => 'category',
                 'action'     => 'update',
-            ]);
+            ]
+            );
         }
         // Server list
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
-            return $this->redirect()->toRoute('', [
+            return $this->redirect()->toRoute(
+                '', [
                 'controller' => 'server',
                 'action'     => 'update',
-            ]);
+            ]
+            );
         }
         // Get info from url
         $id     = $this->params('id');
@@ -651,9 +671,11 @@ class VideoController extends ActionController
                 // Set seo_keywords
                 $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
                 $filter   = new Filter\HeadKeywords;
-                $filter->setOptions([
-                    'force_replace_space' => (bool)$this->config('force_replace_space'),
-                ]);
+                $filter->setOptions(
+                    [
+                        'force_replace_space' => (bool)$this->config('force_replace_space'),
+                    ]
+                );
                 $values['seo_keywords'] = $filter($keywords);
                 // Set seo_description
                 $description               = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
@@ -666,7 +688,9 @@ class VideoController extends ActionController
                 $row->assign($values);
                 $row->save();
                 // Category
-                Pi::api('category', 'video')->setLink($row->id, $row->category, $row->time_create, $row->time_update, $row->status, $row->uid, $row->hits, $row->recommended);
+                Pi::api('category', 'video')->setLink(
+                    $row->id, $row->category, $row->time_create, $row->time_update, $row->status, $row->uid, $row->hits, $row->recommended
+                );
                 // Tag
                 if (isset($tag) && is_array($tag) && Pi::service('module')->isActive('tag')) {
                     Pi::service('tag')->update($module, $row->id, '', $tag);
@@ -674,22 +698,28 @@ class VideoController extends ActionController
                 // Add / Edit sitemap
                 if (Pi::service('module')->isActive('sitemap')) {
                     // Set loc
-                    $loc = Pi::url($this->url('video', [
-                        'module'     => $module,
-                        'controller' => 'watch',
-                        'slug'       => $values['slug'],
-                    ]));
+                    $loc = Pi::url(
+                        $this->url(
+                            'video', [
+                            'module'     => $module,
+                            'controller' => 'watch',
+                            'slug'       => $values['slug'],
+                        ]
+                        )
+                    );
                     // Update sitemap
                     Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->status, $module, 'video', $row->id);
                 }
                 // Check server type
                 $serverType = $serverList[$row->video_server]['type'];
                 if ($serverType == 'qmery') {
-                    return $this->redirect()->toRoute('', [
+                    return $this->redirect()->toRoute(
+                        '', [
                         'controller' => 'video',
                         'action'     => 'qmeryUpdate',
                         'id'         => $row->id,
-                    ]);
+                    ]
+                    );
                 } else {
                     // Jump
                     $message = __('Video data saved successfully.');
@@ -911,11 +941,15 @@ class VideoController extends ActionController
             $this->getModel('link')->update(['status' => $row->status], ['video' => $row->id]);
             // Remove sitemap
             if (Pi::service('module')->isActive('sitemap')) {
-                $loc = Pi::url($this->url('video', [
-                    'module'     => $module,
-                    'controller' => 'video',
-                    'slug'       => $row->slug,
-                ]));
+                $loc = Pi::url(
+                    $this->url(
+                        'video', [
+                        'module'     => $module,
+                        'controller' => 'video',
+                        'slug'       => $row->slug,
+                    ]
+                    )
+                );
                 Pi::api('sitemap', 'sitemap')->remove($loc);
             }
             // Remove page
@@ -987,7 +1021,9 @@ class VideoController extends ActionController
                 break;
 
             case 2:
-                $message = __('Attention : Video still not ready on qmery server and video information not upload, please wait for some min and check it later');
+                $message = __(
+                    'Attention : Video still not ready on qmery server and video information not upload, please wait for some min and check it later'
+                );
                 break;
 
             case 3:

@@ -28,7 +28,7 @@ class ToolsController extends ActionController
 
     public function sitemapAction()
     {
-        $form = new SitemapForm('sitemap');
+        $form    = new SitemapForm('sitemap');
         $message = __('Rebuild thie module links on sitemap module tabels');
         if ($this->request->isPost()) {
             // Set form date

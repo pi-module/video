@@ -24,19 +24,22 @@ class SlugDuplicate extends AbstractValidator
     /**
      * @var array
      */
-    protected $messageTemplates = [
-        self::TAKEN => 'This slug already exists',
-    ];
+    protected $messageTemplates
+        = [
+            self::TAKEN => 'This slug already exists',
+        ];
 
-    protected $options = [
-        'module', 'table',
-    ];
+    protected $options
+        = [
+            'module', 'table',
+        ];
 
     /**
      * Slug validate
      *
      * @param  mixed $value
      * @param  array $context
+     *
      * @return boolean
      */
     public function isValid($value, $context = null)

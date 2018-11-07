@@ -2,16 +2,24 @@
     <ul class="nav nav-pills bg-light mb-3 p-3">
         <?php if (isset($video['id'])) { ?>
             <li class="nav-item">
-                <a class="nav-link <?php if ($nav['page'] == 'link') { echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><?php _e('Manage video link'); ?></a>
+                <a class="nav-link <?php if ($nav['page'] == 'link') {
+                    echo 'active';
+                } ?>" href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><?php _e('Manage video link'); ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php if ($nav['page'] == 'update') { echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Edit basic information'); ?></a>
+                <a class="nav-link <?php if ($nav['page'] == 'update') {
+                    echo 'active';
+                } ?>" href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Edit basic information'); ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php if ($nav['page'] == 'additional') { echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Edit additional information'); ?></a>
+                <a class="nav-link <?php if ($nav['page'] == 'additional') {
+                    echo 'active';
+                } ?>" href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Edit additional information'); ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php if ($nav['page'] == 'view') { echo 'active'; } ?>" href="<?php echo $this->url('', ['action' => 'watch', 'id' => $video['id']]); ?>"><?php _e('Watch submitted video'); ?></a>
+                <a class="nav-link <?php if ($nav['page'] == 'view') {
+                    echo 'active';
+                } ?>" href="<?php echo $this->url('', ['action' => 'watch', 'id' => $video['id']]); ?>"><?php _e('Watch submitted video'); ?></a>
             </li>
             <?php if ($video['status'] == 1) { ?>
                 <li class="nav-item pull-right">

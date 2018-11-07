@@ -21,17 +21,20 @@ class Video extends Standard
 {
     /**
      * Default values.
+     *
      * @var array
      */
-    protected $defaults = [
-        'module'     => 'video',
-        'controller' => 'index',
-        'action'     => 'index',
-    ];
+    protected $defaults
+        = [
+            'module'     => 'video',
+            'controller' => 'index',
+            'action'     => 'index',
+        ];
 
-    protected $controllerList = [
-        'category', 'channel', 'favourite', 'index', 'submit', 'tag', 'watch', 'json',
-    ];
+    protected $controllerList
+        = [
+            'category', 'channel', 'favourite', 'index', 'submit', 'tag', 'watch', 'json',
+        ];
 
     /**
      * {@inheritDoc}
@@ -44,7 +47,7 @@ class Video extends Standard
     protected function parse($path)
     {
         $matches = [];
-        $parts = array_filter(explode($this->structureDelimiter, $path));
+        $parts   = array_filter(explode($this->structureDelimiter, $path));
 
         // Set controller
         $matches = array_merge($this->defaults, $matches);
@@ -71,7 +74,7 @@ class Video extends Standard
                     case 'tag':
                         if (isset($parts[1]) && !empty($parts[1])) {
                             $matches['action'] = 'index';
-                            $matches['slug'] = urldecode($parts[1]);
+                            $matches['slug']   = urldecode($parts[1]);
                         } else {
                             $matches['action'] = 'list';
                         }
@@ -82,7 +85,7 @@ class Video extends Standard
                             $matches['action'] = 'list';
                         } elseif (is_numeric($parts[1])) {
                             $matches['action'] = 'index';
-                            $matches['id'] = intval($parts[1]);
+                            $matches['id']     = intval($parts[1]);
                         }
                         break;
 
@@ -160,22 +163,22 @@ class Video extends Standard
                 }
             }
         } elseif (isset($parts[0])) {
-            $parts[0] = urldecode($parts[0]);
+            $parts[0]     = urldecode($parts[0]);
             $categorySlug = Pi::registry('categoryRoute', 'video')->read();
             if (in_array($parts[0], $categorySlug)) {
                 $matches['controller'] = 'category';
-                $matches['action'] = 'index';
-                $matches['slug'] = $this->decode($parts[0]);
+                $matches['action']     = 'index';
+                $matches['slug']       = $this->decode($parts[0]);
             } elseif ($parts[0] == 'channel') {
                 $matches['controller'] = 'channel';
-                $matches['action'] = 'index';
+                $matches['action']     = 'index';
             } elseif ($parts[0] == 'favourite') {
                 $matches['controller'] = 'favourite';
-                $matches['action'] = 'index';
+                $matches['action']     = 'index';
             } else {
                 $matches['controller'] = 'watch';
-                $matches['action'] = 'index';
-                $matches['slug'] = $this->decode($parts[0]);
+                $matches['action']     = 'index';
+                $matches['slug']       = $this->decode($parts[0]);
             }
         }
 
@@ -191,15 +194,16 @@ class Video extends Standard
      * assemble(): Defined by Route interface.
      *
      * @see    Route::assemble()
+     *
      * @param  array $params
      * @param  array $options
+     *
      * @return string
      */
     public function assemble(
         array $params = [],
         array $options = []
-    )
-    {
+    ) {
         $mergedParams = array_merge($this->defaults, $params);
         if (!$mergedParams) {
             return $this->prefix;

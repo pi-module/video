@@ -23,19 +23,23 @@ class VideoAdditionalFilter extends InputFilter
         // Set attribute position
         $position = Pi::api('attribute', 'video')->attributePositionForm();
         // id
-        $this->add([
-            'name'     => 'id',
-            'required' => false,
-        ]);
+        $this->add(
+            [
+                'name'     => 'id',
+                'required' => false,
+            ]
+        );
         // Set attribute
         if (!empty($option['field'])) {
             foreach ($position as $key => $value) {
                 if (!empty($option['field'][$key])) {
                     foreach ($option['field'][$key] as $field) {
-                        $this->add([
-                            'name'     => $field['id'],
-                            'required' => false,
-                        ]);
+                        $this->add(
+                            [
+                                'name'     => $field['id'],
+                                'required' => false,
+                            ]
+                        );
                     }
                 }
             }

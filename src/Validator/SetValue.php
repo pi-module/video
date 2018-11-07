@@ -24,9 +24,10 @@ class SetValue extends AbstractValidator
     /**
      * @var array
      */
-    protected $messageTemplates = [
-        self::TAKEN => 'Please select element',
-    ];
+    protected $messageTemplates
+        = [
+            self::TAKEN => 'Please select element',
+        ];
 
     protected $options = [];
 
@@ -35,6 +36,7 @@ class SetValue extends AbstractValidator
      *
      * @param  mixed $value
      * @param  array $context
+     *
      * @return boolean
      */
     public function isValid($value, $context = null)

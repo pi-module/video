@@ -1,12 +1,14 @@
 <?php
 // Load header files
 $this->jQuery();
-$this->angular([
-    'angular-route.js',
-    'ui-bootstrap-custom-tpls-0.7.0.js',
-    'pi.js',
-    'i18n',
-]);
+$this->angular(
+    [
+        'angular-route.js',
+        'ui-bootstrap-custom-tpls-0.7.0.js',
+        'pi.js',
+        'i18n',
+    ]
+);
 $this->js($this->assetModule('js/bootstrap-treeview.min.js'));
 $this->css($this->assetModule('css/front.css'));
 ?>

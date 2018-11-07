@@ -24,7 +24,7 @@ class ChannelController extends IndexController
     {
         // Get info from url
         $module = $this->params('module');
-        $uid = $this->params('id');
+        $uid    = $this->params('id');
         // Check id
         if (!isset($uid) && empty($uid)) {
             $uid = Pi::user()->getId();
@@ -46,9 +46,11 @@ class ChannelController extends IndexController
         $title = sprintf(__('All videos from %s channel'), $user['name']);
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
-        $filter->setOptions([
-            'force_replace_space' => true,
-        ]);
+        $filter->setOptions(
+            [
+                'force_replace_space' => true,
+            ]
+        );
         $seoKeywords = $filter($title);
 
         // Save statistics

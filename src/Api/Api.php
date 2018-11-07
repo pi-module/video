@@ -196,18 +196,20 @@ class Api extends AbstractApi
             $titles      = is_array($title) ? $title : [$title];
             $columns     = ['id'];
             $recommended = $params['recommended'];
-            $select      = Pi::model('video', $this->getModule())->select()->columns($columns)->where(function ($where) use ($titles, $recommended) {
-                $whereMain = clone $where;
-                $whereKey  = clone $where;
-                $whereMain->equalTo('status', 1);
-                if (!empty($recommended) && $recommended == 1) {
-                    $whereMain->equalTo('recommended', 1);
+            $select      = Pi::model('video', $this->getModule())->select()->columns($columns)->where(
+                function ($where) use ($titles, $recommended) {
+                    $whereMain = clone $where;
+                    $whereKey  = clone $where;
+                    $whereMain->equalTo('status', 1);
+                    if (!empty($recommended) && $recommended == 1) {
+                        $whereMain->equalTo('recommended', 1);
+                    }
+                    foreach ($titles as $title) {
+                        $whereKey->like('title', '%' . $title . '%')->and;
+                    }
+                    $where->andPredicate($whereMain)->andPredicate($whereKey);
                 }
-                foreach ($titles as $title) {
-                    $whereKey->like('title', '%' . $title . '%')->and;
-                }
-                $where->andPredicate($whereMain)->andPredicate($whereKey);
-            })->order($order);
+            )->order($order);
             $rowset      = Pi::model('video', $this->getModule())->selectWith($select);
             foreach ($rowset as $row) {
                 $videoIDList['title'][$row->id] = $row->id;
@@ -316,9 +318,9 @@ class Api extends AbstractApi
                 $select = Pi::model('video', $this->getModule())->select()->where($where)->order($order);
                 $rowset = Pi::model('video', $this->getModule())->selectWith($select);
                 foreach ($rowset as $row) {
-                    $singleVideo = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
+                    $singleVideo           = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
                     $singleVideo['access'] = Pi::api('video', 'video')->getAccess($video);
-                    $video[] = $singleVideo;
+                    $video[]               = $singleVideo;
                 }
             }
 

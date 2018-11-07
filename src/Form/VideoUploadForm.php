@@ -36,33 +36,39 @@ class VideoUploadForm extends BaseForm
     public function init()
     {
         // slug
-        $this->add([
-            'name'       => 'slug',
-            'attributes' => [
-                'type' => 'hidden',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'slug',
+                'attributes' => [
+                    'type' => 'hidden',
+                ],
+            ]
+        );
         // video
-        $this->add([
-            'name'       => 'video',
-            'options'    => [
-                'label' => __('Video'),
-            ],
-            'attributes' => [
-                'type'        => 'file',
-                'description' => '',
-                'id'          => 'videoFile',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'video',
+                'options'    => [
+                    'label' => __('Video'),
+                ],
+                'attributes' => [
+                    'type'        => 'file',
+                    'description' => '',
+                    'id'          => 'videoFile',
+                ],
+            ]
+        );
         // Save
-        $this->add([
-            'name'       => 'submit',
-            'type'       => 'submit',
-            'attributes' => [
-                'value'   => __('Upload'),
-                'class'   => 'btn btn-success videoUpload',
-                'onclick' => 'upload_image();',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'submit',
+                'type'       => 'submit',
+                'attributes' => [
+                    'value'   => __('Upload'),
+                    'class'   => 'btn btn-success videoUpload',
+                    'onclick' => 'upload_image();',
+                ],
+            ]
+        );
     }
 }

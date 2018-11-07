@@ -37,7 +37,8 @@ if ($access) {
     if ($videoItem['server']['type'] == 'wowza') {
         $this->jQuery();
         $this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
-        $script = <<<'EOT'
+        $script
+                = <<<'EOT'
     var manifestUri = '%s';
 
     function initApp() {

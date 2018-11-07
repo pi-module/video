@@ -27,12 +27,12 @@ class Service extends Select
         if (empty($this->valueOptions)) {
             // Get topic list
             $columns = ['id', 'title'];
-            $where = ['status' => 1];
-            $order = ['time_create DESC', 'title ASC'];
-            $limit = 250;
-            $list = ['' => ''];
-            $select = Pi::model('video', 'video')->select()->columns($columns)->where($where)->order($order)->limit($limit);
-            $rowset = Pi::model('video', 'video')->selectWith($select);
+            $where   = ['status' => 1];
+            $order   = ['time_create DESC', 'title ASC'];
+            $limit   = 250;
+            $list    = ['' => ''];
+            $select  = Pi::model('video', 'video')->select()->columns($columns)->where($where)->order($order)->limit($limit);
+            $rowset  = Pi::model('video', 'video')->selectWith($select);
             foreach ($rowset as $row) {
                 $list[$row->id] = $row->title;
             }
