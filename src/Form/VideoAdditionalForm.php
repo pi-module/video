@@ -107,8 +107,8 @@ class VideoAdditionalForm extends BaseForm
                 'name'       => 'submit',
                 'type'       => 'submit',
                 'attributes' => [
-                    'value' => __('Submit'),
                     'class' => 'btn btn-primary',
+                    'value' => __('Submit'),
                 ],
             ]
         );

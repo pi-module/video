@@ -64,7 +64,7 @@ class VideoUploadForm extends BaseForm
                 'type'       => 'submit',
                 'attributes' => [
                     'value'   => __('Upload'),
-                    'class'   => 'btn btn-success videoUpload',
+                    'class'   => 'btn btn-primary videoUpload',
                     'onclick' => 'upload_image();',
                 ],
             ]
