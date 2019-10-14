@@ -1,7 +1,7 @@
 <?php if (isset($videoServiceList) && !empty($videoServiceList)) {
     $this->css($this->assetModule('css/front.css', 'video'));
     if (!isset($videoServiceCol) || empty($videoServiceCol)) {
-        $videoServiceCol = 'col-md-8 col-md-offset-2 col-12';
+        $videoServiceCol = 'col-lg-8 col-md-8 col-md-offset-2 col-12';
     } ?>
     <div class="clearfix row video-service-list">
         <?php foreach ($videoServiceList as $videoService) { ?>

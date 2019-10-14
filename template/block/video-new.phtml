@@ -1,26 +1,26 @@
 <?php switch ($block['column']) {
     case 1:
-        $videoBlockBoxSize = 'col-md-12 col-12';
+        $videoBlockBoxSize = 'col-lg-12 col-md-12 col-12';
         break;
 
     case 2:
-        $videoBlockBoxSize = 'col-md-6 col-12';
+        $videoBlockBoxSize = 'col-lg-6 col-md-6 col-12';
         break;
 
     case 3:
-        $videoBlockBoxSize = 'col-md-4 col-12';
+        $videoBlockBoxSize = 'col-lg-4 col-md-4 col-12';
         break;
 
     case 4:
-        $videoBlockBoxSize = 'col-md-3 col-12';
+        $videoBlockBoxSize = 'col-lg-3 col-md-3 col-12';
         break;
 
     case 6:
-        $videoBlockBoxSize = 'col-md-2 col-12';
+        $videoBlockBoxSize = 'col-lg-2 col-md-2 col-12';
         break;
 
     default:
-        $videoBlockBoxSize = 'col-md-3 col-12';
+        $videoBlockBoxSize = 'col-lg-3 col-md-3 col-12';
         break;
 }
 ?>
@@ -53,7 +53,7 @@
             <?php } ?>
         <?php } elseif ($block['list-type'] == 'vertical') { ?>
             <?php foreach ($block['resources'] as $video) { ?>
-                <div class="col-md-12 videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
+                <div class="col-lg-12 col-md-12 videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                     <meta itemprop="datePublished"
                           content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
@@ -79,13 +79,13 @@
             <?php $i = 1; ?>
             <?php foreach ($block['resources'] as $video) { ?>
                 <?php if (in_array($i, [1, 11, 21, 31, 41, 51, 61])) {
-                    $class = 'col-md-6 videoBoxBig pull-left';
+                    $class = 'col-lg-6 col-md-6 videoBoxBig pull-left';
                     $img   = $video['largeUrl'];
                 } elseif (in_array($i, [6, 16, 26, 36, 46, 56, 66])) {
-                    $class = 'col-md-6 videoBoxBig pull-right';
+                    $class = 'col-lg-6 col-md-6 videoBoxBig pull-right';
                     $img   = $video['largeUrl'];
                 } else {
-                    $class = 'col-md-3';
+                    $class = 'col-lg-3 col-md-3';
                     $img   = $video['thumbUrl'];
                 } ?>
                 <div class="<?php echo $class; ?> videoBox h-review" itemscope
@@ -207,7 +207,7 @@
             <div class="video-spotlight">
                 <?php $spotlight = array_shift($block['resources']); ?>
                 <?php $this->headScript()->appendFile($spotlight['qmeryScript']); ?>
-                <div class="col-md-12 h-review clearfix video-spotlight" itemscope
+                <div class="col-lg-12 col-md-12 h-review clearfix video-spotlight" itemscope
                      itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($spotlight['largeUrl']); ?>"/>
                     <meta itemprop="datePublished"
@@ -238,7 +238,7 @@
                 <?php if (!empty($block['resources'])) { ?>
                     <div class="clearfix video-spotlight-extra">
                         <?php foreach ($block['resources'] as $video) { ?>
-                            <div class="col-md-6 videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
+                            <div class="col-lg-6 col-md-6 videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
                                 <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                                 <meta itemprop="datePublished"
                                       content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>

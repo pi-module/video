@@ -98,7 +98,7 @@ EOT;
     <div class="page-header">
         <h1><?php echo $this->escape($video['title']); ?></h1>
     </div>
-    <div class="text-center video-player-box col-md-8 col-md-offset-2">
+    <div class="text-center video-player-box col-lg-8 col-md-8 col-md-offset-2">
         <?php if ($video['server']['type'] == 'file') { ?>
             <?php echo $this->videojs($video['videoFileUrl'], $video['largeUrl']); ?>
         <?php } elseif ($video['server']['type'] == 'qmery') { ?>

@@ -1,5 +1,5 @@
 <div class="clearfix pi-item-list">
-    <div class="col-md-3 col-12">
+    <div class="col-lg-3 col-md-3 col-12">
         <div class="pi-item-search-form clearfix card card-body bg-light mb-3">
             <div class="page-header">
                 <h3>{{'SEARCH' | translate}}</h3>
@@ -57,7 +57,7 @@
             </form>
         </div>
     </div>
-    <div class="col-md-9 col-12">
+    <div class="col-lg-9 col-lg-9 col-md-9 col-12">
         <div class="clearfix">
             <div class="page-header">
                 <h1>{{condition.title}}</h1>
@@ -65,9 +65,9 @@
             <div ng-show="videos.length">
                 <div class="row">
                     <div ng-repeat="video in videos">
-                        <div class="col-md-4 col-12 pi-item-box">
-                            <div class="thumbnail">
-                                <a class="u-url {{video.ribbon_class}}" itemprop="url" title="{{video.title}}"
+                        <div class="col-lg-4 col-md-4 col-12 pi-item-box">
+                            <div class="card">
+                                <a class="u-url card-img-top {{video.ribbon_class}}" itemprop="url" title="{{video.title}}"
                                    href="{{video.videoUrl}}" target="_blank">
                                     <img itemprop="image" class="img-fluid u-photo" src="{{video.thumbUrl}}"
                                          alt="{{video.title}}"/>
@@ -75,8 +75,8 @@
                                         <span>{{video.ribbon}}</span>
                                     </p>
                                 </a>
-                                <div class="caption">
-                                    <h3 class="p-name" itemprop="name">
+                                <div class="card-body">
+                                    <h3 class="card-title">
                                         <a title="{{video.title}}" href="{{video.videoUrl}}" target="_blank">
                                             {{video.title}}
                                         </a>
