@@ -8,7 +8,6 @@
  */
 
 /**
- * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 return [

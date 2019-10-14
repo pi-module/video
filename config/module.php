@@ -8,15 +8,14 @@
  */
 
 /**
- * @author Somayeh Karami <somayeh.karami@gmail.com>
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 return [
     // Module meta
     'meta'     => [
         'title'       => _a('Video'),
-        'description' => _a('Video play system.'),
-        'version'     => '0.9.2',
+        'description' => _a('Video gallery and service for Pi Engine.'),
+        'version'     => '1.0.0',
         'license'     => 'New BSD',
         'logo'        => 'image/logo.png',
         'readme'      => 'docs/readme.txt',
@@ -25,8 +24,8 @@ return [
     ],
     // Author information
     'author'   => [
-        'Name'    => 'Somayeh Karami',
-        'email'   => 'somayeh.karami@gmail.com',
+        'Name'    => 'Hossein Azizabadi',
+        'email'   => 'azizabadi@faragostaresh.com',
         'website' => '',
         'credits' => '',
     ],
