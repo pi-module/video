@@ -28,6 +28,7 @@ class Server extends Model
             'default',
             'type',
             'url',
+            'path',
             'setting',
         ];
 }

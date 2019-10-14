@@ -39,6 +39,8 @@ class Update extends BasicUpdate
     {
         $moduleVersion = $e->getParam('version');
 
+        // ToDo : update server table
+
         return true;
     }
 }
