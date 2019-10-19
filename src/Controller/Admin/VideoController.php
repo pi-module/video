@@ -348,8 +348,6 @@ class VideoController extends ActionController
                         $uploader->receive();
                         // Get video_file
                         $values['video_file'] = $uploader->getUploaded('video');
-                        // Set video_url
-                        //$values['video_url'] = Pi::url();
                     } else {
                         $this->jump(['action' => 'upload'], __('Problem in upload video. please try again'));
                     }
@@ -373,19 +371,7 @@ class VideoController extends ActionController
                     $values['video_server'] = $serverDefault['id'];
                     $serverType             = $serverDefault['type'];
                 }
-                // Set type
-                $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
-                switch ($extension) {
-                    case 'mp3':
-                        $values['video_type']      = 'audio';
-                        $values['video_extension'] = 'mp3';
-                        break;
 
-                    case 'mp4':
-                        $values['video_type']      = 'video';
-                        $values['video_extension'] = 'mp4';
-                        break;
-                }
                 // Save values
                 $row = $this->getModel('video')->createRow();
                 $row->assign($values);
@@ -540,10 +526,6 @@ class VideoController extends ActionController
                 $filter        = new Filter\Slug;
                 $video['slug'] = $filter($slug);
                 // Set
-                if (!empty($config['link_url'])) {
-                    //$video['video_url'] = $config['link_url'];
-                }
-                // Set
                 if (!empty($config['link_path'])) {
                     $video['video_path'] = $config['link_path'];
                 }
@@ -607,8 +589,6 @@ class VideoController extends ActionController
                 $option['removeUrl'] = $this->url('', ['action' => 'remove', 'id' => $video['id']]);
             }
             $option['side']            = 'admin';
-            $option['video_type']      = $video['video_type'];
-            $option['video_extension'] = $video['video_extension'];
             $option['video_size']      = $video['video_size'];
             $option['sale_video']      = $config['sale_video'];
         } else {

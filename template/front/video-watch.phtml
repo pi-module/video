@@ -7,12 +7,8 @@ $this->headMeta($this->escape($videoItem['videoUrl']), 'og:url', 'property');
 $this->headMeta('video', 'og:type', 'property');
 $this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:url', 'property');
 $this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:secure_url', 'property');
+$this->headMeta('video/mp4', 'og:video:type', 'property');
 
-if ($videoItem['video_type'] == 'video') {
-    $this->headMeta('video/mp4', 'og:video:type', 'property');
-} elseif ($videoItem['video_type'] == 'audio') {
-    $this->headMeta('audio/mp3', 'og:video:type', 'property');
-}
 if (isset($videoItem['video_duration']) && !empty($videoItem['video_duration'])) {
     //$this->headMeta(_strip($videoItem['video_duration']), 'video:duration', 'property');
 }

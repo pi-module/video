@@ -266,39 +266,6 @@ class VideoForm extends BaseForm
                     ],
                 ]
             );
-            /* // video_type
-            $this->add(array(
-                'name' => 'video_type',
-                'options' => array(
-                    'label' => __('Type'),
-                ),
-                'attributes' => array(
-                    'type' => 'description',
-                    'description' => $this->option['video_type'],
-                )
-            ));
-            // video_extension
-            $this->add(array(
-                'name' => 'video_extension',
-                'options' => array(
-                    'label' => __('Extension'),
-                ),
-                'attributes' => array(
-                    'type' => 'description',
-                    'description' => $this->option['video_extension'],
-                )
-            ));
-            // video_size
-            $this->add(array(
-                'name' => 'video_size',
-                'options' => array(
-                    'label' => __('Size'),
-                ),
-                'attributes' => array(
-                    'type' => 'description',
-                    'description' => $this->option['video_size'],
-                )
-            )); */
             // video_duration
             $this->add(
                 [

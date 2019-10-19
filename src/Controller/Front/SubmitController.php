@@ -102,19 +102,6 @@ class SubmitController extends IndexController
                 $values['status'] = 2;
                 // Set server
                 $values['video_server'] = $serverDefault['id'];
-                // Set type
-                $extension = pathinfo($values['video_file'], PATHINFO_EXTENSION);
-                switch ($extension) {
-                    case 'mp3':
-                        $values['video_type']      = 'audio';
-                        $values['video_extension'] = 'mp3';
-                        break;
-
-                    case 'mp4':
-                        $values['video_type']      = 'video';
-                        $values['video_extension'] = 'mp4';
-                        break;
-                }
                 // Save values
                 $row = $this->getModel('video')->createRow();
                 $row->assign($values);
@@ -206,8 +193,6 @@ class SubmitController extends IndexController
                 $option['removeUrl'] = $this->url('', ['action' => 'remove', 'id' => $video['id']]);
             }
             $option['side']            = 'front';
-            $option['video_type']      = $video['video_type'];
-            $option['video_extension'] = $video['video_extension'];
             $option['video_size']      = $video['video_size'];
         } else {
             // Jump

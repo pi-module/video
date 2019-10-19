@@ -1,3 +1,16 @@
+CREATE TABLE `{server}`
+(
+    `id`      INT(10) UNSIGNED                              NOT NULL AUTO_INCREMENT,
+    `title`   VARCHAR(255)                                  NOT NULL DEFAULT '',
+    `status`  TINYINT(1) UNSIGNED                           NOT NULL DEFAULT '1',
+    `default` TINYINT(1) UNSIGNED                           NOT NULL DEFAULT '0',
+    `type`    ENUM ('file', 'wowza', 'nginx', 'mistserver') NOT NULL DEFAULT 'file',
+    `url`     VARCHAR(255)                                  NOT NULL DEFAULT '',
+    `path`    VARCHAR(255)                                  NOT NULL DEFAULT '',
+    `setting` TEXT,
+    PRIMARY KEY (`id`)
+);
+
 CREATE TABLE `{video}`
 (
     `id`               INT(10) UNSIGNED        NOT NULL AUTO_INCREMENT,
@@ -28,11 +41,6 @@ CREATE TABLE `{video}`
 
     `sale_type`        ENUM ('free', 'paid')   NOT NULL DEFAULT 'free',
     `sale_price`       DECIMAL(16, 2)          NOT NULL DEFAULT '0.00',
-
-    `video_type`       ENUM ('video', 'audio') NOT NULL DEFAULT 'video',
-    `video_extension`  ENUM ('mp4', 'mp3')     NOT NULL DEFAULT 'mp4',
-    `video_link`       VARCHAR(255)            NOT NULL DEFAULT '',
-    `video_url`        VARCHAR(64)             NOT NULL DEFAULT '',
 
     `video_server`     INT(10) UNSIGNED        NOT NULL DEFAULT '0',
     `video_path`       VARCHAR(64)             NOT NULL DEFAULT '',
@@ -204,17 +212,4 @@ CREATE TABLE `{service}`
     PRIMARY KEY (`id`),
     KEY `video` (`video`),
     KEY `select` (`module_name`, `module_table`, `module_item`)
-);
-
-CREATE TABLE `{server}`
-(
-    `id`      INT(10) UNSIGNED                                       NOT NULL AUTO_INCREMENT,
-    `title`   VARCHAR(255)                                           NOT NULL DEFAULT '',
-    `status`  TINYINT(1) UNSIGNED                                    NOT NULL DEFAULT '1',
-    `default` TINYINT(1) UNSIGNED                                    NOT NULL DEFAULT '0',
-    `type`    ENUM ('file', 'wowza', 'nginx', 'mistserver', 'qmery') NOT NULL DEFAULT 'file',
-    `url`     VARCHAR(255)                                           NOT NULL DEFAULT '',
-    `path`    VARCHAR(255)                                           NOT NULL DEFAULT '',
-    `setting` TEXT,
-    PRIMARY KEY (`id`)
 );
