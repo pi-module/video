@@ -47,15 +47,7 @@ class VideoForm extends BaseForm
                 ],
             ]
         );
-        // id
-        $this->add(
-            [
-                'name'       => 'id',
-                'attributes' => [
-                    'type' => 'hidden',
-                ],
-            ]
-        );
+
         // status
         if ($this->option['side'] == 'admin') {
             $this->add(
@@ -88,6 +80,7 @@ class VideoForm extends BaseForm
                 ]
             );
         }
+
         // title
         $this->add(
             [
@@ -102,6 +95,7 @@ class VideoForm extends BaseForm
                 ],
             ]
         );
+
         // slug
         if ($this->option['side'] == 'admin') {
             $this->add(
@@ -126,6 +120,7 @@ class VideoForm extends BaseForm
                 ]
             );
         }
+
         // text_summary
         $this->add(
             [
@@ -141,6 +136,7 @@ class VideoForm extends BaseForm
                 ],
             ]
         );
+
         // text_description
         $this->add(
             [
@@ -155,6 +151,7 @@ class VideoForm extends BaseForm
                 ],
             ]
         );
+
         // category
         $this->add(
             [
@@ -169,6 +166,7 @@ class VideoForm extends BaseForm
                 ],
             ]
         );
+
         // category_main
         $this->add(
             [
@@ -186,6 +184,7 @@ class VideoForm extends BaseForm
                 ],
             ]
         );
+
         // brand
         if ($this->option['brand_system']) {
             $this->add(
@@ -204,6 +203,7 @@ class VideoForm extends BaseForm
                 ]
             );
         }
+
         // Image
         if ($this->thumbUrl) {
             $this->add(
@@ -254,32 +254,7 @@ class VideoForm extends BaseForm
                 ]
             );
         }
-        // Video
-        if ($this->option['side'] == 'admin') {
-            // extra_video
-            $this->add(
-                [
-                    'name'    => 'extra_video',
-                    'type'    => 'fieldset',
-                    'options' => [
-                        'label' => __('Video file'),
-                    ],
-                ]
-            );
-            // video_duration
-            $this->add(
-                [
-                    'name'       => 'video_duration',
-                    'options'    => [
-                        'label' => __('Duration ( second )'),
-                    ],
-                    'attributes' => [
-                        'type'        => 'text',
-                        'description' => '',
-                    ],
-                ]
-            );
-        } else {
+
             // video_duration
             $this->add(
                 [
@@ -289,7 +264,7 @@ class VideoForm extends BaseForm
                     ],
                 ]
             );
-        }
+
         // Price
         if ($this->option['side'] == 'admin') {
             switch ($this->option['sale_video']) {
@@ -349,6 +324,7 @@ class VideoForm extends BaseForm
         }
         // Seo
         if ($this->option['side'] == 'admin') {
+
             // extra_seo
             $this->add(
                 [
@@ -359,6 +335,7 @@ class VideoForm extends BaseForm
                     ],
                 ]
             );
+
             // seo_title
             $this->add(
                 [
@@ -374,6 +351,7 @@ class VideoForm extends BaseForm
                     ],
                 ]
             );
+
             // seo_keywords
             $this->add(
                 [
@@ -389,6 +367,7 @@ class VideoForm extends BaseForm
                     ],
                 ]
             );
+
             // seo_description
             $this->add(
                 [
@@ -404,6 +383,7 @@ class VideoForm extends BaseForm
                     ],
                 ]
             );
+
             // tag
             if (Pi::service('module')->isActive('tag')) {
                 $this->add(
@@ -430,6 +410,7 @@ class VideoForm extends BaseForm
                     ],
                 ]
             );
+
             // seo_keywords
             $this->add(
                 [
@@ -439,6 +420,7 @@ class VideoForm extends BaseForm
                     ],
                 ]
             );
+
             // seo_description
             $this->add(
                 [
@@ -448,6 +430,7 @@ class VideoForm extends BaseForm
                     ],
                 ]
             );
+
             // tag
             $this->add(
                 [

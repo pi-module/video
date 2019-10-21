@@ -15,12 +15,12 @@ return [
     'meta'     => [
         'title'       => _a('Video'),
         'description' => _a('Video gallery and service for Pi Engine.'),
-        'version'     => '1.0.0',
+        'version'     => '1.0.1',
         'license'     => 'New BSD',
         'logo'        => 'image/logo.png',
         'readme'      => 'docs/readme.txt',
         'demo'        => '',
-        'icon'        => 'fa-video-camera',
+        'icon'        => 'fa-video',
     ],
     // Author information
     'author'   => [

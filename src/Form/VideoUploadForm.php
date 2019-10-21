@@ -43,6 +43,7 @@ class VideoUploadForm extends BaseForm
                 ],
             ]
         );
+
         // video
         $this->add(
             [
@@ -57,6 +58,7 @@ class VideoUploadForm extends BaseForm
                 ],
             ]
         );
+
         // Save
         $this->add(
             [

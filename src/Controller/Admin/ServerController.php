@@ -27,23 +27,12 @@ class ServerController extends ActionController
         $order  = ['id DESC'];
         $select = $this->getModel('server')->select()->order($order);
         $rowset = $this->getModel('server')->selectWith($select);
+
         // Make list
         foreach ($rowset as $row) {
-            $list[$row->id] = $row->toArray();
-            switch ($row->type) {
-                case 'file':
-                    $list[$row->id]['type_view'] = __('File server');
-                    break;
-
-                case 'wowza':
-                    $list[$row->id]['type_view'] = __('Wowza server');
-                    break;
-
-                case 'qmery':
-                    $list[$row->id]['type_view'] = __('Qmery server');
-                    break;
-            }
+            $list[$row->id] = Pi::api('server', 'video')->canonizeServer($row);
         }
+
         // Set view
         $this->view()->setTemplate('server-index');
         $this->view()->assign('list', $list);
@@ -53,6 +42,7 @@ class ServerController extends ActionController
     {
         // Get id
         $id = $this->params('id');
+
         // Set form
         $form = new ServerForm('server');
         $form->setAttribute('enctype', 'multipart/form-data');
@@ -62,46 +52,44 @@ class ServerController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
+
                 // Check default
                 if ($values['default']) {
                     $this->getModel('server')->update(['default' => 0]);
                     $values['default'] = 1;
                 }
+
                 // Set setting
-                $setting                        = [];
-                $setting['qmery_token']         = $values['qmery_token'];
-                $setting['qmery_refresh_value'] = $values['qmery_refresh_value'];
-                $setting['qmery_group_id']      = $values['qmery_group_id'];
-                $setting['qmery_group_hash']    = $values['qmery_group_hash'];
-                $setting['qmery_import']        = $values['qmery_import'];
-                $setting['qmery_show_embed']    = $values['qmery_show_embed'];
-                $setting['qmery_player_type']   = $values['qmery_player_type'];
-                $values['setting']              = json_encode($setting);
+                $setting             = [];
+                $setting['token']    = $values['token'];
+                $setting['username'] = $values['username'];
+                $setting['password'] = $values['password'];
+                $values['setting']   = json_encode($setting);
 
                 // Save values
-                if (!empty($values['id'])) {
-                    $row = $this->getModel('server')->find($values['id']);
+                if (!empty($id)) {
+                    $row = $this->getModel('server')->find($id);
                 } else {
                     $row = $this->getModel('server')->createRow();
                 }
                 $row->assign($values);
                 $row->save();
+
                 // Clear registry
                 Pi::registry('serverList', 'video')->clear();
                 Pi::registry('serverDefault', 'video')->clear();
+
                 // Add log
                 $operation = (empty($values['id'])) ? 'add' : 'edit';
                 Pi::api('log', 'video')->addLog('server', $row->id, $operation);
+
+                // Jump
                 $message = __('Server data saved successfully.');
                 $this->jump(['action' => 'index'], $message);
             }
         } else {
             if ($id) {
-                $server  = $this->getModel('server')->find($id)->toArray();
-                $setting = json_decode($server['setting'], true);
-                if (!empty($setting)) {
-                    $server = array_merge($server, $setting);
-                }
+                $server  = Pi::api('server', 'video')->getServer($id);
                 $form->setData($server);
             }
         }
@@ -111,7 +99,7 @@ class ServerController extends ActionController
         $this->view()->assign('title', __('Manage server'));
     }
 
-    public function processingAction()
+    /* public function processingAction()
     {
         // Get info from url
         $server = $this->params('server');
@@ -137,12 +125,12 @@ class ServerController extends ActionController
                             $url = Pi::url(
                                 $this->url(
                                     '', [
-                                    'controller' => 'server',
-                                    'action'     => 'processing',
-                                    'server'     => $server,
-                                    'type'       => 'syncVideoList',
-                                    'page'       => $page + 1,
-                                ]
+                                        'controller' => 'server',
+                                        'action'     => 'processing',
+                                        'server'     => $server,
+                                        'type'       => 'syncVideoList',
+                                        'page'       => $page + 1,
+                                    ]
                                 )
                             );
                         } else {
@@ -173,12 +161,12 @@ class ServerController extends ActionController
                             $url = Pi::url(
                                 $this->url(
                                     '', [
-                                    'controller' => 'server',
-                                    'action'     => 'processing',
-                                    'server'     => $server,
-                                    'type'       => 'syncVideoSingle',
-                                    'page'       => $page + 1,
-                                ]
+                                        'controller' => 'server',
+                                        'action'     => 'processing',
+                                        'server'     => $server,
+                                        'type'       => 'syncVideoSingle',
+                                        'page'       => $page + 1,
+                                    ]
                                 )
                             );
                         } else {
@@ -193,5 +181,5 @@ class ServerController extends ActionController
         // Set view
         $this->view()->setTemplate('server-processing');
         $this->view()->assign('url', $url);
-    }
+    } */
 }

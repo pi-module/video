@@ -33,15 +33,6 @@ class ServerForm extends BaseForm
 
     public function init()
     {
-        // id
-        $this->add(
-            [
-                'name'       => 'id',
-                'attributes' => [
-                    'type' => 'hidden',
-                ],
-            ]
-        );
         // title
         $this->add(
             [
@@ -56,6 +47,7 @@ class ServerForm extends BaseForm
                 ],
             ]
         );
+
         // status
         $this->add(
             [
@@ -76,17 +68,19 @@ class ServerForm extends BaseForm
                 ],
             ]
         );
+
         // type
         $this->add(
             [
                 'name'       => 'type',
                 'type'       => 'select',
                 'options'    => [
-                    'label'         => __('Type'),
+                    'label'         => __('Server type'),
                     'value_options' => [
                         'file'  => __('File server'),
-                        'wowza' => __('Wowza server'),
-                        'qmery' => __('Qmery server'),
+                        'wowza' => __('Wowza'),
+                        'nginx' => __('Nginx'),
+                        'mistserver' => __('MistServer'),
                     ],
                 ],
                 'attributes' => [
@@ -94,25 +88,44 @@ class ServerForm extends BaseForm
                 ],
             ]
         );
+
         // url
         $this->add(
             [
                 'name'       => 'url',
                 'options'    => [
-                    'label' => __('Url'),
+                    'label' => __('Server url'),
                 ],
                 'attributes' => [
                     'type'        => 'text',
                     'description' => sprintf(
-                        '<ul><li>%s</li><li>%s</li><li>%s</li></ul>',
-                        __('File : set url or ip by http:// or https:// without end slash'),
-                        __('Wowza : set url or ip without http:// or https:// and end slash'),
-                        __('Qmery : http://www.qmery.com or https://www.qmery.com')
+                        '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>',
+                        __('Set url or ip by http:// or https:// without end slash'),
+                        __('If your service run on any special port, put port number after server url like :PORT'),
+                        __('Example : https://stream.piengine.org'),
+                        __('Example : https://stream.piengine.org:8888'),
+                        __('Example : https://127.0.0.1:1935')
                     ),
                     'required'    => true,
                 ],
             ]
         );
+
+        // path
+        $this->add(
+            [
+                'name'       => 'path',
+                'options'    => [
+                    'label' => __('Server path'),
+                ],
+                'attributes' => [
+                    'type'        => 'text',
+                    'description' => __('Internal server video path, Just if needed to put in full url playable'),
+                    'required'    => false,
+                ],
+            ]
+        );
+
         // default
         $this->add(
             [
@@ -123,9 +136,11 @@ class ServerForm extends BaseForm
                 ],
                 'attributes' => [
                     'description' => '',
+                    'required'    => false,
                 ],
             ]
         );
+
         // extra_setting
         $this->add(
             [
@@ -136,98 +151,52 @@ class ServerForm extends BaseForm
                 ],
             ]
         );
-        // qmery_token
+
+        // token
         $this->add(
             [
-                'name'       => 'qmery_token',
+                'name'       => 'token',
                 'options'    => [
-                    'label' => __('Qmery token'),
+                    'label' => __('Authentication token'),
                 ],
                 'attributes' => [
                     'type'        => 'text',
-                    'description' => '',
+                    'description' => __('Some service need token for stream access, if your service needed it, please put it here'),
+                    'required'    => false,
                 ],
             ]
         );
-        // qmery_refresh_value
+
+        // username
         $this->add(
             [
-                'name'       => 'qmery_refresh_value',
+                'name'       => 'username',
                 'options'    => [
-                    'label' => __('Qmery refreshvalue'),
+                    'label' => __('Authentication username'),
                 ],
                 'attributes' => [
                     'type'        => 'text',
-                    'description' => '',
+                    'description' => __('Some service need username and password for stream access, if your service needed it, please put it here'),
+                    'required'    => false,
                 ],
             ]
         );
-        // qmery_group_id
+
+        // password
         $this->add(
             [
-                'name'       => 'qmery_group_id',
+                'name'       => 'password',
                 'options'    => [
-                    'label' => __('Qmery group ID'),
+                    'label' => __('Authentication password'),
                 ],
                 'attributes' => [
                     'type'        => 'text',
-                    'description' => '',
+                    'description' => __('Some service need username and password for stream access, if your service needed it, please put it here'),
+                    'required'    => false,
                 ],
             ]
         );
-        // qmery_group_hash
-        $this->add(
-            [
-                'name'       => 'qmery_group_hash',
-                'options'    => [
-                    'label' => __('Qmery group hash'),
-                ],
-                'attributes' => [
-                    'type'        => 'text',
-                    'description' => '',
-                ],
-            ]
-        );
-        // qmery_import
-        $this->add(
-            [
-                'name'       => 'qmery_import',
-                'type'       => 'checkbox',
-                'options'    => [
-                    'label' => __('Qmery import video'),
-                ],
-                'attributes' => [
-                    'description' => __('Import video from qmery to website if video not exist on website'),
-                ],
-            ]
-        );
-        // qmery_show_embed
-        $this->add(
-            [
-                'name'       => 'qmery_show_embed',
-                'type'       => 'checkbox',
-                'options'    => [
-                    'label' => __('Qmery show embed'),
-                ],
-                'attributes' => [
-                    'description' => __('Show embed code for copy to other pages and websites'),
-                ],
-            ]
-        );
-        // qmery_player_type
-        $this->add(
-            [
-                'name'    => 'qmery_player_type',
-                'type'    => 'select',
-                'options' => [
-                    'label'         => __('Qmery player type'),
-                    'value_options' => [
-                        'embed'  => __('embed'),
-                        'iframe' => __('iframe'),
-                    ],
-                ],
-            ]
-        );
+
         // Save
         $this->add(
             [

@@ -16,17 +16,10 @@ namespace Module\Video\Form;
 use Pi;
 use Zend\InputFilter\InputFilter;
 
-class VideoExternalFilter extends InputFilter
+class VideoUrlFilter extends InputFilter
 {
     public function __construct($option = [])
     {
-        // id
-        $this->add(
-            [
-                'name'     => 'id',
-                'required' => false,
-            ]
-        );
         // slug
         $this->add(
             [
@@ -47,10 +40,11 @@ class VideoExternalFilter extends InputFilter
                 ],
             ]
         );
-        // external_link
+
+        // video_url
         $this->add(
             [
-                'name'     => 'external_link',
+                'name'     => 'video_url',
                 'required' => true,
                 'filters'  => [
                     [

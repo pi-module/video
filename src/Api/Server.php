@@ -36,11 +36,36 @@ class Server extends AbstractApi
         if (empty($server)) {
             return '';
         }
+
         // object to array
         $server = $server->toArray();
+
         // Get setting
         $setting = json_decode($server['setting'], true);
         $server  = array_merge($server, $setting);
+
+        // Set type view
+        switch ($server['type']) {
+            case 'file':
+                $server['type_view'] = __('File server');
+                break;
+
+            case 'wowza':
+                $server['type_view'] = __('Wowza');
+                break;
+
+            case 'nginx':
+                $server['type_view'] = __('Nginx');
+                break;
+
+            case 'mistserver':
+                $server['type_view'] = __('MistServer');
+                break;
+        }
+
+        // Update methods
+        $server['updateMethod'] = Pi::api('serverService', 'video')->updateMethod($server['type']);
+
         // return
         return $server;
     }

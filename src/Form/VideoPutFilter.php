@@ -16,7 +16,7 @@ namespace Module\Video\Form;
 use Pi;
 use Zend\InputFilter\InputFilter;
 
-class VideoUploadFilter extends InputFilter
+class VideoPutFilter extends InputFilter
 {
     public function __construct($option = [])
     {
@@ -41,12 +41,31 @@ class VideoUploadFilter extends InputFilter
             ]
         );
 
-        // video
+        // video_path
         $this->add(
             [
-                'name'     => 'video',
+                'name'     => 'video_path',
                 'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
+                ],
             ]
         );
+
+        // video_file
+        $this->add(
+            [
+                'name'     => 'video_file',
+                'required' => true,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
+                ],
+            ]
+        );
+
     }
 }

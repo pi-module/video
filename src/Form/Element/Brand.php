@@ -26,6 +26,7 @@ class Brand extends Select
     {
         if (empty($this->valueOptions)) {
             // Get topic list
+            $list = [];
             $columns = ['id', 'parent', 'title'];
             $where   = ['status' => 1, 'type' => 'brand'];
             $select  = Pi::model('category', 'video')->select()->columns($columns)->where($where);

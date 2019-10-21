@@ -45,20 +45,13 @@ CREATE TABLE `{video}`
     `video_server`     INT(10) UNSIGNED        NOT NULL DEFAULT '0',
     `video_path`       VARCHAR(64)             NOT NULL DEFAULT '',
     `video_file`       VARCHAR(64)             NOT NULL DEFAULT '',
-
-    `video_qmery_hash` VARCHAR(255)
-                           CHARACTER SET utf8
-                               COLLATE utf8_bin         DEFAULT NULL,
-    `video_qmery_id`   INT(10) UNSIGNED                 DEFAULT NULL,
-    `video_qmery_hls`  VARCHAR(255)            NOT NULL DEFAULT '',
+    `video_url`       VARCHAR(256)             NOT NULL DEFAULT '',
 
     `video_size`       VARCHAR(16)             NOT NULL DEFAULT '',
     `video_duration`   VARCHAR(16)             NOT NULL DEFAULT '',
     `setting`          TEXT,
     PRIMARY KEY (`id`),
     UNIQUE KEY `slug` (`slug`),
-    UNIQUE KEY `video_qmery_hash` (`video_qmery_hash`),
-    UNIQUE KEY `video_qmery_id` (`video_qmery_id`),
     KEY `title` (`title`),
     KEY `time_create` (`time_create`),
     KEY `status` (`status`),

@@ -122,6 +122,29 @@ return [
             'module'     => 'video',
             'controller' => 'server',
             'action'     => 'index',
+
+            'pages' => [
+                'server'        => [
+                    'label'      => _a('Server'),
+                    'permission' => [
+                        'resource' => 'server',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'server',
+                    'action'     => 'index',
+                ],
+                'add'           => [
+                    'label'      => _a('Add / Manage'),
+                    'permission' => [
+                        'resource' => 'server',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'server',
+                    'action'     => 'update',
+                ],
+            ],
         ],
 
         'attribute' => [

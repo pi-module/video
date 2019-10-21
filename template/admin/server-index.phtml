@@ -1,18 +1,12 @@
 <?php $this->css($this->assetModule('css/admin.css')); ?>
 <div class="clearfix">
-    <p>
-        <a class="btn btn-primary" title="<?php _e('Add server'); ?>"
-           href="<?php echo $this->url('', ['controller' => 'server', 'action' => 'update']); ?>"><i
-                    class="fa fa-folder-open"></i> <?php _e('Add server'); ?></a>
-    </p>
-
     <h3><?php _e('List of servers'); ?></h3>
-    <table class="table table-striped table-bordered table-hover table-sm">
+    <table class="table table-striped table-bordered table-hover table-sm mt-3 mb-3">
         <tr>
             <th><?php _e('ID'); ?></th>
             <th><?php _e('Title'); ?></th>
             <th><?php _e('Type'); ?></th>
-            <th><?php _e('Url'); ?></th>
+            <th><?php _e('Address'); ?></th>
             <th><?php _e('Default'); ?></th>
             <th><?php _e('Action'); ?></th>
         </tr>
@@ -32,7 +26,14 @@
                 </td>
                 <td><?php echo $this->escape($server['title']); ?></td>
                 <td><?php echo $this->escape($server['type_view']); ?></td>
-                <td><?php echo $this->escape($server['url']); ?></td>
+                <td>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><?php _e('Url') ?> : <?php echo $this->escape($server['url']); ?></li>
+                        <?php if (!empty($server['path'])) { ?>
+                            <li class="list-inline-item"><?php _e('Path') ?> : <?php echo $this->escape($server['path']); ?></li>
+                        <?php } ?>
+                    </ul>
+                </td>
                 <td>
                     <?php if ($server['default']) { ?>
                         <span class="badge badge-success"><?php _e('Yes'); ?></span>
@@ -42,9 +43,10 @@
                 </td>
                 <td>
                     <a class="btn btn-primary btn-sm" title="<?php _e('Edit'); ?>"
-                       href="<?php echo $this->url('', ['action' => 'update', 'id' => $server['id']]); ?>"><i
-                                class="fa fa-edit"></i> <?php _e('Edit'); ?></a>
-                    <?php if ($server['type'] == 'qmery') { ?>
+                       href="<?php echo $this->url('', ['action' => 'update', 'id' => $server['id']]); ?>">
+                        <i class="fa fa-edit"></i> <?php _e('Edit'); ?>
+                    </a>
+                    <?php /* if ($server['type'] == 'qmery') { ?>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-wrench"></i> <?php _e('Update'); ?>
@@ -62,7 +64,7 @@
                                             class="fa fa-wrench"></i> <?php _e('Website videos from qmery'); ?></a>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php } */ ?>
                 </td>
             </tr>
         <?php } ?>

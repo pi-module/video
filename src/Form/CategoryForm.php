@@ -39,15 +39,6 @@ class CategoryForm extends BaseForm
 
     public function init()
     {
-        // id
-        $this->add(
-            [
-                'name'       => 'id',
-                'attributes' => [
-                    'type' => 'hidden',
-                ],
-            ]
-        );
         // parent
         if ($this->option['type'] == 'category') {
             $this->add(
@@ -65,6 +56,7 @@ class CategoryForm extends BaseForm
                 ]
             );
         }
+
         // title
         $this->add(
             [
@@ -79,6 +71,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // slug
         $this->add(
             [
@@ -93,6 +86,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // text_summary
         $this->add(
             [
@@ -108,6 +102,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // text_description
         $this->add(
             [
@@ -122,6 +117,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // type
         $this->add(
             [
@@ -140,6 +136,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // display_order
         $this->add(
             [
@@ -154,6 +151,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // display_type
         $this->add(
             [
@@ -171,6 +169,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // status
         $this->add(
             [
@@ -190,6 +189,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // Image
         if ($this->thumbUrl) {
             $this->add(
@@ -237,6 +237,7 @@ class CategoryForm extends BaseForm
                 ]
             );
         }
+
         // image_wide
         $this->add(
             [
@@ -251,6 +252,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // extra
         $this->add(
             [
@@ -261,6 +263,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // seo_title
         $this->add(
             [
@@ -276,6 +279,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // seo_keywords
         $this->add(
             [
@@ -291,6 +295,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // seo_description
         $this->add(
             [
@@ -306,6 +311,7 @@ class CategoryForm extends BaseForm
                 ],
             ]
         );
+
         // Save
         $this->add(
             [

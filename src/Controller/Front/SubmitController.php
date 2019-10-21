@@ -17,8 +17,8 @@ use Module\Video\Form\VideoAdditionalFilter;
 use Module\Video\Form\VideoAdditionalForm;
 use Module\Video\Form\VideoFilter;
 use Module\Video\Form\VideoForm;
-use Module\Video\Form\VideoUploadFilter;
-use Module\Video\Form\VideoUploadForm;
+use Module\Video\Form\VideoPutFilter;
+use Module\Video\Form\VideoPutForm;
 use Pi;
 use Pi\File\Transfer\Upload;
 use Pi\Filter;
@@ -62,12 +62,12 @@ class SubmitController extends IndexController
         $option         = [];
         $option['side'] = 'front';
         // Set form
-        $form = new VideoUploadForm('video', $option);
+        $form = new VideoPutForm('video', $option);
         $form->setAttribute('enctype', 'multipart/form-data');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $file = $this->request->getFiles()->toArray();
-            $form->setInputFilter(new VideoUploadFilter);
+            $form->setInputFilter(new VideoPutFilter);
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();

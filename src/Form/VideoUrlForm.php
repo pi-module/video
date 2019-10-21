@@ -16,7 +16,7 @@ namespace Module\Video\Form;
 use Pi;
 use Pi\Form\Form as BaseForm;
 
-class VideoExternalForm extends BaseForm
+class VideoUrlForm extends BaseForm
 {
     public function __construct($name = null, $option = [])
     {
@@ -27,22 +27,13 @@ class VideoExternalForm extends BaseForm
     public function getInputFilter()
     {
         if (!$this->filter) {
-            $this->filter = new VideoExternalFilter($this->option);
+            $this->filter = new VideoUrlFilter($this->option);
         }
         return $this->filter;
     }
 
     public function init()
     {
-        // id
-        $this->add(
-            [
-                'name'       => 'id',
-                'attributes' => [
-                    'type' => 'hidden',
-                ],
-            ]
-        );
         // slug
         $this->add(
             [
@@ -52,20 +43,22 @@ class VideoExternalForm extends BaseForm
                 ],
             ]
         );
-        // external_link
+
+        // video_url
         $this->add(
             [
-                'name'       => 'external_link',
+                'name'       => 'video_url',
                 'options'    => [
-                    'label' => __('External link'),
+                    'label' => __('Video full url'),
                 ],
                 'attributes' => [
                     'type'        => 'text',
-                    'description' => __('External link of video from youtube or aparat or video direct link'),
+                    'description' => __('Full video link, based on your selected server mp4 or hls player loaded for play your video'),
                     'required'    => true,
                 ],
             ]
         );
+
         // Save
         $this->add(
             [

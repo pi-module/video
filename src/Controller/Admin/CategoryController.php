@@ -24,31 +24,24 @@ use Zend\Db\Sql\Predicate\Expression;
 
 class CategoryController extends ActionController
 {
-    /**
-     * Image Prefix
-     */
     protected $ImageCategoryPrefix = 'category-';
 
-    /**
-     * index Action
-     */
     public function indexAction()
     {
         $type = $this->params('type', 'category');
+
         // Set count
         $where  = ['type' => $type];
         $count  = ['count' => new Expression('count(*)')];
         $select = $this->getModel('category')->select()->columns($count)->where($where);
         $count  = $this->getModel('category')->selectWith($select)->current()->count;
+
         // Set view
         $this->view()->setTemplate('category-index');
         $this->view()->assign('count', $count);
         $this->view()->assign('type', $type);
     }
 
-    /**
-     * update Action
-     */
     public function updateAction()
     {
         // Get id
@@ -59,6 +52,7 @@ class CategoryController extends ActionController
             'isNew' => true,
             'type'  => $type,
         ];
+
         // Find category
         if ($id) {
             $category = $this->getModel('category')->find($id)->toArray();
@@ -69,21 +63,25 @@ class CategoryController extends ActionController
             }
             $option['isNew'] = false;
         }
+
         // Set form
         $form = new CategoryForm('category', $option);
         $form->setAttribute('enctype', 'multipart/form-data');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $file = $this->request->getFiles();
+
             // Set slug
             $slug         = ($data['slug']) ? $data['slug'] : $data['title'];
             $filter       = new Filter\Slug;
             $data['slug'] = $filter($slug);
+
             // Form filter
             $form->setInputFilter(new CategoryFilter($option));
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
+
                 // upload image
                 if (!empty($file['image']['name'])) {
                     // Set upload path
@@ -109,10 +107,12 @@ class CategoryController extends ActionController
                 } elseif (!isset($values['image'])) {
                     $values['image'] = '';
                 }
+
                 // Set seo_title
                 $title               = ($values['seo_title']) ? $values['seo_title'] : $values['title'];
                 $filter              = new Filter\HeadTitle;
                 $values['seo_title'] = $filter($title);
+
                 // Set seo_keywords
                 $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
                 $filter   = new Filter\HeadKeywords;
@@ -122,44 +122,56 @@ class CategoryController extends ActionController
                     ]
                 );
                 $values['seo_keywords'] = $filter($keywords);
+
                 // Set seo_description
                 $description               = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
                 $filter                    = new Filter\HeadDescription;
                 $values['seo_description'] = $filter($description);
+
                 // Set time
                 if (empty($values['id'])) {
                     $values['time_create'] = time();
+                    $values['display_order'] = 1;
+                    if (empty($values['parent'])) {
+                        $values['parent'] = 0;
+                    }
                 }
                 $values['time_update'] = time();
+
                 // Save values
-                if (!empty($values['id'])) {
-                    $row = $this->getModel('category')->find($values['id']);
+                if (!empty($id)) {
+                    $row = $this->getModel('category')->find($id);
                 } else {
                     $row = $this->getModel('category')->createRow();
                 }
                 $row->assign($values);
                 $row->save();
+
                 // Add / Edit sitemap
                 if (Pi::service('module')->isActive('sitemap')) {
                     // Set loc
                     $loc = Pi::url(
                         $this->url(
                             'video', [
-                            'module'     => $module,
-                            'controller' => 'category',
-                            'slug'       => $values['slug'],
-                        ]
+                                'module'     => $module,
+                                'controller' => 'category',
+                                'slug'       => $values['slug'],
+                            ]
                         )
                     );
                     // Update sitemap
                     Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->status, $module, 'category', $row->id);
                 }
+
                 // Clear registry
                 Pi::registry('categoryList', 'video')->clear();
                 Pi::registry('categoryRoute', 'video')->clear();
+
                 // Add log
                 $operation = (empty($values['id'])) ? 'add' : 'edit';
                 Pi::api('log', 'video')->addLog('category', $row->id, $operation);
+
+                // Jump
                 $message = __('Category data saved successfully.');
                 $this->jump(['action' => 'index', 'type' => $type], $message);
             }
@@ -168,6 +180,7 @@ class CategoryController extends ActionController
                 $form->setData($category);
             }
         }
+
         // Set view
         $this->view()->setTemplate('category-update');
         $this->view()->assign('form', $form);
@@ -179,8 +192,10 @@ class CategoryController extends ActionController
     {
         // Get id and status
         $id = $this->params('id');
+
         // set category
         $category = $this->getModel('category')->find($id);
+
         // Check
         if ($category && !empty($id)) {
             // remove file
@@ -230,7 +245,6 @@ class CategoryController extends ActionController
         }
         $columns = ['id', 'title', 'slug', 'status', 'display_order', 'type'];
 
-
         if (isset($sort['id'])) {
             if ($sort['id'] == 'asc') {
                 $order = ['id ASC'];
@@ -257,6 +271,7 @@ class CategoryController extends ActionController
         $limit  = intval($rowCount);
         $select = $this->getModel('category')->select()->columns($columns)->where($where)->order($order)->offset($offset)->limit($limit);
         $rowset = $this->getModel('category')->selectWith($select);
+
         // Make list
         foreach ($rowset as $row) {
             $rows[] = [
@@ -267,29 +282,31 @@ class CategoryController extends ActionController
                 'view_url'      => Pi::url(
                     $this->url(
                         'video', [
-                        'module'     => $module,
-                        'controller' => 'category',
-                        'slug'       => $row->slug,
-                    ]
+                            'module'     => $module,
+                            'controller' => 'category',
+                            'slug'       => $row->slug,
+                        ]
                     )
                 ),
                 'edit_url'      => Pi::url(
                     $this->url(
                         'admin', [
-                        'module'     => $module,
-                        'controller' => 'category',
-                        'action'     => 'update',
-                        'type'       => $row->type,
-                        'id'         => $row->id,
-                    ]
+                            'module'     => $module,
+                            'controller' => 'category',
+                            'action'     => 'update',
+                            'type'       => $row->type,
+                            'id'         => $row->id,
+                        ]
                     )
                 ),
             ];
         }
+
         // Set count
         $count  = ['count' => new Expression('count(*)')];
         $select = $this->getModel('category')->select()->columns($count)->where($where);
         $count  = $this->getModel('category')->selectWith($select)->current()->count;
+
         // Set result
         $result = [
             'current'  => $current,
@@ -310,10 +327,13 @@ class CategoryController extends ActionController
 
         // Check confirm
         if ($confirm == 1) {
+
             // Get category list
             $categoryList = Pi::registry('categoryList', 'video')->read();
+
             // Server list
             $serverList = Pi::registry('serverList', 'video')->read();
+
             // Get videos and send
             $where  = [
                 'id > ?' => $start,
@@ -353,14 +373,17 @@ class CategoryController extends ActionController
                 $lastId = $video['id'];
                 $complete++;
             }
+
             // Get count
             if (!$count) {
                 $columns = ['count' => new Expression('count(*)')];
                 $select  = $this->getModel('video')->select()->columns($columns);
                 $count   = $this->getModel('video')->selectWith($select)->current()->count;
             }
+
             // Set complete
             $percent = (100 * $complete) / $count;
+
             // Set next url
             if ($complete >= $count) {
                 $nextUrl = '';
@@ -368,12 +391,12 @@ class CategoryController extends ActionController
                 $nextUrl = Pi::url(
                     $this->url(
                         '', [
-                        'action'   => 'sync',
-                        'start'    => $lastId,
-                        'count'    => $count,
-                        'complete' => $complete,
-                        'confirm'  => $confirm,
-                    ]
+                            'action'   => 'sync',
+                            'start'    => $lastId,
+                            'count'    => $count,
+                            'complete' => $complete,
+                            'confirm'  => $confirm,
+                        ]
                     )
                 );
             }
@@ -393,12 +416,13 @@ class CategoryController extends ActionController
             $nextUrl = Pi::url(
                 $this->url(
                     '', [
-                    'action'  => 'sync',
-                    'confirm' => 1,
-                ]
+                        'action'  => 'sync',
+                        'confirm' => 1,
+                    ]
                 )
             );
         }
+
         // Set view
         $this->view()->setTemplate('category-sync');
         $this->view()->assign('nextUrl', $nextUrl);
@@ -419,8 +443,10 @@ class CategoryController extends ActionController
         $info          = [];
         $videosId      = [];
         $percent       = 0;
+
         // Set option
         $option = [];
+
         // Set form
         $form = new CategoryMergeForm('category', $option);
         $form->setAttribute('enctype', 'multipart/form-data');
@@ -432,20 +458,20 @@ class CategoryController extends ActionController
             if ($form->isValid()) {
                 $values = $form->getData();
 
-
                 // Set redirect
                 return $this->redirect()->toRoute(
-                    '', [
-                    'controller'    => 'category',
-                    'action'        => 'merge',
-                    'categoryFrom1' => $values['category_from_1'],
-                    'categoryFrom2' => $values['category_from_2'],
-                    'categoryTo'    => $values['category_to'],
-                    'whereType'     => $values['where_type'],
-                    'start'         => 0,
-                    'complete'      => 0,
-                    'count'         => 0,
-                ]
+                    '',
+                    [
+                        'controller'    => 'category',
+                        'action'        => 'merge',
+                        'categoryFrom1' => $values['category_from_1'],
+                        'categoryFrom2' => $values['category_from_2'],
+                        'categoryTo'    => $values['category_to'],
+                        'whereType'     => $values['where_type'],
+                        'start'         => 0,
+                        'complete'      => 0,
+                        'count'         => 0,
+                    ]
                 );
 
             }
@@ -591,16 +617,16 @@ class CategoryController extends ActionController
                 $nextUrl = Pi::url(
                     $this->url(
                         '', [
-                        'controller'    => 'category',
-                        'action'        => 'merge',
-                        'categoryFrom1' => $categoryFrom1,
-                        'categoryFrom2' => $categoryFrom2,
-                        'categoryTo'    => $categoryTo,
-                        'whereType'     => $whereType,
-                        'start'         => $lastId,
-                        'count'         => $count,
-                        'complete'      => $complete,
-                    ]
+                            'controller'    => 'category',
+                            'action'        => 'merge',
+                            'categoryFrom1' => $categoryFrom1,
+                            'categoryFrom2' => $categoryFrom2,
+                            'categoryTo'    => $categoryTo,
+                            'whereType'     => $whereType,
+                            'start'         => $lastId,
+                            'count'         => $count,
+                            'complete'      => $complete,
+                        ]
                     )
                 );
             }

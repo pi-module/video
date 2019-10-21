@@ -20,13 +20,6 @@ class CategoryFilter extends InputFilter
 {
     public function __construct($option)
     {
-        // id
-        $this->add(
-            [
-                'name'     => 'id',
-                'required' => false,
-            ]
-        );
         // parent
         if ($option['type'] == 'category') {
             $this->add(
@@ -36,6 +29,7 @@ class CategoryFilter extends InputFilter
                 ]
             );
         }
+
         // title
         $this->add(
             [
@@ -48,6 +42,7 @@ class CategoryFilter extends InputFilter
                 ],
             ]
         );
+
         // slug
         $this->add(
             [
@@ -68,6 +63,7 @@ class CategoryFilter extends InputFilter
                 ],
             ]
         );
+
         // text_summary
         $this->add(
             [
@@ -80,6 +76,7 @@ class CategoryFilter extends InputFilter
                 ],
             ]
         );
+
         // text_description
         $this->add(
             [
@@ -92,6 +89,7 @@ class CategoryFilter extends InputFilter
                 ],
             ]
         );
+
         // type
         $this->add(
             [
@@ -99,6 +97,7 @@ class CategoryFilter extends InputFilter
                 'required' => true,
             ]
         );
+
         // display_order
         $this->add(
             [
@@ -106,6 +105,7 @@ class CategoryFilter extends InputFilter
                 'required' => false,
             ]
         );
+
         // display_type
         $this->add(
             [
@@ -113,6 +113,7 @@ class CategoryFilter extends InputFilter
                 'required' => true,
             ]
         );
+
         // status
         $this->add(
             [
@@ -120,6 +121,7 @@ class CategoryFilter extends InputFilter
                 'required' => true,
             ]
         );
+
         // image
         $this->add(
             [
@@ -127,6 +129,7 @@ class CategoryFilter extends InputFilter
                 'required' => false,
             ]
         );
+
         // image_wide
         $this->add(
             [
@@ -139,6 +142,7 @@ class CategoryFilter extends InputFilter
                 ],
             ]
         );
+
         // seo_title
         $this->add(
             [
@@ -151,6 +155,7 @@ class CategoryFilter extends InputFilter
                 ],
             ]
         );
+
         // seo_keywords
         $this->add(
             [
@@ -163,6 +168,7 @@ class CategoryFilter extends InputFilter
                 ],
             ]
         );
+
         // seo_description
         $this->add(
             [
@@ -176,4 +182,4 @@ class CategoryFilter extends InputFilter
             ]
         );
     }
-}    	
+}

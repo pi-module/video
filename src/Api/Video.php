@@ -226,10 +226,10 @@ class Video extends AbstractApi
                     $url = Pi::url(
                         Pi::service('url')->assemble(
                             'plans', [
-                            'module'     => 'plans',
-                            'controller' => 'index',
-                            'action'     => 'index',
-                        ]
+                                'module'     => 'plans',
+                                'controller' => 'index',
+                                'action'     => 'index',
+                            ]
                         )
                     );
                 }
@@ -250,11 +250,11 @@ class Video extends AbstractApi
                             $url = Pi::url(
                                 Pi::service('url')->assemble(
                                     'video', [
-                                    'module'     => 'video',
-                                    'controller' => 'order',
-                                    'action'     => 'index',
-                                    'video'      => $video['id'],
-                                ]
+                                        'module'     => 'video',
+                                        'controller' => 'order',
+                                        'action'     => 'index',
+                                        'video'      => $video['id'],
+                                    ]
                                 )
                             );
                             break;
@@ -283,160 +283,78 @@ class Video extends AbstractApi
         if (empty($video)) {
             return '';
         }
+
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
+
         // Get category list
         $categoryList = (empty($categoryList)) ? Pi::registry('categoryList', 'video')->read() : $categoryList;
+
         // Get server list
         $serverList = (empty($serverList)) ? Pi::registry('serverList', 'video')->read() : $serverList;
+
         // boject to array
         $video = $video->toArray();
+
         // Check title
         if (empty($video['title'])) {
             $video['title'] = sprintf(__('Submitted video on %s'), _date($video['time_create']));
         }
+
         // Set server information
         $video['server'] = $serverList[$video['video_server']];
+
         // Make setting
-        $video['setting'] = json_decode($video['setting'], true);;
+        $video['setting'] = json_decode($video['setting'], true);
+
         // Set text_summary
         $video['text_summary'] = Pi::service('markup')->render($video['text_summary'], 'html', 'html');
+
         // Set text_description
         $video['text_description'] = Pi::service('markup')->render($video['text_description'], 'html', 'html');
+
         // Set times
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
+
         // Set video url
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
                 'video', [
-                'module'     => $this->getModule(),
-                'controller' => 'watch',
-                'slug'       => $video['slug'],
-            ]
+                    'module'     => $this->getModule(),
+                    'controller' => 'watch',
+                    'slug'       => $video['slug'],
+                ]
             )
         );
+
         // Set channel url
         $video['channelUrl'] = Pi::url(
             Pi::service('url')->assemble(
                 'video', [
-                'module'     => $this->getModule(),
-                'controller' => 'channel',
-                'id'         => $video['uid'],
+                    'module'     => $this->getModule(),
+                    'controller' => 'channel',
+                    'id'         => $video['uid'],
+                ]
+            )
+        );
+
+
+        $video['videoPlayerUrl'] = Pi::api('serverService', 'video')->getUrl(
+            $video['server']['type'],
+            [
+                'serverUrl'  => $video['server']['url'],
+                'serverPath' => $video['server']['path'],
+                'videoPath'  => $video['video_path'],
+                'videoName'  => $video['video_file'],
             ]
-            )
         );
-        // Set local server path
-        $video['localFilePath'] = Pi::path(
-            sprintf(
-                '%s/%s',
-                $video['video_path'],
-                $video['video_file']
-            )
-        );
-        // Set video file url
-        switch ($video['server']['type']) {
-            case 'file':
-                $video['videoFileUrl'] = sprintf(
-                    '%s/%s/%s',
-                    $video['server']['url'],
-                    $video['video_path'],
-                    $video['video_file']
-                );
-                break;
 
-            case 'qmery':
-                $video['videoFileUrl']          = sprintf(
-                    '%s/v/%s',
-                    $video['server']['url'],
-                    $video['video_qmery_hash']
-                );
-                $video['qmeryIframe']           = sprintf(
-                    '%s/v/%s',
-                    $video['server']['url'],
-                    $video['video_qmery_hash']
-                );
-                $video['qmeryScript']           = sprintf(
-                    '%s/embed.js?video=%s&w=%s&h=%s',
-                    $video['server']['url'],
-                    $video['video_qmery_hash'],
-                    640,
-                    360
-                );
-                $video['qmeryScriptResponsive'] = sprintf(
-                    '%s/embed.js?video=%s&asp=16:9',
-                    $video['server']['url'],
-                    $video['video_qmery_hash']
-                );
-                $video['qmeryScriptFullSize']   = sprintf(
-                    '%s/embed.js?video=%s',
-                    $video['server']['url'],
-                    $video['video_qmery_hash']
-                );
-                $video['qmeryDirect']           = sprintf(
-                    '%s/v/%s',
-                    $video['server']['url'],
-                    $video['video_qmery_hash']
-                );
-                $video['qmeryJson']             = sprintf(
-                    '%s/video/%s.json',
-                    $video['server']['url'],
-                    $video['video_qmery_hash']
-                );
-                break;
+        d($video['videoPlayerUrl']);
 
-            case 'wowza':
-                $video['videoFileUrl'] = sprintf(
-                    'http://%s/%s',
-                    $video['server']['url'],
-                    $video['video_file']
-                );
-
-                $video['mpegDashUrl'] = sprintf(
-                    'http://%s/%s/manifest.mpd',
-                    $video['server']['url'],
-                    $video['video_file']
-                );
-
-                $video['adobeHdsUrl'] = sprintf(
-                    'http://%s/%s/manifest.f4m',
-                    $video['server']['url'],
-                    $video['video_file']
-                );
-
-                $video['jwplayerUrl'] = sprintf(
-                    'http://%s/%s/jwplayer.mpd',
-                    $video['server']['url'],
-                    $video['video_file']
-                );
-
-                $video['iosUrl'] = sprintf(
-                    'http://%s/%s/playlist.m3u8',
-                    $video['server']['url'],
-                    $video['video_file']
-                );
-
-                $video['androidUrl'] = sprintf(
-                    'rtsp://%s/%s',
-                    $video['server']['url'],
-                    $video['video_file']
-                );
-
-                $video['rtspUrl'] = sprintf(
-                    'rtsp://%s/%s',
-                    $video['server']['url'],
-                    $video['video_file']
-                );
-
-                $video['rtmpUrl'] = sprintf(
-                    'rtmp://%s/%s',
-                    $video['server']['url'],
-                    $video['video_file']
-                );
-                break;
-        }
         // Set video duration
         $video['video_duration_view'] = $this->getDuration($video['video_duration']);
+
         // Set category information
         $video['category'] = json_decode($video['category']);
         foreach ($video['category'] as $category) {
@@ -445,14 +363,15 @@ class Video extends AbstractApi
                 $video['categories'][$category]['url']   = Pi::url(
                     Pi::service('url')->assemble(
                         'video', [
-                        'module'     => $this->getModule(),
-                        'controller' => 'category',
-                        'slug'       => $categoryList[$category]['slug'],
-                    ]
+                            'module'     => $this->getModule(),
+                            'controller' => 'category',
+                            'slug'       => $categoryList[$category]['slug'],
+                        ]
                     )
                 );
             }
         }
+
         // Set image url
         if ($video['image']) {
             // Set image original url
@@ -492,6 +411,23 @@ class Video extends AbstractApi
                 )
             );
         }
+
+        // Set player
+        $video['player'] = [
+            'type'     => $video['server']['type'] == 'file' ? 'mp4' : 'hls',
+            'mimetype' => 'application/x-mpegURL',
+            'source'   => [
+                [
+                    'url'   => $video['videoPlayerUrl'],
+                    'title' => 'Normal Quality',
+                ],
+            ],
+            'layout'   => [
+                'title'       => $video['title'],
+                'posterImage' => $video['largeUrl'],
+            ],
+        ];
+
         // return video
         return $video;
     }
@@ -519,20 +455,20 @@ class Video extends AbstractApi
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
                 'video', [
-                'module'     => $this->getModule(),
-                'controller' => 'watch',
-                'slug'       => $video['slug'],
-            ]
+                    'module'     => $this->getModule(),
+                    'controller' => 'watch',
+                    'slug'       => $video['slug'],
+                ]
             )
         );
         // Set channel url
         $video['channelUrl'] = Pi::url(
             Pi::service('url')->assemble(
                 'video', [
-                'module'     => $this->getModule(),
-                'controller' => 'channel',
-                'id'         => $video['uid'],
-            ]
+                    'module'     => $this->getModule(),
+                    'controller' => 'channel',
+                    'id'         => $video['uid'],
+                ]
             )
         );
         // Set image url
@@ -591,20 +527,20 @@ class Video extends AbstractApi
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
                 'video', [
-                'module'     => $this->getModule(),
-                'controller' => 'watch',
-                'slug'       => $video['slug'],
-            ]
+                    'module'     => $this->getModule(),
+                    'controller' => 'watch',
+                    'slug'       => $video['slug'],
+                ]
             )
         );
         // Set channel url
         $video['channelUrl'] = Pi::url(
             Pi::service('url')->assemble(
                 'video', [
-                'module'     => $this->getModule(),
-                'controller' => 'channel',
-                'id'         => $video['uid'],
-            ]
+                    'module'     => $this->getModule(),
+                    'controller' => 'channel',
+                    'id'         => $video['uid'],
+                ]
             )
         );
         // Set video file url
@@ -714,10 +650,10 @@ class Video extends AbstractApi
                 $video['categories'][$category]['url']   = Pi::url(
                     Pi::service('url')->assemble(
                         'video', [
-                        'module'     => $this->getModule(),
-                        'controller' => 'category',
-                        'slug'       => $categoryList[$category]['slug'],
-                    ]
+                            'module'     => $this->getModule(),
+                            'controller' => 'category',
+                            'slug'       => $categoryList[$category]['slug'],
+                        ]
                     )
                 );
             }
@@ -804,20 +740,20 @@ class Video extends AbstractApi
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
                 'video', [
-                'module'     => $this->getModule(),
-                'controller' => 'watch',
-                'slug'       => $video['slug'],
-            ]
+                    'module'     => $this->getModule(),
+                    'controller' => 'watch',
+                    'slug'       => $video['slug'],
+                ]
             )
         );
         // Set channel url
         $video['channelUrl'] = Pi::url(
             Pi::service('url')->assemble(
                 'video', [
-                'module'     => $this->getModule(),
-                'controller' => 'channel',
-                'id'         => $video['uid'],
-            ]
+                    'module'     => $this->getModule(),
+                    'controller' => 'channel',
+                    'id'         => $video['uid'],
+                ]
             )
         );
         // Set category information
@@ -829,10 +765,10 @@ class Video extends AbstractApi
                 $video['categories'][$category]['url']   = Pi::url(
                     Pi::service('url')->assemble(
                         'video', [
-                        'module'     => $this->getModule(),
-                        'controller' => 'category',
-                        'slug'       => $categoryList[$category]['slug'],
-                    ]
+                            'module'     => $this->getModule(),
+                            'controller' => 'category',
+                            'slug'       => $categoryList[$category]['slug'],
+                        ]
                     )
                 );
             }
@@ -911,10 +847,10 @@ class Video extends AbstractApi
                 $loc = Pi::url(
                     Pi::service('url')->assemble(
                         'video', [
-                        'module'     => $this->getModule(),
-                        'controller' => 'watch',
-                        'slug'       => $row->slug,
-                    ]
+                            'module'     => $this->getModule(),
+                            'controller' => 'watch',
+                            'slug'       => $row->slug,
+                        ]
                     )
                 );
                 // Add to sitemap

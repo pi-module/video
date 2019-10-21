@@ -57,9 +57,6 @@ if ($video['server']['type'] == 'wowza') {
 EOT;
     $script = sprintf($script, $video['mpegDashUrl']);
     $this->footScript()->appendScript($script);
-} elseif ($video['server']['type'] == 'qmery') {
-    $this->jQuery();
-    $this->headScript()->appendFile($video['qmeryScript']);
 }
 ?>
 <div class="clearfix">
@@ -99,17 +96,13 @@ EOT;
         <h1><?php echo $this->escape($video['title']); ?></h1>
     </div>
     <div class="text-center video-player-box col-lg-8 col-md-8 col-md-offset-2">
+
+
+
+
+
         <?php if ($video['server']['type'] == 'file') { ?>
             <?php echo $this->videojs($video['videoFileUrl'], $video['largeUrl']); ?>
-        <?php } elseif ($video['server']['type'] == 'qmery') { ?>
-            <div class="qmery-player-min-height">
-                <div class="qmery-player-full-height">
-                    <div class="qmery-player">
-                        <div id="embed_qmery_player_<?php echo $this->escape($video['video_qmery_id']); ?>"></div>
-                        <div id="embed_qmery_player_icons<?php echo $this->escape($video['video_qmery_id']); ?>"></div>
-                    </div>
-                </div>
-            </div>
         <?php } elseif ($video['server']['type'] == 'wowza') { ?>
             <div class="clearfix">
                 <div id="videoContainer" class="overlay-parent">
@@ -158,6 +151,12 @@ EOT;
                     </div>
                 </div>
             </div>
+        <?php } else { ?>
+            <div class="clearfix">
+                <?php echo $this->video($video['player']); ?>
+            </div>
         <?php } ?>
+
+
     </div>
 </div>

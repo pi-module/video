@@ -20,13 +20,6 @@ class ServerFilter extends InputFilter
 {
     public function __construct()
     {
-        // id
-        $this->add(
-            [
-                'name'     => 'id',
-                'required' => false,
-            ]
-        );
         // title
         $this->add(
             [
@@ -39,6 +32,7 @@ class ServerFilter extends InputFilter
                 ],
             ]
         );
+
         // status
         $this->add(
             [
@@ -46,6 +40,7 @@ class ServerFilter extends InputFilter
                 'required' => false,
             ]
         );
+
         // type
         $this->add(
             [
@@ -53,6 +48,7 @@ class ServerFilter extends InputFilter
                 'required' => false,
             ]
         );
+
         // url
         $this->add(
             [
@@ -65,6 +61,20 @@ class ServerFilter extends InputFilter
                 ],
             ]
         );
+
+        // path
+        $this->add(
+            [
+                'name'     => 'path',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
+                ],
+            ]
+        );
+
         // default
         $this->add(
             [
@@ -72,10 +82,11 @@ class ServerFilter extends InputFilter
                 'required' => false,
             ]
         );
-        // qmery_token
+
+        // token
         $this->add(
             [
-                'name'     => 'qmery_token',
+                'name'     => 'token',
                 'required' => false,
                 'filters'  => [
                     [
@@ -84,10 +95,11 @@ class ServerFilter extends InputFilter
                 ],
             ]
         );
-        // qmery_refresh_value
+
+        // username
         $this->add(
             [
-                'name'     => 'qmery_refresh_value',
+                'name'     => 'username',
                 'required' => false,
                 'filters'  => [
                     [
@@ -96,48 +108,11 @@ class ServerFilter extends InputFilter
                 ],
             ]
         );
-        // qmery_group_id
+
+        // password
         $this->add(
             [
-                'name'     => 'qmery_group_id',
-                'required' => false,
-                'filters'  => [
-                    [
-                        'name' => 'StringTrim',
-                    ],
-                ],
-            ]
-        );
-        // qmery_group_hash
-        $this->add(
-            [
-                'name'     => 'qmery_group_hash',
-                'required' => false,
-                'filters'  => [
-                    [
-                        'name' => 'StringTrim',
-                    ],
-                ],
-            ]
-        );
-        // qmery_import
-        $this->add(
-            [
-                'name'     => 'qmery_import',
-                'required' => false,
-            ]
-        );
-        // qmery_show_embed
-        $this->add(
-            [
-                'name'     => 'qmery_show_embed',
-                'required' => false,
-            ]
-        );
-        // qmery_player_type
-        $this->add(
-            [
-                'name'     => 'qmery_player_type',
+                'name'     => 'password',
                 'required' => false,
                 'filters'  => [
                     [

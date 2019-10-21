@@ -20,13 +20,6 @@ class VideoFilter extends InputFilter
 {
     public function __construct($option = [])
     {
-        // id
-        $this->add(
-            [
-                'name'     => 'id',
-                'required' => false,
-            ]
-        );
         // title
         $this->add(
             [
@@ -39,6 +32,7 @@ class VideoFilter extends InputFilter
                 ],
             ]
         );
+
         // slug
         $this->add(
             [
@@ -59,6 +53,7 @@ class VideoFilter extends InputFilter
                 ],
             ]
         );
+
         // text_summary
         $this->add(
             [
@@ -71,6 +66,7 @@ class VideoFilter extends InputFilter
                 ],
             ]
         );
+
         // text_description
         $this->add(
             [
@@ -83,6 +79,7 @@ class VideoFilter extends InputFilter
                 ],
             ]
         );
+
         // status
         $this->add(
             [
@@ -90,6 +87,7 @@ class VideoFilter extends InputFilter
                 'required' => true,
             ]
         );
+
         // category
         $this->add(
             [
@@ -97,6 +95,7 @@ class VideoFilter extends InputFilter
                 'required' => true,
             ]
         );
+
         // category_main
         $this->add(
             [
@@ -107,6 +106,7 @@ class VideoFilter extends InputFilter
                 ],
             ]
         );
+
         // brand
         if ($option['brand_system']) {
             $this->add(
@@ -116,6 +116,7 @@ class VideoFilter extends InputFilter
                 ]
             );
         }
+
         // image
         $this->add(
             [
@@ -123,6 +124,7 @@ class VideoFilter extends InputFilter
                 'required' => false,
             ]
         );
+
         // video_duration
         $this->add(
             [
@@ -130,6 +132,7 @@ class VideoFilter extends InputFilter
                 'required' => false,
             ]
         );
+
         // Check is admin
         if ($option['side'] == 'admin') {
             switch ($option['sale_video']) {
@@ -161,6 +164,7 @@ class VideoFilter extends InputFilter
                     break;
             }
         }
+
         // seo_title
         $this->add(
             [
@@ -173,6 +177,7 @@ class VideoFilter extends InputFilter
                 ],
             ]
         );
+
         // seo_keywords
         $this->add(
             [
@@ -185,6 +190,7 @@ class VideoFilter extends InputFilter
                 ],
             ]
         );
+
         // seo_description
         $this->add(
             [
@@ -197,6 +203,7 @@ class VideoFilter extends InputFilter
                 ],
             ]
         );
+
         // tag
         if (Pi::service('module')->isActive('tag')) {
             $this->add(
