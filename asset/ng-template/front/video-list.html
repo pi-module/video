@@ -1,4 +1,4 @@
-<div class="clearfix pi-item-list">
+<div class="clearfix row pi-item-list mt-3 mb-3">
     <div class="col-lg-3 col-md-3 col-12">
         <div class="pi-item-search-form clearfix card card-body bg-light mb-3">
             <div class="page-header">
@@ -15,17 +15,8 @@
             <form id="list-filter" ng-submit="filterAction()">
                 <div class="form-group">
                     <label>{{'TITLE' | translate}}</label>
-                    <input type="text" class="form-control" ng-model="filter.title" ng-change="filterAction()"
-                           ng-model-options="{ debounce: 5000 }">
+                    <input type="text" class="form-control" ng-model="filter.title" ng-change="filterAction()" ng-model-options="{ debounce: 5000 }">
                 </div>
-                <!-- <div class="form-group">
-                    <label>{{'MARKETABLE' | translate}}</label>
-                    <select ng-model="filter.marketable" class="form-control">
-                        <option value="">{{'ALL' | translate}}</option>
-                        <option value="1">{{'MARKETABLE' | translate}}</option>
-                        <option value="0">{{'NOT_MARKETABLE' | translate}}</option>
-                    </select>
-                </div> -->
                 <div ng-if="filterList">
                     <div ng-repeat="filterSingle in filterList">
                         <div ng-if="filterSingle.type == 'text'">
@@ -57,46 +48,40 @@
             </form>
         </div>
     </div>
-    <div class="col-lg-9 col-lg-9 col-md-9 col-12">
-        <div class="clearfix">
-            <div class="page-header">
-                <h1>{{condition.title}}</h1>
-            </div>
-            <div ng-show="videos.length">
-                <div class="row">
-                    <div ng-repeat="video in videos">
-                        <div class="col-lg-4 col-md-4 col-12 pi-item-box">
-                            <div class="card">
-                                <a class="u-url card-img-top {{video.ribbon_class}}" itemprop="url" title="{{video.title}}"
-                                   href="{{video.videoUrl}}" target="_blank">
-                                    <img itemprop="image" class="img-fluid u-photo" src="{{video.thumbUrl}}"
-                                         alt="{{video.title}}"/>
-                                    <p ng-if="video.ribbon">
-                                        <span>{{video.ribbon}}</span>
-                                    </p>
-                                </a>
-                                <div class="card-body">
-                                    <h3 class="card-title">
-                                        <a title="{{video.title}}" href="{{video.videoUrl}}" target="_blank">
-                                            {{video.title}}
-                                        </a>
-                                    </h3>
-                                </div>
+    <div class="col-lg-9 col-md-9 col-12">
+            <h1>{{condition.title}}</h1>
+        <div ng-show="videos.length">
+            <div class="clearfix row">
+                <div ng-repeat="video in videos">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="card">
+                            <a class="card-img-top u-url {{video.ribbon_class}}" itemprop="url" title="{{video.title}}" href="{{video.videoUrl}}" target="_blank">
+                                <img itemprop="image" class="img-fluid u-photo" src="{{video.thumbUrl}}" alt="{{video.title}}"/>
+                                <p ng-if="video.ribbon">
+                                    <span>{{video.ribbon}}</span>
+                                </p>
+                            </a>
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    <a title="{{video.title}}" href="{{video.videoUrl}}" target="_blank">
+                                        {{video.title}}
+                                    </a>
+                                </h3>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="pi-paginator">
-                    <pagination ng-if="paginator.count > paginator.limit"
-                                total-items="paginator.count" page="paginator.page" max-size="10"
-                                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
-                                boundary-links="true" items-per-page="paginator.limit">
-                    </pagination>
-                </div>
             </div>
-            <div class="alert alert-info" ng-if="!videos.length">
-                {{'NONE_VIDEO' | translate}}
+            <div class="pi-paginator">
+                <pagination ng-if="paginator.count > paginator.limit"
+                            total-items="paginator.count" page="paginator.page" max-size="10"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                            boundary-links="true" items-per-page="paginator.limit">
+                </pagination>
             </div>
+        </div>
+        <div class="alert alert-info" ng-if="!videos.length">
+            {{'NONE_VIDEO' | translate}}
         </div>
     </div>
 </div>
