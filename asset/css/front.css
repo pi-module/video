@@ -181,13 +181,3 @@
 .category-width-image {
     margin-bottom: 15px;
 }
-
-/* player */
-.qmery-player-min-height {
-    min-height: 420px !important;
-    z-index: 999 !important;
-}
-
-.qmery-player-full-heigh {
-    height: 100% !important;
-}

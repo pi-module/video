@@ -404,22 +404,20 @@ class VideoController extends ActionController
         } else {
             if (!$id) {
                 $video = [];
+
                 // Set sluf
                 $slug          = Rand::getString(16, 'abcdefghijklmnopqrstuvwxyz123456789', true);
                 $filter        = new Filter\Slug;
                 $video['slug'] = $filter($slug);
+
                 // Set
                 if (!empty($config['link_path'])) {
                     $video['video_path'] = $config['link_path'];
                 }
-            } else {
-                switch ($serverList[$video['video_server']]['type']) {
-                    case 'qmery':
-                        $video['qmery_url'] = sprintf('https://api.qmery.com/ovp/v/%s', $video['video_qmery_hash']);
-                        break;
-                }
+
+                $form->setData($video);
             }
-            $form->setData($video);
+
             // set nav
             $nav = [
                 'page' => 'link',
@@ -532,16 +530,10 @@ class VideoController extends ActionController
                 $row->assign($values);
                 $row->save();
 
-                // Send video to qmery
-                if ($serverType == 'qmery') {
-                    return [
-                        'url' => Pi::url($this->url('', ['action' => 'qmeryUpload', 'id' => $row->id])),
-                    ];
-                } else {
+                // Send video
                     return [
                         'url' => Pi::url($this->url('', ['action' => 'update', 'id' => $row->id])),
                     ];
-                }
             }
         } else {
             $video = [];
@@ -962,85 +954,5 @@ class VideoController extends ActionController
             $this->jump(['action' => 'index'], __('This video deleted'));
         }
         $this->jump(['action' => 'index'], __('Please select video'));
-    }
-
-    public function qmeryUploadAction()
-    {
-        // Get info from url
-        $id = $this->params('id');
-
-        // Find video
-        if (!$id) {
-            // Jump
-            $message = __('Please select video');
-            $this->jump(['action' => 'index'], $message);
-        }
-
-        // Get video object
-        $video = $this->getModel('video')->find($id);
-
-        // Upload to qmery server
-        $qmery = Pi::api('qmery', 'video')->uploadVideo($video);
-
-        // Check result
-        if ($qmery['status'] == 1) {
-            $message = __('Video added on qmery server and information save on website, please update extra information');
-            $this->jump(['controller' => 'video', 'action' => 'update', 'id' => $video->id], $message);
-        }
-
-        // Set error message
-        $message = empty($qmery['message']) ? __('Error to upload file on qmery server') : json_decode($qmery['message']);
-
-        // Set view
-        $this->view()->setTemplate('video-qmery-upload');
-        $this->view()->assign('video', $video);
-        $this->view()->assign('qmery', $qmery);
-        $this->view()->assign('message', $message);
-    }
-
-    public function qmeryUpdateAction()
-    {
-        // Get info from url
-        $id = $this->params('id');
-
-        // Find video
-        if (!$id) {
-            // Jump
-            $message = __('Please select video');
-            $this->jump(['action' => 'index'], $message);
-        }
-
-        // Get video object
-        $video = $this->getModel('video')->find($id);
-
-        // Canonize video
-        $video = Pi::api('video', 'video')->canonizeVideoFilter($video);
-
-        // Upload to qmery server
-        $qmery = Pi::api('qmery', 'video')->updateVideo($video);
-
-        // Check result
-        switch ($qmery['status']) {
-            case 1:
-                $message = __('Video information updated from qmery server');
-                $this->jump(['controller' => 'video', 'action' => 'additional', 'id' => $video->id], $message);
-                break;
-
-            case 2:
-                $message = __(
-                    'Attention : Video still not ready on qmery server and video information not upload, please wait for some min and check it later'
-                );
-                break;
-
-            case 3:
-                $message = empty($qmery['message']) ? __('Error to update video from qmery server') : json_decode($qmery['message']);
-                break;
-        }
-
-        // Set view
-        $this->view()->setTemplate('video-qmery-update');
-        $this->view()->assign('video', $video);
-        $this->view()->assign('qmery', $qmery);
-        $this->view()->assign('message', $message);
     }
 }

@@ -375,7 +375,7 @@ class Api extends AbstractApi
                 'slug'            => $videoRelatedSingle['slug'],
                 'mediumUrl'       => $videoRelatedSingle['mediumUrl'],
                 'thumbUrl'        => $videoRelatedSingle['thumbUrl'],
-                'video_qmery_hls' => $videoRelatedSingle['video_qmery_hls'],
+                'videoWatchUrl' => $videoRelatedSingle['videoWatchUrl'],
             ];
         }
 
@@ -397,11 +397,7 @@ class Api extends AbstractApi
             'channelUrl'          => $singleVideo['channelUrl'],
             'videoUrl'            => $singleVideo['videoUrl'],
             'largeUrl'            => $singleVideo['largeUrl'],
-            'qmeryDirect'         => $singleVideo['qmeryDirect'],
-            'qmeryScript'         => $singleVideo['qmeryScript'],
-            'video_qmery_id'      => $singleVideo['video_qmery_id'],
-            'video_qmery_hash'    => $singleVideo['video_qmery_hash'],
-            'video_qmery_hls'     => $singleVideo['video_qmery_hls'],
+            'videoWatchUrl'         => $singleVideo['videoWatchUrl'],
             'videoRelated'        => $videoRelated,
         ];
 

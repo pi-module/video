@@ -199,27 +199,14 @@ class Block
         // Set options
         $block = [];
         $block = array_merge($block, $options);
+
         // Get video
         if (isset($block['vid']) && intval($block['vid']) > 0) {
             $video = Pi::api('video', 'video')->getVideo(intval($block['vid']));
         } else {
             return false;
         }
-        // Set player url
-        switch ($block['size']) {
-            case 'responsive':
-                $video['playerUrl'] = $video['qmeryScriptResponsive'];
-                break;
 
-            case 'custom':
-                $video['playerUrl'] = sprintf(
-                    '%s&w=%s&h=%s',
-                    $video['qmeryScriptResponsive'],
-                    $block['width'],
-                    $block['height']
-                );
-                break;
-        }
         // Set block array
         $block['resources'] = $video;
         return $block;

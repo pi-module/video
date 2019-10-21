@@ -207,7 +207,7 @@ class Category extends AbstractApi
         }
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
-        // boject to array
+        // object to array
         $category = $category->toArray();
         // Set text_description
         $category['text_description'] = Pi::service('markup')->render($category['text_description'], 'html', 'html');

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2017-11-03 10:27+0330\n"
+"POT-Creation-Date: 2019-10-21 12:02+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,20 +9,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: template/block/video-hits.phtml:198 template/block/video-new.phtml:192
-#: template/block/video-random.phtml:198 template/block/video-tag.phtml:198
+#: template/block/video-hits.phtml:202 template/block/video-new.phtml:196
+#: template/block/video-random.phtml:202 template/block/video-tag.phtml:200
 msgid "View"
 msgstr ""
 
-#: template/block/video-hits.phtml:274 template/block/video-hits.phtml:275
-#: template/block/video-new.phtml:268 template/block/video-new.phtml:269
-#: template/block/video-random.phtml:274 template/block/video-random.phtml:275
-#: template/block/video-tag.phtml:274 template/block/video-tag.phtml:275
+#: template/block/video-hits.phtml:271 template/block/video-hits.phtml:272
+#: template/block/video-new.phtml:260 template/block/video-new.phtml:261
+#: template/block/video-random.phtml:271 template/block/video-random.phtml:272
+#: template/block/video-tag.phtml:268 template/block/video-tag.phtml:269
 msgid "More videos"
 msgstr ""

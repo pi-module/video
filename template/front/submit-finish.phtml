@@ -35,13 +35,12 @@
         </div>
         <div class="text-center video-player-box clearfix">
             <div class="col-10 col-offset-1">
-                <?php echo $this->videojs($video['videoFileUrl'], $video['largeUrl']); ?>
+                <?php echo $this->video($video['player']); ?>
             </div>
         </div>
         <div class="text-center">
             <br/>
-            <a class="btn btn-success btn-lg"
-               href="<?php echo $this->url('', ['controller' => 'index']); ?>"><?php _e('Finish'); ?></a>
+            <a class="btn btn-success btn-lg" href="<?php echo $this->url('', ['controller' => 'index']); ?>"><?php _e('Finish'); ?></a>
         </div>
     </div>
 </div>

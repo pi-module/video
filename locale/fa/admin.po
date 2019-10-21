@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2017-11-03 10:27+0330\n"
+"POT-Creation-Date: 2019-10-21 12:02+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,529 +9,555 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: config/block.php:17
+#: config/block.php:16
 msgid "New video"
 msgstr "ویدیو جدید"
 
-#: config/block.php:18
+#: config/block.php:17
 msgid "New video list"
 msgstr "فهرست ویدیو های جدید"
 
-#: config/block.php:23 config/block.php:112 config/block.php:290
-#: config/navigation.php:29 config/navigation.php:43 config/page.php:23
-#: config/page.php:62 config/permission.php:22
+#: config/block.php:22 config/block.php:111 config/block.php:289
+#: config/navigation.php:28 config/navigation.php:42 config/page.php:22
+#: config/page.php:61 config/permission.php:21
 msgid "Category"
 msgstr "شاخه"
 
-#: config/block.php:30 config/block.php:119 config/block.php:208
-#: config/block.php:304
+#: config/block.php:29 config/block.php:118 config/block.php:207
+#: config/block.php:303
 msgid "Number"
 msgstr "تعداد"
 
-#: config/block.php:37 config/block.php:126 config/block.php:215
-#: config/block.php:311
+#: config/block.php:36 config/block.php:125 config/block.php:214
+#: config/block.php:310
 msgid "Show just recommended"
 msgstr "فقط نمایش موارد پیشنهاد شده"
 
-#: config/block.php:44 config/block.php:133 config/block.php:222
-#: config/block.php:318
+#: config/block.php:43 config/block.php:132 config/block.php:221
+#: config/block.php:317
 msgid "Video list type"
 msgstr "نوع فهرست ویدیو ها"
 
-#: config/block.php:50 config/block.php:139 config/block.php:228
-#: config/block.php:324
+#: config/block.php:49 config/block.php:138 config/block.php:227
+#: config/block.php:323
 msgid "Horizontal"
 msgstr "افقی"
 
-#: config/block.php:51 config/block.php:140 config/block.php:229
-#: config/block.php:325
+#: config/block.php:50 config/block.php:139 config/block.php:228
+#: config/block.php:324
 msgid "Vertical"
 msgstr "عمودی"
 
-#: config/block.php:52 config/block.php:141 config/block.php:230
-#: config/block.php:326
+#: config/block.php:51 config/block.php:140 config/block.php:229
+#: config/block.php:325
 msgid "Multi size Box"
 msgstr "باکس با ابعاد متغیر"
 
-#: config/block.php:53 config/block.php:142 config/block.php:231
-#: config/block.php:327
+#: config/block.php:52 config/block.php:141 config/block.php:230
+#: config/block.php:326
 msgid "List"
 msgstr "فهرست"
 
-#: config/block.php:54 config/block.php:143 config/block.php:232
-#: config/block.php:328
+#: config/block.php:53 config/block.php:142 config/block.php:231
+#: config/block.php:327
 msgid "Slide"
 msgstr "اسلاید"
 
-#: config/block.php:55 config/block.php:144 config/block.php:233
-#: config/block.php:329
+#: config/block.php:54 config/block.php:143 config/block.php:232
+#: config/block.php:328
 msgid "Slide by hover effect"
 msgstr "اسلاید با افکت هاور"
 
-#: config/block.php:56 config/block.php:145 config/block.php:234
-#: config/block.php:330
+#: config/block.php:55 config/block.php:144 config/block.php:233
+#: config/block.php:329
 msgid "Spotlight"
 msgstr "اسپات لایت"
 
-#: config/block.php:64 config/block.php:153 config/block.php:242
-#: config/block.php:338 config/config.php:137
+#: config/block.php:63 config/block.php:152 config/block.php:241
+#: config/block.php:337 config/config.php:136
 msgid "Columns"
 msgstr "ستون"
 
-#: config/block.php:70 config/block.php:159 config/block.php:248
-#: config/block.php:344 config/config.php:143
+#: config/block.php:69 config/block.php:158 config/block.php:247
+#: config/block.php:343 config/config.php:142
 msgid "One columns"
 msgstr "یک ستون"
 
-#: config/block.php:71 config/block.php:160 config/block.php:249
-#: config/block.php:345 config/config.php:144
+#: config/block.php:70 config/block.php:159 config/block.php:248
+#: config/block.php:344 config/config.php:143
 msgid "Two columns"
 msgstr "دو ستون"
 
-#: config/block.php:72 config/block.php:161 config/block.php:250
-#: config/block.php:346 config/config.php:145
+#: config/block.php:71 config/block.php:160 config/block.php:249
+#: config/block.php:345 config/config.php:144
 msgid "Three columns"
 msgstr "سه ستون"
 
-#: config/block.php:73 config/block.php:162 config/block.php:251
-#: config/block.php:347 config/config.php:146
+#: config/block.php:72 config/block.php:161 config/block.php:250
+#: config/block.php:346 config/config.php:145
 msgid "Four columns"
 msgstr "چهار ستون"
 
-#: config/block.php:74 config/block.php:163 config/block.php:252
-#: config/block.php:348 config/config.php:147
+#: config/block.php:73 config/block.php:162 config/block.php:251
+#: config/block.php:347 config/config.php:146
 msgid "Six columns"
 msgstr "شش ستون"
 
-#: config/block.php:82 config/block.php:171 config/block.php:260
-#: config/block.php:356
+#: config/block.php:81 config/block.php:170 config/block.php:259
+#: config/block.php:355
 msgid "Use block effects"
 msgstr "استفاده از افکت های بلاک"
 
-#: config/block.php:83 config/block.php:172 config/block.php:261
-#: config/block.php:357
+#: config/block.php:82 config/block.php:171 config/block.php:260
+#: config/block.php:356
 msgid "Use block effects or set custom effect on theme"
 msgstr "استفاده از افکت های جاوا اسکریپت و سی اس اس بلاک یا شخصی سازی آن در قالب"
 
-#: config/block.php:89 config/block.php:178 config/block.php:267
-#: config/block.php:363
+#: config/block.php:88 config/block.php:177 config/block.php:266
+#: config/block.php:362
 msgid "Show More link to module page"
 msgstr "نمایش لینک ادامه به ماژول"
 
-#: config/block.php:96 config/block.php:185 config/block.php:274
-#: config/block.php:370
+#: config/block.php:95 config/block.php:184 config/block.php:273
+#: config/block.php:369
 msgid "Set More link to module page"
 msgstr "درج لینک ادامه به ماژول"
 
-#: config/block.php:106
+#: config/block.php:105
 msgid "Random video"
 msgstr "محصولات ویدیو های تصادفی"
 
-#: config/block.php:107
+#: config/block.php:106
 msgid "Random video list"
 msgstr "فهرست ویدیو های تصادفی"
 
-#: config/block.php:195
+#: config/block.php:194
 msgid "Tag video"
 msgstr "ویدیو ها بر اساس برچسب"
 
-#: config/block.php:196
+#: config/block.php:195
 msgid "Videos from selected tag"
 msgstr "فهرست ویدیو ها بر اساس برچسب انتخابی"
 
-#: config/block.php:201
+#: config/block.php:200
 msgid "Tag term"
 msgstr "واژه برچسب"
 
-#: config/block.php:284
+#: config/block.php:283
 msgid "Top hits video"
 msgstr "ویدیو های پربازدید"
 
-#: config/block.php:285
+#: config/block.php:284
 msgid "Top hits video list"
 msgstr "فهرست ویدیو های پربازدید"
 
-#: config/block.php:297
+#: config/block.php:296
 msgid "Top hits on X last days"
 msgstr "ویدیو های پربازدید در X روز گذشته"
 
-#: config/block.php:380
+#: config/block.php:379
 msgid "Selected video"
 msgstr "ویدیو انتخابی"
 
-#: config/block.php:381
+#: config/block.php:380
 msgid "Selected video player"
 msgstr "نمایش ویدیو انتخاب در پلیر"
 
-#: config/block.php:386
+#: config/block.php:385
 msgid "Video ID"
 msgstr "شناسه ویدیو"
 
-#: config/block.php:387
+#: config/block.php:386
 msgid "If not set , show last video"
 msgstr "اگر تنظیم نشود آخرین ویدیو نمایش داده می شود"
 
-#: config/block.php:393
+#: config/block.php:392
 msgid "Player size"
 msgstr "سایز پلیر"
 
-#: config/block.php:399
+#: config/block.php:398
 msgid "Responsive"
 msgstr "رسپانسیو"
 
-#: config/block.php:400
+#: config/block.php:399
 msgid "Custom"
 msgstr "دستی"
 
-#: config/block.php:408
+#: config/block.php:407
 msgid "Player width"
 msgstr "عرض پلیر"
 
-#: config/block.php:415
+#: config/block.php:414
 msgid "Player height"
 msgstr "ارتفاع پلیر"
 
-#: config/comment.php:16
+#: config/comment.php:15
 msgid "Video comments"
 msgstr "نظرات ویدیو"
 
-#: config/config.php:17
+#: config/config.php:16
 msgid "Admin"
 msgstr "بخش مدیر"
 
-#: config/config.php:21 config/page.php:48 config/page.php:106
+#: config/config.php:20 config/page.php:47 config/page.php:105
 msgid "Json output"
 msgstr "خروجی حیسون"
 
-#: config/config.php:25
+#: config/config.php:24
 msgid "View"
 msgstr "نمایش"
 
-#: config/config.php:29 config/navigation.php:250 config/page.php:100
-#: config/permission.php:57
+#: config/config.php:28 config/navigation.php:272 config/page.php:99
+#: config/permission.php:56
 msgid "Submit"
 msgstr "ارسال"
 
-#: config/config.php:33
+#: config/config.php:32
 msgid "Media"
 msgstr "مدیا"
 
-#: config/config.php:37
+#: config/config.php:36
 msgid "Image"
 msgstr "تصویر"
 
-#: config/config.php:41
+#: config/config.php:40
 msgid "Order video"
 msgstr "سفارش ویدیو"
 
-#: config/config.php:45
+#: config/config.php:44
 msgid "Social"
 msgstr "شبکه های اجتماعی"
 
-#: config/config.php:49
+#: config/config.php:48
 msgid "Vote"
 msgstr "رای"
 
-#: config/config.php:53
+#: config/config.php:52
 msgid "Favourite"
 msgstr "علاقه مندی"
 
-#: config/config.php:57
+#: config/config.php:56
 msgid "Texts"
 msgstr "متن ها"
 
-#: config/config.php:65 config/config.php:130
+#: config/config.php:64 config/config.php:129
 msgid "Perpage"
 msgstr "تعداد در هر صفحه"
 
-#: config/config.php:73
+#: config/config.php:72
 msgid "Active brand system"
 msgstr "فعال کردن سیستم شرکت"
 
-#: config/config.php:82
+#: config/config.php:81
 msgid "Perpage on json output"
 msgstr "تعداد در صفحه در خروجی جیسون"
 
-#: config/config.php:90
+#: config/config.php:89
 msgid "Check password for json output"
 msgstr "بررسی واژه رمز در خروجی جیسون"
 
-#: config/config.php:98
+#: config/config.php:97
 msgid "Password for json output"
 msgstr "واژه رمز خروجی جیسون"
 
-#: config/config.php:99
+#: config/config.php:98
 msgid "After use on mobile device , do not change it"
 msgstr "بعد از استفاده از این واژه رمز در نرم افزار موبایل ، آن را تغییر ندهید"
 
-#: config/config.php:106
+#: config/config.php:105
 msgid "Homepage type"
 msgstr "نوع نمایش صفحه اول"
 
-#: config/config.php:112
+#: config/config.php:111
 msgid "List of all videos"
 msgstr "فهرست تمام ویدیو ها"
 
-#: config/config.php:113
+#: config/config.php:112
 msgid "List of custom widgets"
 msgstr "فهرست بلاک ها به صورت دستی"
 
-#: config/config.php:123
+#: config/config.php:122
 msgid "Homepage title"
 msgstr "عنوان صفحه اول"
 
-#: config/config.php:157
+#: config/config.php:156
 msgid "Show breadcrumbs"
 msgstr "نمایش ناوبری"
 
-#: config/config.php:165
+#: config/config.php:164
 msgid "Show Tags"
 msgstr "نمایش برچسب ها"
 
-#: config/config.php:173
+#: config/config.php:172
 msgid "Show related video"
 msgstr "نمایش ویدیو مشابه"
 
-#: config/config.php:181
+#: config/config.php:180
 msgid "Related video number"
 msgstr "تعداد ویدیو مشابه"
 
-#: config/config.php:189
+#: config/config.php:188
 msgid "Show attribute fields"
 msgstr "نمایش خواص"
 
-#: config/config.php:197
+#: config/config.php:196
 msgid "Show category description on category page"
 msgstr "نمایش توضیحات شاخه در صفحه شاخه"
 
-#: config/config.php:205
+#: config/config.php:204
 msgid "Show category description on video page"
 msgstr "نمایش توضیحات شاخه در صفحه ویدیو"
 
-#: config/config.php:214
+#: config/config.php:213
 msgid "Users can submit videos"
 msgstr "کاربران می توانند ویدیو ارسال کنند"
 
-#: config/config.php:223
+#: config/config.php:222
 msgid "Video Size"
 msgstr "حجم فایل ویدیو"
 
-#: config/config.php:231
+#: config/config.php:230
 msgid "Video Extension"
 msgstr "سوند های مجار برای فایل ویدیو"
 
-#: config/config.php:240
+#: config/config.php:239
 msgid "Image Size"
 msgstr "حجم تصویر"
 
-#: config/config.php:248
+#: config/config.php:247
 msgid "Image quality"
 msgstr "کیفیت تصویر"
 
-#: config/config.php:249
+#: config/config.php:248
 msgid "Between 0 to 100 and support both of JPG and PNG, default is 75"
 msgstr "بین ۰ تا ۱۰۰ تنظیم شود و برای هر دو فرمت PNG و JPG ، مقدار پیش فرض ۷۵"
 
-#: config/config.php:256
+#: config/config.php:255
 msgid "Image path"
 msgstr "مسیر ذخیره تصویر"
 
-#: config/config.php:264
+#: config/config.php:263
 msgid "Image Extension"
 msgstr "پسوند های مجار برای تصویر"
 
-#: config/config.php:272
+#: config/config.php:271
 msgid "Large Image height"
 msgstr "ارتفاع تصویر بزرگ"
 
-#: config/config.php:280
+#: config/config.php:279
 msgid "Large Image width"
 msgstr "عرض تصویر بزرگ"
 
-#: config/config.php:288
+#: config/config.php:287
 msgid "Medium Image height"
 msgstr "ارتفاع تصویر متوسط"
 
-#: config/config.php:296
+#: config/config.php:295
 msgid "Medium Image width"
 msgstr "عرض تصویر متوسط"
 
-#: config/config.php:304
+#: config/config.php:303
 msgid "Thumb Image height"
 msgstr "ارتفاع تصویر بندانگشتی"
 
-#: config/config.php:312
+#: config/config.php:311
 msgid "Thumb Image width"
 msgstr "عرض تصویر بندانگشتی"
 
-#: config/config.php:320
+#: config/config.php:319
 msgid "Use lightbox"
 msgstr "استفاده از لایت باکس"
 
-#: config/config.php:328
+#: config/config.php:327
 msgid "Add Watermark"
 msgstr "اضافه کردن واترمارک به تصویر"
 
-#: config/config.php:336
+#: config/config.php:335
 msgid "Watermark Image"
 msgstr "تصویر واترمارک"
 
-#: config/config.php:343
+#: config/config.php:342
 msgid "Watermark Positio"
 msgstr "موقعیت واترمارک"
 
-#: config/config.php:349
+#: config/config.php:348
 msgid "Top Left"
 msgstr "بالا چپ"
 
-#: config/config.php:350
+#: config/config.php:349
 msgid "Top Right"
 msgstr "بالا راست"
 
-#: config/config.php:351
+#: config/config.php:350
 msgid "Bottom Left"
 msgstr "پایین چپ"
 
-#: config/config.php:352
+#: config/config.php:351
 msgid "Bottom Right"
 msgstr "پایین راست"
 
-#: config/config.php:362
+#: config/config.php:361
 msgid "Sale video"
 msgstr "فروش ویدیو"
 
-#: config/config.php:368
+#: config/config.php:367
 msgid "All videos is free"
 msgstr "همه ویدیو ها رایگان است"
 
-#: config/config.php:369
+#: config/config.php:368
 msgid "Users buy package to watch paid video"
 msgstr "کاربران با خرید بسته ویدیو های پولی را مشاهده کنند"
 
-#: config/config.php:370
+#: config/config.php:369
 msgid "User pay one by one for paid video"
 msgstr "کاربران برای مشاهده هر ویدیو جداگانه پول پرداخت کنند"
 
-#: config/config.php:380
+#: config/config.php:378
+msgid "Sale method for single video"
+msgstr ""
+
+#: config/config.php:384
+msgid "Buy each video online"
+msgstr ""
+
+#: config/config.php:385
+msgid "Use user credit"
+msgstr ""
+
+#: config/config.php:386
+msgid "Mobile payment method (VAS)"
+msgstr ""
+
+#: config/config.php:396
 msgid "Social sharing items"
 msgstr "اشتراک گذاری در شبکه های اجتماعی"
 
-#: config/config.php:394
+#: config/config.php:410
 msgid "Use vote system"
 msgstr "استفاده از سیستم رای"
 
-#: config/config.php:403
+#: config/config.php:419
 msgid "Use favourite system"
 msgstr "استفاده از سیستم مورد علاقه"
 
-#: config/config.php:412
+#: config/config.php:428
 msgid "Description for index page"
 msgstr "توضیحات برای صفحه اصلی"
 
-#: config/config.php:420
+#: config/config.php:436
 msgid "Force replace space by comma(,)"
 msgstr "جایگزینی اسپیس با کاما"
 
-#: config/module.php:17 config/navigation.php:18 config/page.php:18
-#: config/permission.php:18
+#: config/module.php:16 config/navigation.php:17 config/page.php:17
+#: config/permission.php:17
 msgid "Video"
 msgstr "ویدیو"
 
-#: config/module.php:18
-msgid "Video play system."
-msgstr "ابزار پخش ویدیو"
+#: config/module.php:17
+msgid "Video gallery and service for Pi Engine."
+msgstr ""
 
-#: config/navigation.php:56
+#: config/navigation.php:55
 msgid "Brand"
 msgstr "شرکت"
 
-#: config/navigation.php:69
+#: config/navigation.php:68
 msgid "New category"
 msgstr "شاخه جدید"
 
-#: config/navigation.php:82
+#: config/navigation.php:81
 msgid "New brand"
 msgstr "شرکت جدید"
 
-#: config/navigation.php:95
+#: config/navigation.php:94
 msgid "Sync category"
 msgstr "یکسان سازی شاخه ها"
 
-#: config/navigation.php:105
+#: config/navigation.php:104
 msgid "Merge category"
 msgstr ""
 
-#: config/navigation.php:118 config/page.php:28 config/permission.php:26
+#: config/navigation.php:117 config/navigation.php:128 config/page.php:27
+#: config/permission.php:25
 msgid "Server"
 msgstr "سرور"
 
-#: config/navigation.php:129 config/navigation.php:139 config/page.php:33
-#: config/permission.php:30
+#: config/navigation.php:138
+#, fuzzy
+#| msgid "Manage"
+msgid "Add / Manage"
+msgstr "مدیریت"
+
+#: config/navigation.php:151 config/navigation.php:161 config/page.php:32
+#: config/permission.php:29
 msgid "Attribute"
 msgstr "خواص"
 
-#: config/navigation.php:149
+#: config/navigation.php:171
 msgid "Attribute position"
 msgstr "موقعیت خواص"
 
-#: config/navigation.php:162 config/navigation.php:172 config/page.php:43
-#: config/permission.php:38
+#: config/navigation.php:184 config/navigation.php:194 config/page.php:42
+#: config/permission.php:37
 msgid "Tools"
 msgstr "ابزار ها"
 
-#: config/navigation.php:183
+#: config/navigation.php:205
 msgid "Sitemap"
 msgstr "نقشه سایت"
 
-#: config/navigation.php:194 config/page.php:38 config/permission.php:34
+#: config/navigation.php:216 config/page.php:37 config/permission.php:33
 msgid "Logs"
 msgstr "گزارش ها"
 
-#: config/navigation.php:205 config/permission.php:42
+#: config/navigation.php:227 config/permission.php:41
 msgid "Json"
 msgstr "جیسون"
 
-#: config/navigation.php:220 config/page.php:68
+#: config/navigation.php:242 config/page.php:67
 msgid "Category list"
 msgstr "فهرست شاخه ها"
 
-#: config/navigation.php:230 config/page.php:81
+#: config/navigation.php:252 config/page.php:80
 msgid "Tag list"
 msgstr "فهرست برچسب ها"
 
-#: config/navigation.php:240
+#: config/navigation.php:262
 msgid "Your channel"
 msgstr "کانال شما"
 
-#: config/page.php:56
+#: config/page.php:55
 msgid "Index"
 msgstr "صفحه اصلی"
 
-#: config/page.php:75
+#: config/page.php:74
 msgid "Tag"
 msgstr "برچسب"
 
-#: config/page.php:88
+#: config/page.php:87
 msgid "Watch video"
 msgstr "نمایش ویدیو"
 
-#: config/page.php:94 config/permission.php:64
+#: config/page.php:93 config/permission.php:63
 msgid "Channel"
 msgstr "کانال"
 
-#: config/permission.php:49
+#: config/permission.php:48
 msgid "Global public resource"
 msgstr "دسترسی های عمومی"
 
-#: template/admin/video-index.phtml:157
+#: template/admin/video-index.phtml:129
 msgid "Are you sure to delete this video?"
 msgstr "آیا اطمینان دارید که میخواهید این ویدیو را حذف کنید؟"
+
+#~ msgid "Video play system."
+#~ msgstr "ابزار پخش ویدیو"
 
 #~ msgid "Show output urls under player page"
 #~ msgstr "نمایش آدرس های پخش خروجی در زیر پلیر"
@@ -875,9 +901,6 @@ msgstr "آیا اطمینان دارید که میخواهید این ویدیو
 
 #~ msgid "Number of sub spotlight"
 #~ msgstr "تعداد زیر اسپات لایت ها"
-
-#~ msgid "Manage"
-#~ msgstr "مدیریت"
 
 #~ msgid "Location"
 #~ msgstr "مکان"

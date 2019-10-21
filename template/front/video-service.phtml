@@ -5,22 +5,12 @@
     } ?>
     <div class="clearfix row video-service-list">
         <?php foreach ($videoServiceList as $videoService) { ?>
-            <?php $this->headScript()->appendFile($videoService['qmeryScript']); ?>
-            <div class="video-service <?php echo $videoServiceCol; ?>" itemscope
-                 itemtype="https://schema.org/VideoObject">
+            <div class="video-service <?php echo $videoServiceCol; ?>" itemscope itemtype="https://schema.org/VideoObject">
                 <meta itemprop="thumbnail" content="<?php echo $this->escape($videoService['largeUrl']); ?>"/>
-                <meta itemprop="datePublished"
-                      content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoService['time_create'])); ?>"/>
-                <meta itemprop="contentUrl" content="<?php echo $this->escape($videoService['videoFileUrl']); ?>"/>
+                <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoService['time_create'])); ?>"/>
+                <meta itemprop="contentUrl" content="<?php echo $this->escape($videoService['videoWatchUrl']); ?>"/>
                 <div class="clearfix text-center video-player">
-                    <div class="qmery-player-min-height">
-                        <div class="qmery-player-full-height">
-                            <div class="qmery-player">
-                                <div id="embed_qmery_player_<?php echo $this->escape($videoService['video_qmery_id']); ?>"></div>
-                                <div id="embed_qmery_player_icons<?php echo $this->escape($videoService['video_qmery_id']); ?>"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php echo $this->video($videoService['player']); ?>
                 </div>
                 <?php /* <div class="clearfix video-information">
                     <ul class="text-muted list-inline small">

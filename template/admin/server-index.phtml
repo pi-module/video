@@ -46,25 +46,6 @@
                        href="<?php echo $this->url('', ['action' => 'update', 'id' => $server['id']]); ?>">
                         <i class="fa fa-edit"></i> <?php _e('Edit'); ?>
                     </a>
-                    <?php /* if ($server['type'] == 'qmery') { ?>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-wrench"></i> <?php _e('Update'); ?>
-                            </button>
-                            <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" title="<?php _e('From qmery server'); ?>"
-                                   href="<?php echo $this->url(
-                                       '', ['controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'syncVideoList']
-                                   ); ?>"><i
-                                            class="fa fa-wrench"></i> <?php _e('From qmery server'); ?></a>
-                                <a class="dropdown-item" title="<?php _e('Website videos'); ?>"
-                                   href="<?php echo $this->url(
-                                       '', ['controller' => 'server', 'action' => 'processing', 'server' => $server['id'], 'type' => 'syncVideoSingle']
-                                   ); ?>"><i
-                                            class="fa fa-wrench"></i> <?php _e('Website videos from qmery'); ?></a>
-                            </div>
-                        </div>
-                    <?php } */ ?>
                 </td>
             </tr>
         <?php } ?>

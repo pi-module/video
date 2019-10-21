@@ -5,8 +5,8 @@ $this->doctype('HTML5');
 $this->headMeta($this->escape($videoItem['title']), 'og:title', 'property');
 $this->headMeta($this->escape($videoItem['videoUrl']), 'og:url', 'property');
 $this->headMeta('video', 'og:type', 'property');
-$this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:url', 'property');
-$this->headMeta($this->escape($videoItem['videoFileUrl']), 'og:video:secure_url', 'property');
+$this->headMeta($this->escape($videoItem['videoWatchUrl']), 'og:video:url', 'property');
+$this->headMeta($this->escape($videoItem['videoWatchUrl']), 'og:video:secure_url', 'property');
 $this->headMeta('video/mp4', 'og:video:type', 'property');
 
 if (isset($videoItem['video_duration']) && !empty($videoItem['video_duration'])) {
@@ -29,7 +29,7 @@ if (isset($videoItem['largeUrl']) && !empty($videoItem['largeUrl'])) {
 }
 $this->headMeta($this->escape($videoItem['videoUrl']), 'twitter:player');
 
-if ($access) {
+/* if ($access) {
     if ($videoItem['server']['type'] == 'wowza') {
         $this->jQuery();
         $this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
@@ -88,20 +88,16 @@ EOT;
         $script = sprintf($script, $videoItem['mpegDashUrl']);
         $this->footScript()->appendScript($script);
         $os = Pi::service('browser')->getPlatform();
-    } elseif ($videoItem['server']['type'] == 'qmery') {
-        $this->jQuery();
-        $this->headScript()->appendFile($videoItem['qmeryScript']);
     }
-}
+} */
 ?>
 <div class="clearfix video-page" itemscope itemtype="https://schema.org/VideoObject">
     <div class="page-header">
         <h1 itemprop="name"><?php echo $this->escape($videoItem['title']); ?></h1>
     </div>
     <meta itemprop="thumbnail" content="<?php echo $this->escape($videoItem['largeUrl']); ?>"/>
-    <meta itemprop="datePublished"
-          content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoItem['time_create'])); ?>"/>
-    <meta itemprop="contentUrl" content="<?php echo $this->escape($videoItem['videoFileUrl']); ?>"/>
+    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoItem['time_create'])); ?>"/>
+    <meta itemprop="contentUrl" content="<?php echo $this->escape($videoItem['videoWatchUrl']); ?>"/>
     <div class="row clearfix">
         <div class="col-lg-8 col-md-8 col-12">
             <div class="clearfix video-information">
@@ -123,57 +119,9 @@ EOT;
             </div>
             <?php if ($access) { ?>
                 <div class="text-center video-player">
-                    <?php if ($videoItem['server']['type'] == 'file') { ?>
-                        <?php echo $this->videojs($videoItem['videoFileUrl'], $videoItem['largeUrl']); ?>
-                    <?php } elseif ($videoItem['server']['type'] == 'qmery') { ?>
-                        <?php if (isset($videoItem['server']['qmery_player_type']) && $videoItem['server']['qmery_player_type'] == 'iframe') { ?>
-                            <div class="clearfix video-container">
-                                <iframe src="<?php echo $this->escape($videoItem['qmeryDirect']); ?>"
-                                        allowtransparency="true" scrolling="no" name="qmery_embed_video"
-                                        allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen=""
-                                        oallowfullscreen="" msallowfullscreen="" frameborder="0"></iframe>
-                            </div>
-                        <?php } else { ?>
-                            <div class="qmery-player-min-height">
-                                <div class="qmery-player-full-height">
-                                    <div class="qmery-player">
-                                        <div id="embed_qmery_player_<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
-                                        <div id="embed_qmery_player_icons<?php echo $this->escape($videoItem['video_qmery_id']); ?>"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    <?php } elseif ($videoItem['server']['type'] == 'wowza') { ?>
-                        <div class="clearfix">
-                            <?php if (in_array($os, ['Android', 'WindowsPhone', 'BlackBerry'])) { ?>
-                                <div class="btn-group d-flex" role="group" aria-label="...">
-                                    <div class="btn-group" role="group">
-                                        <a href="<?php echo $this->escape($videoItem['androidUrl']); ?>"
-                                           class="btn btn-success btn-lg">
-                                            <i class="fa fa-play" aria-hidden="true"></i> <?php _e('Play'); ?>
-                                        </a>
-                                    </div>
-                                </div>
-                            <?php } elseif (in_array($os, ['Ios', 'iPhone', 'iPad'])) { ?>
-                                <div class="btn-group d-flex" role="group" aria-label="...">
-                                    <div class="btn-group" role="group">
-                                        <a href="<?php echo $this->escape($videoItem['iosUrl']); ?>"
-                                           class="btn btn-success btn-lg">
-                                            <i class="fa fa-play" aria-hidden="true"></i> <?php _e('Play'); ?>
-                                        </a>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                            <div id="videoContainer" class="overlay-parent">
-                                <video id="video"
-                                       class="video-player"
-                                       width="100%"
-                                       poster="<?php echo $this->escape($videoItem['largeUrl']); ?>"
-                                       controls
-                                       autoplay></video>
-                            </div>
-                        </div>
-                    <?php } ?>
+                    <div class="clearfix">
+                        <?php echo $this->video($videoItem['player']); ?>
+                    </div>
                 </div>
             <?php } else { ?>
                 <div class="clearfix">
@@ -233,13 +181,13 @@ EOT;
             <?php include $this->template('front/tag'); ?>
         </div>
         <div class="col-lg-4 col-md-4 col-12">
-            <!-- <div class="video-channel" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <?php /* <div class="video-channel" itemprop="author" itemscope itemtype="https://schema.org/Person">
                 <a title="<?php _e('User channel'); ?>" href="<?php echo $this->escape($videoItem['channelUrl']); ?>">
                     <?php echo $submitter['avatar']; ?>
                     <?php echo sprintf(__('%s channel'), $this->escape($submitter['name'])); ?>
                 </a>
                 <meta itemprop="name" content="<?php echo $this->escape($submitter['name']); ?>" />
-            </div> -->
+            </div> */ ?>
             <?php include $this->template('front/attribute'); ?>
             <?php include $this->template('front/video-related'); ?>
         </div>

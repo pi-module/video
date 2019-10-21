@@ -1,6 +1,6 @@
 <?php
 $this->css($this->assetModule('css/admin.css'));
-if ($video['server']['type'] == 'wowza') {
+/* if ($video['server']['type'] == 'wowza') {
     $this->jQuery();
     $this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
     $script
@@ -57,7 +57,7 @@ if ($video['server']['type'] == 'wowza') {
 EOT;
     $script = sprintf($script, $video['mpegDashUrl']);
     $this->footScript()->appendScript($script);
-}
+} */
 ?>
 <div class="clearfix">
     <ul class="nav nav-pills bg-light mb-3 p-3">
@@ -96,14 +96,7 @@ EOT;
         <h1><?php echo $this->escape($video['title']); ?></h1>
     </div>
     <div class="text-center video-player-box col-lg-8 col-md-8 col-md-offset-2">
-
-
-
-
-
-        <?php if ($video['server']['type'] == 'file') { ?>
-            <?php echo $this->videojs($video['videoFileUrl'], $video['largeUrl']); ?>
-        <?php } elseif ($video['server']['type'] == 'wowza') { ?>
+        <?php /* if ($video['server']['type'] == 'wowza') { ?>
             <div class="clearfix">
                 <div id="videoContainer" class="overlay-parent">
                     <video id="video"
@@ -151,12 +144,9 @@ EOT;
                     </div>
                 </div>
             </div>
-        <?php } else { ?>
-            <div class="clearfix">
-                <?php echo $this->video($video['player']); ?>
-            </div>
-        <?php } ?>
-
-
+        <?php } */ ?>
+        <div class="clearfix">
+            <?php echo $this->video($video['player']); ?>
+        </div>
     </div>
 </div>
