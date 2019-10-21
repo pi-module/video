@@ -249,7 +249,7 @@ class Api extends AbstractApi
         $video = [];
         $count = 0;
 
-        $columns = ['video' => new Expression('DISTINCT video')];
+        $columns = ['video' => new Expression('DISTINCT video'), '*'];
         $limit   = (intval($params['limit']) > 0) ? intval($params['limit']) : intval($config['view_perpage']);
         $offset  = (int)($params['page'] - 1) * $limit;
 

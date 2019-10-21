@@ -250,7 +250,7 @@ class JsonController extends IndexController
         $video = [];
         $count = 0;
 
-        $columns = ['video' => new Expression('DISTINCT video')];
+        $columns = ['video' => new Expression('DISTINCT video'), '*'];
         $limit   = (intval($limit) > 0) ? intval($limit) : intval($config['view_perpage']);
         $offset  = (int)($page - 1) * $limit;
 
@@ -402,7 +402,7 @@ class JsonController extends IndexController
             case 'category':
                 // Set info
                 $where['category'] = $id;
-                $columns = ['video' => new Expression('DISTINCT video')];
+                $columns = ['video' => new Expression('DISTINCT video'), '*'];
                 // Get info from link table
                 $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order);
                 $rowset = $this->getModel('link')->selectWith($select)->toArray();

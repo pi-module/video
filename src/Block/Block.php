@@ -40,7 +40,7 @@ class Block
                 $where['recommended'] = 1;
             }
             // Set info
-            $columns = ['video' => new Expression('DISTINCT video')];
+            $columns = ['video' => new Expression('DISTINCT video'), '*'];
             // Get info from link table
             $select = Pi::model('link', $module)->select()->where($where)->columns($columns)->order($order)->limit($limit);
             $rowset = Pi::model('link', $module)->selectWith($select)->toArray();
@@ -87,7 +87,7 @@ class Block
                 'category' => $block['category'],
             ];
             // Set info
-            $columns = ['video' => new Expression('DISTINCT video')];
+            $columns = ['video' => new Expression('DISTINCT video'), '*'];
             // Get info from link table
             $select = Pi::model('link', $module)->select()->where($where)->columns($columns)->order($order)->limit($limit);
             $rowset = Pi::model('link', $module)->selectWith($select)->toArray();
@@ -169,7 +169,7 @@ class Block
                 'time_update >= ?' => $time,
             ];
             // Set info
-            $columns = ['video' => new Expression('DISTINCT video')];
+            $columns = ['video' => new Expression('DISTINCT video'), '*'];
             // Get info from link table
             $select = Pi::model('link', $module)->select()->where($where)->columns($columns)->order($order)->limit($limit);
             $rowset = Pi::model('link', $module)->selectWith($select)->toArray();

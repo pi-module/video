@@ -73,7 +73,7 @@ class Video extends AbstractApi
         // Set order
         $order = empty($order) ? $order = ['time_create DESC', 'id DESC'] : $order;
 
-        $columns = ['video' => new Expression('DISTINCT video')];
+        $columns = ['video' => new Expression('DISTINCT video'), '*'];
 
         // Get info from link table
         $select = Pi::model('link', $this->getModule())->select()->where($where)->columns($columns)->order($order)->limit($limit);

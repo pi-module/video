@@ -25,8 +25,10 @@ class IndexController extends ActionController
     {
         // Get info from url
         $module = $this->params('module');
+
         // Get config
         $config = Pi::service('registry')->config->read($module);
+
         // category list
         $categoriesJson = Pi::api('category', 'video')->categoryListJson();
 
@@ -65,29 +67,36 @@ class IndexController extends ActionController
         if ($limit == 0) {
             $limit = $this->config('view_perpage');
         }
+
         // Set info
         $video   = [];
         $videoId = [];
-        $page    = $this->params('page', 1);
-        $module  = $this->params('module');
-        $sort    = $this->params('sort', 'create');
-        $offset  = (int)($page - 1) * $limit;
-        $limit   = intval($limit);
-        $order   = $this->setOrder($sort);
+        $page      = $this->params('page', 1);
+        $sort      = $this->params('sort', 'create');
+        $offset    = (int)($page - 1) * $this->config('view_perpage');
+        $limit     = empty($limit) ? intval($this->config('view_perpage')) : $limit;
+        $order     = $this->setOrder($sort);
+
         // Set info
-        $columns = ['video' => new Expression('DISTINCT video')];
+        $columns = ['video' => new Expression('DISTINCT video'), '*'];
+
         // Get info from link table
-        $select = $this->getModel('link')->select()->where($where)->columns($columns)
-            ->order($order)->offset($offset)->limit($limit);
-        $rowset = $this->getModel('link')->selectWith($select)->toArray();
+        $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order)->offset($offset)->limit($limit);
+        $rowset = $this->getModel('link')->selectWith($select);
+
         // Make list
-        foreach ($rowset as $id) {
-            $videoId[] = $id['video'];
+        if (!empty($rowset)) {
+            $rowset = $rowset->toArray();
+            foreach ($rowset as $id) {
+                $videoId[] = $id['video'];
+            }
         }
+
         // Check not empty
         if (!empty($videoId)) {
             // Set info
             $where = ['status' => 1, 'id' => $videoId];
+
             // Get list of video
             $select = $this->getModel('video')->select()->where($where)->order($order);
             $rowset = $this->getModel('video')->selectWith($select);
@@ -95,6 +104,7 @@ class IndexController extends ActionController
                 $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
             }
         }
+
         // return video
         return $video;
     }
@@ -102,19 +112,17 @@ class IndexController extends ActionController
     public function channelList($where)
     {
         // Set info
-        $id     = [];
         $page   = $this->params('page', 1);
-        $module = $this->params('module');
         $sort   = $this->params('sort', 'create');
-        $offset = (int)($page - 1) * $this->config('view_perpage');
-        $limit  = intval($this->config('view_perpage'));
         $order  = $this->setOrder($sort);
+
         // Get list of video
         $select = $this->getModel('video')->select()->where($where)->order($order);
         $rowset = $this->getModel('video')->selectWith($select);
         foreach ($rowset as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
+
         // return video
         return $video;
     }
@@ -124,10 +132,12 @@ class IndexController extends ActionController
         $template['module'] = $this->params('module');
         $template['sort']   = $this->params('sort');
         $template['page']   = $this->params('page', 1);
+
         // get count     
         $columns           = ['count' => new Expression('count(DISTINCT `video`)')];
         $select            = $this->getModel('link')->select()->where($where)->columns($columns);
         $template['count'] = $this->getModel('link')->selectWith($select)->current()->count;
+
         // paginator
         $paginator = $this->canonizePaginator($template);
         return $paginator;
@@ -138,10 +148,12 @@ class IndexController extends ActionController
         $template['module'] = $this->params('module');
         $template['sort']   = $this->params('sort');
         $template['page']   = $this->params('page', 1);
+
         // get count     
         $columns           = ['count' => new Expression('count(*)')];
         $select            = $this->getModel('video')->select()->where($where)->columns($columns);
         $template['count'] = $this->getModel('video')->selectWith($select)->current()->count;
+
         // paginator
         $paginator = $this->canonizePaginator($template);
         return $paginator;
@@ -150,6 +162,7 @@ class IndexController extends ActionController
     public function canonizePaginator($template)
     {
         $template['slug'] = (isset($template['slug'])) ? $template['slug'] : '';
+
         // paginator
         $paginator = Paginator::factory(intval($template['count']));
         $paginator->setItemCountPerPage(intval($this->config('view_perpage')));
@@ -169,6 +182,7 @@ class IndexController extends ActionController
                 ),
             ]
         );
+        
         return $paginator;
     }
 
