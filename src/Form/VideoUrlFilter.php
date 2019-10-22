@@ -20,27 +20,6 @@ class VideoUrlFilter extends InputFilter
 {
     public function __construct($option = [])
     {
-        // slug
-        $this->add(
-            [
-                'name'       => 'slug',
-                'required'   => true,
-                'filters'    => [
-                    [
-                        'name' => 'StringTrim',
-                    ],
-                ],
-                'validators' => [
-                    new \Module\Video\Validator\SlugDuplicate(
-                        [
-                            'module' => Pi::service('module')->current(),
-                            'table'  => 'video',
-                        ]
-                    ),
-                ],
-            ]
-        );
-
         // video_url
         $this->add(
             [

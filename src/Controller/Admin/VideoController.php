@@ -33,7 +33,6 @@ use Pi\Filter;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Zend\Db\Sql\Predicate\Expression;
-use Zend\Math\Rand;
 
 class VideoController extends ActionController
 {
@@ -346,18 +345,14 @@ class VideoController extends ActionController
                 $values = $form->getData();
 
                 // Set time
-                if (empty($id)) {
-                    $values['time_create'] = time();
-                }
+                $values['time_create'] = time();
                 $values['time_update'] = time();
 
                 // Set uid
                 $values['uid'] = Pi::user()->getId();
 
                 // Set status
-                if (empty($id)) {
-                    $values['status'] = 2;
-                }
+                $values['status'] = 2;
 
                 // Set server
                 $values['video_server'] = $serverList[$server]['id'];
@@ -367,11 +362,7 @@ class VideoController extends ActionController
                 }
 
                 // Save values
-                if ($id) {
-                    $row = $this->getModel('video')->find($id);
-                } else {
-                    $row = $this->getModel('video')->createRow();
-                }
+                $row = $this->getModel('video')->createRow();
                 $row->assign($values);
                 $row->save();
 
@@ -441,6 +432,7 @@ class VideoController extends ActionController
                     // Set upload path
                     $values['video_path'] = sprintf('upload/video/file/%s/%s', date('Y'), date('m'));
                     $videoPath            = Pi::path($values['video_path']);
+
                     // Upload
                     $uploader = new Upload;
                     $uploader->setDestination($videoPath);
@@ -458,10 +450,8 @@ class VideoController extends ActionController
                     $this->jump(['action' => 'upload'], __('Problem in upload video. please try again'));
                 }
 
-                // Set time_create
+                // Set time
                 $values['time_create'] = time();
-
-                // Set time_update
                 $values['time_update'] = time();
 
                 // Set uid

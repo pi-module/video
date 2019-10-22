@@ -34,16 +34,6 @@ class VideoUploadForm extends BaseForm
 
     public function init()
     {
-        // slug
-        $this->add(
-            [
-                'name'       => 'slug',
-                'attributes' => [
-                    'type' => 'hidden',
-                ],
-            ]
-        );
-
         // video
         $this->add(
             [
