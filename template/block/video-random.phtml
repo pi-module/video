@@ -32,7 +32,7 @@
                      itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
-                    <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoWatchUrl']); ?>"/>
+                    <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
                     <div class="card">
                         <?php if ($video['image']) { ?>
                             <a itemprop="url" class="card-img-top u-photo" title="<?php echo $this->escape($video['title']); ?>"
@@ -57,7 +57,7 @@
                 <div class="col-lg-12 col-md-12 videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
-                    <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoWatchUrl']); ?>"/>
+                    <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
                     <div class="card">
                         <?php if ($video['image']) { ?>
                             <a itemprop="url" class="card-img-top u-photo" title="<?php echo $this->escape($video['title']); ?>"
@@ -94,7 +94,7 @@
                      itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
-                    <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoWatchUrl']); ?>"/>
+                    <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
                     <div class="card">
                         <?php if ($video['image']) { ?>
                             <a itemprop="url" class="card-img-top u-photo" title="<?php echo $this->escape($video['title']); ?>"
@@ -122,7 +122,7 @@
                     <li class="p-name list-group-item" itemscope itemtype="https://schema.org/VideoObject">
                         <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                         <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
-                        <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoWatchUrl']); ?>"/>
+                        <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
                         <a itemprop="name" title="<?php echo $this->escape($video['title']); ?>"
                            href="<?php echo $this->escape($video['videoUrl']); ?>">
                             <?php echo $this->escape($video['title']); ?>
@@ -146,7 +146,7 @@
                     <div class="item h-review" itemscope itemtype="https://schema.org/VideoObject">
                         <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                         <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
-                        <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoWatchUrl']); ?>"/>
+                        <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
                         <div class="card p-item h-card">
                             <?php if ($video['image']) { ?>
                                 <a itemprop="url" class="card-img-top u-photo" title="<?php echo $this->escape($video['title']); ?>"
@@ -186,7 +186,7 @@
                          itemtype="https://schema.org/VideoObject">
                         <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                         <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
-                        <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoWatchUrl']); ?>"/>
+                        <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
                         <div class="hover-caption">
                             <h3 itemprop="name"><?php echo $this->escape($video['title']); ?></h3>
                             <p>
@@ -210,7 +210,7 @@
                      itemtype="https://schema.org/VideoObject">
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($spotlight['largeUrl']); ?>"/>
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $spotlight['time_create'])); ?>"/>
-                    <meta itemprop="contentUrl" content="<?php echo $this->escape($spotlight['videoWatchUrl']); ?>"/>
+                    <meta itemprop="contentUrl" content="<?php echo $this->escape($spotlight['video_url']); ?>"/>
                     <div class="card">
                         <?php echo $this->video($spotlight['player']); ?>
                         <div class="card-title">
@@ -234,7 +234,7 @@
                             <div class="col-lg-6 col-md-6 videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
                                 <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                                 <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
-                                <meta itemprop="contentUrl" content="<?php echo $this->escape($video['videoWatchUrl']); ?>"/>
+                                <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
                                 <div class="card">
                                     <?php if ($video['image']) { ?>
                                         <a itemprop="url" class="card-img-top u-photo"

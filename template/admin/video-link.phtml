@@ -2,9 +2,9 @@
     <ul class="nav nav-pills bg-light mb-3 p-3">
         <?php if (isset($video['id'])) { ?>
             <li class="nav-item">
-                <a class="nav-link <?php if ($nav['page'] == 'link') {
+                <a class="nav-link <?php if ($nav['page'] == 'edit') {
                     echo 'active';
-                } ?>" href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><?php _e('Manage video link'); ?></a>
+                } ?>" href="<?php echo $this->url('', ['action' => 'edit', 'id' => $video['id']]); ?>"><?php _e('Manage video link'); ?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($nav['page'] == 'update') {

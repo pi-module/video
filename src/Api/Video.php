@@ -345,15 +345,17 @@ class Video extends AbstractApi
         );
 
         // Set video play url
-        $video['videoWatchUrl'] = Pi::api('serverService', 'video')->getUrl(
-            $video['server']['type'],
-            [
-                'serverUrl'  => $video['server']['url'],
-                'serverPath' => $video['server']['path'],
-                'videoPath'  => $video['video_path'],
-                'videoName'  => $video['video_file'],
-            ]
-        );
+        if (empty($video['video_url']) && !empty($video['video_file'])) {
+            $video['video_url'] = Pi::api('serverService', 'video')->getUrl(
+                $video['server']['type'],
+                [
+                    'serverUrl'  => $video['server']['url'],
+                    'serverPath' => $video['server']['path'],
+                    'videoPath'  => $video['video_path'],
+                    'videoName'  => $video['video_file'],
+                ]
+            );
+        }
 
         // Set video duration
         $video['video_duration_view'] = $this->getDuration($video['video_duration']);
@@ -426,7 +428,7 @@ class Video extends AbstractApi
             'mimetype' => 'application/x-mpegURL',
             'source'   => [
                 [
-                    'url'   => $video['videoWatchUrl'],
+                    'url'   => $video['video_url'],
                     'title' => 'Normal Quality',
                 ],
             ],
@@ -573,15 +575,17 @@ class Video extends AbstractApi
         );
 
         // Set video play url
-        $video['videoWatchUrl'] = Pi::api('serverService', 'video')->getUrl(
-            $video['server']['type'],
-            [
-                'serverUrl'  => $video['server']['url'],
-                'serverPath' => $video['server']['path'],
-                'videoPath'  => $video['video_path'],
-                'videoName'  => $video['video_file'],
-            ]
-        );
+        if (empty($video['video_url']) && !empty($video['video_file'])) {
+            $video['video_url'] = Pi::api('serverService', 'video')->getUrl(
+                $video['server']['type'],
+                [
+                    'serverUrl'  => $video['server']['url'],
+                    'serverPath' => $video['server']['path'],
+                    'videoPath'  => $video['video_path'],
+                    'videoName'  => $video['video_file'],
+                ]
+            );
+        }
 
         // Set video duration
         $video['video_duration_view'] = $this->getDuration($video['video_duration']);

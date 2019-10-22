@@ -69,7 +69,7 @@ class VideoPutForm extends BaseForm
             [
                 'name'       => 'video_file',
                 'options'    => [
-                    'label' => __('Video source'),
+                    'label' => __('Video source name'),
                 ],
                 'attributes' => [
                     'type'        => 'text',

@@ -104,7 +104,7 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                             </button>
                             <div class="dropdown-menu" role="menu">
                                 <a class="dropdown-item" title="<?php _e('Manage video link'); ?>"
-                                   href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><i
+                                   href="<?php echo $this->url('', ['action' => 'edit', 'id' => $video['id']]); ?>"><i
                                             class="fa fa-edit"></i> <?php _e('Manage video link'); ?></a>
                                 <a class="dropdown-item" title="<?php _e('Edit basic information'); ?>"
                                    href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><i

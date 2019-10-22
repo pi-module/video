@@ -8,7 +8,7 @@
             <div class="video-service <?php echo $videoServiceCol; ?>" itemscope itemtype="https://schema.org/VideoObject">
                 <meta itemprop="thumbnail" content="<?php echo $this->escape($videoService['largeUrl']); ?>"/>
                 <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $videoService['time_create'])); ?>"/>
-                <meta itemprop="contentUrl" content="<?php echo $this->escape($videoService['videoWatchUrl']); ?>"/>
+                <meta itemprop="contentUrl" content="<?php echo $this->escape($videoService['video_url']); ?>"/>
                 <div class="clearfix text-center video-player">
                     <?php echo $this->video($videoService['player']); ?>
                 </div>

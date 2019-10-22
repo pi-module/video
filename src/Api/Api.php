@@ -375,7 +375,7 @@ class Api extends AbstractApi
                 'slug'            => $videoRelatedSingle['slug'],
                 'mediumUrl'       => $videoRelatedSingle['mediumUrl'],
                 'thumbUrl'        => $videoRelatedSingle['thumbUrl'],
-                'videoWatchUrl' => $videoRelatedSingle['videoWatchUrl'],
+                'video_url' => $videoRelatedSingle['video_url'],
             ];
         }
 
@@ -397,7 +397,7 @@ class Api extends AbstractApi
             'channelUrl'          => $singleVideo['channelUrl'],
             'videoUrl'            => $singleVideo['videoUrl'],
             'largeUrl'            => $singleVideo['largeUrl'],
-            'videoWatchUrl'         => $singleVideo['videoWatchUrl'],
+            'video_url'         => $singleVideo['video_url'],
             'videoRelated'        => $videoRelated,
         ];
 
