@@ -34,8 +34,8 @@ class Service extends AbstractApi
             $where['module_item'] = $item;
         }
         $select = Pi::model('service', $this->getModule())->select()->where($where);
-        $rowset = Pi::model('service', $this->getModule())->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = Pi::model('service', $this->getModule())->selectWith($select);
+        foreach ($rowSet as $row) {
             // Canonize video
             $list[$row->id] = Pi::api('video', 'video')->getVideo($row->id);
             // Update Hits

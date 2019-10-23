@@ -82,12 +82,12 @@ class IndexController extends ActionController
 
         // Get info from link table
         $select = $this->getModel('link')->select()->where($where)->columns($columns)->order($order)->offset($offset)->limit($limit);
-        $rowset = $this->getModel('link')->selectWith($select);
+        $rowSet = $this->getModel('link')->selectWith($select);
 
         // Make list
-        if (!empty($rowset)) {
-            $rowset = $rowset->toArray();
-            foreach ($rowset as $id) {
+        if (!empty($rowSet)) {
+            $rowSet = $rowSet->toArray();
+            foreach ($rowSet as $id) {
                 $videoId[] = $id['video'];
             }
         }
@@ -99,8 +99,8 @@ class IndexController extends ActionController
 
             // Get list of video
             $select = $this->getModel('video')->select()->where($where)->order($order);
-            $rowset = $this->getModel('video')->selectWith($select);
-            foreach ($rowset as $row) {
+            $rowSet = $this->getModel('video')->selectWith($select);
+            foreach ($rowSet as $row) {
                 $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
             }
         }
@@ -118,8 +118,8 @@ class IndexController extends ActionController
 
         // Get list of video
         $select = $this->getModel('video')->select()->where($where)->order($order);
-        $rowset = $this->getModel('video')->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = $this->getModel('video')->selectWith($select);
+        foreach ($rowSet as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
 

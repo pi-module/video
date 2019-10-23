@@ -77,10 +77,10 @@ class Video extends AbstractApi
 
         // Get info from link table
         $select = Pi::model('link', $this->getModule())->select()->where($where)->columns($columns)->order($order)->limit($limit);
-        $rowset = Pi::model('link', $this->getModule())->selectWith($select)->toArray();
+        $rowSet = Pi::model('link', $this->getModule())->selectWith($select)->toArray();
 
         // Make list
-        foreach ($rowset as $id) {
+        foreach ($rowSet as $id) {
             $videoId[] = $id['video'];
         }
 
@@ -97,8 +97,8 @@ class Video extends AbstractApi
         $list   = [];
         $where  = ['id' => $id, 'status' => 1];
         $select = Pi::model('video', $this->getModule())->select()->where($where);
-        $rowset = Pi::model('video', $this->getModule())->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = Pi::model('video', $this->getModule())->selectWith($select);
+        foreach ($rowSet as $row) {
             $list[$row->id] = $this->canonizeVideo($row);
         }
         return $list;
@@ -109,8 +109,8 @@ class Video extends AbstractApi
         $list   = [];
         $where  = ['id' => $id, 'status' => 1];
         $select = Pi::model('video', $this->getModule())->select()->where($where);
-        $rowset = Pi::model('video', $this->getModule())->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = Pi::model('video', $this->getModule())->selectWith($select);
+        foreach ($rowSet as $row) {
             $list[$row->id] = $this->canonizeVideoLight($row);
         }
         return $list;
@@ -811,8 +811,8 @@ class Video extends AbstractApi
             // find and import
             $columns = ['id', 'slug', 'status'];
             $select  = Pi::model('video', $this->getModule())->select()->columns($columns);
-            $rowset  = Pi::model('video', $this->getModule())->selectWith($select);
-            foreach ($rowset as $row) {
+            $rowSet  = Pi::model('video', $this->getModule())->selectWith($select);
+            foreach ($rowSet as $row) {
 
                 // Make url
                 $loc = Pi::url(

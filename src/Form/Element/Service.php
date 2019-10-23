@@ -31,8 +31,8 @@ class Service extends Select
             $limit   = 250;
             $list    = ['' => ''];
             $select  = Pi::model('video', 'video')->select()->columns($columns)->where($where)->order($order)->limit($limit);
-            $rowset  = Pi::model('video', 'video')->selectWith($select);
-            foreach ($rowset as $row) {
+            $rowSet  = Pi::model('video', 'video')->selectWith($select);
+            foreach ($rowSet as $row) {
                 $list[$row->id] = $row->title;
             }
             $this->valueOptions = $list;

@@ -104,10 +104,10 @@ class VideoController extends ActionController
             $select->where($titleWhere);
         }
         $select->where($whereVideo)->order($order)->offset($offset)->limit($limit);
-        $rowset = $this->getModel('video')->selectWith($select);
+        $rowSet = $this->getModel('video')->selectWith($select);
 
         // Make list
-        foreach ($rowset as $row) {
+        foreach ($rowSet as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
 

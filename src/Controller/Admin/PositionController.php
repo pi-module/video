@@ -30,9 +30,9 @@ class PositionController extends ActionController
         $list   = [];
         $order  = ['order ASC', 'id ASC'];
         $select = $this->getModel('field_position')->select()->order($order);
-        $rowset = $this->getModel('field_position')->selectWith($select);
+        $rowSet = $this->getModel('field_position')->selectWith($select);
         // Make list
-        foreach ($rowset as $row) {
+        foreach ($rowSet as $row) {
             $list[$row->id] = $row->toArray();
         }
         // Go to update page if empty

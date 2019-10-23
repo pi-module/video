@@ -27,9 +27,9 @@ class AttributeController extends ActionController
         $position = Pi::api('attribute', 'video')->attributePositionForm();
         // Get info
         $select = $this->getModel('field')->select()->order(['order ASC']);
-        $rowset = $this->getModel('field')->selectWith($select);
+        $rowSet = $this->getModel('field')->selectWith($select);
         // Make list
-        foreach ($rowset as $row) {
+        foreach ($rowSet as $row) {
             $field[$row->position][$row->id]                  = $row->toArray();
             $field[$row->position][$row->id]['position_view'] = $position[$row->position];
         }

@@ -270,10 +270,10 @@ class CategoryController extends ActionController
         $offset = (int)($current - 1) * $rowCount;
         $limit  = intval($rowCount);
         $select = $this->getModel('category')->select()->columns($columns)->where($where)->order($order)->offset($offset)->limit($limit);
-        $rowset = $this->getModel('category')->selectWith($select);
+        $rowSet = $this->getModel('category')->selectWith($select);
 
         // Make list
-        foreach ($rowset as $row) {
+        foreach ($rowSet as $row) {
             $rows[] = [
                 'id'            => $row->id,
                 'title'         => $row->title,
@@ -340,10 +340,10 @@ class CategoryController extends ActionController
             ];
             $order  = ['id ASC'];
             $select = $this->getModel('video')->select()->where($where)->order($order)->limit(50);
-            $rowset = $this->getModel('video')->selectWith($select);
+            $rowSet = $this->getModel('video')->selectWith($select);
 
             // Make list
-            foreach ($rowset as $row) {
+            foreach ($rowSet as $row) {
                 $video = Pi::api('video', 'video')->canonizeVideo($row, $categoryList, $serverList);
 
                 // Make category list as json

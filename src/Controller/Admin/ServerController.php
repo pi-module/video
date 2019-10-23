@@ -26,10 +26,10 @@ class ServerController extends ActionController
         $list   = [];
         $order  = ['id DESC'];
         $select = $this->getModel('server')->select()->order($order);
-        $rowset = $this->getModel('server')->selectWith($select);
+        $rowSet = $this->getModel('server')->selectWith($select);
 
         // Make list
-        foreach ($rowset as $row) {
+        foreach ($rowSet as $row) {
             $list[$row->id] = Pi::api('server', 'video')->canonizeServer($row);
         }
 

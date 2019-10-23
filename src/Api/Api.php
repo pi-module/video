@@ -209,8 +209,8 @@ class Api extends AbstractApi
                     $where->andPredicate($whereMain)->andPredicate($whereKey);
                 }
             )->order($order);
-            $rowset      = Pi::model('video', $this->getModule())->selectWith($select);
-            foreach ($rowset as $row) {
+            $rowSet      = Pi::model('video', $this->getModule())->selectWith($select);
+            foreach ($rowSet as $row) {
                 $videoIDList['title'][$row->id] = $row->id;
             }
         }
@@ -237,8 +237,8 @@ class Api extends AbstractApi
                         'data'  => $attributeSingle['data'],
                     ];
                     $select = Pi::model('field_data', $this->getModule())->select()->where($where)->columns($column);
-                    $rowset = Pi::model('field_data', $this->getModule())->selectWith($select);
-                    foreach ($rowset as $row) {
+                    $rowSet = Pi::model('field_data', $this->getModule())->selectWith($select);
+                    foreach ($rowSet as $row) {
                         $videoIDList['attribute'][$row->video] = $row->video;
                     }
                 }
@@ -306,8 +306,8 @@ class Api extends AbstractApi
         if ($hasSearchResult) {
             // Get info from link table
             $select = Pi::model('link', $this->getModule())->select()->where($whereLink)->columns($columns)->order($order)->offset($offset)->limit($limit);
-            $rowset = Pi::model('link', $this->getModule())->selectWith($select)->toArray();
-            foreach ($rowset as $id) {
+            $rowSet = Pi::model('link', $this->getModule())->selectWith($select)->toArray();
+            foreach ($rowSet as $id) {
                 $videoIDSelect[] = $id['video'];
             }
 
@@ -315,8 +315,8 @@ class Api extends AbstractApi
             if (!empty($videoIDSelect)) {
                 $where  = ['status' => 1, 'id' => $videoIDSelect];
                 $select = Pi::model('video', $this->getModule())->select()->where($where)->order($order);
-                $rowset = Pi::model('video', $this->getModule())->selectWith($select);
-                foreach ($rowset as $row) {
+                $rowSet = Pi::model('video', $this->getModule())->selectWith($select);
+                foreach ($rowSet as $row) {
                     $singleVideo           = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
                     $singleVideo['access'] = Pi::api('video', 'video')->getAccess($video);
                     $video[]               = $singleVideo;
@@ -411,8 +411,8 @@ class Api extends AbstractApi
         $where  = ['status' => 1, 'type' => 'category'];
         $order  = ['title ASC', 'id DESC'];
         $select = Pi::model('category', $this->getModule())->select()->where($where)->order($order);
-        $rowset = Pi::model('category', $this->getModule())->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = Pi::model('category', $this->getModule())->selectWith($select);
+        foreach ($rowSet as $row) {
             $categorySingle = Pi::api('category', 'video')->canonizeCategory($row);
             $category[]     = [
                 'id'        => $categorySingle['id'],

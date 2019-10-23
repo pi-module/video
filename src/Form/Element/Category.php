@@ -29,8 +29,8 @@ class Category extends Select
             $columns = ['id', 'parent', 'title'];
             $where   = ['status' => 1, 'type' => 'category'];
             $select  = Pi::model('category', 'video')->select()->columns($columns)->where($where);
-            $rowset  = Pi::model('category', 'video')->selectWith($select);
-            foreach ($rowset as $row) {
+            $rowSet  = Pi::model('category', 'video')->selectWith($select);
+            foreach ($rowSet as $row) {
                 $list[$row->id] = $row->toArray();
             }
             $this->valueOptions = $this->getTree($list);

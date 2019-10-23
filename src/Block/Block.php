@@ -43,9 +43,9 @@ class Block
             $columns = ['video' => new Expression('DISTINCT video'), '*'];
             // Get info from link table
             $select = Pi::model('link', $module)->select()->where($where)->columns($columns)->order($order)->limit($limit);
-            $rowset = Pi::model('link', $module)->selectWith($select)->toArray();
+            $rowSet = Pi::model('link', $module)->selectWith($select)->toArray();
             // Make list
-            foreach ($rowset as $id) {
+            foreach ($rowSet as $id) {
                 $videoId[] = $id['video'];
             }
             // Set info
@@ -58,9 +58,9 @@ class Block
         }
         // Get list of video
         $select = Pi::model('video', $module)->select()->where($where)->order($order)->limit($limit);
-        $rowset = Pi::model('video', $module)->selectWith($select);
+        $rowSet = Pi::model('video', $module)->selectWith($select);
         // Make list
-        foreach ($rowset as $row) {
+        foreach ($rowSet as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
         // Set block array
@@ -90,9 +90,9 @@ class Block
             $columns = ['video' => new Expression('DISTINCT video'), '*'];
             // Get info from link table
             $select = Pi::model('link', $module)->select()->where($where)->columns($columns)->order($order)->limit($limit);
-            $rowset = Pi::model('link', $module)->selectWith($select)->toArray();
+            $rowSet = Pi::model('link', $module)->selectWith($select)->toArray();
             // Make list
-            foreach ($rowset as $id) {
+            foreach ($rowSet as $id) {
                 $videoId[] = $id['video'];
             }
             // Set info
@@ -102,9 +102,9 @@ class Block
         }
         // Get list of video
         $select = Pi::model('video', $module)->select()->where($where)->order($order)->limit($limit);
-        $rowset = Pi::model('video', $module)->selectWith($select);
+        $rowSet = Pi::model('video', $module)->selectWith($select);
         // Make list
-        foreach ($rowset as $row) {
+        foreach ($rowSet as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
         // Set block array
@@ -133,9 +133,9 @@ class Block
                 $limit = intval($block['number']);
                 // Get list of video
                 $select = Pi::model('video', $module)->select()->where($where)->order($order)->limit($limit);
-                $rowset = Pi::model('video', $module)->selectWith($select);
+                $rowSet = Pi::model('video', $module)->selectWith($select);
                 // Make list
-                foreach ($rowset as $row) {
+                foreach ($rowSet as $row) {
                     $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
                 }
             }
@@ -172,9 +172,9 @@ class Block
             $columns = ['video' => new Expression('DISTINCT video'), '*'];
             // Get info from link table
             $select = Pi::model('link', $module)->select()->where($where)->columns($columns)->order($order)->limit($limit);
-            $rowset = Pi::model('link', $module)->selectWith($select)->toArray();
+            $rowSet = Pi::model('link', $module)->selectWith($select)->toArray();
             // Make list
-            foreach ($rowset as $id) {
+            foreach ($rowSet as $id) {
                 $videoId[] = $id['video'];
             }
             // Set info
@@ -184,9 +184,9 @@ class Block
         }
         // Get list of video
         $select = Pi::model('video', $module)->select()->where($where)->order($order)->limit($limit);
-        $rowset = Pi::model('video', $module)->selectWith($select);
+        $rowSet = Pi::model('video', $module)->selectWith($select);
         // Make list
-        foreach ($rowset as $row) {
+        foreach ($rowSet as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
         // Set block array

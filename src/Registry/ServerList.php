@@ -32,8 +32,8 @@ class ServerList extends AbstractRegistry
         $return = [];
         $where  = ['status' => 1];
         $select = Pi::model('server', $this->module)->select()->where($where);
-        $rowset = Pi::model('server', $this->module)->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = Pi::model('server', $this->module)->selectWith($select);
+        foreach ($rowSet as $row) {
             $return[$row->id] = Pi::api('server', 'video')->canonizeServer($row);
         }
         return $return;

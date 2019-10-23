@@ -30,8 +30,8 @@ class IndexController extends FeedController
         $order  = ['time_create DESC', 'id DESC'];
         $where  = ['status' => 1];
         $select = $this->getModel('video')->select()->where($where)->order($order)->limit(10);
-        $rowset = $this->getModel('video')->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = $this->getModel('video')->selectWith($select);
+        foreach ($rowSet as $row) {
             $entry                  = [];
             $entry['title']         = $row->title;
             $description            = (empty($row->description)) ? __('Click to see video') : $row->description;

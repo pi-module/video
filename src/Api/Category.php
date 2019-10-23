@@ -67,8 +67,8 @@ class Category extends AbstractApi
         $list   = [];
         $where  = ['category' => $category];
         $select = Pi::model('link', $this->getModule())->select()->where($where);
-        $rowset = Pi::model('link', $this->getModule())->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = Pi::model('link', $this->getModule())->selectWith($select);
+        foreach ($rowSet as $row) {
             $row    = $row->toArray();
             $list[] = $row['video'];
         }
@@ -90,8 +90,8 @@ class Category extends AbstractApi
         $order  = ['display_order ASC'];
         // Make list
         $select = Pi::model('category', $this->getModule())->select()->where($where)->order($order);
-        $rowset = Pi::model('category', $this->getModule())->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = Pi::model('category', $this->getModule())->selectWith($select);
+        foreach ($rowSet as $row) {
             $return[$row->id]        = $row->toArray();
             $return[$row->id]['url'] = Pi::url(
                 Pi::service('url')->assemble(
@@ -127,8 +127,8 @@ class Category extends AbstractApi
         $order  = ['display_order ASC'];
         // Make list
         $select = Pi::model('category', $this->getModule())->select()->where($where)->order($order);
-        $rowset = Pi::model('category', $this->getModule())->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = Pi::model('category', $this->getModule())->selectWith($select);
+        foreach ($rowSet as $row) {
 
             $thumbUrl = '';
             if ($row->image) {
@@ -169,8 +169,8 @@ class Category extends AbstractApi
         $order  = ['display_order ASC'];
         // Make list
         $select = Pi::model('category', $this->getModule())->select()->where($where)->order($order);
-        $rowset = Pi::model('category', $this->getModule())->selectWith($select);
-        foreach ($rowset as $row) {
+        $rowSet = Pi::model('category', $this->getModule())->selectWith($select);
+        foreach ($rowSet as $row) {
             $return[] = [
                 'id'     => $row->id,
                 'parent' => $row->parent,
@@ -275,8 +275,8 @@ class Category extends AbstractApi
             // find and import
             $columns = ['id', 'slug', 'status'];
             $select  = Pi::model('category', $this->getModule())->select()->columns($columns);
-            $rowset  = Pi::model('category', $this->getModule())->selectWith($select);
-            foreach ($rowset as $row) {
+            $rowSet  = Pi::model('category', $this->getModule())->selectWith($select);
+            foreach ($rowSet as $row) {
                 // Make url
                 $loc = Pi::url(
                     Pi::service('url')->assemble(

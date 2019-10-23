@@ -210,8 +210,8 @@ class JsonController extends IndexController
                     $where->andPredicate($whereMain)->andPredicate($whereKey);
                 }
             )->order($order);
-            $rowset     = $this->getModel('video')->selectWith($select);
-            foreach ($rowset as $row) {
+            $rowSet     = $this->getModel('video')->selectWith($select);
+            foreach ($rowSet as $row) {
                 $videoIDList['title'][$row->id] = $row->id;
             }
         }
@@ -238,8 +238,8 @@ class JsonController extends IndexController
                         'data'  => $attributeSingle['data'],
                     ];
                     $select = $this->getModel('field_data')->select()->where($where)->columns($column);
-                    $rowset = $this->getModel('field_data')->selectWith($select);
-                    foreach ($rowset as $row) {
+                    $rowSet = $this->getModel('field_data')->selectWith($select);
+                    foreach ($rowSet as $row) {
                         $videoIDList['attribute'][$row->video] = $row->video;
                     }
                 }
@@ -307,8 +307,8 @@ class JsonController extends IndexController
         if ($hasSearchResult) {
             // Get info from link table
             $select = $this->getModel('link')->select()->where($whereLink)->columns($columns)->order($order)->offset($offset)->limit($limit);
-            $rowset = $this->getModel('link')->selectWith($select)->toArray();
-            foreach ($rowset as $id) {
+            $rowSet = $this->getModel('link')->selectWith($select)->toArray();
+            foreach ($rowSet as $id) {
                 $videoIDSelect[] = $id['video'];
             }
 
@@ -316,8 +316,8 @@ class JsonController extends IndexController
             if (!empty($videoIDSelect)) {
                 $where  = ['status' => 1, 'id' => $videoIDSelect];
                 $select = $this->getModel('video')->select()->where($where)->order($order);
-                $rowset = $this->getModel('video')->selectWith($select);
-                foreach ($rowset as $row) {
+                $rowSet = $this->getModel('video')->selectWith($select);
+                foreach ($rowSet as $row) {
                     $video[] = Pi::api('video', 'video')->canonizeVideoFilter($row, $categoryList, $filterList);
                 }
             }
