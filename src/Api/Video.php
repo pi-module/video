@@ -349,10 +349,10 @@ class Video extends AbstractApi
             $video['video_url'] = Pi::api('serverService', 'video')->getUrl(
                 $video['server']['type'],
                 [
-                    'serverUrl'  => $video['server']['url'],
-                    'serverApplication' => $video['server']['path'],
-                    'streamPath'  => $video['video_path'],
-                    'streamName'  => $video['video_file'],
+                    'serverUrl'         => $video['server']['url'],
+                    'serverApplication' => $video['server']['application'],
+                    'streamPath'        => $video['video_path'],
+                    'streamName'        => $video['video_file'],
                 ]
             );
         }
@@ -417,9 +417,9 @@ class Video extends AbstractApi
             );
         } else {
             $video['originalUrl'] = '';
-            $video['largeUrl'] = '';
-            $video['mediumUrl'] = '';
-            $video['thumbUrl'] = '';
+            $video['largeUrl']    = '';
+            $video['mediumUrl']   = '';
+            $video['thumbUrl']    = '';
         }
 
         // Set player
@@ -579,10 +579,10 @@ class Video extends AbstractApi
             $video['video_url'] = Pi::api('serverService', 'video')->getUrl(
                 $video['server']['type'],
                 [
-                    'serverUrl'  => $video['server']['url'],
-                    'serverApplication' => $video['server']['path'],
-                    'streamPath'  => $video['video_path'],
-                    'streamName'  => $video['video_file'],
+                    'serverUrl'         => $video['server']['url'],
+                    'serverApplication' => $video['server']['application'],
+                    'streamPath'        => $video['video_path'],
+                    'streamName'        => $video['video_file'],
                 ]
             );
         }
@@ -647,9 +647,9 @@ class Video extends AbstractApi
             );
         } else {
             $video['originalUrl'] = '';
-            $video['largeUrl'] = '';
-            $video['mediumUrl'] = '';
-            $video['thumbUrl'] = '';
+            $video['largeUrl']    = '';
+            $video['mediumUrl']   = '';
+            $video['thumbUrl']    = '';
         }
 
         // Set category_main information
@@ -774,9 +774,9 @@ class Video extends AbstractApi
             );
         } else {
             $video['originalUrl'] = '';
-            $video['largeUrl'] = '';
-            $video['mediumUrl'] = '';
-            $video['thumbUrl'] = '';
+            $video['largeUrl']    = '';
+            $video['mediumUrl']   = '';
+            $video['thumbUrl']    = '';
         }
 
         // Set attribute

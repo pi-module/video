@@ -40,12 +40,12 @@ class VideoLinkForm extends BaseForm
                 'name'       => 'video_server',
                 'type'       => 'Module\Video\Form\Element\Server',
                 'options'    => [
-                    'label'    => __('Server'),
+                    'label' => __('Server'),
                 ],
                 'attributes' => [
                     'description' => __('Select stream server'),
                     'required'    => true,
-                    'value' => Pi::registry('serverDefault', 'video')->read(),
+                    'value'       => Pi::registry('serverDefault', 'video')->read(),
                 ],
             ]
         );

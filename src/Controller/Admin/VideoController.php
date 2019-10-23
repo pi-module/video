@@ -351,7 +351,7 @@ class VideoController extends ActionController
                 if (!empty($file['video']['name'])) {
                     // Set upload path
                     $values['video_path'] = sprintf('upload/video/file/%s/%s', date('Y'), date('m'));
-                    $streamPath            = Pi::path($values['video_path']);
+                    $streamPath           = Pi::path($values['video_path']);
 
                     // Upload
                     $uploader = new Upload;

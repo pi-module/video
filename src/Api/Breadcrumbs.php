@@ -40,8 +40,8 @@ class Breadcrumbs extends AbstractBreadcrumbs
                         'href'  => Pi::url(
                             Pi::service('url')->assemble(
                                 'video', [
-                                'module' => $this->getModule(),
-                            ]
+                                    'module' => $this->getModule(),
+                                ]
                             )
                         ),
                     ],
@@ -106,9 +106,9 @@ class Breadcrumbs extends AbstractBreadcrumbs
                                 'href'  => Pi::url(
                                     Pi::service('url')->assemble(
                                         'video', [
-                                        'controller' => 'tag',
-                                        'action'     => 'index',
-                                    ]
+                                            'controller' => 'tag',
+                                            'action'     => 'index',
+                                        ]
                                     )
                                 ),
                             ];

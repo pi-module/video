@@ -81,9 +81,9 @@ class WatchController extends IndexController
         $submitter           = Pi::api('channel', 'video')->user($video['uid']);
         $submitter['avatar'] = Pi::avatar()->get(
             $video['uid'], 'small', [
-            'alt'   => _escape($submitter['name']),
-            'class' => 'rounded-circle',
-        ]
+                'alt'   => _escape($submitter['name']),
+                'class' => 'rounded-circle',
+            ]
         );
         // Set main category info
         if ($config['view_description_video']) {

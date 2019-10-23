@@ -25,7 +25,7 @@ class Category extends Select
     {
         if (empty($this->valueOptions)) {
             // Get topic list
-            $list = [];
+            $list    = [];
             $columns = ['id', 'parent', 'title'];
             $where   = ['status' => 1, 'type' => 'category'];
             $select  = Pi::model('category', 'video')->select()->columns($columns)->where($where);

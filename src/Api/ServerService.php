@@ -81,9 +81,10 @@ class ServerService extends AbstractApi
      * Get server variables
      *
      * @param string $var
-     * @throws
      *
      * @return mixed
+     * @throws
+     *
      */
     public function __get($var)
     {
@@ -97,9 +98,10 @@ class ServerService extends AbstractApi
      *
      * @param string $method
      * @param array  $args
-     * @throws
      *
      * @return mixed
+     * @throws
+     *
      */
     public function __call($method, $args)
     {

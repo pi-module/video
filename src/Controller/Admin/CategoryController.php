@@ -130,7 +130,7 @@ class CategoryController extends ActionController
 
                 // Set time
                 if (empty($values['id'])) {
-                    $values['time_create'] = time();
+                    $values['time_create']   = time();
                     $values['display_order'] = 1;
                     if (empty($values['parent'])) {
                         $values['parent'] = 0;

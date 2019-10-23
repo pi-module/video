@@ -29,8 +29,8 @@
                 <td>
                     <ul class="list-inline">
                         <li class="list-inline-item"><?php _e('Url') ?> : <?php echo $this->escape($server['url']); ?></li>
-                        <?php if (!empty($server['path'])) { ?>
-                            <li class="list-inline-item"><?php _e('Path') ?> : <?php echo $this->escape($server['path']); ?></li>
+                        <?php if (!empty($server['application'])) { ?>
+                            <li class="list-inline-item"><?php _e('Application') ?> : <?php echo $this->escape($server['application']); ?></li>
                         <?php } ?>
                     </ul>
                 </td>

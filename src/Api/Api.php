@@ -370,11 +370,11 @@ class Api extends AbstractApi
         $videoRelatedList = Pi::api('video', 'video')->getList($where, $config['view_related_number']);
         foreach ($videoRelatedList as $videoRelatedSingle) {
             $videoRelated[] = [
-                'id'              => $videoRelatedSingle['id'],
-                'title'           => $videoRelatedSingle['title'],
-                'slug'            => $videoRelatedSingle['slug'],
-                'mediumUrl'       => $videoRelatedSingle['mediumUrl'],
-                'thumbUrl'        => $videoRelatedSingle['thumbUrl'],
+                'id'        => $videoRelatedSingle['id'],
+                'title'     => $videoRelatedSingle['title'],
+                'slug'      => $videoRelatedSingle['slug'],
+                'mediumUrl' => $videoRelatedSingle['mediumUrl'],
+                'thumbUrl'  => $videoRelatedSingle['thumbUrl'],
                 'video_url' => $videoRelatedSingle['video_url'],
             ];
         }
@@ -397,7 +397,7 @@ class Api extends AbstractApi
             'channelUrl'          => $singleVideo['channelUrl'],
             'videoUrl'            => $singleVideo['videoUrl'],
             'largeUrl'            => $singleVideo['largeUrl'],
-            'video_url'         => $singleVideo['video_url'],
+            'video_url'           => $singleVideo['video_url'],
             'videoRelated'        => $videoRelated,
         ];
 

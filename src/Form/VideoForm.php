@@ -255,15 +255,15 @@ class VideoForm extends BaseForm
             );
         }
 
-            // video_duration
-            $this->add(
-                [
-                    'name'       => 'video_duration',
-                    'attributes' => [
-                        'type' => 'hidden',
-                    ],
-                ]
-            );
+        // video_duration
+        $this->add(
+            [
+                'name'       => 'video_duration',
+                'attributes' => [
+                    'type' => 'hidden',
+                ],
+            ]
+        );
 
         // Price
         if ($this->option['side'] == 'admin') {

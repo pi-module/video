@@ -71,11 +71,11 @@ class IndexController extends ActionController
         // Set info
         $video   = [];
         $videoId = [];
-        $page      = $this->params('page', 1);
-        $sort      = $this->params('sort', 'create');
-        $offset    = (int)($page - 1) * $this->config('view_perpage');
-        $limit     = empty($limit) ? intval($this->config('view_perpage')) : $limit;
-        $order     = $this->setOrder($sort);
+        $page    = $this->params('page', 1);
+        $sort    = $this->params('sort', 'create');
+        $offset  = (int)($page - 1) * $this->config('view_perpage');
+        $limit   = empty($limit) ? intval($this->config('view_perpage')) : $limit;
+        $order   = $this->setOrder($sort);
 
         // Set info
         $columns = ['video' => new Expression('DISTINCT video'), '*'];
@@ -112,9 +112,9 @@ class IndexController extends ActionController
     public function channelList($where)
     {
         // Set info
-        $page   = $this->params('page', 1);
-        $sort   = $this->params('sort', 'create');
-        $order  = $this->setOrder($sort);
+        $page  = $this->params('page', 1);
+        $sort  = $this->params('sort', 'create');
+        $order = $this->setOrder($sort);
 
         // Get list of video
         $select = $this->getModel('video')->select()->where($where)->order($order);
@@ -182,7 +182,7 @@ class IndexController extends ActionController
                 ),
             ]
         );
-        
+
         return $paginator;
     }
 

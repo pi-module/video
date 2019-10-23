@@ -6,7 +6,7 @@ CREATE TABLE `{server}`
     `default` TINYINT(1) UNSIGNED                           NOT NULL DEFAULT '0',
     `type`    ENUM ('file', 'wowza', 'nginx', 'mistserver') NOT NULL DEFAULT 'file',
     `url`     VARCHAR(255)                                  NOT NULL DEFAULT '',
-    `path`    VARCHAR(255)                                  NOT NULL DEFAULT '',
+    `application`    VARCHAR(255)                                  NOT NULL DEFAULT '',
     `setting` TEXT,
     PRIMARY KEY (`id`)
 );

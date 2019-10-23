@@ -62,10 +62,10 @@ class ServerFilter extends InputFilter
             ]
         );
 
-        // path
+        // application
         $this->add(
             [
-                'name'     => 'path',
+                'name'     => 'application',
                 'required' => false,
                 'filters'  => [
                     [

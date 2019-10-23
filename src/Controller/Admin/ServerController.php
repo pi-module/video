@@ -89,7 +89,7 @@ class ServerController extends ActionController
             }
         } else {
             if ($id) {
-                $server  = Pi::api('server', 'video')->getServer($id);
+                $server = Pi::api('server', 'video')->getServer($id);
                 $form->setData($server);
             }
         }

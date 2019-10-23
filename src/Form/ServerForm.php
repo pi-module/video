@@ -77,9 +77,9 @@ class ServerForm extends BaseForm
                 'options'    => [
                     'label'         => __('Server type'),
                     'value_options' => [
-                        'file'  => __('File server'),
-                        'wowza' => __('Wowza'),
-                        'nginx' => __('Nginx'),
+                        'file'       => __('File server'),
+                        'wowza'      => __('Wowza'),
+                        'nginx'      => __('Nginx'),
                         'mistserver' => __('MistServer'),
                     ],
                 ],
@@ -111,16 +111,16 @@ class ServerForm extends BaseForm
             ]
         );
 
-        // path
+        // application
         $this->add(
             [
-                'name'       => 'path',
+                'name'       => 'application',
                 'options'    => [
-                    'label' => __('Server path'),
+                    'label' => __('Server application'),
                 ],
                 'attributes' => [
                     'type'        => 'text',
-                    'description' => __('Internal server video path, Just if needed to put in full url playable'),
+                    'description' => __('Internal server video application, Just if you set it on your stream server and needed to put in full url playable'),
                     'required'    => false,
                 ],
             ]

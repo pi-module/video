@@ -32,37 +32,37 @@ class JsonController extends ActionController
         $links['videoAll'] = Pi::url(
             $this->url(
                 'video', [
-                'module'     => $module,
-                'controller' => 'json',
-                'action'     => 'videoAll',
-                'update'     => strtotime("11-12-10"),
-                'password'   => (!empty($config['json_password'])) ? $config['json_password'] : '',
-            ]
+                    'module'     => $module,
+                    'controller' => 'json',
+                    'action'     => 'videoAll',
+                    'update'     => strtotime("11-12-10"),
+                    'password'   => (!empty($config['json_password'])) ? $config['json_password'] : '',
+                ]
             )
         );
 
         $links['videoCategory'] = Pi::url(
             $this->url(
                 'video', [
-                'module'     => $module,
-                'controller' => 'json',
-                'action'     => 'videoCategory',
-                'id'         => 1,
-                'update'     => strtotime("11-12-10"),
-                'password'   => (!empty($config['json_password'])) ? $config['json_password'] : '',
-            ]
+                    'module'     => $module,
+                    'controller' => 'json',
+                    'action'     => 'videoCategory',
+                    'id'         => 1,
+                    'update'     => strtotime("11-12-10"),
+                    'password'   => (!empty($config['json_password'])) ? $config['json_password'] : '',
+                ]
             )
         );
 
         $links['videoSingle'] = Pi::url(
             $this->url(
                 'video', [
-                'module'     => $module,
-                'controller' => 'json',
-                'action'     => 'videoSingle',
-                'id'         => 1,
-                'password'   => (!empty($config['json_password'])) ? $config['json_password'] : '',
-            ]
+                    'module'     => $module,
+                    'controller' => 'json',
+                    'action'     => 'videoSingle',
+                    'id'         => 1,
+                    'password'   => (!empty($config['json_password'])) ? $config['json_password'] : '',
+                ]
             )
         );
 

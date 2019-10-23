@@ -77,7 +77,7 @@ class SubmitController extends IndexController
                 if (!empty($file['video']['name'])) {
                     // Set upload path
                     $values['video_path'] = sprintf('upload/video/file/%s/%s', date('Y'), date('m'));
-                    $streamPath            = Pi::path($values['video_path']);
+                    $streamPath           = Pi::path($values['video_path']);
                     // Upload
                     $uploader = new Upload;
                     $uploader->setDestination($streamPath);
@@ -191,8 +191,8 @@ class SubmitController extends IndexController
                 $option['thumbUrl']  = Pi::url($video['thumbUrl']);
                 $option['removeUrl'] = $this->url('', ['action' => 'remove', 'id' => $video['id']]);
             }
-            $option['side']            = 'front';
-            $option['video_size']      = $video['video_size'];
+            $option['side']       = 'front';
+            $option['video_size'] = $video['video_size'];
         } else {
             // Jump
             $message = __('Please submit video');
@@ -275,10 +275,10 @@ class SubmitController extends IndexController
                     $loc = Pi::url(
                         $this->url(
                             'video', [
-                            'module'     => $module,
-                            'controller' => 'watch',
-                            'slug'       => $values['slug'],
-                        ]
+                                'module'     => $module,
+                                'controller' => 'watch',
+                                'slug'       => $values['slug'],
+                            ]
                         )
                     );
                     // Update sitemap
