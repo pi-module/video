@@ -1,13 +1,13 @@
 CREATE TABLE `{server}`
 (
-    `id`      INT(10) UNSIGNED                              NOT NULL AUTO_INCREMENT,
-    `title`   VARCHAR(255)                                  NOT NULL DEFAULT '',
-    `status`  TINYINT(1) UNSIGNED                           NOT NULL DEFAULT '1',
-    `default` TINYINT(1) UNSIGNED                           NOT NULL DEFAULT '0',
-    `type`    ENUM ('file', 'wowza', 'nginx', 'mistserver') NOT NULL DEFAULT 'file',
-    `url`     VARCHAR(255)                                  NOT NULL DEFAULT '',
-    `application`    VARCHAR(255)                                  NOT NULL DEFAULT '',
-    `setting` TEXT,
+    `id`          INT(10) UNSIGNED                              NOT NULL AUTO_INCREMENT,
+    `title`       VARCHAR(255)                                  NOT NULL DEFAULT '',
+    `status`      TINYINT(1) UNSIGNED                           NOT NULL DEFAULT '1',
+    `default`     TINYINT(1) UNSIGNED                           NOT NULL DEFAULT '0',
+    `type`        ENUM ('file', 'wowza', 'nginx', 'mistserver') NOT NULL DEFAULT 'file',
+    `url`         VARCHAR(255)                                  NOT NULL DEFAULT '',
+    `application` VARCHAR(255)                                  NOT NULL DEFAULT '',
+    `setting`     TEXT,
     PRIMARY KEY (`id`)
 );
 
