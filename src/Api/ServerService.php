@@ -18,7 +18,6 @@ use Pi\Application\Api\AbstractApi;
 use Module\Video\Server\AbstractAdapter;
 
 /*
- * Pi::api('serverService', 'video')->updateMethod($type);
  * Pi::api('serverService', 'video')->getUrl($type, $params);
  */
 
@@ -82,6 +81,7 @@ class ServerService extends AbstractApi
      * Get server variables
      *
      * @param string $var
+     * @throws
      *
      * @return mixed
      */
@@ -97,6 +97,7 @@ class ServerService extends AbstractApi
      *
      * @param string $method
      * @param array  $args
+     * @throws
      *
      * @return mixed
      */
@@ -105,6 +106,4 @@ class ServerService extends AbstractApi
         $adapter = array_shift($args);
         return call_user_func_array([$this->getAdapter($adapter), $method], $args);
     }
-
-
 }
