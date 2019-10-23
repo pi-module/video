@@ -24,18 +24,18 @@ class Mistserver extends AbstractAdapter
 
         // Set url
         $url = $params['serverUrl'];
-        if (isset($params['serverPath']) && !empty($params['serverPath'])) {
-            $url = $url . '/' . $params['serverPath'];
+        if (isset($params['serverApplication']) && !empty($params['serverApplication'])) {
+            $url = $url . '/' . $params['serverApplication'];
         }
-        if (isset($params['videoPath']) && !empty($params['videoPath'])) {
-            $url = $url . '/' . $params['videoPath'];
+        if (isset($params['streamPath']) && !empty($params['streamPath'])) {
+            $url = $url . '/' . $params['streamPath'];
         }
 
         // Set video name end of url
         switch ($streamType) {
             default:
             case 'hls':
-                $url = $url . '/' . $params['videoName'] . '/index.m3u8';
+                $url = $url . '/' . $params['streamName'] . '/index.m3u8';
                 break;
         }
 

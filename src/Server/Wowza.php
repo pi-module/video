@@ -19,6 +19,26 @@ class Wowza extends AbstractAdapter
 
     public function getUrl($params)
     {
-        return 'Wowza';
+        // Set stream type
+        $streamType = isset($params['streamType']) ? $params['streamType'] : $this->streamType;
+
+        // Set url
+        $url = $params['serverUrl'];
+        if (isset($params['serverApplication']) && !empty($params['serverApplication'])) {
+            $url = $url . '/' . $params['serverApplication'];
+        }
+        if (isset($params['streamPath']) && !empty($params['streamPath'])) {
+            $url = $url . '/' . $params['streamPath'];
+        }
+
+        // Set video name end of url
+        switch ($streamType) {
+            default:
+            case 'hls':
+                $url = $url . '/' . $params['streamName'] . '/playlist.m3u8';
+                break;
+        }
+
+        return $url;
     }
 }

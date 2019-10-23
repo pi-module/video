@@ -350,9 +350,9 @@ class Video extends AbstractApi
                 $video['server']['type'],
                 [
                     'serverUrl'  => $video['server']['url'],
-                    'serverPath' => $video['server']['path'],
-                    'videoPath'  => $video['video_path'],
-                    'videoName'  => $video['video_file'],
+                    'serverApplication' => $video['server']['path'],
+                    'streamPath'  => $video['video_path'],
+                    'streamName'  => $video['video_file'],
                 ]
             );
         }
@@ -580,9 +580,9 @@ class Video extends AbstractApi
                 $video['server']['type'],
                 [
                     'serverUrl'  => $video['server']['url'],
-                    'serverPath' => $video['server']['path'],
-                    'videoPath'  => $video['video_path'],
-                    'videoName'  => $video['video_file'],
+                    'serverApplication' => $video['server']['path'],
+                    'streamPath'  => $video['video_path'],
+                    'streamName'  => $video['video_file'],
                 ]
             );
         }
