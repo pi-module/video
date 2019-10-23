@@ -67,7 +67,7 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                         <?php if ($video['hits'] > 0) { ?> ( <?php _e('View'); ?> : <?php echo $this->escape(_number($video['hits'])); ?> )<?php } ?>
                     </td>
                     <td>
-                        <?php echo $this->escape($video['server']['title']); ?> ( <small><?php echo $this->escape($video['server']['type']); ?></small> )
+                        <?php echo $this->escape($video['server']['title']); ?> ( <small><?php echo $this->escape($video['server']['type_view']); ?></small> )
                     </td>
                     <td>
                         <div class="btn-group">
