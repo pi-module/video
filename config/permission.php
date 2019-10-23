@@ -37,10 +37,6 @@ return [
             'title'  => _a('Tools'),
             'access' => [],
         ],
-        'json'      => [
-            'title'  => _a('Json'),
-            'access' => [],
-        ],
     ],
     // Front section
     'front' => [

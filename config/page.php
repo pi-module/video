@@ -43,11 +43,6 @@ return [
             'controller' => 'tools',
             'permission' => 'tools',
         ],
-        [
-            'title'      => _a('Json output'),
-            'controller' => 'json',
-            'permission' => 'json',
-        ],
     ],
     // Front section
     'front' => [

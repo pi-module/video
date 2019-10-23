@@ -242,17 +242,6 @@ return [
                     'controller' => 'log',
                     'action'     => 'index',
                 ],
-
-                'json' => [
-                    'label'      => _a('Json'),
-                    'permission' => [
-                        'resource' => 'json',
-                    ],
-                    'route'      => 'admin',
-                    'module'     => 'video',
-                    'controller' => 'json',
-                    'action'     => 'index',
-                ],
             ],
         ],
     ],
