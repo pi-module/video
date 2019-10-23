@@ -16,7 +16,7 @@ namespace Module\Video\Form;
 use Pi;
 use Pi\Form\Form as BaseForm;
 
-class VideoEditForm extends BaseForm
+class VideoLinkForm extends BaseForm
 {
     public function __construct($name = null, $option = [])
     {
@@ -27,13 +27,29 @@ class VideoEditForm extends BaseForm
     public function getInputFilter()
     {
         if (!$this->filter) {
-            $this->filter = new VideoEditFilter($this->option);
+            $this->filter = new VideoLinkFilter($this->option);
         }
         return $this->filter;
     }
 
     public function init()
     {
+        // video_server
+        $this->add(
+            [
+                'name'       => 'video_server',
+                'type'       => 'Module\Video\Form\Element\Server',
+                'options'    => [
+                    'label'    => __('Server'),
+                ],
+                'attributes' => [
+                    'description' => __('Select stream server'),
+                    'required'    => true,
+                    'value' => Pi::registry('serverDefault', 'video')->read(),
+                ],
+            ]
+        );
+
         // video_path
         $this->add(
             [

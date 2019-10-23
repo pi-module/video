@@ -2,19 +2,19 @@
     <ul class="nav nav-pills bg-light mb-3 p-3">
         <?php if (isset($video['id'])) { ?>
             <li class="nav-item">
-                <a class="nav-link <?php if ($nav['page'] == 'edit') {
+                <a class="nav-link <?php if ($nav['page'] == 'link') {
                     echo 'active';
-                } ?>" href="<?php echo $this->url('', ['action' => 'edit', 'id' => $video['id']]); ?>"><?php _e('Manage video link'); ?></a>
+                } ?>" href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><?php _e('Manage video source'); ?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($nav['page'] == 'update') {
                     echo 'active';
-                } ?>" href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Edit basic information'); ?></a>
+                } ?>" href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><?php _e('Manage basic information'); ?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($nav['page'] == 'additional') {
                     echo 'active';
-                } ?>" href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Edit additional information'); ?></a>
+                } ?>" href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><?php _e('Manage additional information'); ?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($nav['page'] == 'view') {

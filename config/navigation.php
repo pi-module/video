@@ -22,6 +22,26 @@ return [
             'module'     => 'video',
             'controller' => 'video',
             'action'     => 'index',
+
+            'pages' => [
+                'server'        => [
+                    'label'      => _a('Video'),
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'video',
+                    'action'     => 'index',
+                ],
+                'add'           => [
+                    'label'      => _a('Add / Manage'),
+                    'permission' => [
+                        'resource' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'video',
+                    'action'     => 'link',
+                ],
+            ],
         ],
 
         'category' => [

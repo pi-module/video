@@ -15,7 +15,5 @@ namespace Module\Video\Server;
 
 abstract class AbstractAdapter
 {
-    abstract public function updateMethod();
-
     abstract public function getUrl($params);
 }

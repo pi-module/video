@@ -18,7 +18,6 @@ use Zend\Form\Element\Select;
 
 class Category extends Select
 {
-
     /**
      * @return array
      */

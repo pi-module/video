@@ -17,22 +17,6 @@ class Mistserver extends AbstractAdapter
 {
     private $streamType = 'hls';
 
-    public function updateMethod()
-    {
-        return [
-            'put' => [
-                'name'  => 'put',
-                'title' => __('Put information'),
-                'icon'  => 'fas fa-file',
-            ],
-            'url' => [
-                'name'  => 'url',
-                'title' => __('Put full url'),
-                'icon'  => 'fas fa-file',
-            ],
-        ];
-    }
-
     public function getUrl($params)
     {
         // Set stream type

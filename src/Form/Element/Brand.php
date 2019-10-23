@@ -18,7 +18,6 @@ use Zend\Form\Element\Select;
 
 class Brand extends Select
 {
-
     /**
      * @return array
      */

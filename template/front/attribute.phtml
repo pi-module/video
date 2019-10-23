@@ -3,7 +3,7 @@
         <div class="product-attribute">
             <?php foreach ($attribute['all'] as $attributeSingle) { ?>
                 <div class="product-attribute-head">
-                    <h2><i class="fa fa-caret-square-o-left"></i> <?php echo $attributeSingle['title']; ?></h2>
+                    <h2><i class="far fa-caret-square-left"></i> <?php echo $attributeSingle['title']; ?></h2>
                 </div>
                 <table class="table table-striped table-bordered table-hover table-sm">
                     <?php foreach ($attributeSingle['info'] as $field) { ?>
@@ -12,7 +12,7 @@
                                 <?php if ($field['type'] == 'text' || $field['type'] == 'select') { ?>
                                     <td class="col-4 attribute-title">
                                         <?php if ($field['icon']) { ?>
-                                            <i class="fa <?php echo $field['icon']; ?>"></i>
+                                            <i class="fas<?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
                                             <img src="<?php echo $field['image']; ?>"
                                                  alt="<?php echo $field['title']; ?>">
@@ -23,7 +23,7 @@
                                 <?php } elseif ($field['type'] == 'link') { ?>
                                     <td class="col-12 attribute-body" colspan="2">
                                         <?php if ($field['icon']) { ?>
-                                            <i class="fa <?php echo $field['icon']; ?>"></i>
+                                            <i class="fas<?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
                                             <img src="<?php echo $field['image']; ?>"
                                                  alt="<?php echo $field['title']; ?>">
@@ -35,7 +35,7 @@
                                 <?php } elseif ($field['type'] == 'file') { ?>
                                     <td class="col-12 attribute-body" colspan="2">
                                         <?php if ($field['icon']) { ?>
-                                            <i class="fa <?php echo $field['icon']; ?>"></i>
+                                            <i class="fas<?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
                                             <img src="<?php echo $field['image']; ?>"
                                                  alt="<?php echo $field['title']; ?>">
@@ -47,7 +47,7 @@
                                 <?php } elseif ($field['type'] == 'currency') { ?>
                                     <td class="col-4 attribute-title">
                                         <?php if ($field['icon']) { ?>
-                                            <i class="fa <?php echo $field['icon']; ?>"></i>
+                                            <i class="fas<?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
                                             <img src="<?php echo $field['image']; ?>"
                                                  alt="<?php echo $field['title']; ?>">
@@ -59,7 +59,7 @@
                                     <td class="col-4 attribute-title">
                                         <?php echo $field['title']; ?>
                                         <?php if ($field['icon']) { ?>
-                                            <i class="fa <?php echo $field['icon']; ?>"></i>
+                                            <i class="fas<?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
                                             <img src="<?php echo $field['image']; ?>"
                                                  alt="<?php echo $field['title']; ?>">
@@ -72,7 +72,7 @@
                                     <td class="col-4 attribute-title">
                                         <?php echo $field['title']; ?>
                                         <?php if ($field['icon']) { ?>
-                                            <i class="fa <?php echo $field['icon']; ?>"></i>
+                                            <i class="fas<?php echo $field['icon']; ?>"></i>
                                         <?php } elseif ($field['image']) { ?>
                                             <img src="<?php echo $field['image']; ?>"
                                                  alt="<?php echo $field['title']; ?>">
@@ -87,7 +87,7 @@
                                             colspan="2">
                                             <?php echo $field['title']; ?>
                                             <?php if ($field['icon']) { ?>
-                                                <i class="fa <?php echo $field['icon']; ?>"></i>
+                                                <i class="fas<?php echo $field['icon']; ?>"></i>
                                             <?php } elseif ($field['image']) { ?>
                                                 <img src="<?php echo $field['image']; ?>"
                                                      alt="<?php echo $field['title']; ?>">

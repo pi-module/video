@@ -95,7 +95,7 @@ EOT;
     <div class="page-header">
         <h1><?php echo $this->escape($video['title']); ?></h1>
     </div>
-    <div class="text-center video-player-box col-lg-8 col-md-8 col-md-offset-2">
+    <div class="text-center video-player-box col-lg-8 col-md-8 offset-lg-2 offset-md-2">
         <?php /* if ($video['server']['type'] == 'wowza') { ?>
             <div class="clearfix">
                 <div id="videoContainer" class="overlay-parent">
@@ -145,8 +145,14 @@ EOT;
                 </div>
             </div>
         <?php } */ ?>
+        <?php if (!empty($video['video_url'])) { ?>
         <div class="clearfix">
             <?php echo $this->video($video['player']); ?>
         </div>
+        <?php } else { ?>
+            <div class="alert alert-danger">
+                <?php _e('No media attached to this row'); ?>
+            </div>
+        <?php } ?>
     </div>
 </div>

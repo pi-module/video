@@ -33,6 +33,8 @@ class SubmitController extends IndexController
 
     public function indexAction()
     {
+        die('Not finished');
+
         // Get info from url
         $module = $this->params('module');
         // Get config
@@ -152,6 +154,8 @@ class SubmitController extends IndexController
 
     public function updateAction()
     {
+        die('Not finished');
+
         // Get info from url
         $id     = $this->params('id');
         $module = $this->params('module');
@@ -323,6 +327,8 @@ class SubmitController extends IndexController
 
     public function additionalAction()
     {
+        die('Not finished');
+
         // Get id
         $id     = $this->params('id');
         $module = $this->params('module');
@@ -427,6 +433,8 @@ class SubmitController extends IndexController
 
     public function finishAction()
     {
+        die('Not finished');
+
         // Get info from url
         $id     = $this->params('id');
         $module = $this->params('module');

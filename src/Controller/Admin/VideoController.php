@@ -17,16 +17,12 @@ use Module\Video\Form\AdminSearchFilter;
 use Module\Video\Form\AdminSearchForm;
 use Module\Video\Form\VideoAdditionalFilter;
 use Module\Video\Form\VideoAdditionalForm;
-use Module\Video\Form\VideoUrlFilter;
-use Module\Video\Form\VideoUrlForm;
+use Module\Video\Form\VideoLinkFilter;
+use Module\Video\Form\VideoLinkForm;
 use Module\Video\Form\VideoFilter;
 use Module\Video\Form\VideoForm;
-use Module\Video\Form\VideoPutFilter;
-use Module\Video\Form\VideoPutForm;
 use Module\Video\Form\VideoUploadFilter;
 use Module\Video\Form\VideoUploadForm;
-use Module\Video\Form\VideoEditFilter;
-use Module\Video\Form\VideoEditForm;
 use Pi;
 use Pi\File\Transfer\Upload;
 use Pi\Filter;
@@ -160,12 +156,9 @@ class VideoController extends ActionController
         ];
 
         // Set search form
-        $form   = new AdminSearchForm('search');
+        $form = new AdminSearchForm('search');
         $form->setAttribute('action', $this->url('', ['action' => 'process']));
         $form->setData($values);
-
-        // Server list
-        $serverList = Pi::registry('serverList', 'video')->read();
 
         // Set view
         $this->view()->setTemplate('video-index');
@@ -173,7 +166,6 @@ class VideoController extends ActionController
         $this->view()->assign('paginator', $paginator);
         $this->view()->assign('form', $form);
         $this->view()->assign('config', $config);
-        $this->view()->assign('serverList', $serverList);
     }
 
     public function processAction()
@@ -209,16 +201,16 @@ class VideoController extends ActionController
         return $this->jump($url, $message);
     }
 
-    public function urlAction()
+    public function linkAction()
     {
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
             return $this->redirect()->toRoute(
                 '', [
-                'controller' => 'category',
-                'action'     => 'update',
-            ]
+                    'controller' => 'category',
+                    'action'     => 'update',
+                ]
             );
         }
 
@@ -227,160 +219,88 @@ class VideoController extends ActionController
         if (empty($serverList)) {
             return $this->redirect()->toRoute(
                 '', [
-                'controller' => 'server',
-                'action'     => 'update',
-            ]
+                    'controller' => 'server',
+                    'action'     => 'update',
+                ]
             );
         }
 
         // Get info from url
+        $id     = $this->params('id');
         $module = $this->params('module');
-        $server = $this->params('server');
-
-        // Check server
-        if (!isset($serverList[$server]) || empty($serverList[$server])) {
-            $message = __('please select true server');
-            $this->jump(['action' => 'index'], $message, 'error');
-        }
 
         // Get config
         $config = Pi::service('registry')->config->read($module);
+
+        // Find video
+        $video = [];
+        if ($id) {
+            $video = Pi::api('video', 'video')->getVideo($id);
+        }
 
         // Set option
         $option = [];
 
         // Set form
-        $form = new VideoUrlForm('video', $option);
+        $form = new VideoLinkForm('video', $option);
         $form->setAttribute('enctype', 'multipart/form-data');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
-            $form->setInputFilter(new VideoUrlFilter($option));
+            $form->setInputFilter(new VideoLinkFilter($option));
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
 
-                // Set time_create
-                $values['time_create'] = time();
+                // Check new video
+                if (empty($id)) {
+                    // Set time_create
+                    $values['time_create'] = time();
+
+                    // Set uid
+                    $values['uid'] = Pi::user()->getId();
+
+                    // Set status
+                    $values['status'] = 2;
+                }
 
                 // Set time_update
                 $values['time_update'] = time();
 
-                // Set uid
-                $values['uid'] = Pi::user()->getId();
-
-                // Set status
-                $values['status'] = 2;
-
-                // Set server
-                $values['video_server'] = $serverList[$server]['id'];
-
                 // Save values
-                $row = $this->getModel('video')->createRow();
-                $row->assign($values);
-                $row->save();
-
-                // Jump
-                $message = __('Video source url add successfully. Please complete update');
-                $this->jump(['action' => 'update', 'id' => $row->id], $message);
-             }
-        }
-
-        // Set view
-        $this->view()->setTemplate('video-link');
-        $this->view()->assign('form', $form);
-        $this->view()->assign('config', $config);
-        $this->view()->assign('title', __('Manage video link'));
-    }
-
-    public function putAction()
-    {
-        // check category
-        $categoryCount = Pi::api('category', 'video')->categoryCount();
-        if (!$categoryCount) {
-            return $this->redirect()->toRoute(
-                '', [
-                'controller' => 'category',
-                'action'     => 'update',
-            ]
-            );
-        }
-
-        // Server list
-        $serverList = Pi::registry('serverList', 'video')->read();
-        if (empty($serverList)) {
-            return $this->redirect()->toRoute(
-                '', [
-                'controller' => 'server',
-                'action'     => 'update',
-            ]
-            );
-        }
-
-        // Get info from url
-        $module = $this->params('module');
-        $server = $this->params('server');
-
-        // Get config
-        $config = Pi::service('registry')->config->read($module);
-
-        // Check server
-        if (!isset($serverList[$server]) || empty($serverList[$server])) {
-            $message = __('please select true server');
-            $this->jump(['action' => 'index'], $message, 'error');
-        }
-
-        // Set option
-        $option = [
-            'server' => $serverList[$server],
-        ];
-
-        // Set form
-        $form = new VideoPutForm('video', $option);
-        $form->setAttribute('enctype', 'multipart/form-data');
-        if ($this->request->isPost()) {
-            $data = $this->request->getPost();
-            $form->setInputFilter(new VideoPutFilter($option));
-            $form->setData($data);
-            if ($form->isValid()) {
-                $values = $form->getData();
-
-                // Set time
-                $values['time_create'] = time();
-                $values['time_update'] = time();
-
-                // Set uid
-                $values['uid'] = Pi::user()->getId();
-
-                // Set status
-                $values['status'] = 2;
-
-                // Set server
-                $values['video_server'] = $serverList[$server]['id'];
-                if (!$values['video_server']) {
-                    $serverDefault          = Pi::registry('serverDefault', 'video')->read();
-                    $values['video_server'] = $serverDefault['id'];
+                if (!empty($id)) {
+                    $row = $this->getModel('video')->find($id);
+                } else {
+                    $row = $this->getModel('video')->createRow();
                 }
-
-                // Save values
-                $row = $this->getModel('video')->createRow();
                 $row->assign($values);
                 $row->save();
 
                 // Jump
-                $message = __('Video source url add successfully. Please complete update');
+                $message = __('Video source link add successfully. Please complete update');
                 $this->jump(['action' => 'update', 'id' => $row->id], $message);
             }
+        } elseif (!empty($video)) {
+            $form->setData($video);
         }
+
+        // set nav
+        $nav = [
+            'page' => 'link',
+        ];
 
         // Set view
         $this->view()->setTemplate('video-link');
         $this->view()->assign('form', $form);
         $this->view()->assign('config', $config);
         $this->view()->assign('title', __('Manage video link'));
+        $this->view()->assign('nav', $nav);
+        $this->view()->assign('video', $video);
     }
 
     public function uploadAction()
     {
+        die('Not finish');
+
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
@@ -476,9 +396,9 @@ class VideoController extends ActionController
                 $row->save();
 
                 // Send video
-                    return [
-                        'url' => Pi::url($this->url('', ['action' => 'update', 'id' => $row->id])),
-                    ];
+                return [
+                    'url' => Pi::url($this->url('', ['action' => 'update', 'id' => $row->id])),
+                ];
             }
         }
 
@@ -489,7 +409,7 @@ class VideoController extends ActionController
         $this->view()->assign('title', __('Upload new video'));
     }
 
-    public function editAction()
+    public function updateAction()
     {
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
@@ -519,95 +439,20 @@ class VideoController extends ActionController
 
         // Get config
         $config                 = Pi::service('registry')->config->read($module);
-
-        // Find video
-        if ($id) {
-            $video = Pi::api('video', 'video')->getVideo($id);
-        } else {
-            // Jump
-            $message = __('Please select video');
-            $this->jump(['action' => 'index'], $message);
-        }
-
-        // Set option
-        $option = [];
-
-        // Set form
-        $form = new VideoEditForm('video', $option);
-        $form->setAttribute('enctype', 'multipart/form-data');
-        if ($this->request->isPost()) {
-            $data = $this->request->getPost();
-            $form->setInputFilter(new VideoEditFilter($option));
-            $form->setData($data);
-            if ($form->isValid()) {
-                $values = $form->getData();
-
-                // Set time_update
-                $values['time_update'] = time();
-
-                // Jump
-                $message = __('Video data saved successfully.');
-                $this->jump(['action' => 'update', 'id' => $video['id']], $message);
-            }
-        }
-
-        // set nav
-        $nav = [
-            'page' => 'edit',
-        ];
-
-        // Set view
-        $this->view()->setTemplate('video-link');
-        $this->view()->assign('form', $form);
-        $this->view()->assign('config', $config);
-        $this->view()->assign('title', __('Manage video link'));
-        $this->view()->assign('nav', $nav);
-        $this->view()->assign('video', $video);
-    }
-
-    public function updateAction()
-    {
-        // check category
-        $categoryCount = Pi::api('category', 'video')->categoryCount();
-        if (!$categoryCount) {
-            return $this->redirect()->toRoute(
-                '', [
-                'controller' => 'category',
-                'action'     => 'update',
-            ]
-            );
-        }
-
-        // Server list
-        $serverList = Pi::registry('serverList', 'video')->read();
-        if (empty($serverList)) {
-            return $this->redirect()->toRoute(
-                '', [
-                'controller' => 'server',
-                'action'     => 'update',
-            ]
-            );
-        }
-
-        // Get info from url
-        $id     = $this->params('id');
-        $module = $this->params('module');
-
-        // Get config
-        $config                 = Pi::service('registry')->config->read($module);
         $option                 = [];
         $option['brand_system'] = $config['brand_system'];
 
         // Find video
+        $video = [];
         if ($id) {
             $video = Pi::api('video', 'video')->getVideo($id);
             if ($video['image']) {
                 $option['thumbUrl']  = Pi::url($video['thumbUrl']);
                 $option['removeUrl'] = $this->url('', ['action' => 'remove', 'id' => $video['id']]);
             }
-            $option['side']            = 'admin';
-            $option['video_size']      = $video['video_size'];
-            $option['sale_video']      = $config['sale_video'];
+            $option['side']       = 'admin';
+            $option['video_size'] = $video['video_size'];
+            $option['sale_video'] = $config['sale_video'];
         } else {
             // Jump
             $message = __('Please select video');
@@ -711,10 +556,10 @@ class VideoController extends ActionController
                     $loc = Pi::url(
                         $this->url(
                             'video', [
-                            'module'     => $module,
-                            'controller' => 'watch',
-                            'slug'       => $values['slug'],
-                        ]
+                                'module'     => $module,
+                                'controller' => 'watch',
+                                'slug'       => $values['slug'],
+                            ]
                         )
                     );
                     // Update sitemap
@@ -737,12 +582,12 @@ class VideoController extends ActionController
 
             // Set form data
             $form->setData($video);
-
-            // set nav
-            $nav = [
-                'page' => 'update',
-            ];
         }
+
+        // set nav
+        $nav = [
+            'page' => 'update',
+        ];
 
         // Set view
         $this->view()->setTemplate('video-update');
@@ -947,10 +792,10 @@ class VideoController extends ActionController
                 $loc = Pi::url(
                     $this->url(
                         'video', [
-                        'module'     => $module,
-                        'controller' => 'video',
-                        'slug'       => $row->slug,
-                    ]
+                            'module'     => $module,
+                            'controller' => 'video',
+                            'slug'       => $row->slug,
+                        ]
                     )
                 );
                 Pi::api('sitemap', 'sitemap')->remove($loc);

@@ -32,11 +32,11 @@ $(function() {
         levels: 1,
         data: json,
         enableLinks: true,
-        expandIcon: 'fa fa-plus',
-		collapseIcon: 'fa fa-minus',
+        expandIcon: 'fas fa-plus',
+		collapseIcon: 'fas fa-minus',
 		emptyIcon: 'fa',
-		checkedIcon: 'fa fa-check-square-o',
-		uncheckedIcon: 'fa fa-square-o',
+		checkedIcon: 'far fa-check-square',
+		uncheckedIcon: 'far fa-square',
     });
 });
 EOT;
@@ -95,7 +95,7 @@ switch ($config['view_column']) {
             </div>
             <form>
                 <div class="form-group">
-                    <label><i class="fa fa-search"></i> <?php _e('Title'); ?></label>
+                    <label><i class="fas fa-search"></i> <?php _e('Title'); ?></label>
                     <input type="text" ng-model="filterTitle" class="form-control">
                 </div>
                 <?php $filterNameArray = []; ?>
@@ -111,7 +111,7 @@ switch ($config['view_column']) {
                         <div class="form-group">
                             <label>
                                 <?php if ($singleFilter['icon']) { ?>
-                                    <i class="fa <?php echo $singleFilter['icon']; ?>"></i>
+                                    <i class="fas<?php echo $singleFilter['icon']; ?>"></i>
                                 <?php } elseif ($singleFilter['image']) { ?>
                                     <img src="<?php echo $singleFilter['image']; ?>"
                                          alt="<?php echo $singleFilter['title']; ?>">
@@ -138,7 +138,7 @@ switch ($config['view_column']) {
                             ?>
                             <label>
                                 <?php if ($singleFilter['icon']) { ?>
-                                    <i class="fa <?php echo $singleFilter['icon']; ?>"></i>
+                                    <i class="fas<?php echo $singleFilter['icon']; ?>"></i>
                                 <?php } elseif ($singleFilter['image']) { ?>
                                     <img src="<?php echo $singleFilter['image']; ?>"
                                          alt="<?php echo $singleFilter['title']; ?>">
@@ -181,17 +181,17 @@ switch ($config['view_column']) {
                     <ul class="list-inline">
                         <li class="list-inline-item"><?php _e('Sort by'); ?> :</li>
                         <li class="list-inline-item video-sort-type" ng-click="sort('time_create')"><?php _e('Time'); ?> <i
-                                    class="fa sort-icon" ng-show="sortKey=='time_create'"
+                                    class="fassort-icon" ng-show="sortKey=='time_create'"
                                     ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i></li>
-                        <li class="list-inline-item video-sort-type" ng-click="sort('hits')"><?php _e('Hits'); ?> <i class="fa sort-icon"
+                        <li class="list-inline-item video-sort-type" ng-click="sort('hits')"><?php _e('Hits'); ?> <i class="fassort-icon"
                                                                                                                      ng-show="sortKey=='hits'"
                                                                                                                      ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i>
                         </li>
                         <li class="list-inline-item video-sort-type" ng-click="sort('favourite')"><?php _e('Favourite'); ?> <i
-                                    class="fa sort-icon" ng-show="sortKey=='favourite'"
+                                    class="fassort-icon" ng-show="sortKey=='favourite'"
                                     ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i></li>
                         <li class="list-inline-item video-sort-type" ng-click="sort('title')"><?php _e('Title'); ?> <i
-                                    class="fa sort-icon" ng-show="sortKey=='title'"
+                                    class="fassort-icon" ng-show="sortKey=='title'"
                                     ng-class="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></i></li>
                         <li class="list-inline-item video-sort-type" ng-click="sortKey=''"><?php _e('Default'); ?></li>
                     </ul>

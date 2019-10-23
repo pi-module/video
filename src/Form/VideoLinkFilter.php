@@ -16,10 +16,18 @@ namespace Module\Video\Form;
 use Pi;
 use Zend\InputFilter\InputFilter;
 
-class VideoEditFilter extends InputFilter
+class VideoLinkFilter extends InputFilter
 {
     public function __construct($option = [])
     {
+        // video_server
+        $this->add(
+            [
+                'name'     => 'video_server',
+                'required' => true,
+            ]
+        );
+
         // video_path
         $this->add(
             [

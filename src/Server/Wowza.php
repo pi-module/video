@@ -15,21 +15,7 @@ namespace Module\Video\Server;
 
 class Wowza extends AbstractAdapter
 {
-    public function updateMethod()
-    {
-        return [
-            'put' => [
-                'name'  => 'put',
-                'title' => __('Put information'),
-                'icon'  => 'fas fa-file',
-            ],
-            'url' => [
-                'name'  => 'url',
-                'title' => __('Put full url'),
-                'icon'  => 'fas fa-file',
-            ],
-        ];
-    }
+    private $streamType = 'hls';
 
     public function getUrl($params)
     {

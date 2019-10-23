@@ -1,6 +1,6 @@
 <?php $this->css($this->assetModule('css/admin.css')); ?>
 <div class="clearfix">
-    <h3><?php _e('List of servers'); ?></h3>
+    <h1><?php _e('List of servers'); ?></h1>
     <table class="table table-striped table-bordered table-hover table-sm mt-3 mb-3">
         <tr>
             <th><?php _e('ID'); ?></th>
@@ -13,16 +13,16 @@
         <?php foreach ($list as $server) { ?>
             <?php
             if ($server['status'] == 1) {
-                $labelIdClass = 'label-success';
+                $badgeIdClass = 'badge-success';
             } elseif ($server['status'] == 5) {
-                $labelIdClass = 'label-danger';
+                $badgeIdClass = 'badge-danger';
             } else {
-                $labelIdClass = 'label-warning';
+                $badgeIdClass = 'badge-warning';
             }
             ?>
             <tr>
                 <td>
-                    <span class="label <?php echo $labelIdClass; ?>"><?php echo $this->escape($server['id']); ?></span>
+                    <span class="badge <?php echo $badgeIdClass; ?>"><?php echo $this->escape($server['id']); ?></span>
                 </td>
                 <td><?php echo $this->escape($server['title']); ?></td>
                 <td><?php echo $this->escape($server['type_view']); ?></td>
@@ -44,7 +44,7 @@
                 <td>
                     <a class="btn btn-primary btn-sm" title="<?php _e('Edit'); ?>"
                        href="<?php echo $this->url('', ['action' => 'update', 'id' => $server['id']]); ?>">
-                        <i class="fa fa-edit"></i> <?php _e('Edit'); ?>
+                        <i class="fas fa-edit"></i> <?php _e('Edit'); ?>
                     </a>
                 </td>
             </tr>
