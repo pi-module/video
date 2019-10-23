@@ -10,7 +10,7 @@ $("#grid-data").bootgrid({
             id: "%d"
         };
     },
-        searchSettings: {
+    searchSettings: {
         delay: 1000,
         characters: 3
     },
@@ -27,7 +27,7 @@ $("#grid-data").bootgrid({
         4: "warning",
         5: "danger",
     },
-    rowCount : [25, 50, 100, 250, 500],
+    rowCount : [25, 50, 100],
     labels: {
         all: "%s",
         infos: "%s",
@@ -37,8 +37,18 @@ $("#grid-data").bootgrid({
         search: "%s",
     },
     keepSelection: true,
- });
+    templates: bs4Fix(),
+});
+function bs4Fix() {
+    // Fix for BS4, https://github.com/rstaib/jquery-bootgrid/issues/403
+    return {
+        // pagination: '{{ctx.text}}'
+        // paginationButton: "btn-info btn-sm",
+        paginationItem: "<li class=\"page-item {{ctx.css}}\"><a data-page=\"{{ctx.page}}\" class=\"page-link btn-info btn-sm {{css.paginationButton}}\">{{ctx.text}}</a></li>"
+    };
+}
 EOT;
+
 $script = sprintf(
     $script,
     'b0df282a-0d67-40e5-8558-c9e93b7befed',
