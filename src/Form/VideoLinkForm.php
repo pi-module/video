@@ -55,15 +55,17 @@ class VideoLinkForm extends BaseForm
             [
                 'name'       => 'video_path',
                 'options'    => [
-                    'label' => __('Video path'),
+                    'label' => __('Video path or sub-application'),
                 ],
                 'attributes' => [
                     'type'        => 'text',
                     'description' => sprintf(
-                        '<ul><li>%s</li><li>%s</li><li>%s</li></ul>',
-                        __('Path of video file or source, put it without add / on start and end'),
-                        __('Some type of servers have default path and after that it can be empty ( like MistServer or Wowza )'),
-                        __('Example : upload/video/2016/09')
+                        '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>',
+                        __('Path or sub-application name of video file or source, put it without add / on start and end'),
+                        __('Some type of servers have sub-application name or path of video, put it here'),
+                        __('Some type of servers dont have sub-application name or path of video, then it can be empty'),
+                        __('Example : upload/video/2016/09'),
+                        __('Example : demoApplication')
                     ),
                     'required'    => false,
                 ],
