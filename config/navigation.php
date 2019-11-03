@@ -276,16 +276,5 @@ return [
             'module'     => 'video',
             'controller' => 'channel',
         ],
-
-        'submit' => [
-            'label'      => _a('Submit'),
-            'permission' => [
-                'resource' => 'public',
-            ],
-            'route'      => 'video',
-            'module'     => 'video',
-            'controller' => 'submit',
-        ],
-
     ],
 ];
