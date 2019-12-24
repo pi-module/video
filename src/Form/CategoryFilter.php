@@ -58,6 +58,7 @@ class CategoryFilter extends InputFilter
                         [
                             'module' => Pi::service('module')->current(),
                             'table'  => 'category',
+                            'id'     => $option['id'],
                         ]
                     ),
                 ],

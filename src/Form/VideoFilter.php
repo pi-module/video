@@ -48,6 +48,7 @@ class VideoFilter extends InputFilter
                         [
                             'module' => Pi::service('module')->current(),
                             'table'  => 'video',
+                            'id'     => $option['id'],
                         ]
                     ),
                 ],
