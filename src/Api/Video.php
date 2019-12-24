@@ -312,10 +312,8 @@ class Video extends AbstractApi
         // Make setting
         $video['setting'] = json_decode($video['setting'], true);
 
-        // Set text_summary
-        $video['text_summary'] = Pi::service('markup')->render($video['text_summary'], 'html', 'html');
-
-        // Set text_description
+        // Set text
+        $video['text_summary']     = Pi::service('markup')->render($video['text_summary'], 'html', 'html');
         $video['text_description'] = Pi::service('markup')->render($video['text_description'], 'html', 'html');
 
         // Set times
@@ -343,6 +341,9 @@ class Video extends AbstractApi
                 ]
             )
         );
+
+        // Set video player type
+        $video['player_type'] = Pi::api('serverService', 'video')->getType($video['server']['type']);
 
         // Set video play url
         if (empty($video['video_url']) && !empty($video['video_file'])) {
@@ -423,20 +424,35 @@ class Video extends AbstractApi
         }
 
         // Set player
-        $video['player'] = [
-            'type'     => $video['server']['type'] == 'file' ? 'mp4' : 'hls',
-            'mimetype' => 'application/x-mpegURL',
-            'source'   => [
-                [
-                    'url'   => $video['video_url'],
-                    'title' => 'Normal Quality',
-                ],
-            ],
-            'layout'   => [
-                'title'       => $video['title'],
-                'posterImage' => $video['largeUrl'],
-            ],
-        ];
+        switch ($video['player_type']) {
+            case 'hls':
+            case 'mp4':
+                $video['player'] = [
+                    'type'     => $video['player_type'],
+                    'mimetype' => 'application/x-mpegURL',
+                    'source'   => [
+                        [
+                            'url'   => $video['video_url'],
+                            'title' => __('Normal Quality'),
+                        ],
+                    ],
+                    'layout'   => [
+                        'title'       => $video['title'],
+                        'posterImage' => $video['largeUrl'],
+                    ],
+                ];
+                break;
+
+            case 'embed':
+                $video['player'] = Pi::api('serverService', 'video')->getPlayer(
+                    $video['server']['type'],
+                    [
+                        'videoUrl'   => $video['video_url'],
+                        'streamName' => $video['video_file'],
+                    ]
+                );
+                break;
+        }
 
         // return video
         return $video;

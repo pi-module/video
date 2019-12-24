@@ -16,6 +16,11 @@ namespace Module\Video\Registry;
 use Pi;
 use Pi\Application\Registry\AbstractRegistry;
 
+/*
+ * Pi::registry('serverList', 'video')->clear();
+ * Pi::registry('serverList', 'video')->read();
+ */
+
 /**
  * server list
  */

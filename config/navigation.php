@@ -74,10 +74,6 @@ return [
                     'action'     => 'additional',
                     'visible'    => 0,
                 ],
-
-
-
-
                 'watch'           => [
                     'label'      => _a('Watch'),
                     'permission' => [
@@ -211,6 +207,16 @@ return [
                     'module'     => 'video',
                     'controller' => 'server',
                     'action'     => 'update',
+                ],
+                'type'           => [
+                    'label'      => _a('Type'),
+                    'permission' => [
+                        'resource' => 'server',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'server',
+                    'action'     => 'type',
                 ],
             ],
         ],

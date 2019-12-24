@@ -17,11 +17,14 @@ use Pi;
 use Pi\Application\Registry\AbstractRegistry;
 
 /*
- * Pi::registry('categoryRoute', 'video')->clear();
- * Pi::registry('categoryRoute', 'video')->read();
+ * Pi::registry('serverType', 'video')->clear();
+ * Pi::registry('serverType', 'video')->read();
  */
 
-class CategoryRoute extends AbstractRegistry
+/**
+ * server type
+ */
+class ServerType extends AbstractRegistry
 {
     /** @var string Module name */
     protected $module = 'video';
@@ -31,13 +34,12 @@ class CategoryRoute extends AbstractRegistry
      */
     protected function loadDynamic($options = [])
     {
-        $return  = [];
-        $where   = ['status' => 1];
-        $columns = ['id', 'slug'];
-        $select  = Pi::model('category', $this->module)->select()->columns($columns)->where($where);
-        $rowSet  = Pi::model('category', $this->module)->selectWith($select);
+        $return = [];
+        $where  = ['type' => 'server'];
+        $select = Pi::model('type', $this->module)->select()->where($where);
+        $rowSet = Pi::model('type', $this->module)->selectWith($select);
         foreach ($rowSet as $row) {
-            $return[$row->id] = $row->slug;
+            $return[$row->name] = $row->toArray();
         }
         return $return;
     }
@@ -50,6 +52,7 @@ class CategoryRoute extends AbstractRegistry
     {
         $options = [];
         $result  = $this->loadData($options);
+
         return $result;
     }
 

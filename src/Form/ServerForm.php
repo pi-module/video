@@ -20,19 +20,28 @@ class ServerForm extends BaseForm
 {
     public function __construct($name = null, $option = [])
     {
+        // Set server type
+        $option['serverType'] = [];
+        $serverType           = Pi::registry('serverType', 'video')->read();
+        foreach ($serverType as $type) {
+            $option['serverType'][$type['name']] = $type['title'];
+        }
+
+        $this->option = $option;
         parent::__construct($name);
     }
 
     public function getInputFilter()
     {
         if (!$this->filter) {
-            $this->filter = new ServerFilter;
+            $this->filter = new ServerFilter($this->option);
         }
         return $this->filter;
     }
 
     public function init()
     {
+        var_dump($this->option);
         // title
         $this->add(
             [
@@ -76,12 +85,7 @@ class ServerForm extends BaseForm
                 'type'       => 'select',
                 'options'    => [
                     'label'         => __('Server type'),
-                    'value_options' => [
-                        'file'       => __('File server'),
-                        'wowza'      => __('Wowza'),
-                        'nginx'      => __('Nginx'),
-                        'mistserver' => __('MistServer'),
-                    ],
+                    'value_options' => $this->option['serverType'],
                 ],
                 'attributes' => [
                     'required' => true,

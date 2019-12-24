@@ -17,6 +17,11 @@ class Nginx extends AbstractAdapter
 {
     private $streamType = 'hls';
 
+    public function getType()
+    {
+        return $this->streamType;
+    }
+
     public function getUrl($params)
     {
         // Set stream type

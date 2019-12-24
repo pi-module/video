@@ -19,6 +19,8 @@ use Module\Video\Server\AbstractAdapter;
 
 /*
  * Pi::api('serverService', 'video')->getUrl($type, $params);
+ * Pi::api('serverService', 'video')->getType($type);
+ * Pi::api('serverService', 'video')->getPlayer($type, $params);
  */
 
 class ServerService extends AbstractApi

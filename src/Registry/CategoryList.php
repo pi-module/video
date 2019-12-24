@@ -16,6 +16,11 @@ namespace Module\Video\Registry;
 use Pi;
 use Pi\Application\Registry\AbstractRegistry;
 
+/*
+ * Pi::registry('categoryList', 'video')->clear();
+ * Pi::registry('categoryList', 'video')->read();
+ */
+
 /**
  * Category list
  */

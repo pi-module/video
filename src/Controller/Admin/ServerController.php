@@ -98,4 +98,23 @@ class ServerController extends ActionController
         $this->view()->assign('form', $form);
         $this->view()->assign('title', __('Manage server'));
     }
+
+    public function typeAction()
+    {
+        // Get info
+        $list   = [];
+        $where  = ['type' => 'server'];
+        $order  = ['id DESC'];
+        $select = $this->getModel('type')->select()->where($where)->order($order);
+        $rowSet = $this->getModel('type')->selectWith($select);
+
+        // Make list
+        foreach ($rowSet as $row) {
+            $list[$row->id] = $row->toArray();
+        }
+
+        // Set view
+        $this->view()->setTemplate('server-type');
+        $this->view()->assign('list', $list);
+    }
 }

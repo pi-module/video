@@ -17,6 +17,11 @@ class File extends AbstractAdapter
 {
     private $streamType = 'mp4';
 
+    public function getType()
+    {
+        return $this->streamType;
+    }
+
     public function getUrl($params)
     {
         // Set stream type
@@ -38,7 +43,6 @@ class File extends AbstractAdapter
                 $url = $url . '/' . $params['streamName'];
                 break;
         }
-
 
         return $url;
     }

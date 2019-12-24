@@ -1,12 +1,12 @@
 CREATE TABLE `{server}`
 (
-    `id`          INT(10) UNSIGNED                              NOT NULL AUTO_INCREMENT,
-    `title`       VARCHAR(255)                                  NOT NULL DEFAULT '',
-    `status`      TINYINT(1) UNSIGNED                           NOT NULL DEFAULT '1',
-    `default`     TINYINT(1) UNSIGNED                           NOT NULL DEFAULT '0',
-    `type`        ENUM ('file', 'wowza', 'nginx', 'mistserver') NOT NULL DEFAULT 'file',
-    `url`         VARCHAR(255)                                  NOT NULL DEFAULT '',
-    `application` VARCHAR(255)                                  NOT NULL DEFAULT '',
+    `id`          INT(10) UNSIGNED    NOT NULL AUTO_INCREMENT,
+    `title`       VARCHAR(255)        NOT NULL DEFAULT '',
+    `status`      TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
+    `default`     TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+    `type`        VARCHAR(64)         NOT NULL DEFAULT '',
+    `url`         VARCHAR(255)        NOT NULL DEFAULT '',
+    `application` VARCHAR(255)        NOT NULL DEFAULT '',
     `setting`     TEXT,
     PRIMARY KEY (`id`)
 );
@@ -15,7 +15,7 @@ CREATE TABLE `{video}`
 (
     `id`               INT(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
     `title`            VARCHAR(255)          NOT NULL DEFAULT '',
-    `slug`             VARCHAR(255)          NOT NULL DEFAULT NULL,
+    `slug`             VARCHAR(255)          NULL     DEFAULT NULL,
     `category`         VARCHAR(255)          NOT NULL DEFAULT '',
     `category_main`    INT(10) UNSIGNED      NOT NULL DEFAULT '0',
     `brand`            INT(10) UNSIGNED      NOT NULL DEFAULT '0',
@@ -123,16 +123,18 @@ CREATE TABLE `{link}`
 
 CREATE TABLE `{field}`
 (
-    `id`       INT(10) UNSIGNED                                                                                    NOT NULL AUTO_INCREMENT,
-    `title`    VARCHAR(255)                                                                                        NOT NULL DEFAULT '',
-    `icon`     VARCHAR(32)                                                                                         NOT NULL DEFAULT '',
-    `type`     ENUM ('text', 'link', 'currency', 'date', 'number', 'select', 'video', 'audio', 'file', 'checkbox') NOT NULL DEFAULT 'text',
-    `order`    INT(10) UNSIGNED                                                                                    NOT NULL DEFAULT '0',
-    `status`   TINYINT(1) UNSIGNED                                                                                 NOT NULL DEFAULT '0' DEFAULT '1',
-    `search`   TINYINT(1) UNSIGNED                                                                                 NOT NULL DEFAULT '0' DEFAULT '1',
-    `position` INT(10) UNSIGNED                                                                                    NOT NULL DEFAULT '0',
+    `id`       INT(10) UNSIGNED    NOT NULL AUTO_INCREMENT,
+    `title`    VARCHAR(255)        NOT NULL DEFAULT '',
+    `icon`     VARCHAR(32)         NOT NULL DEFAULT '',
+    `type`     ENUM (
+        'text', 'link', 'currency', 'date', 'number', 'select', 'video', 'audio', 'file', 'checkbox'
+        )                          NOT NULL DEFAULT 'text',
+    `order`    INT(10) UNSIGNED    NOT NULL DEFAULT '0',
+    `status`   TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' DEFAULT '1',
+    `search`   TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' DEFAULT '1',
+    `position` INT(10) UNSIGNED    NOT NULL DEFAULT '0',
     `value`    TEXT,
-    `name`     VARCHAR(64)                                                                                                  DEFAULT NULL,
+    `name`     VARCHAR(64)                  DEFAULT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `name` (`name`),
     KEY `title` (`title`),
@@ -205,4 +207,13 @@ CREATE TABLE `{service}`
     PRIMARY KEY (`id`),
     KEY `video` (`video`),
     KEY `select` (`module_name`, `module_table`, `module_item`)
+);
+
+CREATE TABLE `{type}`
+(
+    `id`    INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(64)      NOT NULL DEFAULT '',
+    `type`  VARCHAR(64)      NOT NULL DEFAULT '',
+    `name`  VARCHAR(64)      NOT NULL DEFAULT '',
+    PRIMARY KEY (`id`)
 );

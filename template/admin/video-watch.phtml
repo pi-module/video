@@ -147,7 +147,11 @@ EOT;
         <?php } */ ?>
         <?php if (!empty($video['video_url'])) { ?>
         <div class="clearfix">
-            <?php echo $this->video($video['player']); ?>
+            <?php if (in_array($video['player_type'], ['mp4', 'hls'])) { ?>
+                <?php echo $this->video($video['player']); ?>
+            <?php } elseif ($video['player_type'] === 'embed') { ?>
+                <?php echo $video['player']; ?>
+            <?php } ?>
         </div>
         <?php } else { ?>
             <div class="alert alert-danger">

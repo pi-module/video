@@ -45,23 +45,8 @@ class Server extends AbstractApi
         $server  = array_merge($server, $setting);
 
         // Set type view
-        switch ($server['type']) {
-            case 'file':
-                $server['type_view'] = __('File server');
-                break;
-
-            case 'wowza':
-                $server['type_view'] = __('Wowza');
-                break;
-
-            case 'nginx':
-                $server['type_view'] = __('Nginx');
-                break;
-
-            case 'mistserver':
-                $server['type_view'] = __('MistServer');
-                break;
-        }
+        $serverType           = Pi::registry('serverType', 'video')->read();
+        $server['type_view'] = $serverType[$server['type']]['title'];
 
         // Update methods
         $server['updateMethod'] = Pi::api('serverService', 'video')->updateMethod($server['type']);

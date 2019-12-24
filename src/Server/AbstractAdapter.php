@@ -16,4 +16,6 @@ namespace Module\Video\Server;
 abstract class AbstractAdapter
 {
     abstract public function getUrl($params);
+
+    abstract public function getType();
 }
