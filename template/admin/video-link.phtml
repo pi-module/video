@@ -23,7 +23,7 @@
             </li>
             <?php if ($video['status'] == 1) { ?>
                 <li class="nav-item pull-right">
-                    <a class="nav-link active" target="_blank" href="<?php echo $video['videoUrl']; ?>"><?php _e('View'); ?></a>
+                    <a class="nav-link" target="_blank" href="<?php echo $video['videoUrl']; ?>"><?php _e('View'); ?></a>
                 </li>
             <?php } ?>
         <?php } else { ?>
@@ -31,10 +31,10 @@
                 <a class="nav-link active" href="#"><?php _e('Add video source'); ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><?php _e('Add basic information'); ?></a>
+                <a class="nav-link" href="#"><?php _e('Manage basic information'); ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><?php _e('Add additional information'); ?></a>
+                <a class="nav-link" href="#"><?php _e('Manage additional information'); ?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><?php _e('Watch submitted video'); ?></a>

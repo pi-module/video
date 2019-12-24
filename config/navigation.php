@@ -41,6 +41,54 @@ return [
                     'controller' => 'video',
                     'action'     => 'link',
                 ],
+                'upload'           => [
+                    'label'      => _a('Upload'),
+                    'permission' => [
+                        'resource' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'video',
+                    'action'     => 'upload',
+                    'visible'    => 0,
+                ],
+                'update'           => [
+                    'label'      => _a('Update'),
+                    'permission' => [
+                        'resource' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'video',
+                    'action'     => 'update',
+                    'visible'    => 0,
+                ],
+                'additional'           => [
+                    'label'      => _a('Additional'),
+                    'permission' => [
+                        'resource' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'video',
+                    'action'     => 'additional',
+                    'visible'    => 0,
+                ],
+
+
+
+
+                'watch'           => [
+                    'label'      => _a('Watch'),
+                    'permission' => [
+                        'resource' => 'video',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'video',
+                    'action'     => 'watch',
+                    'visible'    => 0,
+                ],
             ],
         ],
 
