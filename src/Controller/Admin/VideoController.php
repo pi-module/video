@@ -453,6 +453,7 @@ class VideoController extends ActionController
             $option['side']       = 'admin';
             $option['video_size'] = $video['video_size'];
             $option['sale_video'] = $config['sale_video'];
+            $option['id']         = $video['id'];
         } else {
             // Jump
             $message = __('Please select video');
@@ -603,23 +604,27 @@ class VideoController extends ActionController
         // Get id
         $id     = $this->params('id');
         $module = $this->params('module');
+
         // Get config
         $config = Pi::service('registry')->config->read($module);
+
         // Find video
         if ($id) {
             $video = Pi::api('video', 'video')->getVideo($id);
         } else {
             $this->jump(['action' => 'index'], __('Please select video'));
         }
+
         // Get attribute field
         $fields          = Pi::api('attribute', 'video')->Get($video['category_main']);
         $option['field'] = $fields['attribute'];
         $option['side']  = 'admin';
+
         // Check attribute is empty
         if (empty($fields['attribute'])) {
-            $message = __('Video data saved successfully.');
-            $this->jump(['action' => 'watch', 'id' => $video['id']], $message);
+            $this->jump(['action' => 'watch', 'id' => $video['id']]);
         }
+
         // Check post
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
@@ -659,10 +664,12 @@ class VideoController extends ActionController
             $form->setAttribute('enctype', 'multipart/form-data');
             $form->setData($video);
         }
+
         // set nav
         $nav = [
             'page' => 'additional',
         ];
+
         // Set view
         $this->view()->setTemplate('video-update');
         $this->view()->assign('form', $form);

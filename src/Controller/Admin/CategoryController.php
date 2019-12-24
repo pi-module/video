@@ -51,6 +51,7 @@ class CategoryController extends ActionController
         $option = [
             'isNew' => true,
             'type'  => $type,
+            'id'    => (intval($id) > 0) ? intval($id) : null
         ];
 
         // Find category

@@ -30,7 +30,15 @@ class File extends AbstractAdapter
         if (isset($params['streamPath']) && !empty($params['streamPath'])) {
             $url = $url . '/' . $params['streamPath'];
         }
-        $url = $url . '/' . $params['streamName'];
+
+        // Set video name end of url
+        switch ($streamType) {
+            default:
+            case 'mp4':
+                $url = $url . '/' . $params['streamName'];
+                break;
+        }
+
 
         return $url;
     }
