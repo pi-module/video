@@ -67,6 +67,11 @@ class Install extends BasicInstall
                 'name'  => 'youtube',
             ],
             [
+                'title' => __('Vimeo'),
+                'type'  => 'server',
+                'name'  => 'vimeo',
+            ],
+            [
                 'title' => __('Aparat'),
                 'type'  => 'server',
                 'name'  => 'aparat',
