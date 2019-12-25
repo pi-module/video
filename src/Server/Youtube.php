@@ -35,11 +35,11 @@ class Youtube extends AbstractAdapter
         // Set template
         $template
             = <<<'EOT'
-<iframe width="560" height="315" src="%s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe src="%s" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 EOT;
 
         // Set player
-        $player = sprintf($template, params['videoUrl']);
+        $player = sprintf($template, $params['videoUrl']);
 
         return $player;
     }
