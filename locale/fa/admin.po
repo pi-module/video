@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2019-10-21 12:02+0330\n"
+"POT-Creation-Date: 2019-12-25 11:40+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,8 +24,8 @@ msgid "New video list"
 msgstr "فهرست ویدیو های جدید"
 
 #: config/block.php:22 config/block.php:111 config/block.php:289
-#: config/navigation.php:28 config/navigation.php:42 config/page.php:22
-#: config/page.php:61 config/permission.php:21
+#: config/navigation.php:92 config/navigation.php:106 config/page.php:22
+#: config/page.php:56 config/permission.php:21
 msgid "Category"
 msgstr "شاخه"
 
@@ -205,7 +205,7 @@ msgstr "نظرات ویدیو"
 msgid "Admin"
 msgstr "بخش مدیر"
 
-#: config/config.php:20 config/page.php:47 config/page.php:105
+#: config/config.php:20 config/page.php:100
 msgid "Json output"
 msgstr "خروجی حیسون"
 
@@ -213,8 +213,7 @@ msgstr "خروجی حیسون"
 msgid "View"
 msgstr "نمایش"
 
-#: config/config.php:28 config/navigation.php:272 config/page.php:99
-#: config/permission.php:56
+#: config/config.php:28 config/page.php:94 config/permission.php:52
 msgid "Submit"
 msgstr "ارسال"
 
@@ -420,15 +419,15 @@ msgstr "کاربران برای مشاهده هر ویدیو جداگانه پو
 
 #: config/config.php:378
 msgid "Sale method for single video"
-msgstr ""
+msgstr "روش فروش ویدیو"
 
 #: config/config.php:384
 msgid "Buy each video online"
-msgstr ""
+msgstr "خرید ور ویدیو به صورت آنلاین"
 
 #: config/config.php:385
 msgid "Use user credit"
-msgstr ""
+msgstr "استفاده از اعتبار کاربر"
 
 #: config/config.php:386
 msgid "Mobile payment method (VAS)"
@@ -454,107 +453,124 @@ msgstr "توضیحات برای صفحه اصلی"
 msgid "Force replace space by comma(,)"
 msgstr "جایگزینی اسپیس با کاما"
 
-#: config/module.php:16 config/navigation.php:17 config/page.php:17
-#: config/permission.php:17
+#: config/module.php:16 config/navigation.php:17 config/navigation.php:28
+#: config/page.php:17 config/permission.php:17
 msgid "Video"
 msgstr "ویدیو"
 
 #: config/module.php:17
 msgid "Video gallery and service for Pi Engine."
-msgstr ""
+msgstr "ویدیو گالری و سرویس ویدیو"
 
-#: config/navigation.php:55
+#: config/navigation.php:35 config/navigation.php:202
+msgid "Add / Manage"
+msgstr "مدیریت"
+
+#: config/navigation.php:45
+msgid "Upload"
+msgstr "بارگزاری اطلاعات"
+
+#: config/navigation.php:56
+msgid "Update"
+msgstr "مدیریت اطلاعات"
+
+#: config/navigation.php:67
+msgid "Additional"
+msgstr "اطلاعات تکمیلی"
+
+#: config/navigation.php:78
+msgid "Watch"
+msgstr "نمایش ویدیو"
+
+#: config/navigation.php:119
 msgid "Brand"
 msgstr "شرکت"
 
-#: config/navigation.php:68
+#: config/navigation.php:132
 msgid "New category"
 msgstr "شاخه جدید"
 
-#: config/navigation.php:81
+#: config/navigation.php:145
 msgid "New brand"
 msgstr "شرکت جدید"
 
-#: config/navigation.php:94
+#: config/navigation.php:158
 msgid "Sync category"
 msgstr "یکسان سازی شاخه ها"
 
-#: config/navigation.php:104
+#: config/navigation.php:168
 msgid "Merge category"
-msgstr ""
+msgstr "ادغام شاخه ها"
 
-#: config/navigation.php:117 config/navigation.php:128 config/page.php:27
+#: config/navigation.php:181 config/navigation.php:192 config/page.php:27
 #: config/permission.php:25
 msgid "Server"
 msgstr "سرور"
 
-#: config/navigation.php:138
-#, fuzzy
-#| msgid "Manage"
-msgid "Add / Manage"
-msgstr "مدیریت"
+#: config/navigation.php:212
+msgid "Type"
+msgstr "نوع"
 
-#: config/navigation.php:151 config/navigation.php:161 config/page.php:32
+#: config/navigation.php:225 config/navigation.php:235 config/page.php:32
 #: config/permission.php:29
 msgid "Attribute"
 msgstr "خواص"
 
-#: config/navigation.php:171
+#: config/navigation.php:245
 msgid "Attribute position"
 msgstr "موقعیت خواص"
 
-#: config/navigation.php:184 config/navigation.php:194 config/page.php:42
+#: config/navigation.php:258 config/navigation.php:268 config/page.php:42
 #: config/permission.php:37
 msgid "Tools"
 msgstr "ابزار ها"
 
-#: config/navigation.php:205
+#: config/navigation.php:279
 msgid "Sitemap"
 msgstr "نقشه سایت"
 
-#: config/navigation.php:216 config/page.php:37 config/permission.php:33
+#: config/navigation.php:290 config/page.php:37 config/permission.php:33
 msgid "Logs"
 msgstr "گزارش ها"
 
-#: config/navigation.php:227 config/permission.php:41
-msgid "Json"
-msgstr "جیسون"
-
-#: config/navigation.php:242 config/page.php:67
+#: config/navigation.php:305 config/page.php:62
 msgid "Category list"
 msgstr "فهرست شاخه ها"
 
-#: config/navigation.php:252 config/page.php:80
+#: config/navigation.php:315 config/page.php:75
 msgid "Tag list"
 msgstr "فهرست برچسب ها"
 
-#: config/navigation.php:262
+#: config/navigation.php:325
 msgid "Your channel"
 msgstr "کانال شما"
 
-#: config/page.php:55
+#: config/page.php:50
 msgid "Index"
 msgstr "صفحه اصلی"
 
-#: config/page.php:74
+#: config/page.php:69
 msgid "Tag"
 msgstr "برچسب"
 
-#: config/page.php:87
+#: config/page.php:82
 msgid "Watch video"
 msgstr "نمایش ویدیو"
 
-#: config/page.php:93 config/permission.php:63
+#: config/page.php:88 config/permission.php:59
 msgid "Channel"
 msgstr "کانال"
 
-#: config/permission.php:48
+#: config/permission.php:44
 msgid "Global public resource"
 msgstr "دسترسی های عمومی"
 
-#: template/admin/video-index.phtml:129
+#: template/admin/video-index.phtml:101
 msgid "Are you sure to delete this video?"
 msgstr "آیا اطمینان دارید که میخواهید این ویدیو را حذف کنید؟"
+
+#~ msgid "Json"
+#~ msgstr "جیسون"
 
 #~ msgid "Video play system."
 #~ msgstr "ابزار پخش ویدیو"

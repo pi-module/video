@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2019-10-21 12:02+0330\n"
+"POT-Creation-Date: 2019-12-25 11:40+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,14 +15,14 @@ msgstr ""
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: template/block/video-hits.phtml:202 template/block/video-new.phtml:196
-#: template/block/video-random.phtml:202 template/block/video-tag.phtml:200
+#: template/block/video-hits.phtml:196 template/block/video-new.phtml:190
+#: template/block/video-random.phtml:196 template/block/video-tag.phtml:196
 msgid "View"
 msgstr ""
 
-#: template/block/video-hits.phtml:271 template/block/video-hits.phtml:272
-#: template/block/video-new.phtml:260 template/block/video-new.phtml:261
-#: template/block/video-random.phtml:271 template/block/video-random.phtml:272
-#: template/block/video-tag.phtml:268 template/block/video-tag.phtml:269
+#: template/block/video-hits.phtml:265 template/block/video-hits.phtml:266
+#: template/block/video-new.phtml:254 template/block/video-new.phtml:255
+#: template/block/video-random.phtml:265 template/block/video-random.phtml:266
+#: template/block/video-tag.phtml:264 template/block/video-tag.phtml:265
 msgid "More videos"
 msgstr ""
