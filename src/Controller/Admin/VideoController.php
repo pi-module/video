@@ -241,6 +241,7 @@ class VideoController extends ActionController
         // Set option
         $option = [
             'isNew' => isset($video['id']) ? false : true,
+            'serverCount' => count($serverList)
         ];
 
         // Set form
@@ -297,6 +298,7 @@ class VideoController extends ActionController
         $this->view()->assign('title', __('Manage video link'));
         $this->view()->assign('nav', $nav);
         $this->view()->assign('video', $video);
+        $this->view()->assign('serverList', $serverList);
     }
 
     public function uploadAction()

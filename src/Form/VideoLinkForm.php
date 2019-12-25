@@ -97,7 +97,7 @@ class VideoLinkForm extends BaseForm
         );
 
         // show_video_url
-        if ($this->option['isNew']) {
+        if ($this->option['isNew'] && $this->option['serverCount'] > 1) {
             $this->add(
                 [
                     'name'       => 'show_video_url',

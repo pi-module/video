@@ -28,7 +28,11 @@ class Server extends Radio
 
             $list = [];
             foreach ($serverList as $server) {
-                $list[$server['id']] = sprintf('%s ( %s )', $server['title'], $server['type']);
+                if ($server['default']) {
+                    $list[$server['id']] = sprintf('%s - %s ( %s )', __('Default'), $server['title'], $server['type']);
+                } else {
+                    $list[$server['id']] = sprintf('%s ( %s )', $server['title'], $server['type']);
+                }
             }
 
             $this->valueOptions = $list;

@@ -3,7 +3,7 @@ $this->css($this->assetModule('css/admin.css'));
 $this->jQuery();
 
 // Set page script
-if (!isset($video['id'])) {
+if (!isset($video['id']) && count($serverList) > 1) {
     $script = <<<'EOT'
     (function ($) {
         $(document).ready(function ($) {
