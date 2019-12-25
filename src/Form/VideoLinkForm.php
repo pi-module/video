@@ -45,7 +45,8 @@ class VideoLinkForm extends BaseForm
                 'attributes' => [
                     'description' => __('Select stream server'),
                     'required'    => true,
-                    'value'       => Pi::registry('serverDefault', 'video')->read(),
+                    'class'       => 'video-server'
+                    //'value'       => Pi::registry('serverDefault', 'video')->read(),
                 ],
             ]
         );
@@ -65,7 +66,8 @@ class VideoLinkForm extends BaseForm
                         __('Some type of servers have sub-application name or path of video, put it here'),
                         __('Some type of servers dont have sub-application name or path of video, then it can be empty'),
                         __('Example : upload/video/2016/09'),
-                        __('Example : demoApplication')
+                        __('Example : demoApplication'),
+                        __('Example : hls')
                     ),
                     'required'    => false,
                 ],
@@ -86,12 +88,30 @@ class VideoLinkForm extends BaseForm
                         __('Video file name or stream name ( stream key )'),
                         __('Example : myFileStream, ( for MistServer or Wowza )'),
                         __('Example : 360p.mp4,480p.mp4,720p.mp4, ( for nginx  multi quality )'),
-                        __('Example : myFile.mp4, ( for file server )')
+                        __('Example : myFile.mp4, ( file name for file server )'),
+                        __('Example : 374354745, ( id for youtube, aparat, vimeo )')
                     ),
                     'required'    => false,
                 ],
             ]
         );
+
+        // show_video_url
+        if ($this->option['isNew']) {
+            $this->add(
+                [
+                    'name'       => 'show_video_url',
+                    'type'       => 'checkbox',
+                    'options'    => [
+                        'label' => __('Show video URL'),
+                    ],
+                    'attributes' => [
+                        'description' => __('If you want add full url, useful for hls and file players'),
+                        'class' => 'show-video-url'
+                    ],
+                ]
+            );
+        }
 
         // video_url
         $this->add(

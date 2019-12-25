@@ -1,3 +1,57 @@
+<?php
+$this->css($this->assetModule('css/admin.css'));
+$this->jQuery();
+
+// Set page script
+if (!isset($video['id'])) {
+    $script = <<<'EOT'
+    (function ($) {
+        $(document).ready(function ($) {
+            $('div[data-name="video_path"]').hide();
+            $('div[data-name="video_file"]').hide();
+            $('div[data-name="show_video_url"]').hide();
+            $('div[data-name="video_url"]').hide();
+            $('input[name="video_path"]').prop('required',true);
+            $('input[name="video_file"]').prop('required',true);
+            $('input[name="video_url"]').prop('required',false);
+
+            $('.video-server').change(function () {
+                $('input[name="video_path"]:text').val('');
+                $('input[name="video_file"]:text').val('');
+                $('input[name="video_url"]:text').val('');
+                $('div[data-name="video_path"]').show();
+                $('div[data-name="video_file"]').show();
+                $('div[data-name="show_video_url"]').show();
+                $('.show-video-url').prop('checked', false);
+                $('div[data-name="video_url"]').hide();
+            });
+
+            $('.show-video-url').change(function () {
+                if(this.checked) {
+                    $('div[data-name="video_url"]').show();
+                    $('div[data-name="video_path"]').hide();
+                    $('div[data-name="video_file"]').hide();
+                    $('input[name="video_path"]:text').val('');
+                    $('input[name="video_file"]:text').val('');
+                    $('input[name="video_path"]').prop('required',false);
+                    $('input[name="video_file"]').prop('required',false);
+                    $('input[name="video_url"]').prop('required',true);
+                } else {
+                    $('div[data-name="video_url"]').hide();
+                    $('div[data-name="video_path"]').show();
+                    $('div[data-name="video_file"]').show();
+                    $('input[name="video_url"]:text').val('');
+                    $('input[name="video_path"]').prop('required',true);
+                    $('input[name="video_file"]').prop('required',true);
+                    $('input[name="video_url"]').prop('required',false);
+                }
+            });
+        });
+    })(jQuery)
+EOT;
+    $this->footScript()->appendScript($script);
+}
+?>
 <div class="clearfix">
     <ul class="nav nav-pills bg-light mb-3 p-3">
         <?php if (isset($video['id'])) { ?>

@@ -239,7 +239,9 @@ class VideoController extends ActionController
         }
 
         // Set option
-        $option = [];
+        $option = [
+            'isNew' => isset($video['id']) ? false : true,
+        ];
 
         // Set form
         $form = new VideoLinkForm('video', $option);
