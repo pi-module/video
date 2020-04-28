@@ -404,7 +404,7 @@ class Api extends AbstractApi
         return $video;
     }
 
-    public function categoryList($params)
+    public function categoryList()
     {
         $category = [];
 
@@ -434,7 +434,6 @@ class Api extends AbstractApi
         // Set result
         $result = [
             'categories' => $category,
-            'params'     => $params,
             'paginator'  => [
                 'count' => $count,
             ],
@@ -452,49 +451,6 @@ class Api extends AbstractApi
         if ($config['sale_video'] == 'single' && $config['sale_video_single'] == 'mobile') {
             // Get video
             $video = Pi::api('video', 'video')->getVideoLight($params['id']);
-
-
-            // http://IP:port/charging_websrv/services/Charging?wsdl
-
-
-            //  Method : SingleCharge
-            //  username
-            //  password
-            //  domain
-            //  channel
-            //  mobilenum
-            //  serviceId
-            //  result : PardisID
-
-            //  Method : DynamicCharge
-            //  username
-            //  password
-            //  domain
-            //  channel
-            //  mobilenum
-            //  serviceId
-            //  price
-            //  result : PardisID
-
-
-            //  Method : sendVerificationCode
-            //  username
-            //  password
-            //  domain
-            //  channel
-            //  mobilenum
-            //  serviceId
-            //  result : PardisID
-
-
-            //  Method : verifySubscriber
-            //  username
-            //  password
-            //  domain
-            //  channel
-            //  mobilenum
-            //  serviceId
-            //  token
 
             return Pi::api('video', 'video')->setAccess($video, $params['uid']);
         } else {

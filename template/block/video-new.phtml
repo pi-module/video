@@ -33,7 +33,7 @@
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
                     <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
-                    <?php if ($video['image']) { ?>
+                    <?php if ($video['main_image']) { ?>
                         <a itemprop="url" class="card-img-top u-photo" title="<?php echo $this->escape($video['title']); ?>"
                            href="<?php echo $this->escape($video['videoUrl']); ?>">
                             <img itemprop="image" src="<?php echo $video['thumbUrl']; ?>"
@@ -56,7 +56,7 @@
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
                     <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
-                    <?php if ($video['image']) { ?>
+                    <?php if ($video['main_image']) { ?>
                         <a itemprop="url" class="card-img-top u-photo" title="<?php echo $this->escape($video['title']); ?>"
                            href="<?php echo $this->escape($video['videoUrl']); ?>">
                             <img itemprop="image" src="<?php echo $video['thumbUrl']; ?>"
@@ -91,7 +91,7 @@
                     <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                     <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
                     <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
-                    <?php if ($video['image']) { ?>
+                    <?php if ($video['main_image']) { ?>
                         <a itemprop="url" class="card-img-top u-photo" title="<?php echo $this->escape($video['title']); ?>"
                            href="<?php echo $this->escape($video['videoUrl']); ?>">
                             <img itemprop="image" src="<?php echo $img; ?>"
@@ -142,7 +142,7 @@
                         <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
                         <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
                         <div class="p-item h-card">
-                            <?php if ($video['image']) { ?>
+                            <?php if ($video['main_image']) { ?>
                                 <a itemprop="url" class="u-url" title="<?php echo $this->escape($video['title']); ?>"
                                    href="<?php echo $this->escape($video['videoUrl']); ?>">
                                     <img itemprop="image" class="img-fluid u-photo"
@@ -226,7 +226,7 @@
                                 <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
                                 <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
                                 <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
-                                <?php if ($video['image']) { ?>
+                                <?php if ($video['main_image']) { ?>
                                     <a itemprop="url" class="card-img-top u-photo"
                                        title="<?php echo $this->escape($video['title']); ?>"
                                        href="<?php echo $this->escape($video['videoUrl']); ?>">

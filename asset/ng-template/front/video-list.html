@@ -1,10 +1,10 @@
-<div class="clearfix row pi-item-list mt-3 mb-3">
+<div class="pi-item-list row clearfix">
     <div class="col-lg-3 col-md-3 col-12">
         <div class="pi-item-search-form clearfix card card-body bg-light mb-3">
             <div class="page-header">
                 <h3>{{'SEARCH' | translate}}</h3>
             </div>
-            <div class="clearfix category-list">
+            <div class="clearfix category-list  mb-3">
                 <div class="page-header">
                     <h3>{{'CATEGORY_LIST' | translate}}</h3>
                 </div>
@@ -15,59 +15,41 @@
             <form id="list-filter" ng-submit="filterAction()">
                 <div class="form-group">
                     <label>{{'TITLE' | translate}}</label>
-                    <input type="text" class="form-control" ng-model="filter.title" ng-change="filterAction()" ng-model-options="{ debounce: 5000 }">
-                </div>
-                <div ng-if="filterList">
-                    <div ng-repeat="filterSingle in filterList">
-                        <div ng-if="filterSingle.type == 'text'">
-                            <div class="form-group">
-                                <label>{{filterSingle.title}}</label>
-                                <input type="text" class="form-control" ng-model="filterSingle.filter"
-                                       ng-change="filterAction()" ng-model-options="{ debounce: 5000 }">
-                            </div>
-                        </div>
-                        <div ng-if="filterSingle.type == 'select'">
-                            <div class="form-group">
-                                <label>{{filterSingle.title}}</label>
-                                <select class="form-control" ng-model="filterSingle.filter" ng-change="filterAction()"
-                                        ng-model-options="{ debounce: 5000 }">
-                                    <option value="">{{'ALL' | translate}}</option>
-                                    <option ng-repeat="filterData in filterSingle.value.data" ng-if="filterData">
-                                        {{filterData}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    <input type="text" class="form-control" ng-model="filter.title" ng-change="filterAction()"
+                           ng-model-options="{ debounce: 5000 }">
                 </div>
                 <div class="text-center">
                     <button class="btn btn-info" ng-click="filterAction()">
-                        <i class="fa fa-search"></i> {{'SEARCH' | translate}}
+                        <i class="fas fa-search"></i> {{'SEARCH' | translate}}
                     </button>
                 </div>
             </form>
         </div>
     </div>
     <div class="col-lg-9 col-md-9 col-12">
-            <h1>{{condition.title}}</h1>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h1>{{condition.title}}</h1>
+            </div>
+        </div>
+
         <div ng-show="videos.length">
-            <div class="clearfix row">
-                <div ng-repeat="video in videos">
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <div class="card">
-                            <a class="card-img-top u-url {{video.ribbon_class}}" itemprop="url" title="{{video.title}}" href="{{video.videoUrl}}" target="_blank">
-                                <img itemprop="image" class="img-fluid u-photo" src="{{video.thumbUrl}}" alt="{{video.title}}"/>
-                                <p ng-if="video.ribbon">
-                                    <span>{{video.ribbon}}</span>
-                                </p>
-                            </a>
-                            <div class="card-body">
-                                <h3 class="card-title">
-                                    <a title="{{video.title}}" href="{{video.videoUrl}}" target="_blank">
-                                        {{video.title}}
-                                    </a>
-                                </h3>
-                            </div>
+            <div class="row">
+                <div class="{{condition.columnSize}}" ng-repeat="video in videos">
+                    <div class="card mb-3 pi-item-box">
+                        <a class="card-img-top pi-item-box-image u-url {{video.ribbon_class}}" itemprop="url" title="{{video.title}}" href="{{video.videoUrl}}" target="_blank">
+                            <img itemprop="image" class="card-img-top img-fluid u-photo" src="{{video.mediumUrl}}" alt="{{video.title}}"/>
+                            <p ng-if="video.ribbon">
+                                <span>{{video.ribbon}}</span>
+                            </p>
+                        </a>
+                        <div class="card-body">
+                            <h3 class="card-title pi-item-box-title">
+                                <a title="{{video.title}}" href="{{video.videoUrl}}" target="_blank">
+                                    {{video.title}}
+                                </a>
+                            </h3>
                         </div>
                     </div>
                 </div>

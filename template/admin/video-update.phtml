@@ -38,18 +38,3 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
     </ul>
     <?php echo $this->form($form); ?>
 </div>
-<script type="text/javascript">
-    (function ($) {
-        $(".video-from-status").parent(".js-form-element").parent(".form-group").addClass("bg-primary").css("padding", "15px");
-        $("#video-form").on("click", "button", function () {
-            systemMessage.wait("<?php _e('Remove image video in process'); ?>");
-            $.getJSON($(this).attr("data-link")).done(function (result) {
-                if (result.status == 1) {
-                    systemMessage.succ(result.message);
-                } else {
-                    systemMessage.fail(result.message);
-                }
-            });
-        });
-    })(jQuery)
-</script>

@@ -61,7 +61,7 @@ class VideoLinkForm extends BaseForm
                 'attributes' => [
                     'type'        => 'text',
                     'description' => sprintf(
-                        '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>',
+                        '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>',
                         __('Path or sub-application name of video file or source, put it without add / on start and end'),
                         __('Some type of servers have sub-application name or path of video, put it here'),
                         __('Some type of servers dont have sub-application name or path of video, then it can be empty'),
@@ -84,7 +84,7 @@ class VideoLinkForm extends BaseForm
                 'attributes' => [
                     'type'        => 'text',
                     'description' => sprintf(
-                        '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>',
+                        '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>',
                         __('Video file name or stream name ( stream key )'),
                         __('Example : myFileStream, ( for MistServer or Wowza )'),
                         __('Example : 360p.mp4,480p.mp4,720p.mp4, ( for nginx  multi quality )'),

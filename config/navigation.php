@@ -296,6 +296,17 @@ return [
                     'controller' => 'log',
                     'action'     => 'index',
                 ],
+
+                'migrate'   => [
+                    'label'      => _a('Migrate media'),
+                    'permission' => [
+                        'resource' => 'tools',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'shop',
+                    'controller' => 'tools',
+                    'action'     => 'migrate',
+                ],
             ],
         ],
     ],

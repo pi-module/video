@@ -54,4 +54,14 @@ class ToolsController extends ActionController
         $this->view()->assign('title', __('Rebuild sitemap links'));
         $this->view()->assign('message', $message);
     }
+
+    public function migrateAction()
+    {
+        $message = Pi::api('video', 'video')->migrateMedia();
+
+        if (empty($message)) {
+            $message = __('Media have migrate successfully');
+        }
+        $this->jump(['action' => 'index'], $message);
+    }
 }

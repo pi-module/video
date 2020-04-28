@@ -328,6 +328,33 @@ class JsonController extends IndexController
             $count        = $this->getModel('link')->selectWith($select)->current()->count;
         }
 
+        // Set column class
+        switch ($config['view_column']) {
+            case 1:
+                $columnSize = 'col-lg-12 col-md-12 col-12';
+                break;
+
+            case 2:
+                $columnSize = 'col-lg-6 col-md-6 col-12';
+                break;
+
+            case 3:
+                $columnSize = 'col-lg-4 col-md-4 col-12';
+                break;
+
+            case 4:
+                $columnSize = 'col-lg-3 col-md-3 col-12';
+                break;
+
+            case 6:
+                $columnSize = 'col-lg-2 col-md-2 col-12';
+                break;
+
+            default:
+                $columnSize = 'col-lg-3 col-md-3 col-12';
+                break;
+        }
+
         // Set result
         $result = [
             'videos'     => $video,
@@ -338,7 +365,8 @@ class JsonController extends IndexController
                 'page'  => $page,
             ],
             'condition'  => [
-                'title' => $pageTitle,
+                'title'      => $pageTitle,
+                'columnSize' => $columnSize,
             ],
         ];
 

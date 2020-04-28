@@ -33,11 +33,10 @@ class CategoryController extends ApiController
         ];
 
         // Get info from url
-        $module = $this->params('module');
         $token  = $this->params('token');
 
         // Check token
-        $check = Pi::api('token', 'tools')->check($token, $module);
+        $check = Pi::api('token', 'tools')->check($token);
         if ($check['status'] == 1) {
 
             // Save statistics
@@ -51,7 +50,7 @@ class CategoryController extends ApiController
             }
 
             // Get data
-            $result['data'] = Pi::api('category', 'video')->categoryList();
+            $result['data'] = Pi::api('api', 'video')->categoryList();
 
             // Check data
             if (!empty($result['data'])) {

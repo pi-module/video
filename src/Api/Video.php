@@ -378,49 +378,21 @@ class Video extends AbstractApi
             }
         }
 
-        // Set image url
-        if ($video['image']) {
-            // Set image original url
-            $video['originalUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/original/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
+        // Set image
+        if ($video['main_image']) {
+            $video['largeUrl']  = Pi::url(
+                (string)Pi::api('doc', 'media')->getSingleLinkUrl($video['main_image'])->setConfigModule('video')->thumb('large')
             );
-            // Set image large url
-            $video['largeUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/large/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
-            );
-            // Set image medium url
             $video['mediumUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/medium/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
+                (string)Pi::api('doc', 'media')->getSingleLinkUrl($video['main_image'])->setConfigModule('video')->thumb('medium')
             );
-            // Set image thumb url
-            $video['thumbUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/thumb/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
+            $video['thumbUrl']  = Pi::url(
+                (string)Pi::api('doc', 'media')->getSingleLinkUrl($video['main_image'])->setConfigModule('video')->thumb('thumbnail')
             );
         } else {
-            $video['originalUrl'] = '';
-            $video['largeUrl']    = '';
-            $video['mediumUrl']   = '';
-            $video['thumbUrl']    = '';
+            $video['largeUrl']  = '';
+            $video['mediumUrl'] = '';
+            $video['thumbUrl']  = '';
         }
 
         // Set player
@@ -503,19 +475,13 @@ class Video extends AbstractApi
             )
         );
 
-        // Set image url
-        if ($video['image']) {
-            // Set image thumb url
-            $video['thumbUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/thumb/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
+        // Set image
+        if ($video['main_image']) {
+            $video['thumbUrl']  = Pi::url(
+                (string)Pi::api('doc', 'media')->getSingleLinkUrl($video['main_image'])->setConfigModule('video')->thumb('thumbnail')
             );
         } else {
-            $video['thumbUrl'] = '';
+            $video['thumbUrl']  = '';
         }
 
         // unset
@@ -623,49 +589,21 @@ class Video extends AbstractApi
             }
         }
 
-        // Set image url
-        if ($video['image']) {
-            // Set image original url
-            $video['originalUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/original/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
+        // Set image
+        if ($video['main_image']) {
+            $video['largeUrl']  = Pi::url(
+                (string)Pi::api('doc', 'media')->getSingleLinkUrl($video['main_image'])->setConfigModule('video')->thumb('large')
             );
-            // Set image large url
-            $video['largeUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/large/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
-            );
-            // Set image medium url
             $video['mediumUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/medium/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
+                (string)Pi::api('doc', 'media')->getSingleLinkUrl($video['main_image'])->setConfigModule('video')->thumb('medium')
             );
-            // Set image thumb url
-            $video['thumbUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/thumb/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
+            $video['thumbUrl']  = Pi::url(
+                (string)Pi::api('doc', 'media')->getSingleLinkUrl($video['main_image'])->setConfigModule('video')->thumb('thumbnail')
             );
         } else {
-            $video['originalUrl'] = '';
-            $video['largeUrl']    = '';
-            $video['mediumUrl']   = '';
-            $video['thumbUrl']    = '';
+            $video['largeUrl']  = '';
+            $video['mediumUrl'] = '';
+            $video['thumbUrl']  = '';
         }
 
         // Set category_main information
@@ -750,49 +688,13 @@ class Video extends AbstractApi
             }
         }
 
-        // Set image url
-        if ($video['image']) {
-            // Set image original url
-            $video['originalUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/original/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
-            );
-            // Set image large url
-            $video['largeUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/large/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
-            );
-            // Set image medium url
-            $video['mediumUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/medium/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
-            );
-            // Set image thumb url
-            $video['thumbUrl'] = Pi::url(
-                sprintf(
-                    'upload/%s/thumb/%s/%s',
-                    $config['image_path'],
-                    $video['path'],
-                    $video['image']
-                )
+        // Set image
+        if ($video['main_image']) {
+            $video['mediumUrl']  = Pi::url(
+                (string)Pi::api('doc', 'media')->getSingleLinkUrl($video['main_image'])->setConfigModule('video')->thumb('medium')
             );
         } else {
-            $video['originalUrl'] = '';
-            $video['largeUrl']    = '';
-            $video['mediumUrl']   = '';
-            $video['thumbUrl']    = '';
+            $video['mediumUrl']  = '';
         }
 
         // Set attribute
@@ -845,5 +747,72 @@ class Video extends AbstractApi
                 Pi::api('sitemap', 'sitemap')->groupLink($loc, $row->status, $this->getModule(), 'video', $row->id);
             }
         }
+    }
+
+    public function migrateMedia()
+    {
+        if (Pi::service("module")->isActive("media")) {
+
+            $msg = '';
+
+            // Get config
+            $config = Pi::service('registry')->config->read($this->getModule());
+
+            $videoModel = Pi::model('video', $this->getModule());
+
+            $select            = $videoModel->select();
+            $videoCollection = $videoModel->selectWith($select);
+
+            foreach ($videoCollection as $video) {
+
+                $toSave = false;
+
+                $mediaData = [
+                    'active'       => 1,
+                    'time_created' => time(),
+                    'uid'          => $video->uid,
+                    'count'        => 0,
+                ];
+
+                /**
+                 * Check if media item have already migrate or no image to migrate
+                 */
+                if (!$video->main_image) {
+
+                    /**
+                     * Check if media item exists
+                     */
+                    if (empty($video['image']) || empty($video['path'])) {
+
+                        $draft = $video->status == 3 ? ' (' . __('Draft') . ')' : '';
+
+                        $msg .= __("Missing image or path value from db for video ID") . " " . $video->id . $draft . "<br>";
+                    } else {
+                        $imagePath = sprintf(
+                            "upload/%s/original/%s/%s",
+                            $config["image_path"],
+                            $video["path"],
+                            $video["image"]
+                        );
+
+                        $mediaData['title'] = $video->title;
+                        $mediaId            = Pi::api('doc', 'media')->insertMedia($mediaData, $imagePath);
+
+                        if ($mediaId) {
+                            $video->main_image = $mediaId;
+                            $toSave              = true;
+                        }
+                    }
+                }
+
+                if ($toSave) {
+                    $video->save();
+                }
+            }
+
+            return $msg;
+        }
+
+        return false;
     }
 }

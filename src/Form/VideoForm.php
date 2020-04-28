@@ -204,56 +204,17 @@ class VideoForm extends BaseForm
             );
         }
 
-        // Image
-        if ($this->thumbUrl) {
-            $this->add(
-                [
-                    'name'       => 'imageview',
-                    'type'       => 'Module\Video\Form\Element\Image',
-                    'options'    => [
-                        //'label' => __('Image'),
-                    ],
-                    'attributes' => [
-                        'src' => $this->thumbUrl,
-                    ],
-                ]
-            );
-            if ($this->option['side'] == 'admin') {
-                $this->add(
-                    [
-                        'name'       => 'remove',
-                        'type'       => 'Module\Video\Form\Element\Remove',
-                        'options'    => [
-                            'label' => __('Remove image'),
-                        ],
-                        'attributes' => [
-                            'link' => $this->removeUrl,
-                        ],
-                    ]
-                );
-            }
-            $this->add(
-                [
-                    'name'       => 'image',
-                    'attributes' => [
-                        'type' => 'hidden',
-                    ],
-                ]
-            );
-        } else {
-            $this->add(
-                [
-                    'name'       => 'image',
-                    'options'    => [
-                        'label' => __('Image'),
-                    ],
-                    'attributes' => [
-                        'type'        => 'file',
-                        'description' => '',
-                    ],
-                ]
-            );
-        }
+        // main_image
+        $this->add(
+            [
+                'name'    => 'main_image',
+                'type'    => 'Module\Media\Form\Element\Media',
+                'options' => [
+                    'label'  => __('Main image'),
+                    'module' => 'shop',
+                ],
+            ]
+        );
 
         // video_duration
         $this->add(

@@ -41,6 +41,8 @@ class Video extends Model
             'download',
             'image',
             'path',
+            'main_image',
+            'additional_images',
             'point',
             'count',
             'attribute',

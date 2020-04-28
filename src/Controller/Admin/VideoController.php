@@ -240,8 +240,8 @@ class VideoController extends ActionController
 
         // Set option
         $option = [
-            'isNew' => isset($video['id']) ? false : true,
-            'serverCount' => count($serverList)
+            'isNew'       => isset($video['id']) ? false : true,
+            'serverCount' => count($serverList),
         ];
 
         // Set form
@@ -449,11 +449,7 @@ class VideoController extends ActionController
         // Find video
         $video = [];
         if ($id) {
-            $video = Pi::api('video', 'video')->getVideo($id);
-            if ($video['image']) {
-                $option['thumbUrl']  = Pi::url($video['thumbUrl']);
-                $option['removeUrl'] = $this->url('', ['action' => 'remove', 'id' => $video['id']]);
-            }
+            $video                = Pi::api('video', 'video')->getVideo($id);
             $option['side']       = 'admin';
             $option['video_size'] = $video['video_size'];
             $option['sale_video'] = $config['sale_video'];
@@ -469,7 +465,6 @@ class VideoController extends ActionController
         $form->setAttribute('enctype', 'multipart/form-data');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
-            $file = $this->request->getFiles();
 
             // Set slug
             $slug         = ($data['slug']) ? $data['slug'] : $data['title'];
@@ -485,32 +480,6 @@ class VideoController extends ActionController
                 // Tag
                 if (!empty($values['tag'])) {
                     $tag = explode('|', $values['tag']);
-                }
-
-                // upload image
-                if (!empty($file['image']['name'])) {
-                    // Set upload path
-                    $values['path'] = sprintf('%s/%s', date('Y'), date('m'));
-                    $originalPath   = Pi::path(sprintf('upload/%s/original/%s', $this->config('image_path'), $values['path']));
-                    // Image name
-                    $imageName = Pi::api('image', 'video')->rename($file['image']['name'], $this->mediaPrefix, $values['path']);
-                    // Upload
-                    $uploader = new Upload;
-                    $uploader->setDestination($originalPath);
-                    $uploader->setRename($imageName);
-                    $uploader->setExtension($this->config('image_extension'));
-                    $uploader->setSize($this->config('image_size'));
-                    if ($uploader->isValid()) {
-                        $uploader->receive();
-                        // Get image name
-                        $values['image'] = $uploader->getUploaded('image');
-                        // process image
-                        Pi::api('image', 'video')->process($values['image'], $values['path']);
-                    } else {
-                        $this->jump(['action' => 'update'], __('Problem in upload image. please try again'));
-                    }
-                } elseif (!isset($values['image'])) {
-                    $values['image'] = '';
                 }
 
                 // Category
@@ -632,6 +601,7 @@ class VideoController extends ActionController
         // Check post
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
+
             // Set form
             $form = new VideoAdditionalForm('video', $option);
             $form->setAttribute('enctype', 'multipart/form-data');
@@ -639,6 +609,7 @@ class VideoController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
+
                 // Set attribute data array
                 if (!empty($fields['field'])) {
                     foreach ($fields['field'] as $field) {
@@ -646,16 +617,20 @@ class VideoController extends ActionController
                         $attribute[$field]['data']  = $values[$field];
                     }
                 }
+
                 // Set time
                 $values['time_update'] = time();
+
                 // Save
                 $row = $this->getModel('video')->find($id);
                 $row->assign($values);
                 $row->save();
+
                 // Set attribute
                 if (isset($attribute) && !empty($attribute)) {
                     Pi::api('attribute', 'video')->Set($attribute, $row->id);
                 }
+
                 // Jump
                 $message = __('Video data saved successfully.');
                 $this->jump(['action' => 'watch', 'id' => $row->id], $message);
@@ -663,6 +638,7 @@ class VideoController extends ActionController
         } else {
             // Get attribute
             $video = Pi::api('attribute', 'video')->Form($video);
+
             // Set form
             $form = new VideoAdditionalForm('video', $option);
             $form->setAttribute('enctype', 'multipart/form-data');
@@ -688,8 +664,10 @@ class VideoController extends ActionController
         // Get info from url
         $id     = $this->params('id');
         $module = $this->params('module');
+
         // Get config
         $config = Pi::service('registry')->config->read($module);
+
         // Get video
         if ($id) {
             $video = Pi::api('video', 'video')->getVideo($id);
@@ -697,10 +675,12 @@ class VideoController extends ActionController
             $message = __('Please select video');
             $this->jump(['action' => 'index'], $message);
         }
+
         // set nav
         $nav = [
             'page' => 'view',
         ];
+
         // Set view
         $this->view()->setTemplate('video-watch');
         $this->view()->assign('title', __('View video'));
@@ -715,23 +695,29 @@ class VideoController extends ActionController
         $id          = $this->params('id');
         $recommended = $this->params('recommended');
         $return      = [];
+
         // set video
         $video = $this->getModel('video')->find($id);
+
         // Check
         if ($video && in_array($recommended, [0, 1])) {
+
             // Accept
             $video->recommended = $recommended;
+
             // Save
             if ($video->save()) {
                 $return['message']     = sprintf(__('%s set recommended successfully'), $video->title);
                 $return['ajaxstatus']  = 1;
                 $return['id']          = $video->id;
                 $return['recommended'] = $video->recommended;
+
                 // Update recommended
                 $this->getModel('link')->update(
                     ['recommended' => $video->recommended],
                     ['video' => $video->id]
                 );
+
                 // Add log
                 Pi::api('log', 'video')->addLog('video', $video->id, 'recommend');
             } else {
@@ -749,43 +735,6 @@ class VideoController extends ActionController
         return $return;
     }
 
-    public function removeAction()
-    {
-        // Get id and status
-        $id = $this->params('id');
-        // set video
-        $video = $this->getModel('video')->find($id);
-        // Check
-        if ($video && !empty($id)) {
-            // remove file
-            /* $files = array(
-                Pi::path(sprintf('upload/%s/original/%s/%s', $this->config('image_path'), $video->path, $video->image)),
-                Pi::path(sprintf('upload/%s/large/%s/%s', $this->config('image_path'), $video->path, $video->image)),
-                Pi::path(sprintf('upload/%s/medium/%s/%s', $this->config('image_path'), $video->path, $video->image)),
-                Pi::path(sprintf('upload/%s/thumb/%s/%s', $this->config('image_path'), $video->path, $video->image)),
-            );
-            Pi::service('file')->remove($files); */
-            // clear DB
-            $video->image = '';
-            $video->path  = '';
-            // Save
-            if ($video->save()) {
-                $message = sprintf(__('Image of %s removed'), $video->title);
-                $status  = 1;
-            } else {
-                $message = __('Image not remove');
-                $status  = 0;
-            }
-        } else {
-            $message = __('Please select video');
-            $status  = 0;
-        }
-        return [
-            'status'  => $status,
-            'message' => $message,
-        ];
-    }
-
     public function deleteAction()
     {
         // Get information
@@ -796,8 +745,10 @@ class VideoController extends ActionController
         if ($row) {
             $row->status = 5;
             $row->save();
+
             // update links
             $this->getModel('link')->update(['status' => $row->status], ['video' => $row->id]);
+
             // Remove sitemap
             if (Pi::service('module')->isActive('sitemap')) {
                 $loc = Pi::url(
@@ -811,6 +762,7 @@ class VideoController extends ActionController
                 );
                 Pi::api('sitemap', 'sitemap')->remove($loc);
             }
+
             // Remove page
             $this->jump(['action' => 'index'], __('This video deleted'));
         }

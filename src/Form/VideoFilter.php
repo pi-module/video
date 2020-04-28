@@ -118,10 +118,10 @@ class VideoFilter extends InputFilter
             );
         }
 
-        // image
+        // main_image
         $this->add(
             [
-                'name'     => 'image',
+                'name'     => 'main_image',
                 'required' => false,
             ]
         );
