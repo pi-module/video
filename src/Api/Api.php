@@ -111,9 +111,13 @@ class Api extends AbstractApi
         }
 
         // Get category information from model
-        if (!empty($params['category'])) {
+        if (isset($params['category']) && !empty($params['category'])) {
             // Get category
-            $category = Pi::api('category', 'video')->getCategory($params['category'], 'slug');
+            if (is_numeric($params['category']) && intval($params['category']) > 0) {
+                $category = Pi::api('category', 'video')->getCategory(intval($params['category']));
+            } else {
+                $category = Pi::api('category', 'video')->getCategory($params['category'], 'slug');
+            }
             // Check category
             if (!$category || $category['status'] != 1) {
                 return $result;
@@ -131,7 +135,7 @@ class Api extends AbstractApi
         }
 
         // Get tag list
-        if (!empty($params['tag'])) {
+        if (isset($params['tag']) && !empty($params['tag'])) {
             $videoIDTag = [];
             // Check favourite
             if (!Pi::service('module')->isActive('tag')) {
@@ -147,7 +151,7 @@ class Api extends AbstractApi
         }
 
         // Get favourite list
-        if (!empty($params['favourite']) && $params['favourite'] == 1) {
+        if (isset($params['favourite']) && !empty($params['favourite']) && $params['favourite'] == 1) {
             // Check favourite
             if (!Pi::service('module')->isActive('favourite')) {
                 return $result;
@@ -165,7 +169,7 @@ class Api extends AbstractApi
         }
 
         // Get channel list
-        if (!empty($params['channel'])) {
+        if (isset($params['channel']) && !empty($params['channel'])) {
             if (intval($params['channel']) > 0) {
                 // Get user id
                 $user      = Pi::api('channel', 'video')->user(intval($params['channel']));
@@ -194,13 +198,13 @@ class Api extends AbstractApi
             $checkTitle  = true;
             $titles      = is_array($title) ? $title : [$title];
             $columns     = ['id'];
-            $recommended = $params['recommended'];
+            $recommended = isset($params['recommended']) ? $params['recommended'] : 0;
             $select      = Pi::model('video', $this->getModule())->select()->columns($columns)->where(
                 function ($where) use ($titles, $recommended) {
                     $whereMain = clone $where;
                     $whereKey  = clone $where;
                     $whereMain->equalTo('status', 1);
-                    if (!empty($recommended) && $recommended == 1) {
+                    if (isset($recommended) && $recommended == 1) {
                         $whereMain->equalTo('recommended', 1);
                     }
                     foreach ($titles as $title) {
@@ -249,10 +253,10 @@ class Api extends AbstractApi
         $video = [];
         $count = 0;
 
-        $columns = ['video' => new Expression('DISTINCT video'), '*'];
-        $limit   = (intval($params['limit']) > 0) ? intval($params['limit']) : intval($config['view_perpage']);
-        $offset  = (int)($params['page'] - 1) * $limit;
-
+        $columns = ['product' => new Expression('DISTINCT video'), '*'];
+        $limit   = (isset($params['limit']) && intval($params['limit']) > 0) ? intval($params['limit']) : intval($config['view_perpage']);
+        $page    = (isset($params['page']) && intval($params['page']) > 0) ? intval($params['page']) : 1;
+        $offset  = (int)($page - 1) * $limit;
 
         // Set category on where link
         if (isset($categoryIDList) && !empty($categoryIDList)) {
@@ -261,19 +265,19 @@ class Api extends AbstractApi
 
         // Set video on where link from title and attribute
         if ($checkTitle && $checkAttribute) {
-            if (!empty($videoIDList['title']) && !empty($videoIDList['attribute'])) {
+            if (isset($videoIDList['title']) && !empty($videoIDList['title']) && isset($videoIDList['attribute']) && !empty($videoIDList['attribute'])) {
                 $whereLink['video'] = array_intersect($videoIDList['title'], $videoIDList['attribute']);
             } else {
                 $hasSearchResult = false;
             }
         } elseif ($checkTitle) {
-            if (!empty($videoIDList['title'])) {
+            if (isset($videoIDList['title']) && !empty($videoIDList['title'])) {
                 $whereLink['video'] = $videoIDList['title'];
             } else {
                 $hasSearchResult = false;
             }
         } elseif ($checkAttribute) {
-            if (!empty($videoIDList['attribute'])) {
+            if (isset($videoIDList['attribute']) && !empty($videoIDList['attribute'])) {
                 $whereLink['video'] = $videoIDList['attribute'];
             } else {
                 $hasSearchResult = false;
@@ -281,7 +285,7 @@ class Api extends AbstractApi
         }
 
         // Set favourite videos on where link
-        if (!empty($params['favourite']) && $params['favourite'] == 1 && isset($videoIDFavourite)) {
+        if (isset($params['favourite']) && !empty($params['favourite']) && $params['favourite'] == 1 && isset($videoIDFavourite)) {
             if (isset($whereLink['video']) && !empty($whereLink['video'])) {
                 $whereLink['video'] = array_intersect($videoIDFavourite, $whereLink['video']);
             } elseif (!isset($whereLink['video']) || empty($whereLink['video'])) {
@@ -292,7 +296,7 @@ class Api extends AbstractApi
         }
 
         // Set tag videos on where link
-        if (!empty($params['tag']) && isset($videoIDTag)) {
+        if (isset($params['tag']) && !empty($params['tag']) && isset($videoIDTag)) {
             if (isset($whereLink['video']) && !empty($whereLink['video'])) {
                 $whereLink['video'] = array_intersect($videoIDTag, $whereLink['video']);
             } elseif (!isset($whereLink['video']) || empty($whereLink['video'])) {
@@ -312,7 +316,7 @@ class Api extends AbstractApi
             }
 
             // Get list of video
-            if (!empty($videoIDSelect)) {
+            if (isset($videoIDSelect) && !empty($videoIDSelect)) {
                 $where  = ['status' => 1, 'id' => $videoIDSelect];
                 $select = Pi::model('video', $this->getModule())->select()->where($where)->order($order);
                 $rowSet = Pi::model('video', $this->getModule())->selectWith($select);
@@ -336,7 +340,7 @@ class Api extends AbstractApi
             'paginator'  => [
                 'count' => $count,
                 'limit' => $limit,
-                'page'  => $params['page'],
+                'page'  => $page,
             ],
             'condition'  => [
                 'title' => $pageTitle,
