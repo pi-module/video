@@ -14,7 +14,7 @@
 namespace Module\Video\Validator;
 
 use Pi;
-use Zend\Validator\AbstractValidator;
+use Laminas\Validator\AbstractValidator;
 
 class SetValue extends AbstractValidator
 {
