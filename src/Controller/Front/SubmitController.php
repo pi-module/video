@@ -24,8 +24,8 @@ use Pi\File\Transfer\Upload;
 use Pi\Filter;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Zend\Db\Sql\Predicate\Expression;
-use Zend\Math\Rand;
+use Laminas\Db\Sql\Predicate\Expression;
+use Laminas\Math\Rand;
 
 class SubmitController extends IndexController
 {
