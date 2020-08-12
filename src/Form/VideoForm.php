@@ -211,7 +211,7 @@ class VideoForm extends BaseForm
                 'type'    => 'Module\Media\Form\Element\Media',
                 'options' => [
                     'label'  => __('Main image'),
-                    'module' => 'shop',
+                    'module' => 'video',
                 ],
             ]
         );

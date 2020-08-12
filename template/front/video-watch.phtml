@@ -58,7 +58,7 @@ $this->headMeta($this->escape($videoItem['videoUrl']), 'twitter:player');
 
         // Attach player to the window to make it easy to access in the JS console.
         window.player = player;
-        
+
         // Set config
         // player.configure({});
 
@@ -164,23 +164,25 @@ EOT;
                     <?php } ?>
                 </ul>
             </div>
-            <div class="card card-body bg-light mb-3 clearfix">
-                <h2><?php _e('Description'); ?></h2>
-                <div class="clearfix video-info-box" itemprop="description">
-                    <?php echo $videoItem['text_summary']; ?>
-                </div>
-                <div class="clearfix video-info-box" itemprop="description">
-                    <?php echo $videoItem['text_description']; ?>
-                </div>
-                <?php if ($config['view_description_video'] && !empty($categorySingle['text_description'])) { ?>
-                    <div class="video-info-box p-review clearfix" itemprop="description">
-                        <?php echo $categorySingle['text_description']; ?>
+            <?php if (!empty($videoItem['text_summary']) || !empty($videoItem['text_description']) || !empty($categorySingle['text_description'])) { ?>
+                <div class="card card-body bg-light mb-3 clearfix">
+                    <h2><?php _e('Description'); ?></h2>
+                    <div class="clearfix video-info-box" itemprop="description">
+                        <?php echo $videoItem['text_summary']; ?>
                     </div>
-                <?php } ?>
-            </div>
+                    <div class="clearfix video-info-box" itemprop="description">
+                        <?php echo $videoItem['text_description']; ?>
+                    </div>
+                    <?php if ($config['view_description_video'] && !empty($categorySingle['text_description'])) { ?>
+                        <div class="video-info-box p-review clearfix" itemprop="description">
+                            <?php echo $categorySingle['text_description']; ?>
+                        </div>
+                    <?php } ?>
+                </div>
+            <?php } ?>
             <?php include $this->template('front/tag'); ?>
         </div>
-        <div class="col-lg-4 col-md-4 col-12">
+        <div class="col-lg-4 col-md-4 col-12 mb-5">
             <?php /* <div class="video-channel" itemprop="author" itemscope itemtype="https://schema.org/Person">
                 <a title="<?php _e('User channel'); ?>" href="<?php echo $this->escape($videoItem['channelUrl']); ?>">
                     <?php echo $submitter['avatar']; ?>

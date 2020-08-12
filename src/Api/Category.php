@@ -95,7 +95,7 @@ class Category extends AbstractApi
             $return[$row->id]        = $row->toArray();
             $return[$row->id]['url'] = Pi::url(
                 Pi::service('url')->assemble(
-                    'shop', [
+                    'video', [
                         'module'     => $this->getModule(),
                         'controller' => 'category',
                         'slug'       => $return[$row->id]['slug'],
@@ -149,7 +149,7 @@ class Category extends AbstractApi
                 'thumbUrl' => $thumbUrl,
                 'href'     => Pi::url(
                     Pi::service('url')->assemble(
-                        'shop', [
+                        'video', [
                             'module'     => $this->getModule(),
                             'controller' => 'category',
                             'slug'       => $row->slug,

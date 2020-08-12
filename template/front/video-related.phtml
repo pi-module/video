@@ -5,19 +5,16 @@
         </h2>
         <div class="list-group">
             <?php foreach ($videoRelated as $related) { ?>
-                <div class="list-group-item clearfix">
-                    <div class="row clearfix">
-                        <a title="<?php echo $this->escape($related['title']); ?>"
-                           href="<?php echo $this->escape($related['videoUrl']); ?>" class="col-4">
-                            <img src="<?php echo $this->escape($related['thumbUrl']); ?>"
-                                 alt="<?php echo $this->escape($related['title']); ?>" class="img-fluid">
+                <div class="list-group-item">
+                    <div class="clearfix row">
+                    <a class="col-md-3 col-12" title="<?php echo $this->escape($related['title']); ?>" href="<?php echo $this->escape($related['videoUrl']); ?>" >
+                        <img src="<?php echo $this->escape($related['thumbUrl']); ?>" alt="<?php echo $this->escape($related['title']); ?>" class="img-fluid">
+                    </a>
+                    <h5 class="col-md-9 col-12">
+                        <a title="<?php echo $this->escape($related['title']); ?>" href="<?php echo $this->escape($related['videoUrl']); ?>">
+                            <?php echo $this->escape($related['title']); ?>
                         </a>
-                        <h5>
-                            <a title="<?php echo $this->escape($related['title']); ?>"
-                               href="<?php echo $this->escape($related['videoUrl']); ?>" class="col-8">
-                                <?php echo $this->escape($related['title']); ?>
-                            </a>
-                        </h5>
+                    </h5>
                     </div>
                 </div>
             <?php } ?>
