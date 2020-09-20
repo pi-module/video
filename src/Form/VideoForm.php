@@ -20,7 +20,6 @@ class VideoForm extends BaseForm
 {
     public function __construct($name = null, $option = [])
     {
-        $this->category  = [0 => ' '];
         $this->thumbUrl  = empty($option['thumbUrl']) ? '' : $option['thumbUrl'];
         $this->removeUrl = empty($option['removeUrl']) ? '' : $option['removeUrl'];
         $this->option    = $option;
@@ -159,7 +158,7 @@ class VideoForm extends BaseForm
                 'type'       => 'Module\Video\Form\Element\Category',
                 'options'    => [
                     'label'    => __('Category'),
-                    'category' => $this->category,
+                    'category' => [],
                 ],
                 'attributes' => [
                     'required' => true,
@@ -174,7 +173,7 @@ class VideoForm extends BaseForm
                 'type'       => 'Module\Video\Form\Element\Category',
                 'options'    => [
                     'label'    => __('Main category'),
-                    'category' => $this->category,
+                    'category' => [],
                 ],
                 'attributes' => [
                     'size'        => 1,

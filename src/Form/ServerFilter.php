@@ -18,7 +18,7 @@ use Laminas\InputFilter\InputFilter;
 
 class ServerFilter extends InputFilter
 {
-    public function __construct()
+    public function __construct($option= [])
     {
         // title
         $this->add(

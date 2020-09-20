@@ -18,7 +18,7 @@ use Laminas\InputFilter\InputFilter;
 
 class CategoryFilter extends InputFilter
 {
-    public function __construct($option)
+    public function __construct($option = [])
     {
         // parent
         if ($option['type'] == 'category') {

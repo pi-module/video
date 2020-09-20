@@ -20,13 +20,14 @@ class PositionForm extends BaseForm
 {
     public function __construct($name = null, $option = [])
     {
+        $this->option = $option;
         parent::__construct($name);
     }
 
     public function getInputFilter()
     {
         if (!$this->filter) {
-            $this->filter = new PositionFilter;
+            $this->filter = new PositionFilter($this->option);;
         }
         return $this->filter;
     }

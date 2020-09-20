@@ -18,7 +18,7 @@ use Laminas\InputFilter\InputFilter;
 
 class AttributeFilter extends InputFilter
 {
-    public function __construct($options)
+    public function __construct($options= [])
     {
         // id
         $this->add(

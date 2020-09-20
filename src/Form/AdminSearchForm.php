@@ -20,13 +20,14 @@ class AdminSearchForm extends BaseForm
 {
     public function __construct($name = null, $option = [])
     {
+        $this->option = $option;
         parent::__construct($name);
     }
 
     public function getInputFilter()
     {
         if (!$this->filter) {
-            $this->filter = new AdminSearchFilter;
+            $this->filter = new AdminSearchFilter($this->option);
         }
         return $this->filter;
     }
@@ -54,7 +55,6 @@ class AdminSearchForm extends BaseForm
                 'type'       => 'Module\Video\Form\Element\Category',
                 'options'    => [
                     'label' => __('Category'),
-                    //'category' => $this->category,
                 ],
                 'attributes' => [
                     'size'     => 1,

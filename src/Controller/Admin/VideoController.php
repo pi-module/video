@@ -442,9 +442,14 @@ class VideoController extends ActionController
         $module = $this->params('module');
 
         // Get config
-        $config                 = Pi::service('registry')->config->read($module);
-        $option                 = [];
-        $option['brand_system'] = $config['brand_system'];
+        $config = Pi::service('registry')->config->read($module);
+
+        // Get config
+        $option = [
+            'brand_system' => $config['brand_system'],
+            'id'           => $id,
+            'sale_video'   => $config['sale_video'],
+        ];
 
         // Find video
         $video = [];
@@ -452,8 +457,6 @@ class VideoController extends ActionController
             $video                = Pi::api('video', 'video')->getVideo($id);
             $option['side']       = 'admin';
             $option['video_size'] = $video['video_size'];
-            $option['sale_video'] = $config['sale_video'];
-            $option['id']         = $video['id'];
         } else {
             // Jump
             $message = __('Please select video');

@@ -22,7 +22,7 @@ use Pi\Application\Api\AbstractApi;
  * Pi::api('attribute', 'video')->Form($values);
  * Pi::api('attribute', 'video')->video($id, $category);
  * Pi::api('attribute', 'video')->SearchForm($form);
- * Pi::api('attribute', 'video')->findFromattribute($search);
+ * Pi::api('attribute', 'video')->($search);
  * Pi::api('attribute', 'video')->setCategory($field, $categoryArr);
  * Pi::api('attribute', 'video')->getCategory($field);
  * Pi::api('attribute', 'video')->getField($business);
@@ -40,8 +40,8 @@ class Attribute extends AbstractApi
     {
         // Set return
         $return = [
-            'attribute' => '',
-            'field'     => '',
+            'attribute' => [],
+            'field'     => [],
         ];
         // Get position list
         $position = $this->attributePositionForm();
@@ -224,7 +224,7 @@ class Attribute extends AbstractApi
     /*
       * Set attribute filds from search form
       */
-    public function findFromAttribute($search)
+    public function ($search)
     {
         $id     = [];
         $column = ['video'];

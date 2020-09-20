@@ -18,8 +18,9 @@ use Pi\Form\Form as BaseForm;
 
 class SitemapForm extends BaseForm
 {
-    public function __construct($name = null)
+    public function __construct($name = null, $option = [])
     {
+        $this->option = $option;
         parent::__construct($name);
     }
 
@@ -55,4 +56,4 @@ class SitemapForm extends BaseForm
             ]
         );
     }
-}	
+}
