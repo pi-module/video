@@ -32,7 +32,7 @@ class Video extends Standard
 
     protected $controllerList
         = [
-            'category', 'channel', 'favourite', 'index', 'submit', 'tag', 'watch', 'json',
+            'category', 'channel', 'favourite', 'index', 'submit', 'tag', 'watch', 'order', 'json'
         ];
 
     /**
@@ -62,10 +62,8 @@ class Video extends Standard
                         }
                         break;
 
+                    case 'order':
                     case 'watch':
-                        $matches['action'] = 'index';
-                        break;
-
                     case 'index':
                         $matches['action'] = 'index';
                         break;
@@ -157,7 +155,6 @@ class Video extends Standard
                         } elseif (isset($parts[6]) && $parts[6] == 'password') {
                             $matches['password'] = $this->decode($parts[7]);
                         } */
-
                         break;
                 }
             }
@@ -218,6 +215,7 @@ class Video extends Standard
             && $mergedParams['controller'] != 'index'
             && $mergedParams['controller'] != 'category'
             && $mergedParams['controller'] != 'watch'
+            && $mergedParams['controller'] != 'order'
             && in_array($mergedParams['controller'], $this->controllerList)
         ) {
             $url['controller'] = $mergedParams['controller'];

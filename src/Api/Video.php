@@ -201,7 +201,7 @@ class Video extends AbstractApi
                 break;
 
             case 'single':
-                if ($video['sale_price'] > 0) {
+                if ($video['sale_type'] == 'paid' && $video['sale_price'] > 0) {
                     if (Pi::service('authentication')->hasIdentity()) {
                         $key = sprintf('video-single-%s-%s', $video['id'], $uid);
                         if (Pi::api('access', 'order')->hasAccess($key, true)) {
@@ -241,30 +241,16 @@ class Video extends AbstractApi
                 break;
 
             case 'single':
-                if ($video['sale_price'] > 0) {
-                    switch ($config['sale_video_single']) {
-                        case 'buy':
-                            // ToDo
-                            break;
-
-                        case 'credit':
-                            // ToDo
-                            break;
-
-                        case 'mobile':
-                            $url = Pi::url(
-                                Pi::service('url')->assemble(
-                                    'video', [
-                                        'module'     => 'video',
-                                        'controller' => 'order',
-                                        'action'     => 'index',
-                                        'video'      => $video['id'],
-                                    ]
-                                )
-                            );
-                            break;
-                    }
-                }
+                $url = Pi::url(
+                    Pi::service('url')->assemble(
+                        'video', [
+                            'module'     => 'video',
+                            'controller' => 'order',
+                            'action'     => 'index',
+                            'slug'       => $video['slug'],
+                        ]
+                    )
+                );
                 break;
         }
 

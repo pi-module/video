@@ -369,30 +369,13 @@ return [
                 'options' => [
                     'options' => [
                         'free'    => _a('All videos is free'),
-                        'package' => _a('Users buy package to watch paid video'),
                         'single'  => _a('User pay one by one for paid video'),
+                        'package' => _a('User buy package to watch all paid videos on package time'),
                     ],
                 ],
             ],
             'filter'      => 'text',
             'value'       => 'free',
-            'category'    => 'order',
-        ],
-        'sale_video_single'         => [
-            'title'       => _a('Sale method for single video'),
-            'description' => '',
-            'edit'        => [
-                'type'    => 'select',
-                'options' => [
-                    'options' => [
-                        'buy'    => _a('Buy each video online'),
-                        'credit' => _a('Use user credit'),
-                        'mobile' => _a('Mobile payment method (VAS)'),
-                    ],
-                ],
-            ],
-            'filter'      => 'text',
-            'value'       => 'buy',
             'category'    => 'order',
         ],
         // Social

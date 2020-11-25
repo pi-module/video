@@ -446,13 +446,15 @@ class Api extends AbstractApi
         return $result;
     }
 
-    public function setAccess($params)
+    // ToDo : rebuild function when need use it on mobile app
+    /* public function setAccess($params)
     {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
 
         // Check VAS payment
-        if ($config['sale_video'] == 'single' && $config['sale_video_single'] == 'mobile') {
+        if ($config['sale_video'] == 'single') {
+
             // Get video
             $video = Pi::api('video', 'video')->getVideoLight($params['id']);
 
@@ -463,5 +465,5 @@ class Api extends AbstractApi
                 'message' => '',
             ];
         }
-    }
+    } */
 }

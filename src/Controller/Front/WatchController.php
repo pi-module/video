@@ -124,7 +124,6 @@ class WatchController extends IndexController
         $this->view()->headTitle($video['seo_title']);
         $this->view()->headDescription($video['seo_description'], 'set');
         $this->view()->headKeywords($video['seo_keywords'], 'set');
-        // $this->view()->setTemplate($template)->setLayout($layout);
         $this->view()->setTemplate('video-watch');
         $this->view()->assign('videoItem', $video);
         $this->view()->assign('categoryItem', $video['categories']);
