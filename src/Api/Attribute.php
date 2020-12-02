@@ -224,7 +224,7 @@ class Attribute extends AbstractApi
     /*
       * Set attribute filds from search form
       */
-    public function ($search)
+    public function findFromAttribute($search)
     {
         $id     = [];
         $column = ['video'];

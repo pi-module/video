@@ -125,14 +125,16 @@ EOT;
                 </div>
             <?php } else { ?>
                 <div class="clearfix">
-                    <div class="card text-center">
-                        <img class="card-img-top" src="<?php echo $this->escape($videoItem['largeUrl']); ?>"
-                             alt="<?php echo $this->escape($videoItem['title']); ?>">
+                    <div class="card text-center bg-light mb-3">
+                        <img class="card-img-top" src="<?php echo $this->escape($videoItem['largeUrl']); ?>" alt="<?php echo $this->escape($videoItem['title']); ?>">
                         <div class="card-body">
-                            <p class="card-text"><?php _e('This is paid video and you dont have access to watch it, use buy button to paid and watch this video'); ?></p>
+                            <div class="card-text mt-3 mb-3">
+                                <?php _e('This is paid video and you dont have access to watch it, use buy button to paid and watch this video'); ?>
+                            </div>
                             <div class="card-text clearfix">
-                                <a target="_blank" href="<?php echo $this->escape($videoItem['payUrl']); ?>"
-                                   class="btn btn-success"><?php _e('Pay and watch video'); ?></a>
+                                <a target="_blank" href="<?php echo $this->escape($videoItem['payUrl']); ?>" class="btn btn-success btn-block">
+                                    <?php _e('Pay and watch video'); ?>
+                                </a>
                             </div>
                         </div>
                     </div>

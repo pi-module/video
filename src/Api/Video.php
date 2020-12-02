@@ -254,6 +254,8 @@ class Video extends AbstractApi
                 break;
         }
 
+        d($url);
+
         return $url;
     }
 

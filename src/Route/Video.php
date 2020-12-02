@@ -62,10 +62,14 @@ class Video extends Standard
                         }
                         break;
 
-                    case 'order':
                     case 'watch':
                     case 'index':
                         $matches['action'] = 'index';
+                        break;
+
+                    case 'order':
+                        $matches['action'] = 'index';
+                        $matches['slug']   = urldecode($parts[1]);
                         break;
 
                     case 'tag':
@@ -215,7 +219,6 @@ class Video extends Standard
             && $mergedParams['controller'] != 'index'
             && $mergedParams['controller'] != 'category'
             && $mergedParams['controller'] != 'watch'
-            && $mergedParams['controller'] != 'order'
             && in_array($mergedParams['controller'], $this->controllerList)
         ) {
             $url['controller'] = $mergedParams['controller'];

@@ -221,6 +221,40 @@ return [
             ],
         ],
 
+        'playlist' => [
+            'label'      => _a('Playlist'),
+            'permission' => [
+                'resource' => 'playlist',
+            ],
+            'route'      => 'admin',
+            'module'     => 'video',
+            'controller' => 'playlist',
+            'action'     => 'index',
+
+            'pages' => [
+                'playlist'        => [
+                    'label'      => _a('Playlist'),
+                    'permission' => [
+                        'resource' => 'playlist',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'playlist',
+                    'action'     => 'index',
+                ],
+                'add'           => [
+                    'label'      => _a('Add / Manage'),
+                    'permission' => [
+                        'resource' => 'playlist',
+                    ],
+                    'route'      => 'admin',
+                    'module'     => 'video',
+                    'controller' => 'playlist',
+                    'action'     => 'update',
+                ],
+            ],
+        ],
+
         'attribute' => [
             'label'      => _a('Attribute'),
             'permission' => [

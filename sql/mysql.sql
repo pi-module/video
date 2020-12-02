@@ -216,3 +216,32 @@ CREATE TABLE `{type}`
     `name`  VARCHAR(64)      NOT NULL DEFAULT '',
     PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `{playlist_inventory}`
+(
+    `id`               INT(10) UNSIGNED    NOT NULL AUTO_INCREMENT,
+    `title`            VARCHAR(255)        NOT NULL DEFAULT '',
+    `text_description` TEXT,
+    `seo_title`        VARCHAR(255)        NOT NULL DEFAULT '',
+    `seo_keywords`     VARCHAR(255)        NOT NULL DEFAULT '',
+    `seo_description`  VARCHAR(255)        NOT NULL DEFAULT '',
+    `status`           TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+    `can_edit`         TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+    `time_create`      INT(10) UNSIGNED    NOT NULL DEFAULT '0',
+    `time_update`      INT(10) UNSIGNED    NOT NULL DEFAULT '0',
+    `uid`              INT(10) UNSIGNED    NOT NULL DEFAULT '0',
+    `hits`             INT(10) UNSIGNED    NOT NULL DEFAULT '0',
+    `main_image`       INT(10) UNSIGNED    NOT NULL DEFAULT '0',
+    `sale_price`       DECIMAL(16, 2)      NOT NULL DEFAULT '0.00',
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `{playlist_video}`
+(
+    `id`          INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `playlist_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+    `video_id`    INT(10) UNSIGNED NOT NULL DEFAULT '0',
+    `video_order` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+    `time_create` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+    PRIMARY KEY (`id`)
+);

@@ -29,6 +29,11 @@ return [
             'permission' => 'server',
         ],
         [
+            'title'      => _a('Playlist'),
+            'controller' => 'playlist',
+            'permission' => 'playlist',
+        ],
+        [
             'label'      => _a('Attribute'),
             'controller' => 'attribute',
             'permission' => 'attribute',

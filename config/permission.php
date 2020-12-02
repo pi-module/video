@@ -25,6 +25,10 @@ return [
             'title'  => _a('Server'),
             'access' => [],
         ],
+        'playlist'    => [
+            'title'  => _a('Playlist'),
+            'access' => [],
+        ],
         'attribute' => [
             'title'  => _a('Attribute'),
             'access' => [],

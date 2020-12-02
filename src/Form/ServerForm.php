@@ -41,7 +41,6 @@ class ServerForm extends BaseForm
 
     public function init()
     {
-        var_dump($this->option);
         // title
         $this->add(
             [
