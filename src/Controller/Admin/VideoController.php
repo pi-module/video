@@ -485,6 +485,9 @@ class VideoController extends ActionController
                     $tag = explode('|', $values['tag']);
                 }
 
+                // Playlist
+                $values['playlist'] = json_encode($values['playlist'], JSON_NUMERIC_CHECK);
+
                 // Category
                 $values['category'][] = $values['category_main'];
                 $values['category']   = json_encode(array_unique($values['category']));
@@ -517,10 +520,13 @@ class VideoController extends ActionController
                 $row->assign($values);
                 $row->save();
 
-                // Category
+                // category
                 Pi::api('category', 'video')->setLink(
                     $row->id, $row->category, $row->time_create, $row->time_update, $row->status, $row->uid, $row->hits, $row->recommended
                 );
+
+                // playlist
+                Pi::api('playlist', 'video')->setVideo($row->id, $row->playlist);
 
                 // Tag
                 if (isset($tag) && is_array($tag) && Pi::service('module')->isActive('tag')) {

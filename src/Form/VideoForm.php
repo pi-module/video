@@ -151,6 +151,20 @@ class VideoForm extends BaseForm
             ]
         );
 
+        // playlist
+        $this->add(
+            [
+                'name'       => 'playlist',
+                'type'       => 'Module\Video\Form\Element\Playlist',
+                'options'    => [
+                    'label'    => __('Playlist'),
+                ],
+                'attributes' => [
+                    'required' => false,
+                ],
+            ]
+        );
+
         // category
         $this->add(
             [

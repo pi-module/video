@@ -125,17 +125,20 @@ EOT;
                 </div>
             <?php } else { ?>
                 <div class="clearfix">
+                    <div class="mb-3 text-center">
+                        <img class="img-fluid" src="<?php echo $this->escape($videoItem['largeUrl']); ?>" alt="<?php echo $this->escape($videoItem['title']); ?>">
+                    </div>
                     <div class="card text-center bg-light mb-3">
-                        <img class="card-img-top" src="<?php echo $this->escape($videoItem['largeUrl']); ?>" alt="<?php echo $this->escape($videoItem['title']); ?>">
                         <div class="card-body">
-                            <div class="card-text mt-3 mb-3">
+                            <h5 class="card-title">
+                                <?php _e('Fee'); ?> : <?php echo $this->escape($videoItem['sale_price_view']); ?>
+                            </h5>
+                            <p class="card-text">
                                 <?php _e('This is paid video and you dont have access to watch it, use buy button to paid and watch this video'); ?>
-                            </div>
-                            <div class="card-text clearfix">
-                                <a target="_blank" href="<?php echo $this->escape($videoItem['payUrl']); ?>" class="btn btn-success btn-block">
-                                    <?php _e('Pay and watch video'); ?>
-                                </a>
-                            </div>
+                            </p>
+                            <a href="<?php echo $this->escape($videoItem['payUrl']); ?>" class="btn btn-primary">
+                                <?php _e('Pay and watch video'); ?>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -185,6 +188,7 @@ EOT;
             <?php include $this->template('front/tag'); ?>
         </div>
         <div class="col-lg-4 col-md-4 col-12 mb-5">
+            <?php include $this->template('front/playlist'); ?>
             <?php /* <div class="video-channel" itemprop="author" itemscope itemtype="https://schema.org/Person">
                 <a title="<?php _e('User channel'); ?>" href="<?php echo $this->escape($videoItem['channelUrl']); ?>">
                     <?php echo $submitter['avatar']; ?>

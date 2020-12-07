@@ -68,8 +68,13 @@ class Video extends Standard
                         break;
 
                     case 'order':
-                        $matches['action'] = 'index';
-                        $matches['slug']   = urldecode($parts[1]);
+                        if (urldecode($parts[1]) == 'playlist') {
+                            $matches['action'] = 'playlist';
+                            $matches['id']   = urldecode($parts[2]);
+                        } else {
+                            $matches['action'] = 'index';
+                            $matches['slug']   = urldecode($parts[1]);
+                        }
                         break;
 
                     case 'tag':

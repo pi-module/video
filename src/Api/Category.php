@@ -41,8 +41,9 @@ class Category extends AbstractApi
 
     public function setLink($video, $category, $create, $update, $status, $uid, $hits, $recommended = 0)
     {
-        //Remove
+        // Remove
         Pi::model('link', $this->getModule())->delete(['video' => $video]);
+
         // Add
         $allCategory = json_decode($category, true);
         foreach ($allCategory as $category) {

@@ -308,6 +308,12 @@ class Video extends AbstractApi
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
 
+        // Set price view
+        $video['sale_price_view'] = __('Free');
+        if ($video['sale_price'] > 0) {
+            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);;
+        }
+
         // Set video url
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
@@ -365,6 +371,9 @@ class Video extends AbstractApi
                 );
             }
         }
+
+        // Set playlist information
+        $video['playlist'] = json_decode($video['playlist']);
 
         // Set image
         if ($video['main_image']) {
@@ -440,6 +449,12 @@ class Video extends AbstractApi
         // Set times
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
+
+        // Set price view
+        $video['sale_price_view'] = __('Free');
+        if ($video['sale_price'] > 0) {
+            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);;
+        }
 
         // Set video url
         $video['videoUrl'] = Pi::url(
@@ -522,6 +537,12 @@ class Video extends AbstractApi
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
 
+        // Set price view
+        $video['sale_price_view'] = __('Free');
+        if ($video['sale_price'] > 0) {
+            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);;
+        }
+
         // Set video url
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
@@ -576,6 +597,9 @@ class Video extends AbstractApi
                 );
             }
         }
+
+        // Set playlist information
+        $video['playlist'] = json_decode($video['playlist']);
 
         // Set image
         if ($video['main_image']) {
@@ -636,6 +660,12 @@ class Video extends AbstractApi
         $video['time_create_view'] = _date($video['time_create']);
         $video['time_update_view'] = _date($video['time_update']);
 
+        // Set price view
+        $video['sale_price_view'] = __('Free');
+        if ($video['sale_price'] > 0) {
+            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);;
+        }
+
         // Set video url
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
@@ -675,6 +705,9 @@ class Video extends AbstractApi
                 );
             }
         }
+
+        // Set playlist information
+        $video['playlist'] = json_decode($video['playlist']);
 
         // Set image
         if ($video['main_image']) {

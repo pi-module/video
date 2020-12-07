@@ -48,17 +48,31 @@ class Order extends AbstractApi
         return [100];
     }
 
-    public function getProductDetails($id)
+    public function getProductDetails($id, $extra)
     {
-        // Get event
-        $video = Pi::api('video', 'video')->getVideo($id);
 
-        // Set result
-        return [
-            'title'      => $video['title'],
-            'thumbUrl'   => $video['thumbUrl'],
-            'productUrl' => $video['videoUrl'],
-        ];
+        if (isset($extra['list_id']) && intval($extra['list_id']) > 0) {
+            // Get event
+            $playlist = Pi::api('playlist', 'video')->getPlaylist($id);
+
+            // Set result
+            return [
+                'title'      => $playlist['title'],
+                'thumbUrl'   => '',
+                'productUrl' => $playlist['videoUrl'],
+            ];
+
+        } elseif (isset($extra['list_id']) && intval($extra['list_id']) > 0) {
+            // Get event
+            $video = Pi::api('video', 'video')->getVideo($id);
+
+            // Set result
+            return [
+                'title'      => $video['title'],
+                'thumbUrl'   => $video['thumbUrl'],
+                'productUrl' => $video['videoUrl'],
+            ];
+        }
     }
 
     public function postPaymentUpdate($order, $detail)
@@ -77,23 +91,51 @@ class Order extends AbstractApi
         // Check product_type
         switch ($detail['product_type']) {
             case 'video':
-                // Get event
+                // Get video
                 $video = Pi::api('video', 'video')->getVideo(intval($detail['product']));
 
-                // Check event
+                // Check video
                 if (!$video || empty($video) || $video['status'] == 0) {
                     Pi::engine()->application()->getResponse()->setStatusCode(403);
                     die();
                 }
 
                 // Set Access
-                $accessResult = Pi::api('video', 'video')->setAccess($video, $order['uid']);
+                Pi::api('video', 'video')->setAccess($video, $order['uid']);
 
                 // Set url
                 return $video['videoUrl'];
                 break;
 
-            case 'list':
+            case 'playlist':
+                // Get playlist
+                $playlist = Pi::api('playlist', 'video')->getPlaylist(intval($detail['product']));
+
+                // Check video
+                if (!$playlist || empty($playlist) || $playlist['status'] == 0) {
+                    Pi::engine()->application()->getResponse()->setStatusCode(403);
+                    die();
+                }
+
+                // Get videos
+                $videoList = Pi::api('playlist', 'video')->getVideosForPlaylists($playlist);
+
+                foreach ($videoList as $videoSingle) {
+
+                    // Set Access
+                    Pi::api('video', 'video')->setAccess(['id' => $videoSingle], $order['uid']);
+                }
+
+                // set back url
+                $playlist['back_url'] = isset($playlist['back_url']) && !empty($playlist['back_url']) ? $playlist['back_url'] : Pi::url('video');
+
+                d($order);
+                d($detail);
+                d($videoList);
+                die;
+
+                // Set url
+                return $playlist['back_url'];
                 break;
         }
     }

@@ -1,0 +1,24 @@
+<?php if (isset($playlists) && !empty($playlists)) { ?>
+    <?php foreach ($playlists as $playlist) { ?>
+        <div class="card bg-light mb-3">
+            <div class="card-body">
+                <h3 class="card-title"><?php echo $this->escape($playlist['title']); ?></h3>
+                <p class="card-text">
+                    <?php echo $this->escape($playlist['text_description']); ?>
+                </p>
+                <?php if ($playlist['sale_price'] > 0) { ?>
+                    <div class="row">
+                        <div class="col-12 col-md-6 font-weight-bold">
+                            <?php _e('Fee') ?> : <?php echo $this->escape($playlist['sale_price_view']); ?>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <a href="<?php echo $this->escape($playlist['payUrl']); ?>" class="btn btn-primary btn-block">
+                                <?php _e('Buy playlist'); ?>
+                            </a>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    <?php } ?>
+<?php } ?>

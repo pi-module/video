@@ -36,5 +36,6 @@ class Inventory extends Model
             'hits',
             'main_image',
             'sale_price',
+            'back_url',
         ];
 }

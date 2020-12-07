@@ -94,4 +94,73 @@ class OrderController extends IndexController
         $url = Pi::api('order', 'order')->setOrderInfo($order);
         Pi::service('url')->redirect($url);
     }
+
+    public function playlistAction()
+    {
+        // Check user is login or not
+        Pi::service('authentication')->requireLogin();
+
+        // Get info from url
+        $id   = $this->params('id');
+        $module = $this->params('module');
+
+        // Get config
+        $config = Pi::service('registry')->config->read($module);
+
+        // Check sale video active
+        if ($config['sale_video'] != 'single') {
+            $this->getResponse()->setStatusCode(403);
+            $this->terminate(__('Sale video option not enable !'), '', 'error-denied');
+            $this->view()->setLayout('layout-simple');
+            return;
+        }
+
+        $playlist = Pi::api('playlist', 'video')->getPlaylist($id);
+
+        // Check video
+        if (!$playlist || $playlist['status'] != 1) {
+            $this->jump(['', 'module' => $module, 'controller' => 'index'], __('The playlist not found.'), 'error');
+        }
+
+        // Set single product
+        $service = [
+            'product'        => $playlist['id'],
+            'product_price'  => $playlist['sale_price'],
+            'discount_price' => 0,
+            'shipping_price' => 0,
+            'packing_price'  => 0,
+            'vat_price'      => 0,
+            'number'         => 1,
+            'title'          => $playlist['title'],
+            'extra'          => json_encode(
+                [
+                    'type_payment' => 'onetime',
+                    'video_id'     => 0,
+                    'list_id'      => $playlist['id'],
+                ]
+            ),
+        ];
+
+        // Set order array
+        $order = [
+            'module_name'    => $module,
+            'module_table'   => 'playlist',
+            'type_payment'   => 'onetime',
+            'type_commodity' => 'service',
+            'total_discount' => 0,
+            'total_shipping' => 0,
+            'total_packing'  => 0,
+            'total_setup'    => 0,
+            'total_vat'      => 0,
+            'can_pay'        => 1,
+            'product'        => [
+                $playlist['id'] => $service,
+            ],
+        ];
+
+
+        // Set and go to order
+        $url = Pi::api('order', 'order')->setOrderInfo($order);
+        Pi::service('url')->redirect($url);
+    }
 }

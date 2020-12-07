@@ -25,6 +25,7 @@ class Video extends Model
             'id',
             'title',
             'slug',
+            'playlist',
             'category',
             'category_main',
             'brand',

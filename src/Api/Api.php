@@ -21,7 +21,7 @@ use Laminas\Db\Sql\Predicate\Expression;
  * Pi::api('api', 'video')->videoList($params);
  * Pi::api('api', 'video')->videoSingle($params);
  * Pi::api('api', 'video')->categoryList($params);
- * Pi::api('api', 'video')->setAccess($params)
+ * Pi::api('api', 'video')->viewPrice($price)
  */
 
 class Api extends AbstractApi
@@ -444,6 +444,19 @@ class Api extends AbstractApi
         ];
 
         return $result;
+    }
+
+    public function viewPrice($price)
+    {
+        if (Pi::service('module')->isActive('order')) {
+            // Load language
+            Pi::service('i18n')->load(['module/order', 'default']);
+            // Set price
+            $viewPrice = Pi::api('api', 'order')->viewPrice($price);
+        } else {
+            $viewPrice = _currency($price);
+        }
+        return $viewPrice;
     }
 
     // ToDo : rebuild function when need use it on mobile app

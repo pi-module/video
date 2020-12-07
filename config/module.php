@@ -15,7 +15,7 @@ return [
     'meta'     => [
         'title'       => _a('Video'),
         'description' => _a('Video gallery and service for Pi Engine.'),
-        'version'     => '1.5.2',
+        'version'     => '1.5.4',
         'license'     => 'New BSD',
         'logo'        => 'image/logo.png',
         'readme'      => 'docs/readme.txt',

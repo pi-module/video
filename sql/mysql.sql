@@ -16,6 +16,7 @@ CREATE TABLE `{video}`
     `id`                INT(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
     `title`             VARCHAR(255)          NOT NULL DEFAULT '',
     `slug`              VARCHAR(255)          NULL     DEFAULT NULL,
+    `playlist`          VARCHAR(255)          NOT NULL DEFAULT '',
     `category`          VARCHAR(255)          NOT NULL DEFAULT '',
     `category_main`     INT(10) UNSIGNED      NOT NULL DEFAULT '0',
     `brand`             INT(10) UNSIGNED      NOT NULL DEFAULT '0',
@@ -233,6 +234,7 @@ CREATE TABLE `{playlist_inventory}`
     `hits`             INT(10) UNSIGNED    NOT NULL DEFAULT '0',
     `main_image`       INT(10) UNSIGNED    NOT NULL DEFAULT '0',
     `sale_price`       DECIMAL(16, 2)      NOT NULL DEFAULT '0.00',
+    `back_url`         VARCHAR(255)        NOT NULL DEFAULT '',
     PRIMARY KEY (`id`)
 );
 

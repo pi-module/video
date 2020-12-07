@@ -28,8 +28,8 @@ class LogController extends ActionController
         // Get info
         $list   = [];
         $order  = ['id DESC', 'time_create DESC'];
-        $offset = (int)($page - 1) * $this->config('admin_perpage');
         $limit  = intval($this->config('admin_perpage'));
+        $offset = (int)($page - 1) * $limit;
         $select = $this->getModel('log')->select()->order($order)->offset($offset)->limit($limit);
         $rowSet = $this->getModel('log')->selectWith($select);
         // Make list

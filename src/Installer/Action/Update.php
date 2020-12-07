@@ -44,6 +44,10 @@ class Update extends BasicUpdate
         $videoTable   = $videoModel->getTable();
         $videoAdapter = $videoModel->getAdapter();
 
+        // Set playlist_inventory model
+        $playlistInventoryModel   = Pi::model('playlist_inventory', $this->module);
+        $playlistInventoryTable   = $playlistInventoryModel->getTable();
+        $playlistInventoryAdapter = $playlistInventoryModel->getAdapter();
 
         // Update to version 1.5.0
         if (version_compare($moduleVersion, '1.5.0', '<')) {
@@ -144,6 +148,42 @@ EOD;
                     ]
                 );
 
+                return false;
+            }
+        }
+
+        // Update to version 1.5.3
+        if (version_compare($moduleVersion, '1.5.3', '<')) {
+            // Alter table : ADD playlist
+            $sql = sprintf("ALTER TABLE %s ADD `playlist` VARCHAR(255) NOT NULL DEFAULT ''", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult(
+                    'db', [
+                        'status'  => false,
+                        'message' => 'Table alter query failed: '
+                            . $exception->getMessage(),
+                    ]
+                );
+                return false;
+            }
+        }
+
+        // Update to version 1.5.4
+        if (version_compare($moduleVersion, '1.5.4', '<')) {
+            // Alter table : ADD back_url
+            $sql = sprintf("ALTER TABLE %s ADD `back_url` VARCHAR(255) NOT NULL DEFAULT ''", $playlistInventoryTable);
+            try {
+                $playlistInventoryAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult(
+                    'db', [
+                        'status'  => false,
+                        'message' => 'Table alter query failed: '
+                            . $exception->getMessage(),
+                    ]
+                );
                 return false;
             }
         }

@@ -105,15 +105,11 @@ class WatchController extends IndexController
             $this->view()->assign('categorySingle', $categorySingle);
         }
 
-        // Set template
-        /* $platform = Pi::service('browser')->getPlatform();
-        if (in_array($platform, ['iPhone', 'iPad', 'Android']) && $access) {
-            $template = 'video-watch-mobile';
-            $layout   = 'layout-content';
-        } else {
-            $template = 'video-watch';
-            $layout   = 'layout-front';
-        } */
+        // Get playlist
+        $playlists = [];
+        if (isset($video['playlist']) && !empty($video['playlist'])) {
+            $playlists = Pi::api('playlist', 'video')->getPlaylistsForVideo($video);
+        }
 
         // Save statistics
         if (Pi::service('module')->isActive('statistics')) {
@@ -130,5 +126,6 @@ class WatchController extends IndexController
         $this->view()->assign('config', $config);
         $this->view()->assign('submitter', $submitter);
         $this->view()->assign('access', $access);
+        $this->view()->assign('playlists', $playlists);
     }
 }

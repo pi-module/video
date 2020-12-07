@@ -26,11 +26,13 @@ class PositionController extends ActionController
     {
         // Get from url
         $module = $this->params('module');
+
         // Get info
         $list   = [];
         $order  = ['order ASC', 'id ASC'];
         $select = $this->getModel('field_position')->select()->order($order);
         $rowSet = $this->getModel('field_position')->selectWith($select);
+
         // Make list
         foreach ($rowSet as $row) {
             $list[$row->id] = $row->toArray();
@@ -39,6 +41,7 @@ class PositionController extends ActionController
         if (empty($list)) {
             return $this->redirect()->toRoute('', ['action' => 'update']);
         }
+
         // Set view
         $this->view()->setTemplate('position-index');
         $this->view()->assign('list', $list);

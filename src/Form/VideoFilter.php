@@ -89,6 +89,14 @@ class VideoFilter extends InputFilter
             ]
         );
 
+        // playlist
+        $this->add(
+            [
+                'name'     => 'playlist',
+                'required' => false,
+            ]
+        );
+
         // category
         $this->add(
             [
