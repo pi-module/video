@@ -129,11 +129,6 @@ class Order extends AbstractApi
                 // set back url
                 $playlist['back_url'] = isset($playlist['back_url']) && !empty($playlist['back_url']) ? $playlist['back_url'] : Pi::url('video');
 
-                d($order);
-                d($detail);
-                d($videoList);
-                die;
-
                 // Set url
                 return $playlist['back_url'];
                 break;
