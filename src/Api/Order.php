@@ -121,9 +121,13 @@ class Order extends AbstractApi
                 $videoList = Pi::api('playlist', 'video')->getVideosForPlaylists($playlist);
 
                 foreach ($videoList as $videoSingle) {
+                    // Set video
+                    $video = [
+                        'id' => $videoSingle['video_id']
+                    ];
 
                     // Set Access
-                    Pi::api('video', 'video')->setAccess(['id' => $videoSingle], $order['uid']);
+                    Pi::api('video', 'video')->setAccess($video, $order['uid']);
                 }
 
                 // set back url
