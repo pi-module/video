@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2019-12-25 11:40+0330\n"
+"POT-Creation-Date: 2020-12-07 21:12+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: config/block.php:22 config/block.php:111 config/block.php:289
 #: config/navigation.php:92 config/navigation.php:106 config/page.php:22
-#: config/page.php:56 config/permission.php:21
+#: config/page.php:61 config/permission.php:21
 msgid "Category"
 msgstr ""
 
@@ -80,32 +80,32 @@ msgid "Spotlight"
 msgstr ""
 
 #: config/block.php:63 config/block.php:152 config/block.php:241
-#: config/block.php:337 config/config.php:136
+#: config/block.php:337 config/config.php:107
 msgid "Columns"
 msgstr ""
 
 #: config/block.php:69 config/block.php:158 config/block.php:247
-#: config/block.php:343 config/config.php:142
+#: config/block.php:343 config/config.php:113
 msgid "One columns"
 msgstr ""
 
 #: config/block.php:70 config/block.php:159 config/block.php:248
-#: config/block.php:344 config/config.php:143
+#: config/block.php:344 config/config.php:114
 msgid "Two columns"
 msgstr ""
 
 #: config/block.php:71 config/block.php:160 config/block.php:249
-#: config/block.php:345 config/config.php:144
+#: config/block.php:345 config/config.php:115
 msgid "Three columns"
 msgstr ""
 
 #: config/block.php:72 config/block.php:161 config/block.php:250
-#: config/block.php:346 config/config.php:145
+#: config/block.php:346 config/config.php:116
 msgid "Four columns"
 msgstr ""
 
 #: config/block.php:73 config/block.php:162 config/block.php:251
-#: config/block.php:347 config/config.php:146
+#: config/block.php:347 config/config.php:117
 msgid "Six columns"
 msgstr ""
 
@@ -205,251 +205,237 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: config/config.php:20 config/page.php:100
-msgid "Json output"
-msgstr ""
-
-#: config/config.php:24
+#: config/config.php:20
 msgid "View"
 msgstr ""
 
-#: config/config.php:28 config/page.php:94 config/permission.php:52
+#: config/config.php:24 config/page.php:99 config/permission.php:56
 msgid "Submit"
 msgstr ""
 
-#: config/config.php:32
+#: config/config.php:28
 msgid "Media"
 msgstr ""
 
-#: config/config.php:36
+#: config/config.php:32
 msgid "Image"
 msgstr ""
 
-#: config/config.php:40
+#: config/config.php:36
 msgid "Order video"
 msgstr ""
 
-#: config/config.php:44
+#: config/config.php:40
 msgid "Social"
 msgstr ""
 
-#: config/config.php:48
+#: config/config.php:44
 msgid "Vote"
 msgstr ""
 
-#: config/config.php:52
+#: config/config.php:48
 msgid "Favourite"
 msgstr ""
 
-#: config/config.php:56
+#: config/config.php:52
 msgid "Texts"
 msgstr ""
 
-#: config/config.php:64 config/config.php:129
+#: config/config.php:60 config/config.php:100
 msgid "Perpage"
 msgstr ""
 
-#: config/config.php:72
+#: config/config.php:68
 msgid "Active brand system"
 msgstr ""
 
-#: config/config.php:81
-msgid "Perpage on json output"
-msgstr ""
-
-#: config/config.php:89
-msgid "Check password for json output"
-msgstr ""
-
-#: config/config.php:97
-msgid "Password for json output"
-msgstr ""
-
-#: config/config.php:98
-msgid "After use on mobile device , do not change it"
-msgstr ""
-
-#: config/config.php:105
+#: config/config.php:76
 msgid "Homepage type"
 msgstr ""
 
-#: config/config.php:111
+#: config/config.php:82
 msgid "List of all videos"
 msgstr ""
 
-#: config/config.php:112
+#: config/config.php:83
 msgid "List of custom widgets"
 msgstr ""
 
-#: config/config.php:122
+#: config/config.php:93
 msgid "Homepage title"
 msgstr ""
 
-#: config/config.php:156
+#: config/config.php:127
 msgid "Show breadcrumbs"
 msgstr ""
 
-#: config/config.php:164
+#: config/config.php:135
 msgid "Show Tags"
 msgstr ""
 
-#: config/config.php:172
+#: config/config.php:143
 msgid "Show related video"
 msgstr ""
 
-#: config/config.php:180
+#: config/config.php:151
 msgid "Related video number"
 msgstr ""
 
-#: config/config.php:188
+#: config/config.php:159
 msgid "Show attribute fields"
 msgstr ""
 
-#: config/config.php:196
+#: config/config.php:167
 msgid "Show category description on category page"
 msgstr ""
 
-#: config/config.php:204
+#: config/config.php:175
 msgid "Show category description on video page"
 msgstr ""
 
-#: config/config.php:213
+#: config/config.php:184
 msgid "Users can submit videos"
 msgstr ""
 
-#: config/config.php:222
+#: config/config.php:193
 msgid "Video Size"
 msgstr ""
 
-#: config/config.php:230
+#: config/config.php:201
 msgid "Video Extension"
 msgstr ""
 
-#: config/config.php:239
-msgid "Image Size"
+#: config/config.php:210
+msgid "Min Image width (upload)"
 msgstr ""
 
-#: config/config.php:247
-msgid "Image quality"
+#: config/config.php:211 config/config.php:219
+msgid "This config can override media module value"
 msgstr ""
 
-#: config/config.php:248
-msgid "Between 0 to 100 and support both of JPG and PNG, default is 75"
+#: config/config.php:218
+msgid "Min Image height (upload)"
 msgstr ""
 
-#: config/config.php:255
-msgid "Image path"
-msgstr ""
-
-#: config/config.php:263
-msgid "Image Extension"
-msgstr ""
-
-#: config/config.php:271
+#: config/config.php:226
 msgid "Large Image height"
 msgstr ""
 
-#: config/config.php:279
+#: config/config.php:234
 msgid "Large Image width"
 msgstr ""
 
-#: config/config.php:287
+#: config/config.php:242
+msgid "Item Image height"
+msgstr ""
+
+#: config/config.php:250
+msgid "Item Image width"
+msgstr ""
+
+#: config/config.php:258
 msgid "Medium Image height"
 msgstr ""
 
-#: config/config.php:295
+#: config/config.php:266
 msgid "Medium Image width"
 msgstr ""
 
-#: config/config.php:303
+#: config/config.php:274
 msgid "Thumb Image height"
 msgstr ""
 
-#: config/config.php:311
+#: config/config.php:282
 msgid "Thumb Image width"
 msgstr ""
 
-#: config/config.php:319
+#: config/config.php:291
+msgid "Image quality"
+msgstr ""
+
+#: config/config.php:292
+msgid ""
+"Between 0 to 100 and support both of JPG and PNG, default is 75. This config "
+"can override media module value"
+msgstr ""
+
+#: config/config.php:299
+msgid "Image Size"
+msgstr ""
+
+#: config/config.php:307
+msgid "Image path"
+msgstr ""
+
+#: config/config.php:315
+msgid "Image Extension"
+msgstr ""
+
+#: config/config.php:323
 msgid "Use lightbox"
 msgstr ""
 
-#: config/config.php:327
+#: config/config.php:331
 msgid "Add Watermark"
 msgstr ""
 
-#: config/config.php:335
+#: config/config.php:339
 msgid "Watermark Image"
 msgstr ""
 
-#: config/config.php:342
+#: config/config.php:346
 msgid "Watermark Positio"
 msgstr ""
 
-#: config/config.php:348
+#: config/config.php:352
 msgid "Top Left"
 msgstr ""
 
-#: config/config.php:349
+#: config/config.php:353
 msgid "Top Right"
 msgstr ""
 
-#: config/config.php:350
+#: config/config.php:354
 msgid "Bottom Left"
 msgstr ""
 
-#: config/config.php:351
+#: config/config.php:355
 msgid "Bottom Right"
 msgstr ""
 
-#: config/config.php:361
+#: config/config.php:365
 msgid "Sale video"
 msgstr ""
 
-#: config/config.php:367
+#: config/config.php:371
 msgid "All videos is free"
 msgstr ""
 
-#: config/config.php:368
-msgid "Users buy package to watch paid video"
-msgstr ""
-
-#: config/config.php:369
+#: config/config.php:372
 msgid "User pay one by one for paid video"
 msgstr ""
 
-#: config/config.php:378
-msgid "Sale method for single video"
+#: config/config.php:373
+msgid "User buy package to watch all paid videos on package time"
 msgstr ""
 
-#: config/config.php:384
-msgid "Buy each video online"
-msgstr ""
-
-#: config/config.php:385
-msgid "Use user credit"
-msgstr ""
-
-#: config/config.php:386
-msgid "Mobile payment method (VAS)"
-msgstr ""
-
-#: config/config.php:396
+#: config/config.php:383
 msgid "Social sharing items"
 msgstr ""
 
-#: config/config.php:410
+#: config/config.php:397
 msgid "Use vote system"
 msgstr ""
 
-#: config/config.php:419
+#: config/config.php:406
 msgid "Use favourite system"
 msgstr ""
 
-#: config/config.php:428
+#: config/config.php:415
 msgid "Description for index page"
 msgstr ""
 
-#: config/config.php:436
+#: config/config.php:423
 msgid "Force replace space by comma(,)"
 msgstr ""
 
@@ -462,7 +448,7 @@ msgstr ""
 msgid "Video gallery and service for Pi Engine."
 msgstr ""
 
-#: config/navigation.php:35 config/navigation.php:202
+#: config/navigation.php:35 config/navigation.php:202 config/navigation.php:246
 msgid "Add / Manage"
 msgstr ""
 
@@ -511,57 +497,70 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: config/navigation.php:225 config/navigation.php:235 config/page.php:32
+#: config/navigation.php:225 config/navigation.php:236 config/page.php:32
 #: config/permission.php:29
+msgid "Playlist"
+msgstr ""
+
+#: config/navigation.php:259 config/navigation.php:269 config/page.php:37
+#: config/permission.php:33
 msgid "Attribute"
 msgstr ""
 
-#: config/navigation.php:245
+#: config/navigation.php:279
 msgid "Attribute position"
 msgstr ""
 
-#: config/navigation.php:258 config/navigation.php:268 config/page.php:42
-#: config/permission.php:37
+#: config/navigation.php:292 config/navigation.php:302 config/page.php:47
+#: config/permission.php:41
 msgid "Tools"
 msgstr ""
 
-#: config/navigation.php:279
+#: config/navigation.php:313
 msgid "Sitemap"
 msgstr ""
 
-#: config/navigation.php:290 config/page.php:37 config/permission.php:33
+#: config/navigation.php:324 config/page.php:42 config/permission.php:37
 msgid "Logs"
 msgstr ""
 
-#: config/navigation.php:305 config/page.php:62
+#: config/navigation.php:335
+msgid "Migrate media"
+msgstr ""
+
+#: config/navigation.php:350 config/page.php:67
 msgid "Category list"
 msgstr ""
 
-#: config/navigation.php:315 config/page.php:75
+#: config/navigation.php:360 config/page.php:80
 msgid "Tag list"
 msgstr ""
 
-#: config/navigation.php:325
+#: config/navigation.php:370
 msgid "Your channel"
 msgstr ""
 
-#: config/page.php:50
+#: config/page.php:55
 msgid "Index"
 msgstr ""
 
-#: config/page.php:69
+#: config/page.php:74
 msgid "Tag"
 msgstr ""
 
-#: config/page.php:82
+#: config/page.php:87
 msgid "Watch video"
 msgstr ""
 
-#: config/page.php:88 config/permission.php:59
+#: config/page.php:93 config/permission.php:63
 msgid "Channel"
 msgstr ""
 
-#: config/permission.php:44
+#: config/page.php:105
+msgid "Json output"
+msgstr ""
+
+#: config/permission.php:48
 msgid "Global public resource"
 msgstr ""
 
