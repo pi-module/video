@@ -7,7 +7,6 @@
 .pi-item-list .page-header h2,
 .pi-item-list .page-header h3,
 .pi-item-list .page-header h4 {
-    font-size: 1.5em;
     padding: 2px 0;
     margin: 2px 0;
 }
@@ -19,7 +18,6 @@
 .pi-item-list .card .card-title {
     margin: 1px;
     padding: 1px;
-    font-size: 1.1em;
 }
 
 .pi-item-list .card .card-img-top {
@@ -43,12 +41,9 @@
 }
 
 /* video page */
-.video-page .video-title h1 {
-    font-size: 1.6em;
-}
+.video-page .video-title h1 {}
 
 .video-page .video-title h2 {
-    font-size: 1.2em;
     color: #9FA0A0;
 }
 
@@ -92,9 +87,7 @@
 }
 
 /* video-attribute */
-.video-attribute .video-attribute-head h2 {
-    font-size: 1.3em;
-}
+.video-attribute .video-attribute-head h2 {}
 
 /* image gallery */
 .video-image .video-image-attach {
@@ -117,7 +110,6 @@
 }
 
 .category-list .card h3 {
-    font-size: 1.2em;
     margin: 1px;
     padding: 1px;
 }

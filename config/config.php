@@ -79,8 +79,8 @@ return [
                 'type'    => 'select',
                 'options' => [
                     'options' => [
-                        'list'   => _a('List of all videos'),
-                        'custom' => _a('List of custom widgets'),
+                        'list'     => _a('List of all videos'),
+                        'category' => _a('List of categories'),
                     ],
                 ],
             ],
@@ -205,7 +205,7 @@ return [
             'value'       => 'mp4,mp3',
         ],
         // Image
-        'image_minw'               => [
+        'image_minw'                => [
             'category'    => 'image',
             'title'       => _t('Min Image width (upload)'),
             'description' => _t('This config can override media module value'),
@@ -213,7 +213,7 @@ return [
             'filter'      => 'string',
             'value'       => '',
         ],
-        'image_minh'               => [
+        'image_minh'                => [
             'category'    => 'image',
             'title'       => _t('Min Image height (upload)'),
             'description' => _t('This config can override media module value'),
@@ -221,7 +221,7 @@ return [
             'filter'      => 'string',
             'value'       => '',
         ],
-        'image_largeh'             => [
+        'image_largeh'              => [
             'category'    => 'image',
             'title'       => _a('Large Image height'),
             'description' => '',
@@ -229,7 +229,7 @@ return [
             'filter'      => 'number_int',
             'value'       => 1200,
         ],
-        'image_largew'             => [
+        'image_largew'              => [
             'category'    => 'image',
             'title'       => _a('Large Image width'),
             'description' => '',
@@ -237,7 +237,7 @@ return [
             'filter'      => 'number_int',
             'value'       => 1200,
         ],
-        'image_itemh'              => [
+        'image_itemh'               => [
             'category'    => 'image',
             'title'       => _a('Item Image height'),
             'description' => '',
@@ -245,7 +245,7 @@ return [
             'filter'      => 'number_int',
             'value'       => 800,
         ],
-        'image_itemw'              => [
+        'image_itemw'               => [
             'category'    => 'image',
             'title'       => _a('Item Image width'),
             'description' => '',
@@ -253,7 +253,7 @@ return [
             'filter'      => 'number_int',
             'value'       => 800,
         ],
-        'image_mediumh'            => [
+        'image_mediumh'             => [
             'category'    => 'image',
             'title'       => _a('Medium Image height'),
             'description' => '',
@@ -261,7 +261,7 @@ return [
             'filter'      => 'number_int',
             'value'       => 500,
         ],
-        'image_mediumw'            => [
+        'image_mediumw'             => [
             'category'    => 'image',
             'title'       => _a('Medium Image width'),
             'description' => '',
@@ -269,7 +269,7 @@ return [
             'filter'      => 'number_int',
             'value'       => 500,
         ],
-        'image_thumbh'             => [
+        'image_thumbh'              => [
             'category'    => 'image',
             'title'       => _a('Thumb Image height'),
             'description' => '',
@@ -277,7 +277,7 @@ return [
             'filter'      => 'number_int',
             'value'       => 250,
         ],
-        'image_thumbw'             => [
+        'image_thumbw'              => [
             'category'    => 'image',
             'title'       => _a('Thumb Image width'),
             'description' => '',
@@ -294,7 +294,7 @@ return [
             'filter'      => 'string',
             'value'       => 75,
         ],
-        'image_size'                => [
+        'image_size'               => [
             'category'    => 'image',
             'title'       => _a('Image Size'),
             'description' => '',
@@ -302,7 +302,7 @@ return [
             'filter'      => 'number_int',
             'value'       => 1000000,
         ],
-        'image_path'                => [
+        'image_path'               => [
             'category'    => 'image',
             'title'       => _a('Image path'),
             'description' => '',
@@ -310,7 +310,7 @@ return [
             'filter'      => 'string',
             'value'       => 'video/image',
         ],
-        'image_extension'           => [
+        'image_extension'          => [
             'category'    => 'image',
             'title'       => _a('Image Extension'),
             'description' => '',
@@ -318,7 +318,7 @@ return [
             'filter'      => 'string',
             'value'       => 'jpg,jpeg,png,gif',
         ],
-        'image_lightbox'            => [
+        'image_lightbox'           => [
             'category'    => 'image',
             'title'       => _a('Use lightbox'),
             'description' => '',
@@ -326,7 +326,7 @@ return [
             'filter'      => 'number_int',
             'value'       => 1,
         ],
-        'image_watermark'           => [
+        'image_watermark'          => [
             'category'    => 'image',
             'title'       => _a('Add Watermark'),
             'description' => '',
@@ -334,7 +334,7 @@ return [
             'filter'      => 'number_int',
             'value'       => 0,
         ],
-        'image_watermark_source'    => [
+        'image_watermark_source'   => [
             'category'    => 'image',
             'title'       => _a('Watermark Image'),
             'description' => '',
@@ -342,7 +342,7 @@ return [
             'filter'      => 'string',
             'value'       => '',
         ],
-        'image_watermark_position'  => [
+        'image_watermark_position' => [
             'title'       => _a('Watermark Positio'),
             'description' => '',
             'edit'        => [
@@ -361,7 +361,7 @@ return [
             'category'    => 'image',
         ],
         // Order
-        'sale_video'                => [
+        'sale_video'               => [
             'title'       => _a('Sale video'),
             'description' => '',
             'edit'        => [
@@ -379,7 +379,7 @@ return [
             'category'    => 'order',
         ],
         // Social
-        'social_sharing'            => [
+        'social_sharing'           => [
             'title'       => _t('Social sharing items'),
             'description' => '',
             'edit'        => [
@@ -392,7 +392,7 @@ return [
             'category'    => 'social',
         ],
         // Vote
-        'vote_bar'                  => [
+        'vote_bar'                 => [
             'category'    => 'vote',
             'title'       => _a('Use vote system'),
             'description' => '',
@@ -401,7 +401,7 @@ return [
             'value'       => 1,
         ],
         // favourite
-        'favourite_bar'             => [
+        'favourite_bar'            => [
             'category'    => 'favourite',
             'title'       => _a('Use favourite system'),
             'description' => '',
@@ -410,7 +410,7 @@ return [
             'value'       => 1,
         ],
         // Texts
-        'text_description_index'    => [
+        'text_description_index'   => [
             'category'    => 'head_meta',
             'title'       => _a('Description for index page'),
             'description' => '',
@@ -418,7 +418,7 @@ return [
             'filter'      => 'string',
             'value'       => '',
         ],
-        'force_replace_space'       => [
+        'force_replace_space'      => [
             'category'    => 'head_meta',
             'title'       => _a('Force replace space by comma(,)'),
             'description' => '',

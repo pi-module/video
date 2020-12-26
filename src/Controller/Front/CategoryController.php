@@ -24,11 +24,14 @@ class CategoryController extends IndexController
         // Get info from url
         $module = $this->params('module');
         $slug   = $this->params('slug');
+
         // Get config
         $config = Pi::service('registry')->config->read($module);
+
         // Get category information from model
         $category = $this->getModel('category')->find($slug, 'slug');
         $category = Pi::api('category', 'video')->canonizeCategory($category);
+
         // Check category
         if (!$category || $category['status'] != 1) {
             $this->getResponse()->setStatusCode(404);
@@ -84,25 +87,31 @@ class CategoryController extends IndexController
     {
         // Get info from url
         $module = $this->params('module');
+
         // Get config
         $config = Pi::service('registry')->config->read($module);
+
         // Set info
         $categories = [];
         $where      = ['status' => 1];
         $order      = ['display_order DESC', 'title ASC', 'id DESC'];
         $select     = $this->getModel('category')->select()->where($where)->order($order);
         $rowSet     = $this->getModel('category')->selectWith($select);
+
         // Make list
         foreach ($rowSet as $row) {
             $categories[$row->id] = Pi::api('category', 'video')->canonizeCategory($row);
         }
+
         // Set category tree
         $categoryTree = [];
         if (!empty($categories)) {
             $categoryTree = Pi::api('category', 'video')->makeTreeOrder($categories);
         }
+
         // Set header and title
         $title = __('Category list');
+
         // Set seo_keywords
         $filter = new Filter\HeadKeywords;
         $filter->setOptions(

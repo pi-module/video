@@ -47,13 +47,34 @@ class IndexController extends ActionController
                 $this->view()->assign('pageType', 'all');
                 break;
 
+            case 'category':
             case 'custom':
                 // Set title
                 $title = (!empty($config['homepage_title'])) ? $config['homepage_title'] : __('List of videos');
+
+                // Set info
+                $categories = [];
+                $where      = ['status' => 1];
+                $order      = ['display_order DESC', 'title ASC', 'id DESC'];
+                $select     = $this->getModel('category')->select()->where($where)->order($order);
+                $rowSet     = $this->getModel('category')->selectWith($select);
+
+                // Make list
+                foreach ($rowSet as $row) {
+                    $categories[$row->id] = Pi::api('category', 'video')->canonizeCategory($row);
+                }
+
+                // Set category tree
+                $categoryTree = [];
+                if (!empty($categories)) {
+                    $categoryTree = Pi::api('category', 'video')->makeTreeOrder($categories);
+                }
+
                 // Set view
-                $this->view()->setTemplate('video-custom-index');
+                $this->view()->setTemplate('video-category-index');
                 $this->view()->assign('config', $config);
-                $this->view()->assign('categoriesJson', $categoriesJson);
+                $this->view()->assign('categories', $categories);
+                $this->view()->assign('categoryTree', $categoryTree);
                 $this->view()->assign('productTitleH1', $title);
                 $this->view()->assign('showIndexDesc', 1);
                 $this->view()->assign('isHomepage', 1);

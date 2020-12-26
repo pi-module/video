@@ -3,29 +3,25 @@
     <div class="page-header">
         <h1><?php _e('Category list'); ?></h1>
     </div>
-    <?php if (isset($categories) && !empty($categories)) { ?>
-        <div class="category-list clearfix">
+    <?php if (isset($categories) && !empty($categories) && isset($categoryTree) && !empty($categoryTree)) { ?>
+        <div class="category-list clearfix row">
             <?php foreach ($categoryTree as $category) { ?>
-                <div class="col-3" itemscope itemtype="https://schema.org/Brand">
-                    <div class="card">
-                        <?php if ($category['image']) { ?>
-                            <a itemprop="url" href="<?php echo $this->escape($category['categoryUrl']); ?>"
-                               title="<?php echo $this->escape($category['title']); ?>">
-                                <img itemprop="image" src="<?php echo $this->escape($category['mediumUrl']); ?>"
-                                     alt="<?php echo $this->escape($category['title']); ?>" class="card-img-top">
+                <div class="col-12 col-md-4" itemscope itemtype="https://schema.org/Brand">
+                    <div class="card bg-light mb-3">
+                        <?php if (isset($category['image']) && !empty($category['image'])) { ?>
+                            <a itemprop="url" href="<?php echo $this->escape($category['categoryUrl']); ?>" title="<?php echo $this->escape($category['title']); ?>">
+                                <img itemprop="image" src="<?php echo $this->escape($category['mediumUrl']); ?>" alt="<?php echo $this->escape($category['title']); ?>" class="card-img-top">
                             </a>
-                        <?php } else { ?>
-                            <div class="thumbnail-bg">
-                                <?php echo $this->escape($category['title']); ?>
-                            </div>
                         <?php } ?>
-                        <div class="card-body">
-                            <h3 class="p-name card-title" itemprop="name">
-                                <a href="<?php echo $this->escape($category['categoryUrl']); ?>"
-                                   title="<?php echo $this->escape($category['title']); ?>">
+                        <div class="card-body text-justify">
+                            <h3 class="p-name card-title mb-3" itemprop="name">
+                                <a href="<?php echo $this->escape($category['categoryUrl']); ?>" title="<?php echo $this->escape($category['title']); ?>">
                                     <?php echo $this->escape($category['title']); ?>
                                 </a>
                             </h3>
+                            <div class="card-text mb-3">
+                                <?php echo $this->escape($category['text_summary']); ?>
+                            </div>
                         </div>
                     </div>
                 </div>

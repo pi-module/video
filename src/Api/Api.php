@@ -131,7 +131,8 @@ class Api extends AbstractApi
                 $categoryIDList[] = $singleCategory['id'];
             }
             // Set page title
-            $pageTitle = sprintf(__('List of videos on %s category'), $category['title']);
+            //$pageTitle = sprintf(__('List of videos on %s category'), $category['title']);
+            $pageTitle = $category['title'];
         }
 
         // Get tag list
