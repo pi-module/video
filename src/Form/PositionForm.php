@@ -27,7 +27,8 @@ class PositionForm extends BaseForm
     public function getInputFilter()
     {
         if (!$this->filter) {
-            $this->filter = new PositionFilter($this->option);;
+            $this->filter = new PositionFilter($this->option);
+            ;
         }
         return $this->filter;
     }

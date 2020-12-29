@@ -42,7 +42,10 @@ class VideoController extends ApiController
             // Save statistics
             if (Pi::service('module')->isActive('statistics')) {
                 Pi::api('log', 'statistics')->save(
-                    'video', 'videoList', 0, [
+                    'video',
+                    'videoList',
+                    0,
+                    [
                         'source'  => $this->params('platform'),
                         'section' => 'api',
                     ]
@@ -71,7 +74,6 @@ class VideoController extends ApiController
                 'data'   => $videoList,
                 'error'  => [],
             ];
-
         } else {
             // Set error
             $result['error'] = [
@@ -107,7 +109,10 @@ class VideoController extends ApiController
             // Save statistics
             if (Pi::service('module')->isActive('statistics')) {
                 Pi::api('log', 'statistics')->save(
-                    'video', 'videoSingle', $this->params('id'), [
+                    'video',
+                    'videoSingle',
+                    $this->params('id'),
+                    [
                         'source'  => $this->params('platform'),
                         'section' => 'api',
                     ]

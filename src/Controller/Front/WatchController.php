@@ -93,7 +93,9 @@ class WatchController extends IndexController
         // Set submitter
         $submitter           = Pi::api('channel', 'video')->user($video['uid']);
         $submitter['avatar'] = Pi::avatar()->get(
-            $video['uid'], 'small', [
+            $video['uid'],
+            'small',
+            [
                 'alt'   => _escape($submitter['name']),
                 'class' => 'rounded-circle',
             ]

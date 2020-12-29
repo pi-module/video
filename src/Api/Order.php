@@ -50,7 +50,6 @@ class Order extends AbstractApi
 
     public function getProductDetails($id, $extra)
     {
-
         if (isset($extra['list_id']) && intval($extra['list_id']) > 0) {
             // Get event
             $playlist = Pi::api('playlist', 'video')->getPlaylist($id);
@@ -61,7 +60,6 @@ class Order extends AbstractApi
                 'thumbUrl'   => '',
                 'productUrl' => $playlist['videoUrl'],
             ];
-
         } elseif (isset($extra['list_id']) && intval($extra['list_id']) > 0) {
             // Get event
             $video = Pi::api('video', 'video')->getVideo($id);

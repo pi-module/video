@@ -230,7 +230,8 @@ class Video extends AbstractApi
                 if (Pi::service('module')->isActive('plans')) {
                     $url = Pi::url(
                         Pi::service('url')->assemble(
-                            'plans', [
+                            'plans',
+                            [
                                 'module'     => 'plans',
                                 'controller' => 'index',
                                 'action'     => 'index',
@@ -243,7 +244,8 @@ class Video extends AbstractApi
             case 'single':
                 $url = Pi::url(
                     Pi::service('url')->assemble(
-                        'video', [
+                        'video',
+                        [
                             'module'     => 'video',
                             'controller' => 'order',
                             'action'     => 'index',
@@ -311,13 +313,15 @@ class Video extends AbstractApi
         // Set price view
         $video['sale_price_view'] = __('Free');
         if ($video['sale_price'] > 0) {
-            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);;
+            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);
+            ;
         }
 
         // Set video url
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
-                'video', [
+                'video',
+                [
                     'module'     => $this->getModule(),
                     'controller' => 'watch',
                     'slug'       => $video['slug'],
@@ -328,7 +332,8 @@ class Video extends AbstractApi
         // Set channel url
         $video['channelUrl'] = Pi::url(
             Pi::service('url')->assemble(
-                'video', [
+                'video',
+                [
                     'module'     => $this->getModule(),
                     'controller' => 'channel',
                     'id'         => $video['uid'],
@@ -362,7 +367,8 @@ class Video extends AbstractApi
                 $video['categories'][$category]['title'] = $categoryList[$category]['title'];
                 $video['categories'][$category]['url']   = Pi::url(
                     Pi::service('url')->assemble(
-                        'video', [
+                        'video',
+                        [
                             'module'     => $this->getModule(),
                             'controller' => 'category',
                             'slug'       => $categoryList[$category]['slug'],
@@ -453,13 +459,15 @@ class Video extends AbstractApi
         // Set price view
         $video['sale_price_view'] = __('Free');
         if ($video['sale_price'] > 0) {
-            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);;
+            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);
+            ;
         }
 
         // Set video url
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
-                'video', [
+                'video',
+                [
                     'module'     => $this->getModule(),
                     'controller' => 'watch',
                     'slug'       => $video['slug'],
@@ -470,7 +478,8 @@ class Video extends AbstractApi
         // Set channel url
         $video['channelUrl'] = Pi::url(
             Pi::service('url')->assemble(
-                'video', [
+                'video',
+                [
                     'module'     => $this->getModule(),
                     'controller' => 'channel',
                     'id'         => $video['uid'],
@@ -540,13 +549,15 @@ class Video extends AbstractApi
         // Set price view
         $video['sale_price_view'] = __('Free');
         if ($video['sale_price'] > 0) {
-            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);;
+            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);
+            ;
         }
 
         // Set video url
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
-                'video', [
+                'video',
+                [
                     'module'     => $this->getModule(),
                     'controller' => 'watch',
                     'slug'       => $video['slug'],
@@ -557,7 +568,8 @@ class Video extends AbstractApi
         // Set channel url
         $video['channelUrl'] = Pi::url(
             Pi::service('url')->assemble(
-                'video', [
+                'video',
+                [
                     'module'     => $this->getModule(),
                     'controller' => 'channel',
                     'id'         => $video['uid'],
@@ -588,7 +600,8 @@ class Video extends AbstractApi
                 $video['categories'][$category]['title'] = $categoryList[$category]['title'];
                 $video['categories'][$category]['url']   = Pi::url(
                     Pi::service('url')->assemble(
-                        'video', [
+                        'video',
+                        [
                             'module'     => $this->getModule(),
                             'controller' => 'category',
                             'slug'       => $categoryList[$category]['slug'],
@@ -663,13 +676,15 @@ class Video extends AbstractApi
         // Set price view
         $video['sale_price_view'] = __('Free');
         if ($video['sale_price'] > 0) {
-            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);;
+            $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);
+            ;
         }
 
         // Set video url
         $video['videoUrl'] = Pi::url(
             Pi::service('url')->assemble(
-                'video', [
+                'video',
+                [
                     'module'     => $this->getModule(),
                     'controller' => 'watch',
                     'slug'       => $video['slug'],
@@ -680,7 +695,8 @@ class Video extends AbstractApi
         // Set channel url
         $video['channelUrl'] = Pi::url(
             Pi::service('url')->assemble(
-                'video', [
+                'video',
+                [
                     'module'     => $this->getModule(),
                     'controller' => 'channel',
                     'id'         => $video['uid'],
@@ -696,7 +712,8 @@ class Video extends AbstractApi
                 $video['categories'][$category]['title'] = $categoryList[$category]['title'];
                 $video['categories'][$category]['url']   = Pi::url(
                     Pi::service('url')->assemble(
-                        'video', [
+                        'video',
+                        [
                             'module'     => $this->getModule(),
                             'controller' => 'category',
                             'slug'       => $categoryList[$category]['slug'],
@@ -756,7 +773,8 @@ class Video extends AbstractApi
                 // Make url
                 $loc = Pi::url(
                     Pi::service('url')->assemble(
-                        'video', [
+                        'video',
+                        [
                             'module'     => $this->getModule(),
                             'controller' => 'watch',
                             'slug'       => $row->slug,
@@ -773,7 +791,6 @@ class Video extends AbstractApi
     public function migrateMedia()
     {
         if (Pi::service("module")->isActive("media")) {
-
             $msg = '';
 
             // Get config
@@ -785,7 +802,6 @@ class Video extends AbstractApi
             $videoCollection = $videoModel->selectWith($select);
 
             foreach ($videoCollection as $video) {
-
                 $toSave = false;
 
                 $mediaData = [
@@ -804,7 +820,6 @@ class Video extends AbstractApi
                      * Check if media item exists
                      */
                     if (empty($video['image']) || empty($video['path'])) {
-
                         $draft = $video->status == 3 ? ' (' . __('Draft') . ')' : '';
 
                         $msg .= __("Missing image or path value from db for video ID") . " " . $video->id . $draft . "<br>";

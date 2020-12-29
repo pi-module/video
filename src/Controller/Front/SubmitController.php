@@ -274,7 +274,8 @@ class SubmitController extends IndexController
                     // Set loc
                     $loc = Pi::url(
                         $this->url(
-                            'video', [
+                            'video',
+                            [
                                 'module'     => $module,
                                 'controller' => 'watch',
                                 'slug'       => $values['slug'],

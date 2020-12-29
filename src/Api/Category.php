@@ -130,7 +130,6 @@ class Category extends AbstractApi
         $select = Pi::model('category', $this->getModule())->select()->where($where)->order($order);
         $rowSet = Pi::model('category', $this->getModule())->selectWith($select);
         foreach ($rowSet as $row) {
-
             $thumbUrl = '';
             if ($row->image) {
                 $thumbUrl = Pi::url(
@@ -150,7 +149,8 @@ class Category extends AbstractApi
                 'thumbUrl' => $thumbUrl,
                 'href'     => Pi::url(
                     Pi::service('url')->assemble(
-                        'video', [
+                        'video',
+                        [
                             'module'     => $this->getModule(),
                             'controller' => 'category',
                             'slug'       => $row->slug,
@@ -178,7 +178,8 @@ class Category extends AbstractApi
                 'text'   => $row->title,
                 'href'   => Pi::url(
                     Pi::service('url')->assemble(
-                        'video', [
+                        'video',
+                        [
                             'module'     => $this->getModule(),
                             'controller' => 'category',
                             'slug'       => $row->slug,
@@ -218,7 +219,8 @@ class Category extends AbstractApi
         // Set item url
         $category['categoryUrl'] = Pi::url(
             Pi::service('url')->assemble(
-                'video', [
+                'video',
+                [
                     'module'     => $this->getModule(),
                     'controller' => 'category',
                     'slug'       => $category['slug'],
@@ -281,7 +283,8 @@ class Category extends AbstractApi
                 // Make url
                 $loc = Pi::url(
                     Pi::service('url')->assemble(
-                        'video', [
+                        'video',
+                        [
                             'module'     => $this->getModule(),
                             'controller' => 'category',
                             'slug'       => $row->slug,

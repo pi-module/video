@@ -154,7 +154,7 @@ class IndexController extends ActionController
         $template['sort']   = $this->params('sort');
         $template['page']   = $this->params('page', 1);
 
-        // get count     
+        // get count
         $columns           = ['count' => new Expression('count(DISTINCT `video`)')];
         $select            = $this->getModel('link')->select()->where($where)->columns($columns);
         $template['count'] = $this->getModel('link')->selectWith($select)->current()->count;
@@ -170,7 +170,7 @@ class IndexController extends ActionController
         $template['sort']   = $this->params('sort');
         $template['page']   = $this->params('page', 1);
 
-        // get count     
+        // get count
         $columns           = ['count' => new Expression('count(*)')];
         $select            = $this->getModel('video')->select()->where($where)->columns($columns);
         $template['count'] = $this->getModel('video')->selectWith($select)->current()->count;

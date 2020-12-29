@@ -52,7 +52,8 @@ class Playlist extends AbstractApi
         // Set price view
         $playlist['sale_price_view'] = __('Free');
         if ($playlist['sale_price'] > 0) {
-            $playlist['sale_price_view'] = Pi::api('api', 'video')->viewPrice($playlist['sale_price']);;
+            $playlist['sale_price_view'] = Pi::api('api', 'video')->viewPrice($playlist['sale_price']);
+            ;
         }
 
         //
@@ -60,7 +61,8 @@ class Playlist extends AbstractApi
         if ($playlist['sale_price'] > 0) {
             $playlist['payUrl'] = Pi::url(
                 Pi::service('url')->assemble(
-                    'video', [
+                    'video',
+                    [
                         'module'     => 'video',
                         'controller' => 'order',
                         'action'     => 'playlist',

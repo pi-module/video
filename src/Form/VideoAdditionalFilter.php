@@ -45,4 +45,4 @@ class VideoAdditionalFilter extends InputFilter
             }
         }
     }
-}    	
+}

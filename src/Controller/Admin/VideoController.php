@@ -207,7 +207,8 @@ class VideoController extends ActionController
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
             return $this->redirect()->toRoute(
-                '', [
+                '',
+                [
                     'controller' => 'category',
                     'action'     => 'update',
                 ]
@@ -218,7 +219,8 @@ class VideoController extends ActionController
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
             return $this->redirect()->toRoute(
-                '', [
+                '',
+                [
                     'controller' => 'server',
                     'action'     => 'update',
                 ]
@@ -309,7 +311,8 @@ class VideoController extends ActionController
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
             return $this->redirect()->toRoute(
-                '', [
+                '',
+                [
                     'controller' => 'category',
                     'action'     => 'update',
                 ]
@@ -320,7 +323,8 @@ class VideoController extends ActionController
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
             return $this->redirect()->toRoute(
-                '', [
+                '',
+                [
                     'controller' => 'server',
                     'action'     => 'update',
                 ]
@@ -419,7 +423,8 @@ class VideoController extends ActionController
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
             return $this->redirect()->toRoute(
-                '', [
+                '',
+                [
                     'controller' => 'category',
                     'action'     => 'update',
                 ]
@@ -430,7 +435,8 @@ class VideoController extends ActionController
         $serverList = Pi::registry('serverList', 'video')->read();
         if (empty($serverList)) {
             return $this->redirect()->toRoute(
-                '', [
+                '',
+                [
                     'controller' => 'server',
                     'action'     => 'update',
                 ]
@@ -522,7 +528,14 @@ class VideoController extends ActionController
 
                 // category
                 Pi::api('category', 'video')->setLink(
-                    $row->id, $row->category, $row->time_create, $row->time_update, $row->status, $row->uid, $row->hits, $row->recommended
+                    $row->id,
+                    $row->category,
+                    $row->time_create,
+                    $row->time_update,
+                    $row->status,
+                    $row->uid,
+                    $row->hits,
+                    $row->recommended
                 );
 
                 // playlist
@@ -538,7 +551,8 @@ class VideoController extends ActionController
                     // Set loc
                     $loc = Pi::url(
                         $this->url(
-                            'video', [
+                            'video',
+                            [
                                 'module'     => $module,
                                 'controller' => 'watch',
                                 'slug'       => $values['slug'],
@@ -762,7 +776,8 @@ class VideoController extends ActionController
             if (Pi::service('module')->isActive('sitemap')) {
                 $loc = Pi::url(
                     $this->url(
-                        'video', [
+                        'video',
+                        [
                             'module'     => $module,
                             'controller' => 'video',
                             'slug'       => $row->slug,

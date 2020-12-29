@@ -57,7 +57,8 @@ class Update extends BasicUpdate
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
                 $this->setResult(
-                    'db', [
+                    'db',
+                    [
                         'status'  => false,
                         'message' => 'Table alter query failed: '
                             . $exception->getMessage(),
@@ -72,7 +73,8 @@ class Update extends BasicUpdate
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
                 $this->setResult(
-                    'db', [
+                    'db',
+                    [
                         'status'  => false,
                         'message' => 'Table alter query failed: '
                             . $exception->getMessage(),
@@ -112,7 +114,8 @@ EOD;
                 $sqlHandler->queryContent($sql);
             } catch (\Exception $exception) {
                 $this->setResult(
-                    'db', [
+                    'db',
+                    [
                         'status'  => false,
                         'message' => 'SQL schema query for author table failed: '
                             . $exception->getMessage(),
@@ -141,7 +144,8 @@ EOD;
                 $sqlHandler->queryContent($sql);
             } catch (\Exception $exception) {
                 $this->setResult(
-                    'db', [
+                    'db',
+                    [
                         'status'  => false,
                         'message' => 'SQL schema query for author table failed: '
                             . $exception->getMessage(),
@@ -160,7 +164,8 @@ EOD;
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
                 $this->setResult(
-                    'db', [
+                    'db',
+                    [
                         'status'  => false,
                         'message' => 'Table alter query failed: '
                             . $exception->getMessage(),
@@ -178,7 +183,8 @@ EOD;
                 $playlistInventoryAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
                 $this->setResult(
-                    'db', [
+                    'db',
+                    [
                         'status'  => false,
                         'message' => 'Table alter query failed: '
                             . $exception->getMessage(),

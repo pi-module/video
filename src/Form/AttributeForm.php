@@ -224,4 +224,4 @@ class AttributeForm extends BaseForm
             ]
         );
     }
-}	
+}
