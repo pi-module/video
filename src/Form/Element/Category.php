@@ -28,7 +28,8 @@ class Category extends Select
             $list    = [];
             $columns = ['id', 'parent', 'title'];
             $where   = ['status' => 1, 'type' => 'category'];
-            $select  = Pi::model('category', 'video')->select()->columns($columns)->where($where);
+            $order   = ['title ASC', 'id DESC'];
+            $select  = Pi::model('category', 'video')->select()->columns($columns)->where($where)->order($order);
             $rowSet  = Pi::model('category', 'video')->selectWith($select);
             foreach ($rowSet as $row) {
                 $list[$row->id] = $row->toArray();
@@ -59,6 +60,9 @@ class Category extends Select
         return $this->Attributes;
     }
 
+    /**
+     * @return array
+     */
     public function getTree($elements, $parentId = 0)
     {
         $branch = [];
