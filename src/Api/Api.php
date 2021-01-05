@@ -459,25 +459,4 @@ class Api extends AbstractApi
         }
         return $viewPrice;
     }
-
-    // ToDo : rebuild function when need use it on mobile app
-    /* public function setAccess($params)
-    {
-        // Get config
-        $config = Pi::service('registry')->config->read($this->getModule());
-
-        // Check VAS payment
-        if ($config['sale_video'] == 'single') {
-
-            // Get video
-            $video = Pi::api('video', 'video')->getVideoLight($params['id']);
-
-            return Pi::api('video', 'video')->setAccess($video, $params['uid']);
-        } else {
-            return [
-                'status'  => 0,
-                'message' => '',
-            ];
-        }
-    } */
 }

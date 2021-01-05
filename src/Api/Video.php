@@ -28,7 +28,6 @@ use Laminas\Db\Sql\Predicate\Expression;
  * Pi::api('video', 'video')->getDuration($secs);
  * Pi::api('video', 'video')->getAccess($video);
  * Pi::api('video', 'video')->getPayUrl($video);
- * Pi::api('video', 'video')->setAccess($video, $uid);
  * Pi::api('video', 'video')->canonizeVideo($video, $categoryList, $serverList);
  * Pi::api('video', 'video')->canonizeVideoLight($video);
  * Pi::api('video', 'video')->canonizeVideoJson($video, $categoryList, $serverList);
@@ -259,17 +258,6 @@ class Video extends AbstractApi
         d($url);
 
         return $url;
-    }
-
-    public function setAccess($video, $uid = '')
-    {
-        $uid = !empty($uid) ? $uid : Pi::user()->getId();
-
-        $access = [
-            'item_key' => sprintf('video-single-%s-%s', $video['id'], $uid),
-        ];
-
-        return Pi::api('access', 'order')->setAccess($access);
     }
 
     public function canonizeVideo($video, $categoryList = [], $serverList = [])

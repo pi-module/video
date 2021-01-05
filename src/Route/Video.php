@@ -32,7 +32,7 @@ class Video extends Standard
 
     protected $controllerList
         = [
-            'category', 'channel', 'favourite', 'index', 'submit', 'tag', 'watch', 'order', 'json'
+            'category', 'channel', 'favourite', 'index', 'dashboard', 'tag', 'watch', 'order', 'json'
         ];
 
     /**
@@ -95,8 +95,8 @@ class Video extends Standard
                         }
                         break;
 
-                    case 'submit':
-                        if (in_array($parts[1], ['index', 'update', 'additional', 'finish'])) {
+                    case 'dashboard':
+                        if (in_array($parts[1], ['index', 'purchased'])) {
                             $matches['action'] = $parts[1];
                             if (is_numeric($parts[2])) {
                                 $matches['id'] = intval($parts[2]);

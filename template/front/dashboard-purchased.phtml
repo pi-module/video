@@ -1,0 +1,31 @@
+<?php $this->css($this->assetModule('css/front.css')); ?>
+<div class="clearfix row">
+    <div class="col-md-3 col-12">
+        <?php $sideActive = 'videoPurchased'; ?>
+        <?php include $this->templateModule('front/user-profile-sidebar.phtml', 'user'); ?>
+    </div>
+    <div class="col-md-9 col-12">
+        <h1 class="mb-3"><?php echo $this->escape($title); ?></h1>
+        <?php if (isset($videoList) && !empty($videoList)) { ?>
+            <div class="clearfix row">
+                <?php foreach ($videoList as $videoSingle) { ?>
+                    <div class="col-md-3 col-12">
+                        <div class="card bg-light mb-3 text-center">
+                            <img class="card-img-top" src="<?php echo $this->escape($videoSingle['thumbUrl']); ?>" alt="<?php echo $this->escape($videoSingle['title']); ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"> <?php echo $this->escape($videoSingle['title']); ?></h5>
+                                <a class="btn btn-primary btn-block" title="<?php _e('View'); ?>" href="<?php echo $videoSingle['videoUrl']; ?>" target="_blank">
+                                    <i class="fas fa-eye"></i> <?php _e('View'); ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        <?php } else { ?>
+            <div class="alert alert-danger">
+                <?php _e('You still dont purchased any video yet !'); ?>
+            </div>
+        <?php } ?>
+    </div>
+</div>

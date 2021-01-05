@@ -17,11 +17,38 @@ use Pi;
 use Pi\Application\Api\AbstractApi;
 
 /*
- * Pi::api('order', 'video')->
+ * Pi::api('order', 'video')->purchasedVideos($params);
+ * Pi::api('order', 'video')->setAccess($video, $uid = '');
  */
 
 class Order extends AbstractApi
 {
+    public function purchasedVideos($params)
+    {
+        $list   = [];
+        $where  = ['uid' => $params['uid'], 'item_key like ?' => 'video-%'];
+        $select = Pi::model('access', 'order')->select()->where($where);
+        $rowSet = Pi::model('access', 'order')->selectWith($select);
+        foreach ($rowSet as $row) {
+            $key            = explode('-', $row->item_key);
+            $videoId        = $key[2];
+            $list[$videoId] = $videoId;
+        }
+
+        return $list;
+    }
+
+    public function setAccess($video, $uid = '')
+    {
+        $uid = !empty($uid) ? $uid : Pi::user()->getId();
+
+        $access = [
+            'item_key' => sprintf('video-single-%s-%s', $video['id'], $uid),
+        ];
+
+        return Pi::api('access', 'order')->setAccess($access);
+    }
+
     /*
      * Start Order module needed functions
      */
@@ -99,7 +126,7 @@ class Order extends AbstractApi
                 }
 
                 // Set Access
-                Pi::api('video', 'video')->setAccess($video, $order['uid']);
+                Pi::api('order', 'video')->setAccess($video, $order['uid']);
 
                 // Set url
                 return $video['videoUrl'];
@@ -121,11 +148,11 @@ class Order extends AbstractApi
                 foreach ($videoList as $videoSingle) {
                     // Set video
                     $video = [
-                        'id' => $videoSingle['video_id']
+                        'id' => $videoSingle['video_id'],
                     ];
 
                     // Set Access
-                    Pi::api('video', 'video')->setAccess($video, $order['uid']);
+                    Pi::api('order', 'video')->setAccess($video, $order['uid']);
                 }
 
                 // set back url
