@@ -44,13 +44,22 @@ if (isset($category['largeUrl']) && !empty($category['largeUrl'])) {
                      alt="<?php echo $this->escape($category['title']); ?>">
             </div>
         <?php */ } else { ?>
-            <div class="page-header">
+            <div class="page-header mb-3">
                 <h1 class="p-name" itemprop="name"><?php echo $this->escape($category['title']); ?></h1>
             </div>
         <?php } ?>
-        <?php if (!empty($category['text_summary'])) { ?>
-            <div class="e-description clearfix card card-body bg-light mb-3"
-                 itemprop="description"><?php echo $category['text_summary']; ?></div>
+        <?php $summery = $this->escape($category['text_summary']);
+        if (empty($summery)) {
+            $summery = $category['text_description'];
+        } ?>
+        <?php if (!empty($summery)) { ?>
+            <div class="e-description clearfix card bg-light mb-3" itemprop="description">
+                <div class="card-body">
+                    <div class="card-text">
+                        <?php echo $summery; ?>
+                    </div>
+                </div>
+            </div>
         <?php } ?>
     </div>
     <div class="clearfix">

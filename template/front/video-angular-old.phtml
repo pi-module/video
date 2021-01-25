@@ -90,7 +90,7 @@ switch ($config['view_column']) {
     </div>
     <div class="col-3">
         <div class="video-search-form card card-body bg-light mb-3 clearfix">
-            <div class="page-header">
+            <div class="page-header mb-3">
                 <h4><?php _e('Search on this group'); ?></h4>
             </div>
             <form>
@@ -152,7 +152,7 @@ switch ($config['view_column']) {
             </form>
         </div>
         <div class="clearfix category-list">
-            <div class="page-header">
+            <div class="page-header mb-3">
                 <h4><?php _e('Category list'); ?></h4>
             </div>
             <div class="clearfix">
@@ -164,11 +164,11 @@ switch ($config['view_column']) {
         <div class="clearfix">
             <div class="video-list clearfix">
                 <?php if (isset($videoTitleH1) && !empty($videoTitleH1)) { ?>
-                    <div class="page-header">
+                    <div class="page-header mb-3">
                         <h1><?php echo $videoTitleH1; ?></h1>
                     </div>
                 <?php } elseif (isset($videoTitleH2) && !empty($videoTitleH2)) { ?>
-                    <div class="page-header">
+                    <div class="page-header mb-3">
                         <h2><?php echo $videoTitleH2; ?></h2>
                     </div>
                 <?php } ?>
