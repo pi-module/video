@@ -36,55 +36,6 @@
         <h1><?php echo $this->escape($video['title']); ?></h1>
     </div>
     <div class="text-center video-player-box col-lg-8 col-md-8 offset-lg-2 offset-md-2">
-        <?php /* if ($video['server']['type'] == 'wowza') { ?>
-            <div class="clearfix">
-                <div id="videoContainer" class="overlay-parent">
-                    <video id="video"
-                           class="video-player"
-                           width="100%"
-                           poster="<?php echo $this->escape($videoItem['largeUrl']); ?>"
-                           controls
-                           autoplay></video>
-                </div>
-                <div class="card card-body bg-light mb-3 text-left">
-                    <div class="form-group">
-                        <label><?php _e('MPEG-Dash Url'); ?></label>
-                        <input type="text" class="form-control"
-                               value="<?php echo $this->escape($videoItem['mpegDashUrl']); ?>">
-                    </div>
-                    <div class="form-group">
-                        <label><?php _e('Adobe Hds Url'); ?></label>
-                        <input type="text" class="form-control"
-                               value="<?php echo $this->escape($videoItem['adobeHdsUrl']); ?>">
-                    </div>
-                    <div class="form-group">
-                        <label><?php _e('Jwplayer Url'); ?></label>
-                        <input type="text" class="form-control"
-                               value="<?php echo $this->escape($videoItem['jwplayerUrl']); ?>">
-                    </div>
-                    <div class="form-group">
-                        <label><?php _e('IOS Url'); ?></label>
-                        <input type="text" class="form-control"
-                               value="<?php echo $this->escape($videoItem['iosUrl']); ?>">
-                    </div>
-                    <div class="form-group">
-                        <label><?php _e('Android Url'); ?></label>
-                        <input type="text" class="form-control"
-                               value="<?php echo $this->escape($videoItem['androidUrl']); ?>">
-                    </div>
-                    <div class="form-group">
-                        <label><?php _e('RTSP Url'); ?></label>
-                        <input type="text" class="form-control"
-                               value="<?php echo $this->escape($videoItem['rtspUrl']); ?>">
-                    </div>
-                    <div class="form-group">
-                        <label><?php _e('RTMP Url'); ?></label>
-                        <input type="text" class="form-control"
-                               value="<?php echo $this->escape($videoItem['rtmpUrl']); ?>">
-                    </div>
-                </div>
-            </div>
-        <?php } */ ?>
         <?php if (!empty($video['video_url'])) { ?>
         <div class="clearfix">
             <?php if (in_array($video['player_type'], ['mp4', 'hls'])) { ?>

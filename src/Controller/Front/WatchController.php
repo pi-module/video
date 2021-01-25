@@ -123,7 +123,7 @@ class WatchController extends IndexController
         $this->view()->headDescription($video['seo_description'], 'set');
         $this->view()->headKeywords($video['seo_keywords'], 'set');
         $this->view()->setTemplate('video-watch');
-        $this->view()->assign('videoItem', $video);
+        $this->view()->assign('videoSingle', $video);
         $this->view()->assign('categoryItem', $video['categories']);
         $this->view()->assign('config', $config);
         $this->view()->assign('submitter', $submitter);
