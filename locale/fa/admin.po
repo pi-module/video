@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2020-12-07 21:16+0330\n"
+"POT-Creation-Date: 2021-01-25 14:29+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -259,8 +259,8 @@ msgid "List of all videos"
 msgstr "فهرست تمام ویدیو ها"
 
 #: config/config.php:83
-msgid "List of custom widgets"
-msgstr "فهرست بلاک ها به صورت دستی"
+msgid "List of categories"
+msgstr "فهرست موضوعات"
 
 #: config/config.php:93
 msgid "Homepage title"
@@ -572,6 +572,9 @@ msgstr "دسترسی های عمومی"
 msgid "Are you sure to delete this video?"
 msgstr "آیا اطمینان دارید که میخواهید این ویدیو را حذف کنید؟"
 
+#~ msgid "List of custom widgets"
+#~ msgstr "فهرست بلاک ها به صورت دستی"
+
 #~ msgid "Perpage on json output"
 #~ msgstr "تعداد در صفحه در خروجی جیسون"
 
@@ -760,9 +763,6 @@ msgstr "آیا اطمینان دارید که میخواهید این ویدیو
 
 #~ msgid "Number of stroies for each topic"
 #~ msgstr "تعداد مطالب برای هر موضوع"
-
-#~ msgid "List of topic"
-#~ msgstr "فهرست موضوعات"
 
 #~ msgid "Topic order"
 #~ msgstr "مرتب سازی موضوعات"

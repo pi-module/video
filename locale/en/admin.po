@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2020-12-07 21:12+0330\n"
+"POT-Creation-Date: 2021-01-25 14:31+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -258,7 +258,7 @@ msgid "List of all videos"
 msgstr ""
 
 #: config/config.php:83
-msgid "List of custom widgets"
+msgid "List of categories"
 msgstr ""
 
 #: config/config.php:93

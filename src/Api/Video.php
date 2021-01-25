@@ -302,7 +302,6 @@ class Video extends AbstractApi
         $video['sale_price_view'] = __('Free');
         if ($video['sale_price'] > 0) {
             $video['sale_price_view'] = Pi::api('api', 'video')->viewPrice($video['sale_price']);
-            ;
         }
 
         // Set video url

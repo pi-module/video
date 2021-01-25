@@ -28,68 +28,6 @@ if (isset($videoItem['largeUrl']) && !empty($videoItem['largeUrl'])) {
     $this->headMeta($this->escape($videoItem['largeUrl']), 'twitter:image');
 }
 $this->headMeta($this->escape($videoItem['videoUrl']), 'twitter:player');
-
-/* if ($access) {
-    if ($videoItem['server']['type'] == 'wowza') {
-        $this->jQuery();
-        $this->js($this->assetModule('player/shaka/shaka-player.compiled.js'));
-        $script
-                = <<<'EOT'
-    var manifestUri = '%s';
-
-    function initApp() {
-        // Install built-in polyfills to patch browser incompatibilities.
-        shaka.polyfill.installAll();
-
-        // Check to see if the browser supports the basic APIs Shaka needs.
-        if (shaka.Player.isBrowserSupported()) {
-            // Everything looks good!
-            initPlayer();
-        } else {
-            // This browser does not have the minimum set of APIs we need.
-            console.error('Browser not supported!');
-        }
-    }
-
-    function initPlayer() {
-        // Create a Player instance.
-        var video = document.getElementById('video');
-        var player = new shaka.Player(video);
-
-        // Attach player to the window to make it easy to access in the JS console.
-        window.player = player;
-
-        // Set config
-        // player.configure({});
-
-        // Listen for error events.
-        player.addEventListener('error', onErrorEvent);
-
-        // Try to load a manifest.
-        // This is an asynchronous process.
-        player.load(manifestUri).then(function() {
-            // This runs if the asynchronous load is successful.
-            console.log('The video has now been loaded!');
-        }).catch(onError);  // onError is executed if the asynchronous load fails.
-    }
-
-    function onErrorEvent(event) {
-        // Extract the shaka.util.Error object from the event.
-        onError(event.detail);
-    }
-
-    function onError(error) {
-        // Log the error.
-        console.error('Error code', error.code, 'object', error);
-    }
-
-    document.addEventListener('DOMContentLoaded', initApp);
-EOT;
-        $script = sprintf($script, $videoItem['mpegDashUrl']);
-        $this->footScript()->appendScript($script);
-        $os = Pi::service('browser')->getPlatform();
-    }
-} */
 ?>
 <div class="clearfix video-page" itemscope itemtype="https://schema.org/VideoObject">
     <div class="page-header mb-3">

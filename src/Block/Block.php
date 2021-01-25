@@ -20,10 +20,14 @@ class Block
 {
     public static function videoNew($options = [], $module = null)
     {
+        // Set words
+        _b('Free');
+
         // Set options
         $block = [];
         $block = array_merge($block, $options);
         $video = [];
+
         // Set info
         $order = ['time_create DESC', 'id DESC'];
         $limit = intval($block['number']);
@@ -31,6 +35,7 @@ class Block
             && !empty($block['category'])
             && !in_array(0, $block['category'])
         ) {
+
             // Set info
             $where = [
                 'status'   => 1,
@@ -39,15 +44,19 @@ class Block
             if ($block['recommended']) {
                 $where['recommended'] = 1;
             }
+
             // Set info
             $columns = ['video' => new Expression('DISTINCT video'), '*'];
+
             // Get info from link table
             $select = Pi::model('link', $module)->select()->where($where)->columns($columns)->order($order)->limit($limit);
             $rowSet = Pi::model('link', $module)->selectWith($select)->toArray();
+
             // Make list
             foreach ($rowSet as $id) {
                 $videoId[] = $id['video'];
             }
+
             // Set info
             $where = ['status' => 1, 'id' => $videoId];
         } else {
@@ -56,13 +65,16 @@ class Block
                 $where['recommended'] = 1;
             }
         }
+
         // Get list of video
         $select = Pi::model('video', $module)->select()->where($where)->order($order)->limit($limit);
         $rowSet = Pi::model('video', $module)->selectWith($select);
+
         // Make list
         foreach ($rowSet as $row) {
             $video[$row->id] = Pi::api('video', 'video')->canonizeVideo($row);
         }
+
         // Set block array
         $block['resources'] = $video;
         return $block;

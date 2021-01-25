@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: video\n"
-"POT-Creation-Date: 2020-12-07 21:15+0330\n"
+"POT-Creation-Date: 2021-01-25 14:30+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,6 +14,10 @@ msgstr ""
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: src/Block/Block.php:24
+msgid "Free"
+msgstr "رایگان"
 
 #: template/block/video-hits.phtml:196 template/block/video-new.phtml:190
 #: template/block/video-random.phtml:196 template/block/video-tag.phtml:196
