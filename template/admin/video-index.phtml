@@ -37,6 +37,12 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                 <th><?php _e('Id'); ?></th>
                 <th><?php _e('Title'); ?></th>
                 <th><?php _e('Server'); ?></th>
+                <?php if (isset($config['dashboard_active']) && intval($config['dashboard_active']) == 1 && isset($companyList) && !empty($companyList)) { ?>
+                    <th><?php _e('Company'); ?></th>
+                <?php } ?>
+                <?php if (isset($config['sale_video']) && intval($config['sale_video']) == 1) { ?>
+                    <th><?php _e('Price'); ?></th>
+                <?php } ?>
                 <th><?php _e('Action'); ?></th>
             </tr>
             <?php foreach ($list as $video) { ?>
@@ -69,6 +75,20 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                     <td>
                         <?php echo $this->escape($video['server']['title']); ?> ( <small><?php echo $this->escape($video['server']['type_view']); ?></small> )
                     </td>
+
+
+                    <?php if (isset($config['dashboard_active']) && intval($config['dashboard_active']) == 1 && isset($companyList) && !empty($companyList)) { ?>
+                        <?php if (isset($video['company_id']) && intval($video['company_id']) > 0) { ?>
+                            <td><?php echo $companyList[$video['company_id']]['title'] ?></td>
+                        <?php } else { ?>
+                            <td> - </td>
+                        <?php } ?>
+                    <?php } ?>
+                    <?php if (isset($config['sale_video']) && intval($config['sale_video']) == 1) { ?>
+                        <td><?php echo $this->escape($video['sale_price_view']); ?></td>
+                    <?php } ?>
+
+
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">

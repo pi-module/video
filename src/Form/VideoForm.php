@@ -217,6 +217,24 @@ class VideoForm extends BaseForm
             );
         }
 
+        // company_id
+        if ($this->option['dashboard_active'] && Pi::service('module')->isActive('company')) {
+            $this->add(
+                [
+                    'name'       => 'company_id',
+                    'type'       => 'Module\Company\Form\Element\InventoryList',
+                    'options'    => [
+                        'label'    => __('Company'),
+                    ],
+                    'attributes' => [
+                        'size'     => 1,
+                        'multiple' => 0,
+                        'required' => false,
+                    ],
+                ]
+            );
+        }
+
         // main_image
         $this->add(
             [

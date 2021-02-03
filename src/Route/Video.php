@@ -32,7 +32,7 @@ class Video extends Standard
 
     protected $controllerList
         = [
-            'category', 'channel', 'favourite', 'index', 'dashboard', 'tag', 'watch', 'order', 'json'
+            'category', 'channel', 'favourite', 'index', 'dashboard', 'tag', 'watch', 'order', 'json',
         ];
 
     /**
@@ -70,7 +70,7 @@ class Video extends Standard
                     case 'order':
                         if (urldecode($parts[1]) == 'playlist') {
                             $matches['action'] = 'playlist';
-                            $matches['id']   = urldecode($parts[2]);
+                            $matches['id']     = urldecode($parts[2]);
                         } else {
                             $matches['action'] = 'index';
                             $matches['slug']   = urldecode($parts[1]);
@@ -96,10 +96,12 @@ class Video extends Standard
                         break;
 
                     case 'dashboard':
-                        if (in_array($parts[1], ['index', 'purchased'])) {
+                        if (in_array($parts[1], ['index', 'purchased', 'list', 'manage', 'add', 'attribute', 'sale'])) {
                             $matches['action'] = $parts[1];
-                            if (is_numeric($parts[2])) {
+                            if (isset($parts[2]) && is_numeric($parts[2])) {
                                 $matches['id'] = intval($parts[2]);
+                            } elseif (isset($parts[2])) {
+                                $matches['slug']   = urldecode($parts[2]);
                             }
                         }
                         break;

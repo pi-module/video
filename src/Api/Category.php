@@ -19,7 +19,7 @@ use Laminas\Db\Sql\Predicate\Expression;
 
 /*
  * Pi::api('category', 'video')->getCategory($parameter, $type = 'id');
- * Pi::api('category', 'video')->setLink($video, $category, $create, $update, $status, $uid, $hits, $recommended);
+ * Pi::api('category', 'video')->setLink($video, $category, $create, $update, $status, $uid, $hits, $recommended, $company);
  * Pi::api('category', 'video')->findFromCategory($category);
  * Pi::api('category', 'video')->categoryList($parent);
  * Pi::api('category', 'video')->categoryListJson();
@@ -39,7 +39,7 @@ class Category extends AbstractApi
         return $category;
     }
 
-    public function setLink($video, $category, $create, $update, $status, $uid, $hits, $recommended = 0)
+    public function setLink($video, $category, $create, $update, $status, $uid, $hits, $recommended = 0, $company = 0)
     {
         // Remove
         Pi::model('link', $this->getModule())->delete(['video' => $video]);
@@ -47,15 +47,19 @@ class Category extends AbstractApi
         // Add
         $allCategory = json_decode($category, true);
         foreach ($allCategory as $category) {
-            // Set array
-            $values['video']       = $video;
-            $values['category']    = $category;
-            $values['time_create'] = $create;
-            $values['time_update'] = $update;
-            $values['status']      = $status;
-            $values['uid']         = $uid;
-            $values['hits']        = $hits;
-            $values['recommended'] = $recommended;
+
+            $values = [
+                'video'       => $video,
+                'category'    => $category,
+                'time_create' => $create,
+                'time_update' => $update,
+                'status'      => $status,
+                'uid'         => $uid,
+                'hits'        => $hits,
+                'recommended' => $recommended,
+                'company'     => $company,
+            ];
+
             // Save
             $row = Pi::model('link', $this->getModule())->createRow();
             $row->assign($values);

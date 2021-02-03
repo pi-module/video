@@ -21,8 +21,8 @@ return [
             'name'  => 'view',
         ],
         [
-            'title' => _a('Submit'),
-            'name'  => 'submit',
+            'title' => _a('Company dashboard'),
+            'name'  => 'dashboard',
         ],
         [
             'title' => _a('Media'),
@@ -178,10 +178,10 @@ return [
             'filter'      => 'number_int',
             'value'       => 0,
         ],
-        // Submit
-        'user_submit'               => [
-            'category'    => 'submit',
-            'title'       => _a('Users can submit videos'),
+        // dashboard
+        'dashboard_active'               => [
+            'category'    => 'dashboard',
+            'title'       => _a('Active dashboard for companies and users'),
             'description' => '',
             'edit'        => 'checkbox',
             'filter'      => 'number_int',

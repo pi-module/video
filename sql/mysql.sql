@@ -20,6 +20,7 @@ CREATE TABLE `{video}`
     `category`          VARCHAR(255)          NOT NULL DEFAULT '',
     `category_main`     INT(10) UNSIGNED      NOT NULL DEFAULT '0',
     `brand`             INT(10) UNSIGNED      NOT NULL DEFAULT '0',
+    `company_id`        INT(10) UNSIGNED      NOT NULL DEFAULT '0',
     `text_summary`      TEXT,
     `text_description`  TEXT,
     `seo_title`         VARCHAR(255)          NOT NULL DEFAULT '',
@@ -43,6 +44,7 @@ CREATE TABLE `{video}`
     `favourite`         INT(10) UNSIGNED      NOT NULL DEFAULT '0',
     `sale_type`         ENUM ('free', 'paid') NOT NULL DEFAULT 'free',
     `sale_price`        DECIMAL(16, 2)        NOT NULL DEFAULT '0.00',
+    `sale_count`        INT(10) UNSIGNED      NOT NULL DEFAULT '0',
     `video_server`      INT(10) UNSIGNED      NOT NULL DEFAULT '0',
     `video_path`        VARCHAR(64)           NOT NULL DEFAULT '',
     `video_file`        VARCHAR(64)           NOT NULL DEFAULT '',
@@ -107,6 +109,7 @@ CREATE TABLE `{link}`
     `recommended` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
     `hits`        INT(10) UNSIGNED    NOT NULL DEFAULT '0',
     `uid`         INT(10) UNSIGNED    NOT NULL DEFAULT '0',
+    `company_id`  INT(10) UNSIGNED    NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     KEY `video` (`video`),
     KEY `category` (`category`),
@@ -232,6 +235,7 @@ CREATE TABLE `{playlist_inventory}`
     `time_update`      INT(10) UNSIGNED    NOT NULL DEFAULT '0',
     `uid`              INT(10) UNSIGNED    NOT NULL DEFAULT '0',
     `hits`             INT(10) UNSIGNED    NOT NULL DEFAULT '0',
+    `company_id`       INT(10) UNSIGNED    NOT NULL DEFAULT '0',
     `main_image`       INT(10) UNSIGNED    NOT NULL DEFAULT '0',
     `sale_price`       DECIMAL(16, 2)      NOT NULL DEFAULT '0.00',
     `back_url`         VARCHAR(255)        NOT NULL DEFAULT '',
@@ -245,5 +249,6 @@ CREATE TABLE `{playlist_video}`
     `video_id`    INT(10) UNSIGNED NOT NULL DEFAULT '0',
     `video_order` INT(10) UNSIGNED NOT NULL DEFAULT '0',
     `time_create` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+    `company_id`  INT(10) UNSIGNED NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`)
 );

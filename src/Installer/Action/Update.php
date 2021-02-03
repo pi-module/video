@@ -44,10 +44,20 @@ class Update extends BasicUpdate
         $videoTable   = $videoModel->getTable();
         $videoAdapter = $videoModel->getAdapter();
 
+        // Set video model
+        $linkModel   = Pi::model('link', $this->module);
+        $linkTable   = $linkModel->getTable();
+        $linkAdapter = $linkModel->getAdapter();
+
         // Set playlist_inventory model
         $playlistInventoryModel   = Pi::model('playlist_inventory', $this->module);
         $playlistInventoryTable   = $playlistInventoryModel->getTable();
         $playlistInventoryAdapter = $playlistInventoryModel->getAdapter();
+
+        // Set playlist_video model
+        $playlistVideoModel   = Pi::model('playlist_video', $this->module);
+        $playlistVideoTable   = $playlistVideoModel->getTable();
+        $playlistVideoAdapter = $playlistVideoModel->getAdapter();
 
         // Update to version 1.5.0
         if (version_compare($moduleVersion, '1.5.0', '<')) {
@@ -181,6 +191,90 @@ EOD;
             $sql = sprintf("ALTER TABLE %s ADD `back_url` VARCHAR(255) NOT NULL DEFAULT ''", $playlistInventoryTable);
             try {
                 $playlistInventoryAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult(
+                    'db',
+                    [
+                        'status'  => false,
+                        'message' => 'Table alter query failed: '
+                            . $exception->getMessage(),
+                    ]
+                );
+                return false;
+            }
+        }
+
+        // Update to version 1.5.4
+        if (version_compare($moduleVersion, '1.5.8', '<')) {
+
+            // Alter table : ADD company_id
+            $sql = sprintf("ALTER TABLE %s ADD `company_id` INT(10) UNSIGNED NOT NULL DEFAULT '0'", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult(
+                    'db',
+                    [
+                        'status'  => false,
+                        'message' => 'Table alter query failed: '
+                            . $exception->getMessage(),
+                    ]
+                );
+                return false;
+            }
+
+            // Alter table : ADD company_id
+            $sql = sprintf("ALTER TABLE %s ADD `company_id` INT(10) UNSIGNED NOT NULL DEFAULT '0'", $linkTable);
+            try {
+                $linkAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult(
+                    'db',
+                    [
+                        'status'  => false,
+                        'message' => 'Table alter query failed: '
+                            . $exception->getMessage(),
+                    ]
+                );
+                return false;
+            }
+
+            // Alter table : ADD company_id
+            $sql = sprintf("ALTER TABLE %s ADD `company_id` INT(10) UNSIGNED NOT NULL DEFAULT '0'", $playlistInventoryTable);
+            try {
+                $playlistInventoryAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult(
+                    'db',
+                    [
+                        'status'  => false,
+                        'message' => 'Table alter query failed: '
+                            . $exception->getMessage(),
+                    ]
+                );
+                return false;
+            }
+
+            // Alter table : ADD company_id
+            $sql = sprintf("ALTER TABLE %s ADD `company_id` INT(10) UNSIGNED NOT NULL DEFAULT '0'", $playlistVideoTable);
+            try {
+                $playlistVideoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult(
+                    'db',
+                    [
+                        'status'  => false,
+                        'message' => 'Table alter query failed: '
+                            . $exception->getMessage(),
+                    ]
+                );
+                return false;
+            }
+
+            // Alter table : ADD sale_count
+            $sql = sprintf("ALTER TABLE %s ADD `sale_count` INT(10) UNSIGNED NOT NULL DEFAULT '0'", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
                 $this->setResult(
                     'db',

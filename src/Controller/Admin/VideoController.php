@@ -160,12 +160,19 @@ class VideoController extends ActionController
         $form->setAttribute('action', $this->url('', ['action' => 'process']));
         $form->setData($values);
 
+        // Get company
+        $companyList = [];
+        if ($config['dashboard_active'] && Pi::service('module')->isActive('company')) {
+            $companyList = Pi::registry('inventoryList', 'company')->read();
+        }
+
         // Set view
         $this->view()->setTemplate('video-index');
         $this->view()->assign('list', $video);
         $this->view()->assign('paginator', $paginator);
         $this->view()->assign('form', $form);
         $this->view()->assign('config', $config);
+        $this->view()->assign('companyList', $companyList);
     }
 
     public function processAction()
@@ -452,9 +459,10 @@ class VideoController extends ActionController
 
         // Get config
         $option = [
-            'brand_system' => $config['brand_system'],
-            'id'           => $id,
-            'sale_video'   => $config['sale_video'],
+            'id'               => $id,
+            'brand_system'     => $config['brand_system'],
+            'sale_video'       => $config['sale_video'],
+            'dashboard_active' => $config['dashboard_active'],
         ];
 
         // Find video
@@ -535,7 +543,8 @@ class VideoController extends ActionController
                     $row->status,
                     $row->uid,
                     $row->hits,
-                    $row->recommended
+                    $row->recommended,
+                    $row->company_id
                 );
 
                 // playlist
@@ -562,7 +571,6 @@ class VideoController extends ActionController
                     // Update sitemap
                     Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->status, $module, 'video', $row->id);
                 }
-
 
                 // Jump
                 $message = __('Video data saved successfully.');

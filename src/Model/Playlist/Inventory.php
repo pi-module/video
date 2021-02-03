@@ -34,6 +34,7 @@ class Inventory extends Model
             'time_update',
             'uid',
             'hits',
+            'company_id',
             'main_image',
             'sale_price',
             'back_url',

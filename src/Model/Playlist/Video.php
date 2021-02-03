@@ -27,5 +27,6 @@ class Video extends Model
             'video_id',
             'video_order',
             'time_create',
+            'company_id',
         ];
 }

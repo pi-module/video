@@ -363,7 +363,8 @@ class CategoryController extends ActionController
                     $video['status'],
                     $video['uid'],
                     $video['hits'],
-                    $video['recommended']
+                    $video['recommended'],
+                    $video['company_id']
                 );
 
                 // Update video
@@ -597,7 +598,8 @@ class CategoryController extends ActionController
                     $video['status'],
                     $video['uid'],
                     $video['hits'],
-                    $video['recommended']
+                    $video['recommended'],
+                    $video['company_id']
                 );
 
                 // Update video
