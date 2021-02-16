@@ -57,7 +57,7 @@ class Category extends AbstractApi
                 'uid'         => $uid,
                 'hits'        => $hits,
                 'recommended' => $recommended,
-                'company'     => $company,
+                'company_id'  => $company,
             ];
 
             // Save
