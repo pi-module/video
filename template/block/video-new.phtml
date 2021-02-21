@@ -25,28 +25,26 @@
 }
 ?>
 <div class="video-block video-block-new">
-    <div class="clearfix">
+    <div class="clearfix row">
         <?php if ($block['list-type'] == 'horizontal') { ?>
             <?php foreach ($block['resources'] as $video) { ?>
-                <div class="<?php echo $videoBlockBoxSize; ?> videoBox h-review" itemscope
-                     itemtype="https://schema.org/VideoObject">
-                    <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
-                    <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
-                    <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
-                    <?php if ($video['main_image']) { ?>
-                        <a itemprop="url" class="card-img-top u-photo" title="<?php echo $this->escape($video['title']); ?>"
-                           href="<?php echo $this->escape($video['videoUrl']); ?>">
-                            <img itemprop="image" src="<?php echo $video['thumbUrl']; ?>"
-                                 alt="<?php echo $this->escape($video['title']); ?>"/>
-                        </a>
-                    <?php } ?>
-                    <div class="card-title">
-                        <h4 itemprop="name" class="card-title p-name">
-                            <a itemprop="url" title="<?php echo $this->escape($video['title']); ?>"
-                               href="<?php echo $this->escape($video['videoUrl']); ?>">
-                                <?php echo $this->escape($video['title']); ?>
+                <div class="<?php echo $videoBlockBoxSize; ?>">
+                    <div class="card mb-3 videoBox h-review" itemscope itemtype="https://schema.org/VideoObject">
+                        <meta itemprop="thumbnail" content="<?php echo $this->escape($video['largeUrl']); ?>"/>
+                        <meta itemprop="datePublished" content="<?php echo $this->escape(date("Y-m-d H:i:s", $video['time_create'])); ?>"/>
+                        <meta itemprop="contentUrl" content="<?php echo $this->escape($video['video_url']); ?>"/>
+                        <?php if ($video['main_image']) { ?>
+                            <a itemprop="url" class="card-img-top u-photo" title="<?php echo $this->escape($video['title']); ?>" href="<?php echo $this->escape($video['videoUrl']); ?>">
+                                <img itemprop="image" src="<?php echo $video['thumbUrl']; ?>" alt="<?php echo $this->escape($video['title']); ?>"/>
                             </a>
-                        </h4>
+                        <?php } ?>
+                        <div class="card-body">
+                            <h4 itemprop="name" class="card-title p-name">
+                                <a itemprop="url" title="<?php echo $this->escape($video['title']); ?>" href="<?php echo $this->escape($video['videoUrl']); ?>">
+                                    <?php echo $this->escape($video['title']); ?>
+                                </a>
+                            </h4>
+                        </div>
                     </div>
                 </div>
             <?php } ?>

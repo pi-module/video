@@ -30,27 +30,31 @@
             <div class="category-width-image">
                 <img class="img-fluid" itemprop="image" src="<?php echo $category['image_wide']; ?>" alt="<?php echo $this->escape($category['title']); ?>">
             </div>
-        <?php /* } elseif (!empty($category['largeUrl'])) { ?>
-            <div class="category-width-description">
-                <h1 class="p-name" itemprop="name"><?php echo $this->escape($category['title']); ?></h1>
-                <?php if (!empty($category['text_summary'])) { ?>
-                    <div class="clearfix"><?php echo $category['text_summary']; ?></div>
-                <?php } ?>
+        <?php } elseif (!empty($category['largeUrl'])) { ?>
+            <div class="row clearfix text-justify">
+                <div class="col-12 col-md-8">
+                    <h1 class="p-name" itemprop="name"><?php echo $this->escape($category['title']); ?></h1>
+                    <?php if (!empty($category['text_summary'])) { ?>
+                        <div class="e-description clearfix mb-3" itemprop="description"><?php echo $category['text_summary']; ?></div>
+                    <?php } ?>
+                    <?php if (!empty($category['text_description']) && $config['view_description_category']) { ?>
+                        <div class="e-description clearfix mb-3" itemprop="description"><?php echo $category['text_description']; ?></div>
+                    <?php } ?>
+                </div>
+                <div class="col-12 col-md-4">
+                        <img class="img-fluid" itemprop="image" src="<?php echo $category['largeUrl']; ?>" alt="<?php echo $this->escape($category['title']); ?>">
+                </div>
             </div>
-            <div class="category-width-image">
-                <img class="img-fluid" itemprop="image" src="<?php echo $category['largeUrl']; ?>"
-                     alt="<?php echo $this->escape($category['title']); ?>">
-            </div>
-        <?php */ } else { ?>
+        <?php } else { ?>
             <div class="page-header mb-3">
                 <h1 class="p-name" itemprop="name"><?php echo $this->escape($category['title']); ?></h1>
             </div>
             <?php if (!empty($category['text_summary'])) { ?>
                 <div class="e-description clearfix card card-body bg-light mb-3" itemprop="description"><?php echo $category['text_summary']; ?></div>
             <?php } ?>
-        <?php } ?>
-        <?php if (!empty($category['text_description']) && $config['view_description_category']) { ?>
-            <div class="e-description clearfix card card-body bg-light mb-3" itemprop="description"><?php echo $category['text_description']; ?></div>
+            <?php if (!empty($category['text_description']) && $config['view_description_category']) { ?>
+                <div class="e-description clearfix card card-body bg-light mb-3" itemprop="description"><?php echo $category['text_description']; ?></div>
+            <?php } ?>
         <?php } ?>
     </div>
 <?php } ?>
