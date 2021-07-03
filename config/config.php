@@ -360,6 +360,15 @@ return [
             'value'       => 'bottom-right',
             'category'    => 'image',
         ],
+        'image_wide'    => [
+            'category'    => 'image',
+            'title'       => _a('General wide image'),
+            'description' => '',
+            'edit'        => 'text',
+            'filter'      => 'string',
+            'value'       => '',
+        ],
+
         // Order
         'sale_video'               => [
             'title'       => _a('Sale video'),

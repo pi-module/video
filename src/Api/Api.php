@@ -54,6 +54,9 @@ class Api extends AbstractApi
         // Get config
         $config = Pi::service('registry')->config->read($module);
 
+        // Set wide image
+        $imageWide = $config['image_wide'];
+
         // Set empty result
         $result = [
             'videos'     => [],
@@ -133,6 +136,11 @@ class Api extends AbstractApi
             // Set page title
             //$pageTitle = sprintf(__('List of videos on %s category'), $category['title']);
             $pageTitle = $category['title'];
+
+            // Set wide image
+            if (isset($category['image_wide']) && !empty($category['image_wide'])) {
+                $imageWide = $category['image_wide'];
+            }
         }
 
         // Get tag list
@@ -344,7 +352,8 @@ class Api extends AbstractApi
                 'page'  => $page,
             ],
             'condition'  => [
-                'title' => $pageTitle,
+                'title'      => $pageTitle,
+                'image_wide' => $imageWide,
             ],
         ];
 
