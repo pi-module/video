@@ -23,7 +23,7 @@ class Video extends Standard
      *
      * @var array
      */
-    protected array $defaults
+    protected $defaults
         = [
             'module'     => 'video',
             'controller' => 'index',
@@ -38,7 +38,7 @@ class Video extends Standard
     /**
      * {@inheritDoc}
      */
-    protected string $structureDelimiter = '/';
+    protected $structureDelimiter = '/';
 
     /**
      * {@inheritDoc}
