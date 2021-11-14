@@ -18,7 +18,7 @@ use Laminas\Db\Sql\Predicate\Expression;
 
 class Block
 {
-    public static function videoNew($options = [], $module = null)
+    public static function videoNew($options = [], $module = null): array
     {
         // Set words
         _b('Free');
@@ -80,7 +80,7 @@ class Block
         return $block;
     }
 
-    public static function videoRandom($options = [], $module = null)
+    public static function videoRandom($options = [], $module = null): array
     {
         // Set options
         $block = [];
@@ -124,7 +124,7 @@ class Block
         return $block;
     }
 
-    public static function videoTag($options = [], $module = null)
+    public static function videoTag($options = [], $module = null): array
     {
         // Set options
         $block = [];
@@ -159,7 +159,7 @@ class Block
         return $block;
     }
 
-    public static function videoHits($options = [], $module = null)
+    public static function videoHits($options = [], $module = null): array
     {
         // Set options
         $block = [];
@@ -206,7 +206,7 @@ class Block
         return $block;
     }
 
-    public static function videoSelect($options = [], $module = null)
+    public static function videoSelect($options = [], $module = null): bool|array
     {
         // Set options
         $block = [];

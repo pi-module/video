@@ -23,22 +23,22 @@ class Category extends AbstractValidator
     /**
      * @var array
      */
-    protected $messageTemplates
+    protected array $messageTemplates
         = [
             self::TAKEN => 'Please select category',
         ];
 
-    protected $options = [];
+    protected array $options = [];
 
     /**
      * Slug validate
      *
      * @param mixed $value
-     * @param array $context
+     * @param array|null $context
      *
      * @return boolean
      */
-    public function isValid($value, $context = null)
+    public function isValid($value, array $context = null): bool
     {
         $this->setValue($value);
         $value = intval($value);

@@ -56,9 +56,13 @@ $this->headMeta($this->escape($videoSingle['videoUrl']), 'twitter:player');
                 </ul>
             </div>
             <?php if ($access) { ?>
-                <div class="text-center video-player">
+                <div class="text-center video-player w-100">
                     <div class="clearfix">
-                        <?php echo $this->video($videoSingle['player']); ?>
+                        <?php if ($videoSingle['player_type'] == 'embed') { ?>
+                            <?php echo $videoSingle['player']; ?>
+                        <?php } else { ?>
+                            <?php echo $this->video($videoSingle['player']); ?>
+                        <?php } ?>
                     </div>
                 </div>
             <?php } else { ?>

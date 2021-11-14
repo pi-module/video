@@ -15,14 +15,14 @@ namespace Module\Video\Server;
 
 class File extends AbstractAdapter
 {
-    private $streamType = 'mp4';
+    private string $streamType = 'mp4';
 
-    public function getType()
+    public function getType(): string
     {
         return $this->streamType;
     }
 
-    public function getUrl($params)
+    public function getUrl($params): string
     {
         // Set stream type
         $streamType = isset($params['streamType']) ? $params['streamType'] : $this->streamType;

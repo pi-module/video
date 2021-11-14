@@ -23,12 +23,12 @@ class SlugDuplicate extends AbstractValidator
     /**
      * @var array
      */
-    protected $messageTemplates
+    protected array $messageTemplates
         = [
             self::TAKEN => 'This slug already exists',
         ];
 
-    protected $options
+    protected array $options
         = [
             'module', 'table', 'id'
         ];
@@ -37,11 +37,11 @@ class SlugDuplicate extends AbstractValidator
      * Slug validate
      *
      * @param mixed $value
-     * @param array $context
+     * @param array|null $context
      *
      * @return boolean
      */
-    public function isValid($value, $context = null)
+    public function isValid($value, array $context = null): bool
     {
         $this->setValue($value);
         if (null !== $value) {

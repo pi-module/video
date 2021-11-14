@@ -15,22 +15,20 @@ namespace Module\Video\Server;
 
 class Youtube extends AbstractAdapter
 {
-    private $streamType = 'embed';
+    private string $streamType = 'embed';
 
-    public function getType()
+    public function getType(): string
     {
         return $this->streamType;
     }
 
-    public function getUrl($params)
+    public function getUrl($params): string
     {
         // Set url
-        $url = sprintf('https://www.youtube.com/embed/%s', $params['streamName']);
-
-        return $url;
+        return sprintf('https://www.youtube.com/embed/%s', $params['streamName']);
     }
 
-    public function player($params)
+    public function player($params): string
     {
         // Set template
         $template
@@ -39,8 +37,6 @@ class Youtube extends AbstractAdapter
 EOT;
 
         // Set player
-        $player = sprintf($template, $params['videoUrl']);
-
-        return $player;
+        return sprintf($template, $params['videoUrl']);
     }
 }

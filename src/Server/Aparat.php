@@ -15,22 +15,23 @@ namespace Module\Video\Server;
 
 class Aparat extends AbstractAdapter
 {
-    private $streamType = 'embed';
+    private string $streamType = 'embed';
 
-    public function getType()
+    public function getType(): string
     {
         return $this->streamType;
     }
 
-    public function getUrl($params)
+    public function getUrl($params): string
     {
         // Set url
-        $url = sprintf('https://www.aparat.com/embed/qaeTw?data[rnddiv]=%s&data[responsive]=yes', $params['streamName']);
-
-        return $url;
+        return sprintf('https://www.aparat.com/embed/%s?data[rnddiv]=%s&data[responsive]=yes',
+            $params['streamName'],
+            $params['streamPath']
+        );
     }
 
-    public function getPlayer($params)
+    public function getPlayer($params): string
     {
         // Set template
         $template
@@ -41,8 +42,6 @@ class Aparat extends AbstractAdapter
 EOT;
 
         // Set player
-        $player = sprintf($template, $params['streamName'], $params['videoUrl']);
-
-        return $player;
+        return sprintf($template, $params['streamName'], $params['videoUrl']);
     }
 }

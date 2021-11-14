@@ -23,7 +23,7 @@ class Update extends BasicUpdate
     /**
      * {@inheritDoc}
      */
-    protected function attachDefaultListeners()
+    protected function attachDefaultListeners(): static
     {
         $events = $this->events;
         $events->attach('update.pre', [$this, 'updateSchema']);
@@ -35,7 +35,7 @@ class Update extends BasicUpdate
     /**
      * {@inheritDoc}
      */
-    public function updateSchema(Event $e)
+    public function updateSchema(Event $e): bool
     {
         $moduleVersion = $e->getParam('version');
 

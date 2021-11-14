@@ -23,14 +23,14 @@ class Video extends Standard
      *
      * @var array
      */
-    protected $defaults
+    protected array $defaults
         = [
             'module'     => 'video',
             'controller' => 'index',
             'action'     => 'index',
         ];
 
-    protected $controllerList
+    protected array $controllerList
         = [
             'category', 'channel', 'favourite', 'index', 'dashboard', 'tag', 'watch', 'order', 'json',
         ];
@@ -38,12 +38,12 @@ class Video extends Standard
     /**
      * {@inheritDoc}
      */
-    protected $structureDelimiter = '/';
+    protected string $structureDelimiter = '/';
 
     /**
      * {@inheritDoc}
      */
-    protected function parse($path)
+    protected function parse($path): array
     {
         $matches = [];
         $parts   = array_filter(explode($this->structureDelimiter, $path));
@@ -210,7 +210,8 @@ class Video extends Standard
     public function assemble(
         array $params = [],
         array $options = []
-    ) {
+    ): string
+    {
         $mergedParams = array_merge($this->defaults, $params);
         if (!$mergedParams) {
             return $this->prefix;

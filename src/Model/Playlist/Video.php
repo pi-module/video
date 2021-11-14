@@ -20,7 +20,7 @@ class Video extends Model
     /**
      * {@inheritDoc}
      */
-    protected $columns
+    protected array $columns
         = [
             'id',
             'playlist_id',

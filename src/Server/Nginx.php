@@ -15,14 +15,14 @@ namespace Module\Video\Server;
 
 class Nginx extends AbstractAdapter
 {
-    private $streamType = 'hls';
+    private string $streamType = 'hls';
 
-    public function getType()
+    public function getType(): string
     {
         return $this->streamType;
     }
 
-    public function getUrl($params)
+    public function getUrl($params): string
     {
         // Set stream type
         $streamType = isset($params['streamType']) ? $params['streamType'] : $this->streamType;

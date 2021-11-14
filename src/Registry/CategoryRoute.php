@@ -24,12 +24,12 @@ use Pi\Application\Registry\AbstractRegistry;
 class CategoryRoute extends AbstractRegistry
 {
     /** @var string Module name */
-    protected $module = 'video';
+    protected string $module = 'video';
 
     /**
      * {@inheritDoc}
      */
-    protected function loadDynamic($options = [])
+    protected function loadDynamic($options = []): array
     {
         $return  = [];
         $where   = ['status' => 1];
@@ -49,15 +49,14 @@ class CategoryRoute extends AbstractRegistry
     public function read()
     {
         $options = [];
-        $result  = $this->loadData($options);
-        return $result;
+        return $this->loadData($options);
     }
 
     /**
      * {@inheritDoc}
      * @param bool $name
      */
-    public function create()
+    public function create(): bool
     {
         $this->clear('');
         $this->read();
