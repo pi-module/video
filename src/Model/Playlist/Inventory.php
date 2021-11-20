@@ -20,7 +20,7 @@ class Inventory extends Model
     /**
      * {@inheritDoc}
      */
-    protected array $columns
+    protected $columns
         = [
             'id',
             'title',

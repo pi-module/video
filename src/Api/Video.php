@@ -351,27 +351,34 @@ class Video extends AbstractApi
         $video['video_duration_view'] = $this->getDuration($video['video_duration']);
 
         // Set category information
-        $video['category'] = json_decode($video['category']);
-        foreach ($video['category'] as $category) {
-            if (!empty($categoryList[$category]['title'])) {
-                $video['categories'][$category]['title'] = $categoryList[$category]['title'];
-                $video['categories'][$category]['url']   = Pi::url(
-                    Pi::service('url')->assemble(
-                        'video',
-                        [
-                            'module'     => $this->getModule(),
-                            'controller' => 'category',
-                            'slug'       => $categoryList[$category]['slug'],
-                        ]
-                    )
-                );
+        if (isset($video['category']) && !empty($video['category'])) {
+            $video['category'] = json_decode($video['category']);
+            foreach ($video['category'] as $category) {
+                if (!empty($categoryList[$category]['title'])) {
+                    $video['categories'][$category]['title'] = $categoryList[$category]['title'];
+                    $video['categories'][$category]['url']   = Pi::url(
+                        Pi::service('url')->assemble(
+                            'video',
+                            [
+                                'module'     => $this->getModule(),
+                                'controller' => 'category',
+                                'slug'       => $categoryList[$category]['slug'],
+                            ]
+                        )
+                    );
+                }
             }
         }
 
         // Set playlist information
-        $video['playlist'] = json_decode($video['playlist']);
+        if (isset($video['playlist']) && !empty($video['playlist'])) {
+            $video['playlist'] = json_decode($video['playlist']);
+        }
 
         // Set image
+        $video['largeUrl']  = '';
+        $video['mediumUrl'] = '';
+        $video['thumbUrl']  = '';
         if ($video['main_image']) {
             $video['largeUrl']  = Pi::url(
                 (string)Pi::api('doc', 'media')->getSingleLinkUrl($video['main_image'])->setConfigModule('video')->thumb('large')
@@ -382,19 +389,31 @@ class Video extends AbstractApi
             $video['thumbUrl']  = Pi::url(
                 (string)Pi::api('doc', 'media')->getSingleLinkUrl($video['main_image'])->setConfigModule('video')->thumb('thumbnail')
             );
-        } else {
-            $video['largeUrl']  = '';
-            $video['mediumUrl'] = '';
-            $video['thumbUrl']  = '';
         }
 
         // Set player
         switch ($video['player_type']) {
             case 'hls':
-            case 'mp4':
                 $video['player'] = [
                     'type'     => $video['player_type'],
                     'mimetype' => 'application/x-mpegURL',
+                    'source'   => [
+                        [
+                            'url'   => $video['video_url'],
+                            'title' => __('Normal Quality'),
+                        ],
+                    ],
+                    'layout'   => [
+                        'title'       => $video['title'],
+                        'posterImage' => $video['largeUrl'],
+                    ],
+                ];
+                break;
+
+            case 'mp4':
+                $video['player'] = [
+                    'type'     => $video['player_type'],
+                    'mimetype' => 'video/mp4',
                     'source'   => [
                         [
                             'url'   => $video['video_url'],

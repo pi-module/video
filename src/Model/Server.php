@@ -20,7 +20,7 @@ class Server extends Model
     /**
      * {@inheritDoc}
      */
-    protected array $columns
+    protected $columns
         = [
             'id',
             'title',

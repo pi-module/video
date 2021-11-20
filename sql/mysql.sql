@@ -46,6 +46,7 @@ CREATE TABLE `{video}`
     `sale_price`        DECIMAL(16, 2)        NOT NULL DEFAULT '0.00',
     `sale_count`        INT(10) UNSIGNED      NOT NULL DEFAULT '0',
     `video_server`      INT(10) UNSIGNED      NOT NULL DEFAULT '0',
+    `video_status`      TINYINT(1) UNSIGNED   NOT NULL DEFAULT '1',
     `video_path`        VARCHAR(64)           NOT NULL DEFAULT '',
     `video_file`        VARCHAR(64)           NOT NULL DEFAULT '',
     `video_url`         VARCHAR(256)          NOT NULL DEFAULT '',

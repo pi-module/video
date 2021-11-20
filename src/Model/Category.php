@@ -20,7 +20,7 @@ class Category extends Model
     /**
      * {@inheritDoc}
      */
-    protected array $columns
+    protected $columns
         = [
             'id',
             'parent',

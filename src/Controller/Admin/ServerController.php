@@ -60,11 +60,15 @@ class ServerController extends ActionController
                 }
 
                 // Set setting
-                $setting             = [];
-                $setting['token']    = $values['token'];
-                $setting['username'] = $values['username'];
-                $setting['password'] = $values['password'];
-                $values['setting']   = json_encode($setting);
+                $setting = json_encode(
+                    [
+                        'uri'      => $values['uri'],
+                        'token'    => $values['token'],
+                        'username' => $values['username'],
+                        'password' => $values['password'],
+                    ]
+                );
+                $values['setting'] = Pi::service('encryption')->process($setting, 'encrypt');
 
                 // Save values
                 if (!empty($id)) {

@@ -52,8 +52,13 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                     $badgeIdClass = 'badge-danger';
                 } else {
                     $badgeIdClass = 'badge-warning';
+                }
+
+                $bgClass = '';
+                if ($video['video_status'] != 1) {
+                    $bgClass = 'table-danger';
                 } ?>
-                <tr>
+                <tr class="<?php echo $bgClass; ?>">
                     <td>
                         <span class="badge <?php echo $badgeIdClass; ?>"><?php echo $this->escape($video['id']); ?></span>
                     </td>
@@ -62,12 +67,14 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                             <button id="button-<?php echo $video['id']; ?>" type="button" class="btn btn-link"
                                     data-toggle="button"
                                     data-link="<?php echo $this->url('', ['action' => 'recommend', 'id' => $video['id'], 'recommended' => '0']); ?>">
-                                <i class="fas fa-heart"></i></button>
+                                <i class="fas fa-heart"></i>
+                            </button>
                         <?php } else { ?>
                             <button id="button-<?php echo $video['id']; ?>" type="button" class="btn btn-link"
                                     data-toggle="button"
                                     data-link="<?php echo $this->url('', ['action' => 'recommend', 'id' => $video['id'], 'recommended' => '1']); ?>">
-                                <i class="far fa-heart"></i></button>
+                                <i class="far fa-heart"></i>
+                            </button>
                         <?php } ?>
                         <?php echo $this->escape($video['title']); ?>
                         <?php if ($video['hits'] > 0) { ?> ( <?php _e('View'); ?> : <?php echo $this->escape(_number($video['hits'])); ?> )<?php } ?>
@@ -75,8 +82,6 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                     <td>
                         <?php echo $this->escape($video['server']['title']); ?> ( <small><?php echo $this->escape($video['server']['type_view']); ?></small> )
                     </td>
-
-
                     <?php if (isset($config['dashboard_active']) && intval($config['dashboard_active']) == 1 && isset($companyList) && !empty($companyList)) { ?>
                         <?php if (isset($video['company_id']) && intval($video['company_id']) > 0) { ?>
                             <td><?php echo $companyList[$video['company_id']]['title'] ?></td>
@@ -87,8 +92,6 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                     <?php if (isset($config['sale_video']) && intval($config['sale_video']) == 1) { ?>
                         <td><?php echo $this->escape($video['sale_price_view']); ?></td>
                     <?php } ?>
-
-
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -96,30 +99,40 @@ $this->js($this->assetModule('script/system-msg.js', 'system'));
                             </button>
                             <div class="dropdown-menu" role="menu">
                                 <a class="dropdown-item" title="<?php _e('Manage video link'); ?>"
-                                   href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>"><i
-                                            class="fas fa-edit"></i> <?php _e('Manage video link'); ?></a>
+                                   href="<?php echo $this->url('', ['action' => 'link', 'id' => $video['id']]); ?>">
+                                    <i class="fas fa-edit"></i> <?php _e('Manage video link'); ?>
+                                </a>
                                 <a class="dropdown-item" title="<?php _e('Edit basic information'); ?>"
-                                   href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>"><i
-                                            class="fas fa-edit"></i> <?php _e('Edit basic information'); ?></a>
+                                   href="<?php echo $this->url('', ['action' => 'update', 'id' => $video['id']]); ?>">
+                                    <i class="fas fa-edit"></i> <?php _e('Edit basic information'); ?>
+                                </a>
                                 <a class="dropdown-item" title="<?php _e('Edit additional information'); ?>"
-                                   href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>"><i
-                                            class="fas fa-edit"></i> <?php _e('Edit additional information'); ?></a>
-
+                                   href="<?php echo $this->url('', ['action' => 'additional', 'id' => $video['id']]); ?>">
+                                    <i class="fas fa-edit"></i> <?php _e('Edit additional information'); ?>
+                                </a>
                                 <a class="dropdown-item" title="<?php _e('View video'); ?>"
-                                   href="<?php echo $this->url('', ['action' => 'watch', 'id' => $video['id']]); ?>"><i
-                                            class="fas fa-edit"></i> <?php _e('View video'); ?></a>
+                                   href="<?php echo $this->url('', ['action' => 'watch', 'id' => $video['id']]); ?>">
+                                    <i class="fas fa-edit"></i> <?php _e('View video'); ?>
+                                </a>
                             </div>
                         </div>
                         <?php if ($video['status'] == 1) { ?>
                             <a class="btn btn-success btn-sm" title="<?php _e('View'); ?>"
-                               href="<?php echo $video['videoUrl']; ?>" target="_blank"><i
-                                        class="fas fa-eye"></i> <?php _e('View'); ?></a>
+                               href="<?php echo $video['videoUrl']; ?>" target="_blank">
+                                <i class="fas fa-eye"></i> <?php _e('View'); ?>
+                            </a>
                         <?php } ?>
                         <?php if ($video['status'] != 5) { ?>
                             <a class="btn btn-danger btn-sm" title="<?php _e('Delete'); ?>"
                                href="<?php echo $this->url('', ['action' => 'delete', 'id' => $video['id']]); ?>"
                                onclick="return confirm('<?php echo _a('Are you sure to delete this video?'); ?>')">
                                 <i class="fas fa-trash"></i> <?php _e('Delete'); ?>
+                            </a>
+                        <?php } ?>
+                        <?php if ($video['video_status'] != 1) { ?>
+                            <a class="btn btn-warning btn-sm" title="<?php _e('Convert'); ?>"
+                               href="<?php echo $this->url('', ['action' => 'convert', 'id' => $video['id']]); ?>">
+                                <i class="fas fa-sync"></i> <?php _e('Convert'); ?>
                             </a>
                         <?php } ?>
                     </td>

@@ -20,7 +20,7 @@ class Video extends Model
     /**
      * {@inheritDoc}
      */
-    protected array $columns
+    protected $columns
         = [
             'id',
             'title',
@@ -55,6 +55,7 @@ class Video extends Model
             'sale_price',
             'sale_count',
             'video_server',
+            'video_status',
             'video_path',
             'video_file',
             'video_url',

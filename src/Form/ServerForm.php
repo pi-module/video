@@ -155,6 +155,21 @@ class ServerForm extends BaseForm
             ]
         );
 
+        // uri
+        $this->add(
+            [
+                'name'       => 'uri',
+                'options'    => [
+                    'label' => __('Authentication uri'),
+                ],
+                'attributes' => [
+                    'type'        => 'text',
+                    'description' => '',
+                    'required'    => false,
+                ],
+            ]
+        );
+
         // token
         $this->add(
             [

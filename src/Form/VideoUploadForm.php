@@ -34,6 +34,23 @@ class VideoUploadForm extends BaseForm
 
     public function init()
     {
+        // video_server
+        $this->add(
+            [
+                'name'       => 'video_server',
+                'type'       => 'Module\Video\Form\Element\Server',
+                'options'    => [
+                    'label' => __('Server'),
+                ],
+                'attributes' => [
+                    'description' => __('Select stream server'),
+                    'required'    => true,
+                    'class'       => 'video-server'
+                    //'value'       => Pi::registry('serverDefault', 'video')->read(),
+                ],
+            ]
+        );
+
         // video
         $this->add(
             [

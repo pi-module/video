@@ -20,7 +20,7 @@ class Service extends Model
     /**
      * {@inheritDoc}
      */
-    protected array $columns
+    protected $columns
         = [
             'id',
             'video',

@@ -83,6 +83,19 @@ class ServerFilter extends InputFilter
             ]
         );
 
+        // uri
+        $this->add(
+            [
+                'name'     => 'uri',
+                'required' => false,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
+                ],
+            ]
+        );
+
         // token
         $this->add(
             [

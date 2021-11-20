@@ -1,23 +1,36 @@
 <?php if (isset($videoRelated) && !empty($videoRelated)) { ?>
     <div class="video-related">
-        <h2 class="video-related-title">
-            <i class="far fa-caret-square-left"></i> <?php _e('Related videos'); ?>
-        </h2>
-        <div class="list-group">
-            <?php foreach ($videoRelated as $related) { ?>
-                <div class="list-group-item">
-                    <div class="clearfix row">
-                    <a class="col-md-3 col-12" title="<?php echo $this->escape($related['title']); ?>" href="<?php echo $this->escape($related['videoUrl']); ?>" >
-                        <img src="<?php echo $this->escape($related['thumbUrl']); ?>" alt="<?php echo $this->escape($related['title']); ?>" class="img-fluid">
-                    </a>
-                    <h5 class="col-md-9 col-12">
-                        <a title="<?php echo $this->escape($related['title']); ?>" href="<?php echo $this->escape($related['videoUrl']); ?>">
-                            <?php echo $this->escape($related['title']); ?>
-                        </a>
-                    </h5>
+        <div class="card" style="border-radius: 20px">
+            <div class="card-header">
+                <h2 class="card-title small">
+                    <?php _e('Related videos'); ?>
+                </h2>
+            </div>
+            <div class="card-body">
+                <?php foreach ($videoRelated as $related) { ?>
+                    <div class="row mb-3 pb-3 border-bottom">
+                        <div class="col-4">
+                            <a title="<?php echo $this->escape($related['title']); ?>"
+                               href="<?php echo $this->escape($related['videoUrl']); ?>">
+                                <img src="<?php echo $this->escape($related['thumbUrl']); ?>"
+                                     alt="<?php echo $this->escape($related['title']); ?>" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-8">
+                            <h5 class="small mb-3">
+                                <a class="text-dark" title="<?php echo $this->escape($related['title']); ?>"
+                                   href="<?php echo $this->escape($related['videoUrl']); ?>">
+                                    <?php echo $this->escape($related['title']); ?>
+                                </a>
+                            </h5>
+                            <ul class="list-inline small">
+                                <li class="list-inline-item text-gray"><i class="fas fa-clock"></i> <?php echo $this->escape($related['time_create_view']); ?></li>
+                                <li class="list-inline-item text-gray"><i class="fas fa-users"></i> <?php echo $this->escape($related['hits']); ?></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
         </div>
     </div>
 <?php } ?>

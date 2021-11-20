@@ -23,7 +23,7 @@ class Update extends BasicUpdate
     /**
      * {@inheritDoc}
      */
-    protected function attachDefaultListeners(): static
+    protected function attachDefaultListeners()
     {
         $events = $this->events;
         $events->attach('update.pre', [$this, 'updateSchema']);
@@ -273,6 +273,25 @@ EOD;
 
             // Alter table : ADD sale_count
             $sql = sprintf("ALTER TABLE %s ADD `sale_count` INT(10) UNSIGNED NOT NULL DEFAULT '0'", $videoTable);
+            try {
+                $videoAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult(
+                    'db',
+                    [
+                        'status'  => false,
+                        'message' => 'Table alter query failed: '
+                            . $exception->getMessage(),
+                    ]
+                );
+                return false;
+            }
+        }
+
+        // Update to version 1.6.0
+        if (version_compare($moduleVersion, '1.6.0', '<')) {
+            // Alter table : ADD video_status
+            $sql = sprintf("ALTER TABLE %s ADD `video_status` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1'", $videoTable);
             try {
                 $videoAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {

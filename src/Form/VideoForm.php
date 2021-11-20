@@ -251,8 +251,13 @@ class VideoForm extends BaseForm
         $this->add(
             [
                 'name'       => 'video_duration',
+                'options'    => [
+                    'label' => __('Duration (SEC)'),
+                ],
                 'attributes' => [
-                    'type' => 'hidden',
+                    'type'        => 'text',
+                    'description' => '',
+                    'required'    => true,
                 ],
             ]
         );

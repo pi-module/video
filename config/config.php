@@ -202,7 +202,7 @@ return [
             'description' => '',
             'edit'        => 'text',
             'filter'      => 'string',
-            'value'       => 'mp4,mp3',
+            'value'       => 'mp4',
         ],
         // Image
         'image_minw'                => [

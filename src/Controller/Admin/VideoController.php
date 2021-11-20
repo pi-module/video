@@ -29,6 +29,10 @@ use Pi\Filter;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Laminas\Db\Sql\Predicate\Expression;
+use FFMpeg\FFMpeg;
+use FFMpeg\Coordinate\Dimension;
+use FFMpeg\Format\Video\X264;
+use FFMpeg\FFProbe;
 
 class VideoController extends ActionController
 {
@@ -251,6 +255,7 @@ class VideoController extends ActionController
         $option = [
             'isNew'       => isset($video['id']) ? false : true,
             'serverCount' => count($serverList),
+            'side'        => 'admin',
         ];
 
         // Set form
@@ -273,6 +278,9 @@ class VideoController extends ActionController
 
                     // Set status
                     $values['status'] = 2;
+
+                    // Set video status
+                    $values['video_status'] = 1;
                 }
 
                 // Set time_update
@@ -312,8 +320,6 @@ class VideoController extends ActionController
 
     public function uploadAction()
     {
-        die('Not finish');
-
         // check category
         $categoryCount = Pi::api('category', 'video')->categoryCount();
         if (!$categoryCount) {
@@ -340,19 +346,17 @@ class VideoController extends ActionController
 
         // Get info from url
         $module = $this->params('module');
-        $server = $this->params('server');
-
-        // Check server
-        if (!isset($serverList[$server]) || empty($serverList[$server])) {
-            $message = __('please select true server');
-            $this->jump(['action' => 'index'], $message, 'error');
-        }
 
         // Get config
         $config = Pi::service('registry')->config->read($module);
 
+        // Set option
+        $option = [
+            'side' => 'admin',
+        ];
+
         // Set form
-        $form = new VideoUploadForm('video');
+        $form = new VideoUploadForm('video', $option);
         $form->setAttribute('enctype', 'multipart/form-data');
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
@@ -394,6 +398,12 @@ class VideoController extends ActionController
 
                 // Set status
                 $values['status'] = 2;
+
+                // Check status, need convert and set hls videos to stream servers
+                $values['video_status'] = 1;
+                if ($serverList[$values['video_server']]['type'] == 'hls') {
+                    $values['video_status'] = 0;
+                }
 
                 // Set server
                 if (isset($server) and intval($server) > 0) {
@@ -457,25 +467,25 @@ class VideoController extends ActionController
         // Get config
         $config = Pi::service('registry')->config->read($module);
 
+
+        // Find video
+        if (!$id) {
+            // Jump
+            $message = __('Please select video');
+            $this->jump(['action' => 'index'], $message);
+        }
+
+        // Get video
+        $video = Pi::api('video', 'video')->getVideo($id);
+
         // Get config
         $option = [
             'id'               => $id,
             'brand_system'     => $config['brand_system'],
             'sale_video'       => $config['sale_video'],
             'dashboard_active' => $config['dashboard_active'],
+            'side'             => 'admin',
         ];
-
-        // Find video
-        $video = [];
-        if ($id) {
-            $video                = Pi::api('video', 'video')->getVideo($id);
-            $option['side']       = 'admin';
-            $option['video_size'] = $video['video_size'];
-        } else {
-            // Jump
-            $message = __('Please select video');
-            $this->jump(['action' => 'index'], $message);
-        }
 
         // Set form
         $form = new VideoForm('video', $option);
@@ -548,7 +558,9 @@ class VideoController extends ActionController
                 );
 
                 // playlist
-                Pi::api('playlist', 'video')->setVideo($row->id, $row->playlist);
+                if (isset($row->playlist) && (int)$row->playlist > 0) {
+                    Pi::api('playlist', 'video')->setVideo($row->id, $row->playlist);
+                }
 
                 // Tag
                 if (isset($tag) && is_array($tag) && Pi::service('module')->isActive('tag')) {
@@ -613,16 +625,20 @@ class VideoController extends ActionController
         $config = Pi::service('registry')->config->read($module);
 
         // Find video
-        if ($id) {
-            $video = Pi::api('video', 'video')->getVideo($id);
-        } else {
+        if (!$id) {
             $this->jump(['action' => 'index'], __('Please select video'));
         }
 
+        $video = Pi::api('video', 'video')->getVideo($id);
+
         // Get attribute field
-        $fields          = Pi::api('attribute', 'video')->Get($video['category_main']);
-        $option['field'] = $fields['attribute'];
-        $option['side']  = 'admin';
+        $fields = Pi::api('attribute', 'video')->Get($video['category_main']);
+
+        // Set option
+        $option = [
+            'field' => $fields['attribute'],
+            'side'  => 'admin',
+        ];
 
         // Check attribute is empty
         if (empty($fields['attribute'])) {
@@ -700,17 +716,19 @@ class VideoController extends ActionController
         $config = Pi::service('registry')->config->read($module);
 
         // Get video
-        if ($id) {
-            $video = Pi::api('video', 'video')->getVideo($id);
-        } else {
+        if (!$id) {
             $message = __('Please select video');
             $this->jump(['action' => 'index'], $message);
         }
+
+        $video = Pi::api('video', 'video')->getVideo($id);
 
         // set nav
         $nav = [
             'page' => 'view',
         ];
+
+        $serverList = Pi::registry('serverList', 'video')->read();
 
         // Set view
         $this->view()->setTemplate('video-watch');
@@ -763,6 +781,7 @@ class VideoController extends ActionController
             $return['id']          = 0;
             $return['recommended'] = 0;
         }
+
         return $return;
     }
 
@@ -799,5 +818,137 @@ class VideoController extends ActionController
             $this->jump(['action' => 'index'], __('This video deleted'));
         }
         $this->jump(['action' => 'index'], __('Please select video'));
+    }
+
+    public function convertAction()
+    {
+        // Get info from url
+        $id     = $this->params('id');
+        $module = $this->params('module');
+
+        // Check id
+        if (!$id) {
+            $message = __('Please select video');
+            $this->jump(['action' => 'index'], $message, 'error');
+        }
+
+        // Get video
+        $video = Pi::api('video', 'video')->getVideo($id);
+
+        // Get server
+        $serverList = Pi::registry('serverList', 'video')->read();
+        $server     = $serverList[$video['video_server']];
+
+        // Set video path
+        $sourcePath = Pi::path(sprintf('%s/%s', $video['video_path'], $video['video_file']));
+
+        // Check file exist
+        if (!Pi::service('file')->exists($sourcePath)) {
+            $message = __('Video file not exist');
+            $this->jump(['action' => 'index'], $message, 'error');
+        }
+
+        // Set convert dimension
+        $dimensionList = Pi::api('convert', 'video')->getDimensionList();
+
+        // Convert
+        $convertResult = [];
+        foreach ($dimensionList as $dimensionSingle) {
+
+            // Set convert name
+            $convertName = sprintf(
+                '%s-%s.mp4',
+                pathinfo($video['video_file'], PATHINFO_FILENAME),
+                $dimensionSingle['name']
+            );
+
+            // Set save path
+            $convertPath = Pi::path(sprintf('%s/%s', $video['video_path'], $convertName));
+
+            // Check file exist
+            if (Pi::service('file')->exists($convertPath)) {
+                Pi::service('file')->remove($convertPath);
+            }
+
+            // Set ffmpeg settings
+            $ffmpeg    = FFMpeg::create();
+            $ffprobe   = FFProbe::create();
+            $format    = new X264('libfdk_aac', 'libx264');
+            $dimension = new Dimension((int)$dimensionSingle['width'], (int)$dimensionSingle['height']);
+            $duration  = (int)$ffprobe->format($sourcePath)->get('duration');
+
+            // do convert
+            $convert = $ffmpeg->open($sourcePath);
+            $convert->filters()->resize($dimension)->synchronize();
+            $convert->save($format, $convertPath);
+
+            $convertResult[] = [
+                'duration' => $duration,
+                'name'     => $convertName,
+                'path'     => $convertPath,
+            ];
+        }
+
+        // upload
+        $uploadResult = [];
+        foreach ($convertResult as $convertSingle) {
+            // Set ftp connection
+            $ftp = sprintf(
+                'ftp://%s/%s',
+                $server['uri'],
+                $convertSingle['name']
+            );
+
+            // Open file
+            $fp = fopen($convertSingle['path'], 'r');
+
+            // Start upload by curl
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $ftp);
+            curl_setopt($ch, CURLOPT_UPLOAD, 1);
+            curl_setopt($ch, CURLOPT_INFILE, $fp);
+            curl_setopt($ch, CURLOPT_INFILESIZE, filesize($convertSingle['path']));
+            curl_setopt($ch, CURLOPT_USERPWD, sprintf('%s:%s', $server['username'], $server['password']));
+            curl_exec($ch);
+            $chResult = curl_errno($ch);
+            curl_close($ch);
+
+            // Check result
+            if ($chResult == 0) {
+                $message = 'File uploaded successfully.';
+                $status  = 1;
+            } else {
+                $message = 'File upload error.';
+                $status  = 0;
+            }
+
+            // Set result
+            $uploadResult[] = [
+                'status'  => $status,
+                'message' => $message,
+                'file'    => $convertResult,
+            ];
+        }
+
+        // Set single result
+        $result         = array_shift($uploadResult);
+        $result['file'] = array_shift($result['file']);
+
+        // Set update values
+        $values = [
+            'time_update'    => time(),
+            'video_status'   => 1,
+            'video_duration' => $result['file']['duration'],
+            'video_file'     => $result['file']['name'],
+        ];
+
+        // Save
+        $row = $this->getModel('video')->find($id);
+        $row->assign($values);
+        $row->save();
+
+        // Jump
+        $message = __('Video convert and upload successfully');
+        $this->jump(['action' => 'index'], $message);
     }
 }
