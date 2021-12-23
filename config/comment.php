@@ -11,7 +11,7 @@
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 return [
-    'news' => [
+    'video' => [
         'title'    => _a('Video comments'),
         'icon'     => 'icon-post',
         'callback' => 'Module\Video\Api\Comment',

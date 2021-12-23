@@ -507,6 +507,9 @@ class Video extends AbstractApi
             $video['thumbUrl']  = '';
         }
 
+        // Set video duration
+        $video['video_duration_view'] = $this->getDuration($video['video_duration']);
+
         // unset
         unset($video['text_summary']);
         unset($video['text_description']);
@@ -749,6 +752,9 @@ class Video extends AbstractApi
         } else {
             $video['mediumUrl']  = '';
         }
+
+        // Set video duration
+        $video['video_duration_view'] = $this->getDuration($video['video_duration']);
 
         // Set attribute
         $filterList = isset($filterList) ? $filterList : Pi::api('attribute', 'video')->filterList();

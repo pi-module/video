@@ -77,4 +77,13 @@ class Comment extends AbstractComment
         }
         return $item;
     }
+
+    public function canonize($id)
+    {
+        $data = Pi::api('video', 'video')->getVideo($id);
+        return [
+            'url'   => $data['videoUrl'],
+            'title' => $data['title'],
+        ];
+    }
 }
