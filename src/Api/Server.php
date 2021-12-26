@@ -41,9 +41,11 @@ class Server extends AbstractApi
         $server = $server->toArray();
 
         // Get setting
-        $setting = Pi::service('encryption')->process($server['setting'], 'decrypt');
-        $setting = json_decode($setting, true);
-        $server  = array_merge($server, $setting);
+        if (isset($server['setting']) && !empty($server['setting'])) {
+            $setting = Pi::service('encryption')->process($server['setting'], 'decrypt');
+            $setting = json_decode($setting, true);
+            $server  = array_merge($server, $setting);
+        }
 
         // Set type view
         $serverType          = Pi::registry('serverType', 'video')->read();
