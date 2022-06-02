@@ -19,7 +19,7 @@ use Laminas\EventManager\Event;
 
 class Install extends BasicInstall
 {
-    protected function attachDefaultListeners(): static
+    protected function attachDefaultListeners()
     {
         $events = $this->events;
         $events->attach('install.pre', [$this, 'preInstall'], 1000);
