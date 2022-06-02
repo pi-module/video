@@ -76,6 +76,11 @@ class Install extends BasicInstall
                 'type'  => 'server',
                 'name'  => 'aparat',
             ],
+            [
+                'title' => __('Telewebion'),
+                'type'  => 'server',
+                'name'  => 'telewebion',
+            ],
         ];
 
         // Add status list on table
