@@ -16,6 +16,7 @@ namespace Module\Video\Api;
 use Pi;
 use Pi\Application\Api\AbstractApi;
 use Laminas\Db\Sql\Predicate\Expression;
+use function time;
 
 /*
  * Pi::api('video', 'video')->getVideo($parameter, $type);
@@ -438,6 +439,8 @@ class Video extends AbstractApi
                 break;
         }
 
+        $video['hits'] = $this->fakeHits($video['hits'], $video['time_create']);
+
         // return video
         return $video;
     }
@@ -521,6 +524,8 @@ class Video extends AbstractApi
         unset($video['count']);
         unset($video['favorite']);
         unset($video['attribute']);
+
+        $video['hits'] = $this->fakeHits($video['hits'], $video['time_create']);
 
         // return video
         return $video;
@@ -659,6 +664,8 @@ class Video extends AbstractApi
             }
         }
 
+        $video['hits'] = $this->fakeHits($video['hits'], $video['time_create']);
+
         // return video
         return $video;
     }
@@ -774,6 +781,8 @@ class Video extends AbstractApi
         unset($video['uid']);
         unset($video['setting']);
 
+        $video['hits'] = $this->fakeHits($video['hits'], $video['time_create']);
+
         // return video
         return $video;
     }
@@ -871,5 +880,11 @@ class Video extends AbstractApi
         }
 
         return false;
+    }
+
+    public function fakeHits($hits, $timeCreate)
+    {
+        $day = round((time() - $timeCreate) / (60 * 60 * 24));
+        return ($hits * $day * 297);
     }
 }
